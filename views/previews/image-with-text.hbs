@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/assets/component-image-with-text.css" media="print" onload="this.media='all'">
+
+<div class="image-with-text color-scheme-{{ sectionSettings.color_scheme }} bc-{{settings.section_style}}-bt">
+  <div class="{{#if sectionSettings.full_width }}image-with-text--full-width{{else}}page-width{{/if}} page-width-{{settings.section_style}}">
+    <div class="image-with-text__grid color-{{ sectionSettings.color_scheme }} {{#if (eq section.settings.layout 'text_first')}}image-with-text__grid--reverse{{/if}} grid grid--gapless grid--1-col grid--2-col-tablet">
+      <div class="grid__item">
+        <div class="image-with-text__media image-with-text__media--{{ sectionSettings.height }} {{#if (isnt sectionSettings.image 'blank')}}media{{ else }}image-with-text__media--placeholder placeholder{{/if}}"
+          {{#and (eq sectionSettings.height 'adapt') (eq sectionSettings.image 'blank')}}style="padding-bottom: 121.5%;"{{/and}}
+        >
+          <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_165x.jpg?v=1639584819 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_360x.jpg?v=1639584819 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_535x.jpg?v=1639584819 535w,//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_720x.jpg?v=1639584819 720w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_533x.jpg?v=1639584819" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="" loading="lazy" width="800" height="972">
+        </div>
+      </div>
+      <div class="grid__item">
+        <div class="image-with-text__content image-with-text__content--{{ sectionSettings.height }}">
+          <h2 class="image-with-text__heading h1">
+              Image with text
+          </h2>
+          <div class="image-with-text__text rte">
+              <p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>
+          </div>
+          <a href="" class="button button--primary" aria-disabled="true">Button label</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

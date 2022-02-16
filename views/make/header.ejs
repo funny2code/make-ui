@@ -1,0 +1,23 @@
+<header class="py__header">
+    <div class="py__header-top">
+        <div class="py__header-logo">
+            <h1 class="py__header-title">
+                <%= make.title %>
+            </h1>
+        </div>
+        <div class="py__header-login">
+            <% if(id){ %>
+                <a class="py__button py__button-black">
+                    Save Changes
+                </a>
+                <a href="/download" class="py__button py__button-white">
+                    Download Theme
+                </a>
+            <% } else { %>
+                <a href="/login" class="py__button py__button-white">
+                    Login
+                </a>
+            <% } %>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,53 @@
+<cart-notification class="s-cart_style-show style-3"> 
+    <div class="cart-notification-wrapper cart-notification-wrapper__shipping">
+        <div id="cart-notification" class="cart-notification" aria-modal="true" aria-label="Item added to your cart" role="dialog" tabindex="-1">
+            <div class="cart-notification__header">
+                <h2 class="cart-notification__heading caption-large">Shopping Cart</h2>
+                <div class="new-i-note cart-notification__heading"><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/Vector.png?v=1641871323"> Item added to your cart</div>
+                <button type="button" class="modal__close-button" aria-label="Close">
+                    <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
+                        <use href="#icon-close">
+                        </use>
+                    </svg>
+                </button>
+                <div class="bc-free-shipping-wrapper" data-price="100" data-currency="USD">
+                    <div class="bc-free-shipping-wrapper__text active">
+                        <p>YOU’RE <strong>100 </strong>AWAY FROM FREE SHIPPING</p>
+                    </div>
+                    <div class="bc-free-shipping-wrapper__success-text">
+                        <p>YOU QUALIFY FOR FREE SHIPPING!</p>
+                    </div>
+                    <div class="bc-free-shipping-bar">
+                        <div class="bc-free-shipping-bar__progress" style="background-color:#794842"></div>
+                    </div>
+                </div>
+                <div class="bc-cart__total-wrapper">
+                    <div class="bc-cart__total-label">Estimated Total</div>
+                    <div class="bc-cart__total-value" id="cart-total">
+
+                        <span>$195.00</span>
+                    </div>
+                </div>
+                <div class="bc-cart__buttons-wrapper">
+                    <form action="/cart" method="post" id="cart">
+                        <button id="loopcheckout" class="button button--primary button--full-width" name="checkout" form="cart">Check out</button>
+                    </form>
+                </div>
+            </div>
+            <div id="cart-notification-product" class="cart-notification-product">
+            </div>
+
+            <div class="cart-notification__links"><a href="/cart" class="link button-label">View Cart Page</a>
+
+            </div>
+            <div class="new-i-note cart-notification__links">
+                <div class="bc-cart__buttons-wrapper">
+                    <a href="/cart" id="view-cart" class="button button--primary button--full-width">View my cart (<span class="total-num"></span>)</a>
+                    <form action="/cart" method="post" id="cart">
+                        <button id="loopcheckout" class="button button--primary button--full-width" name="checkout" form="cart">Check out</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</cart-notification>

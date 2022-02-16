@@ -1,0 +1,76 @@
+<link rel="preload" href="/assets/section-multicolumn.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/assets/component-slider.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<div class="multicolumn background-{{ sectionSettings.background_style }} {{#if (eq sectionSettings.title 'blank')}} no-heading{{/if}}">
+  <div class="page-width">
+    <div class="title-wrapper-with-link title-wrapper--self-padded-mobile">
+      <h2 class="title">{{sectionSettings.title}}</h2> 
+      {{#if (eq sectionSettings.button_label 'blank')}}      
+        <a href="#" class="link underlined-link {{#if sectionSettings.swipe_on_mobile }}  large-up-hide{{/if}}">{{ sectionSettings.button_label}}</a>      
+      {{/if}}          
+    </div>
+    <slider-component class="slider-mobile-gutter">
+        <ul class="multicolumn-list grid grid--1-col grid--3-col-tablet" id="Slider-template--15300017979553__164270150892afdb7d" role="list">
+            <li class="multicolumn-list__item grid__item">
+                <div class="multicolumn-card">
+                    <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ sectionSettings.image_width }}-width  {{#if (eq sectionSettings.image_width 'full')}} multicolumn-card-spacing {{/if}}">
+                        <div class="media media--transparent media--adapt" style="padding-bottom: 121.5%;">
+                            <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_275x.jpg?v=1639584819 275w,//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_550x.jpg?v=1639584819 550w,//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_710x.jpg?v=1639584819 710w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_550x.jpg?v=1639584819" sizes="(min-width: 990px) 550px,
+                            (min-width: 750px) 550px,
+                            calc(100vw - 30px)" alt="Column" height="972" width="800" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="multicolumn-card__info">
+                        <h3>Column</h3>
+                        <div class="rte">
+                            <p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="multicolumn-list__item grid__item">
+                <div class="multicolumn-card">
+                    <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ sectionSettings.image_width }}-width  {{#if (eq sectionSettings.image_width 'full')}} multicolumn-card-spacing {{/if}}">
+                        <div class="media media--transparent media--adapt" style="padding-bottom: 121.5%;">
+                            <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_275x.jpg?v=1639584819 275w,//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_550x.jpg?v=1639584819 550w,//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_710x.jpg?v=1639584819 710w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_550x.jpg?v=1639584819" sizes="(min-width: 990px) 550px,
+                            (min-width: 750px) 550px,
+                            calc(100vw - 30px)" alt="Column" height="972" width="800" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="multicolumn-card__info">
+                        <h3>Column</h3>
+                        <div class="rte">
+                            <p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="multicolumn-list__item grid__item">
+                <div class="multicolumn-card">
+                    <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ sectionSettings.image_width }}-width  {{#if (eq sectionSettings.image_width 'full')}}multicolumn-card-spacing{{/if}}">
+                        <div class="media media--transparent media--adapt" style="padding-bottom: 121.5%;">
+                            <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_275x.jpg?v=1639584819 275w,//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_550x.jpg?v=1639584819 550w,//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_710x.jpg?v=1639584819 710w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/files/pexels-pixabay-247200_550x.jpg?v=1639584819" sizes="(min-width: 990px) 550px,
+                            (min-width: 750px) 550px,
+                            calc(100vw - 30px)" alt="Column" height="972" width="800" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="multicolumn-card__info">
+                        <h3>Column</h3>
+                        <div class="rte">
+                            <p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </slider-component>
+    <div class="center {{#if sectionSettings.swipe_on_mobile }} small-hide medium-hide{{/if}}">
+      {{#if (eq sectionSettings.button_label 'blank')}}      
+        <a class="button button--primary" href="#">
+          {{ sectionSettings.button_label}}
+        </a>
+      {{/if}}
+    </div>
+  </div>
+</div>
+

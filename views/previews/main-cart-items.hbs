@@ -1,0 +1,383 @@
+<div id="MainContent">
+<link rel="stylesheet" href="/assets/component-cart.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/component-cart-items.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/component-totals.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/component-price-style-1.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/component-discounts.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/component-loading-overlay.css" media="print" onload="this.media='all'">
+<style>  
+ {{#if sectionSettings.item_bg }}
+  .cart-item{
+    padding:20px;
+    background-color:{{sectionSettings.item_bg}};
+    {{#if sectionSettings.item_radius }}
+    border-radius: {{sectionSettings.item_radius}}px; 
+    {{/if}}
+  }
+  {{/if}} 
+  {{#if section.settings.item_radius }}
+  .cart-item .cart-item__media img{
+    border-radius: {{sectionSettings.item_radius}}px;
+  } 
+  {{/if}}
+</style>
+<div id="shopify-section-template--15300017815713__cart-items" class="shopify-section cart__items-wrapper">
+<cart-items class="page-width {{#ifCound cart '===' 'empty'}}is-empty{{/ifCound}}">
+    <div class="title-wrapper-with-link">
+        <h3 class="title title--primary">Your Items</h3>
+        <a href="/collections/all" class="underlined-link hidden">Continue shopping</a>
+    </div>
+
+    <div class="cart__warnings">
+        <h2 class="cart__empty-text">Your cart is empty</h2>
+        <a href="/collections/all" class="link">
+            Continue shopping
+        </a>
+    </div>
+
+    <form action="/cart" class="cart__contents critical-hidden" method="post" id="cart">
+        <div class="cart__items" id="main-cart-items" data-id="template--15300017815713__cart-items">
+            <div class="js-contents">
+                <table class="cart-items">
+                    <thead class="hidden">
+                        <tr>
+                            <th class="caption-with-letter-spacing" colspan="2" scope="col">Product</th>
+                            <th class="cart-items__heading--wide medium-up caption-with-letter-spacing" colspan="1" scope="col">Quantity</th>
+                            <th class="medium-up right caption-with-letter-spacing" colspan="1" scope="col">Total</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr class="cart-item" id="CartItem-1">
+                            <td class="cart-item__media">
+
+                                <img class="cart-item__image" src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/womens-red-t-shirt_925x_95a058fa-78d0-4451-a189-4b37b6b3df1c_150x.jpg?v=1638957917" alt="" loading="lazy" width="75" height="51">
+
+                            </td>
+
+                            <td class="cart-item__details">
+                                <p class="caption-with-letter-spacing t-{{sectionSettings.show_vendor}}-show light">partners-demo</p><a href="/products/red-sports-tee" class="cart-item__name break">Red Sports Tee</a>
+                                <dl></dl>
+
+                                <p class="product-option"></p>
+                                <ul class="discounts list-unstyled" role="list" aria-label="Discount"></ul>
+
+                                <div class="cart-item__price-wrapper"><span class="price">
+                                        $50.00
+                                    </span></div>
+
+                                <p class="cart-item__error" id="Line-item-error-1">
+                                    <span class="cart-item__error-text"></span>
+                                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                                        <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"></circle>
+                                        <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"></circle>
+                                        <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"></path>
+                                        <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                                        </path>
+                                    </svg>
+                                </p>
+                            </td>
+                            <td class="cart-item__totals right">
+                                <div class="loading-overlay hidden">
+                                    <div class="loading-overlay__spinner">
+                                        <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <div class="cart-item__price-wrapper"><span class="price price--end">
+                                        $100.00
+                                    </span></div>
+
+                                <div class="cart-item__quantity">
+                                    <label class="hidden" for="Quantity-1">
+                                        Quantity
+                                    </label>
+                                    <quantity-input class="quantity">
+                                        <button class="quantity__button no-js-hidden" name="minus" type="button">
+                                            <span class="visually-hidden">Decrease quantity for Red Sports Tee</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor">
+                                                </path>
+                                            </svg>
+
+                                        </button>
+                                        <input class="quantity__input" type="number" name="updates[]" value="2" min="0" aria-label="Quantity for Red Sports Tee" id="Quantity-1" data-index="1">
+                                        <button class="quantity__button no-js-hidden" name="plus" type="button">
+                                            <span class="visually-hidden">Increase quantity for Red Sports Tee</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor">
+                                                </path>
+                                            </svg>
+
+                                        </button>
+                                    </quantity-input>
+                                </div>
+
+                                <cart-remove-button id="Remove-1" data-index="1">
+                                    <a href="/cart/change?id=41331951403169:1fc97c8ec613f9b719a4c2c6451e5f1b&amp;quantity=0" class="" aria-label="Remove Red Sports Tee">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" focusable="false" role="presentation" class="icon icon-remove">
+                                            <path d="M14 3h-3.53a3.07 3.07 0 00-.6-1.65C9.44.82 8.8.5 8 .5s-1.44.32-1.87.85A3.06 3.06 0 005.53 3H2a.5.5 0 000 1h1.25v10c0 .28.22.5.5.5h8.5a.5.5 0 00.5-.5V4H14a.5.5 0 000-1zM6.91 1.98c.23-.29.58-.48 1.09-.48s.85.19 1.09.48c.2.24.3.6.36 1.02h-2.9c.05-.42.17-.78.36-1.02zm4.84 11.52h-7.5V4h7.5v9.5z" fill="currentColor"></path>
+                                            <path d="M6.55 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5zM9.45 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5z" fill="currentColor"></path>
+                                        </svg>
+
+                                    </a>
+                                </cart-remove-button>
+                            </td>
+                        </tr>
+                        <tr class="cart-item" id="CartItem-2">
+                            <td class="cart-item__media">
+
+                                <img class="cart-item__image" src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/smiling-woman-poses_925x_f021fba5-f314-4552-9fca-c9a717ae5ec6_150x.jpg?v=1638957913" alt="" loading="lazy" width="75" height="51">
+
+                            </td>
+
+                            <td class="cart-item__details">
+                                <p class="caption-with-letter-spacing t-{{sectionSettings.show_vendor}}-show light">partners-demo</p><a href="/products/white-cotton-shirt" class="cart-item__name break">White Cotton Shirt</a>
+                                <dl></dl>
+
+                                <p class="product-option"></p>
+                                <ul class="discounts list-unstyled" role="list" aria-label="Discount"></ul>
+
+                                <div class="cart-item__price-wrapper"><span class="price">
+                                        $30.00
+                                    </span></div>
+
+                                <p class="cart-item__error" id="Line-item-error-2">
+                                    <span class="cart-item__error-text"></span>
+                                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                                        <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"></circle>
+                                        <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"></circle>
+                                        <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"></path>
+                                        <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                                        </path>
+                                    </svg>
+                                </p>
+                            </td>
+                            <td class="cart-item__totals right">
+                                <div class="loading-overlay hidden">
+                                    <div class="loading-overlay__spinner">
+                                        <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <div class="cart-item__price-wrapper"><span class="price price--end">
+                                        $30.00
+                                    </span></div>
+
+                                <div class="cart-item__quantity">
+                                    <label class="hidden" for="Quantity-2">
+                                        Quantity
+                                    </label>
+                                    <quantity-input class="quantity">
+                                        <button class="quantity__button no-js-hidden" name="minus" type="button">
+                                            <span class="visually-hidden">Decrease quantity for White Cotton Shirt</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor">
+                                                </path>
+                                            </svg>
+
+                                        </button>
+                                        <input class="quantity__input" type="number" name="updates[]" value="1" min="0" aria-label="Quantity for White Cotton Shirt" id="Quantity-2" data-index="2">
+                                        <button class="quantity__button no-js-hidden" name="plus" type="button">
+                                            <span class="visually-hidden">Increase quantity for White Cotton Shirt</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor">
+                                                </path>
+                                            </svg>
+
+                                        </button>
+                                    </quantity-input>
+                                </div>
+
+                                <cart-remove-button id="Remove-2" data-index="2">
+                                    <a href="/cart/change?id=41331951304865:9b1e82edbba972a158d0c75a20bd27c5&amp;quantity=0" class="" aria-label="Remove White Cotton Shirt">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" focusable="false" role="presentation" class="icon icon-remove">
+                                            <path d="M14 3h-3.53a3.07 3.07 0 00-.6-1.65C9.44.82 8.8.5 8 .5s-1.44.32-1.87.85A3.06 3.06 0 005.53 3H2a.5.5 0 000 1h1.25v10c0 .28.22.5.5.5h8.5a.5.5 0 00.5-.5V4H14a.5.5 0 000-1zM6.91 1.98c.23-.29.58-.48 1.09-.48s.85.19 1.09.48c.2.24.3.6.36 1.02h-2.9c.05-.42.17-.78.36-1.02zm4.84 11.52h-7.5V4h7.5v9.5z" fill="currentColor"></path>
+                                            <path d="M6.55 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5zM9.45 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5z" fill="currentColor"></path>
+                                        </svg>
+
+                                    </a>
+                                </cart-remove-button>
+                            </td>
+                        </tr>
+                        <tr class="cart-item" id="CartItem-3">
+                            <td class="cart-item__media">
+
+                                <img class="cart-item__image" src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_d21a29c5-32b9-49d3-a74e-81a74c472f27_150x.jpg?v=1638957907" alt="Zipped Jacket" loading="lazy" width="75" height="51">
+
+                            </td>
+
+                            <td class="cart-item__details">
+                                <p class="caption-with-letter-spacing t-{{sectionSettings.show_vendor}}-show light">partners-demo</p><a href="/products/zipped-jacket" class="cart-item__name break">Zipped Jacket</a>
+                                <dl>
+                                    <div class="product-option">
+                                        <dt>Size: </dt>
+                                        <dd>M</dd>
+                                    </div>
+                                    <div class="product-option">
+                                        <dt>Color: </dt>
+                                        <dd>Blue</dd>
+                                    </div>
+                                </dl>
+
+                                <p class="product-option"></p>
+                                <ul class="discounts list-unstyled" role="list" aria-label="Discount"></ul>
+
+                                <div class="cart-item__price-wrapper"><span class="price">
+                                        $65.00
+                                    </span></div>
+
+                                <p class="cart-item__error" id="Line-item-error-3">
+                                    <span class="cart-item__error-text"></span>
+                                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+                                        <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"></circle>
+                                        <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"></circle>
+                                        <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"></path>
+                                        <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                                        </path>
+                                    </svg>
+                                </p>
+                            </td>
+                            <td class="cart-item__totals right">
+                                <div class="loading-overlay hidden">
+                                    <div class="loading-overlay__spinner">
+                                        <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <div class="cart-item__price-wrapper"><span class="price price--end">
+                                        $65.00
+                                    </span></div>
+
+                                <div class="cart-item__quantity">
+                                    <label class="hidden" for="Quantity-3">
+                                        Quantity
+                                    </label>
+                                    <quantity-input class="quantity">
+                                        <button class="quantity__button no-js-hidden" name="minus" type="button">
+                                            <span class="visually-hidden">Decrease quantity for Zipped Jacket</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor">
+                                                </path>
+                                            </svg>
+
+                                        </button>
+                                        <input class="quantity__input" type="number" name="updates[]" value="1" min="0" aria-label="Quantity for Zipped Jacket" id="Quantity-3" data-index="3">
+                                        <button class="quantity__button no-js-hidden" name="plus" type="button">
+                                            <span class="visually-hidden">Increase quantity for Zipped Jacket</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor">
+                                                </path>
+                                            </svg>
+
+                                        </button>
+                                    </quantity-input>
+                                </div>
+
+                                <cart-remove-button id="Remove-3" data-index="3">
+                                    <a href="/cart/change?id=41347064529057:7cc3bb24c757d557e1e2abc7fac22951&amp;quantity=0" class="" aria-label="Remove Zipped Jacket - M / Blue">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" focusable="false" role="presentation" class="icon icon-remove">
+                                            <path d="M14 3h-3.53a3.07 3.07 0 00-.6-1.65C9.44.82 8.8.5 8 .5s-1.44.32-1.87.85A3.06 3.06 0 005.53 3H2a.5.5 0 000 1h1.25v10c0 .28.22.5.5.5h8.5a.5.5 0 00.5-.5V4H14a.5.5 0 000-1zM6.91 1.98c.23-.29.58-.48 1.09-.48s.85.19 1.09.48c.2.24.3.6.36 1.02h-2.9c.05-.42.17-.78.36-1.02zm4.84 11.52h-7.5V4h7.5v9.5z" fill="currentColor"></path>
+                                            <path d="M6.55 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5zM9.45 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5z" fill="currentColor"></path>
+                                        </svg>
+
+                                    </a>
+                                </cart-remove-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <p class="visually-hidden" id="cart-live-region-text" aria-live="polite" role="status"></p>
+        <p class="visually-hidden" id="shopping-cart-line-item-status" aria-live="polite" aria-hidden="true" role="status">Loading...</p>
+    </form>
+</cart-items>
+
+<script src="/assets/cart.js" defer="defer"></script>
+</div>
+<div id="shopify-section-template--15300017815713__cart-footer" class="shopify-section cart__footer-wrapper">
+<style>
+  {{#if sectionSettings.button_radius }}
+  .cart__ctas button{
+    border-radius: {{sectionSettings.button_radius}}px;  
+  }
+  {{/if}}
+  {{#if sectionSettings.enable_dynamic_pay }}
+  #loopcheckoutdynamic{
+    margin-top: 15px;
+    background: #5b32f6;
+  }
+  #loopcheckoutdynamic:hover{
+    box-shadow: 0 0 10px black;
+  }
+  #loopcheckoutdynamic img{
+    width: 74px;
+  }
+  {{/if}}
+</style>
+<div class="page-width" id="main-cart-footer" data-id="template--15300017815713__cart-footer">
+    <div>
+        <div class="title-wrapper-with-link" style="opacity:0">
+            <h3 style="margin:0">Form</h3>
+        </div>
+        <div class="cart__footer">
+            <div class="cart__footer-container">
+
+                <div class="cart__ctas">
+                    <noscript>
+                        <button type="submit" class="cart__update-button button button--secondary" form="cart">Update</button>
+                    </noscript>
+
+                    <button type="submit" class="cart__checkout-button button" name="checkout" form="cart">Check out</button>
+                    {{#if sectionSettings.enable_dynamic_pay }}
+                    <button id="loopcheckoutdynamic" class="button button--primary button--full-width"><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
+                    {{/if}}
+                </div>
+                <div class="js-contents">
+                    <div class="totals">
+                        <h3 class="totals__subtotal">Subtotal</h3>
+                        <p class="totals__subtotal-value">$195.00 CAD</p>
+                    </div>
+
+                    <div></div>
+
+                    <small class="tax-note caption-large rte">Taxes and shipping calculated at checkout
+                    </small>
+                </div>
+
+                <div id="cart-errors"></div>
+              {{#if sectionSettings.show_cart_note }}
+                <cart-note class="cart__note field">
+                    <label for="Cart-note">Order special instructions</label>
+                    <textarea class="text-area text-area--resize-vertical field__input" name="note" id="Cart-note" placeholder="Order special instructions"></textarea>
+                </cart-note>
+              {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  class CartNote extends HTMLElement {
+    constructor() {
+      super();
+
+      this.addEventListener('change', debounce((event) => {
+        const body = JSON.stringify({ note: event.target.value });
+        fetch(`${routes.cart_update_url}`, {...fetchConfig(), ...{ body }});
+      }, 300))
+    }
+  }
+
+  customElements.define('cart-note', CartNote);
+</script>
+</div>
+</div>

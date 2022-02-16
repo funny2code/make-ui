@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="/assets/component-slider.css}}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/component-card-style-1.css}}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/component-article-card.css}}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/section-featured-blog.css" media="print" onload="this.media='all'">
+
+
+<div class="blog  {{#ifCound sectionSettings.soft_background}} background-secondary{{/ifCound}} {{#ifCound sectionSettings.heading '===' 'blank' }} no-heading{{/ifCound}} bc-{{settings.section_style}}-bt"> 
+  <div class="page-width page-width-{{settings.section_style}}">
+    <div class="title-wrapper-with-link {{#ifCound sectionSettings.heading '===' 'blank' }} title-wrapper-with-link--no-heading{{/ifCound }} title-wrapper--self-padded-tablet-down">
+        <h2 class="blog__title">{{ sectionSettings.heading }}</h2>
+        {{#if sectionSettings.show_view_all }}
+            <a href="/blogs/blog"
+            class="link underlined-link large-up-hide"
+            >View All</a>
+        {{/if}}
+    </div>
+    <slider-component class="slider-mobile-gutter">
+        <ul id="Slider-template--15300017979553__16397079824f2ae948" class="blog__posts articles-wrapper grid grid--peek grid--2-col-tablet grid--3-col-desktop slider slider--tablet blog__posts--{{ section.settings.post_limit }}-items" role="list">
+            <li class="blog__post grid__item article slider__slide slider__slide--full-width">
+                <article class="article-card {{#ifCound sectionSettings.show_image '===' 'false'}} article-card--no-image{{/ifCound}}" aria-labelledby="Article-557524287649">
+                    <a href="/blogs/news/i-am-here" class="article-content motion-reduce">
+                        <div class="article-card__image-wrapper">
+                            <div class="article-card__image media media--landscape">
+                                <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/articles/Rectangle_218_165x.png?v=1639840659 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/articles/Rectangle_218_360x.png?v=1639840659 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/articles/Rectangle_218_533x.png?v=1639840659 533w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/articles/Rectangle_218_533x.png?v=1639840659" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="i am here" width="683" height="471" loading="lazy" class="motion-reduce">
+                            </div>
+                        </div>
+                        <div class="article-card__info">
+                            <header class="article-card__header">
+                                <h2 class="article-card__title" id="Article-557524287649">i am here</h2>
+                                <span class="circle-divider caption-with-letter-spacing">
+                                  <time datetime="2021-12-07T02:18:29Z">December 2021</time>
+                                </span>
+                            </header>
+                            <p class="article-card__excerpt rte-width">Add a summary of the post to appear on your home page or blog.
+                            </p>
+                            <div class="article-card__footer">
+                                <span class="link article-card__link" aria-label="Read more: i am here">Read more</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            </li>
+        </ul>
+    </slider-component>
+  </div>
+</div>

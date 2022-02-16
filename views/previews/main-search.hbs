@@ -1,0 +1,827 @@
+<link rel="preload" href="/assets/template-collection-style-1.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/assets/component-card-style-1.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/assets/component-badge.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/assets/component-price-style-1.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/assets/component-variants.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/assets/component-search-style-1.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<style>
+  .template-search__search {
+    margin: 0 auto;
+    max-width: 29.5rem;
+  }
+
+  .template-search__search .search {
+    margin-top: 3rem;
+  }
+
+  .template-search__results {
+    margin-top: 6rem;
+  }
+
+  .template-search--empty {
+    padding-bottom: 18rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .template-search__search {
+      max-width: 47.8rem;
+    }
+  }
+
+  .search__button .icon {
+    height: 1.8rem;
+  }
+</style>
+
+<div class="template-search ">
+  <div class="page-width center">
+      <h1 class="h2">Search results</h1>
+      <div class="template-search__search">
+          <form action="/search" method="get" role="search" class="search">
+              <div class="field">
+                  <input class="search__input field__input" id="Search-In-Template" type="search" name="q" value="shirt" autofocus="" placeholder="Search">
+                  <label class="field__label" for="Search-In-Template" aria-hidden="true">Search</label>
+                  <input type="hidden" name="type" value="product,page,article">
+                  <input type="hidden" name="options[fields]" value="title,product_type,variants.title">
+                  <input name="options[prefix]" type="hidden" value="last">
+                  <button type="submit" class="search__button field__button focus-inset" aria-label="Search">
+                      <svg class="icon icon-search">
+                          <use xlink:href="#icon-search">
+                          </use>
+                      </svg>
+                  </button>
+              </div>
+          </form>
+      </div>
+      <p role="status"><span><span class="result_number"></span> results found for “shirt”</span></p>
+  </div>
+  <div class="template-search__results page-width">
+      <ul class="grid grid--4-col-desktop grid--3-col-tablet grid--2-col grid--one-third-max grid--quarter-max negative-margin" role="list">
+          <li aria-tags="men" class="search-result-items grid__item ">
+
+              <div class="card-wrapper">
+                  <span class="visually-hidden">Chequered Red Shirt</span>
+                  <div class="card card--product" tabindex="-1">
+                      <div class="card__inner">
+                          <div>
+                              <a href="/products/chequered-red-shirt?_pos=1&amp;_sid=75a6dccca&amp;_ss=r" class="full-unstyled-link">
+                                  <div class="media media--transparent media--{{ sectionSettings.image_ratio }} media--hover-effect" {{#if (eq sectionSettings.image_ratio 'adapt')}} style="padding-bottom: 66.7027027027027%;"{{/if}}>
+                                      <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/products/red-plaid-shirt_925x_6a0b2feb-73eb-43f5-9042-0f96c7c23af0_165x.jpg?v=1638957912 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/red-plaid-shirt_925x_6a0b2feb-73eb-43f5-9042-0f96c7c23af0_360x.jpg?v=1638957912 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/red-plaid-shirt_925x_6a0b2feb-73eb-43f5-9042-0f96c7c23af0_533x.jpg?v=1638957912 533w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/red-plaid-shirt_925x_6a0b2feb-73eb-43f5-9042-0f96c7c23af0_720x.jpg?v=1638957912 720w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/red-plaid-shirt_925x_6a0b2feb-73eb-43f5-9042-0f96c7c23af0_360x.jpg?v=1638957912" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="Chequered Red Shirt" loading="lazy" class="motion-reduce" width="925" height="617">
+                                      {{#if (eq sectionSettings.show_secondary_image 'true')}}
+                                        <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_165x.jpg?v=1639415247 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_360x.jpg?v=1639415247 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_533x.jpg?v=1639415247 533w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_720x.jpg?v=1639415247 720w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_360x.jpg?v=1639415247" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="Blue Silk Tuxedo" loading="lazy" class="motion-reduce" width="925" height="617">
+                                        {{/if}}
+                                  </div>
+                              </a>
+                          </div>
+
+
+                          <div class="bc-product-grid-variants">
+                              <div class="bc-variant-item ">
+                                  <a href="/products/chequered-red-shirt?variant=41362477580449" 3="">Red</a>
+                              </div>
+                              <div class="bc-variant-item bc-variant-item-sold-out">
+                                  <a href="/products/chequered-red-shirt?variant=41362477547681" 5="">B</a>
+                              </div>
+                              <div class="bc-variant-item ">
+                                  <a href="/products/chequered-red-shirt?variant=41362477613217" 4="">blue</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="card-information">
+                      <div class="card-information__wrapper"><a href="/products/chequered-red-shirt?_pos=1&amp;_sid=75a6dccca&amp;_ss=r" class="full-unstyled-link">
+                              <span class="card-information__text h5">
+                                  Chequered Red Shirt
+                              </span>
+                              {{#if (eq sectionSettings.show_vendor 'true')}}
+                            <span class="visually-hidden">Vendor:</span>
+                            <div class="caption-with-letter-spacing light">partners-demo</div>
+                            {{/if }}
+                          </a>
+
+
+
+
+
+                          <div id="productPrice" class=" price  price--on-sale ">
+                              <dl>
+                                  <div class="price__regular">
+                                      <dt>
+                                          <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                      </dt>
+                                      <dd>
+                                          <span class="price-item price-item--regular">
+                                              $50.00
+                                          </span>
+                                      </dd>
+                                  </div>
+                                  <div class="price__sale">
+                                      <dt class="price__compare">
+                                          <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                      </dt>
+                                      <dd class="price__compare">
+                                          <s class="price-item price-item--regular" 30="" dd="" aa="">
+
+                                              $50.00
+
+                                          </s>
+                                      </dd>
+                                      <dt>
+                                          <span class="visually-hidden visually-hidden--inline">Sale price</span>
+                                      </dt>
+                                      <dd>
+                                          <span class="price-item price-item--sale">$35.00
+                                          </span>
+                                      </dd>
+                                      <dd class="price-item price-item--discount">
+                                          (-$15.00)
+                                      </dd>
+
+                                  </div>
+                                  <small class="unit-price caption hidden">
+                                      <dt class="visually-hidden">Unit price</dt>
+                                      <dd>
+                                          <span></span>
+                                          <span aria-hidden="true">/</span>
+                                          <span class="visually-hidden">&nbsp;per&nbsp;</span>
+                                          <span>
+                                          </span>
+                                      </dd>
+                                  </small>
+                              </dl>
+                          </div>
+
+                      </div>
+
+                  </div>
+                  <div class="bc-colors bc-colors-style-2">
+                      <div class="bc-colors__item bc-colors__item-selected">
+                          <div class="bc-colors__icon" title="Chequered Red Shirt"></div>
+                      </div>
+                  </div>
+              </div>
+
+          </li>
+          <li aria-tags="women" class="search-result-items grid__item ">
+
+              <div class="card-wrapper">
+                  <span class="visually-hidden">White Cotton Shirt</span>
+                  <div class="card card--product" tabindex="-1">
+                      <div class="card__inner">
+                          <div>
+                              <a href="/products/white-cotton-shirt?_pos=2&amp;_sid=75a6dccca&amp;_ss=r" class="full-unstyled-link">
+                                  <div class="media media--transparent media--{{ sectionSettings.image_ratio }} media--hover-effect" {{#if (eq sectionSettings.image_ratio 'adapt')}} style="padding-bottom: 66.7027027027027%;"{{/if}}>
+                                      <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/products/smiling-woman-poses_925x_f021fba5-f314-4552-9fca-c9a717ae5ec6_165x.jpg?v=1638957913 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/smiling-woman-poses_925x_f021fba5-f314-4552-9fca-c9a717ae5ec6_360x.jpg?v=1638957913 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/smiling-woman-poses_925x_f021fba5-f314-4552-9fca-c9a717ae5ec6_533x.jpg?v=1638957913 533w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/smiling-woman-poses_925x_f021fba5-f314-4552-9fca-c9a717ae5ec6_720x.jpg?v=1638957913 720w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/smiling-woman-poses_925x_f021fba5-f314-4552-9fca-c9a717ae5ec6_360x.jpg?v=1638957913" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="White Cotton Shirt" loading="lazy" class="motion-reduce" width="925" height="617">
+                                      {{#if (eq sectionSettings.show_secondary_image 'true')}}
+                                        <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_165x.jpg?v=1639415247 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_360x.jpg?v=1639415247 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_533x.jpg?v=1639415247 533w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_720x.jpg?v=1639415247 720w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_360x.jpg?v=1639415247" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="Blue Silk Tuxedo" loading="lazy" class="motion-reduce" width="925" height="617">
+                                        {{/if}}
+                                  </div>
+                              </a>
+                          </div>
+
+
+                          <div class="bc-product-grid-variants">
+                              <div class="bc-variant-item ">
+                                  <a href="/products/white-cotton-shirt?variant=41331951304865" 13="">DT</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="card-information">
+                      <div class="card-information__wrapper"><a href="/products/white-cotton-shirt?_pos=2&amp;_sid=75a6dccca&amp;_ss=r" class="full-unstyled-link">
+                              <span class="card-information__text h5">
+                                  White Cotton Shirt
+                              </span>
+                              {{#if (eq sectionSettings.show_vendor 'true')}}
+                            <span class="visually-hidden">Vendor:</span>
+                            <div class="caption-with-letter-spacing light">partners-demo</div>
+                            {{/if }}
+                          </a>
+
+
+
+
+
+                          <div id="productPrice" class=" price  price--on-sale ">
+                              <dl>
+                                  <div class="price__regular">
+                                      <dt>
+                                          <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                      </dt>
+                                      <dd>
+                                          <span class="price-item price-item--regular">
+                                              $30.00
+                                          </span>
+                                      </dd>
+                                  </div>
+                                  <div class="price__sale">
+                                      <dt class="price__compare">
+                                          <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                      </dt>
+                                      <dd class="price__compare">
+                                          <s class="price-item price-item--regular" 30="" dd="" aa="">
+
+                                              $30.00
+
+                                          </s>
+                                      </dd>
+                                      <dt>
+                                          <span class="visually-hidden visually-hidden--inline">Sale price</span>
+                                      </dt>
+                                      <dd>
+                                          <span class="price-item price-item--sale">$21.00
+                                          </span>
+                                      </dd>
+                                      <dd class="price-item price-item--discount">
+                                          (-$9.00)
+                                      </dd>
+
+                                  </div>
+                                  <small class="unit-price caption hidden">
+                                      <dt class="visually-hidden">Unit price</dt>
+                                      <dd>
+                                          <span></span>
+                                          <span aria-hidden="true">/</span>
+                                          <span class="visually-hidden">&nbsp;per&nbsp;</span>
+                                          <span>
+                                          </span>
+                                      </dd>
+                                  </small>
+                              </dl>
+                          </div>
+
+                      </div>
+
+                  </div>
+                  <div class="bc-colors bc-colors-style-2">
+                      <div class="bc-colors__item bc-colors__item-selected">
+                          <div class="bc-colors__icon" title="White Cotton Shirt"></div>
+                      </div>
+                  </div>
+              </div>
+
+          </li>
+          <li aria-tags="men" class="search-result-items grid__item ">
+
+              <div class="card-wrapper">
+                  <span class="visually-hidden">Ocean Blue Shirt</span>
+                  <div class="card card--product" tabindex="-1">
+                      <div class="card__inner">
+                          <div>
+                              <a href="/products/ocean-blue-shirt?_pos=3&amp;_sid=75a6dccca&amp;_ss=r" class="full-unstyled-link">
+                                  <div class="media media--transparent media--{{ sectionSettings.image_ratio }} media--hover-effect" {{#if (eq sectionSettings.image_ratio 'adapt')}} style="padding-bottom: 66.7027027027027%;"{{/if}}>
+                                      <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/products/young-man-in-bright-fashion_925x_71180a61-9041-4339-b353-1f1672439c51_165x.jpg?v=1638957894 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/young-man-in-bright-fashion_925x_71180a61-9041-4339-b353-1f1672439c51_360x.jpg?v=1638957894 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/young-man-in-bright-fashion_925x_71180a61-9041-4339-b353-1f1672439c51_533x.jpg?v=1638957894 533w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/young-man-in-bright-fashion_925x_71180a61-9041-4339-b353-1f1672439c51_720x.jpg?v=1638957894 720w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/young-man-in-bright-fashion_925x_71180a61-9041-4339-b353-1f1672439c51_360x.jpg?v=1638957894" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="Ocean Blue Shirt" loading="lazy" class="motion-reduce" width="925" height="617">
+                                      {{#if (eq sectionSettings.show_secondary_image 'true')}}
+                                        <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_165x.jpg?v=1639415247 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_360x.jpg?v=1639415247 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_533x.jpg?v=1639415247 533w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_720x.jpg?v=1639415247 720w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_360x.jpg?v=1639415247" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="Blue Silk Tuxedo" loading="lazy" class="motion-reduce" width="925" height="617">
+                                        {{/if}}
+                                  </div>
+                              </a>
+                          </div>
+
+
+                          <div class="bc-product-grid-variants">
+                              <div class="bc-variant-item ">
+                                  <a href="/products/ocean-blue-shirt?variant=41421507330209" 9="">S/B</a>
+                              </div>
+                              <div class="bc-variant-item ">
+                                  <a href="/products/ocean-blue-shirt?variant=41421507362977" 7="">S/Red</a>
+                              </div>
+                              <div class="bc-variant-item ">
+                                  <a href="/products/ocean-blue-shirt?variant=41421507395745" 8="">S/B</a>
+                              </div>
+                              <div class="bc-variant-item ">
+                                  <a href="/products/ocean-blue-shirt?variant=41421507428513" 9="">M/B</a>
+                              </div>
+                              <div class="bc-variant-item ">
+                                  <a href="/products/ocean-blue-shirt?variant=41421507461281" 7="">M/Red</a>
+                              </div>
+                              <div class="bc-variant-item ">
+                                  <a href="/products/ocean-blue-shirt?variant=41421507494049" 8="">M/B</a>
+                              </div>
+                              <div class="bc-variant-item ">
+                                  <a href="/products/ocean-blue-shirt?variant=41421507526817" 9="">L/B</a>
+                              </div>
+                              <div class="bc-variant-item ">
+                                  <a href="/products/ocean-blue-shirt?variant=41421507559585" 7="">L/Red</a>
+                              </div>
+                              <div class="bc-variant-item ">
+                                  <a href="/products/ocean-blue-shirt?variant=41421507592353" 8="">L/B</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="card-information">
+                      <div class="card-information__wrapper"><a href="/products/ocean-blue-shirt?_pos=3&amp;_sid=75a6dccca&amp;_ss=r" class="full-unstyled-link">
+                              <span class="card-information__text h5">
+                                  Ocean Blue Shirt
+                              </span>
+                              {{#if (eq sectionSettings.show_vendor 'true')}}
+                            <span class="visually-hidden">Vendor:</span>
+                            <div class="caption-with-letter-spacing light">partners-demo</div>
+                            {{/if }}
+                          </a>
+
+
+
+
+
+                          <div id="productPrice" class=" price  price--on-sale ">
+                              <dl>
+                                  <div class="price__regular">
+                                      <dt>
+                                          <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                      </dt>
+                                      <dd>
+                                          <span class="price-item price-item--regular">
+                                              $50.00
+                                          </span>
+                                      </dd>
+                                  </div>
+                                  <div class="price__sale">
+                                      <dt class="price__compare">
+                                          <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                      </dt>
+                                      <dd class="price__compare">
+                                          <s class="price-item price-item--regular" 30="" dd="" aa="">
+
+                                              $50.00
+
+                                          </s>
+                                      </dd>
+                                      <dt>
+                                          <span class="visually-hidden visually-hidden--inline">Sale price</span>
+                                      </dt>
+                                      <dd>
+                                          <span class="price-item price-item--sale">$35.00
+                                          </span>
+                                      </dd>
+                                      <dd class="price-item price-item--discount">
+                                          (-$15.00)
+                                      </dd>
+
+                                  </div>
+                                  <small class="unit-price caption hidden">
+                                      <dt class="visually-hidden">Unit price</dt>
+                                      <dd>
+                                          <span></span>
+                                          <span aria-hidden="true">/</span>
+                                          <span class="visually-hidden">&nbsp;per&nbsp;</span>
+                                          <span>
+                                          </span>
+                                      </dd>
+                                  </small>
+                              </dl>
+                          </div>
+
+                      </div>
+
+                  </div>
+                  <div class="bc-colors bc-colors-style-2">
+                      <div class="bc-colors__item bc-colors__item-selected">
+                          <div class="bc-colors__icon" title="Ocean Blue Shirt"></div>
+                      </div>
+                  </div>
+              </div>
+
+          </li>
+          <li aria-tags="women" class="search-result-items grid__item ">
+
+              <div class="card-wrapper">
+                  <span class="visually-hidden">Dark Denim Top</span>
+                  <div class="card card--product" tabindex="-1">
+                      <div class="card__inner">
+                          <div>
+                              <a href="/products/dark-denim-top?_pos=4&amp;_sid=75a6dccca&amp;_ss=r" class="full-unstyled-link">
+                                  <div class="media media--transparent media--{{ sectionSettings.image_ratio }} media--hover-effect" {{#if (eq sectionSettings.image_ratio 'adapt')}} style="padding-bottom: 66.7027027027027%;"{{/if}}>
+                                      <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/products/young-female-models-denim_925x_4cce7dba-342e-455a-b741-dfc4ca9d7335_165x.jpg?v=1638957902 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/young-female-models-denim_925x_4cce7dba-342e-455a-b741-dfc4ca9d7335_360x.jpg?v=1638957902 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/young-female-models-denim_925x_4cce7dba-342e-455a-b741-dfc4ca9d7335_533x.jpg?v=1638957902 533w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/young-female-models-denim_925x_4cce7dba-342e-455a-b741-dfc4ca9d7335_720x.jpg?v=1638957902 720w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/young-female-models-denim_925x_4cce7dba-342e-455a-b741-dfc4ca9d7335_360x.jpg?v=1638957902" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="Dark Denim Top" loading="lazy" class="motion-reduce" width="925" height="617">
+                                      {{#if (eq sectionSettings.show_secondary_image 'true')}}
+                                        <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_165x.jpg?v=1639415247 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_360x.jpg?v=1639415247 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_533x.jpg?v=1639415247 533w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_720x.jpg?v=1639415247 720w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_360x.jpg?v=1639415247" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="Blue Silk Tuxedo" loading="lazy" class="motion-reduce" width="925" height="617">
+                                        {{/if}}
+                                  </div>
+                              </a>
+                          </div>
+
+
+                          <div class="bc-product-grid-variants">
+                              <div class="bc-variant-item ">
+                                  <a href="/products/dark-denim-top?variant=41331950977185" 13="">DT</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="card-information">
+                      <div class="card-information__wrapper"><a href="/products/dark-denim-top?_pos=4&amp;_sid=75a6dccca&amp;_ss=r" class="full-unstyled-link">
+                              <span class="card-information__text h5">
+                                  Dark Denim Top
+                              </span>
+                              {{#if (eq sectionSettings.show_vendor 'true')}}
+                            <span class="visually-hidden">Vendor:</span>
+                            <div class="caption-with-letter-spacing light">partners-demo</div>
+                            {{/if }}
+                          </a>
+
+
+
+
+
+                          <div id="productPrice" class=" price  price--on-sale ">
+                              <dl>
+                                  <div class="price__regular">
+                                      <dt>
+                                          <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                      </dt>
+                                      <dd>
+                                          <span class="price-item price-item--regular">
+                                              $60.00
+                                          </span>
+                                      </dd>
+                                  </div>
+                                  <div class="price__sale">
+                                      <dt class="price__compare">
+                                          <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                      </dt>
+                                      <dd class="price__compare">
+                                          <s class="price-item price-item--regular" 30="" dd="" aa="">
+
+                                              $60.00
+
+                                          </s>
+                                      </dd>
+                                      <dt>
+                                          <span class="visually-hidden visually-hidden--inline">Sale price</span>
+                                      </dt>
+                                      <dd>
+                                          <span class="price-item price-item--sale">$42.00
+                                          </span>
+                                      </dd>
+                                      <dd class="price-item price-item--discount">
+                                          (-$18.00)
+                                      </dd>
+
+                                  </div>
+                                  <small class="unit-price caption hidden">
+                                      <dt class="visually-hidden">Unit price</dt>
+                                      <dd>
+                                          <span></span>
+                                          <span aria-hidden="true">/</span>
+                                          <span class="visually-hidden">&nbsp;per&nbsp;</span>
+                                          <span>
+                                          </span>
+                                      </dd>
+                                  </small>
+                              </dl>
+                          </div>
+
+                      </div>
+
+                  </div>
+                  <div class="bc-colors bc-colors-style-2">
+                      <div class="bc-colors__item bc-colors__item-selected">
+                          <div class="bc-colors__icon" title="Dark Denim Top"></div>
+                      </div>
+                  </div>
+              </div>
+
+          </li>
+          <li aria-tags="women" class="search-result-items grid__item ">
+
+              <div class="card-wrapper">
+                  <span class="visually-hidden">Floral White Top</span>
+                  <div class="card card--product" tabindex="-1">
+                      <div class="card__inner">
+                          <div>
+                              <a href="/products/floral-white-top?_pos=5&amp;_sid=75a6dccca&amp;_ss=r" class="full-unstyled-link">
+                                  <div class="media media--transparent media--{{ sectionSettings.image_ratio }} media--hover-effect" {{#if (eq sectionSettings.image_ratio 'adapt')}} style="padding-bottom: 66.64864864864865%;"{{/if}}>
+                                      <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/products/city-woman-fashion_925x_2x_28215548-6762-4040-96f6-5637996d73ca_165x.jpg?v=1638957898 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/city-woman-fashion_925x_2x_28215548-6762-4040-96f6-5637996d73ca_360x.jpg?v=1638957898 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/city-woman-fashion_925x_2x_28215548-6762-4040-96f6-5637996d73ca_533x.jpg?v=1638957898 533w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/city-woman-fashion_925x_2x_28215548-6762-4040-96f6-5637996d73ca_720x.jpg?v=1638957898 720w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/city-woman-fashion_925x_2x_28215548-6762-4040-96f6-5637996d73ca_940x.jpg?v=1638957898 940w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/city-woman-fashion_925x_2x_28215548-6762-4040-96f6-5637996d73ca_1066x.jpg?v=1638957898 1066w" src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/city-woman-fashion_925x_2x_28215548-6762-4040-96f6-5637996d73ca_360x.jpg?v=1638957898" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="Floral White Top" loading="lazy" class="motion-reduce" width="1850" height="1233">
+                                      {{#if (eq sectionSettings.show_secondary_image 'true')}}
+                                        <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_165x.jpg?v=1639415247 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_360x.jpg?v=1639415247 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_533x.jpg?v=1639415247 533w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_720x.jpg?v=1639415247 720w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_360x.jpg?v=1639415247" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="Blue Silk Tuxedo" loading="lazy" class="motion-reduce" width="925" height="617">
+                                        {{/if}}
+                                  </div>
+                              </a>
+                          </div>
+
+
+                          <div class="bc-product-grid-variants">
+                              <div class="bc-variant-item ">
+                                  <a href="/products/floral-white-top?variant=41331950878881" 13="">DT</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="card-information">
+                      <div class="card-information__wrapper"><a href="/products/floral-white-top?_pos=5&amp;_sid=75a6dccca&amp;_ss=r" class="full-unstyled-link">
+                              <span class="card-information__text h5">
+                                  Floral White Top
+                              </span>
+                              {{#if (eq sectionSettings.show_vendor 'true')}}
+                            <span class="visually-hidden">Vendor:</span>
+                            <div class="caption-with-letter-spacing light">partners-demo</div>
+                            {{/if }}
+                          </a>
+
+
+
+
+
+                          <div id="productPrice" class=" price  price--on-sale ">
+                              <dl>
+                                  <div class="price__regular">
+                                      <dt>
+                                          <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                      </dt>
+                                      <dd>
+                                          <span class="price-item price-item--regular">
+                                              $75.00
+                                          </span>
+                                      </dd>
+                                  </div>
+                                  <div class="price__sale">
+                                      <dt class="price__compare">
+                                          <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                      </dt>
+                                      <dd class="price__compare">
+                                          <s class="price-item price-item--regular" 30="" dd="" aa="">
+
+                                              $75.00
+
+                                          </s>
+                                      </dd>
+                                      <dt>
+                                          <span class="visually-hidden visually-hidden--inline">Sale price</span>
+                                      </dt>
+                                      <dd>
+                                          <span class="price-item price-item--sale">$52.50
+                                          </span>
+                                      </dd>
+                                      <dd class="price-item price-item--discount">
+                                          (-$22.50)
+                                      </dd>
+
+                                  </div>
+                                  <small class="unit-price caption hidden">
+                                      <dt class="visually-hidden">Unit price</dt>
+                                      <dd>
+                                          <span></span>
+                                          <span aria-hidden="true">/</span>
+                                          <span class="visually-hidden">&nbsp;per&nbsp;</span>
+                                          <span>
+                                          </span>
+                                      </dd>
+                                  </small>
+                              </dl>
+                          </div>
+
+                      </div>
+
+                  </div>
+                  <div class="bc-colors bc-colors-style-2">
+                      <div class="bc-colors__item bc-colors__item-selected">
+                          <div class="bc-colors__icon" title="Floral White Top"></div>
+                      </div>
+                  </div>
+              </div>
+
+          </li>
+          <li aria-tags="men" class="search-result-items grid__item ">
+
+              <div class="card-wrapper">
+                  <span class="visually-hidden">Classic Varsity Top</span>
+                  <div class="card card--product" tabindex="-1">
+                      <div class="card__inner">
+                          <div>
+                              <a href="/products/classic-varsity-top?_pos=6&amp;_sid=75a6dccca&amp;_ss=r" class="full-unstyled-link">
+                                  <div class="media media--transparent media--{{ sectionSettings.image_ratio }} media--hover-effect" {{#if (eq sectionSettings.image_ratio 'adapt')}} style="padding-bottom: 150.0%;"{{/if}}>
+                                      <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/products/COVER_MensPleatedRibTurtleneck-WalnutCapanota-1_750x.progressive_3f30b9c9-a750-4b1f-b149-7a5af6b719d4_165x.jpg?v=1641249970 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/COVER_MensPleatedRibTurtleneck-WalnutCapanota-1_750x.progressive_3f30b9c9-a750-4b1f-b149-7a5af6b719d4_360x.jpg?v=1641249970 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/COVER_MensPleatedRibTurtleneck-WalnutCapanota-1_750x.progressive_3f30b9c9-a750-4b1f-b149-7a5af6b719d4_533x.jpg?v=1641249970 533w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/COVER_MensPleatedRibTurtleneck-WalnutCapanota-1_750x.progressive_3f30b9c9-a750-4b1f-b149-7a5af6b719d4_720x.jpg?v=1641249970 720w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/COVER_MensPleatedRibTurtleneck-WalnutCapanota-1_750x.progressive_3f30b9c9-a750-4b1f-b149-7a5af6b719d4_360x.jpg?v=1641249970" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="Cocoa" loading="lazy" class="motion-reduce" width="750" height="1125">
+                                      {{#if (eq sectionSettings.show_secondary_image 'true')}}
+                                        <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_165x.jpg?v=1639415247 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_360x.jpg?v=1639415247 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_533x.jpg?v=1639415247 533w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_720x.jpg?v=1639415247 720w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/menswear-blue-zip-up-jacket_925x_083c80b1-33c7-4d5a-9456-4b7c077a6b2d_360x.jpg?v=1639415247" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="Blue Silk Tuxedo" loading="lazy" class="motion-reduce" width="925" height="617">
+                                        {{/if}}
+                                  </div>
+                              </a>
+                          </div>
+
+
+                          <div class="bc-product-grid-variants">
+                              <div class="bc-variant-item ">
+                                  <a href="/products/classic-varsity-top?variant=41408996933793" 10="">C/XS</a>
+                              </div>
+                              <div class="bc-variant-item ">
+                                  <a href="/products/classic-varsity-top?variant=41408996966561" 10="">C/XL</a>
+                              </div>
+                              <div class="bc-variant-item ">
+                                  <a href="/products/classic-varsity-top?variant=41408996999329" 11="">C/XXL</a>
+                              </div>
+                              <div class="bc-variant-item ">
+                                  <a href="/products/classic-varsity-top?variant=41331950715041" 10="">B/XS</a>
+                              </div>
+                              <div class="bc-variant-item ">
+                                  <a href="/products/classic-varsity-top?variant=41331950747809" 10="">B/XL</a>
+                              </div>
+                              <div class="bc-variant-item ">
+                                  <a href="/products/classic-varsity-top?variant=41331950780577" 11="">B/XXL</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="card-information">
+                      <div class="card-information__wrapper"><a href="/products/classic-varsity-top?_pos=6&amp;_sid=75a6dccca&amp;_ss=r" class="full-unstyled-link">
+                              <span class="card-information__text h5">
+                                  Classic Varsity Top
+                              </span>
+                              {{#if (eq sectionSettings.show_vendor 'true')}}
+                            <span class="visually-hidden">Vendor:</span>
+                            <div class="caption-with-letter-spacing light">partners-demo</div>
+                            {{/if }}
+                          </a>
+
+
+
+
+
+                          <div id="productPrice" class=" price  price--on-sale ">
+                              <dl>
+                                  <div class="price__regular">
+                                      <dt>
+                                          <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                      </dt>
+                                      <dd>
+                                          <span class="price-item price-item--regular">
+                                              $60.00
+                                          </span>
+                                      </dd>
+                                  </div>
+                                  <div class="price__sale">
+                                      <dt class="price__compare">
+                                          <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                      </dt>
+                                      <dd class="price__compare">
+                                          <s class="price-item price-item--regular" 30="" dd="" aa="">
+
+                                              $60.00
+
+                                          </s>
+                                      </dd>
+                                      <dt>
+                                          <span class="visually-hidden visually-hidden--inline">Sale price</span>
+                                      </dt>
+                                      <dd>
+                                          <span class="price-item price-item--sale">$42.00
+                                          </span>
+                                      </dd>
+                                      <dd class="price-item price-item--discount">
+                                          (-$18.00)
+                                      </dd>
+
+                                  </div>
+                                  <small class="unit-price caption hidden">
+                                      <dt class="visually-hidden">Unit price</dt>
+                                      <dd>
+                                          <span></span>
+                                          <span aria-hidden="true">/</span>
+                                          <span class="visually-hidden">&nbsp;per&nbsp;</span>
+                                          <span>
+                                          </span>
+                                      </dd>
+                                  </small>
+                              </dl>
+                          </div>
+
+                      </div>
+
+                  </div>
+                  <div class="bc-colors bc-colors-style-2">
+                      <div class="bc-colors__item bc-colors__item-selected">
+                          <div class="bc-colors__icon" title="Classic Varsity Top"></div>
+                      </div>
+                  </div>
+              </div>
+
+          </li>
+          <li aria-tags="women" class="search-result-items grid__item ">
+
+              <div class="card-wrapper">
+                  <span class="visually-hidden">Red Sports Tee</span>
+                  <div class="card card--product" tabindex="-1">
+                      <div class="card__inner">
+                          <div>
+                              <a href="/products/red-sports-tee?_pos=7&amp;_sid=75a6dccca&amp;_ss=r" class="full-unstyled-link">
+                                  <div class="media media--transparent media--{{ sectionSettings.image_ratio }} media--hover-effect" {{#if (eq sectionSettings.image_ratio 'adapt')}} style="padding-bottom: 66.7027027027027%;"{{/if}}>
+                                      <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/products/womens-red-t-shirt_925x_95a058fa-78d0-4451-a189-4b37b6b3df1c_165x.jpg?v=1638957917 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/womens-red-t-shirt_925x_95a058fa-78d0-4451-a189-4b37b6b3df1c_360x.jpg?v=1638957917 360w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/womens-red-t-shirt_925x_95a058fa-78d0-4451-a189-4b37b6b3df1c_533x.jpg?v=1638957917 533w,//cdn.shopify.com/s/files/1/0584/1993/7441/products/womens-red-t-shirt_925x_95a058fa-78d0-4451-a189-4b37b6b3df1c_720x.jpg?v=1638957917 720w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/products/womens-red-t-shirt_925x_95a058fa-78d0-4451-a189-4b37b6b3df1c_360x.jpg?v=1638957917" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="Red Sports Tee" loading="lazy" class="motion-reduce" width="925" height="617">
+                                  </div>
+                              </a>
+                          </div>
+
+
+                          <div class="bc-product-grid-variants">
+                              <div class="bc-variant-item ">
+                                  <a href="/products/red-sports-tee?variant=41331951403169" 13="">DT</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="card-information">
+                      <div class="card-information__wrapper"><a href="/products/red-sports-tee?_pos=7&amp;_sid=75a6dccca&amp;_ss=r" class="full-unstyled-link">
+                              <span class="card-information__text h5">
+                                  Red Sports Tee
+                              </span>
+                              {{#if (eq sectionSettings.show_vendor 'true')}}
+                            <span class="visually-hidden">Vendor:</span>
+                            <div class="caption-with-letter-spacing light">partners-demo</div>
+                            {{/if }}
+                          </a>
+
+
+
+
+
+                          <div id="productPrice" class=" price  price--on-sale ">
+                              <dl>
+                                  <div class="price__regular">
+                                      <dt>
+                                          <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                      </dt>
+                                      <dd>
+                                          <span class="price-item price-item--regular">
+                                              $50.00
+                                          </span>
+                                      </dd>
+                                  </div>
+                                  <div class="price__sale">
+                                      <dt class="price__compare">
+                                          <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                                      </dt>
+                                      <dd class="price__compare">
+                                          <s class="price-item price-item--regular" 30="" dd="" aa="">
+
+                                              $50.00
+
+                                          </s>
+                                      </dd>
+                                      <dt>
+                                          <span class="visually-hidden visually-hidden--inline">Sale price</span>
+                                      </dt>
+                                      <dd>
+                                          <span class="price-item price-item--sale">$35.00
+                                          </span>
+                                      </dd>
+                                      <dd class="price-item price-item--discount">
+                                          (-$15.00)
+                                      </dd>
+
+                                  </div>
+                                  <small class="unit-price caption hidden">
+                                      <dt class="visually-hidden">Unit price</dt>
+                                      <dd>
+                                          <span></span>
+                                          <span aria-hidden="true">/</span>
+                                          <span class="visually-hidden">&nbsp;per&nbsp;</span>
+                                          <span>
+                                          </span>
+                                      </dd>
+                                  </small>
+                              </dl>
+                          </div>
+
+                      </div>
+
+                  </div>
+                  <div class="bc-colors bc-colors-style-2">
+                      <div class="bc-colors__item bc-colors__item-selected">
+                          <div class="bc-colors__icon" title="Red Sports Tee"></div>
+                      </div>
+                  </div>
+              </div>
+
+          </li>
+      </ul>
+  </div>
+
+</div>
+<script>
+  if(document.querySelector('.search-modal__content .search-modal__form').hasAttribute('data-hide-tags')){
+      hide_tags = document.querySelector('.search-modal__content .search-modal__form').getAttribute('data-hide-tags').split('|');  
+      list_items =document.querySelectorAll('.search-result-items');
+      for (i = 0; i < list_items.length; i++) {
+        for(j = 0; j < hide_tags.length; j++ ){
+          if(list_items[i].getAttribute('aria-tags').indexOf(hide_tags[j])>=0){
+            list_items[i].classList.add("hide");
+            break;
+          }
+        }
+      }
+
+    }document.querySelector('.result_number').innerText = document.querySelectorAll('.search-result-items:not(.hide)').length
+    
+</script>
+<style>
+  .search-result-items.hide{
+    display:none;
+  }
+</style>

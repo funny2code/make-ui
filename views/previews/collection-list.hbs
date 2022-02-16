@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="/assets/section-collection-list.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/component-slider.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/component-card-style-1.css" media="print" onload="this.media='all'">
+
+<div class="collection-list-wrapper page-width{{#if sectionSettings.title}} no-heading{{/if}} {{#or (eq sectionSettings.show_view_all 'false') (section.blocks.size > collections.size)}}no-mobile-link{{/or}} bc-{{settings.section_style}}-bt">
+  <div class="title-wrapper-with-link{{#if (eq sectionSettings.swipe_on_mobile 'true')}} title-wrapper--self-padded-tablet-down{{ else }} title-wrapper--self-padded-mobile{{/if}}{{#if sectionSettings.title}} title-wrapper-with-link--no-heading{{/if}}">
+    <h2 class="collection-list-title">{{sectionSettings.title}}</h2>
+
+    {{#and (eq sectionSettings.show_view_all 'true') (eq sectionSettings.swipe_on_mobile 'true')}}
+      <a href="/collections/all" class="link underlined-link large-up-hide">All</a>
+    {{/and}}
+  </div>
+
+  <slider-component class="slider-mobile-gutter">
+    <ul class="collection-list grid grid--1-col grid--2-col-tablet collection-list--2-items negative-margin--small" id="Slider-template--15300017979553__1639708267c88f5246" role="list">
+        <li class="collection-list__item grid__item {{#if (eq section.settings.swipe_on_mobile 'true')}} slider__slide{{/if}}">
+            <a class="card animate-arrow link card--media {{#if (isnt sectionSettings.image_ratio 'adapt')}} card--stretch{{/if}}{{#if (eq sectionSettings.image_padding 'false')}} card--light-border {{/if}}">
+                <div class="card--stretch card-colored color-{{ sectionSettings.color_scheme }}">
+                    <div {{#if (eq sectionSettings.image_padding 'true')}} class="card__media-spacer"{{/if }}>
+                        {{#if (eq sectionSettings.image_padding 'true')}}<div class="overlay-card"></div>{{/if }}
+                        <div class="media media--{{ sectionSettings.image_ratio }} media--hover-effect overflow-hidden"
+                        {{#if (eq sectionSettings.image_ratio 'adapt')}}style="padding-bottom: 63.33%;"{{/if}}>
+                            <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/collections/8_165x.png?v=1632482026 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/collections/8_330x.png?v=1632482026 330w,//cdn.shopify.com/s/files/1/0584/1993/7441/collections/8_535x.png?v=1632482026 535w,//cdn.shopify.com/s/files/1/0584/1993/7441/collections/8_720x.png?v=1632482026 720w,//cdn.shopify.com/s/files/1/0584/1993/7441/collections/8_940x.png?v=1632482026 940w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/collections/8_533x.png?v=1632482026" sizes="(min-width: 1100px)535px, (min-width: 750px) calc((100vw - 10rem) / 2), calc(100vw - 3rem)" alt="COLOR THE BANDEAU SKIRT" height="1920" width="1273" loading="lazy" class="motion-reduce">
+                        </div>
+                    </div>
+
+                    <div class="card__text card__text-spacing card-colored card__text-hover{{#if (eq sectionSettings.image_padding 'false')}} color-{{ sectionSettings.color_scheme }}{{/if}}">
+                        <div class="overlay-card"></div>
+                        <h3>COLOR THE BANDEAU SKIRT<span class="icon-wrap">&nbsp;<svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+                                    </path>
+                                </svg>
+                            </span></h3>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li class="collection-list__item grid__item {{#if (eq section.settings.swipe_on_mobile 'true')}} slider__slide{{/if }}">
+            <a href="/collections/frontpage" class="card animate-arrow link card--media {{#if (isnt sectionSettings.image_ratio  'adapt')}} card--stretch{{/if}}{{#if (eq sectionSettings.image_padding 'false')}} card--light-border {{/if}}">
+                <div class="card--stretch card-colored color-{{ sectionSettings.color_scheme }}">
+                    <div {{#if (eq sectionSettings.image_paddin 'true')}} class="card__media-spacer"{{/if }}>
+                        {{#if (eq sectionSettings.image_paddin 'true')}}<div class="overlay-card"></div>{{/if }}
+                        <div class="media media--{{ sectionSettings.image_ratio }} media--hover-effect overflow-hidden"
+                        {{#if (eq sectionSettings.image_ratio 'adapt')}}style="padding-bottom: 63.33%;"{{/if}}>
+
+                            <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/collections/D1Espresso_165x.jpg?v=1632482002 165w,//cdn.shopify.com/s/files/1/0584/1993/7441/collections/D1Espresso_330x.jpg?v=1632482002 330w,//cdn.shopify.com/s/files/1/0584/1993/7441/collections/D1Espresso_535x.jpg?v=1632482002 535w,//cdn.shopify.com/s/files/1/0584/1993/7441/collections/D1Espresso_720x.jpg?v=1632482002 720w,//cdn.shopify.com/s/files/1/0584/1993/7441/collections/D1Espresso_940x.jpg?v=1632482002 940w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/collections/D1Espresso_533x.jpg?v=1632482002" sizes="(min-width: 1100px)535px, (min-width: 750px) calc((100vw - 10rem) / 2), calc(100vw - 3rem)" alt="Home page" height="1920" width="1273" loading="lazy" class="motion-reduce">
+                        </div>
+                    </div>
+
+                    <div class="card__text card__text-spacing card-colored card__text-hover{{#if (eq sectionSettings.image_padding 'false')}} color-{{ sectionSettings.color_scheme }}{{/if}}">
+                        <div class="overlay-card"></div>
+                        <h3>Home page<span class="icon-wrap">&nbsp;<svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+                                    </path>
+                                </svg>
+                            </span></h3>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+    {{#if (eq sectionSettings.swipe_on_mobile 'true')}}
+      <div class="slider-buttons no-js-hidden ">
+        <div class="slider-counter caption">
+          <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="visually-hidden">1</span>
+          <span class="slider-counter--total">2</span>
+        </div>
+        <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="Slide left">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                </path>
+            </svg>
+            </button>
+        <button type="button" class="slider-button slider-button--next" name="next" aria-label="Slide right"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                </path>
+            </svg></button>
+      </div>
+    {{/if}}
+  </slider-component>
+
+  {{#if (eq sectionSettings.show_view_all 'true')}}
+    <div class="center{{#if (eq sectionSettings.swipe_on_mobile 'true')}} small-hide medium-hide{{/if}}">
+      <a href="/collections/all" class="button">All</a>
+    </div>
+  {{/if}}
+</div>

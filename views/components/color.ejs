@@ -1,0 +1,20 @@
+<div class="py__settins-item">
+    <div class="py__settings-item-header">
+        <label><%= data.label %></label>
+        <% if(data.info){ %>
+            <div class="py__tooltip">
+                <%- include('../icons', {type: 'info'}) %>
+                <p class="py__tooltiptext">
+                    <%= data.info %>
+                </p>
+            </div>
+        <% } %>
+    </div>
+    <div class="py__comp-color">
+        <input type="text" class="is__color" value="<%= data.default %>"/>
+        <label for="<%= data.id %>" class="py__label-for-color" <% if(data.default){ %>style="background:<%= data.default %>;"<% } %>>
+            <input type="color" id="<%= data.id %>" name="<%= data.id %>" <% if(data.default){ %>value="<%= data.default %>"<% } %>/>
+            <%- include('../icons', {type: 'color'}) %>
+        </label>
+    </div>
+</div>
