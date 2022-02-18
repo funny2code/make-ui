@@ -2,9 +2,9 @@
     <div class="py__settings-wrapper">
         <% settings.forEach(item => { %>
             <% if(item.type === 'color'){ %>
-                <%- include('../components/color', {data: item}) %>
+                <%- include('../components/color', {global: true, data: item}) %>
             <% } else if(item.type === 'text'){ %>
-                <%- include('../components/text', {data: item}) %>
+                <%- include('../components/text', {global: true, data: item}) %>
             <% } %>
         <% }) %>
     </div>

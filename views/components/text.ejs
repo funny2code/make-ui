@@ -9,6 +9,6 @@
         <% } %>
     </div>
     <div class="py__comp-text">
-        <input type="text" name="<%= data.id %>" class="is__text" value="<%= data.default %>"/>
+        <input type="text" name="<% if(global){ %>settings_<%= data.id %><% } else { %><%= data.id %><% } %>" class="is__text" value="<%= data.default %>"/>
     </div>
 </div>
