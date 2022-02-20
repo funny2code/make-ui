@@ -1,10 +1,24 @@
 <% if(settings){ %>
     <div class="py__settings-wrapper">
         <% settings.forEach(item => { %>
-            <% if(item.type === 'color'){ %>
-                <%- include('../components/color', {global: true, data: item}) %>
-            <% } else if(item.type === 'text'){ %>
-                <%- include('../components/text', {global: true, data: item}) %>
+            <% if(item.type === 'header' && item.content !== '__________'){ %>
+                <div class="py__settings-item-wrapper">
+                    <div class="py__settings-item-name">
+                        <span><%= item.content %></span>
+                        <span class="py__settings-item-icon"><%- include('../icons', {type: 'arrow_bottom'}) %></span>
+                    </div>
+                    <div class="py__settings-item-content">
+                <% } %>
+                    <% if(item.type === 'color'){ %>
+                        <%- include('../components/color', {global: true, data: item}) %>
+                    <% } else if(item.type === 'text' && item.label !== 'Google Font'){ %>
+                        <%- include('../components/text', {global: true, data: item}) %>
+                    <% } else if(item.type === 'text' && item.label === 'Google Font' && fonts){ %>
+                        <%- include('../components/font', {global: true, data: item, fonts: fonts}) %>
+                    <% } %>
+                <% if(item.type === 'header' && item.content === '__________'){ %>
+                    </div>
+                </div>
             <% } %>
         <% }) %>
     </div>

@@ -1,0 +1,22 @@
+<div class="py__settings-item">
+    <div class="py__settings-item-header">
+        <label><%= data.label %></label>
+        <% if(data.info){ %>
+            <div class="py__tooltip">
+                <%- include('../icons', {type: 'info'}) %>
+                <p class="py__tooltiptext">
+                    <%= data.info %>
+                </p>
+            </div>
+        <% } %>
+    </div>
+    <div class="py__comp-font">
+        <select type="select" name="<%= data.id %>">
+            <% fonts.items.forEach(font => { %>
+                <option value="<%=font.family%>">
+                    <%= font.family %>
+                </option>
+            <% }) %>
+        </select>
+    </div>
+</div>

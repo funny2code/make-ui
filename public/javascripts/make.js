@@ -21,8 +21,6 @@
             section: Object.keys(section).length ? [section] : null
         };
 
-        console.log(data);
-
         fetch(url, {
             method:'POST',
             headers: {
@@ -63,7 +61,7 @@
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
         viewIframe();
-    }
+    };
 
     //---------------------------------------
     // EVENTS LISTENERS
@@ -97,6 +95,20 @@
                 default:
                     break;
             }
+        }
+    });
+
+    // Sidebar Select Settings Open Close Fun
+    document.addEventListener('click', (e)=>{
+        if(e && e.target.classList.contains('py__settings-select')){
+            e.target.classList.contains('active') 
+            ? e.target.classList.remove('active')
+            : e.target.classList.add('active');
+        }
+        if(e && e.target.classList.contains('py__settings-item-name')){
+            e.target.closest('.py__settings-item-wrapper').classList.contains('active') 
+            ? e.target.closest('.py__settings-item-wrapper').classList.remove('active')
+            : e.target.closest('.py__settings-item-wrapper').classList.add('active');
         }
     });
 

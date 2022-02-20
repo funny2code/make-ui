@@ -12,6 +12,32 @@
         <div class="py__make-sidebar">
             <form class="py__settings-form" method="post" action="/save/<%= id %>" aria-multiline="true">
                 <% if(settings){ %>
+                    <% if(sidebarOptions){ %>
+                        <div class="py__settings-select">
+                            <div class="py__settings-selected">
+                                <span><%=active%></span>
+                                <span class="py__icon-down"><%- include('icons', {type:'arrow_bottom'}) %></span>
+                            </div>
+                            <div class="py__settings-select-options">
+                                <ul>
+                                    <% sidebarOptions.forEach(option => { %>
+                                        <li>
+                                            <% if(active === option.name){ %>
+                                                <a href="/themes/<%=id%>?global=<%=option.name%>" class="py__settings-select-options-item active">
+                                                    <%= option.name %>
+                                                </a>
+                                            <% } else { %>
+                                                <a href="/themes/<%=id%>?global=<%=option.name%>" class="py__settings-select-options-item">
+                                                    <span><%= option.name %></span>
+                                                    <span><%- include('icons', {type:'arrow_right'}) %></span>
+                                                </a>
+                                            <% } %>
+                                        </li>
+                                    <% }) %>
+                                </ul>
+                            </div>
+                        </div>
+                    <% } %>
                     <div class="py__settings-content">
                         <% settings.forEach(comp => { %>
                             <h2 class="py__settings-heading"><%= comp.name %></h2>
