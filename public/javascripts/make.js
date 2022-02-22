@@ -6,20 +6,30 @@
         let iframe = document.querySelector('iframe.py__view-iframe');
         if(!iframe || !form) return;
         let url = iframe.getAttribute('src');
-        let settings = {}, section = {};
+        let settings = {}, section = [], sectionName = '', sectionSettings = {};
 
         let formData = new FormData(form);
         formData.forEach((value, key) => {
             if(key === 'logo') return;
-            key.includes('settings_') 
-            ? settings[key.replace('settings_', '')] = value
-            : section[key] = value;
+            if(key.includes('settings_')){ 
+                settings[key.replace('settings_', '')] = value;
+            } else { 
+                key === 'section_name' 
+                ? sectionName = value
+                : sectionSettings[key] = value;
+            }
         });
         
+        if(sectionName && Object.keys(sectionSettings).length){
+            section.push({ name: sectionName, settings: sectionSettings});
+        }
+
         let data = {
             settings: Object.keys(settings).length ? [settings] : null,
-            section: Object.keys(section).length ? [section] : null
+            section: section.length ? section : null
         };
+
+        console.log(data);
 
         fetch(url, {
             method:'POST',
@@ -55,8 +65,15 @@
         forColor.style.backgroundColor = value;
         viewIframe();
     };
-
+    // Text Component Function
     const textComp = (event) => {
+        if(!event) return;
+        let uniqName = event.target.getAttribute('name');
+        let value = event.target.value;
+        viewIframe();
+    };
+    // Select Component Function
+    const selectComp = (event) => {
         if(!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
@@ -75,6 +92,7 @@
                     colorComp(e);
                     break;
                 case 'select':
+                    selectComp(e);
                     break;
                 default:
                     break;
@@ -109,6 +127,12 @@
             e.target.closest('.py__settings-item-wrapper').classList.contains('active') 
             ? e.target.closest('.py__settings-item-wrapper').classList.remove('active')
             : e.target.closest('.py__settings-item-wrapper').classList.add('active');
+        }
+        if(e && e.target.classList.contains('py__types-item')){
+            document.querySelector('.py__types-item.active').classList.remove('active');
+            document.querySelector('.py__options-ul.active').classList.remove('active');
+            e.target.classList.add('active');
+            document.getElementById(e.target.getAttribute('data-id')).classList.add('active');
         }
     });
 

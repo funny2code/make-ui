@@ -20,7 +20,7 @@ body {
   font-size: var(--font-body-size, 14px);
   letter-spacing: var(--font-body-spacing, normal);
   line-height: var(--font-body-line, normal);
-  font-family: var(--font-body-family);
+  font-family: var(--font-body-google);
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
   color: var(--py-body-color);

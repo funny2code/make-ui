@@ -11,44 +11,76 @@
     <div class="py__make">
         <div class="py__make-sidebar">
             <form class="py__settings-form" method="post" action="/save/<%= id %>" aria-multiline="true">
-                <% if(settings){ %>
-                    <% if(sidebarOptions){ %>
-                        <div class="py__settings-select">
-                            <div class="py__settings-selected">
-                                <span><%=active%></span>
-                                <span class="py__icon-down"><%- include('icons', {type:'arrow_bottom'}) %></span>
-                            </div>
-                            <div class="py__settings-select-options">
-                                <ul>
-                                    <% sidebarOptions.forEach(option => { %>
-                                        <li>
-                                            <% if(active === option.name){ %>
-                                                <a href="/themes/<%=id%>?global=<%=option.name%>" class="py__settings-select-options-item active">
-                                                    <%= option.name %>
-                                                </a>
-                                            <% } else { %>
-                                                <a href="/themes/<%=id%>?global=<%=option.name%>" class="py__settings-select-options-item">
-                                                    <span><%= option.name %></span>
-                                                    <span><%- include('icons', {type:'arrow_right'}) %></span>
-                                                </a>
-                                            <% } %>
-                                        </li>
-                                    <% }) %>
-                                </ul>
-                            </div>
+                
+                <% if(globalOptions && sectionOptions){ %>
+                    <div class="py__settings-select">
+                        <div class="py__settings-selected">
+                            <span><%=active%></span>
+                            <span class="py__icon-down"><%- include('icons', {type:'arrow_bottom'}) %></span>
                         </div>
-                    <% } %>
+                        <div class="py__settings-select-options">
+                            <ul class="py__types-ul">
+                                <li data-id="pyglobaloptions" class="py__types-item<% if(activeType === 'global'){ %> active<% } %>">Global</li>
+                                <li data-id="pysectionoptions" class="py__types-item<% if(activeType === 'section'){ %> active<% } %>">Sections</li>
+                            </ul>
+                            <ul class="py__options-ul<% if(activeType === 'global'){ %> active<% } %>" id="pyglobaloptions">
+                                <% globalOptions.forEach(option => { %>
+                                    <li>
+                                        <% if(active === option.name){ %>
+                                            <a href="/themes/<%=id%>?global=<%=option.name%>" class="py__settings-select-options-item active">
+                                                <%= option.name %>
+                                            </a>
+                                        <% } else { %>
+                                            <a href="/themes/<%=id%>?global=<%=option.name%>" class="py__settings-select-options-item">
+                                                <span><%= option.name %></span>
+                                                <span><%- include('icons', {type:'arrow_right'}) %></span>
+                                            </a>
+                                        <% } %>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                            <ul class="py__options-ul<% if(activeType === 'section'){ %> active<% } %>" id="pysectionoptions">
+                                <% sectionOptions.forEach(option => { %>
+                                    <li>
+                                        <% if(active === option.name){ %>
+                                            <a href="/themes/<%=id%>?section=<%=option.name%>" class="py__settings-select-options-item active">
+                                                <%= option.name %>
+                                            </a>
+                                        <% } else { %>
+                                            <a href="/themes/<%=id%>?section=<%=option.name%>" class="py__settings-select-options-item">
+                                                <span><%= option.name %></span>
+                                                <span><%- include('icons', {type:'arrow_right'}) %></span>
+                                            </a>
+                                        <% } %>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        </div>
+                    </div>
+                <% } %>
+                
+                <% if(settings){ %>
                     <div class="py__settings-content">
                         <% settings.forEach(comp => { %>
                             <h2 class="py__settings-heading"><%= comp.name %></h2>
                             <% if(comp.settings){ %>
-                                <%- include('make/settings', {settings: comp.settings}) %>
+                                <%- include('make/settings', {settings: comp.settings, global: true}) %>
                             <% } else { %>
                                 <%- include('components/brand', {name: comp.theme_name}) %>
                             <% } %>
                         <% }) %>
                     </div>
                 <% } %>
+
+                <% if(section){ %>
+                    <div class="py__settings-content">
+                        <h2 class="py__settings-heading"><%= section.name %></h2>
+                        <% if(section.settings){ %>
+                            <%- include('make/settings', {settings: section.settings, global: false}) %>
+                        <% } %>
+                    </div>
+                <% } %>
+
             </form>
         </div>
         <div class="py__make-preview">

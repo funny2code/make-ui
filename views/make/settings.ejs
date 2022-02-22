@@ -1,7 +1,10 @@
 <% if(settings){ %>
     <div class="py__settings-wrapper">
+        <% if(!global){ %>
+            <input type="hidden" name="section_name" value="<%= active %>"/>
+        <% } %>
         <% settings.forEach(item => { %>
-            <% if(item.type === 'header' && item.content !== '__________'){ %>
+            <% if(global && item.type === 'header' && item.content !== '__________'){ %>
                 <div class="py__settings-item-wrapper">
                     <div class="py__settings-item-name">
                         <span><%= item.content %></span>
@@ -10,13 +13,15 @@
                     <div class="py__settings-item-content">
                 <% } %>
                     <% if(item.type === 'color'){ %>
-                        <%- include('../components/color', {global: true, data: item}) %>
+                        <%- include('../components/color', {global: global, data: item}) %>
                     <% } else if(item.type === 'text' && item.label !== 'Google Font'){ %>
-                        <%- include('../components/text', {global: true, data: item}) %>
+                        <%- include('../components/text', {global: global, data: item}) %>
+                    <% } else if(item.type === 'select'){ %>
+                        <%- include('../components/select', {global: global, data: item}) %>
                     <% } else if(item.type === 'text' && item.label === 'Google Font' && fonts){ %>
-                        <%- include('../components/font', {global: true, data: item, fonts: fonts}) %>
+                        <%- include('../components/font', {global: global, data: item, fonts: fonts}) %>
                     <% } %>
-                <% if(item.type === 'header' && item.content === '__________'){ %>
+                <% if(global && item.type === 'header' && item.content === '__________'){ %>
                     </div>
                 </div>
             <% } %>

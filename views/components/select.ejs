@@ -10,12 +10,10 @@
             </div>
         <% } %>
     </div>
-    <div class="py__comp-font">
-        <select type="select" name="<% if(global){ %>settings_<%= data.id %><% } else { %><%= data.id %><% } %>">
-            <% fonts.items.forEach(font => { %>
-                <option value="<%=font.family%>">
-                    <%= font.family %>
-                </option>
+    <div class="py__comp-select">
+        <select name="<%= data.id %>" type="select">
+            <% data.options.forEach(option => { %>
+                <option value="<%= option.value %>" <% if(data.default === option.value){ %>selected<% } %>><%= option.label %></option>
             <% }) %>
         </select>
     </div>

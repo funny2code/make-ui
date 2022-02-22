@@ -73,22 +73,23 @@ router.post('/:id', async (req, res, next) => {
       });
     }
 
-    if(!section){
-      sections?.sections && sections.sections.map(el => {
-          let sectionChildSettings = {};
-          if(el.settings){
-              for(var k in el.settings) {
-                  sectionChildSettings[el.settings[k].id] = el.settings[k].default;
-              }
-          }
-          defaultSections.push({name: el.name, settings: sectionChildSettings });
-      });
-    }
-  }
+    sections?.sections && sections.sections.map(el => {
+        let sectionChildSettings = {};
+        if(el.settings){
+            for(var k in el.settings) {
+                sectionChildSettings[el.settings[k].id] = el.settings[k].default;
+            }
+        }
+        defaultSections.push({name: el.name, settings: sectionChildSettings });
+    });
 
+    section && defaultSections.forEach(item => item.name === section[0].name ? item.settings = section[0].settings : null);
+    
+  }
+  
   res.render('view',{
       settings: settings ? settings[0] : defaultSettings,
-      sections: section ? section : defaultSections
+      sections: defaultSections
   });
 
 });
