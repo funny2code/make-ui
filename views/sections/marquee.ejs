@@ -1,0 +1,17 @@
+<div class="bc-marquee-wrapper py-<%=section.settings.br%> py-<%=section.settings.bg_color%> py-<%=section.settings.page_x_mg%> py-<%=section.settings.page_y_mg%>">
+  <div class="page-width page-<%=section.settings.page_width%> py-<%=section.settings.page_x_pd%> py-<%=section.settings.page_y_pd%>">
+    <% if(section.settings.marquee){ %>
+    <marquee class="bc-marquee-wrapper__marquee" 
+        direction="<%=section.settings.direction%>" 
+        behavior="<%=section.settings.behavior%>" 
+        scrollamount="<%=section.settings.speed%>"
+        <% if(section.settings.pause){ %>
+        onmouseover="this.stop();"
+        onmouseout="this.start();"
+        <% } %>
+    >
+        <span class="py-<%=section.settings.font_size%>"><%- section.settings.marquee -%><span>
+    </marquee>
+    <% } %>
+  </div>
+</div>

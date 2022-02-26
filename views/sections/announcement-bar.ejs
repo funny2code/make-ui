@@ -1,0 +1,26 @@
+<section id="shopify-section-announcement-bar">
+  <% if(section.blocks.length){ %>
+    <% section.blocks.forEach(block => { %>
+      <% if(block.type === 'announcement'){ %>
+        <div class="announcement-bar center py-<%=section.settings.bg_color%> py-<%=section.settings.page_x_pd%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.br%>" role="region" aria-label="">
+          <% if(block.settings?.text){ %>
+            <% if(block.settings?.link){ %>
+              <a href="<%=block.settings?.link%>" class="announcement-bar__link link link--text">
+            <% } %>
+                <span class="announcement-bar__message py-<%=section.settings.fs%>">
+                  <%=block.settings?.text%>
+                </span>
+            <% if(block.settings?.link){ %>
+              </a>
+            <% } %>
+          <% } else { %>
+            <span class="announcement-bar__message py-<%=section.settings.fs%>">
+              KENZIE FLORA OUT NOW | FREE WORLDWIDE SHIPPING
+            </span>
+          <% } %>
+        </div>
+      <% } %>
+    <% }) %>
+  <% } %>
+</section>
+

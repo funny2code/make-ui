@@ -1,0 +1,26 @@
+<% options.forEach((option, index) => { %>
+<% var optionName = option.name.toLowerCase() %>
+<% var option_index = index %>
+<% if(optionName === 'color' || optionName === 'colour'){ %>
+    <div class="bc-card-color">
+        <div class="bc-card-color__list" option_index="<%=option_index%>">
+            <% if(limit){ %>
+              <% option.values.forEach((value, index) => { %>
+              <div class="bc-card-color__item <% if(index === 0){ %>selected<% } %>" data-index="<%= index %>" data-option="<%= value %>">
+                  <span class="pd-colors__icon" data-color="<%= value.toLowerCase() %>"></span>
+              </div>
+              <% }) %>
+              <% if(option.values.length > limit){ %>
+               <div class="extra-colors"> + <%= option.values.size - 4 %></div>
+              <% } %>
+            <% } else { %>
+              <% option.values.forEach((value, index) => { %>
+              <div class="bc-card-color__item <% if(index === 0){ %>selected<% } %>" data-index="<%= index %>" data-option="<%= value %>">
+                  <span class="pd-colors__icon" data-color="<%= value.toLowerCase() %>"></span>
+              </div>
+              <% }) %>
+            <% } %>
+        </div>
+    </div>
+<% } %>
+<% }) %>

@@ -1,0 +1,57 @@
+<% if(section.blocks.length){ %>
+<link rel="stylesheet" href="/assets/component-image-with-video.css">
+
+<image-with-video class="bc-image-with-video bc-<%=settings.section_style%>-bt">
+    <% if(section.blocks.length){ %>
+      <div class="bc-image-with-video__content <%= section.settings.align %> <%= section.settings.position %> <%= section.settings.v_position %>">
+          <% if(section.settings.heading){ %>
+              <h2 class="bc-image-with-video__heading">
+                  <%= section.settings.heading %>
+              </h2>
+          <% } %>
+          <% if(section.settings.text){ %>
+              <div class="bc-image-with-video__text">
+                  <%- section.settings.text -%>
+              </div>
+          <% } %>
+          <% if(section.settings.btn){ %>
+              <a class="button button--primary" <% if(section.settings.url){ %>href="<%= section.settings.url %>"<% } %>>
+                  <%= section.settings.btn %>
+              </a>
+          <% } %>
+      </div>
+      <% section.blocks.forEach(block=>{ %>
+              <% if(block.type === 'image'){ %>
+                  <div class="bc-item bc-image-with-video__wrapper-image">
+                    <% if(block.settings?.image){ %>
+                        <div class="media" style="padding-bottom: 100%;">
+                        </div>
+                    <% } else { %>
+                        <%- include('../snippets/resimg', {classwrapper: '', classimg: 'py-img-fit', image: "image-with-video.jpg"}) %>
+                    <% } %>
+                  </div>
+              <% } else if(block.type === 'video'){ %>
+                  <div class="bc-item bc-image-with-video__wrapper-video  <% if(!block.settings?.video){ %>placeholder<% } %>">
+                      <% if(block.settings?.yv_video){ %>
+                        <% if(block.settings?.yv_video.type === 'vimeo'){ %>
+                          <iframe src="https://player.vimeo.com/video/<%= block.settings?.yv_video.id %>?autoplay=1&loop=1&autopause=0" frameborder="0" allow="autoplay;" allowfullscreen></iframe>
+                        <% } else { %>
+                          <iframe src="https://www.youtube.com/embed/<%= block.settings?.yv_video.id %>?autoplay=1&mute=1&loop=1" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+                        <% } %>
+                      <% } else if(block.settings?.video){ %>
+                        <video class="bc-image-with-video__video" autoplay loop muted defaultmuted playsinline> 
+                            <source src="<%= block.settings?.video %>" type="video/mp4"> 
+                            <source src="<%= block.settings?.video %>" type="video/ogg">
+                        </video>
+                      <% } else { %>
+                        <video class="bc-image-with-video__video" autoplay loop muted defaultmuted playsinline> 
+                            <source src="/videos/image-with-video.mp4" type="video/mp4"> 
+                            <source src="/videos/image-with-video.mp4" type="video/ogg">
+                        </video>
+                      <% } %>
+                  </div>
+              <% } %>
+      <% }) %>
+    <% } %>
+</image-with-video>
+<% } %>

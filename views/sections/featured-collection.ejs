@@ -1,0 +1,115 @@
+<link rel="stylesheet" href="/assets/component-slider.css">
+<link rel="stylesheet" href="/assets/component-price-style-1.css">
+<link rel="stylesheet" href="/assets/component-badge.css">
+<link rel="stylesheet" href="/assets/component-card-style-1.css">
+<link rel="stylesheet" href="/assets/component-variants.css">
+<link rel="stylesheet" href="/assets/template-collection-style-1.css">
+
+<style type="text/css">
+  .collection .page-width-br {
+    max-width: 100%;
+    padding: 0;
+  }
+  .bc-br-bt .collection__header {
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 2px solid #000;
+  }
+  .bc-br-bt .collection__header .title {
+    margin: 0;
+  }
+  .collection.bc-br-bt .grid {
+    margin: 0;
+  }
+  .collection.bc-br-bt .grid__item {
+    padding: 0;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-bottom: 2px solid #000;
+  }
+  .collection.bc-br-bt .grid__item:first-child {
+    border-left: 0;
+  }
+  .collection.bc-br-bt .grid__item:last-child {
+    border-right: 0;
+  }
+  .collection.bc-br-bt .card+.card-information {
+    padding-bottom: 20px;
+  }
+  .collection.bc-br-bt div.center {
+    padding: 20px 0;
+  }
+</style>
+
+<div class="collection bc-<%=settings.section_style%>-bt">
+  <div class="page-width page-width-<%=settings.section_style%>">
+    <div class="collection__header <% if(section.settings.show_view_all && section.settings.swipe_on_mobile){ %>title-wrapper-with-link<% } %><% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %><% if(section.settings.collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> title-wrapper--self-padded-tablet-down<% } %>">
+      <h2 class="title<% if(!section.settings.title){ %> title--no-heading<% } %>"><%= section.settings.title %></h2>
+
+      <% if(section.settings.show_view_all && section.settings.swipe_on_mobile){ %>
+        <a href="<%= section.settings.collection.url %>" class="link underlined-link large-up-hide">view all</a>
+      <% } %>
+    </div>
+
+    <% var products_to_display = section.settings.collection?.all_products_count
+      if(section.settings.collection?.all_products_count > section.settings.products_to_show){ 
+        var products_to_display = section.settings.products_to_show
+      }
+    %>
+
+    <slider-component class="slider-mobile-gutter">
+      <ul class="grid grid--2-col<% if(products_to_display === 4 || !section.settings.collection){ %> grid--2-col-tablet grid--4-col-desktop<% } else { %> grid--3-col-tablet<% } %><% if(products_to_display > 5){ %> grid--one-third-max grid--4-col-desktop grid--quarter-max<% } %><% if(section.settings.collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> slider slider--tablet grid--peek<% } %><% if(section.settings.show_view_all === false || section.settings.collection?.products.size < section.settings.products_to_show){ %> negative-margin<% } %><% if(section.settings.show_view_all && section.settings.collection?.products.size > section.settings.products_to_show){ %> negative-margin--small<% } %>" role="list">
+        <% if(section.settings.collection){ %>
+          <% section.settings.collection?.products.forEach((product, index) => { %>
+            <li class="grid__item<% if(section.settings.collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> slider__slide<% } %>">
+              <%# include('../snippets/product-card',
+                {product_card_product: product,
+                media_size: section.settings.image_ratio,
+                show_secondary_image: section.settings.show_secondary_image,
+                add_image_padding: section.settings.add_image_padding,
+                show_vendor: section.settings.show_vendor})
+              %>
+            </li>
+          <% }) %>
+        <% } else { %>
+          <% collection?.products.forEach((product, index) => { %>
+            <li class="grid__item<% if(collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> slider__slide<% } %>">
+              <%- include('../snippets/product-card',
+                {product_card_product: product,
+                media_size: section.settings.image_ratio,
+                show_secondary_image: section.settings.show_secondary_image,
+                add_image_padding: section.settings.add_image_padding,
+                show_vendor: section.settings.show_vendor,
+                images_size: "adapt",
+                show_colors: true})
+              %>
+            </li>
+          <% }) %>
+        <% } %>
+      </ul>
+      <% if(section.settings.collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %>
+        <div class="slider-buttons no-js-hidden<% if(section.settings.collection?.all_products_count < 4){ %> medium-hide<% } %><% if(section.settings.collection?.all_products_count < 3){ %> small-hide<% } %>">
+          <div class="slider-counter caption">
+            <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="visually-hidden">accessibility oof</span>
+            <span class="slider-counter--total"><%= products_to_display %></span>
+          </div>
+          <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="previous slide"><%- include('../snippets/icon-caret') %></button>
+          <button type="button" class="slider-button slider-button--next" name="next" aria-label="next slide"><%- include('../snippets/icon-caret') %></button>
+        </div>
+      <% } %>
+    </slider-component>
+
+    <% if(section.settings.show_view_all && section.settings.collection?.all_products_count > section.settings.products_to_show){ %>
+      <div class="center<% if(section.settings.swipe_on_mobile){ %> small-hide medium-hide<% } %>">
+        <a href="<%= section.settings.collection.url %>"
+          class="button"
+          aria-label="view all"
+        >
+          view all
+        </a>
+      </div>
+    <% } %>
+  </div>
+</div>

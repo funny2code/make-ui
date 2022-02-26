@@ -1,0 +1,446 @@
+<link rel="stylesheet" href="/assets/component-list-menu.css">
+<link rel="stylesheet" href="/assets/component-search-style-2.css">
+<link rel="stylesheet" href="/assets/component-menu-drawer.css">
+<link rel="stylesheet" href="/assets/component-header-style-2.css">
+
+
+<script src="/assets/details-disclosure.js" defer="defer"></script>
+<script src="/assets/details-modal.js" defer="defer"></script>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+  <symbol id="icon-search" viewbox="0 0 18 19" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.03 11.68A5.784 5.784 0 112.85 3.5a5.784 5.784 0 018.18 8.18zm.26 1.12a6.78 6.78 0 11.72-.7l5.4 5.4a.5.5 0 11-.71.7l-5.41-5.4z" fill="currentColor"/>
+  </symbol>
+
+  <symbol id="icon-close" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+    <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+  </symbol>
+</svg>
+<<% if(section.settings.enable_sticky_header){ %>sticky-header<% } else { %>div<% } %> class="header-wrapper bc-<%=settings.section_style%>-bt py-<%=section.settings.bg_color%>">
+  <header class="header header--middle-left page-width<% if(menu){ %> header--has-menu<% } %> bc-<%=settings.section_style%>-bt py-<%=section.settings.bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%> header-2">
+    <% if(menu){ %>
+      <header-drawer>
+        <details class="menu-drawer-container">
+          <summary class="header__icon header__icon--menu header__icon--summary link link--text focus-inset" aria-label="meanu">
+            <span>
+              <%- include('./icon-hamburger') %>
+              <%- include('./icon-close') %>
+            </span>
+          </summary>
+          <div id="menu-drawer" class="menu-drawer motion-reduce" tabindex="-1">
+            <div class="menu-drawer__inner-container">
+              <div class="menu-drawer__navigation-container">
+                <nav class="menu-drawer__navigation">
+                  <ul class="menu-drawer__menu list-menu" role="list">
+                    <% menu.forEach(link =>{ %>
+                      <li>
+                        <% if(link.links){ %>
+                          <details>
+                            <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset<% if(link.child_active){ %> menu-drawer__menu-item--active<% } %>">
+                              <%= link.title %>
+                              <%- include('./icon-arrow') %>
+                              <%- include('./icon-caret') %>
+                            </summary>
+                            <div id="link-<%= link.title %>" class="menu-drawer__submenu motion-reduce" tabindex="-1">
+                              <div class="menu-drawer__inner-submenu">
+                                <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                                  <%- include( 'icon-arrow') %>
+                                  <%= link.title %>
+                                </button>
+                                <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                                  <% link.links.forEach(childlink=>{ %>
+                                    <li>
+                                      <% if(!childlink.links){ %>
+                                        <a href="<%= childlink.url %>" class="menu-drawer__menu-item link link--text list-menu__item focus-inset<% if(childlink.current){ %> menu-drawer__menu-item--active<% } %>"<% if(childlink.current){ %> aria-current="page"<% } %>>
+                                          <%= childlink.title %>
+                                        </a>
+                                      <% } else { %>
+                                        <details>
+                                          <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
+                                            <%= childlink.title %>
+                                            <%- include('./icon-arrow') %>
+                                            <%- include('./icon-caret') %>
+                                          </summary>
+                                          <div id="childlink-<%= childlink.title %>" class="menu-drawer__submenu motion-reduce">
+                                            <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                                              <%- include('./icon-arrow') %>
+                                              <%= childlink.title %>
+                                            </button>
+                                            <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                                              <% childlink.links.forEach(grandchildlink=>{ %>
+                                                <li>
+                                                  <a href="<%= grandchildlink.url %>" class="menu-drawer__menu-item link link--text list-menu__item focus-inset<% if(grandchildlink.current){ %> menu-drawer__menu-item--active<% } %>"<% if(grandchildlink.current){ %> aria-current="page"<% } %>>
+                                                    <%= grandchildlink.title %>
+                                                  </a>
+                                                </li>
+                                              <% }) %>
+                                            </ul>
+                                          </div>
+                                        </details>
+                                      <% } %>
+                                    </li>
+                                  <% }) %>
+                                </ul>
+                              </div>
+                            </div>
+                          </details>
+                        <% } else { %>
+                          <a href="<%= link.url %>" class="menu-drawer__menu-item list-menu__item link link--text focus-inset<% if(link.current){ %> menu-drawer__menu-item--active<% } %>"<% if(link.current){ %> aria-current="page"<% } %>>
+                            <%= link.title %>
+                          </a>
+                        <% } %>
+                      </li>
+                    <% }) %>
+                  </ul>
+                </nav>
+                <div class="menu-drawer__utility-links">
+                  <ul class="list list-social list-unstyled" role="list">
+                    <% if(settings.social_twitter_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_twitter_link %>" class="link link--text list-social__link" aria-describedby="a11y-external-message">
+                          <%- include('./icon-twitter') %>
+                          <span class="visually-hidden">twitter</span>
+                        </a>
+                      </li>
+                    <% } %>
+                    <% if(settings.social_facebook_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_facebook_link %>" class="link link--text list-social__link" aria-describedby="a11y-external-message">
+                          <%- include('./icon-facebook') %>
+                          <span class="visually-hidden">facebook</span>
+                        </a>
+                      </li>
+                    <% } %>
+                    <% if(settings.social_pinterest_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_pinterest_link %>" class="link link--text list-social__link" aria-describedby="a11y-external-message">
+                          <%- include('./icon-pinterest') %>
+                          <span class="visually-hidden">pinterest</span>
+                        </a>
+                      </li>
+                    <% } %>
+                    <% if(settings.social_instagram_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_instagram_link %>" class="link link--text list-social__link" aria-describedby="a11y-external-message">
+                          <%- include('./icon-instagram') %>
+                          <span class="visually-hidden">instagram</span>
+                        </a>
+                      </li>
+                    <% } %>
+                    <% if(settings.social_tumblr_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_tumblr_link %>" class="link link--text list-social__link" aria-describedby="a11y-external-message">
+                          <%- include('./icon-tumblr') %>
+                          <span class="visually-hidden">tumblr</span>
+                        </a>
+                      </li>
+                    <% } %>
+                    <% if(settings.social_snapchat_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_snapchat_link %>" class="link link--text list-social__link" aria-describedby="a11y-external-message">
+                          <%- include('./icon-snapchat') %>
+                          <span class="visually-hidden">snapchat</span>
+                        </a>
+                      </li>
+                    <% } %>
+                    <% if(settings.social_youtube_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_youtube_link %>" class="link link--text list-social__link" aria-describedby="a11y-external-message">
+                          <%- include('./icon-youtube') %>
+                          <span class="visually-hidden">youtube</span>
+                        </a>
+                      </li>
+                    <% } %>
+                    <% if(settings.social_vimeo_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_vimeo_link %>" class="link link--text list-social__link" aria-describedby="a11y-external-message">
+                          <%- include('./icon-vimeo') %>
+                          <span class="visually-hidden">vimeo</span>
+                        </a>
+                      </li>
+                    <% } %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </header-drawer>
+    <% } %> 
+
+    <% if(true){ %>
+    <h1 class="header__heading">
+      <% } %>
+      <a href="/" class="header__heading-link link link--text focus-inset">
+        <% if(section.settings.logo){ %>
+        <% } else { %>
+        <span class="h2"><%= shop.name %></span>
+        <% } %>
+      </a>
+      <% if(true){ %>
+    </h1>
+    <% } %>   
+    <div class="header-search-container">
+      <details-modal class="header__search">
+        <details>
+          <summary class="header__icon header__icon--search header__icon--summary link link--text focus-inset modal__toggle" aria-haspopup="dialog" aria-label="search">
+            <form action="/search" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags="<%=section.settings.search_hide_tags%>"<%}%>>
+              <div class="field">
+                <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value="" placeholder="search">
+                <label class="field__label" for="Search-In-Modal">Find what you're looking for</label>
+                <input type="hidden" name="type" value="product">
+                <input type="hidden" name="options[fields]" value="title,product_type,variants.title">
+                <input type="hidden" name="options[prefix]" value="last">
+                <button class="search__button field__button focus-inset" aria-label="search">
+                  <svg class="icon icon-search" aria-hidden="true" focusable="false" role="presentation">
+                    <use href="#icon-search">
+                  </svg>
+                </button>
+              </div>                
+            </form>            
+          </summary>
+          <div class="search-modal modal__content py-<%=section.settings.bg_color%>" role="dialog" aria-modal="true" aria-label="search">
+            <div class="search-modal__content" tabindex="-1">             
+               
+              <div class="bc-search-result-wrapper">
+                <div class="bc-cart__not-products">Sorry no results found</div>
+                <div class="bc-search-result-inner-wrapper"></div>
+                <% if(section.settings.search_menu){ %>
+                <ul class="list-menu bc-search-menu">
+                  <h3 class="bc-search-menu__title"><%= section.settings.search_menu.title %></h3>
+                  <% section.settings.search_menu.links.forEach(link => { -%>
+                  <li>
+                    <a href="<%= link.url %>" class="header__menu-item list-menu__item link link--text focus-inset caption-large<% if(link.current){ %> list-menu__item--active<% } %>"<% if(link.current){ %> aria-current="page"<% } %>>
+                      <%= link.title %>
+                    </a>
+                  </li>
+                  <% }) %>
+                </ul>
+                <% } %>
+              </div>
+              <button type="button" class="search-modal__close-button modal__close-button link link--text focus-inset" aria-label="close">
+                <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
+                  <use href="#icon-close">
+                </svg>
+              </button>
+            </div>
+          </div>
+        </details>
+      </details-modal>
+    </div>
+    <div class="header__icons">
+
+      <a href="/cart" class="header__icon header__icon--cart link link--text focus-inset" id="cart-icon-bubble">
+        <%- include('./icon-cart') %>
+        <span class="visually-hidden">cart</span>
+          <div class="cart-count-bubble">
+            <span aria-hidden="true" id="cart-count">3</span>
+            <span class="visually-hidden">cart count 3</span>
+          </div>
+      </a>
+      <% if(settings.cart_style === 'style-3'){ %>
+           <%- include('./cart-notification-3') %>
+      <% } %>
+
+    </div>
+  </header>
+  <div class="header-bottom">
+    <% if(menu){ %>
+      <nav class="header__inline-menu">
+        <ul class="list-menu list-menu--inline" role="list">
+          <% menu.forEach(link=>{ %>
+            <li>
+              <% if(link.links){ %>
+                <details-disclosure>
+                  <details>
+                    <summary data-href="<%= link.url %>" class="header__menu-item list-menu__item link focus-inset">
+                      <span <% if(link.child_active){ %> class="header__active-menu-item"<% } %>><%= link.title %></span>
+                      <%- include('./icon-caret') %>
+                    </summary>
+                    <div class="header__submenu list-menu--disclosure caption-large motion-reduce py-<%=section.settings.bg_color%>" tabindex="-1">
+                      <ul class="list-menu">
+                        <% link.links.forEach(childlink=>{ %>
+                          <li>
+                            <% if(!childlink.links){ %>
+                              <a href="<%= childlink.url %>" class="header__menu-item list-menu__item link link--text focus-inset caption-large<% if(childlink.current){ %> list-menu__item--active<% } %>"<% if(childlink.current){ %> aria-current="page"<% } %>>
+                                <%= childlink.title %>
+                              </a>
+                            <% } %>
+                          </li>
+                        <% }) %>
+                      </ul>
+                      <ul class="list-menu">
+                        <% link.links.forEach(childlink => { %>
+                          <% if(childlink.links){ %>
+                            <% childlink.links.forEach(grandchildlink=>{ %>
+                              <li>
+                                <a href="<%= grandchildlink.url %>" class="header__menu-item list-menu__item link link--text focus-inset caption-large<% if(grandchildlink.current){ %> list-menu__item--active<% } %>"<% if(grandchildlink.current){ %> aria-current="page"<% } %>>
+                                  <%= grandchildlink.title %>
+                                </a>
+                              </li>
+                            <% }) %>
+                          <% } %>
+                        <% }) %>
+                      </ul>
+                      <% if(section.blocks.length){ %>
+                        <% section.blocks.forEach(block => { %>
+                          <% var name = block.settings.name %>
+                          <% var title = link.title %>
+                          <% if(block.type === 'mega_menu' && name == title){ %>
+                            <% for(let i=1; i<=4; i++){ %>
+                              <% var menuHandle = 'menu_' + i %> 
+                              <% var imageHandle = 'image_' + i %>
+                              <% var titleHandel = 'title_' + i %>
+                              <% var urlHandle = 'link_' + i %>
+                              <% var menu = block.settings[menuHandle] %>
+                              <% var image = block.settings[imageHandle] %>
+                              <% var title = block.settings[titleHandel] %>
+                              <% var url = block.settings[urlHandle] %>
+                              <% if(menu){ %>
+                                <ul class="list-menu">
+                                  <h3 class="bc-mega-menu__title"><%= menu.title %></h3>
+                                  <% menu.links.forEach(link => { %>
+                                    <li>
+                                      <a href="<%= link.url %>" class="header__menu-item list-menu__item link link--text focus-inset caption-large<% if(link.current){ %> list-menu__item--active<% } %>"<% if(link.current){ %> aria-current="page"<% } %>>
+                                        <%= link.title %>
+                                      </a>
+                                    </li>
+                                  <% }) %>
+                                </ul>
+                              <% } %>
+                              <% if(image){ %>
+                                <div class="bc-mega-menu-image">
+                                  <% if(url){ %>
+                                    <a href="<%= url %>">
+                                  <% } %>
+                                    <%# include('resimg', image: image %>
+                                    <% if(title){ %>
+                                    <h3 class="bc-mega-menu-image__title"><%= title %></h3>
+                                    <% } %>
+                                  <% if(url){ %>
+                                    </a>
+                                  <% } %>
+                                </div>
+                              <% } %>
+                            <% } %>
+                          <% } %>
+                        <% }) %>
+                      <% } %>
+                    </div>
+                  </details>
+                </details-disclosure>
+              <% } else { %>
+                <a href="<%= link.url %>" class="header__menu-item list-menu__item link link--text focus-inset"<% if(link.current){ %> aria-current="page"<% } %>>
+                  <span <% if(link.current){ %> class="header__active-menu-item"<% } %>><%= link.title %></span>
+                </a>
+              <% } %>
+            </li>
+          <% }) %>
+        </ul>
+      </nav>
+    <% } %>
+  </div>
+</<% if(section.settings.enable_sticky_header){ %>sticky-header<% } else { %>div<% } %>>
+
+<script>
+  class StickyHeader extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.announcementBar = document.getElementById('shopify-section-announcement-bar');
+      this.header = document.getElementById('shopify-section-header-2');
+      this.headerBounds = {};
+      this.currentScrollTop = 0;
+      this.collFilters = document.querySelector('.coll-filters');
+      this.proInfo = document.querySelector('.product__info-container--sticky');
+      this.filterDrawer = document.querySelector('.coll-filter-drawer');
+      this.filterDrawerForm = document.querySelector('.coll-filter-drawer__form');
+      this.deleyTop = this.collFilters && this.announcementBar ? this.announcementBar.offsetHeight + this.header.offsetHeight : this.header.offsetHeight;
+      this.deleyTop = this.header.offsetHeight;  
+      this.collFilters && this.collFilters !== null ? this.collFilters.style.top = this.deleyTop + 'px' : null;
+      this.proInfo && this.proInfo !== null ? this.proInfo.style.top = 20 + this.deleyTop + 'px' : null;
+      this.filterDrawer && this.filterDrawer !== null && this.announcementBar && this.announcementBar !== null ? this.filterDrawer.style.top = this.announcementBar.offsetHeight + 'px' : null;
+      this.filterDrawerForm && this.filterDrawerForm !== null && this.announcementBar && this.announcementBar !== 'null' ? this.filterDrawerForm.style.height = 'calc(100vh - ' + (169 + this.announcementBar.offsetHeight) + 'px)' : null; 
+
+      this.onScrollHandler = this.onScroll.bind(this);
+
+      window.addEventListener('scroll', this.onScrollHandler, false);
+
+      this.createObserver();
+    }
+
+    disconnectedCallback() {
+      window.removeEventListener('scroll', this.onScrollHandler);
+    }
+
+    createObserver() {
+      let observer = new IntersectionObserver((entries, observer) => {
+        this.headerBounds = entries[0].intersectionRect;
+        observer.disconnect();
+      });
+
+      observer.observe(this.header);
+    }
+
+    onScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+        requestAnimationFrame(this.hide.bind(this));
+      } else if (scrollTop < this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+        requestAnimationFrame(this.reveal.bind(this));
+      } else if (scrollTop <= this.headerBounds.top) {
+        requestAnimationFrame(this.reset.bind(this));
+      }
+
+      this.currentScrollTop = scrollTop;
+    }
+
+    hide() {
+      this.header.classList.add('shopify-section-header-hidden', 'shopify-section-header-sticky');
+      this.closeMenuDisclosure();
+      this.closeSearchModal();
+    }
+
+    reveal() {
+      this.header.classList.add('shopify-section-header-sticky', 'animate');
+      this.header.classList.remove('shopify-section-header-hidden');
+    }
+
+    reset() {
+      this.header.classList.remove('shopify-section-header-hidden', 'shopify-section-header-sticky', 'animate');
+    }
+
+    closeMenuDisclosure() {
+      this.disclosures = this.disclosures || this.header.querySelectorAll('details-disclosure');
+      this.disclosures.forEach(disclosure => disclosure.close());
+    }
+
+    closeSearchModal() {
+      this.searchModal = this.searchModal || this.header.querySelector('details-modal');
+      this.searchModal.close(false);
+    }
+  }
+
+  customElements.define('sticky-header', StickyHeader);
+
+  /*document.querySelector('[data-currency-selector]').addEventListener('change', function(e){
+    this.closest('form').submit();
+  });*/
+
+</script>
+
+<script>    
+    var parentMenu = document.querySelectorAll('nav> ul.list-menu details-disclosure>details>summary');
+    var i;
+
+    for (i = 0; i < parentMenu.length; i++) {
+      if(parentMenu[i].getAttribute('data-href')!=null)
+      parentMenu[i].addEventListener("click", function() {
+        window.location.href = this.getAttribute('data-href');
+      });
+    }
+ 
+</script>

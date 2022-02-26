@@ -1,0 +1,62 @@
+<div class="card-wrapper">
+  <span class="visually-hidden"><%= product_card_product.title %></span>
+  <div class="card card--product<% if(!product_card_product.images[0]){ %> card--text-only card--soft<% } %>" tabindex="-1">
+    <div class="card__inner">
+        <% if(product_card_product.images[0]){ %>
+          <div <% if(add_image_padding){ %> class="card__images-full-spacer"<% } %>>
+            <a href="<%= product_card_product.url %>" class="full-unstyled-link">
+              <div class="images images--transparent images--<%= images_size %> images--hover-effect">
+                <img src="<%= product_card_product.images[0].src %>"
+                    alt="<%= product_card_product.images[0].alt %>"
+                    loading="lazy"
+                    class="motion-reduce"
+                  >
+                <% if(product_card_product.images[1] && show_secondary_image){ %>
+                  <img src="<%= product_card_product.images[1].src %>"
+                    alt="<%= product_card_product.images[1].alt %>"
+                    loading="lazy"
+                    class="motion-reduce"
+                  >
+                <% } %>
+              </div>
+            </a>
+          </div>
+        <% } else { %>
+          <div class="card__content"><h2 class="card__text h2"><%= product_card_product.title %></h2></div>
+        <% } %>
+
+        <% if(product_card_product?.variants){ %>
+          <%# if(product_card_product.metafields.status.date && product_card_product.metafields.status.comming_soon){ %>
+            <%# include('../snippets/comming-soon', {date: product_card_product.metafields.status.date}) %>
+          <%# } else { %>
+            <%- include('./component-variants', {variants: product_card_product.variants}) %>
+          <%# } %>
+        <% } %>
+    </div>
+  </div>
+
+  <div class="card-information">
+    <div class="card-information__wrapper">
+      <% if(show_vendor){ %>
+        <span class="visually-hidden">vendor</span>
+        <div class="caption-with-letter-spacing light"><%= product_card_product.vendor %></div>
+      <% } %>
+
+      
+      <a href="<%= product_card_product.url%>" class="full-unstyled-link">
+        <span class="card-information__text h5">
+          <%= product_card_product.title %>
+        </span>
+      </a>
+      
+      
+      <%# include('price', product: product_card_product, price_class: '' %>
+
+    </div>
+  
+  </div>
+
+  <% if(show_colors){ %>
+    <%- include('./component-card-color', {options: product_card_product.options, limit: false}) %>
+  <% } %>
+</div>

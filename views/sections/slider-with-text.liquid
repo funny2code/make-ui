@@ -1,0 +1,206 @@
+{{ 'section-slider-with-text.css' | asset_url | stylesheet_tag }}
+
+<div class="bc-slider-with-text">
+  <div class="page-width">
+    <div class="bc-slider-with-text__wrapper" {% if section.settings.bg_color != blank %}style="background: {{ section.settings.bg_color }};"{% endif %}>
+      {%- if section.blocks.size > 0 -%}
+        <slider-component class="bc-slider-with-text__slider-wrapper">
+          <ul class="list-unstyled slider slider--desktop" role="list">
+            {%- for block in section.blocks -%}
+              {%- if block.settings.image != blank -%}
+                <li class="slider__slide">
+                  {% render 'resimg', image: block.settings.image %}
+                </li>
+              {%- else -%}
+            	<li class="slider__slide">
+                  <div class="media placeholder media-placeholder">
+                    {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+            	</li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+          <div class="slider-buttons slider-buttons-desktop slider-buttons--overlay no-js-hidden">
+            <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}">{% render 'icon-caret' %}</button>
+            <div class="slider-counter caption">
+              <span class="slider-counter--current">1</span>
+              <span aria-hidden="true"> / </span>
+              <span class="visually-hidden">{{ 'accessibility.of' | t }}</span>
+              <span class="slider-counter--total">{{ section.blocks.size }}</span>
+            </div>
+            <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{% render 'icon-caret' %}</button>
+          </div>
+        </slider-component>
+      {%- endif -%}
+      <div class="bc-slider-with-text__text-wrapper" {% if section.settings.color != blank %}style="color: {{ section.settings.color }};"{% endif %}>
+        <div class="bc-slider-with-text__text-content">
+          {%- if section.settings.heading != blank -%}
+          <h2 class="bc-slider-with-text__text-heading">
+            {{ section.settings.heading }}
+          </h2>
+          {%- endif -%}
+          <div class="bc-flex">
+            <div class="right">
+              {%- for i in (1..3) -%}
+                {%- liquid
+                  assign labelHandle = 't_l_' | append: i 
+                  assign label = section.settings[labelHandle] -%}
+              	{%- if label != blank -%}
+                  <span class="bc-slider-with-text__text-label">
+                  {{ label }}
+                  </span>
+              	{%- endif -%}
+              {%- endfor -%}
+            </div>
+            <div style="text-align:left;">
+              {%- for i in (1..3) -%}
+                {%- liquid
+                  assign valueHandle = 't_' | append: i 
+                  assign value = section.settings[valueHandle] -%}
+              	{%- if value != blank -%}
+                  <span class="bc-slider-with-text__text-value">
+                  {{ value }}
+                  </span>
+              	{%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+          {%- if section.settings.title != blank -%}
+          <h3 class="bc-slider-with-text__text-title">
+            {{ section.settings.title }}
+          </h3>
+          {%- endif -%}
+          {%- if section.settings.text != blank -%}
+          <div class="bc-slider-with-text__text-text">
+            {{ section.settings.text }}
+          </div>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- if section.settings.icon != blank -%}
+      <img src="{{ section.settings.icon | img_url: '254x' }}" 
+           loading="lazy" 
+           width="{{ section.settings.icon.width }}"
+           height="{{ section.settings.icon.height }}" 
+           class="bc-slider-with-text__icon"/>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+
+
+
+
+{% schema %}{
+  "name": "Slider With Text",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#fce5ec"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Content",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Thong"
+    },
+    {
+      "type": "text",
+      "id": "t_l_1",
+      "label": "Rise Label",
+      "default": "Rise"
+    },
+    {
+      "type": "text",
+      "id": "t_1",
+      "label": "Rise Value",
+      "default": "Normal"
+    },
+    {
+      "type": "text",
+      "id": "t_l_2",
+      "label": "Coverage Label",
+      "default": "Coverage"
+    },
+    {
+      "type": "text",
+      "id": "t_2",
+      "label": "Coverage Value",
+      "default": "Full Coverage"
+    },
+    {
+      "type": "text",
+      "id": "t_l_3",
+      "label": "Star Rating Label",
+      "default": "Star Ratings"
+    },
+    {
+      "type": "text",
+      "id": "t_3",
+      "label": "Star Rating Value",
+      "default": "x x x x x"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Huha's Advice"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "text",
+      "default": "                                                                                <p>Imagine underwear that are both good for your body AND make your butt look great. Say hello to our Mineral Cheeky! </p>\n                                                                \n                                    "
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Icon"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "slider with text",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}{% endschema %}

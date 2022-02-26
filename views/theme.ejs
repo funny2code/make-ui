@@ -27,11 +27,11 @@
                                 <% globalOptions.forEach(option => { %>
                                     <li>
                                         <% if(active === option.name){ %>
-                                            <a href="/themes/<%=id%>?global=<%=option.name%>" class="py__settings-select-options-item active">
+                                            <a href="/themes/<%=id%>?page=<%=page%>&global=<%=option.name%>" class="py__settings-select-options-item active">
                                                 <%= option.name %>
                                             </a>
                                         <% } else { %>
-                                            <a href="/themes/<%=id%>?global=<%=option.name%>" class="py__settings-select-options-item">
+                                            <a href="/themes/<%=id%>?page=<%=page%>&global=<%=option.name%>" class="py__settings-select-options-item">
                                                 <span><%= option.name %></span>
                                                 <span><%- include('icons', {type:'arrow_right'}) %></span>
                                             </a>
@@ -43,11 +43,11 @@
                                 <% sectionOptions.forEach(option => { %>
                                     <li>
                                         <% if(active === option.name){ %>
-                                            <a href="/themes/<%=id%>?section=<%=option.name%>" class="py__settings-select-options-item active">
+                                            <a href="/themes/<%=id%>?page=<%=page%>&section=<%=option.name%>" class="py__settings-select-options-item active">
                                                 <%= option.name %>
                                             </a>
                                         <% } else { %>
-                                            <a href="/themes/<%=id%>?section=<%=option.name%>" class="py__settings-select-options-item">
+                                            <a href="/themes/<%=id%>?page=<%=page%>&section=<%=option.name%>" class="py__settings-select-options-item">
                                                 <span><%= option.name %></span>
                                                 <span><%- include('icons', {type:'arrow_right'}) %></span>
                                             </a>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="py__preview-iframe">
-                    <iframe src="/view/<%= id %>" class="py__view-iframe"></iframe>
+                    <iframe src="/view/<%= id %>?page=<%=page%>" class="py__view-iframe"></iframe>
                 </div>
             </div>
         </div>

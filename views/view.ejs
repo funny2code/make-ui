@@ -129,27 +129,29 @@
     <% } %>
 <body style="min-height: 100%;height: 100%">
     <% if(sections){ %>
-        <% sections.forEach(section => { %>
-            <% if(section.name === 'header'){ %>
-                <%- include('previews/header', {settings: settings, section: section }) %>
-            <% } else if(section.name === 'hero banner'){ %>
-                <%- include('previews/hero-banner', {settings: settings, section: section }) %>
-            <% } else if(section.name === 'marquee'){ %>
-                <%- include('previews/marquee', {settings: settings, section: section }) %>
-            <% } else if(section.name === 'image with video'){ %>
-                <%- include('previews/image-with-video', {settings: settings, section: section }) %>
-            <% } else if(section.name === 'partners'){ %>
-                <%- include('previews/partners', {settings: settings, section: section }) %>
-            <% } else if(section.name === 'collection see'){ %>
-                <%- include('previews/collection-see', {settings: settings, section: section }) %>
-            <% } else if(section.name === 'collection our'){ %>
-                <%- include('previews/collection-our', {settings: settings, section: section }) %>
-            <% } else if(section.name === 'featured collection'){ %>
-                <%- include('previews/featured-collection', {settings: settings, section: section }) %>
-            <% } else if(section.name === 'rich text'){ %>
-                <%- include('previews/rich-text', {settings: settings, section: section }) %>    
-            <% } else if(section.name === 'footer'){ %>
-                <%- include('previews/footer', {settings: settings, section: section }) %>
+        <% sections.forEach(item => { %>
+            <% if(item.name === 'header'){ %>
+                <%- include('sections/header', {menu: menu, settings: settings, section: item }) %>
+            <% } else if(item.name === 'announcement bar'){ %>
+                <%- include('sections/announcement-bar', {settings: settings, section: item }) %>
+            <% } else if(item.name === 'hero banner'){ %>
+                <%- include('sections/image-banner', {settings: settings, section: item }) %>
+            <% } else if(item.name === 'marquee'){ %>
+                <%- include('sections/marquee', {settings: settings, section: item }) %>
+            <% } else if(item.name === 'image with video'){ %>
+                <%- include('sections/image-with-video', {settings: settings, section: item }) %>
+            <% } else if(item.name === 'partners'){ %>
+                <%- include('sections/partners', {settings: settings, section: item }) %>
+            <% } else if(item.name === 'collection see'){ %>
+                <%- include('sections/collection-see', {settings: settings, section: item }) %>
+            <% } else if(item.name === 'collection our'){ %>
+                <%- include('sections/collection-our', {settings: settings, section: item }) %>
+            <% } else if(item.name === 'featured collection'){ %>
+                <%- include('sections/featured-collection', {collection: collection, settings: settings, section: item }) %>
+            <% } else if(item.name === 'rich text'){ %>
+                <%- include('sections/rich-text', {settings: settings, section: item }) %>    
+            <% } else if(item.name === 'footer'){ %>
+                <%- include('sections/footer', {settings: settings, section: item, localization: false }) %>
             <% } %>
         <% }) %>
     <% } %>

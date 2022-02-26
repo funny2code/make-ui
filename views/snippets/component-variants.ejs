@@ -1,0 +1,9 @@
+<div class="bc-product-grid-variants">
+    <% variants.forEach((variant, index) => { %>
+        <div class="bc-variant-item <% if(!variant.available){ %>bc-variant-item-sold-out<% } %>">
+            <a href="<%= variant.url %>">
+                <%= variant.title %>
+            </a>
+        </div>
+    <% }) %>
+</div>

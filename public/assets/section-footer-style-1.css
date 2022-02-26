@@ -178,6 +178,7 @@
 }
 
 .footer-block__heading {
+  color: inherit;
   font-weight: 400;
   margin-bottom: 1.5rem;
   margin-top: 0;
@@ -212,7 +213,8 @@
   width: 100%;
   margin-left: 0;
   box-shadow: none;
-  background: #fff;
+  background: #ffffff;
+  color: #000000;
   text-transform: uppercase;
   border-radius: 2px;
   font-weight: 500;

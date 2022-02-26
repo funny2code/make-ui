@@ -1,0 +1,50 @@
+<% if(section.settings.title || section.blocks.length){ %>
+  <link rel="stylesheet" href="/assets/collection-our.css">
+  
+  <div class="collection-our bc-<%=settings.section_style%>-bt">
+    <div class="page-width page-width-<%=settings.section_style%>">
+      <% if(section.settings.title){ %>
+      <div class="collection-our-heading">
+        <h2 class="collection-our__title collection-our__title-<%= section.id %>">
+          <%= section.settings.title %>
+        </h2>
+        <%# include('../snippets/style', {sufix: '.collection-our__title', id: section.id, style: section.settings}) %>
+      </div>
+      <% } %>
+      <ul class="collection-our-list bc-scroll-hide">
+        <% section.blocks.forEach((block, index) => { %>
+        <li class="collection-our-list__item" <% if(block.settings?.enable_anim){ %> data-aos="<%=block.settings?.anim%>"<% } %>>
+          <% if(block.settings?.button_link){ %>
+            <a href="<%= block.settings?.button_link %>">
+              <% } %>
+              <% if(block.settings?.image){ %>
+                <div class="collection-our_image__wrap bc-<%=settings.section_style%>-bt">
+                    <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: block.settings?.image}) %>
+                </div>
+                <% if(block.settings?.title){ %>
+                  <h2 class="collection-our__name">
+                    <%= block.settings?.title %>
+                  </h2>
+                  <%# include('style', {sufix: '.collection-our__name', id: block.id, style: block.settings}) %>
+                <% } %>
+                <% if(block.settings?.text){ %>
+                  <div class="collection-our__text"><%= block.settings?.text %></div>
+                <% } %>
+              <% } else { %>
+                <div class="collection-our_image__wrap bc-<%=settings.section_style%>-bt">
+                    <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'our-' + index + '.jpg'}) %>
+                </div>
+                <h2 class="collection-our__name">
+                  Title <%= index %> 
+                </h2>
+                <div class="collection-our__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+              <% } %>
+              <% if(block.settings?.button_link){ %>
+            </a>
+          <% } %>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+<% } %>
