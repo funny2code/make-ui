@@ -148,8 +148,16 @@
                 <%- include('sections/collection-our', {settings: settings, section: item }) %>
             <% } else if(item.name === 'featured collection'){ %>
                 <%- include('sections/featured-collection', {collection: collection, settings: settings, section: item }) %>
+            <% } else if(item.name === 'main image with two products'){ %>
+                <%- include('sections/main-image-with-two-products', {collection: collection, settings: settings, section: item }) %>    
+            <% } else if(item.name === 'image with text'){ %>
+                <%- include('sections/image-with-text', {settings: settings, section: item }) %>
             <% } else if(item.name === 'rich text'){ %>
-                <%- include('sections/rich-text', {settings: settings, section: item }) %>    
+                <%- include('sections/rich-text', {settings: settings, section: item }) %> 
+            <% } else if(item.name === 'collection two column'){ %>
+                <%- include('sections/collection-two-column', {settings: settings, section: item }) %>    
+                <% } else if(item.name === 'collage'){ %>
+                    <%- include('sections/collage', {settings: settings, section: item }) %>        
             <% } else if(item.name === 'footer'){ %>
                 <%- include('sections/footer', {settings: settings, section: item, localization: false }) %>
             <% } %>

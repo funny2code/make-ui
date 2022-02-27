@@ -1,0 +1,318 @@
+<link rel="stylesheet" href="/assets/collage.css">
+<link rel="stylesheet" href="/assets/component-card-style-1.css">
+<link rel="stylesheet" href="/assets/component-price-style-1.css">
+<link rel="stylesheet" href="/assets/component-deferred-media.css">
+
+<div class="collage-wrapper page-width<% if(!section.settings.heading){ %> no-heading<% } %> bc-<%=settings.section_style%>-bt">
+  <h2 class="collage-wrapper-title"><%= section.settings.heading %></h2>
+
+  <div class="collage collage--<%= section.settings.desktop_layout %><% if(section.settings.mobile_layout === 'collage'){ %> collage--mobile<% } %>">
+    <% section.blocks.forEach((block, index) => { %>
+
+      <% var focus_card_left = false
+        if(section.settings.desktop_layout === 'left' && index === 0){
+          var focus_card_left = true
+        } else if( section.settings.desktop_layout == 'right' && index === section.blocks.length){
+          var focus_card_right = true
+        }
+      %>
+        <% if(block.type === 'image'){ %>
+          <div class="collage-card color-<%= block.settings?.color_scheme %><% if(focus_card_left){ %> collage-card--left<% } else if( focus_card_right){ %> collage-card--right<% } %>">
+            <div class="collage-content collage-card__image-wrapper media media--transparent<% if(block.settings?.image_padding){ %> collage-card-spacing<% } %>">
+              <% if(block.settings?.image){ %>
+                <img srcset="<% if(block.settings?.image.width >= 500){ %><%= block.settings?.image %> 500w,<% } %>
+                  <% if(block.settings?.image.width >= 730){ %><%= block.settings?.image %> 730w,<% } %>
+                  <% if(block.settings?.image.width >= 1440){ %><%= block.settings?.image %> 1440w,<% } %>
+                  <% if(block.settings?.image.width >= 990){ %><%= block.settings?.image %> 990w,<% } %>
+                  <% if(block.settings?.image.width >= 2080){ %><%= block.settings?.image %> 2080w<% } %>"
+                  src="<%= block.settings?.image %>"
+                  sizes="(min-width: 990px)<% if(section.blocks.length === 1){ %> 990px<% } else { %> 730px<% } %>, (min-width: 750px)<% if(section.blocks.length === 1){ %> calc(100vw - 100px)<% } else { %> 500px<% } %>, calc(100vw - 30px)"
+                  alt="<%= block.settings?.image.alt %>"
+                  loading="lazy"
+                  width="<%= block.settings?.image.width %>"
+                  height="<%= block.settings?.image.height %>"
+                  class="collage-card__image"
+                >
+              <% } else { %>
+                <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'collection-two-column-' + index + '.jpg'}) %>
+              <% } %>
+            </div>
+          </div>
+
+        <% } else if(block.type === 'product'){ %>
+          <div class="collage-card collage-product card-wrapper<% if(focus_card_left){ %> collage-card--left<% } else if(focus_card_right){ %> collage-card--right<% } %>">
+            <% if(block.settings?.product){ %>
+              <% var featured_media = block.settings?.product.selected_or_first_available_variant.featured_media || block.settings?.product.featured_media %>
+              <a href="<%= block.settings?.product.url %>" class="collage-content full-unstyled-link card<% if(block.settings?.secondary_background){ %> card-colored color-background-1<% } %><% if(block.settings?.image_padding){ %> collage-card-spacing<% } %>">
+                <% if(featured_media){ %>
+                  <div class="collage-card__image-wrapper media media--transparent media--hover-effect"
+                    <% if(focus_card_left && index === 0){ %>
+                      style="padding-bottom: <%= 1 / (featured_media.aspect_ratio * 100) %>%;"
+                    <% } else if( focus_card_right && index === section.blocks.length){ %>
+                      style="padding-bottom: <%= 1 / (featured_media.aspect_ratio * 100) %>%;"
+                    <% } %>
+                  >
+                    <img srcset="<% if(featured_media.width >= 500){ %><%= featured_media  %> 500w,<% } %>
+                      <% if(featured_media.width >= 730){ %><%= featured_media  %> 730w,<% } %>
+                      <% if(featured_media.width >= 1440){ %><%= featured_media %> 1440w,<% } %>
+                      <% if(featured_media.width >= 990){ %><%= featured_media %> 990w,<% } %>
+                      <% if(featured_media.width >= 2080){ %><%= featured_media %> 2080w<% } %>"
+                      src="<%= featured_media %>"
+                      sizes="(min-width: 990px)<% if(section.blocks.length === 1){ %> 990px<% } else { %> 730px<% } %>, (min-width: 750px)<% if(section.blocks.length === 1){ %> calc(100vw - 100px)<% } else { %> 500px<% } %>, calc(100vw - 30px)"
+                      alt="<%= featured_media.alt %>"
+                      loading="lazy"
+                      width="<%= featured_media.width %>"
+                      height="<%= featured_media.height %>"
+                      class="collage-card__image"
+                    >
+
+                    <% if(block.settings?.second_image && block.settings?.product.media[1]){ %>
+                      <img srcset="<% if(block.settings?.product.media[1].width >= 500){ %><%= block.settings?.product.media[1] %> 500w,<% } %>
+                        <% if(block.settings?.product.media[1].width >= 730){ %><%= block.settings?.product.media[1] %> 730w,<% } %>
+                        <% if(block.settings?.product.media[1].width >= 1440){ %><%= block.settings?.product.media[1] %> 1440w,<% } %>
+                        <% if(block.settings?.product.media[1].width >= 990){ %><%= block.settings?.product.media[1] %> 990w,<% } %>
+                        <% if(block.settings?.product.media[1].width >= 2080){ %><%= block.settings?.product.media[1] %> 2080w<% } %>"
+                        src="<%= block.settings?.product.media[1] %>"
+                        sizes="(min-width: 990px)<% if(section.blocks.length === 1){ %> 990px<% } else { %> 730px<% } %>, (min-width: 750px)<% if(section.blocks.length === 1){ %> calc(100vw - 100px)<% } else { %> 500px<% } %>, calc(100vw - 30px)"
+                        alt="<%= block.settings?.product.media[1].alt %>"
+                        loading="lazy"
+                        width="<%= block.settings?.product.media[1].width %>"
+                        height="<%= block.settings?.product.media[1].height %>"
+                        class="collage-card__image small-hide medium-hide"
+                      >
+                    <% } %>
+                  </div>
+                  <div class="collage-product__badge">
+                    <div class="card__badge">
+                      <% if(block.settings?.product.available === false){ %>
+                        <span class="badge badge--bottom-left color-<%= settings.sold_out_badge_color_scheme %>" aria-hidden="true">
+                          sold out
+                        </span>
+                      <% } else if( block.settings?.product.compare_at_price > block.settings?.product.price && block.settings?.product.available){ %>
+                        <span class="badge badge--bottom-left color-<%= settings.sale_badge_color_scheme %>" aria-hidden="true">
+                          on sale
+                        </span>
+                      <% } %>
+                    </div>
+                  </div>
+                  <div class="collage-content__info card-information card-information__wrapper">
+                    <h3 class="card-information__text h4"><%= block.settings?.product.title %></h3>
+                    <span class="price"><%# include('../snippets/price', {product: block.settings?.product}) %></span>
+                  </div>
+                <% } else { %>
+                  <div class="collage-card__no-image card-colored color-background-1 card__text-spacing center">
+                    <h3 class="h2"><%= block.settings?.product.title %></h3>
+                  </div>
+                  <div class="collage-product__badge">
+                    <div class="card__badge">
+                      <% if(block.settings?.product.available === false){ %>
+                        <span class="badge badge--bottom-left color-<%= settings.sold_out_badge_color_scheme %>" aria-hidden="true">
+                          sold out
+                        </span>
+                      <% } else if(block.settings?.product.compare_at_price > block.settings?.product.price && block.settings?.product.available){ %>
+                        <span class="badge badge--bottom-left color-<%= settings.sale_badge_color_scheme %>" aria-hidden="true">
+                          on sale
+                        </span>
+                      <% } %>
+                    </div>
+                  </div>
+                  <div class="collage-content__info">
+                    <%# include('../snippets/price', {product: block.settings?.product}) %>
+                  </div>
+                <% } %>
+              </a>
+            <% } else { %>
+              <div class="collage-content">
+                <div class="collage-card__no-image card-colored color-background-1 card__text-spacing center">
+                  <h3 class="h2">Product Title</h3>
+                </div>
+                <div class="collage-content__info">
+                  <span class="price"><%# include('../snippets/price') %></span>
+                </div>
+              </div>
+            <% } %>
+          </div>
+
+        <% } else if(block.type === 'collection'){ %>
+          <div class="collage-card color-<%= block.settings?.color_scheme %><% if(focus_card_left){ %> collage-card--left<% } else if( focus_card_right){ %> collage-card--right<% } %>">
+              <% if(block.settings?.collection){ %>
+                <a href="<%= block.settings?.collection.url %>" class="card animate-arrow">
+                  <div class="collage-content card-colored color-<%= block.settings?.color_scheme %><% if(block.settings?.image_padding){ %> collage-card-spacing<% } %>">
+                    <% if(block.settings?.collection.image){ %>
+                      <div class="collage-card__image-wrapper media media--transparent media--hover-effect">
+                        <img srcset="<% if(block.settings?.collection.image.width >= 500){ %><%= block.settings?.collection.image %> 500w,<% } %>
+                          <% if(block.settings?.collection.image.width >= 730){ %><%= block.settings?.collection.image %> 730w,<% } %>
+                          <% if(block.settings?.collection.image.width >= 1440){ %><%= block.settings?.collection.image %> 1440w,<% } %>
+                          <% if(block.settings?.collection.image.width >= 990){ %><%= block.settings?.collection.image %> 990w,<% } %>
+                          <% if(block.settings?.collection.image.width >= 2080){ %><%= block.settings?.collection.image %> 2080w<% } %>"
+                          src="<%= block.settings?.collection.image %>"
+                          sizes="(min-width: 990px)<% if(section.blocks.length === 1){ %> 990px<% } else { %> 730px<% } %>, (min-width: 750px)<% if(section.blocks.length === 1){ %> calc(100vw - 100px)<% } else { %> 500px<% } %>, calc(100vw - 30px)"
+                          alt="<%= block.settings?.collection.image.alt %>"
+                          loading="lazy"
+                          width="<%= block.settings?.collection.image.width %>"
+                          height="<%= block.settings?.collection.image.height %>"
+                          class="collage-card__image"
+                        >
+                      </div>
+
+                      <% if(!section.settings.image_padding){ %><div class="overlay-card"></div><% } %>
+                      <div class="collage-content__info">
+                        <h3><%= block.settings?.collection.title %><span class="icon-wrap">&nbsp;<%- include('../snippets/icon-arrow') %></span></h3>
+                      </div>
+                    <% } else { %>
+                      <div class="collage-card__no-image card__text-spacing card__text-hover card-color ">
+                        <div class="overlay-card"></div>
+                        <h3 class="h2">
+                          <%= block.settings?.collection.title %><span class="icon-wrap<% if(block.settings?.collection.description){ %> collage-card__arrow<% } %>">&nbsp;<%- include('../snippets/icon-arrow') %></span>
+                        </h3>
+
+                        <% if(block.settings?.collection.description){ %>
+                          <p class="collage-card__description card__caption">
+                            <%- block.settings?.collection.description -%><span class="icon-wrap">&nbsp;<%- include('../snippets/icon-arrow') %></span>
+                          </p>
+                        <% } %>
+                      </div>
+                    <% } %>
+                  </div>
+                </a>
+              <% } else { %>
+                <div class="collage-content card card-colored color-<%= block.settings?.color_scheme %>">
+                  <div class="collage-card__no-image card__text-spacing card__text-hover">
+                    <h3 class="h2">
+                      Collection Title <span class="icon-wrap">&nbsp;<%- include('../snippets/icon-arrow') %></span>
+                    </h3>
+                  </div>
+                </div>
+              <% } %>
+          </div>
+
+        <% } else if(block.type === 'video'){ %>
+          <div class="collage-card collage-video<% if(focus_card_left){ %> collage-card--left<% } else if( focus_card_right){ %> collage-card--right<% } %>">
+            <noscript>
+              <a href="<%= block.settings?.video_url %>" class="card<% if(block.settings?.cover_image){ %> collage-video-placeholder<% } %>"
+                <% if(block.settings?.cover_image && focus_card_left && index === 0){ %>
+                  style="padding-bottom: <%= 1 / (block.settings?.cover_image.aspect_ratio * 100) %>%;"
+                <% } else if( block.settings?.cover_image && focus_card_right && index === section.blocks.length){ %>
+                  style="padding-bottom: <%= 1 / (block.settings?.cover_image.aspect_ratio * 100) %>%;"
+                <% } %>
+              >
+                <div class="collage-content collage-card__image-wrapper media media--transparent<% if(block.settings?.image_padding){ %> collage-card-spacing<% } %>">
+                  <% if(block.settings?.cover_image){ %>
+                    <img
+                      srcset="<% if(block.settings?.cover_image.width >= 500){ %><%= block.settings?.cover_image %> 500w,<% } %>
+                      <% if(block.settings?.cover_image.width >= 730){ %><%= block.settings?.cover_image %> 730w,<% } %>
+                      <% if(block.settings?.cover_image.width >= 1440){ %><%= block.settings?.cover_image %> 1440w,<% } %>
+                      <% if(block.settings?.cover_image.width >= 990){ %><%= block.settings?.cover_image %> 990w,<% } %>
+                      <% if(block.settings?.cover_image.width >= 2080){ %><%= block.settings?.cover_image %> 2080w<% } %>"
+                      src="<%= block.settings?.cover_image %>"
+                      sizes="(min-width: 990px)<% if(section.blocks.length === 1){ %> 990px<% } else { %> 730px<% } %>, (min-width: 750px)<% if(section.blocks.length === 1){ %> calc(100vw - 100px)<% } else { %> 500px<% } %>, calc(100vw - 30px)"
+                      alt="<%= block.settings?.description %>"
+                      loading="lazy"
+                      width="<%= block.settings?.cover_image.width %>"
+                      height="<%= block.settings?.cover_image.height %>"
+                      class="collage-card__image"
+                    >
+                  <% } else { %>
+                    <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'collection-two-column-0.jpg'}) %>
+                  <% } %>
+                </div>
+              </a>
+            </noscript>
+            <% if(section.blocks.length === 1){ %>
+              <deferred-media class="deferred-media no-js-hidden<% if(block.settings?.image_padding){ %> collage-card-spacing<% } %>" data-media-id="<%= block.settings?.video_url.id %>"
+                <% if(block.settings?.cover_image){ %>
+                  style="padding-bottom: <%= 1 / (block.settings?.cover_image.aspect_ratio * 100) %>%;"
+                <% } else { %>
+                  style="padding-bottom: 100%;"
+                <% } %>
+              >
+                <button
+                  id="Deferred-Poster-Modal-<%= block.settings?.video_url.id %>"
+                  class="collage-content collage-card__image-wrapper media deferred-media__poster"
+                  type="button"
+                >
+                  <% if(block.settings?.cover_image){ %>
+                    <img
+                      srcset="<% if(block.settings?.cover_image.width >= 500){ %><%= block.settings?.cover_image %> 500w,<% } %>
+                      <% if(block.settings?.cover_image.width >= 730){ %><%= block.settings?.cover_image %> 730w,<% } %>
+                      <% if(block.settings?.cover_image.width >= 1440){ %><%= block.settings?.cover_image %> 1440w,<% } %>
+                      <% if(block.settings?.cover_image.width >= 990){ %><%= block.settings?.cover_image %> 990w,<% } %>
+                      <% if(block.settings?.cover_image.width >= 2080){ %><%= block.settings?.cover_image %> 2080w<% } %>"
+                      src="<%= block.settings?.cover_image %>"
+                      sizes="(min-width: 990px)<% if(section.blocks.length === 1){ %> 990px<% } else { %> 730px<% } %>, (min-width: 750px)<% if(section.blocks.length === 1){ %> calc(100vw - 100px)<% } else { %> 500px<% } %>, calc(100vw - 30px)"
+                      alt="<%= block.settings?.description %>"
+                      loading="lazy"
+                      width="<%= block.settings?.cover_image.width %>"
+                      height="<%= block.settings?.cover_image.height %>"
+                      class="collage-card__image"
+                    >
+                  <% } else { %>
+                    <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'collection-two-column-1.jpg'}) %>
+                  <% } %>
+                  <span class="deferred-media__poster-button motion-reduce">
+                    <%- include('../snippets/icon-play') %>
+                  </span>
+                </button>
+                <template>
+                  <% if(block.settings?.video_url.type === 'youtube'){ %>
+                    <iframe src="https://www.youtube.com/embed/<%= block.settings?.video_url.id %>?enablejsapi=1" class="js-youtube" allow="autoplay; encrypted-media" allowfullscreen title="<%= block.settings?.description %>"></iframe>
+                  <% } else { %>
+                    <iframe src="https://player.vimeo.com/video/<%= block.settings?.video_url.id %>" class="js-vimeo" allow="autoplay; encrypted-media" allowfullscreen title="<%= block.settings?.description %>"></iframe>
+                  <% } %>
+                </template>
+              </deferred-media>
+            <% } else { %>
+              <modal-opener class="no-js-hidden" data-modal="#PopupModal-1">
+                <div class="deferred-media<% if(!block.settings?.cover_image){ %> deferred-media--placeholder<% } %>"
+                  <% if(block.settings?.cover_image && focus_card_left && index === 0){ %>
+                    style="padding-bottom: <%= 1 / (block.settings?.cover_image.aspect_ratio * 100) %>%;"
+                  <% } else if( block.settings?.cover_image && focus_card_right && index === section.blocks.length){ %>
+                    style="padding-bottom: <%= 1 / (block.settings?.cover_image.aspect_ratio * 100) %>%;"
+                  <% } %>>
+                  <button class="collage-content collage-card__image-wrapper media deferred-media__poster full-unstyled-link<% if(block.settings?.image_padding){ %> collage-card-spacing<% } %>" type="button" aria-haspopup="dialog" data-media-id="<%= block.settings?.video_url.id %>">
+                    <span class="deferred-media__poster-button motion-reduce">
+                      <%- include('../snippets/icon-play') %>
+                    </span>
+
+                    <% if(block.settings?.cover_image){ %>
+                      <img
+                        srcset="<% if(block.settings?.cover_image.width >= 500){ %><%= block.settings?.cover_image %> 500w,<% } %>
+                        <% if(block.settings?.cover_image.width >= 730){ %><%= block.settings?.cover_image %> 730w,<% } %>
+                        <% if(block.settings?.cover_image.width >= 1440){ %><%= block.settings?.cover_image %> 1440w,<% } %>
+                        <% if(block.settings?.cover_image.width >= 990){ %><%= block.settings?.cover_image %> 990w,<% } %>
+                        <% if(block.settings?.cover_image.width >= 2080){ %><%= block.settings?.cover_image %> 2080w<% } %>"
+                        src="<%= block.settings?.cover_image %>"
+                        sizes="(min-width: 990px)<% if(section.blocks.length === 1){ %> 990px<% } else { %> 730px<% } %>, (min-width: 750px)<% if(section.blocks.length === 1){ %> calc(100vw - 100px)<% } else { %> 500px<% } %>, calc(100vw - 30px)"
+                        alt="<%= block.settings?.description %>"
+                        loading="lazy"
+                        width="<%= block.settings?.cover_image.width %>"
+                        height="<%= block.settings?.cover_image.height %>"
+                        class="collage-card__image"
+                      >
+                    <% } else { %>
+                      <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'collection-two-column-0.jpg'}) %>
+                    <% } %>
+                  </button>
+                </div>
+              </modal-opener>
+
+              <modal-dialog id="PopupModal-1" class="collage-video__modal">
+                <div class="collage-video__modal-content" role="dialog" aria-label="<%= block.settings?.description %>" aria-modal="true" tabindex="-1">
+                  <button id="ModalClose-1" type="button" class="collage-video__modal-toggle" aria-label="close"><%- include('../snippets/icon-close') %></button>
+                  <deferred-media class="collage-video__modal-video template-popup">
+                    <template>
+                      <% if(block.settings?.video_url.type === 'youtube'){ %>
+                        <iframe src="https://www.youtube.com/embed/<%= block.settings?.video_url.id %>?enablejsapi=1" class="js-youtube" allow="autoplay; encrypted-media" allowfullscreen title="<%= block.settings?.description %>"></iframe>
+                      <% } else { %>
+                        <iframe src="https://player.vimeo.com/video/<%= block.settings?.video_url.id %>" class="js-vimeo" allow="autoplay; encrypted-media" allowfullscreen title="<%= block.settings?.description %>"></iframe>
+                      <% } %>
+                    </template>
+                  </deferred-media>
+                </div>
+              </modal-dialog>
+            <% } %>
+          </div>
+        <% } %>
+    <% }) %>
+  </div>
+</div>

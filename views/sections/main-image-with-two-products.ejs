@@ -10,301 +10,50 @@
         <% if(section.settings.enable_anim){ %> data-aos="<%=section.settings.anim%>"<% } %>>
         <% if(section.settings.image){ %>
           <div <% if(section.settings.m_image){ %>class="small-hide"<% } %> class="bc-<%= settings.section_style %>-bt">
-            <%- include('resimg', image: section.settings.image %>
+            <%- include('../snippets/resimg', {image: section.settings.image}) %>
+          </div>
+        <% } else { %>
+          <div <% if(section.settings.m_image){ %>class="small-hide"<% } %> class="bc-<%= settings.section_style %>-bt">
+            <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'image-with-two-products.jpg'}) %>
           </div>
         <% } %>
         <% if(section.settings.m_image){ %>
           <div class="medium-hide large-up-hide">
-            <%- include('resimg', image: section.settings.m_image %>
+            <%- include('../snippets/resimg', {image: section.settings.m_image}) %>
           </div>
         <% } %>
         <% if(section.settings.title || section.settings.text){ %>
         <div class="bc-iwtp__info <%= section.settings.align %>" <% if(section.settings.color){ %>style="color:<%= section.settings.color %>"<% } %>>
           <% if(section.settings.title){ %>
             <h2 class="bc-iwtp__info-title"><%= section.settings.title %></h2>
-            <%# include('style', {sufix: '.bc-iwtp__info-title', id: section.id, style: section.settings}) %>
+            <%# include('../snippets/style', {sufix: '.bc-iwtp__info-title', id: section.id, style: section.settings}) %>
           <% } %>
           <% if(section.settings.text){ %>
-            <div class="bc-iwtp__info-text"><%= section.settings.text %></div>
+            <div class="bc-iwtp__info-text"><%- section.settings.text -%></div>
           <% } %>
         </div>
         <% } %>
       </div>
       <% if(section.blocks.length){ %>
       <div class="bc-iwtp__products-wrapper">
-        <% for block in section.blocks %>
-          <% if(block.type == 'product' and block.settings.product){ %>
-            <% assign productH = all_products[block.settings.product] %>
-            <div <% if(forloop.first and settings.section_style == 'border' %>class="bc-br-bt"<% } %><% if(block.settings.enable_anim %> data-aos="<%=block.settings.anim%>"<% } %>>
-              <%- include('product-card', 
-                product_card_product: productH, 
-                media_size: block.settings.image_ratio,
-                show_secondary_image: true
+        <% section.blocks.forEach((block, index) => { %>
+          <% if(block.type == 'product' && collection){ %>
+            <% var productH = collection.products[index] %>
+            <div <% if(index === 0 && settings.section_style == 'border'){ %>class="bc-br-bt"<% } %><% if(block.settings?.enable_anim){ %> data-aos="<%=block.settings?.anim%>"<% } %>>
+              <%- include('../snippets/product-card',
+                {product_card_product: productH,
+                media_size: block.settings?.image_ratio,
+                show_secondary_image: block.settings?.show_secondary_image,
+                add_image_padding: block.settings?.add_image_padding,
+                show_vendor: block.settings?.show_vendor,
+                images_size: "adapt",
+                show_colors: true})
               %>
             </div>
           <% } %>
-        <% endfor %>
+        <% }) %>
       </div>
       <% } %>
     </div>
   </div>
 </div>
-
-
-<% schema %>{
-  "name": "Image With Two Products",
-  "tag": "section",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Desktop Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "m_image",
-      "label": "Mobile Image"
-    },
-    {
-      "type": "select",
-      "id": "image_position",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "label": "Image Position",
-      "default": "right"
-    },
-    {
-      "type": "color",
-      "id": "color",
-      "label": "Content",
-      "default": "#000000"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Title",
-      "default": "Your Heading Here"
-    },
-    {
-      "type": "header",
-      "content": "Desktop Settings"
-    },
-    {
-      "type": "text",
-      "id": "weight",
-      "label": "Font Weight",
-      "default": null
-    },
-    {
-      "type": "text",
-      "id": "size",
-      "label": "Font Size",
-      "default": null
-    },
-    {
-      "type": "header",
-      "content": "Mobile Settings"
-    },
-    {
-      "type": "text",
-      "id": "m_weight",
-      "label": "Font Weight",
-      "default": null
-    },
-    {
-      "type": "text",
-      "id": "m_size",
-      "label": "Font Size",
-      "default": null
-    },
-    {
-      "type": "richtext",
-      "id": "text",
-      "label": "Text",
-      "default": "<p>Your content and iformation text here!</p>"
-    },
-    {
-      "type": "select",
-      "id": "align",
-      "label": "Content Aligment",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "left"
-    },
-    {
-      "type": "header",
-      "content": "Animation"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_anim",
-      "label": "Enable Animation",
-      "default": false
-    },
-    {
-      "type": "select",
-      "id": "anim",
-      "label": "Animation Type",
-      "options": [
-        {
-          "value": "fade-up",
-          "label": "Fade In Up"
-        },
-        {
-          "value": "fade-down",
-          "label": "Fade In Down"
-        },
-        {
-          "value": "fade-right",
-          "label": "Fade In Right"
-        },
-        {
-          "value": "fade-left",
-          "label": "Fade In Left"
-        },
-        {
-          "value": "flip-up",
-          "label": "Flip In Up"
-        },
-        {
-          "value": "flip-down",
-          "label": "Flip In Down"
-        },
-        {
-          "value": "flip-left",
-          "label": "Flip In Left"
-        },
-        {
-          "value": "flip-right",
-          "label": "Flip In Right"
-        },
-        {
-          "value": "zoom-in",
-          "label": "Zoom In"
-        },
-        {
-          "value": "zoom-out",
-          "label": "Zoom Out"
-        }
-      ],
-      "default": "zoom-in"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "product",
-      "name": "Product",
-      "limit": 2,
-      "settings": [
-        {
-          "type": "product",
-          "id": "product",
-          "label": "Select Product"
-        },
-        {
-          "type": "select",
-          "id": "image_ratio",
-          "options": [
-            {
-              "value": "adapt",
-              "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
-            },
-            {
-              "value": "portrait",
-              "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
-            },
-            {
-              "value": "square",
-              "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
-            }
-          ],
-          "default": "square",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
-        },
-        {
-          "type": "header",
-          "content": "Animation"
-        },
-        {
-          "type": "checkbox",
-          "id": "enable_anim",
-          "label": "Enable Animation",
-          "default": false
-        },
-        {
-          "type": "select",
-          "id": "anim",
-          "label": "Animation Type",
-          "options": [
-            {
-              "value": "fade-up",
-              "label": "Fade In Up"
-            },
-            {
-              "value": "fade-down",
-              "label": "Fade In Down"
-            },
-            {
-              "value": "fade-right",
-              "label": "Fade In Right"
-            },
-            {
-              "value": "fade-left",
-              "label": "Fade In Left"
-            },
-            {
-              "value": "flip-up",
-              "label": "Flip In Up"
-            },
-            {
-              "value": "flip-down",
-              "label": "Flip In Down"
-            },
-            {
-              "value": "flip-left",
-              "label": "Flip In Left"
-            },
-            {
-              "value": "flip-right",
-              "label": "Flip In Right"
-            },
-            {
-              "value": "zoom-in",
-              "label": "Zoom In"
-            },
-            {
-              "value": "zoom-out",
-              "label": "Zoom Out"
-            }
-          ],
-          "default": "zoom-in"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Imagw with two products"
-    }
-  ]
-}<% endschema %>
