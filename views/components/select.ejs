@@ -17,4 +17,16 @@
             <% }) %>
         </select>
     </div>
+    <% let newLabel = data.label.toLowerCase().trim() %>
+    <% if(newLabel === 'background color' || newLabel === 'background'){ %>
+        <a href="/get/<%= id %>?global=Global%20Styles" class="py__get-button" data-hide="Hide <%= newLabel %> settings" data-show="Show <%= newLabel %> settings">
+            Show <%= newLabel %> settings
+        </a>
+        <div class="py__get-result-wrapper"></div>
+    <% } else if(newLabel === 'container' || newLabel === 'container (width)' || newLabel === 'padding' || newLabel === 'container padding vertical' || newLabel === 'container padding horizontal' || newLabel === 'margin' || newLabel === 'container margin vertical' || newLabel === 'container margin horizontal' || newLabel === 'border' || newLabel === 'font size' || newLabel === 'size'){ %>
+        <a href="/get/<%= id %>?global=Spacing%20Values" class="py__get-button" data-hide="Hide <%= newLabel %> settings" data-show="Show <%= newLabel %> settings">
+            Show <%= newLabel %> settings
+        </a>
+        <div class="py__get-result-wrapper"></div>
+    <% } %>
 </div>

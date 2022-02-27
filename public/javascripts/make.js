@@ -29,8 +29,6 @@
             section: section.length ? section : null
         };
 
-        console.log(data);
-
         fetch(url, {
             method:'POST',
             headers: {
@@ -48,6 +46,52 @@
             iframeContent.querySelector('html').innerHTML = html.querySelector('html').innerHTML;
         })
         .catch(err => console.error(err));
+    };
+
+    // Show Item From Global Settings Function (Color, padding, Margin and etc)
+    const getItemFromSettings = (event, another=false) => {
+        
+        if(!event) return;
+        if(!another) event.preventDefault();
+
+        let container = event.target.closest('.py__settings-item');
+        let listenerBtn = another ? container.querySelector('.py__get-button') : event.target;
+        let url = listenerBtn.getAttribute('href');
+        let showTxt = listenerBtn.getAttribute('data-show');
+        let hideTxt = listenerBtn.getAttribute('data-hide'); 
+        let itemWrapToInner = container.querySelector('.py__get-result-wrapper');
+        let getItem = container.querySelector('select');
+        let getItemId = getItem && getItem.options[getItem.selectedIndex].innerHTML;
+        let getItemIdClass = getItemId.toLowerCase().trim();
+
+        if(getItemIdClass === 'none'|| getItemIdClass === 'unset') return; 
+
+        if(itemWrapToInner.classList.contains('open') && !another){
+            itemWrapToInner.classList.remove('open');
+            return listenerBtn.textContent = showTxt;
+        }
+
+        if(!itemWrapToInner.classList.contains('open') && itemWrapToInner.classList.contains('isAdded') && !another){
+            itemWrapToInner.classList.add('open');
+            return listenerBtn.textContent = hideTxt;
+        }
+
+        if(!url || !getItemId) return;
+        let getUrl = url + "&item_id=" + getItemId.trim();
+
+        fetch(getUrl)
+        .then(res => res.text())
+        .then(data => {
+            if(!data) return;
+            let parser = new DOMParser();
+            let html = parser.parseFromString(data, "text/html");
+            let newSettingsItem = html.querySelector('.py__settings-item');
+            itemWrapToInner.innerHTML = newSettingsItem ? newSettingsItem.innerHTML : null;
+            if(!another) listenerBtn.textContent = hideTxt;
+            if(!another) itemWrapToInner.classList.add('open', 'isAdded');
+        })
+        .catch(err => console.log(err));
+
     };
 
     //---------------------------------------
@@ -77,7 +121,10 @@
         if(!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
+        let container = event.target.closest('.py__settings-item');
+        let isHaveGlobal = container.querySelector('.py__get-result-wrapper');
         viewIframe();
+        if(isHaveGlobal) getItemFromSettings(event, true);
     };
 
     //---------------------------------------
@@ -134,6 +181,7 @@
             e.target.classList.add('active');
             document.getElementById(e.target.getAttribute('data-id')).classList.add('active');
         }
+        if(e && e.target.classList.contains('py__get-button')) getItemFromSettings(e);
     });
 
 })();

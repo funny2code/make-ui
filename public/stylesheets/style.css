@@ -220,7 +220,7 @@ body {
   display: block;
 }
 .py__types-ul {
-  padding: 0;
+  padding: 0 0 17px 0;
   margin: 0;
   list-style-type: none;
   display: flex;
@@ -247,11 +247,13 @@ body {
   margin: 0;
   padding: 0;
   list-style-type: none;
+  max-height: 265px;
+  overflow: auto;
 }
 .py__settings-select-options ul.py__options-ul.active {
   display: block;
 }
-.py__settings-select-options ul.py__options-ul li {
+.py__settings-select-options ul.py__options-ul li:not(:first-of-type) {
   margin-top: 17px;
 }
 .py__settings-select-options-item {
@@ -484,6 +486,25 @@ select {
   padding: 0 30px 0 15px;
   font-size: 12px;
   color: #363636;
+}
+/* GET RESULT COMP */
+.py__get-button {
+  display: block;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #000000;
+  margin-top: 13px;
+}
+.py__get-result-wrapper {
+  display: none;
+  margin-top: 10px;
+  padding: 15px 10px;
+  background: #EEEEEE;
+}
+.py__get-result-wrapper.open {
+  display: block;
 }
 
 /* TOOLTIP */
