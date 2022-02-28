@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="/assets/component-slider.css">
+<link rel="stylesheet" href="/assets/component-card-style-1.css">
+<link rel="stylesheet" href="/assets/component-price-style-1.css">
+<link rel="stylesheet" href="/assets/component-badge.css">
+<link rel="stylesheet" href="/assets/component-rte.css">
+<link rel="stylesheet" href="/assets/component-variants.css">
+<link rel="stylesheet" href="/assets/component-product-carousel.css">
+<link rel="stylesheet" href="/assets/component-modal-quickview.css">
+
+<%- include('../snippets/modal-quickview') %>
+
+
+<div class="collection collection-slide product-carousel page-width bc-<%=settings.section_style%>-bt">
+  <div class="<% if(section.settings.show_view_all && section.settings.enable_swipe){ %>title-wrapper-with-link<% } %><% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %><% if(collection.products_count > 2 && section.settings.enable_swipe && section.settings.products_limit > 2){ %> title-wrapper--self-padded-tablet-down<% } %>">
+    <h2 class="title<% if(!section.settings.title){ %> title--no-heading<% } %>"><%= section.settings.title %></h2>
+
+    <% if(section.settings.show_view_all && section.settings.enable_swipe){ %>
+      <a href="<%= section.settings.collection.url %>" class="link underlined-link large-up-hide">View all</a>
+    <% } %>
+  </div>
+
+  <% 
+    var products_to_display = collection.products_count
+    var carousel_num = section.settings.products_col_limit
+
+    if(collection.products_count > section.settings.products_limit){
+      products_to_display = section.settings.products_limit
+    }    
+  %>
+
+  <slider-component class="slider-mobile-gutter">
+    <ul class="grid grid--1-col grid--3-col-tablet grid--<%=carousel_num%>-col-desktop <% if(collection.products_count > 2 && section.settings.enable_swipe && section.settings.products_limit > 2){ %> slider slider--desktop <% } %><% if(!section.settings.show_view_all || Object.keys(collection.products).length < section.settings.products_limit){ %> negative-margin<% } %><% if(section.settings.show_view_all && Object.keys(collection.products).length > section.settings.products_limit){ %> negative-margin--small<% } %>" role="list">
+      <% collection.products.forEach((product, index) => { %>
+        <% if(index <= section.settings.products_limit){ %> 
+          <li class="grid__item<% if(collection.products_count > 2 && section.settings.enable_swipe && section.settings.products_limit > 2){ %> slider__slide<% } %>">
+            <%- include('../snippets/product-card-carousel',
+              {product_card_product: product,
+              media_size: section.settings.image_ratio,
+              show_secondary_image: section.settings.show_secondary_image,            
+              show_vendor: section.settings.show_vendor})
+            %>
+          </li>
+        <% } %> 
+      <% }) %>
+    </ul>    
+    <% if(collection.products_count > 2 && section.settings.enable_swipe && section.settings.products_limit > 2){ %>
+      <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(collection.products_count < 4){ %>large-up-hide medium-hide<% } %><% if(collection.products_count < 3){ %> small-hide<% } %>">
+        <div class="slider-counter caption">
+          <span class="slider-counter--current">1</span>
+          <span aria-hidden="true"> / </span>
+          <span class="visually-hidden">accessibility of</span>
+          <span class="slider-counter--total"><%= products_to_display %></span>
+        </div>
+        <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="previous slide"><%- include('../snippets/icon-caret') %></button>
+        <button type="button" class="slider-button slider-button--next" name="next" aria-label="next slide"><%- include('../snippets/icon-caret') %></button>
+      </div>
+    <% } %>
+  </slider-component>  
+
+  <% if(section.settings.show_view_all && collection.products_count > section.settings.m_products_limit){ %>
+    <div class="center<% if(section.settings.enable_swipe){ %> small-hide medium-hide<% } %>">
+      <a href="<%= section.settings.collection.url %>"
+        class="button"
+        aria-label="view all label <%= collection.title %>"
+      >
+        View all
+      </a>
+    </div>
+  <% } %>
+</div>
+
+<script src="/assets/quickview.js" defer="defer"></script>
+<script src="/assets/product-form.js" defer="defer"></script>

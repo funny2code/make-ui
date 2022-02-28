@@ -1,0 +1,102 @@
+<link rel="stylesheet" href="/assets/section-collection-list.css">
+<link rel="stylesheet" href="/assets/component-slider.css">
+<link rel="stylesheet" href="/assets/component-card-style-1.css">
+
+<div class="collection-list-wrapper page-width<% if(!section.settings.title){ %> no-heading<% } %><% if(!section.settings.show_view_all || section.blocks.length > collection.length){ %> no-mobile-link<% } %> bc-<%=settings.section_style%>-bt">
+  <div class="title-wrapper-with-link<% if(section.settings.swipe_on_mobile){ %> title-wrapper--self-padded-tablet-down<% } else { %> title-wrapper--self-padded-mobile<% } %><% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %>">
+    <h2 class="collection-list-title"><%= section.settings.title %></h2>
+
+    <% if(section.settings.show_view_all && section.settings.swipe_on_mobile){ %>
+      <a href="<%= routes.collections_url %>" class="link underlined-link large-up-hide">View all</a>
+    <% } %>
+  </div>
+
+  <slider-component class="slider-mobile-gutter">
+    <ul class="collection-list grid grid--1-col<% if(section.blocks.length < 5){ %> grid--<%= section.blocks.length %>-col-tablet<% } else { %> grid--3-col-tablet<% } %><% if(section.settings.swipe_on_mobile){ %> slider slider--tablet grid--peek<% } %> collection-list--<%= section.blocks.length %>-items<% if(!section.settings.show_view_all || section.blocks.length > collections.length){ %> negative-margin--small<% } %>"
+      id="Slider-1"
+      role="list"
+    >
+      <% section.blocks.forEach((block, index) => { %>
+        <li class="collection-list__item grid__item<% if(section.settings.swipe_on_mobile){ %> slider__slide<% } %>">
+          <a <% if(collection && collection.all_products_count > 0 ){ %> href="<%= collection.url %>"<% } %>
+            class="card animate-arrow link<% if(collection.image){ %> card--media<% } else { %><% if(section.settings.image_ratio !== 'adapt'){ %> card--stretch<% } %><% } %><% if(!section.settings.image_padding){ %> card--light-border<% } %>"
+          >
+            <div class="card--stretch card-colored color-<%= section.settings.color_scheme %>">
+              <% if(collection.image){ %>
+                <div <% if(section.settings.image_padding){ %> class="card__media-spacer"<% } %>>
+                  <% if(section.settings.image_padding){ %><div class="overlay-card"></div><% } %>
+                  <div class="media<% if(section.blocks.length > 1){ %> media--<%= section.settings.image_ratio %><% } %> media--hover-effect overflow-hidden"
+                    <% if(section.settings.image_ratio === 'adapt' && section.blocks.length > 1){ %>style="padding-bottom: <%= 1 / (collection.image.aspect_ratio * 100) %>%;"<% } %>>
+
+                    <img srcset="<% if(collection.image.width >= 165){ %><%= collection.image.src %> 165w,<% } %>
+                      <% if(collection.image.width >= 330){ %><%= collection.image.src %> 330w,<% } %>
+                      <% if(collection.image.width >= 535){ %><%= collection.image.src %> 535w,<% } %>
+                      <% if(collection.image.width >= 720){ %><%= collection.image.src %> 720w,<% } %>
+                      <% if(collection.image.width >= 940){ %><%= collection.image.src %> 940w,<% } %>
+                      <% if(collection.image.width >= 1440){ %><%= collection.image.src %> 1440w,<% } %>
+                      <% if(collection.image.width >= 1880){ %><%= collection.image.src %> 1880w<% } %>"
+                      src="<%= collection.image.src %>"
+                      sizes="(min-width: 1100px)<% if(section.blocks.length > 1){ %>535px<% } else { %>940px<% } %>, (min-width: 750px) <% if(section.blocks.length > 1){ %>calc((100vw - 10rem) / 2)<% } else { %>calc(100vw - 10rem)<% } %>, calc(100vw - 3rem)"
+                      alt="<%= collection.title %>"
+                      height="<%= collection.image.height %>"
+                      width="<%= collection.image.width %>"
+                      loading="lazy"
+                      class="motion-reduce"
+                    >
+                  </div>
+                </div>
+
+                <div class="card__text card__text-spacing card-colored card__text-hover<% if(!section.settings.image_padding){ %> color-<%= section.settings.color_scheme %><% } %>">
+                  <% if(!section.settings.image_padding){ %><div class="overlay-card"></div><% } %>
+                  <h3>
+                    <% if(collection.title){ %>
+                      <%= collection.title %><span class="icon-wrap">&nbsp;<%- include('../snippets/icon-arrow') %></span>
+                    <% } else { %>
+                      Collection Title
+                    <% } %>
+                  </h3>
+                </div>
+              <% } else { %>
+                <div class="overlay-card"></div>
+                <div class="card__text-spacing card__text-hover">
+                  <h3 class="h1">
+                    <% if(collection.title){ %>
+                      <%= collection.title %><% if(!collection.description){ %><span class="icon-wrap">&nbsp;<%- include('../snippets/icon-arrow') %></span><% } %>
+                    <% } else { %>
+                      Collection Title
+                    <% } %>
+                  </h3>
+
+                  <% if(collection.description){ %>
+                    <p class="card__caption">
+                      <%- collection.description -%><span class="icon-wrap">&nbsp;<%- include('../snippets/icon-arrow') %></span>
+                    </p>
+                  <% } %>
+                </div>
+              <% } %>
+            </div>
+          </a>
+        </li>
+      <% }) %>
+    </ul>
+
+    <% if(section.settings.swipe_on_mobile){ %>
+      <div class="slider-buttons no-js-hidden<% if(section.blocks.length < 5){ %> medium-hide<% } %><% if(section.blocks.length < 2){ %> small-hide<% } %>">
+        <div class="slider-counter caption">
+          <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="visually-hidden"> accessibility of</span>
+          <span class="slider-counter--total"><%= section.blocks.length %></span>
+        </div>
+        <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="previous slide"><%- include('../snippets/icon-caret') %></button>
+        <button type="button" class="slider-button slider-button--next" name="next" aria-label="next slide"><%- include('../snippets/icon-caret') %></button>
+      </div>
+    <% } %>
+  </slider-component>
+
+  <% if(section.settings.show_view_all && section.blocks.length < collections.length){ %>
+    <div class="center<% if(section.settings.swipe_on_mobile){ %> small-hide medium-hide<% } %>">
+      <a href="<%= routes.collections_url %>" class="button">View all</a>
+    </div>
+  <% } %>
+</div>

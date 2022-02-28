@@ -156,8 +156,22 @@
                 <%- include('sections/rich-text', {settings: settings, section: item }) %> 
             <% } else if(item.name === 'collection two column'){ %>
                 <%- include('sections/collection-two-column', {settings: settings, section: item }) %>    
-                <% } else if(item.name === 'collage'){ %>
-                    <%- include('sections/collage', {settings: settings, section: item }) %>        
+            <% } else if(item.name === 'collage'){ %>
+                <%- include('sections/collage', {settings: settings, section: item, product: product }) %>
+            <% } else if(item.name === 'collection list'){ %>
+                <%- include('sections/collection-list', {settings: settings, section: item, collection: collection }) %>      
+            <% } else if(item.name === 'accordion with product'){ %>
+                <%- include('sections/accordion-with-product', {settings: settings, section: item, product: product }) %>
+            <% } else if(item.name === 'multicolumn'){ %>
+                <%- include('sections/multicolumn', {settings: settings, section: item }) %>
+            <% } else if(item.name === 'newsletter'){ %>
+                <%- include('sections/newsletter', {settings: settings, section: item }) %>
+            <% } else if(item.name === 'product carousel'){ %>
+                <%- include('sections/product-carousel', {settings: settings, section: item }) %>
+            <% } else if(item.name === 'slider with text'){ %>
+                <%- include('sections/slider-with-text', {settings: settings, section: item }) %>  
+            <% } else if(item.name === 'slider'){ %>
+                <%- include('sections/slider', {settings: settings, section: item }) %>    
             <% } else if(item.name === 'footer'){ %>
                 <%- include('sections/footer', {settings: settings, section: item, localization: false }) %>
             <% } %>

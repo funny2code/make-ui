@@ -34,16 +34,16 @@
                   class="collage-card__image"
                 >
               <% } else { %>
-                <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'collection-two-column-' + index + '.jpg'}) %>
+                <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'collage-' + index + '.jpg'}) %>
               <% } %>
             </div>
           </div>
 
         <% } else if(block.type === 'product'){ %>
           <div class="collage-card collage-product card-wrapper<% if(focus_card_left){ %> collage-card--left<% } else if(focus_card_right){ %> collage-card--right<% } %>">
-            <% if(block.settings?.product){ %>
-              <% var featured_media = block.settings?.product.selected_or_first_available_variant.featured_media || block.settings?.product.featured_media %>
-              <a href="<%= block.settings?.product.url %>" class="collage-content full-unstyled-link card<% if(block.settings?.secondary_background){ %> card-colored color-background-1<% } %><% if(block.settings?.image_padding){ %> collage-card-spacing<% } %>">
+            <% if(product){ %>
+              <% var featured_media = product.images[0] %>
+              <a href="<%= product.url %>" class="collage-content full-unstyled-link card<% if(block.settings?.secondary_background){ %> card-colored color-background-1<% } %><% if(block.settings?.image_padding){ %> collage-card-spacing<% } %>">
                 <% if(featured_media){ %>
                   <div class="collage-card__image-wrapper media media--transparent media--hover-effect"
                     <% if(focus_card_left && index === 0){ %>
@@ -52,12 +52,12 @@
                       style="padding-bottom: <%= 1 / (featured_media.aspect_ratio * 100) %>%;"
                     <% } %>
                   >
-                    <img srcset="<% if(featured_media.width >= 500){ %><%= featured_media  %> 500w,<% } %>
-                      <% if(featured_media.width >= 730){ %><%= featured_media  %> 730w,<% } %>
-                      <% if(featured_media.width >= 1440){ %><%= featured_media %> 1440w,<% } %>
-                      <% if(featured_media.width >= 990){ %><%= featured_media %> 990w,<% } %>
-                      <% if(featured_media.width >= 2080){ %><%= featured_media %> 2080w<% } %>"
-                      src="<%= featured_media %>"
+                    <img srcset="<% if(featured_media.width >= 500){ %><%= featured_media.src  %> 500w,<% } %>
+                      <% if(featured_media.width >= 730){ %><%= featured_media.src  %> 730w,<% } %>
+                      <% if(featured_media.width >= 1440){ %><%= featured_media.src %> 1440w,<% } %>
+                      <% if(featured_media.width >= 990){ %><%= featured_media.src %> 990w,<% } %>
+                      <% if(featured_media.width >= 2080){ %><%= featured_media.src %> 2080w<% } %>"
+                      src="<%= featured_media.src %>"
                       sizes="(min-width: 990px)<% if(section.blocks.length === 1){ %> 990px<% } else { %> 730px<% } %>, (min-width: 750px)<% if(section.blocks.length === 1){ %> calc(100vw - 100px)<% } else { %> 500px<% } %>, calc(100vw - 30px)"
                       alt="<%= featured_media.alt %>"
                       loading="lazy"
@@ -66,29 +66,29 @@
                       class="collage-card__image"
                     >
 
-                    <% if(block.settings?.second_image && block.settings?.product.media[1]){ %>
-                      <img srcset="<% if(block.settings?.product.media[1].width >= 500){ %><%= block.settings?.product.media[1] %> 500w,<% } %>
-                        <% if(block.settings?.product.media[1].width >= 730){ %><%= block.settings?.product.media[1] %> 730w,<% } %>
-                        <% if(block.settings?.product.media[1].width >= 1440){ %><%= block.settings?.product.media[1] %> 1440w,<% } %>
-                        <% if(block.settings?.product.media[1].width >= 990){ %><%= block.settings?.product.media[1] %> 990w,<% } %>
-                        <% if(block.settings?.product.media[1].width >= 2080){ %><%= block.settings?.product.media[1] %> 2080w<% } %>"
-                        src="<%= block.settings?.product.media[1] %>"
+                    <% if(block.settings?.second_image && product.images[1]){ %>
+                      <img srcset="<% if(product.images[1].width >= 500){ %><%= product.images[1] %> 500w,<% } %>
+                        <% if(product.images[1].width >= 730){ %><%= product.images[1] %> 730w,<% } %>
+                        <% if(product.images[1].width >= 1440){ %><%= product.images[1] %> 1440w,<% } %>
+                        <% if(product.images[1].width >= 990){ %><%= product.images[1] %> 990w,<% } %>
+                        <% if(product.images[1].width >= 2080){ %><%= product.images[1] %> 2080w<% } %>"
+                        src="<%= product.images[1] %>"
                         sizes="(min-width: 990px)<% if(section.blocks.length === 1){ %> 990px<% } else { %> 730px<% } %>, (min-width: 750px)<% if(section.blocks.length === 1){ %> calc(100vw - 100px)<% } else { %> 500px<% } %>, calc(100vw - 30px)"
-                        alt="<%= block.settings?.product.media[1].alt %>"
+                        alt="<%= product.images[1].alt %>"
                         loading="lazy"
-                        width="<%= block.settings?.product.media[1].width %>"
-                        height="<%= block.settings?.product.media[1].height %>"
+                        width="<%= product.images[1].width %>"
+                        height="<%= product.images[1].height %>"
                         class="collage-card__image small-hide medium-hide"
                       >
                     <% } %>
                   </div>
                   <div class="collage-product__badge">
                     <div class="card__badge">
-                      <% if(block.settings?.product.available === false){ %>
+                      <% if(product.available === false){ %>
                         <span class="badge badge--bottom-left color-<%= settings.sold_out_badge_color_scheme %>" aria-hidden="true">
                           sold out
                         </span>
-                      <% } else if( block.settings?.product.compare_at_price > block.settings?.product.price && block.settings?.product.available){ %>
+                      <% } else if( product.compare_at_price > product.price && product.available){ %>
                         <span class="badge badge--bottom-left color-<%= settings.sale_badge_color_scheme %>" aria-hidden="true">
                           on sale
                         </span>
@@ -96,20 +96,20 @@
                     </div>
                   </div>
                   <div class="collage-content__info card-information card-information__wrapper">
-                    <h3 class="card-information__text h4"><%= block.settings?.product.title %></h3>
+                    <h3 class="card-information__text h4"><%= product.title %></h3>
                     <span class="price"><%# include('../snippets/price', {product: block.settings?.product}) %></span>
                   </div>
                 <% } else { %>
                   <div class="collage-card__no-image card-colored color-background-1 card__text-spacing center">
-                    <h3 class="h2"><%= block.settings?.product.title %></h3>
+                    <h3 class="h2"><%= product.title %></h3>
                   </div>
                   <div class="collage-product__badge">
                     <div class="card__badge">
-                      <% if(block.settings?.product.available === false){ %>
+                      <% if(product.available === false){ %>
                         <span class="badge badge--bottom-left color-<%= settings.sold_out_badge_color_scheme %>" aria-hidden="true">
                           sold out
                         </span>
-                      <% } else if(block.settings?.product.compare_at_price > block.settings?.product.price && block.settings?.product.available){ %>
+                      <% } else if(product.compare_at_price > product.price && product.available){ %>
                         <span class="badge badge--bottom-left color-<%= settings.sale_badge_color_scheme %>" aria-hidden="true">
                           on sale
                         </span>
@@ -135,40 +135,40 @@
 
         <% } else if(block.type === 'collection'){ %>
           <div class="collage-card color-<%= block.settings?.color_scheme %><% if(focus_card_left){ %> collage-card--left<% } else if( focus_card_right){ %> collage-card--right<% } %>">
-              <% if(block.settings?.collection){ %>
-                <a href="<%= block.settings?.collection.url %>" class="card animate-arrow">
+              <% if(collection){ %>
+                <a href="<%= collection.url %>" class="card animate-arrow">
                   <div class="collage-content card-colored color-<%= block.settings?.color_scheme %><% if(block.settings?.image_padding){ %> collage-card-spacing<% } %>">
-                    <% if(block.settings?.collection.image){ %>
+                    <% if(collection.image){ %>
                       <div class="collage-card__image-wrapper media media--transparent media--hover-effect">
-                        <img srcset="<% if(block.settings?.collection.image.width >= 500){ %><%= block.settings?.collection.image %> 500w,<% } %>
-                          <% if(block.settings?.collection.image.width >= 730){ %><%= block.settings?.collection.image %> 730w,<% } %>
-                          <% if(block.settings?.collection.image.width >= 1440){ %><%= block.settings?.collection.image %> 1440w,<% } %>
-                          <% if(block.settings?.collection.image.width >= 990){ %><%= block.settings?.collection.image %> 990w,<% } %>
-                          <% if(block.settings?.collection.image.width >= 2080){ %><%= block.settings?.collection.image %> 2080w<% } %>"
-                          src="<%= block.settings?.collection.image %>"
+                        <img srcset="<% if(collection.image.width >= 500){ %><%= collection.image.src %> 500w,<% } %>
+                          <% if(collection.image.width >= 730){ %><%= collection.image.src %> 730w,<% } %>
+                          <% if(collection.image.width >= 1440){ %><%= collection.image.src %> 1440w,<% } %>
+                          <% if(collection.image.width >= 990){ %><%= collection.image.src %> 990w,<% } %>
+                          <% if(collection.image.width >= 2080){ %><%= collection.image.src %> 2080w<% } %>"
+                          src="<%= collection.image.src %>"
                           sizes="(min-width: 990px)<% if(section.blocks.length === 1){ %> 990px<% } else { %> 730px<% } %>, (min-width: 750px)<% if(section.blocks.length === 1){ %> calc(100vw - 100px)<% } else { %> 500px<% } %>, calc(100vw - 30px)"
-                          alt="<%= block.settings?.collection.image.alt %>"
+                          alt="<%= collection.image.alt %>"
                           loading="lazy"
-                          width="<%= block.settings?.collection.image.width %>"
-                          height="<%= block.settings?.collection.image.height %>"
+                          width="<%= collection.image.width %>"
+                          height="<%= collection.image.height %>"
                           class="collage-card__image"
                         >
                       </div>
 
                       <% if(!section.settings.image_padding){ %><div class="overlay-card"></div><% } %>
                       <div class="collage-content__info">
-                        <h3><%= block.settings?.collection.title %><span class="icon-wrap">&nbsp;<%- include('../snippets/icon-arrow') %></span></h3>
+                        <h3><%= collection.title %><span class="icon-wrap">&nbsp;<%- include('../snippets/icon-arrow') %></span></h3>
                       </div>
                     <% } else { %>
                       <div class="collage-card__no-image card__text-spacing card__text-hover card-color ">
                         <div class="overlay-card"></div>
                         <h3 class="h2">
-                          <%= block.settings?.collection.title %><span class="icon-wrap<% if(block.settings?.collection.description){ %> collage-card__arrow<% } %>">&nbsp;<%- include('../snippets/icon-arrow') %></span>
+                          <%= collection.title %><span class="icon-wrap<% if(collection.description){ %> collage-card__arrow<% } %>">&nbsp;<%- include('../snippets/icon-arrow') %></span>
                         </h3>
 
-                        <% if(block.settings?.collection.description){ %>
+                        <% if(collection.description){ %>
                           <p class="collage-card__description card__caption">
-                            <%- block.settings?.collection.description -%><span class="icon-wrap">&nbsp;<%- include('../snippets/icon-arrow') %></span>
+                            <%- collection.description -%><span class="icon-wrap">&nbsp;<%- include('../snippets/icon-arrow') %></span>
                           </p>
                         <% } %>
                       </div>
@@ -213,7 +213,7 @@
                       class="collage-card__image"
                     >
                   <% } else { %>
-                    <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'collection-two-column-0.jpg'}) %>
+                    <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'collage-0.jpg'}) %>
                   <% } %>
                 </div>
               </a>
@@ -247,7 +247,7 @@
                       class="collage-card__image"
                     >
                   <% } else { %>
-                    <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'collection-two-column-1.jpg'}) %>
+                    <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'collage-1.jpg'}) %>
                   <% } %>
                   <span class="deferred-media__poster-button motion-reduce">
                     <%- include('../snippets/icon-play') %>
@@ -290,7 +290,7 @@
                         class="collage-card__image"
                       >
                     <% } else { %>
-                      <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'collection-two-column-0.jpg'}) %>
+                      <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'collage-0.jpg'}) %>
                     <% } %>
                   </button>
                 </div>

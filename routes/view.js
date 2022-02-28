@@ -4,6 +4,7 @@ const make = require('../config/make');
 const makeMenu = require('../config/menu');
 const shop = require('../config/shop');
 const collection = require('../config/collection');
+const product = require('../config/product');
 const themesModel = require('../models/themes');
 const pagesModel = require('../models/pages');
 const sectionsModel = require('../models/sections');
@@ -60,6 +61,7 @@ router.get('/:id', async (req, res, next) => {
     menu: makeMenu,
     shop: shop,
     collection: collection,
+    product: product,
     settings: settings,
     sections: sectionSettings
   });
@@ -124,6 +126,7 @@ router.post('/:id', async (req, res, next) => {
     menu: makeMenu,
     shop: shop,
     collection: collection,
+    product: product,
     settings: defaultSettings,
     sections: defaultSections
   });

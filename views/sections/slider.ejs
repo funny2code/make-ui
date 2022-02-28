@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+
+<% let data = {
+   "type": section.settings.type,
+   "autoplay": section.settings.autoplay,
+   "pagination": section.settings.show_dots,
+   "pauseOnHover": section.settings.pause,
+   "interval": section.settings.interval
+ } %>
+
+<% if(section.blocks.length){ %>
+<div class="splide" data-splide='<%= JSON.stringify(data) %>'>
+	<div class="splide__track">
+		<ul class="splide__list">
+      <% section.blocks.forEach((block,index) => { %>
+			  <li class="splide__slide">
+          <div class="<% if(!block.settings?.image){ %>bc-slide-placeholde placeholde<% } else { %>media<% } %>"
+              <% if(block.settings?.image){ %>style="padding-bottom: <%= 1 / block.settings?.image.aspect_ratio * 100 %>%;"<% } %>>
+              <% if(block.settings?.image){ %>
+                  <img srcset="<% if(block.settings?.image.width >= 165){ %><%= block.settings?.image %> 165w,<% } %>
+                      <% if(block.settings?.image.width >= 360){ %><%= block.settings?.image %> 360w,<% } %>
+                      <% if(block.settings?.image.width >= 535){ %><%= block.settings?.image %> 535w,<% } %>
+                      <% if(block.settings?.image.width >= 720){ %><%= block.settings?.image %> 720w,<% } %>
+                      <% if(block.settings?.image.width >= 940){ %><%= block.settings?.image %> 940w,<% } %>
+                      <% if(block.settings?.image.width >= 1070){ %><%= block.settings?.image %> 1070w<% } %>"
+                      src="<%= block.settings?.image %>"
+                      sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                      alt="<%= block.settings?.image.alt %>"
+                      loading="lazy"
+                      width="<%= block.settings?.image.width %>"
+                      height="<%= block.settings?.image.height %>"
+                      class="bc-slide-image <% if(block.settings?.m_image){ %>bc-slide-image-deskot<% } %>"
+                  />
+                  <% if(block.settings?.m_image){ %>
+                  <img srcset="<% if(block.settings?.m_image.width >= 165){ %><%= block.settings?.m_image %> 165w,<% } %>
+                      <% if(block.settings?.m_image.width >= 360){ %><%= block.settings?.m_image %> 360w,<% } %>
+                      <% if(block.settings?.m_image.width >= 535){ %><%= block.settings?.m_image %> 535w,<% } %>
+                      <% if(block.settings?.m_image.width >= 720){ %><%= block.settings?.m_image %> 720w,<% } %>
+                      <% if(block.settings?.m_image.width >= 940){ %><%= block.settings?.m_image %> 940w,<% } %>
+                      <% if(block.settings?.m_image.width >= 1070){ %><%= block.settings?.m_image %> 1070w<% } %>"
+                      src="<%= block.settings?.m_image %>"
+                      sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                      alt="<%= block.settings?.m_image.alt %>"
+                      loading="lazy"
+                      width="<%= block.settings?.m_image.width %>"
+                      height="<%= block.settings?.m_image.height %>"
+                      class="bc-slide-image bc-slide-image-mobile"
+                  />
+                  <% } %>
+              <% } else { %>
+                <img class="bc-slide-image" src="/images/multicolumn-<%=index%>.jpg"/>
+              <% } %>
+          </div>
+      </li>
+      <% }) %>
+		</ul>
+	</div>
+</div>
+<% } %>

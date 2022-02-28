@@ -1,123 +1,116 @@
 <link rel="stylesheet" href="/assets/section-accordion-with-product.css">
 
-<div class="bc-accordion-with-product bc-{{settings.section_style}}-bt">
-  <div class="page-width page-width-{{settings.section_style}}">
-    <div class="bc-accordion-with-product__wrapper" <% if)section.settings.bg_color){ %>style="background: <%= section.settings.bg_color %>;"<% } %>>
+<div class="bc-accordion-with-product bc-<%=settings.section_style%>-bt">
+  <div class="page-width page-width-<%=settings.section_style%>">
+    <div class="bc-accordion-with-product__wrapper" <% if(section.settings.bg_color){ %>style="background: <%= section.settings.bg_color %>;"<% } %>>
       <% if(section.blocks.length > 0){ %>
         <accordion-component class="bc-accordion-with-product__accordion-wrapper">
-          <ul class="list-unstyled bc-accordion-with-product__accordion-list" role="list" {% if section.settings.color != blank %}style="color: {{ section.settings.color }};"{% endif %}>
-            {%- for block in section.blocks -%}
-              {%- if block.settings.text != blank -%}
-                <li class="bc-accordion-with-product__accordion-item">
-                  <div class="bc-accordion-with-product__listener">
-                    <div class="bc-accordion-with-product__image">
-                      {%- if block.settings.icon != blank -%}
-                        <img src="{{ block.settings.icon | img_url: '99x' }}" 
-                             loading="lazy"
-                             width="{{ block.settings.icon.width }}"
-                             height="{{ block.settings.icon.height }}"
-                             alt="{{ block.settings.icon.alt | escape }}"
-                             />
-                      {%- else -%}
-                      	&nbsp;
-                      {%- endif -%}
-                    </div>
-                    <h2 class="bc-accordion-with-product__text">
-                      {{ block.settings.text }}
-                    </h2>
-                    <span class="bc-accordion-with-product__icon">+</span>
+          <ul class="list-unstyled bc-accordion-with-product__accordion-list" role="list" <% if(section.settings.color){ %>style="color: <%= section.settings.color %>;"<% } %>>
+            <% section.blocks.forEach((block, index)=> { %>
+              <li class="bc-accordion-with-product__accordion-item">
+                <div class="bc-accordion-with-product__listener">
+                  <div class="bc-accordion-with-product__image">
+                    <% if(block.settings?.icon){ %>
+                      <img src="<%= block.settings?.icon %>" 
+                            loading="lazy"
+                            width="<%= block.settings?.icon.width %>"
+                            height="<%= block.settings?.icon.height %>"
+                            alt="<%= block.settings?.icon.alt %>"
+                            />
+                    <% } else { %>
+                      &nbsp;
+                    <% } %>
                   </div>
-                  {%- if block.settings.content != blank -%}
-                  <div class="bc-accordion-with-product__content">
-                    {{ block.settings.content }}
-                  </div>
-                  {%- endif -%}
-                </li>
-              {%- endif -%}
-            {%- endfor -%}
+                  <h2 class="bc-accordion-with-product__text">
+                    <%= block.settings?.text ? block.settings?.text : 'Heading' + index %>
+                  </h2>
+                  <span class="bc-accordion-with-product__icon">+</span>
+                </div>
+                <div class="bc-accordion-with-product__content">
+                  <%= block.settings?.content ? block.settings?.content : 'Content' + index %>
+                </div>
+              </li>
+            <% }) %>
           </ul>
         </accordion-component>
-      {%- endif -%}
+      <% } %>
       <div class="bc-accordion-with-product__product-wrapper">
-        {%- if section.settings.product != blank -%}
-          {%- assign featurProduct = all_products[section.settings.product] -%}
-          {% render 'resimg', image: featurProduct.featured_image  %}
+        <% if(product){ %>
+          <% var featurProduct = product %>
+          <div>
+            <img src="<%= product.images[0].src %>" loading="lazy"/>
+          </div>
         	<h2 class="bc-accordion-with-product__product-title">
-              {{ featurProduct.title }}
-              {%- if section.settings.icon != blank -%}
-                <img src="{{ section.settings.icon | img_url: '297x' }}" 
+              <%= featurProduct.title %>
+              <% if(section.settings.icon){ %>
+                <img src="<%= section.settings.icon %>" 
                      loading="lazy" 
-                     width="{{ section.settings.icon.width }}"
-                     height="{{ section.settings.icon.height }}" 
+                     width="<%= section.settings.icon.width %>"
+                     height="<%= section.settings.icon.height %>" 
                      class="bc-accordion-with-product__product-icon"/>
-              {%- endif -%}
+              <% } %>
         	</h2>
           <product-form class="product-form">
-            {%- form 'product', featurProduct, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-            <input type="hidden" name="id" value="{{ featurProduct.selected_or_first_available_variant.id }}">
-            {%- if featurProduct.metafields.gift.product_id != blank -%}
-            <input type="hidden" name="gift_id" value="{{ featurProduct.metafields.gift.product_id }}">
-            {%- endif -%}
-            <div class="product-form__buttons">
-              <button
-                      type="submit"
-                      name="add"
-                      class="product-form__submit button button--full-width button--primary"
-                      {% if featurProduct.selected_or_first_available_variant.available == false %}disabled{% endif %}
-                      >
-                <span>
-                  {%- if featurProduct.selected_or_first_available_variant.available -%}
-                  {{ 'products.product.add_to_cart' | t }} -
-                  {%- else -%}
-                  {{ 'products.product.sold_out' | t }} -
-                  {%- endif -%}
-                </span>
-                <div class="no-js-hidden bc-product-price-wrapper" id="price-{{ section.id }}">
-                  {%- render 'price', product: featurProduct, use_variant: true, show_badges: false, price_class: 'price--large' -%}
-                </div>
-              </button>
-            </div>
-            {%- endform -%}
-        </product-form>
-        {%- else -%}
-        <div class="media placeholder media-placeholder">
-          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
-        </div>
-        {%- endif -%}
+            <form id="product_form_id" class="form">
+              <input type="hidden" name="id" value="<%= featurProduct.id %>">
+              <% if(featurProduct?.metafields?.gift?.product_id){ %>
+                <input type="hidden" name="gift_id" value="<%= featurProduct?.metafields?.gift?.product_id %>">
+              <% } %>
+              <div class="product-form__buttons">
+                <button
+                        type="submit"
+                        name="add"
+                        class="product-form__submit button button--full-width button--primary"
+                        <% if(!featurProduct?.selected_or_first_available_variant?.available){ %>disabled<% } %>
+                        >
+                  <span>
+                    <% if(featurProduct?.selected_or_first_available_variant?.available){ %>
+                      Add to cart
+                    <% } else { %>
+                      Sold out
+                    <% } %>
+                  </span>
+                  <div class="no-js-hidden bc-product-price-wrapper" id="price-1">
+                    <%# include('../snippets/price', {product: featurProduct, use_variant: true, show_badges: false, price_class: 'price--large'}) %>
+                  </div>
+                </button>
+              </div>
+            </form>
+          </product-form>
+        <% } else { %>
+          <div class="media placeholder media-placeholder">
+            <%# include('../snippets/resimg', {classwrapper: '', classimg: '', image: ''}) %>
+          </div>
+        <% } %>
       </div>
     </div>
   </div>
 </div>
 
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-
+<script>
   class AccordionComponent extends HTMLElement {
 
       constructor(){
-          super();
-          this.button = this.querySelectorAll('.bc-accordion-with-product__listener');
-          this.button.length && this.button.forEach((item) => {
-              item.addEventListener("click", this.openOrClose.bind(this));
-          });
+        super();
+        this.button = this.querySelectorAll('.bc-accordion-with-product__listener');
+        this.button.length && this.button.forEach((item) => {
+            item.addEventListener("click", this.openOrClose.bind(this));
+        });
       }
 
       openOrClose(e){
-          let item = e.target.closest('.bc-accordion-with-product__accordion-item');
-		  let content = item.querySelector('.bc-accordion-with-product__content');
-		  if(content.classList.contains('open')){
-		  	item.querySelector('.bc-accordion-with-product__icon').textContent = "+";
-            content.classList.remove('open');
-		  } else {
-            item.querySelector('.bc-accordion-with-product__icon').textContent = "-";
-            content.classList.add('open');
-		  }
+        let item = e.target.closest('.bc-accordion-with-product__accordion-item');
+        let content = item.querySelector('.bc-accordion-with-product__content');
+        if(content.classList.contains('open')){
+          item.querySelector('.bc-accordion-with-product__icon').textContent = "+";
+          content.classList.remove('open');
+        } else {
+          item.querySelector('.bc-accordion-with-product__icon').textContent = "-";
+          content.classList.add('open');
+        }
       }
 
   }
 
   customElements.define("accordion-component", AccordionComponent);
-
-{% endjavascript %}
+</script>
