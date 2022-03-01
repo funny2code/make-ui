@@ -1355,7 +1355,6 @@ input[type='checkbox'] {
 #shopify-section-header,#shopify-section-header-2 {
   z-index: 10;
   will-change: transform;
-  position:relative;
 }
 
 .shopify-section-header-sticky {

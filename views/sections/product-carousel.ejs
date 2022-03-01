@@ -15,7 +15,7 @@
     <h2 class="title<% if(!section.settings.title){ %> title--no-heading<% } %>"><%= section.settings.title %></h2>
 
     <% if(section.settings.show_view_all && section.settings.enable_swipe){ %>
-      <a href="<%= section.settings.collection.url %>" class="link underlined-link large-up-hide">View all</a>
+      <a href="<%= collection.url %>" class="link underlined-link large-up-hide">View all</a>
     <% } %>
   </div>
 
@@ -59,7 +59,7 @@
 
   <% if(section.settings.show_view_all && collection.products_count > section.settings.m_products_limit){ %>
     <div class="center<% if(section.settings.enable_swipe){ %> small-hide medium-hide<% } %>">
-      <a href="<%= section.settings.collection.url %>"
+      <a href="<%= collection.url %>"
         class="button"
         aria-label="view all label <%= collection.title %>"
       >

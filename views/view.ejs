@@ -12,6 +12,9 @@
       <% if(settings.body_font_google){ %>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=<%= settings.body_font_google %>">
       <% } %>
+      <% if(settings.enable_global_anim){ %>
+        <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style">
+      <% } %>
     </head>
     <% if(settings){ %>
     <style>
@@ -127,7 +130,7 @@
         }
     </style>
     <% } %>
-<body style="min-height: 100%;height: 100%">
+<body>
     <% if(sections){ %>
         <% sections.forEach(item => { %>
             <% if(item.name === 'header'){ %>
@@ -171,11 +174,33 @@
             <% } else if(item.name === 'slider with text'){ %>
                 <%- include('sections/slider-with-text', {settings: settings, section: item }) %>  
             <% } else if(item.name === 'slider'){ %>
-                <%- include('sections/slider', {settings: settings, section: item }) %>    
+                <%- include('sections/slider', {settings: settings, section: item }) %> 
+            <% } else if(item.name === 'spacing'){ %>
+                <%- include('sections/spacing', {settings: settings, section: item }) %> 
+            <% } else if(item.name === 'main product'){ %>
+                <%- include('sections/main-product', {settings: settings, section: item }) %>    
             <% } else if(item.name === 'footer'){ %>
                 <%- include('sections/footer', {settings: settings, section: item, localization: false }) %>
             <% } %>
         <% }) %>
+    <% } %>
+
+    <script src="https://cdn.shopify.com/s/javascripts/currencies.js" defer="defer"></script>
+    <script src="/assets/slider.js" defer="defer"></script>
+    <script src="/assets/variants.js" defer="defer"></script>
+    <% if(settings.enable_global_anim){ %>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        let data = {
+        disable: "<%=settings.anim_mobile%>",
+        delay: "<%=settings.anim_delay%>",
+        duration: "<%=settings.anim_duration%>",
+        easing: "<%=settings.anim_easing%>",
+        once: "<%=settings.anim_once%>",
+        anchorPlacement: "<%=settings.anim_anchor%>",
+        };
+        AOS.init(data);
+    </script>
     <% } %>
 </body>
 </html>

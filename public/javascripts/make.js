@@ -10,13 +10,15 @@
 
         let formData = new FormData(form);
         formData.forEach((value, key) => {
+            let newValue = value === "true" || value === "false" 
+            ? value === "true" ? true : false : value;
             if(key === 'logo') return;
             if(key.includes('settings_')){ 
-                settings[key.replace('settings_', '')] = value;
+                settings[key.replace('settings_', '')] = newValue;
             } else { 
                 key === 'section_name' 
-                ? sectionName = value
-                : sectionSettings[key] = value;
+                ? sectionName = newValue
+                : sectionSettings[key] = newValue;
             }
         });
         
@@ -94,6 +96,13 @@
 
     };
 
+    // Change View Pages Function
+    const changeViewPage = (event) => {
+        if(!event) return;
+        let pageName = event.target.options[event.target.selectedIndex].getAttribute('data-href');
+        pageName ? location.href = pageName : null;
+    };
+
     //---------------------------------------
     // COMPONENTS FUN
     //---------------------------------------
@@ -126,6 +135,23 @@
         viewIframe();
         if(isHaveGlobal) getItemFromSettings(event, true);
     };
+    // Checkbox Component Function
+    const checkboxComp = (event) => {
+        if(!event) return;
+        let uniqName = event.target.getAttribute('name');
+        let content = event.target.closest('.py__comp-checkbox');
+        let hiddenFiled = content.querySelector('input[type="hidden"]');
+        hiddenFiled.value = event.target.checked ? true : false;
+        let value = hiddenFiled.value;
+        viewIframe();
+    }
+    // Range Component Function
+    const rangeComp = (event) => {
+        if(!event) return;
+        let uniqName = event.target.getAttribute('name');
+        let value = event.target.value;
+        viewIframe();
+    }
 
     //---------------------------------------
     // EVENTS LISTENERS
@@ -141,9 +167,18 @@
                 case 'select':
                     selectComp(e);
                     break;
+                case 'range':
+                    rangeComp(e);
+                    break;
                 default:
                     break;
             }
+        }
+        if(e && e.target.classList.contains('is__checkbox')){
+            checkboxComp(e);
+        }
+        if(e && e.target.classList.contains('py__preview-pages-select')){
+            changeViewPage(e);
         }
     });
 

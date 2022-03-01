@@ -39,7 +39,8 @@ router.get('/:id', async (req, res, next) => {
   const globalOptions = [
     {name: 'Global Styles'}, 
     {name: 'Typography Settings'}, 
-    {name: 'Spacing Values'}
+    {name: 'Spacing Values'},
+    {name: 'Cart'}
   ];
 
   const sectionOptions = [

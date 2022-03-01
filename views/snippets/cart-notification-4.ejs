@@ -1,0 +1,142 @@
+<link rel="stylesheet" href="/assets/component-cart-notification-style-4.css">
+
+<% if(settings.prod_insurance){ %>
+  <% var insuranceID = settings.prod_insurance?.first_available_variant.id %>
+<% } %>
+
+<% if(settings.f_s_show && settings.f_s_price){ %>
+<% var freeShipping = true %>
+<% } else { %>
+<% var freeShipping = false %>
+<% } %>
+
+<cart-notification>
+  <div class="cart-notification-wrapper <% if(freeShipping){ %>cart-notification-wrapper__shipping<% } %>">
+    <div id="cart-notification" class="cart-notification" aria-modal="true" aria-label="item added" role="dialog" tabindex="-1">
+      <div class="cart-notification__header">
+        <% if(settings.cart_heading){ %>
+          <h2 class="cart-notification__heading caption-large"><%= settings.cart_heading %></h2>
+        <% } %>
+        <button type="button" class="modal__close-button" aria-label="close">
+          <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
+            <use href="#icon-close">
+          </svg>
+        </button>
+        <% if(freeShipping){ %>
+          <div class="bc-free-shipping-wrapper" data-price="<%= settings.f_s_price %>" data-currency="<%= settings.f_s_currency %>">
+            <% if(settings.f_s_text){ %>
+              <div class="bc-free-shipping-wrapper__text active">
+                <%- settings.f_s_text -%>
+              </div>
+            <% } %>
+            <% if(settings.f_s_succsess){ %>
+              <div class="bc-free-shipping-wrapper__success-text">
+                <%- settings.f_s_succsess -%>
+              </div>
+            <% } %>
+            <div class="bc-free-shipping-bar">
+              <div class="bc-free-shipping-bar__progress" <% if(settings.f_s_bg_color){ %>style="background-color:<%= settings.f_s_bg_color %>"<% } %>></div>
+            </div>
+          </div>
+        <% } %>        
+      </div>
+      <% if(cart.items.length){ %>
+        <div id="cart-notification-product" class="cart-notification-product">
+          <% cart.items.forEach((item, index) => { %>
+            <div class="bc-cart__item" data-id="<%= item.id %>">
+              <div class="bc-cart__image-wrapper">
+                <a href="<%= item.url %>">
+                  <img class="bc-cart__image-img" src="<%= item.featured_image.url %>" alt="<%= item.featured_image.alt %>" width="55" height="70">
+                </a>
+              </div>
+              <div class="bc-cart__info-wrapper">
+                <a href="<%= item.url %>">
+                  <h3 class="bc-cart__title"><%= item.title %></h3>
+                </a>
+                <div class="bc-cart__price-and-properties">
+                  <div class="bc-cart__price-wrapper">
+                    <span class="bc-cart__price"><%= item.price %></span>
+                  </div>
+                  <div class="bc-cart__properties-wrapper"></div>
+                </div>
+                <div class="bc-cart__qty-wrapper">
+                  <span class="bc-cart__qty-minus" data-key="<%= item.key %>e" data-qty="1" data-child="undefined">-</span>
+                  <span><%= item.quantity %></span>
+                  <span class="bc-cart__qty-plus" data-key="<%= item.key %>" data-qty="1" data-child="undefined">+</span>
+                </div>
+                <span class="bc-cart__remove" data-key="<%= item.key %>" role="button">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" focusable="false" role="presentation" class="icon icon-remove">
+                    <path d="M14 3h-3.53a3.07 3.07 0 00-.6-1.65C9.44.82 8.8.5 8 .5s-1.44.32-1.87.85A3.06 3.06 0 005.53 3H2a.5.5 0 000 1h1.25v10c0 .28.22.5.5.5h8.5a.5.5 0 00.5-.5V4H14a.5.5 0 000-1zM6.91 1.98c.23-.29.58-.48 1.09-.48s.85.19 1.09.48c.2.24.3.6.36 1.02h-2.9c.05-.42.17-.78.36-1.02zm4.84 11.52h-7.5V4h7.5v9.5z" fill="currentColor"></path>
+                    <path d="M6.55 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5zM9.45 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5z" fill="currentColor"></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          <% }) %>  
+        </div>
+      <% } %>
+      <div class="cart-notification__footer">
+        <div class="cart-accordion-wrapper">
+          <% if(settings.upsell_product){ %>
+            <% var upsell_product = settings?.upsell_product %>
+             <div class="cart-accordion-item open">
+                <div class="accordion-title">Pair With</div>
+                <div class="accordion-content">
+                  <div class="cart-upd">
+                    <div class="cart-upd-img"><img src="<%= upsell_product?.featured_image %>"/></div>
+                    <div class="cart-upd-info">
+                      <p class="upd-title"><%= upsell_product?.title %></p>
+                      <%# include('./price', {product: upsell_product}) %>
+                      <product-form class="product-form">
+                        <form action="../cart/add" method="POST"> 
+                          <input type="hidden" name="id" value="<%= upsell_product?.variants[0].id %>"/>
+                          <button type="submit" class="upd-add-btn"><span class="txt">Add </span>+</button>
+                        </form>
+                      </product-form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% } %>
+          <div class="cart-accordion-item">
+            <div class="accordion-title">Add order Notes</div>
+            <div class="accordion-content">
+              <label for="note">Leave a note about your order</label>
+              <textarea id="note" name="note" class="cart__field cart__field--textarea" form="cart"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="bc-cart__subtotal-wrapper" id="cart-subtotal">
+          <% if(cart?.items_subtotal_price > cart?.total_price){ %>
+            <div class="bc-cart__subtotal-label">SUBTOTAL</div>
+            <div class="bc-cart__subtotal-value">
+              <%= cart?.items_subtotal_price %>
+            </div>
+          <% } %>
+        </div>
+        <div class="bc-cart__total-wrapper">
+          <div class="bc-cart__total-label">Total</div>
+          <div class="bc-cart__total-value" id="cart-total">
+            <% if(cart?.cart_level_discount_application?.size > 0){ %>
+              <ul>
+                <% cart?.cart_level_discount_applications.forEach(discount_application => { %>
+                  <li>
+                    <%= discount_application?.title %> (-<%= discount_application?.total_allocated_amount %>)
+                  </li>
+                <% }) %>
+              </ul>
+            <% } %>
+            <span><%= cart?.total_price %></span>
+          </div>
+        </div>
+        <div class="tax-notify"><i>Shipping, taxes, && discount codes are calculated at checkout</i></div>
+        <div class="bc-cart__buttons-wrapper">
+          <form action="/cart" method="post" id="cart">
+            <button id="loopcheckout" class="button button--primary button--full-width" name="checkout" form="cart">Checkout</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</cart-notification>
+<script src="/assets/cart-notification-style-4.js" defer="defer"></script>

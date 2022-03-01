@@ -7,12 +7,12 @@
     <h2 class="collection-list-title"><%= section.settings.title %></h2>
 
     <% if(section.settings.show_view_all && section.settings.swipe_on_mobile){ %>
-      <a href="<%= routes.collections_url %>" class="link underlined-link large-up-hide">View all</a>
+      <a href="#" class="link underlined-link large-up-hide">View all</a>
     <% } %>
   </div>
 
   <slider-component class="slider-mobile-gutter">
-    <ul class="collection-list grid grid--1-col<% if(section.blocks.length < 5){ %> grid--<%= section.blocks.length %>-col-tablet<% } else { %> grid--3-col-tablet<% } %><% if(section.settings.swipe_on_mobile){ %> slider slider--tablet grid--peek<% } %> collection-list--<%= section.blocks.length %>-items<% if(!section.settings.show_view_all || section.blocks.length > collections.length){ %> negative-margin--small<% } %>"
+    <ul class="collection-list grid grid--1-col<% if(section.blocks.length < 5){ %> grid--<%= section.blocks.length %>-col-tablet<% } else { %> grid--3-col-tablet<% } %><% if(section.settings.swipe_on_mobile){ %> slider slider--tablet grid--peek<% } %> collection-list--<%= section.blocks.length %>-items<% if(!section.settings.show_view_all || section.blocks.length > collection.length){ %> negative-margin--small<% } %>"
       id="Slider-1"
       role="list"
     >
@@ -94,9 +94,9 @@
     <% } %>
   </slider-component>
 
-  <% if(section.settings.show_view_all && section.blocks.length < collections.length){ %>
+  <% if(section.settings.show_view_all && section.blocks.length < collection.length){ %>
     <div class="center<% if(section.settings.swipe_on_mobile){ %> small-hide medium-hide<% } %>">
-      <a href="<%= routes.collections_url %>" class="button">View all</a>
+      <a href="#" class="button">View all</a>
     </div>
   <% } %>
 </div>

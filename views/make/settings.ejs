@@ -18,6 +18,10 @@
                         <%- include('../components/text', {global: global, data: item}) %>
                     <% } else if(item.type === 'select'){ %>
                         <%- include('../components/select', {global: global, data: item}) %>
+                    <% } else if(item.type === 'checkbox'){ %>
+                        <%- include('../components/checkbox', {global: global, data: item}) %>
+                    <% } else if(item.type === 'range'){ %>
+                        <%- include('../components/range', {global: global, data: item}) %>
                     <% } else if(item.type === 'text' && item.label === 'Google Font' && fonts){ %>
                         <%- include('../components/font', {global: global, data: item, fonts: fonts}) %>
                     <% } %>

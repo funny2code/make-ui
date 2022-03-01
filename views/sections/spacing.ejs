@@ -1,0 +1,14 @@
+<div
+  class="spacing-section-desktop bc-{{settings.section_style}}-bt"
+  <% if(section.settings.background_color || section.settings.spacing_value_desktop){ %>
+    style="<% if(section.settings.background_color){%>background-color: <%=section.settings.background_color%>;<% } %><% if(section.settings.background_color){%>height:<%=section.settings.spacing_value_desktop%>px;<% } %>"
+  <% } %>
+>
+</div>
+<div
+  class="spacing-section-mobile bc-{{settings.section_style}}-bt"
+  <% if(section.settings.background_color || section.settings.spacing_value_mobile){ %>
+    style="<% if(section.settings.background_color){%>background-color: <%=section.settings.background_color%>;<% } %><% if(section.settings.background_color){%>height:<%=section.settings.spacing_value_mobile%>px;<% } %>"
+  <% } %>
+>
+</div>

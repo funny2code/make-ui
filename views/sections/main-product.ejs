@@ -1,0 +1,656 @@
+<link rel="stylesheet" href="/assets/component-slider.css">
+<link rel="stylesheet" href="/assets/section-main-product-style-1.css">
+<link rel="stylesheet" href="/assets/component-badge.css">
+<link rel="stylesheet" href="/assets/component-price-style-1.css">
+<link rel="stylesheet" href="/assets/component-variants.css">
+<link rel="stylesheet" href="/assets/component-deferred-media.css">
+<link rel="stylesheet" href="/assets/component-pickup-availability.css">
+
+<% var sizeCharts = product?.metafields?.lengthcharts  %>
+<% var colortitle = product?.metafields?.color.color_name.value.toLowerCase() %>
+<% var colorvalue = product?.metafields?.color.color_value.value %>
+<% var colorimage = product?.metafields?.color.color_image.value  %>
+
+<% if(section.settings.custom_font_style){ %>
+<style>
+  .product__info-container .product__title{
+    font-size: "<%=section.settings.title_fontsize%>";
+    font-weight: "<%=section.settings.title_fontweight%>";
+    font-stretch: "<%=section.settings.title_fontstretch%>";
+    font-style: "<%=section.settings.title_fontstyle%>";
+    line-height: "<%=section.settings.title_lineheight%>";
+    letter-spacing: "<%=section.settings.title_letterspacing%>";
+  }
+  @media(max-width:749px){
+    .product__info-container .product__title{
+        font-size: "<%=section.settings.title_fontsize_m%>";
+    }
+  }
+  .product__info-container .bc-product-price-wrapper *{
+    font-size: "<%=section.settings.price_fontsize%>";
+    font-weight: "<%=section.settings.price_fontweight%>";
+    font-stretch: "<%=section.settings.price_fontstretch%>";
+    font-style: "<%=section.settings.price_fontstyle%>";
+    line-height: "<%=section.settings.price_lineheight%>";
+    letter-spacing: "<%=section.settings.price_letterspacing%>"
+  }
+  @media(max-width:749px){
+    .product__info-container .bc-product-price-wrapper *{
+        font-size: "<%=section.settings.price_fontsize_m%>";
+    }
+  }
+  .product__info-container .bc-colors__heading,
+  .product__info-container fieldset.product-form__input .form__label{
+    font-size: "<%=section.settings.option_fontsize%>";
+    font-weight: "<%=section.settings.option_fontweight%>";
+    font-stretch: "<%=section.settings.option_fontstretch%>";
+    font-style: "<%=section.settings.option_fontstyle%>";
+    line-height: "<%=section.settings.option_lineheight%>";
+    letter-spacing: "<%=section.settings.option_letterspacing%>"
+  }
+  @media(max-width:749px){
+    .product__info-container .bc-colors__heading,
+    .product__info-container fieldset.product-form__input .form__label{
+        font-size: "<%=section.settings.option_fontsize_m%>";
+    }
+  }
+  .product__info-container fieldset label,
+  .product__info-container .accordion__content p{
+    font-size: "<%=section.settings.info_fontsize%>";
+    font-weight: "<%=section.settings.info_fontweight%>";
+    font-stretch: "<%=section.settings.info_fontstretch%>";
+    font-style: "<%=section.settings.info_fontstyle%>";
+    line-height: "<%=section.settings.info_lineheight%>";
+    letter-spacing: "<%=section.settings.info_letterspacing%>";
+  }
+  @media(max-width:749px){
+    .product__info-container fieldset label,
+    .product__info-container .accordion__content p{
+        font-size: "<%=section.settings.info_fontsize_m%>"
+    }
+  }
+</style>
+<% } %>
+
+<% var first_3d_model = product?.media %>
+<% if(first_3d_model){ %>
+  <link rel="stylesheet" href="/assets/component-product-model.css">
+  <link id="ModelViewerStyle" rel="stylesheet" href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css">
+  <link id="ModelViewerOverride" rel="stylesheet" href="/assets/component-model-viewer-ui.css">
+<% } %>
+
+<section class="<% if(section.settings.media_position !== "top"){ %>page-width<% } %> py-<%=section.settings.section_bg_color%>" >
+  <div class="product grid grid--1-col <% if(product?.images.length === 0){ %>product--no-media<% } %> media-style__<%=section.settings.media_position%> mobile-media-style__<%=section.settings.media_position_m%>">
+    <div class="grid__item product__media-wrapper">
+      <slider-component class="slider-mobile-gutter">
+        <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-1">
+          skip to product info
+        </a>
+        <ul class="product__media-list grid grid--peek list-unstyled slider <% if(product?.images.length > 3){ %>grid--3-col-tablet grid--4-col-desktop<% } else if(product?.images.length > 2){ %>grid--3-col-tablet <% } else { %> grid--2-col-tablet <% } %> <% if(section.settings.media_position === "top"){ %>slider--desktop<% } else { %>grid-desktop<% } %>  <% if(section.settings.media_position_m === "top"){ %>slider--mobile  <% } else { %>grid-mobile<% } %>" role="list">
+          <% if(product?.image){ %>
+            <% var media = product?.image %>
+            <li class="product__media-item grid__item slider__slide<% if(media.media_type !== 'image'){ %> product__media-item--full<% } %>" data-media-id="1-<%= media.id %>">
+              <%- include('../snippets/product-thumbnail', {media: media, position: 'featured', loop: section.settings.enable_video_looping, modal_id: '1'}) %>
+            </li>
+          <% } %>
+          <% product?.images.forEach((media, index) => { %>
+            <% if(media.id !== product?.image.id){ %>
+              <li class="product__media-item grid__item slider__slide<% if(media.media_type !== 'image'){ %> product__media-item--full<% } %>" data-media-id="1-<%= media.id %>">
+                <%- include('../snippets/product-thumbnail', {media: media, position: index, loop: section.settings.enable_video_looping, modal_id: '1'}) %>
+              </li>
+            <% } %>
+          <% }) %>
+        </ul>
+        <div class="slider-buttons slider-buttons--overlay no-js-hidden <% if(product?.images.length > 3){ %>slider-buttons-desktop<% } %> <% if(product?.images.length < 2){ %> small-hide<% } %>">
+          <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="previous slide"><%- include('../snippets/icon-caret') %></button>
+          <div class="slider-counter caption">
+            <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="visually-hidden">of</span>
+            <span class="slider-counter--total"><%= product?.images.length %></span>
+          </div>
+          <button type="button" class="slider-button slider-button--next" name="next" aria-label="next slide"><%- include('../snippets/icon-caret') %></button>
+        </div>
+      </slider-component>
+      <% if(first_3d_model){ %>
+        <button
+          class="button button--full-width product__xr-button"
+          type="button"
+          aria-label="button label"
+          data-shopify-xr
+          data-shopify-model3d-id="<%= first_3d_model.id %>"
+          data-shopify-title="<%= product?.title %>"
+          data-shopify-xr-hidden
+        >
+          <%# include('../snippets/icon-3d-model') %>
+          xr button
+        </button>
+      <% } %>
+    </div>
+    <div class="product__info-wrapper <% if(section.settings.media_position === "left"){ %> grid__item <% } else if(section.settings.media_position === "top"){ %>full-width <% } %> py-<%=section.settings.page_width%>">
+      <div id="ProductInfo-1" class="product__info-container<% if(section.settings.enable_sticky_info){ %> product__info-container--sticky<% } %>">
+        <% var product_form_id = 'product-form-1' %>
+        <div class="product-badge" style='width:100%;'><%# include('../snippets/component-badge', {meta: product?.metafields?.selling, vertical: false}) %></div>
+        <div class="product_info_left_col">  
+        
+        <% section.blocks.forEach((block, index) => { %>
+          <% if(block.type === 'text'){ %>
+            <p class="product__text<% if(block.settings?.text_style === 'uppercase'){ %> caption-with-letter-spacing<% } else if(block.settings?.text_style === 'subtitle'){ %> subtitle<% } %>">
+              <%= block.settings?.text %>
+            </p>
+          <% } else if(block.type === 'title'){ %>
+            <h1 class="product__title">
+              <%= product?.title %>
+            </h1>
+
+            <% if(sizeCharts?.cm_content || sizeCharts?.inches_content){ %>
+              <% if(section.blocks.length === 4){ %>
+              <modal-opener class="product-popup-modal__opener no-js-hidden" data-modal="#PopupModal-sizecharts">
+                <button id="ProductPopup-sizecharts" class="product-popup-modal__button link bc-size-chart-button" type="button" aria-haspopup="dialog">VIEW SIZING CHART</button>
+              </modal-opener>
+              <% } %>
+            <% } %>
+
+          <% } else if(block.type === 'type'){ %>
+            <h5 class="product__type">
+              <%= product?.type %>
+            </h5>
+            
+          <% } else if(block.type === 'price'){ %>
+            <div class="no-js-hidden bc-product-price-wrapper" id="price-1">
+              <%# include('../snippets/price', {product: product, use_variant: true, show_badges: false, price_class: 'price--large'}) %>
+            </div>
+          <%# form | payment_terms %>          
+          <% } else if(block.type === 'quantity_selector'){ %>
+            <div class="product-form__input product-form__quantity">
+              <label class="form__label" for="Quantity-1">
+                quantity
+              </label>
+              <quantity-input class="quantity">
+                <button class="quantity__button no-js-hidden" name="minus" type="button">
+                  <span class="visually-hidden">quantity decrease <%=product?.title%></span>
+                  <%- include('../snippets/icon-minus') %>
+                </button>
+                <input class="quantity__input"
+                    type="number"
+                    name="quantity"
+                    id="Quantity-1"
+                    min="1"
+                    value="1"
+                    form="product-form-1"
+                  >
+                <button class="quantity__button no-js-hidden" name="plus" type="button">
+                  <span class="visually-hidden">quantity increase <%=product?.title%></span>
+                  <%- include('../snippets/icon-plus') %>
+                </button>
+              </quantity-input>
+            </div>
+          <% } else if(block.type === 'variant_picker'){ %>
+                    
+        	  <%# include('../snippets/component-colors', {product: product, show_heading: true}) %>            
+        
+            <% if(product?.has_only_default_variant){ %>
+              <% if(block.settings?.picker_type === 'button'){ %>
+                <variant-radios class="no-js-hidden" data-section="1" data-url="<%= product?.url %>">                  
+                    <% product?.options.forEach((option, key) =>{ %>
+                        <% 
+                          var optionName = option.name.toLowerCase()
+                          var color = false
+                          if(optionName === 'color' || optionName === 'colour'){
+                            var color = true
+                          } 
+                        %>
+                        <fieldset class="js product-form__input" product-option="<%=optionName%>">
+                          <legend class="form__label"><%= option.name %>: <span class="selected-value"><%=option?.selected_value%></span></legend>
+                          <% option.values.forEach((value, key) => { %>
+                            <input type="radio" id="1-<%= option.name %>-<%= key %>"
+                                  name="<%= option.name %>"
+                                  value="<%= value %>"
+                                  form="product-form-1"
+                                  <% if(option.selected_value === value){ %>checked<% } %>
+                            >
+                            
+                            <label for="1-<%= option.name %>-<%= key %>">
+                              <% if(!color){ %>                                
+                                <%= value %>
+                              <% } else { %>
+                                <span class="pd-colors__icon" data-color="<%= value.toLowerCase() %>"></span><%= value %>
+                              <% } %>  
+                          </label>
+                          <% }) %>
+                        </fieldset>
+                    <% }) %>                  
+                  <div id="preorderbunner"></div>
+                  <script type="application/json">
+                    <%= JSON.stringify(product?.variants) %>
+                  </script>
+                  <script id="product-variants-metafields" type="application/json">
+                  [
+                    <% product?.variants.forEach((variant, key)=>{ %>
+                          {
+                          	"<%=variant.id%>" : 
+                            <% if(variant?.metafields?.order.length > 0){ %>
+                              <% variant?.metafields?.order.forEach((item, index) => { %>
+                                  <% if(index === 0){ %>
+                                      {
+                                  <% } %>
+                                          "<%=item[0]%>" : "<%= item[1] %>"<% if(index !==  variant?.metafields?.order.length){ %>,<% } %>
+                                  <% if(index ===  variant?.metafields?.order.length){ %>
+                                      }
+                                  <% } %>
+                              <% }) %>
+                            <% } else { %>
+                            	""
+                            <% } %>
+                          }<% if(key !== product?.variants.length){ %>,<% } %>
+                    <% }) %>
+                  ]
+                  </script>
+                </variant-radios>
+              <% } else { %>
+                <variant-selects class="no-js-hidden" data-section="1" data-url="<%= product?.url %>">
+                  <% product?.options.forEach((option, index) => { %>
+                    <div class="product-form__input product-form__input--dropdown">
+                      <label class="form__label" for="Option-1-<%= index %>">
+                        <%= option.name %>
+                      </label>
+                      <div class="select">
+                        <select id="Option-1-<%= index %>"
+                          class="select__select"
+                          name="options[<%= option.name %>]"
+                          form="product-form-1"
+                        >
+                          <% option?.values.forEach((value, key) => { %>
+                            <option value="<%= value %>" <% if(option?.selected_value === value){ %>selected="selected"<% } %>>
+                              <%= value %>
+                            </option>
+                          <% }) %>
+                        </select>
+                        <%- include('../snippets/icon-caret') %>
+                      </div>
+                    </div>
+                  <% }) %>
+
+                  <script type="application/json">
+                    <%= JSON.stringify(product?.variants) %>
+                  </script>
+                </variant-selects>
+              <% } %>
+            <% } %>
+        
+        <% if(sizeCharts?.cm_content || sizeCharts?.inches_content){ %>
+        <modal-opener class="product-popup-modal__opener no-js-hidden" data-modal="#PopupModal-sizecharts">
+          <button id="ProductPopup-sizecharts" class="product-popup-modal__button link bc-size-chart-button" type="button" aria-haspopup="dialog">VIEW SIZING CHART</button>
+        </modal-opener>
+        <% } %>
+          
+
+            <noscript>
+              <div class="product-form__input<% if(product?.has_only_default_variant){ %> hidden<% } %>">
+                <label class="form__label" for="Variants-1">product variants</label>
+                <div class="select">
+                  <select name="id" id="Variants-1" class="select__select" form="product-form">
+                    <% product?.variants.forEach((variant, index) => { %>
+                      <option
+                        <% if(variant === product?.selected_or_first_available_variant){ %>selected="selected"<% } %>
+                        <% if(!variant?.available){ %>disabled<% } %>
+                        value="<%= variant.id %>"
+                      >
+                        <%= variant.title %>
+                        <% if(!variant?.available){ %> - sold out<% } %>
+                        - <%= variant?.price %>
+                      </option>
+                    <% }) %>
+                  </select>
+                  <%- include('../snippets/icon-caret') %>
+                </div>
+              </div>
+            </noscript>
+          <% } else if(block.type === 'buy_buttons'){ %>
+            <product-form class="product-form">
+              <form id="product_form_id" class="form product-form__flex" novalidate="novalidate" data-type="add-to-cart-form">
+                <input type="hidden" name="id" value="<%= product?.selected_or_first_available_variant?.id %>">
+                <% if(product?.metafields?.gift.product_id){ %>
+                <input type="hidden" name="gift_id" value="<%= product?.metafields?.gift.product_id %>">
+                <% } %>
+                <div id="bc-order-id"></div>
+              	<div class="product-form__buttons">
+                  <button
+                    type="submit"
+                    name="add"
+                    class="product-form__submit button button--full-width <% if(block.settings?.show_dynamic_checkout && product?.selling_plan_groups === empty){ %>button--primar<% } else { %>button--primary<% } %>"
+                    <% if(!product?.selected_or_first_available_variant?.available){ %>disabled<% } %>
+                    <% if(block.settings?.bg_color || block.settings?.color){ %>style="<% if(block.settings?.bg_color){ %>background-color:<%= block.settings?.bg_color %>;box-shadow:0 0 0 .1rem <%= block.settings?.bg_color %>;<% } %><% if(block.settings?.color){ %>color:<%= block.settings?.color %>;<% } %>"<% } %>
+                  > 
+                    <span class="product-form__submit-label">
+                      <% if(product?.selected_or_first_available_variant?.available){ %>
+                        <% if(block.settings?.btn){ %>
+                          <%= block.settings?.btn %>
+                        <% } else { %>
+                          Add to cart
+                        <% } %>
+                      <% } else { %>
+                        Sold out
+                      <% } %>
+                    </span>
+                   
+                  </button>
+                  <% if(block.settings?.show_dynamic_checkout){ %>
+                    <%# form | payment_button %>
+                  <% } %>
+                </div>
+              </form>
+            </product-form>
+
+            <% var pick_up_availabilities = product?.selected_or_first_available_variant?.store_availabilities %>
+
+            <pickup-availability class="product__pickup-availabilities no-js-hidden"
+              <% if(product?.selected_or_first_available_variant?.available && pick_up_availabilities.length > 0){ %> available<% } %>
+              data-base-url="<%# shop.url %><%# routes?.root_url %>"
+              data-variant-id="<%= product?.selected_or_first_available_variant?.id %>"
+              data-has-only-default-variant="<%= product?.has_only_default_variant %>"
+            >
+              <template>
+                <pickup-availability-preview class="pickup-availability-preview">
+                  <%- include('../snippets/icon-unavailable') %>
+                  <div class="pickup-availability-info">
+                    <p class="caption-large">unavailable</p>
+                    <button class="pickup-availability-button link link--text underlined-link">refresh</button>
+                  </div>
+                </pickup-availability-preview>
+              </template>
+            </pickup-availability>
+
+            <script src="/assets/pickup-availability.js" defer="defer"></script>
+          <% } %>
+        <% }) %>
+        </div>
+        <div class="product_info_right_col">
+        <% section.blocks.forEach((block, index) => { %>
+          <% if(block.type === 'description'){ %>
+            <% if(product?.description){ %>
+              <div class="product__description rte">
+                <%- product?.description -%>
+              </div>
+            <% } %>
+          <% } else if(block.type === 'collapsible_tab'){ %>
+            <% var headingLow = block.settings?.heading?.trim()?.toLowerCase() %>
+            <div class="product__accordion accordion <%=headingLow?.replaceAll(/ /g, '-') %>" <% if(block.settings?.bg_color){ %>style="background-color:<%= block.settings?.bg_color %>;"<% } %>>
+              <details>
+                <summary <% if(block.settings?.color){ %>style="color:<%= block.settings?.color %>;"<% } %>>
+                  <div class="summary__title">
+                    <%# include('../snippets/icon-accordion', {icon: block.settings?.icon}) %>
+                    <h2 class="h4 accordion__title">
+                      <%= block.settings?.heading ? block.settings?.heading : block.settings?.page?.title %>
+                    </h2>
+                  </div>
+                  <%- include('../snippets/icon-caret') %>
+                </summary>
+                <div class="accordion__content" <% if(block.settings?.color){ %>style="color:<%= block.settings?.color %>;"<% } %>>
+                  <% if(headingLow === 'details' && product?.description){ %>
+                    <%- product?.description %>
+                  <% } else { %>
+                    <%- block.settings?.content %>
+                    <%- block.settings?.page?.content %>
+                  <% } %>
+                </div>
+              </details>
+            </div>
+          <% } else if(block.type === 'popup'){ %>
+              <modal-opener class="product-popup-modal__opener no-js-hidden" data-modal="#PopupModal-2">
+                <button id="ProductPopup-2" class="product-popup-modal__button link" type="button" aria-haspopup="dialog"><%= block.settings?.link_label ? block.settings?.link_label : block.settings?.page?.title %></button>
+              </modal-opener>
+              <a href="<%= block.settings?.page?.url %>" class="product-popup-modal__button link no-js"><%= block.settings?.link_label %></a>
+          <% } else if(block.type === 'share'){ %>
+            <share-button class="share-button">
+              <button class="share-button__button button button--tertiary hidden">
+                <%- include('../snippets/icon-share') %>
+                share
+              </button>
+              <details>
+                <summary class="share-button__button button button--tertiary">
+                  <%- include('../snippets/icon-share') %>
+                  share
+                </summary>
+                <div class="share-button__fallback">
+                  <div class="field">
+                    <input type="text"
+                          class="field__input"
+                          id="url"
+                          value="<%= product?.url %>"
+                          placeholder="share url"
+                          onclick="this.select();"
+                          readonly
+                    >
+                    <label class="field__label" for="url">share url</label>
+                  </div>
+                  <button class="button button--tertiary">
+                    <%- include('../snippets/icon-clipboard') %>
+                    copy to clipboard
+                  </button>
+                  <span id="ShareMessage-1" class="share-button__message hidden" role="status" aria-hidden="true">
+                    success message
+                  </span>
+                </div>
+              </details>
+            </share-button>
+            <script src="/assets/share.js" defer="defer"></script>
+
+          <% } else if(block.type === 'goes'){ %>
+            <% if(block.settings?.prod){ %>
+              <% var prod = block.settings?.prod %>
+              <%# include('../snippets/goes', {prod: prod, title: block.settings?.heading}) %>
+            <% } %>
+
+          <% } %>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+
+  <% section.blocks.forEach((block, index) => { %>
+    <% if(block.type === "popup"){ %>
+    <modal-dialog id="PopupModal-2" class="product-popup-modal">
+      <div role="dialog" aria-label="<%= block.settings?.link_label %>" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
+        <button id="ModalClose-2" type="button" class="product-popup-modal__toggle" aria-label="close"><%- include('../snippets/icon-close') %></button>
+        <div class="product-popup-modal__content-info">
+          <h1 class="h2"><%= block.settings?.page?.title %></h1>
+          <%- block.settings?.page?.content -%>
+        </div>
+      </div>
+    </modal-dialog>
+    <% } %>
+  <% }) %>
+  
+  <% if(sizeCharts?.cm_content || sizeCharts?.inches_content){ %>
+  <modal-dialog id="PopupModal-sizecharts" class="product-popup-modal">
+    <div role="dialog" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
+      <button id="ModalClose-sizecharts" type="button" class="product-popup-modal__toggle" aria-label="close"><%- include('../snippets/icon-close') %></button>
+      <size-charts class="product-popup-modal__content-info">
+        <% if(sizeCharts?.cm_content && sizeCharts?.inches_content){ %>
+        <div class="bc-size-charts-tabs">
+          <h2 class="bc-size-charts-tabs-item active" data-index="cm">CM</h2>
+          <h2 class="bc-size-charts-tabs-item" data-index="inches">Inches</h2>
+        </div>
+        <% } %>
+        <% if(sizeCharts?.cm_content){ %>
+        <div data-id="cm" class="bc-size-charts-content active">
+          <% var image = sizeCharts?.cm_content %>
+          <div class="media" <% if(image){ %>style="padding-bottom: 100%;"<% } %>>
+              <img src="<%= image %>" loading="lazy" width="720" height="720"/>
+          </div>  
+        </div>
+        <% } %>
+        <% if(sizeCharts?.inches_content){ %>
+        <% var image = sizeCharts?.inches_content %>
+        <div data-id="inches" class="bc-size-charts-content <% if(!sizeCharts?.cm_content){ %>active<% } %>">
+          <% var image = sizeCharts?.inches_content %>
+          <div class="media" <% if(image){ %>style="padding-bottom: 100%;"<% } %>>
+              <img src="<%= image %>" loading="lazy" width="720" height="720"/>
+          </div>
+        </div>
+        <% } %>
+      </size-charts>
+    </div>
+  </modal-dialog>
+  <% } %>
+  <div style="display:none">
+    <modal-opener class="product-popup-modal__opener no-js-hidden" data-modal="#PopupModal-shippingcharts">
+      <button id="ProductPopup-shippingcharts" class="product-popup-modal__button link bc-shipping-chart-button" type="button" aria-haspopup="dialog"></button>
+    </modal-opener>    
+  </div>
+  <modal-dialog id="PopupModal-shippingcharts" class="product-popup-modal">
+    <div role="dialog" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
+      <button id="ModalClose-shippingcharts" type="button" class="product-popup-modal__toggle" aria-label="close"><%- include('../snippets/icon-close') %></button>
+      <shipping-chart class="product-popup-modal__content-info">
+        <div  class="bc-shipping-charts-content ">
+          <div class="on-shippingrates-wrapper"><div class="mt5">
+            <div class="grid ga3 pv2 bt bb b--light-gray" style="grid-template-columns: 1fr 1fr 2fr 1fr;">
+            <div class="b"><span class="f7">COUNTRY</span></div>
+            <div class="b"><span class="f7">COST</span></div>
+            <div class="b"><span class="f7">DELIVERY TIME</span></div>
+            <div class="b"><span class="f7">SPEND $100+</span></div>
+            <div class=""><span class="f7">USA</span></div>
+            <div class=""><span class="f7">FREE</span></div>
+            <div class=""><span class="f7">4-6 BUSINESS DAYS</span></div>
+            <div class=""><span class="f7">FREE</span></div>
+            <div class=""><span class="f7">CANADA</span></div>
+            <div class=""><span class="f7">FREE</span></div>
+            <div class=""><span class="f7">CANADA: 4-6 BUSINESS DAYS ONTARIO: 3-4 BUSINESS DAYS</span></div>
+            <div class=""><span class="f7">FREE</span></div>
+            <div class=""><span class="f7">UK</span></div>
+            <div class=""><span class="f7">$30</span></div>
+            <div class=""><span class="f7">2-7 BUSINESS DAYS</span></div>
+            <div class=""><span class="f7">FREE</span></div>
+            <div class=""><span class="f7">AUSTRALIA</span></div>
+            <div class=""><span class="f7">$30</span></div>
+            <div class=""><span class="f7">2-7 BUSINESS DAYS</span></div>
+            <div class=""><span class="f7">FREE</span></div>
+            <div class=""><span class="f7">INTERNATIONAL</span></div>
+            <div class=""><span class="f7">$30</span></div>
+            <div class=""><span class="f7">2-7 BUSINESS DAYS</span></div>
+            <div class=""><span class="f7">FREE</span></div>
+            </div>
+            <p class="mt4 f6">We ship to the following countries:</p>
+            <div class="grid ga3" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+            <div><span class="f7">AUSTRALIA</span></div>
+            <div><span class="f7">AUSTRIA</span></div>
+            <div><span class="f7">BELGIUM</span></div>
+            <div><span class="f7">BRAZIL</span></div>
+            <div><span class="f7">CANADA</span></div>
+            <div><span class="f7">CROATIA</span></div>
+            <div><span class="f7">DENMARK</span></div>
+            <div><span class="f7">ESTONIA</span></div>
+            <div><span class="f7">FINLAND</span></div>
+            <div><span class="f7">FRANCE</span></div>
+            <div><span class="f7">GERMANY</span></div>
+            <div><span class="f7">GIBRALTAR</span></div>
+            <div><span class="f7">GREECE</span></div>
+            <div><span class="f7">HONG KONG</span></div>
+            <div><span class="f7">HUNGARY</span></div>
+            <div><span class="f7">IRELAND</span></div>
+            <div><span class="f7">ISRAEL</span></div>
+            <div><span class="f7">ITALY</span></div>
+            <div><span class="f7">JAPAN</span></div>
+            <div><span class="f7">KOREA</span></div>
+            <div><span class="f7">LATVIA</span></div>
+            <div><span class="f7">LITHUANIA</span></div>
+            <div><span class="f7">LUXEMBOURG</span></div>
+            <div><span class="f7">MALAYSIA</span></div>
+            <div><span class="f7">MALTA</span></div>
+            <div><span class="f7">NETHERLANDS</span></div>
+            <div><span class="f7">NEW ZEALAND</span></div>
+            <div><span class="f7">NORWAY</span></div>
+            <div><span class="f7">POLAND</span></div>
+            <div><span class="f7">PORTUGAL</span></div>
+            <div><span class="f7">RUSSIA</span></div>
+            <div><span class="f7">SINGAPORE</span></div>
+            <div><span class="f7">SOUTH KOREA</span></div>
+            <div><span class="f7">SPAIN</span></div>
+            <div><span class="f7">SWEDEN</span></div>
+            <div><span class="f7">SWITZERLAND</span></div>
+            <div><span class="f7">UNITED KINGDOM</span></div>
+            <div><span class="f7">UNITED STATES</span></div>
+            </div>
+            </div></div>
+        </div>
+      </shipping-chart>
+    </div>
+  </modal-dialog>
+  <%# include('../snippets/instagram-feed') %>
+  <%# include('../snippets/tiktok-feed') %>
+  
+</section>
+
+<script>
+  // class ProductModal extends ModalDialog {
+  //   constructor() {
+  //     super();
+  //   }
+
+  //   hide() {
+  //     super.hide();
+  //     window.pauseAllMedia();
+  //   }
+
+  //   show(opener) {
+  //     super.show(opener);
+  //     this.showActiveMedia();
+  //   }
+
+  //   showActiveMedia() {
+  //     this.querySelectorAll(`[data-media-id]:not([data-media-id="${this.openedBy.getAttribute("data-media-id")}"])`).forEach((element) => {
+  //         element.classList.remove('active');
+  //       }
+  //     )
+  //     const activeMedia = this.querySelector(`[data-media-id="${this.openedBy.getAttribute("data-media-id")}"]`);
+  //     activeMedia.classList.add('active');
+  //     activeMedia.scrollIntoView();
+
+  //     if(activeMedia.nodeName === 'DEFERRED-MEDIA' && activeMedia.querySelector('template')?.content?.querySelector('.js-youtube')){
+  //       activeMedia.loadContent();
+  //     }
+  //   }
+  // }
+
+  // customElements.define('product-modal', ProductModal);
+</script>
+<script src="/assets/product-form.js" defer="defer"></script>
+
+<% if(first_3d_model){ %>
+  <script type="application/json" id="ProductJSON-<%= product?.id %>">
+    <%= JSON.stringify(product?.media) %>
+  </script>
+  <script src="/assets/product-model.js" defer></script>
+<% } %>
+<style>
+  .on-shippingrates-wrapper .grid {
+    grid-template-columns: 1fr 1fr 2fr 1fr;
+    display: grid;
+    line-height: 3;
+    border-bottom: 1px solid gainsboro; 
+    border-top: 1px solid gainsboro;
+  }
+  .on-shippingrates-wrapper .grid>div{
+    padding:3px 8px;
+  }
+  .shipping-and-returns .accordion__content h3{
+    cursor: pointer;
+  }
+</style>
+<script>
+  
+  var shipping_chart = document.querySelectorAll('.shipping-and-returns .accordion__content h3');
+  for(i=0;i<shipping_chart.length;i++){    
+    if(shipping_chart[i].textContent.toLowerCase().includes('shipping chart')){
+      
+      shipping_chart[i].addEventListener("click", function() {
+        document.getElementById('ProductPopup-shippingcharts').click();
+      });
+    } else if(shipping_chart[i].textContent.toLowerCase().includes('return policy')){
+      shipping_chart[i].addEventListener("click", function() {
+        window.location.href = '/pages/shipping';
+      });
+    }
+  }
+</script>

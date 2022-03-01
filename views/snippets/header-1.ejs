@@ -445,7 +445,7 @@
         
       </a>
       <% if(settings.cart_style === 'style-3'){ %>
-         <%# include('./cart-notification-3') %>
+        <%- include('./cart-notification-3', {cart_layout: settings.cart_layout}) %>
       <% } %>       
 
     </div>
@@ -473,7 +473,6 @@
       this.proInfo && this.proInfo !== null ? this.proInfo.style.top = 20 + this.deleyTop + 'px' : null;
       this.filterDrawer && this.filterDrawer !== null && this.announcementBar && this.announcementBar !== null ? this.filterDrawer.style.top = this.announcementBar.offsetHeight + 'px' : null;
       this.filterDrawerForm && this.filterDrawerForm !== null && this.announcementBar && this.announcementBar !== 'null' ? this.filterDrawerForm.style.height = 'calc(100vh - ' + (169 + this.announcementBar.offsetHeight) + 'px)' : null; 
-
       this.onScrollHandler = this.onScroll.bind(this);
 
       window.addEventListener('scroll', this.onScrollHandler, false);

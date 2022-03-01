@@ -1,0 +1,17 @@
+<div class="py__settings-item">
+    <div class="py__settings-item-header">
+        <label><%= data.label %></label>
+        <% if(data.info){ %>
+            <div class="py__tooltip">
+                <%- include('../icons', {type: 'info'}) %>
+                <p class="py__tooltiptext">
+                    <%= data.info %>
+                </p>
+            </div>
+        <% } %>
+    </div>
+    <div class="py__comp-checkbox">
+        <input type="hidden" name="<% if(global){ %>settings_<%= data.id %><% } else { %><%= data.id %><% } %>" value="<%=data.default%>">
+        <input type="checkbox" class="is__checkbox" <% if(data.default){ %>checked<% } %>/>
+    </div>
+</div>
