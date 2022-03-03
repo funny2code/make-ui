@@ -45,9 +45,20 @@
             let parser = new DOMParser();
             let html = parser.parseFromString(data, "text/html");
             let iframeContent = iframe.contentDocument || iframe.contentWindow.document;
-            iframeContent.querySelector('html').innerHTML = html.querySelector('html').innerHTML;
+            iframeContent && html ? iframeContent.querySelector('html').innerHTML = html.querySelector('html').innerHTML : null;
         })
         .catch(err => console.error(err));
+    };
+
+    // Ifeame Previews Function (Mobile, Desktop, Tablet)
+    const toggleIframePreview = (event) => {
+        if(!event) return;
+        let el = event.target;
+        let size = el.getAttribute('data-view');
+        let iframe = document.querySelector('.py__view-iframe');
+        document.querySelector('.py__button-view.active').classList.remove('active');
+        el.classList.add('active');
+        iframe.style.width = size;
     };
 
     // Show Item From Global Settings Function (Color, padding, Margin and etc)
@@ -99,8 +110,51 @@
     // Change View Pages Function
     const changeViewPage = (event) => {
         if(!event) return;
-        let pageName = event.target.options[event.target.selectedIndex].getAttribute('data-href');
-        pageName ? location.href = pageName : null;
+        let el = event.target;
+        let url = el.options[el.selectedIndex].getAttribute('data-href');
+        if(!url) return;
+        window.history.replaceState({ }, '', url);
+        document.querySelectorAll('.py__loading-wrap').forEach(item => item.classList.add('py__animate'));
+        fetch(url)
+        .then(res => res.text())
+        .then(data => {
+            if(!data) return;
+            let parser = new DOMParser();
+            let html = parser.parseFromString(data, "text/html");
+            let oldSettingsWrap = document.querySelector('.py__make-sidebar');
+            let newSettingsWrap = html.querySelector('.py__make-sidebar');
+            let oldIframeWrap = document.querySelector('.py__preview-iframe');
+            let newIframeWrap = html.querySelector('.py__preview-iframe');
+            oldSettingsWrap && newSettingsWrap ? oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML : null;
+            oldIframeWrap && newIframeWrap ? oldIframeWrap.innerHTML = newIframeWrap.innerHTML : null;
+        }).catch(err => console.log(err));
+    };
+
+    // Get Global settings or Section settings dynamic function
+    const getSettingsLists = (event) => {
+        if(!event) return;
+        event.preventDefault();
+        if(event.target.classList.contains('active')) return;
+        let el = event.target;
+        let content = document.querySelector('.py__settings-content');
+        let url = el.getAttribute('href');
+        if(!url) return;
+        window.history.replaceState({ }, '', url);
+        content.querySelector('.py__loading-wrap').classList.add('py__animate');
+        document.querySelector('.py__settings-select-options-item.active').classList.remove('active');
+        document.querySelector('.py__settings-select.active').classList.remove('active');
+        document.querySelector('.py__selected-label').textContent = el.querySelector('.py__select-option-label').textContent;
+        el.classList.add('active');
+        fetch(url)
+        .then(res => res.text())
+        .then(data => {
+            if(!data) return;
+            let parser = new DOMParser();
+            let html = parser.parseFromString(data, "text/html");
+            let oldSettingsWrap = document.querySelector('.py__settings-content');
+            let newSettingsWrap = html.querySelector('.py__settings-content');
+            oldSettingsWrap && newSettingsWrap ? oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML : null;
+        }).catch(err => console.log(err));
     };
 
     //---------------------------------------
@@ -217,6 +271,8 @@
             document.getElementById(e.target.getAttribute('data-id')).classList.add('active');
         }
         if(e && e.target.classList.contains('py__get-button')) getItemFromSettings(e);
+        if(e && e.target.classList.contains('py__button-view')) toggleIframePreview(e);
+        if(e && e.target.classList.contains('py__settings-select-options-item')) getSettingsLists(e);
     });
 
 })();

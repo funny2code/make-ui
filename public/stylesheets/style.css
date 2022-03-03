@@ -61,6 +61,7 @@ body {
   min-width: 133px;
 }
 .py__button-view svg {
+  pointer-events: none;
   margin-right: 10px;
 }
 .py__button-view.active {
@@ -275,7 +276,11 @@ body {
   border-color: #000000;
   color: #FFFFFF;
 }
+.py__settings-select-options-item * {
+  pointer-events: none;
+}
 .py__settings-content {
+  position: relative;
   margin-top: 30px;
   height: calc(100vh - 218px);
   overflow: auto;
@@ -544,8 +549,7 @@ select {
   position: relative;
 }
 .py__preview-settings {
-  display: none;
-  position: absolute;
+  display: flex;
   left: 0;
   top: 0;
   width: 100%;
@@ -553,7 +557,7 @@ select {
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  padding: 19px;
+  padding-bottom: 10px;
 }
 .py__preview-buttons {
   display: flex;
@@ -565,9 +569,11 @@ select {
   border-radius: 10px;
 }
 .py__preview-iframe iframe {
+  display: block;
+  margin: 0 auto;
   border: 0;
   width: 100%;
-  height: calc(100vh - 153px);
+  height: calc(100vh - 215px);
 }
 .py__preview-select select {
   background: #FFFFFF;
@@ -600,4 +606,54 @@ select {
   background-color: #000000;
   border-radius: 10px;
   border: 3px solid #ffffff;
+}
+
+/* LOADING */
+.py__loading-wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 50;
+}
+.py__loading-wrap.py__animate {
+  display: flex;
+}
+.py__loading {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.py__loading:after {
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 32px solid #111111;
+  border-color: #111111 transparent #111111 transparent;
+}
+.py__animate .py__loading:after {
+  animation: py-loading 1.2s infinite;
+}
+@keyframes py-loading {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    transform: rotate(1800deg);
+  }
 }
