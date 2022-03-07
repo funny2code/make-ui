@@ -13,7 +13,7 @@ const sectionsModel = require('../models/sections');
 /* GET theme settings and sections for Iframe View. */
 router.get('/:id', async (req, res, next) => {
   const {id} = req.params;
-  const {page} = req.query;
+  const {page, section} = req.query;
   if(!id || !page) return next();
 
   let theme = '';
@@ -40,23 +40,40 @@ router.get('/:id', async (req, res, next) => {
   });
 
   const sectionSettings = [];
-  pageResult.sections.map(item => {
-    sections?.sections && sections.sections.map(el => {
-      if(item.name === el.name){
+  if(section){
+    sections?.sections && sections.sections.map(item => {
+      if(item.name === section){
         const sectionChildSettings = {};
-        if(el.settings){
-            for(var k in el.settings) {
-                sectionChildSettings[el.settings[k].id] = el.settings[k].default;
+        if(item.settings){
+            for(var k in item.settings) {
+                sectionChildSettings[item.settings[k].id] = item.settings[k].default;
             }
         }
-        el.presets ? el.presets[0]?.blocks && el.presets[0].blocks.length 
-        ? sectionSettings.push({name: el.name, settings: sectionChildSettings, blocks: el.presets[0].blocks}) 
-        : sectionSettings.push({name: el.name, settings: sectionChildSettings, blocks: []})
-        : sectionSettings.push({name: el.name, settings: sectionChildSettings, blocks: []});
-
+        item.presets ? item.presets[0]?.blocks && item.presets[0].blocks.length 
+        ? sectionSettings.push({name: item.name, settings: sectionChildSettings, blocks: item.presets[0].blocks}) 
+        : sectionSettings.push({name: item.name, settings: sectionChildSettings, blocks: []})
+        : sectionSettings.push({name: item.name, settings: sectionChildSettings, blocks: []});
       }
     });
-  });
+  } else {
+    pageResult.sections.map(item => {
+      sections?.sections && sections.sections.map(el => {
+        if(item.name === el.name){
+          const sectionChildSettings = {};
+          if(el.settings){
+              for(var k in el.settings) {
+                  sectionChildSettings[el.settings[k].id] = el.settings[k].default;
+              }
+          }
+          el.presets ? el.presets[0]?.blocks && el.presets[0].blocks.length 
+          ? sectionSettings.push({name: el.name, settings: sectionChildSettings, blocks: el.presets[0].blocks}) 
+          : sectionSettings.push({name: el.name, settings: sectionChildSettings, blocks: []})
+          : sectionSettings.push({name: el.name, settings: sectionChildSettings, blocks: []});
+
+        }
+      });
+    });
+  }
 
   res.render('view', {
     menu: makeMenu,
@@ -76,6 +93,7 @@ router.post('/:id', async (req, res, next) => {
   const {id} = req.params;
   const {settings, section} = req.body;
   const {page} = req.query;
+  const sectionHandle = req.query.section;
   var theme = '', sections = '', pageResult = '';
   var defaultSettings = {}, defaultSections = [];
   if(!id || !page) return next();
@@ -103,9 +121,9 @@ router.post('/:id', async (req, res, next) => {
       }
   });
 
-  pageResult.sections.map(item => {
+  if(sectionHandle){
     sections?.sections && sections.sections.map(el => {
-      if(item.name === el.name){
+      if(el.name === sectionHandle){
         let sectionChildSettings = {};
         if(el.settings){
           for(var k in el.settings) {
@@ -120,7 +138,26 @@ router.post('/:id', async (req, res, next) => {
 
       }
     });
-  });
+  } else {
+    pageResult.sections.map(item => {
+      sections?.sections && sections.sections.map(el => {
+        if(item.name === el.name){
+          let sectionChildSettings = {};
+          if(el.settings){
+            for(var k in el.settings) {
+                sectionChildSettings[el.settings[k].id] = el.settings[k].default;
+            }
+          }
+        
+          el.presets ? el.presets[0]?.blocks && el.presets[0].blocks.length 
+          ? defaultSections.push({name: el.name, settings: sectionChildSettings, blocks: el.presets[0].blocks}) 
+          : defaultSections.push({name: el.name, settings: sectionChildSettings, blocks: []})
+          : defaultSections.push({name: el.name, settings: sectionChildSettings, blocks: []});
+
+        }
+      });
+    });
+  }
 
   section && defaultSections.forEach(item => item.name === section[0].name ? item.settings = section[0].settings : null);
   

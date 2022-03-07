@@ -43,19 +43,19 @@ router.get('/:id', async (req, res, next) => {
     {name: 'Cart'}
   ];
 
-  const sectionOptions = [
-    {"name": "announcement bar"},
-    {"name": "header"},
-    {"name": "hero banner"},
-    {"name": "marquee"},
-    {"name": "partners"},
-    {"name": "collection see"},
-    {"name": "image with two products"},
-    {"name": "collection our"},
-    {"name": "featured collection"},
-    {"name": "rich text"},
-    {"name": "footer"}
-  ];
+  // const sectionOptions = [
+  //   {"name": "announcement bar"},
+  //   {"name": "header"},
+  //   {"name": "hero banner"},
+  //   {"name": "marquee"},
+  //   {"name": "partners"},
+  //   {"name": "collection see"},
+  //   {"name": "image with two products"},
+  //   {"name": "collection our"},
+  //   {"name": "featured collection"},
+  //   {"name": "rich text"},
+  //   {"name": "footer"}
+  // ];
   
   res.render('theme', { 
     make: make, 

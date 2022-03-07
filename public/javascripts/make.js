@@ -139,7 +139,26 @@
         let content = document.querySelector('.py__settings-content');
         let url = el.getAttribute('href');
         if(!url) return;
+        
         window.history.replaceState({ }, '', url);
+        let urlSearch = new URLSearchParams(url);
+        let sectionName = urlSearch.get('section');
+        let iframe = document.querySelector('.py__view-iframe');
+        
+        if(sectionName){
+            let urlParams = new URL(location.href);
+            let iframeSearchParams = new URLSearchParams(urlParams.search);
+            iframeSearchParams.set('section', sectionName); 
+            let iframeUrl = urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString(); 
+            iframe.setAttribute('src', iframeUrl);
+        } else {
+            let urlParams = new URL(location.href);
+            let iframeSearchParams = new URLSearchParams(urlParams.search);
+            iframeSearchParams.delete('global', sectionName); 
+            let iframeUrl = urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString();
+            iframe.setAttribute('src', iframeUrl);
+        }
+        
         content.querySelector('.py__loading-wrap').classList.add('py__animate');
         document.querySelector('.py__settings-select-options-item.active').classList.remove('active');
         document.querySelector('.py__settings-select.active').classList.remove('active');
