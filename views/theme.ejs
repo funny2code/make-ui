@@ -11,87 +11,41 @@
         <div class="py__make">
             <div class="py__make-sidebar">
                 <form class="py__settings-form" method="post" action="/save/<%= id %>" aria-multiline="true">
-                    <% if(globalOptions && sectionOptions){ %>
+                    <% if(settingOptions){ %>
                         <div class="py__settings-select">
                             <div class="py__settings-select-options">
-                                <ul class="py__options-ul<% if(activeType === 'global'){ %> active<% } %>" id="pyglobaloptions">
-                                    <% globalOptions.forEach(option => { %>
-                                        <li>
-                                            <% if(active === option.name){ %>
-                                                <a href="/themes/<%=id%>?page=<%=page%>&global=<%=option.name%>" class="py__settings-select-options-item active">
-                                                    <span class="py__select-option-label"><%= option.name %></span>
-                                                </a>
-                                            <% } else { %>
-                                                <a href="/themes/<%=id%>?page=<%=page%>&global=<%=option.name%>" class="py__settings-select-options-item">
-                                                    <span class="py__select-option-label"><%= option.name %></span>
-                                                    <span><%- include('icons', {type:'arrow_right'}) %></span>
-                                                </a>
+                                <ul class="py__options-ul">
+                                    <% settingOptions.forEach(option => { %>
+                                        <li class="py__options-ul-li">
+                                            <a href="/themes/<%=id%>?page=<%=page%>&<% if(activeType === 'section'){%>&section=<%=option.name%><% } else { %>&global=<%=option.name%><% } %>" class="py__settings-select-options-item<% if(active === option.name){ %> active<% } %>" data-id="<%= option.menu %>">
+                                                <span><%- include('icons', {type: option.icon}) %></span>
+                                                <span class="py__select-option-label"><%= option.title %></span>
+                                            </a>
+                                            <% if(option.menu){ %>
+                                                <ul class="py__sub-options-ul" id="<%= option.menu %>">
+                                                    <% option.subOptions.forEach(subOption => { %>
+                                                        <li>
+                                                            <% if(option.type === "section"){ %>
+                                                                <a href="/themes/<%=id%>?page=<%=page%>&section=<%=subOption.name%>" class="py__sub-options-item<% if(active === subOption.name){ %> active<% } %>">
+                                                                    <span><%= subOption.name %></span>
+                                                                    <span><%- include('icons', {type:'arrow_right'}) %></span>
+                                                                </a>
+                                                            <% } else { %>
+                                                                <a href="/themes/<%=id%>?page=<%=subOption.name%><% if(activeType === 'section'){%>&section=<%=active%><% } else { %>&global=<%=active%><% } %>" class="py__sub-options-item<% if(active === subOption.name){ %> active<% } %>">
+                                                                    <span><%= subOption.name %></span>
+                                                                    <span><%- include('icons', {type:'arrow_right'}) %></span>
+                                                                </a>
+                                                            <% } %>
+                                                        </li>
+                                                    <% }) %>
+                                                </ul>
                                             <% } %>
                                         </li>
                                     <% }) %>
                                 </ul>
-                                <ul class="py__options-ul<% if(activeType === 'section'){ %> active<% } %>" id="pysectionoptions">
-                                    <% sectionOptions.forEach(option => { %>
-                                        <li>
-                                            <% if(active === option.name){ %>
-                                                <a href="/themes/<%=id%>?page=<%=page%>&section=<%=option.name%>" class="py__settings-select-options-item active">
-                                                    <span class="py__select-option-label"><%= option.name %></span>
-                                                </a>
-                                            <% } else { %>
-                                                <a href="/themes/<%=id%>?page=<%=page%>&section=<%=option.name%>" class="py__settings-select-options-item">
-                                                    <span class="py__select-option-label"><%= option.name %></span>
-                                                    <span><%- include('icons', {type:'arrow_right'}) %></span>
-                                                </a>
-                                            <% } %>
-                                        </li>
-                                    <% }) %>
-                                </ul>
+
                             </div>
                         </div>
-                        <!-- <div class="py__settings-select">
-                            <div class="py__settings-selected">
-                                <span class="py__selected-label"><%=active%></span>
-                                <span class="py__icon-down"><%- include('icons', {type:'arrow_bottom'}) %></span>
-                            </div>
-                            <div class="py__settings-select-options">
-                                <ul class="py__types-ul">
-                                    <li data-id="pyglobaloptions" class="py__types-item<% if(activeType === 'global'){ %> active<% } %>">Global</li>
-                                    <li data-id="pysectionoptions" class="py__types-item<% if(activeType === 'section'){ %> active<% } %>">Sections</li>
-                                </ul>
-                                <ul class="py__options-ul<% if(activeType === 'global'){ %> active<% } %>" id="pyglobaloptions">
-                                    <% globalOptions.forEach(option => { %>
-                                        <li>
-                                            <% if(active === option.name){ %>
-                                                <a href="/themes/<%=id%>?page=<%=page%>&global=<%=option.name%>" class="py__settings-select-options-item active">
-                                                    <span class="py__select-option-label"><%= option.name %></span>
-                                                </a>
-                                            <% } else { %>
-                                                <a href="/themes/<%=id%>?page=<%=page%>&global=<%=option.name%>" class="py__settings-select-options-item">
-                                                    <span class="py__select-option-label"><%= option.name %></span>
-                                                    <span><%- include('icons', {type:'arrow_right'}) %></span>
-                                                </a>
-                                            <% } %>
-                                        </li>
-                                    <% }) %>
-                                </ul>
-                                <ul class="py__options-ul<% if(activeType === 'section'){ %> active<% } %>" id="pysectionoptions">
-                                    <% sectionOptions.forEach(option => { %>
-                                        <li>
-                                            <% if(active === option.name){ %>
-                                                <a href="/themes/<%=id%>?page=<%=page%>&section=<%=option.name%>" class="py__settings-select-options-item active">
-                                                    <span class="py__select-option-label"><%= option.name %></span>
-                                                </a>
-                                            <% } else { %>
-                                                <a href="/themes/<%=id%>?page=<%=page%>&section=<%=option.name%>" class="py__settings-select-options-item">
-                                                    <span class="py__select-option-label"><%= option.name %></span>
-                                                    <span><%- include('icons', {type:'arrow_right'}) %></span>
-                                                </a>
-                                            <% } %>
-                                        </li>
-                                    <% }) %>
-                                </ul>
-                            </div>
-                        </div> -->
                     <% } %>
                 </form>
             </div>

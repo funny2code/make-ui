@@ -179,7 +179,6 @@ body {
   height: 100%;
 }
 .py__make-sidebar {
-  flex: 3 0 0;
   /* max-height: 100%;
   overflow: auto; */
 }
@@ -244,30 +243,87 @@ body {
   padding: 0;
   list-style-type: none;
 }
-.py__settings-select-options ul.py__options-ul:not(:first-of-type) {
+.py__settings-select-options ul.py__options-ul .py__options-ul-li {
+  position: relative;
+}
+.py__settings-select-options ul.py__options-ul .py__options-ul-li:not(:first-of-type) {
   margin-top: 17px;
 }
-.py__settings-select-options ul.py__options-ul li:not(:first-of-type) {
-  margin-top: 17px;
+.py__settings-select-options ul.py__sub-options-ul {
+  display: none;
+  background: #FFFFFF;
+  border: 1px solid #D6D6D6;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 7px rgb(0 0 0 / 5%);
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 105%;
+  padding: 0;
+  width: 240px;
+  z-index: 20;
+  max-height: 300px;
+  overflow: auto;
+  list-style-type: none;
 }
-.py__settings-select-options-item {
+.py__settings-select-options ul.py__sub-options-ul.active {
+  display: block;
+}
+.py__settings-select-options ul.py__sub-options-ul .py__sub-options-item {
   display: flex;
   justify-content: space-between;
-  background: #FFFFFF;
-  border: 1px solid #9C9C9C;
-  border-radius: 10px;
-  padding: 13px 21px;
   text-decoration: none;
   font-family: Inter;
   font-weight: normal;
   font-size: 18px;
   line-height: 20px;
   color: #000000;
+  padding: 10px 16px;
+  border-bottom: 1px solid #C4C4C4;
+}
+.py__settings-select-options ul.py__sub-options-ul .py__sub-options-item svg {
+  fill: #000000;
+}
+.py__settings-select-options ul.py__sub-options-ul .py__sub-options-item.active {
+  background: #000000;
+  color: #FFFFFF;
+}
+.py__settings-select-options ul.py__sub-options-ul .py__sub-options-item.active svg {
+  fill: #FFFFFF;
+}
+.py__settings-select-options ul.py__sub-options-ul .py__sub-options-item * {
+  pointer-events: none;
+}
+.py__settings-select-options-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #F4F4F4;
+  border-radius: 10px;
+  padding: 12px;
+  text-decoration: none;
+  font-family: Inter;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+}
+.py__settings-select-options-item svg {
+  fill: #000000;
+}
+.py__select-option-label {
+  margin-top: 6px;
 }
 .py__settings-select-options-item.active {
   background: #000000;
-  border-color: #000000;
   color: #FFFFFF;
+}
+.py__settings-select-options-item.active svg {
+  fill: #FFFFFF;
 }
 .py__settings-select-options-item * {
   pointer-events: none;

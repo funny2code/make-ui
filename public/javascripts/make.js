@@ -158,12 +158,9 @@
             iframe.setAttribute('src', iframeUrl);
         }
         
-        content.querySelector('.py__loading-wrap').classList.add('py__animate');
+        if (content) content.querySelector('.py__loading-wrap').classList.add('py__animate');
         let settingOptionItem = document.querySelector('.py__settings-select-options-item.active');
         if (settingOptionItem) settingOptionItem.classList.remove('active');
-        let settingSelect = document.querySelector('.py__settings-select.active');
-        if (settingSelect) settingSelect.classList.remove('active');
-        // document.querySelector('.py__selected-label').textContent = el.querySelector('.py__select-option-label').textContent;
         el.classList.add('active');
         fetch(url)
         .then(res => res.text())
@@ -284,11 +281,19 @@
             ? e.target.closest('.py__settings-item-wrapper').classList.remove('active')
             : e.target.closest('.py__settings-item-wrapper').classList.add('active');
         }
-        if(e && e.target.classList.contains('py__types-item')){
-            document.querySelector('.py__types-item.active').classList.remove('active');
-            document.querySelector('.py__options-ul.active').classList.remove('active');
-            e.target.classList.add('active');
-            document.getElementById(e.target.getAttribute('data-id')).classList.add('active');
+        if(e && e.target.classList.contains('py__settings-select-options-item')){
+            const el = e.target;
+            const menuElement = document.querySelector(".py__sub-options-ul.active");
+            if (menuElement) menuElement.classList.remove('active');
+            
+            const dataId = el.getAttribute('data-id');
+            if (dataId && dataId.length > 0) {
+                const menuElement = document.getElementById(dataId);
+                if (menuElement) {
+                    if (menuElement.classList.contains("active")) menuElement.classList.remove('active');
+                    else menuElement.classList.add('active');
+                }
+            }
         }
         if(e && e.target.classList.contains('py__get-button')) getItemFromSettings(e);
         if(e && e.target.classList.contains('py__button-view')) toggleIframePreview(e);

@@ -36,11 +36,18 @@ router.get('/:id', async (req, res, next) => {
 
   const sections = section ? sectionsResult.sections.filter(item => item.name === section) : null;
 
-  const globalOptions = [
-    {name: 'Global Styles'}, 
-    {name: 'Typography Settings'}, 
-    {name: 'Spacing Values'},
-    {name: 'Cart'}
+  const pageOptions = [
+    {name: 'Home Page'},
+    {name: 'Product Page'},
+  ];
+
+  const settingOptions = [
+    {title: "Brand", name: "Global Styles", icon: "brand", type: "global"},
+    {title: "Fonts", name: "Typography Settings", icon: "fonts", type: "global"},
+    {title: "Spacing", name: "Spacing Values", icon: "spacing", type: "global"},
+    {title: "Cart", name: "Cart", icon: "cart", type: "global"},
+    {title: "Sections", name: active, icon: "spacing", menu: "pysectionoptions", subOptions: pageResult.sections, type: "section"},
+    {title: "Pages", name: active, icon: "pages", menu: "pypageoptions", subOptions: pageOptions, type: "page" }
   ];
 
   // const sectionOptions = [
@@ -61,8 +68,7 @@ router.get('/:id', async (req, res, next) => {
     make: make, 
     id: theme._id,
     page: page,
-    globalOptions: globalOptions,
-    sectionOptions: pageResult.sections,
+    settingOptions: settingOptions,
     fonts: fonts,
     settings: settings ? settings : null,
     section: sections ? sections[0] : null,
