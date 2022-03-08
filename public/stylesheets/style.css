@@ -1,3 +1,7 @@
+html, body {
+  height: 100%;
+}
+
 *, 
 *::after, 
 *::before {
@@ -45,7 +49,7 @@ body {
   color: #FFFFFF;
 }
 .py__button-view {
-  border: 1px solid #696868;
+  border: 1px solid #CBCBCB;
   box-sizing: border-box;
   border-radius: 10px;
   background: transparent;
@@ -65,8 +69,7 @@ body {
   margin-right: 10px;
 }
 .py__button-view.active {
-  background: #FFFFFF;
-  border-color: #ffffff;
+  border-color: #000000;
   color: #000000;
 }
 .py__button-view.active path {
@@ -173,20 +176,27 @@ body {
   flex-wrap: wrap;
   gap: 47px;
   margin-top: 35px;
+  height: 100%;
 }
 .py__make-sidebar {
-  flex: 1 0 0;
+  flex: 3 0 0;
+  /* max-height: 100%;
+  overflow: auto; */
 }
 .py__make-preview {
-  flex: 3 0 0;
+  flex: 10 0 0;
+  /* max-height: 100%;
+  overflow: auto; */
+}
+.py__make-settings {
+  flex: 4 0 0;
+  margin-top: 50px;
+  /* max-height: 100%;
+  overflow: auto; */
 }
 .py__settings-select {
   position: relative;
-  background: #FFFFFF;
-  border: 1px solid #E5E7EB;
-  box-shadow: 0px 1px 2px rgb(31 41 55 / 8%);
-  border-radius: 4px;
-  padding: 8px 44px 8px 16px;
+  padding: 8px;
   cursor: pointer;
 }
 .py__settings-selected {
@@ -204,21 +214,7 @@ body {
   line-height: 6px;
 }
 .py__settings-select-options {
-  display: none;
-  background: #FFFFFF;
-  border: 1px solid #D8D8D8;
-  box-sizing: border-box;
-  box-shadow: 0px 2px 7px rgb(0 0 0 / 5%);
-  border-radius: 10px;
-  position: absolute;
-  top: 50px;
-  left: 0;
-  padding: 18px 32px 20px 16px;
-  width: 600px;
   z-index: 20;
-}
-.py__settings-select.active .py__settings-select-options {
-  display: block;
 }
 .py__types-ul {
   padding: 0 0 17px 0;
@@ -244,15 +240,12 @@ body {
   color: #ffffff;
 }
 .py__settings-select-options ul.py__options-ul {
-  display: none;
   margin: 0;
   padding: 0;
   list-style-type: none;
-  max-height: 265px;
-  overflow: auto;
 }
-.py__settings-select-options ul.py__options-ul.active {
-  display: block;
+.py__settings-select-options ul.py__options-ul:not(:first-of-type) {
+  margin-top: 17px;
 }
 .py__settings-select-options ul.py__options-ul li:not(:first-of-type) {
   margin-top: 17px;
@@ -281,9 +274,11 @@ body {
 }
 .py__settings-content {
   position: relative;
-  margin-top: 30px;
-  height: calc(100vh - 218px);
+  /* height: calc(100vh - 218px); */
+  max-height: 100%;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 /* SETTINGS DROPDOWN */
@@ -295,7 +290,7 @@ body {
   margin-bottom: 12px;
 }
 .py__settings-item-wrapper.active {
-  background: #2F2954;
+  background: #F4F4F4;
 }
 .py__settings-item-name {
   position: relative;
@@ -303,17 +298,13 @@ body {
   font-weight: bold;
   font-size: 16px;
   line-height: 19px;
-  color: #2F2954;
-  fill: #2F2954;
+  color: #000000;
+  fill: #000000;
   padding: 18px 40px 18px 18px;
   cursor: pointer;
 }
 .py__settings-item-name span {
   pointer-events: none;
-}
-.py__settings-item-wrapper.active .py__settings-item-name {
-  color: #FFFFFF;
-  fill: #FFFFFF;
 }
 .py__settings-item-icon {
   position: absolute;
@@ -364,13 +355,9 @@ body {
 .py__settings-item-wrapper.active .py__settings-item-header label {
   font-size: 12px;
   line-height: 15px;
-  color: #FFFFFF;
 }
 .py__settings-item-header .py__tooltip {
   fill: #000000;
-}
-.py__settings-item-wrapper.active .py__settings-item-header .py__tooltip {
-  fill: #ffffff;
 }
 .py__settings-item-header .py__tooltip svg {
   height: 19px;
@@ -388,7 +375,7 @@ body {
   border: 1px solid #E9E9E9;
   box-shadow: 0px 2px 7px rgb(0 0 0 / 5%);
   border-radius: 10px;
-  min-height: 74px;
+  min-height: 45px;
 }
 .py__comp-color .is__color {
   width: 100%;
@@ -419,7 +406,7 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 0px 10px 10px 0px;
-  min-height: 62px;
+  min-height: 45px;
   cursor: pointer;
 }
 /* TEXT COMP */
@@ -427,7 +414,7 @@ body {
   border: 1px solid #E9E9E9;
   box-shadow: 0px 2px 7px rgb(0 0 0 / 5%);
   border-radius: 10px;
-  min-height: 74px;
+  min-height: 45px;
   width: 100%;
   padding: 0 15px;
   font-family: Roboto;
@@ -444,7 +431,7 @@ body {
   box-sizing: border-box;
   box-shadow: 0px 2px 7px rgb(0 0 0 / 5%);
   border-radius: 10px;
-  min-height: 74px;
+  min-height: 45px;
   padding: 5px;
   display: flex;
   flex-direction: row;
@@ -486,7 +473,7 @@ select {
   box-shadow: 0px 2px 7px rgb(0 0 0 / 5%);
   border-radius: 10px;
   outline: none;
-  min-height: 74px;
+  min-height: 45px;
   width: 100%;
   padding: 0 30px 0 15px;
   font-size: 12px;
@@ -567,6 +554,7 @@ select {
 .py__preview-iframe {
   background: #E8E8E8;
   border-radius: 10px;
+  padding: 20px;
 }
 .py__preview-iframe iframe {
   display: block;

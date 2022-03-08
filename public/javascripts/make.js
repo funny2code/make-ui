@@ -159,9 +159,11 @@
         }
         
         content.querySelector('.py__loading-wrap').classList.add('py__animate');
-        document.querySelector('.py__settings-select-options-item.active').classList.remove('active');
-        document.querySelector('.py__settings-select.active').classList.remove('active');
-        document.querySelector('.py__selected-label').textContent = el.querySelector('.py__select-option-label').textContent;
+        let settingOptionItem = document.querySelector('.py__settings-select-options-item.active');
+        if (settingOptionItem) settingOptionItem.classList.remove('active');
+        let settingSelect = document.querySelector('.py__settings-select.active');
+        if (settingSelect) settingSelect.classList.remove('active');
+        // document.querySelector('.py__selected-label').textContent = el.querySelector('.py__select-option-label').textContent;
         el.classList.add('active');
         fetch(url)
         .then(res => res.text())

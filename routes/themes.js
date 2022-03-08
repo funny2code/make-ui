@@ -57,7 +57,7 @@ router.get('/:id', async (req, res, next) => {
   //   {"name": "footer"}
   // ];
   
-  res.render('theme', { 
+  res.render('theme', {
     make: make, 
     id: theme._id,
     page: page,
