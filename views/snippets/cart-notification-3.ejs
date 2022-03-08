@@ -12,7 +12,7 @@
 
 <cart-notification>
   <div class="cart-notification-wrapper <% if(freeShipping){ %>cart-notification-wrapper__shipping<% } %> <%=cart_layout%>">
-    <div id="cart-notification" class="cart-notification" aria-modal="true" aria-label="item added" role="dialog" tabindex="-1">
+    <div id="cart-notification" class="cart-notification <% if(active){ %><%= active %><% } %>" aria-modal="true" aria-label="item added" role="dialog" tabindex="-1">
       <div class="cart-notification__header">
         <% if(settings.cart_heading){ %>
           <h2 class="cart-notification__heading caption-large"><%= settings.cart_heading %></h2>

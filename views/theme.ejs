@@ -117,7 +117,7 @@
                     <div class="py__loading-wrap">
                         <div class="py__loading"><div></div><div></div><div></div></div>
                     </div>
-                    <iframe src="/view/<%= id %>?page=<%=page%><% if(activeType === 'section'){%>&section=<%=active%><% } %>" class="py__view-iframe"></iframe>
+                    <iframe src="/view/<%= id %>?page=<%=page%><% if(activeType === 'section'){%>&section=<%=active%><% } else { %>&global=<%=active%><% } %>" class="py__view-iframe"></iframe>
                 </div>
             </div>
         </div>

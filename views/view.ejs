@@ -131,7 +131,7 @@
     </style>
     <% } %>
 <body>
-    <% if(sections){ %>
+    <% if(sections && sections.length){ %>
         <% sections.forEach(item => { %>
             <% if(item.name === 'header'){ %>
                 <%- include('sections/header', {menu: menu, settings: settings, section: item }) %>
@@ -183,6 +183,8 @@
                 <%- include('sections/footer', {settings: settings, section: item, localization: false }) %>
             <% } %>
         <% }) %>
+    <% } else { %>
+        <%- include('snippets/cart-drawer', {settings: settings}) %>
     <% } %>
 
     <script src="https://cdn.shopify.com/s/javascripts/currencies.js" defer="defer"></script>

@@ -13,7 +13,7 @@ const sectionsModel = require('../models/sections');
 /* GET theme settings and sections for Iframe View. */
 router.get('/:id', async (req, res, next) => {
   const {id} = req.params;
-  const {page, section} = req.query;
+  const {page, section, global} = req.query;
   if(!id || !page) return next();
 
   let theme = '';
@@ -39,6 +39,7 @@ router.get('/:id', async (req, res, next) => {
       }
   });
 
+
   const sectionSettings = [];
   if(section){
     sections?.sections && sections.sections.map(item => {
@@ -55,7 +56,7 @@ router.get('/:id', async (req, res, next) => {
         : sectionSettings.push({name: item.name, settings: sectionChildSettings, blocks: []});
       }
     });
-  } else {
+  } else if(global !== 'Cart') {
     pageResult.sections.map(item => {
       sections?.sections && sections.sections.map(el => {
         if(item.name === el.name){
@@ -75,6 +76,7 @@ router.get('/:id', async (req, res, next) => {
     });
   }
 
+
   res.render('view', {
     menu: makeMenu,
     shop: shop,
@@ -92,7 +94,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/:id', async (req, res, next) => {
   const {id} = req.params;
   const {settings, section} = req.body;
-  const {page} = req.query;
+  const {page, global} = req.query;
   const sectionHandle = req.query.section;
   var theme = '', sections = '', pageResult = '';
   var defaultSettings = {}, defaultSections = [];
@@ -138,7 +140,7 @@ router.post('/:id', async (req, res, next) => {
 
       }
     });
-  } else {
+  } else if(global !== 'Cart'){
     pageResult.sections.map(item => {
       sections?.sections && sections.sections.map(el => {
         if(item.name === el.name){

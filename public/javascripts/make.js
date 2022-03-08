@@ -154,7 +154,6 @@
         } else {
             let urlParams = new URL(location.href);
             let iframeSearchParams = new URLSearchParams(urlParams.search);
-            iframeSearchParams.delete('global', sectionName); 
             let iframeUrl = urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString();
             iframe.setAttribute('src', iframeUrl);
         }
