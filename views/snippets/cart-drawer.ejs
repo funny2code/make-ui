@@ -1,12 +1,12 @@
 <div id="shopify-section-cart-template" class="shopify-section">
     <% if(settings.cart_style === 'style-4'){ %>
-        <%- include('../snippets/cart-notification-4', {active: 'animate active'}) %> 
+        <%- include('./cart-notification-4', {active: 'animate active'}) %> 
     <% } else if(settings.cart_style === 'style-3'){ %>
         <%- include('./cart-notification-3', {cart_layout: settings.cart_layout, active: 'animate active'}) %>
     <% } else if(settings.cart_style === 'style-2'){ %>
-        <%- include('../snippets/cart-notification-2', {cart_layout: settings.cart_layout,enable_dynamic_pay: settings.enable_dynamic_pay, active: 'animate active'}) %>
+        <%- include('./cart-notification-2', {cart_layout: settings.cart_layout,enable_dynamic_pay: settings.enable_dynamic_pay, active: 'animate active'}) %>
     <% } else if(settings.cart_style === 'style-1'){ %>
-        <%- include('../snippets/cart-notification', {checkoutbtn_position: settings.checkoutbtn_position,enable_dynamic_pay: settings.enable_dynamic_pay, active: 'animate active'}) %>
+        <%- include('./cart-notification', {checkoutbtn_position: settings.checkoutbtn_position,enable_dynamic_pay: settings.enable_dynamic_pay, active: 'animate active'}) %>
     <% } %>
   </div>
   

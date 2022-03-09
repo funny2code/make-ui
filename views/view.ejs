@@ -19,8 +19,7 @@
     <% if(settings){ %>
     <style>
         :root {
-            --font-body-family: <%= settings.body_font %>;
-            --font-body-google: <%= settings.body_font_google %>;
+            --font-body-family: <%= settings.body_font_google ? settings.body_font_google : settings.body_font %>;
 
             --py-bg-color-dark: <%= settings.py_bg_color_dark %>;
             --py-bg-color-avarge: <%= settings.py_bg_color_avarge %>;
@@ -130,7 +129,7 @@
         }
     </style>
     <% } %>
-<body>
+<body class="index">
     <% if(sections && sections.length){ %>
         <% sections.forEach(item => { %>
             <% if(item.name === 'header'){ %>

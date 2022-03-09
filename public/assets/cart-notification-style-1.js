@@ -164,19 +164,16 @@ class CartNotification extends HTMLElement {
 
   getCart(loading=false){
 
-    // fetch(`${routes.cart_url}`, {...fetchConfigGet('javascript')})
-    // .then(response => response.json())
-    // .then(data => this.renderCart(data))
-    // .catch(e => console.error(e))
-    // .finally(() => {
-    //   this.cartItemsWrapper.innerHTML = this.items;
-    //   this.open();
-    //   this.removeBtnInit();
-    //   loading ? this.notification.classList.remove('loading') : null;
-    // });
-    this.open();
-    this.removeBtnInit();
-    loading ? this.notification.classList.remove('loading') : null;
+    fetch(`${routes.cart_url}`, {...fetchConfigGet('javascript')})
+    .then(response => response.json())
+    .then(data => this.renderCart(data))
+    .catch(e => console.error(e))
+    .finally(() => {
+      this.cartItemsWrapper.innerHTML = this.items;
+      this.open();
+      this.removeBtnInit();
+      loading ? this.notification.classList.remove('loading') : null;
+    });
 
   }
 

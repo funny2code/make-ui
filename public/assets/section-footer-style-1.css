@@ -1,8 +1,12 @@
-.footer {
-  background-color: var(--py-footer-bg-color);
-  color: var(--py-footer-color);
+footer.py-c-dark *{
+  color: var(--py-color-dark);
 }
-
+footer.py-c-average *{
+  color: var(--py-color-avarge);
+}
+footer.py-c-light *{
+  color: var(--py-color-light);
+}
 @media screen and (max-width: 749px) {
 
   .footer__content-top.page-width {
@@ -178,7 +182,6 @@
 }
 
 .footer-block__heading {
-  color: inherit;
   font-weight: 400;
   margin-bottom: 1.5rem;
   margin-top: 0;
@@ -213,8 +216,7 @@
   width: 100%;
   margin-left: 0;
   box-shadow: none;
-  background: #ffffff;
-  color: #000000;
+  background: #fff;
   text-transform: uppercase;
   border-radius: 2px;
   font-weight: 500;
@@ -301,8 +303,7 @@
 }
 
 .footer__localization h2 {
-  margin: 1rem 1rem 0.5rem;
-  color: var(--color-foreground-75);
+  margin: 1rem 1rem 0.5rem;  
 }
 
 @media screen and (min-width: 750px) {
@@ -452,16 +453,12 @@ footer details[open] summary ~ * {
 .footer-block__details-content {
   margin-bottom: 0;
 }
-.footer-block__details-content.rte p {
-  color: #fff;
+.footer-block__details-content.rte p {  
   font-size: 1.2rem;
   margin-top: 0;
   margin-bottom: 1rem;
   font-weight: 100;
   line-height: 1.375;
-}
-.footer-block__details-content.rte a {
-  color: #fff;
 }
 
 .footer-block__newsletter .field__input {
@@ -525,9 +522,6 @@ footer details[open] summary ~ * {
   }
 }
 
-.copyright__content a {
-  color: currentColor;
-}
 
 @keyframes animateLocalization {
   0% {

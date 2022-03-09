@@ -132,7 +132,7 @@ class VariantSelects extends HTMLElement {
       });
     }
   
-    toggleAddButton(disable = true, text, modifyClass = true) {
+    toggleAddButton(disable = true, text, modifyClass = true) {      
       const addButton = document.getElementById(`product-form-${this.dataset.section}`)?.querySelector('[name="add"]');
       if (!addButton) return;
   
@@ -143,7 +143,7 @@ class VariantSelects extends HTMLElement {
       } else {
         addButton.removeAttribute('disabled');
         addButton.classList.remove('bc-sold-out');
-        addButton.querySelector('span.product-form__submit-label').textContent = text;
+        if (text) addButton.querySelector('span.product-form__submit-label').textContent = text;
       }
   
       if (!modifyClass) return;
@@ -152,7 +152,7 @@ class VariantSelects extends HTMLElement {
     setUnavailable() {
       const addButton = document.getElementById(`product-form-${this.dataset.section}`)?.querySelector('[name="add"]');
       if (!addButton) return;
-      addButton.textContent = window.variantStrings.unavailable;
+      addButton.querySelector('span.product-form__submit-label').textContent = window.variantStrings.unavailable;
       document.getElementById(`price-${this.dataset.section}`)?.classList.add('visibility-hidden');
     }
   
@@ -196,11 +196,13 @@ class VariantSelects extends HTMLElement {
     updateOptions() {
       const fieldsets = Array.from(this.querySelectorAll('fieldset'));
       this.options = fieldsets.map((fieldset) => {
-        fieldset.querySelector('.selected-value').innerText = Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value;
-        if(fieldset.getAttribute('product-option').indexOf('olor') >= 0 && document.querySelector('#media-option-style') != null){
-           document.querySelector('#media-option-style').innerText = '.product__media-item.grid__item.alt-'+Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value + '{display:block;}';
+        if(fieldset.querySelector('.selected-value') != null){
+            fieldset.querySelector('.selected-value').innerText = Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value;
+            if(fieldset.getAttribute('product-option').indexOf('olor') >= 0 && document.querySelector('#media-option-style') != null){
+               document.querySelector('#media-option-style').innerText = '.product__media-item.grid__item.alt-'+Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value + '{display:block;}';
+            }
+            return Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value;
         }
-        return Array.from(fieldset.querySelectorAll('input')).find((radio) => radio.checked).value;
       });
     }
   }

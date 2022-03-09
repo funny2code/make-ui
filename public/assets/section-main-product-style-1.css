@@ -154,9 +154,6 @@
     font-weight: 400;
     font-style: normal;    
     font-size: 12px;    
-    background: #fff;
-    border: 1px solid #dfdfdf;
-    color: #373737;
     justify-content: center;
     align-items: center;
     line-height: normal;
@@ -165,11 +162,7 @@
     min-width:37px;
     transition: border var(--duration-short) ease;
   }
-  .py-bg-c-dark .product-form__input input[type='radio'] + label{
-    background:#4a4a4a;
-    color:#fff;
-    border-color:#4a4a4a
-  }
+  
   .product-form__input input[type='radio'] + label span{
     display: block;
     width: 18px;
@@ -190,15 +183,7 @@
     border: 0.1rem solid var(--color-foreground);
   }
    */
-  .product-form__input input[type='radio']:checked + label {
-    background: #D8E7FF;
-    cursor: default;
-  }
-  .py-bg-c-dark .product-form__input input[type='radio']:checked + label{
-    background:#fff;
-    color:#000;
-    border-color:#fff;
-  }
+  
   .product-form__input input[type='radio']:disabled + label {
     border-color: var(--color-foreground-10);
     color: var(--color-foreground-40);

@@ -60,7 +60,7 @@
 
 @media screen and (min-width: 990px) {
   .collage {
-    grid-template-columns: minmax(auto, 73rem) minmax(62rem, 36rem);
+    grid-template-columns: minmax(auto, 73rem) minmax(30rem, 36rem);
   }
 
   .collage--right {
