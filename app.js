@@ -8,6 +8,7 @@ const indexRouter = require('./routes/index');
 const themesRouter = require('./routes/themes');
 const viewRouter = require('./routes/view');
 const getRouter = require('./routes/get');
+const saveRouter = require('./routes/save');
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use('/', indexRouter);
 app.use('/themes', themesRouter);
 app.use('/view', viewRouter);
 app.use('/get', getRouter);
+app.use('/save', saveRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -24,6 +24,8 @@
                         <%- include('../components/range', {global: global, data: item}) %>
                     <% } else if(item.type === 'text' && item.label === 'Google Font' && fonts){ %>
                         <%- include('../components/font', {global: global, data: item, fonts: fonts}) %>
+                    <% } else if(item.type === 'paragraph'){ %>
+                        <%- include('../components/paragraph', {data: item}) %>
                     <% } %>
                 <% if(global && item.type === 'header' && item.content === '__________'){ %>
                     </div>

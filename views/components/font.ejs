@@ -13,7 +13,7 @@
     <div class="py__comp-font">
         <select type="select" name="<% if(global){ %>settings_<%= data.id %><% } else { %><%= data.id %><% } %>">
             <% fonts.items.forEach(font => { %>
-                <option value="<%=font.family%>">
+                <option value="<%=font.family%>" <% if(font.family === data.default){ %>selected<% } %>>
                     <%= font.family %>
                 </option>
             <% }) %>

@@ -34,7 +34,8 @@ class CartNotification extends HTMLElement {
 
     event.preventDefault();
     document.querySelector('cart-notification').classList.remove('new-item-added');
-    this.getCart();
+    // this.getCart();
+    this.open();
 
   }
 
