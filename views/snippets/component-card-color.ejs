@@ -7,7 +7,7 @@
             <% if(limit){ %>
               <% option.values.forEach((value, index) => { %>
               <div class="bc-card-color__item <% if(index === 0){ %>selected<% } %>" data-index="<%= index %>" data-option="<%= value %>">
-                  <span class="pd-colors__icon" data-color="<%= value.toLowerCase() %>"></span>
+                  <span class="pd-colors__icon" data-color="<%= value.toLowerCase() %>" <% if(value){ %>style="background:<%= value.toLowerCase()%>"<% } %>></span>
               </div>
               <% }) %>
               <% if(option.values.length > limit){ %>
@@ -16,7 +16,7 @@
             <% } else { %>
               <% option.values.forEach((value, index) => { %>
               <div class="bc-card-color__item <% if(index === 0){ %>selected<% } %>" data-index="<%= index %>" data-option="<%= value %>">
-                  <span class="pd-colors__icon" data-color="<%= value.toLowerCase() %>"></span>
+                  <span class="pd-colors__icon" data-color="<%= value.toLowerCase() %>" <% if(value){ %>style="background:<%= value.toLowerCase()%>"<% } %>></span>
               </div>
               <% }) %>
             <% } %>

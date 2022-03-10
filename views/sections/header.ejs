@@ -45,7 +45,6 @@
   .menu-drawer__menu-item:hover,
   .menu-drawer__close-button:hover {
     color: var(--header-py_header_link_hov_color_1);
-    background-color: var(--color-foreground-4);
   }
   .header__heading *,
   .top-left-nav-item,
@@ -72,12 +71,12 @@
   }
   .header--top-left .header__submenu,
   .header--top-left-with-nav .header__submenu{
-    background: var(--header-py_header_bg_color_2);
+    background:  var(--header-py_header_bg_color_2);
   }
   .header-search-container .header__icon--search form .search__input.field__input{
     border-radius: 30px;
-    background: var(--header-py_search_bg_color);
-    box-shadow: 0 0 0 0.1rem #ededed;
+    background:  var(--header-py_search_bg_color);
+    box-shadow: 0 0 0 0.1rem #EDEDED;
     border-bottom: 0px;
   }
   .search__button svg{
@@ -90,7 +89,7 @@
     color: var(--header-py_search_color);
   }
   .header-search-container .header__icon--search form .search__input.field__input:hover{
-    background: var(--header-py_search_hover_bg_color);
+    background:  var(--header-py_search_hover_bg_color);
   }
   .header-search-container .header__icon--search form:hover .search__input.field__input,
   .header-search-container .header__icon--search form:hover .field__label,
@@ -101,30 +100,24 @@
     padding-top: 5px;
   }
   @media(min-width:990px){
-    .header--top-left-with-nav{
-      padding:0px;      
-    }     
+    .header--top-left-with-nav,.header--top-left{
+      padding:0px;
+    }
     .header--top-left.py-pd-y-xl{
-      padding:0px;
       padding-top:var(--py-pd-y-xl);
-    } 
+    }
     .header--top-left.py-pd-y-l{
-      padding:0px;
       padding-top:var(--py-pd-y-l);
-    } 
+    }
     .header--top-left.py-pd-y-m{
-      padding:0px;
       padding-top:var(--py-pd-y-m);
     }
     .header--top-left.py-pd-y-s{
-      padding:0px;
       padding-top:var(--py-pd-y-s);
-    } 
+    }
     .header--top-left.py-pd-y-xs{
-      padding:0px;
       padding-top:var(--py-pd-y-xs);
-    } 
-    
+    }
     .header--top-left.py-pd-x-xl .header__heading,
     .header--top-left-with-nav.py-pd-x-xl .header__heading{
       padding-left:var(--py-pd-x-xl);
@@ -165,35 +158,39 @@
     .header--top-left-with-nav.py-pd-x-xs .header__icons{
       padding-right:var(--py-pd-x-xs);
     }
+    .header--top-left .header__inline-menu,
+    .header--top-left-with-nav .header__inline-menu{
+      background:  var(--header-py_header_bg_color_2);
+    }
     .header--top-left.py-pd-x-xl .header__inline-menu,
-    .header--top-left-with-nav.py-pd-x-xl .header__inline-menu{ 
-      background: var(--header-py_header_bg_color_2);
+    .header--top-left-with-nav.py-pd-x-xl .header__inline-menu{
+      background:  var(--header-py_header_bg_color_2);
       padding-left: var(--py-pd-x-xl);
-      padding-right: var(--py-pd-x-xl);      
+      padding-right: var(--py-pd-x-xl);
     }
     .header--top-left.py-pd-x-l .header__inline-menu,
-    .header--top-left-with-nav.py-pd-x-l .header__inline-menu{ 
-      background: var(--header-py_header_bg_color_2);
+    .header--top-left-with-nav.py-pd-x-l .header__inline-menu{
+      background:  var(--header-py_header_bg_color_2);
       padding-left: var(--py-pd-x-l);
-      padding-right: var(--py-pd-x-l);      
+      padding-right: var(--py-pd-x-l);
     }
     .header--top-left.py-pd-x-m .header__inline-menu,
-    .header--top-left-with-nav.py-pd-x-m .header__inline-menu{ 
-      background: var(--header-py_header_bg_color_2);
+    .header--top-left-with-nav.py-pd-x-m .header__inline-menu{
+      background:  var(--header-py_header_bg_color_2);
       padding-left: var(--py-pd-x-m);
-      padding-right: var(--py-pd-x-m);      
+      padding-right: var(--py-pd-x-m);
     }
     .header--top-left.py-pd-x-s .header__inline-menu,
-    .header--top-left-with-nav.py-pd-x-s .header__inline-menu{ 
-      background: var(--header-py_header_bg_color_2);
+    .header--top-left-with-nav.py-pd-x-s .header__inline-menu{
+      background:  var(--header-py_header_bg_color_2);
       padding-left: var(--py-pd-x-s);
-      padding-right: var(--py-pd-x-s);      
+      padding-right: var(--py-pd-x-s);
     }
     .header--top-left.py-pd-x-xs .header__inline-menu,
-    .header--top-left-with-nav.py-pd-x-xs .header__inline-menu{ 
-      background: var(--header-py_header_bg_color_2);
+    .header--top-left-with-nav.py-pd-x-xs .header__inline-menu{
+      background:  var(--header-py_header_bg_color_2);
       padding-left: var(--py-pd-x-xs);
-      padding-right: var(--py-pd-x-xs);      
+      padding-right: var(--py-pd-x-xs);
     }
     .header--top-left .header__inline-menu{
       margin-top:8px;
@@ -201,24 +198,27 @@
     .top-left-nav-tabs{
       display:flex;
     }
-    .top-left-nav-item{     
+    .top-left-nav-item{
       cursor: pointer;
       font-weight: 600;
     }
+    .top-left-nav-item {
+        padding: 20px;
+    }
     .header--top-left-with-nav.py-pd-y-xl .top-left-nav-item{
-      padding: var(--py-pd-y-xl) 20px;      
+      padding:var(--py-pd-y-xl) 20px;
     }
     .header--top-left-with-nav.py-pd-y-l .top-left-nav-item{
-      padding: var(--py-pd-y-l) 20px;      
+      padding:var(--py-pd-y-l) 20px;
     }
     .header--top-left-with-nav.py-pd-y-m .top-left-nav-item{
-      padding: var(--py-pd-y-m) 20px;      
+      padding:var(--py-pd-y-m) 20px;
     }
     .header--top-left-with-nav.py-pd-y-s .top-left-nav-item{
-      padding: var(--py-pd-y-s) 20px;      
+      padding:var(--py-pd-y-s) 20px;
     }
     .header--top-left-with-nav.py-pd-y-xs .top-left-nav-item{
-      padding: var(--py-pd-y-xs) 20px;      
+      padding:var(--py-pd-y-xs) 20px;
     }
     .top-left-nav-item.active{
       background: var(--header-py_header_bg_color_2);
@@ -242,7 +242,8 @@
     width:100%;
   }
   body.index .header-position-fixed,
-  body.index .header-position-fixed .header__inline-menu{
+  body.index .header-position-fixed .header__inline-menu,
+  body.index .header-position-fixed .top-left-nav-item.active{
     background-color:transparent !important;
   }
   body.index .header-position-fixed .header-search-container{
@@ -263,23 +264,35 @@
     font-size: var(--header-item_title_font_size);
   }
   .bc-cart__item .bc-cart__price-wrapper{
-    font-size: var(--header-item_price_font_size);
+    font-size:  var(--header-item_price_font_size);
   }
   .bc-cart__item .bc-cart__properties-wrapper{
     font-size: var(--header-item_content_font_size);
   }
-  .bc-cart__buttons-wrapper .button{
-    border-radius: var(--header-button_radius)px;  
-  }
+</style>
+<% if(settings.button_radius){ %>
+  <style>
+    .bc-cart__buttons-wrapper .button{
+      border-radius:  var(--header-button_radius)px;
+    }
+  </style>
+<% } %>
+<% if(settings.item_bg){ %>
+  <style>
   .bc-cart__item{
     padding:10px;
     background-color: var(--header-item_bg);
     border-radius: var(--header-item_radius)px;
-  }  
+  }
+  </style>
+<% } %>
+<% if(settings.item_radius){ %>
+<style>
   .bc-cart__item .bc-cart__image-wrapper img{
-    border-radius: var(--header-item_radius)px;
-  } 
+    border-radius:  var(--header-item_radius)px;
+  }
 </style>
+<% } %>
 <% if(settings.enable_dynamic_pay){ %>
 <style>
   #loopcheckoutdynamic{
@@ -308,7 +321,7 @@
 </svg>
 <<% if(section.settings.enable_sticky_header){ %>sticky-header<% } else { %>div<% } %> class="header-wrapper py-<%=section.settings.br%> header-position-<%=section.settings.header_position%>">
     <header class="header header--<%= section.settings.logo_position %> page-width<% if(section.settings.menu){ %> header--has-menu<% } %> py-<%=section.settings.page_width%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%>">
-    <% if(section.settings.menu){ %>
+    <% if(menu){ %>
       <header-drawer>
         <details class="menu-drawer-container">
           <summary class="header__icon header__icon--menu header__icon--summary link link--text focus-inset" aria-label="menu">
@@ -815,7 +828,7 @@
     <% } %>
 
     <% if(section.settings.logo_position === 'middle-center' || !menu){ %>
-      <details-modal class="header__search">
+      <details-modal class="header__search hidden">
         <details>
           <summary class="header__icon header__icon--search header__icon--summary link link--text focus-inset modal__toggle" aria-haspopup="dialog" aria-label="search">
             <span>
@@ -829,7 +842,7 @@
           </summary>
           <div class="search-modal modal__content" role="dialog" aria-modal="true" aria-label="search">
             <div class="search-modal__content" tabindex="-1">
-              <form action="/search" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags = "<%=section.settings.search_hide_tags%>" <%}%>>
+              <form action="/search" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags = "<%=section.settings.search_hide_tags%>" <% } %>>
                 <div class="field">
                   <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value="" placeholder="Search">
                   <label class="field__label" for="Search-In-Modal">Search</label>
@@ -1110,7 +1123,7 @@
           <details-modal class="header__search">
             <details>
               <summary class="header__icon--search header__icon--summary link link--text focus-inset modal__toggle" aria-haspopup="dialog" aria-label="search">
-                <form action="/search" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags = "<%=section.settings.search_hide_tags%>" <%}%>>
+                <form action="/search" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags = "<%=section.settings.search_hide_tags%>" <% } %>>
                   <div class="field">
                     <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value="" placeholder="Ssearch">
                     <label class="field__label" for="Search-In-Modal">Search</label>
@@ -1293,7 +1306,7 @@
           </summary>
           <div class="search-modal modal__content" role="dialog" aria-modal="true" aria-label="search">
             <div class="search-modal__content" tabindex="-1">
-              <form action="/search" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags = "<%=section.settings.search_hide_tags%>" <%}%>>
+              <form action="/search" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags = "<%=section.settings.search_hide_tags%>" <% } %>>
                 <div class="field">
                   <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value="" placeholder="Search">
                   <label class="field__label" for="Search-In-Modal">Find what you're looking for</label>
@@ -1358,7 +1371,7 @@
         
       </a>
       <% if(settings.cart_style === 'style-3'){ %>
-         <%- include('../snippets/cart-notification-3') %>
+        <%- include('../snippets/cart-notification-3', {cart_layout: settings.cart_layout, active: false}) %>
       <% } %>       
 
     </div>
@@ -1498,10 +1511,10 @@
 
 <div id="shopify-section-cart-template" class="shopify-section">
   <% if(settings.cart_style === 'style-4'){ %>
-    <%- include('../snippets/cart-notification-4', {active: false}) %>      
-  <% } else if(settings.cart_style === 'style-2', {active: false}){ %>
-    <%- include('../snippets/cart-notification-2', {active: false, cart_layout: settings.cart_layout,enable_dynamic_pay: settings.enable_dynamic_pay}) %>
+    <%- include('../snippets/cart-notification-4', {shipping_method: false, active: false}) %>      
+  <% } else if(settings.cart_style === 'style-2'){ %>
+    <%- include('../snippets/cart-notification-2', {shipping_method: false, active: false, cart_layout: settings.cart_layout,enable_dynamic_pay: settings.enable_dynamic_pay}) %>
   <% } else if(settings.cart_style === 'style-1'){ %>
-    <%- include('../snippets/cart-notification', {active: false, checkoutbtn_position: settings.checkoutbtn_position,enable_dynamic_pay: settings.enable_dynamic_pay}) %>
+    <%- include('../snippets/cart-notification', {shipping_method: false, active: false, checkoutbtn_position: settings.checkoutbtn_position,enable_dynamic_pay: settings.enable_dynamic_pay}) %>
   <% } %>
 </div>

@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/assets/component-cart-notification-style-2.css">
 
 <% if(settings.prod_insurance){ %>
-  <% var insuranceID = settings.prod_insurance?.first_available_variant.id %>
+  <% var insuranceID = settings.prod_insurance?.variants[0]?.id %>
 <% } %>
 
 <% if(settings.f_s_show && settings.f_s_price){ %>
@@ -12,7 +12,7 @@
 
 <cart-notification>
   <div class="cart-notification-wrapper <% if(freeShipping){ %>cart-notification-wrapper__shipping<% } %> <%=cart_layout%>">
-    <div id="cart-notification" class="cart-notification <% if(active){ %><%= active %><% } %>" aria-modal="true" aria-label="item added" role="dialog" tabindex="-1">
+    <div id="cart-notification" class="cart-notification <%= active ? active: '' %>" aria-modal="true" aria-label="item added" role="dialog" tabindex="-1">
       <div class="cart-notification__header">
         <% if(settings.cart_heading){ %>
           <h2 class="cart-notification__heading caption-large"><%= settings.cart_heading %></h2>
@@ -39,7 +39,7 @@
             </div>
           </div>
         <% } %>
-        <% if(cart_layout === "one-c"){ %>
+        <% if(cart_layout == "one-c"){ %>
         <div class="bc-cart__buttons-wrapper">
           <form action="/cart" method="post" id="cart">
             <button id="loopcheckout" class="button button--primary button--full-width" name="checkout" form="cart">Checkout</button>
@@ -90,9 +90,8 @@
         </div>
       <% } %>
       </div>
-      </div>
       <div class="cart-notification__links">
-        <% if(cart_layout === "two-c"){ %>
+        <% if(cart_layout == "two-c"){ %>
         <div class="bc-cart__buttons-wrapper" style="margin-top:25px;">
           <form action="/cart" method="post" id="cart">
             <button id="loopcheckout" class="button button--primary button--full-width" name="checkout" form="cart">Checkout</button>
@@ -105,7 +104,7 @@
         <div class="bc-cart_info-wrapper">
         <% if(settings.show_packaging && settings.packaging && settings.packaging_note){ %>
           <label for="less-packaging" class="bc-checkbox">
-            <input type="checkbox" data-type="packaging" id="less-packaging" value="<%= settings.packaging_note %>" <% if(cart?.attributes.lessPackaging === 'true'){ %>checked<% } %>>
+            <input type="checkbox" data-type="packaging" id="less-packaging" value="<%= settings.packaging_note %>" <% if(cart?.attributes?.lessPackaging == 'true'){ %>checked<% } %>>
             <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
               <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
             </svg>
@@ -136,21 +135,21 @@
         <div class="bc-cart__shipping-wrapper" id="cart-shipping"> 
           <div class="bc-cart__shipping-label">Estimated Shipping</div>
           <div class="bc-cart__shipping-value">
-            <%# if(shipping_method.price){ %>
-            <%# shipping_method.price %>
-            <%# } else { %>
+            <% if(shipping_method?.price){ %>
+            <%= shipping_method?.price %>
+            <% } else { %>
              Free
-            <%# } %>
+            <% } %>
           </div>          
         </div>
         <div class="bc-cart__total-wrapper">
           <div class="bc-cart__total-label">Estimated Total</div>
           <div class="bc-cart__total-value" id="cart-total">
-            <% if(cart?.cart_level_discount_application?.size > 0){ %>
+            <% if(cart?.cart_level_discount_application?.length){ %>
               <ul>
-                <% cart?.cart_level_discount_applications.forEach((discount_application, index) => { %>
+                <% cart?.cart_level_discount_applications?.forEach((discount_application, index) => { %>
                   <li>
-                    <%= discount_application?.title %> (-<%= discount_application?.total_allocated_amount %>)
+                    <%= discount_application.title %> (-<%= discount_application.total_allocated_amount %>)
                   </li>
                 <% }) %>
               </ul>
@@ -158,7 +157,7 @@
             <span><%= cart?.total_price %></span>
           </div>
         </div>
-        <button type="button" class="link button-label">Continue Shopping</button>        
+        <button type="button" class="link button-label">continue shopping</button>        
         </div>
         </div>
     </div>
@@ -166,7 +165,7 @@
   </div>
 </cart-notification>
 <style>
-  .bc-cart_info-wrapper {
+  .cart-notification {
      display: none;
   }
 </style>

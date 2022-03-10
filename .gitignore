@@ -2,3 +2,4 @@ node_modules
 helpers.ejs
 sections.json
 package-lock.json
+settings.json

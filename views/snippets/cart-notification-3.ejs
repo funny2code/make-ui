@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/assets/component-cart-notification-style-3.css">
 
 <% if(settings.prod_insurance){ %>
-  <% var insuranceID = settings.prod_insurance?.first_available_variant.id %>
+  <% var insuranceID = settings.prod_insurance?.variants[0]?.id %>
 <% } %>
 
 <% if(settings.f_s_show && settings.f_s_price){ %>
@@ -12,12 +12,12 @@
 
 <cart-notification>
   <div class="cart-notification-wrapper <% if(freeShipping){ %>cart-notification-wrapper__shipping<% } %> <%=cart_layout%>">
-    <div id="cart-notification" class="cart-notification <% if(active){ %><%= active %><% } %>" aria-modal="true" aria-label="item added" role="dialog" tabindex="-1">
+    <div id="cart-notification" class="cart-notification <%= active ? active: '' %>" aria-modal="true" aria-label="item added" role="dialog" tabindex="-1">
       <div class="cart-notification__header">
         <% if(settings.cart_heading){ %>
           <h2 class="cart-notification__heading caption-large"><%= settings.cart_heading %></h2>
         <% } %>
-        <div class="new-i-note cart-notification__heading"><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/Vector.png?v=1641871323">item added</div>
+        <div class="new-i-note cart-notification__heading"><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/Vector.png?v=1641871323"> item added</div>
         <button type="button" class="modal__close-button" aria-label="close">
           <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
             <use href="#icon-close">
@@ -43,16 +43,16 @@
         <div class="bc-cart__total-wrapper">
           <div class="bc-cart__total-label">Estimated Total</div>
           <div class="bc-cart__total-value" id="cart-total">
-            <% if(cart?.cart_level_discount_application?.size > 0){ %>
+            <% if(cart.cart_level_discount_application?.length){ %>
               <ul>
-                <% cart?.cart_level_discount_applications.forEach(discount_application => { %>
+                <% cart.cart_level_discount_applications?.forEach((discount_application, index)=>{ %>
                   <li>
-                    <%= discount_application?.title %> (-<%= discount_application?.total_allocated_amount %>)
+                    <%= discount_application.title %> (-<%= discount_application.total_allocated_amount %>)
                   </li>
                 <% }) %>
               </ul>
             <% } %>
-            <span><%= cart?.total_price %></span>
+            <span><%= cart.total_price %></span>
           </div>
         </div>
         <div class="bc-cart__buttons-wrapper">
@@ -61,10 +61,9 @@
           </form>
         </div>           
       </div>
-      
-      <% if(cart?.items.length){ %>
+      <% if(cart.items.length){ %>
         <div id="cart-notification-product" class="cart-notification-product">
-          <% cart?.items.forEach((item, index) => { %>
+          <% cart.items.forEach((item, index) => { %>
             <div class="bc-cart__item" data-id="<%= item.id %>">
               <div class="bc-cart__image-wrapper">
                 <a href="<%= item.url %>">
@@ -96,13 +95,13 @@
             </div>
           <% }) %>  
         </div>
-      <% } %>
+        <% } %>
       
       <div class="cart-notification__links">        
         
         <% if(settings.show_packaging && settings.packaging && settings.packaging_note){ %>
           <label for="less-packaging" class="bc-checkbox">
-            <input type="checkbox" data-type="packaging" id="less-packaging" value="<%= settings.packaging_note %>" <% if(cart?.attributes.lessPackaging === 'true'){ %>checked<% } %>>
+            <input type="checkbox" data-type="packaging" id="less-packaging" value="<%= settings.packaging_note %>" <% if(cart.attributes.lessPackaging == 'true'){ %>checked<% } %>>
             <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
               <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
             </svg>
@@ -138,5 +137,10 @@
     </div>
   </div>
 </cart-notification>
+<style>
+  .cart-notification {
+     display: none;
+  }
+</style>
 
 <script src="/assets/cart-notification-style-3.js" defer="defer"></script>
