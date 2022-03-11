@@ -1,56 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "my first download theme",
+    "theme_name": "Make Ui Download",
     "theme_version": "1.0.0",
     "theme_author": "Shopify",
     "theme_documentation_url": "https://shopify.dev/themes/tools/dawn",
     "theme_support_url": "https://support.shopify.com/"
-  },
-  {
-    "name": "Componnets Styles",
-    "settings": [
-      {
-        "type": "select",
-        "id": "header_style",
-        "options": [
-          {
-            "label": "Style 1",
-            "value": "header"
-          },
-          {
-            "label": "Style 2",
-            "value": "header-2"
-          }
-        ],
-        "label": "Header Style",
-        "default": "header"
-      },
-      {
-        "type": "select",
-        "id": "cart_style",
-        "options": [
-          {
-            "label": "Style 1",
-            "value": "cart-template-1"
-          },
-          {
-            "label": "Style 2",
-            "value": "cart-template-2"
-          },
-          {
-            "label": "Style 3",
-            "value": "cart-template-3"
-          },
-          {
-            "label": "Style 4",
-            "value": "cart-template-4"
-          }
-        ],
-        "label": "Cart Style",
-        "default": "style-2"
-      }
-    ]
   },
   {
     "name": "Global Styles",
@@ -310,18 +265,6 @@
       {
         "type": "paragraph",
         "content": "Cart Drawer"
-      },
-      {
-        "type": "color",
-        "id": "py_cart_bg_color",
-        "label": "Background",
-        "default": "#ffffff"
-      },
-      {
-        "type": "color",
-        "id": "py_cart_color",
-        "label": "Text",
-        "default": "#000000"
       },
       {
         "type": "paragraph",
@@ -1712,7 +1655,7 @@
         "type": "richtext",
         "id": "f_s_text",
         "label": "Free Shipping Text",
-        "default": "<p>YOU’RE <strong>$100</strong> USD AWAY FROM FREE SHIPPING</p>",
+        "default": "<p>YOUвЂ™RE <strong>$100</strong> USD AWAY FROM FREE SHIPPING</p>",
         "info": "Please select ONLY PRICE and add the STRONG (BOLD) style"
       },
       {

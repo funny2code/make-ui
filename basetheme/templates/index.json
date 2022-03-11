@@ -1,1 +1,18 @@
-{"sections":{"164253890362d227ae":{"type":"image-banner","blocks":{"16425389039f659f32-0":{"type":"heading","settings":{"heading":"<div class=\"grid grid--1-col grid--3-col-desktop\">  <div class=\"grid__item\">Fashion<\/div>  <div class=\"grid__item\">Lifestyle<\/div>  <div class=\"grid__item\">Food<\/div> <\/div>","align":"center","color":"#ffffff","weight":"","size":"","padding":"","margin":"","width":"","height":"","c_css":"max-width:800px;\nmargin:auto;\nfont-size:40px","m_align":"center","m_color":"","m_weight":"","m_size":"","m_padding":"","m_margin":"","m_width":"","m_height":"","m_c_css":"font-size:26px"}},"16425389039f659f32-2":{"type":"buttons","settings":{"button_label_1":"Shop Now","button_link_1":"shopify:\/\/collections\/all","bg":"","border":"","color":"","b_width":"","size":"","weight":"","padding":"20px","margin":"","width":"","height":"","c_css":"border-radius:5px;","m_bg":"","m_border":"","m_color":"","m_b_width":"","m_size":"","m_weight":"","m_padding":"","m_margin":"","m_width":"","m_height":"","m_c_css":""}}},"block_order":["16425389039f659f32-0","16425389039f659f32-2"],"settings":{"image":"shopify:\/\/shop_images\/sunny-ng-X5uewTVHoCg-unsplash_1.png","show_lazy":true,"image_2":"shopify:\/\/shop_images\/sunny-ng-X5uewTVHoCg-unsplash_1_2.png","url":"shopify:\/\/collections\/all","show_override":false,"ov_bg_color":"","ov_opacity":"","pv":"center","ph":"center","align":"center","padding":"","margin":"","width":"","height":"","c_css":"","m_pv":"center","m_ph":"center","m_align":"center","m_padding":"","m_margin":"","m_width":"","m_height":"","m_c_css":"","enable_anim":true,"anim":"zoom-out"}},"1640386503a8111c26":{"type":"marquee","settings":{"marquee":"FASHION LIFESTYLE FOOD FASHION LIFESTYLE FOOD FASHION LIFESTYLE FOOD FASHION LIFESTYLE FOOD FASHION LIFESTYLE FOOD FASHION LIFESTYLE FOOD FASHION LIFESTYLE FOOD FASHION LIFESTYLE FOOD","pause":false,"direction":"left","behavior":"scroll","speed":10,"bg_color":"bg-c-average","color":"c-light","page_width":"width-un","page_x_mg":"mg-x-un","page_y_mg":"mg-y-un","page_x_pd":"pd-x-n","page_y_pd":"pd-y-m","font_size":"fs-xl","br":"br-none"}},"16397085288e7549f7":{"type":"image-with-video","blocks":{"1639708527c22574f8-0":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/sunny-ng-X5uewTVHoCg-unsplash_1.png"}},"fbff2156-b56f-463c-89e9-f6c022514e7f":{"type":"video","settings":{"yv_video":"https:\/\/youtu.be\/rUWxSEwctFU","video":""}}},"block_order":["1639708527c22574f8-0","fbff2156-b56f-463c-89e9-f6c022514e7f"],"settings":{"heading":"transeasonal pieces","text":"<p>clothes that make U feel like U<\/p>","btn":"Shop Now","url":"","align":"center","position":"bc_left","v_position":"bc_v_center"}}},"order":["164253890362d227ae","1640386503a8111c26","16397085288e7549f7"]}
+{
+    "sections": {
+      "164253890362d227ae": {
+        "type": "image-banner"
+      },
+      "1640386503a8111c26": {
+        "type": "marquee"
+      },
+      "16397085288e7549f7": {
+        "type": "image-with-video"
+      }
+    },
+    "order": [
+      "164253890362d227ae",
+      "1640386503a8111c26",
+      "16397085288e7549f7"
+    ]
+  }
