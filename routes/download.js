@@ -42,7 +42,7 @@ router.post('/', async (req, res, next) => {
     const output = fs.createWriteStream('basetheme.zip');
     const archive = archiver('zip');
 
-    output.on('close', function () {
+    output.on('close', async function () {
         res.setHeader('Content-type','application/zip');
         res.sendFile(path.join(__dirname, '../basetheme.zip'));
     });
