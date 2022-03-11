@@ -540,7 +540,7 @@
                     <% }) %>
                     <% if(section.settings.menu_2){ %>
                     <% if(section.settings.logo_position === 'middle-center' || section.settings.logo_position === 'top-left-with-nav'){ %>
-                    <% section.settings.menu_2.links.forEach((link, index) => { %>
+                    <% section.settings.menu_2?.links?.forEach((link, index) => { %>
                       <li>
                         <% if(link.links){ %>
                           <details>
@@ -998,7 +998,7 @@
         </ul>
         <% if(section.settings.logo_position === 'top-left-with-nav' && section.settings.menu_2){ %> 
             <ul class="list-menu list-menu--inline hidden" role="list" <% if(section.settings.logo_position === 'top-left-with-nav'){ %>data-index="2"<% } %>>
-            <% section.settings.menu_2.links.forEach((link, index)=>{ %>
+            <% section.settings.menu_2?.links?.forEach((link, index)=>{ %>
               <li>
                 <% if(link.links){ %>
                   <details-disclosure>
@@ -1172,7 +1172,7 @@
       <% if(section.settings.menu_2 && section.settings.logo_position === 'middle-center'){ %>
         <nav class="header__inline-menu">
           <ul class="list-menu list-menu--inline" role="list">
-            <% section.settings.menu_2.links.forEach((link,index) => { %>
+            <% section.settings.menu_2?.links?.forEach((link,index) => { %>
               <li>
                 <% if(link.links){ %>
                   <details-disclosure>

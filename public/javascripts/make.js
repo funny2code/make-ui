@@ -90,6 +90,46 @@
         .catch(err => console.error(err));
     };
 
+    // Download function
+    const download = (event) => {
+
+        if(!event) return;
+        
+        event.preventDefault();
+        let btn = event.target;
+        let url = btn.getAttribute('href');
+        let id = btn.getAttribute('data-id');
+        let themeName = btn.getAttribute('data-name');
+        if(!url || !id) return;
+        
+        let fullLoading = document.querySelector('.py__full-loading-wrapper');
+        fullLoading.classList.add('py__animate');
+
+        fetch(url, {
+            method:'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({id:id})
+        })
+        .then(res => res.blob())
+        .then(data => {
+            if(!data) return;
+            let objectUrl = window.URL.createObjectURL(data);
+            let a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = objectUrl;
+            a.download = themeName + '.zip';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(objectUrl);
+            a.remove();
+            fullLoading.classList.remove('py__animate');
+        })
+        .catch(err => console.log(err));
+    };
+
     // View Iframe Fun
     const viewIframe = () => {
         let form = document.querySelector('form.py__settings-form');
@@ -301,6 +341,7 @@
         let value = event.target.value;
         checkSettings(uniqName, value);
         value !== focuseValue ? viewIframe() : null;
+        if(uniqName === 'settings_theme_name' && value !== focuseValue) downloadButton.setAttribute('data-name', value);
     };
     // Select Component Function
     const selectComp = (event) => {
@@ -411,6 +452,7 @@
         if(e && e.target.classList.contains('py__settings-select-options-item')) getSettingsLists(e);
         if(e && e.target.classList.contains('py__sub-options-item')) getSettingsLists(e);
         if(e && e.target.classList.contains('py__save-button')) save(e);
+        if(e && e.target.classList.contains('py__download-button')) download(e);
     });
 
     // Before Unload
