@@ -10,7 +10,7 @@ html, body {
 }
 body {
   font-family: 'Roboto', sans-serif;
-  padding: 33px 50px;
+  padding: 16px;
   margin: 0;
   background: #FFFFFF;
 }
@@ -179,8 +179,8 @@ body {
 .py__make {
   display: flex;
   flex-wrap: wrap;
-  gap: 47px;
-  margin-top: 35px;
+  gap: 12px;
+  margin-top: 16px;
   height: 100%;
 }
 /* .py__make-sidebar {
@@ -193,7 +193,7 @@ body {
   overflow: auto; */
 }
 .py__make-settings {
-  flex: 4 0 0;
+  flex: 2 0 0;
   margin-top: 50px;
   /* max-height: 100%;
   overflow: auto; */
@@ -388,7 +388,7 @@ body {
 }
 .py__settings-item {
   margin-bottom: 26px;
-  flex: 1 0 calc(48% - 6px);
+  flex: 1 0 calc(100%);
 }
 .py__settings-item-brand {
   margin-bottom: 26px;
