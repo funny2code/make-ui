@@ -258,7 +258,7 @@ table:not([class]) th {
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .large-up-hide {
     display: none !important;
   }
@@ -511,7 +511,7 @@ input:not([type="checkbox"]):not([type="radio"]):focus {
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .title,
   .title-wrapper-with-link {
     margin: 5rem 0 3rem;
@@ -551,7 +551,7 @@ input:not([type="checkbox"]):not([type="radio"]):focus {
   flex-shrink: 0;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .title-wrapper-with-link.title-wrapper-with-link--no-heading {
     display: none;
   }
@@ -602,7 +602,7 @@ input:not([type="checkbox"]):not([type="radio"]):focus {
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .grid--quarter-max.grid--4-col-desktop .grid__item {
     max-width: 25%;
   }
@@ -649,7 +649,7 @@ input:not([type="checkbox"]):not([type="radio"]):focus {
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .grid--5-col-desktop .grid__item {
     width: calc(20% - 1rem * 3 / 4);
     max-width:20%;
@@ -794,7 +794,7 @@ input:not([type="checkbox"]):not([type="radio"]):focus {
   opacity: 0;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .media--cropped {
     padding-bottom: 63%;
   }
@@ -1374,7 +1374,7 @@ input[type='checkbox'] {
   padding-bottom: 0;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .header {
     padding-top: 0;
     padding-bottom: 0;
@@ -1451,7 +1451,7 @@ input[type='checkbox'] {
   width: 100%;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .header__heading,
   .header__heading-link {
     justify-self: start;
@@ -1535,7 +1535,7 @@ menu-drawer + .header__search {
   display: inline-flex;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .header:not(.header--top-center) * > .header__search,
   .header--top-center > .header__search {
     display: inline-flex;
@@ -1591,7 +1591,7 @@ details[open] > .search-modal {
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .search-modal__form {
     max-width: 70.8rem;
   }
@@ -1647,7 +1647,7 @@ details[open] > .header__icon--menu .icon-hamburger {
   margin-left: 0;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .header__inline-menu {
     display: block;
   }
