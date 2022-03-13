@@ -181,7 +181,6 @@ body {
   flex-wrap: wrap;
   gap: 47px;
   margin-top: 35px;
-  height: 100%;
 }
 /* .py__make-sidebar {
   max-height: 100%;
@@ -189,14 +188,15 @@ body {
 } */
 .py__make-preview {
   flex: 10 0 0;
+  /* height: calc(100vh - 150px); */
   /* max-height: 100%;
   overflow: auto; */
 }
 .py__make-settings {
   flex: 4 0 0;
-  margin-top: 50px;
-  /* max-height: 100%;
-  overflow: auto; */
+  margin-top: 0;
+  height: calc(100vh - 150px);
+  overflow-y: auto;
 }
 .py__settings-select {
   position: relative;
@@ -626,7 +626,7 @@ select {
   margin: 0 auto;
   border: 0;
   width: 100%;
-  height: calc(100vh - 215px);
+  height: calc(100vh - 243px);
 }
 .py__preview-select select {
   background: #FFFFFF;

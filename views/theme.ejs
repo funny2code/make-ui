@@ -97,6 +97,10 @@
                             <% if(section.settings){ %>
                                 <%- include('make/settings', {settings: section.settings, global: false}) %>
                             <% } %>
+                            <% if(section.blocks){ %>
+                                <h2 class="py__settings-heading">Blocks</h2>
+                                <%- include('make/blocks', {blocks: section.blocks}) %>
+                            <% } %>
                         </div>
                     <% } %>
                 </form>

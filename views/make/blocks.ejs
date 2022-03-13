@@ -1,0 +1,36 @@
+<% if(blocks){ %>
+    <div class="py__settings-wrapper">
+        <% if(!global){ %>
+            <input type="hidden" name="section_name" value="<%= active %>"/>
+        <% } %>
+        <% blocks.forEach(block => { %>
+            <% if(block.type && block.type !== '@app'){ %>
+                <div class="py__settings-item-wrapper">
+                    <div class="py__settings-item-name">
+                        <span><%= block.name %></span>
+                        <span class="py__settings-item-icon"><%- include('../icons', {type: 'arrow_bottom'}) %></span>
+                    </div>
+                    <div class="py__settings-item-content">
+                        <% block?.settings?.forEach(item => { %>
+                            <% if(item.type === 'color'){ %>
+                                <%- include('../components/color', {global: false, data: item}) %>
+                            <% } else if(item.type === 'text' && item.label !== 'Google Font'){ %>
+                                <%- include('../components/text', {global: false, data: item}) %>
+                            <% } else if(item.type === 'select'){ %>
+                                <%- include('../components/select', {global: false, data: item}) %>
+                            <% } else if(item.type === 'checkbox'){ %>
+                                <%- include('../components/checkbox', {global: false, data: item}) %>
+                            <% } else if(item.type === 'range'){ %>
+                                <%- include('../components/range', {global: false, data: item}) %>
+                            <% } else if(item.type === 'text' && item.label === 'Google Font' && fonts){ %>
+                                <%- include('../components/font', {global: false, data: item, fonts: fonts}) %>
+                            <% } else if(item.type === 'paragraph'){ %>
+                                <%- include('../components/paragraph', {data: item}) %>
+                            <% } %>
+                        <% }) %>
+                    </div>
+                </div>
+            <% } %>
+        <% }) %>
+    </div>
+<% } %>
