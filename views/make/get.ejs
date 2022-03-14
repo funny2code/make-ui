@@ -1,5 +1,5 @@
 <% if(setting.type === 'color'){ %>
-    <%- include('../components/color', {global: true, data: setting}) %>
+    <%- include('../components/color', {global: "settings", data: setting, typeIs: false}) %>
 <% } else if(setting.type === 'text'){ %>
-    <%- include('../components/text', {global: true, data: setting}) %>
+    <%- include('../components/text', {global: "settings", data: setting}) %>
 <% } %>
