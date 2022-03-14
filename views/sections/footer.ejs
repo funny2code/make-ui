@@ -33,7 +33,7 @@
                   </summary>
                   <% if(block.settings?.menu){ %>
                     <ul class="footer-block__details-content list-unstyled">
-                      <% block.settings?.menu.forEach((link, index) => { %>
+                      <% block.settings?.menu?.links?.forEach((link, index) => { %>
                         <li>
                           <a href="<%= link.url %>" class="link link--text list-menu__item list-menu__item--link<% if(link.active){ %> list-menu__item--active<% } %>">
                             <%= link.title %>
@@ -59,7 +59,7 @@
                 <% } else if(block.type === 'link_list'){ %>
                   <% if(block.settings?.menu && block.settings?.heading){ %>
                     <ul class="footer-block__details-content list-unstyled">
-                      <% block.settings?.menu.links.forEach(link => { %>
+                      <% block.settings?.menu?.links?.forEach(link => { %>
                         <li>
                           <a href="<%= link.url %>" class="link link--text list-menu__item list-menu__item--link<% if(link.active){ %> list-menu__item--active<% } %>">
                             <%= link.title %>

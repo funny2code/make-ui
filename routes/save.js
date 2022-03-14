@@ -8,7 +8,7 @@ const sectionsModel = require('../models/sections');
 /* POST SAVE FUNCTION */
 router.post('/:id', async (req, res, next) => {
   const {id} = req.params;
-  const {settings, section} = req.body;
+  const {settings, section, blocks} = req.body;
   var theme = '', themeSections = '';
   if(!id) return next();
   if(!settings?.length && !section?.length) return next();
@@ -62,6 +62,21 @@ router.post('/:id', async (req, res, next) => {
                     Object.entries(section[0]?.settings).forEach(newItem => {
                         if(oldItem.id === newItem[0] && oldItem?.default && newItem[1] && newItem[1] !== ""){
                             oldItem.default = oldItem?.type === "range" ? parseInt(newItem[1]) : newItem[1];
+                        }
+                    })
+                })
+            }
+            if(el?.blocks?.length && blocks?.length){
+                el?.blocks.map(block => {
+                    blocks.forEach(newBlock => {
+                        if(block.type === newBlock.type && block?.settings && newBlock?.settings){
+                            block.settings.map(oldSetting => {
+                                Object.entries(newBlock.settings).map(newSetting => {
+                                    if(oldSetting.id === newSetting[0] && newSetting[1] && newSetting[1] !== ""){
+                                        oldSetting.default = oldSetting?.type === "range" ? parseInt(newSetting[1]) : newSetting[1];
+                                    }
+                                })
+                            })
                         }
                     })
                 })

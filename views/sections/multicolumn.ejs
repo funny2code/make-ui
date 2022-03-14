@@ -19,8 +19,8 @@
         <%
           var highest_ratio = 0
           section.blocks.forEach((block, index) => {
-            if(block.settings?.image.aspect_ratio > highest_ratio){
-              highest_ratio = block.settings?.image.aspect_ratio
+            if(block.settings?.image?.aspect_ratio > highest_ratio){
+              highest_ratio = block.settings?.image?.aspect_ratio
             }
           })
         %>

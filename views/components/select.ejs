@@ -11,7 +11,7 @@
         <% } %>
     </div>
     <div class="py__comp-select">
-        <select name="<% if(global){ %>settings_<%= data.id %><% } else { %><%= data.id %><% } %>" type="select">
+        <select name="<%= global !== "section" ? global + "_" + data.id : data.id %>" type="select">
             <% data.options.forEach(option => { %>
                 <option value="<%= option.value %>" <% if(data.default === option.value){ %>selected<% } %>><%= option.label %></option>
             <% }) %>

@@ -543,6 +543,7 @@ select {
 /* PARAGRAPH COMP */
 .py__settings-paragraph {
   width: 100%;
+  word-break: break-word;
 }
 /* GET RESULT COMP */
 .py__get-button {
@@ -575,7 +576,7 @@ select {
   visibility: hidden;
   right: 0;
   top: 0;
-  width: 320px;
+  width: 240px;
   height: auto;
   padding: 10px;
   background: black;

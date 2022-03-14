@@ -45,6 +45,11 @@
         let fullLoading = document.querySelector('.py__full-loading-wrapper');
         fullLoading.classList.add('py__animate');
         let settings = {}, section = [], sectionName = '', sectionSettings = {};
+        let blocks = []; 
+        let blockItems = {
+            type: "",
+            settings: {}
+        }; 
 
         let formData = new FormData(form);
         formData.forEach((value, key) => {
@@ -53,6 +58,14 @@
             if(key === 'logo') return;
             if(key.includes('settings_')){ 
                 settings[key.replace('settings_', '')] = newValue;
+            } else if(key.includes('block_')){
+                if(key.includes('block_type_')){
+                    blockItems.type = newValue;
+                    blocks.push(blockItems);
+                    blockItems = {type:"",settings: {}};
+                } else {
+                    blockItems.settings[key.replace('block_', '')] = newValue
+                }
             } else { 
                 key === 'section_name' 
                 ? sectionName = newValue
@@ -66,7 +79,8 @@
 
         let data = {
             settings: Object.keys(settings).length ? [settings] : null,
-            section: section.length ? section : null
+            section: section.length ? section : null,
+            blocks: blocks?.length ? blocks : null,
         };
 
         fetch(url, {
@@ -136,7 +150,15 @@
         let iframe = document.querySelector('iframe.py__view-iframe');
         if(!iframe || !form) return;
         let url = iframe.getAttribute('src');
-        let settings = {}, section = [], sectionName = '', sectionSettings = {};
+        let settings = {}; 
+        let section = []; 
+        let sectionName = '';
+        let sectionSettings = {}; 
+        let blocks = []; 
+        let blockItems = {
+            type: "",
+            settings: {}
+        }; 
 
         let formData = new FormData(form);
         formData.forEach((value, key) => {
@@ -145,6 +167,14 @@
             if(key === 'logo') return;
             if(key.includes('settings_')){ 
                 settings[key.replace('settings_', '')] = newValue;
+            } else if(key.includes('block_')){
+                if(key.includes('block_type_')){
+                    blockItems.type = newValue;
+                    blocks.push(blockItems);
+                    blockItems = {type:"",settings: {}};
+                } else {
+                    blockItems.settings[key.replace('block_', '')] = newValue
+                }
             } else { 
                 key === 'section_name' 
                 ? sectionName = newValue
@@ -152,13 +182,15 @@
             }
         });
         
+
         if(sectionName && Object.keys(sectionSettings).length){
             section.push({ name: sectionName, settings: sectionSettings});
         }
 
         let data = {
             settings: Object.keys(settings).length ? [settings] : null,
-            section: section.length ? section : null
+            section: section.length ? section : null,
+            blocks: blocks?.length ? blocks: null,
         };
 
         fetch(url, {
@@ -282,6 +314,7 @@
             if(subMenu) el.classList.add('active');
         }
         let content = document.querySelector('.py__settings-content');
+        
         let url = el.getAttribute('href');
         if(!url) return;
         
@@ -314,7 +347,10 @@
             let html = parser.parseFromString(data, "text/html");
             let oldSettingsWrap = document.querySelector('.py__make-settings');
             let newSettingsWrap = html.querySelector('.py__make-settings');
+            let oldSidebar = document.querySelector('.py__settings-select-options');
+            let newSidebar = html.querySelector('.py__settings-select-options');
             oldSettingsWrap && newSettingsWrap ? oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML : null;
+            oldSidebar && newSidebar ? oldSidebar.innerHTML = newSidebar.innerHTML : null;
         }).catch(err => console.log(err));
     };
 

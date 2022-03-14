@@ -11,6 +11,6 @@
         <% } %>
     </div>
     <div class="py__comp-range">
-        <input type="range" name="<% if(global){ %>settings_<%= data.id %><% } else { %><%= data.id %><% } %>" value="<%=data.default%>" min="<%= data.min %>" max="<%= data.max %>" step="<%= data.step %>">
+        <input type="range" name="<%= global !== "section" ? global + "_" + data.id : data.id %>" value="<%=data.default%>" min="<%= data.min %>" max="<%= data.max %>" step="<%= data.step %>">
     </div>
 </div>

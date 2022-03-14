@@ -333,7 +333,7 @@
                               <% if(!color){ %>                                
                                 <%= value %>
                               <% } else { %>
-                                <span class="pd-colors__icon" data-color="<%= value.toLowerCase() %>"></span><%= value %>
+                                <span class="pd-colors__icon" data-color="<%= value.toLowerCase() %>" <% if(value){ %>style="background-color:<%= value.toLowerCase() %>"<% } %>></span><%= value %>
                               <% } %>  
                           </label>
                           <% }) %>
@@ -409,7 +409,7 @@
                   <button
                     type="submit"
                     name="add"
-                    class="product-form__submit button button--full-width <% if(block.settings?.show_dynamic_checkout && product?.selling_plan_groups === empty){ %>button--primar<% } else { %>button--primary<% } %>"
+                    class="product-form__submit button button--full-width <% if(block.settings?.show_dynamic_checkout && product?.selling_plan_groups){ %>button--primar<% } else { %>button--primary<% } %>"
                     <% if(product?.variants[0]?.available === false){ %>disabled<% } %>
                     <% if(block.settings?.bg_color || block.settings?.color){ %>style="<% if(block.settings?.bg_color){ %>background-color:<%= block.settings?.bg_color %>;box-shadow:0 0 0 .1rem <%= block.settings?.bg_color %>;<% } %><% if(block.settings?.color){ %>color:<%= block.settings?.color %>;<% } %>"<% } %>
                   > 

@@ -11,7 +11,7 @@
         <% } %>
     </div>
     <div class="py__comp-checkbox">
-        <input type="hidden" name="<% if(global){ %>settings_<%= data.id %><% } else { %><%= data.id %><% } %>" value="<%=data.default%>">
+        <input type="hidden" name="<%= global !== "section" ? global + "_" + data.id : data.id %>" value="<%=data.default%>">
         <input type="checkbox" class="is__checkbox" <% if(data.default){ %>checked<% } %>/>
     </div>
 </div>

@@ -12,8 +12,8 @@
     </div>
     <div class="py__comp-color">
         <input type="text" class="is__color" value="<%= data.default %>"/>
-        <label for="<%= data.id %>" class="py__label-for-color" <% if(data.default){ %>style="background:<%= data.default %>;"<% } %>>
-            <input type="color" id="<%= data.id %>" name="<% if(global){ %>settings_<%= data.id %><% } else { %><%= data.id %><% } %>" <% if(data.default){ %>value="<%= data.default %>"<% } %>/>
+        <label for="<%= typeIs ? typeIs + '_' + data.id : data.id %>" class="py__label-for-color" <% if(data.default){ %>style="background:<%= data.default %>;"<% } %>>
+            <input type="color" id="<%= typeIs ? typeIs + '_' + data.id : data.id %>" name="<%= global !== "section" ? global + "_" + data.id : data.id %>" <% if(data.default){ %>value="<%= data.default %>"<% } %>/>
             <%- include('../icons', {type: 'color'}) %>
         </label>
     </div>

@@ -81,7 +81,7 @@
                             <% settings.forEach(comp => { %>
                                 <h2 class="py__settings-heading"><%= comp.name %></h2>
                                 <% if(comp.settings){ %>
-                                    <%- include('make/settings', {settings: comp.settings, global: true}) %>
+                                    <%- include('make/settings', {settings: comp.settings, global: "settings"}) %>
                                 <% } else { %>
                                     <%- include('components/brand', {name: comp.theme_name}) %>
                                 <% } %>
@@ -95,11 +95,11 @@
                             </div>
                             <h2 class="py__settings-heading"><%= section.name %></h2>
                             <% if(section.settings){ %>
-                                <%- include('make/settings', {settings: section.settings, global: false}) %>
+                                <%- include('make/settings', {settings: section.settings, global: "section"}) %>
                             <% } %>
                             <% if(section.blocks){ %>
                                 <h2 class="py__settings-heading">Blocks</h2>
-                                <%- include('make/blocks', {blocks: section.blocks}) %>
+                                <%- include('make/blocks', {blocks: section.blocks, global: "block"}) %>
                             <% } %>
                         </div>
                     <% } %>
