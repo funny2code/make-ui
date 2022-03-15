@@ -1,0 +1,214 @@
+<% if(section.settings.collection_style === "style-1"){ %>
+<link rel="stylesheet" href="/assets/template-collection-style-1.css">
+<link rel="stylesheet" href="/assets/component-loading-overlay.css">
+
+<link rel="stylesheet" href="/assets/component-card-style-1.css">
+<link rel="stylesheet" href="/assets/component-price-style-1.css">
+<link rel="stylesheet" href="/assets/component-badge.css">
+<link rel="stylesheet" href="/assets/component-rte.css">
+<link rel="stylesheet" href="/assets/component-variants.css">
+
+<% } else if(section.settings.collection_style === "style-2"){ %>
+<link rel="stylesheet" href="/assets/template-collection-grid-<%= section.settings.collection_style %>.css">
+<link rel="stylesheet" href="/assets/component-loading-overlay.css">
+
+<link rel="stylesheet" href="/assets/component-collection-card-<%=section.settings.collection_style%>.css">
+<link rel="stylesheet" href="/assets/component-price-style-1.css">
+<link rel="stylesheet" href="/assets/component-badge.css">
+<link rel="stylesheet" href="/assets/component-rte.css">
+<link rel="stylesheet" href="/assets/component-variants.css">
+<link rel="stylesheet" href="/assets/component-slider.css">
+
+<% } %>
+
+<% if(section.settings.custom_font_style){ %>
+<style>
+  :root {
+    --coll-title_fontsize: <%=section.settings.title_fontsize%>;
+    --coll-title_fontweight: <%=section.settings.title_fontweight%>;
+    --coll-title_fontstretch: <%=section.settings.title_fontstretch%>;
+    --coll-title_fontstyle: <%=section.settings.title_fontstyle%>;
+    --coll-title_lineheight: <%=section.settings.title_lineheight%>;
+    --coll-title_letterspacing: <%=section.settings.title_letterspacing%>;
+    --coll-title_fontsize_m: <%=section.settings.title_fontsize_m%>;
+    --coll-info_fontsize: <%=section.settings.info_fontsize%>;
+    --coll-info_letterspacing: <%=section.settings.info_letterspacing%>;
+    --coll-info_fontweight: <%=section.settings.info_fontweight%>;
+    --coll-info_fontstretch: <%=section.settings.info_fontstretch%>;
+    --coll-info_fontstyle: <%=section.settings.info_fontstyle%>;
+    --coll-info_lineheight: <%=section.settings.info_lineheight%>;
+    --coll-info_fontsize_m: <%=section.settings.info_fontsize_m%>;
+  }
+  .card-wrapper .card-information__text{
+    font-size: var(--coll-title_fontsize);
+    font-weight: var(--coll-title_fontweight);
+    font-stretch: var(--coll-title_fontstretch);
+    font-style: var(--coll-title_fontstyle);
+    line-height: var(--coll-title_lineheight);
+    letter-spacing: var(--coll-title_letterspacing);
+  }
+  @media(max-width:749px){
+    .card-wrapper .card-information__text{
+        font-size: var(--coll-title_fontsize_m);
+    }
+  }
+  .card-wrapper .price *{
+    font-size: var(--coll-info_fontsize);
+    font-weight: var(--coll-info_fontweight);
+    font-stretch: var(--coll-info_fontstretch);
+    font-style: var(--coll-info_fontstyle);
+    line-height: var(--coll-info_lineheight);
+    letter-spacing: var(--coll-info_letterspacing);
+  }
+  @media(max-width:749px){
+    .card-wrapper .price *{
+        font-size: var(--coll-info_fontsize_m);
+    }
+  }
+</style>
+<% } %>
+
+<% var sort_by = collection?.sort_by || collection?.default_sort_by %>
+
+
+
+<div class="bc-collection-page-main filter-<%=section.settings.filter_style%> py-<%=section.settings.bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%> py-<%=section.settings.page_y_mg%>">
+  
+  <% if(section.settings.filter_style === 'style-1'){ %>
+    <%- include('../snippets/collection-filters-style-1', {current_tags: false}) %>
+  <% } else if(section.settings.filter_style === 'style-2'){ %>
+    <%- include('../snippets/collection-filters-style-2', {current_tags: false, heading: section.settings.filter_heading, btnLabel: section.settings.filter_btn_label}) %>
+  <% } else if(section.settings.filter_style === 'style-3'){ %>
+    <%- include('../snippets/collection-filters-style-3') %>
+  <% } %>
+  <% if(section.settings.collection_style === "style-1"){ %>
+  <div id="CollectionProductGrid" class="bc-collection-page-products py-<%=section.settings.page_width%>">
+      <% if(!collection?.products.length){ %>
+        <div class="collection collection--empty" id="main-collection-product-grid" data-id="<%= collection.id %>">
+          <div class="loading-overlay">
+            <div class="loading-overlay__spinner">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </div>
+
+          <p class="collection-product-count light">
+            <%= 'Product Count ' + collection?.products_count + ' ' + collection?.all_products_count %>
+          </p>
+
+          <div class="title-wrapper center">
+            <h2 class="title title--primary">
+              Empty<br>
+              <%# 'sections.collection_template.use_fewer_filters_html' | t: link: collection?.url, class: "underlined-link link" %>
+            </h2>
+          </div>
+        </div>
+      <% } else { %>
+        <div class="collection">
+          <div class="loading-overlay">
+            <div class="loading-overlay__spinner">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </div>
+
+          <p class="collection-product-count light">
+            <%= 'Product Count' + collection?.products_count + ' ' + collection?.all_products_count %>
+          </p>
+
+          <ul id="main-collection-product-grid" data-id="<%= collection.id %>" class="
+            grid grid--2-col
+            <% if(collection?.products_count < 4){ %> grid--<%= collection?.products_count %>-col-tablet<% } else { %>
+              <% if(collection?.products_count === 4){ %> grid--4-col-desktop<% } else { %> grid--one-third-max grid--2-col-tablet grid--4-col-desktop grid--quarter-max<% } %>
+            <% } %>">
+            <%  collection?.products.forEach((product, index)=>{ %>
+              <li class="grid__item" <% if(section.settings.item_space){ %>style="padding-left:<%=section.settings.item_space%>px;padding-bottom:<%=section.settings.item_space%>px"<% } %>>
+                <%- include('../snippets/product-card',
+                  {product_card_product: product,
+                  media_size: section.settings.image_ratio,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  add_image_padding: section.settings.add_image_padding,
+                  show_vendor: section.settings.show_vendor,
+                  show_colors: section.settings.show_colors,
+                  images_size: 'adapt'})
+                %>
+              </li>
+            <% }) %>
+          </ul>
+
+          <%# if(paginate?.pages > 1){ 
+             include('../snippets/pagination', {paginate: paginate, anchor: '', class: ''})
+           } %>
+        </div>
+      <% } %>
+  </div>
+
+  <% } else if(section.settings.collection_style === "style-2"){ %>
+
+  <div id="CollectionProductGrid" class="bc-collection-page-products py-<%=section.settings.page_width%>">
+      <% if(!collection?.products.length){ %>
+        <div class="collection collection--empty" id="main-collection-product-grid" data-id="<%= collection.id %>">
+          <div class="loading-overlay">
+            <div class="loading-overlay__spinner">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </div>
+
+          <p class="collection-product-count light">
+            <%= 'Product Count' + collection?.products_count + ' ' + collection?.all_products_count %>
+          </p>
+
+          <div class="title-wrapper center">
+            <h2 class="title title--primary">
+              Empty
+              <%# 'sections.collection_template.use_fewer_filters_html' | t: link: collection?.url, class: "underlined-link link" %>
+            </h2>
+          </div>
+        </div>
+      <% } else { %>
+        <div class="collection ">
+          <div class="loading-overlay">
+            <div class="loading-overlay__spinner">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </div>
+
+          <p class="collection-product-count light">
+            <%= 'Product Count' + collection?.products_count + ' ' + collection?.all_products_count %>
+          </p>
+
+          <ul id="main-collection-product-grid" data-id="<%= collection.id %>" class="grid grid--2-col grid--3-col-tablet grid--4-col-desktop">
+            <% collection?.products.forEach((product, index)=>{ %>
+              <li class="grid__item" <% if(section.settings.item_space){ %>style="padding-bottom:<%=section.settings.item_space%>px"<% } %>>
+                <%- include('../snippets/product-card-style-2',
+                  {product_card_product: product,
+                  media_size: section.settings.image_ratio,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  add_image_padding: section.settings.add_image_padding,
+                  show_vendor: section.settings.show_vendor,
+                  show_colors: section.settings.show_colors,
+                  inventory_quantity: 1})
+                %>
+              </li>
+            <% }) %>
+          </ul>
+
+          <%# if(paginate.pages > 1){ 
+            include('../snippets/pagination', {paginate: paginate, anchor: '', class: ''})
+           } %>
+        </div>
+      <% } %>
+  </div>
+
+
+
+  <script src="/assets/product-form.js" defer="defer"></script>
+  <script src="/assets/collection-card-style-2.js" defer="defer"></script>
+  <% } %>
+</div>

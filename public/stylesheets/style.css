@@ -182,15 +182,8 @@ body {
   gap: 12px;
   margin-top: 16px;
 }
-/* .py__make-sidebar {
-  max-height: 100%;
-  overflow: auto;
-} */
 .py__make-preview {
   flex: 10 0 0;
-  /* height: calc(100vh - 150px); */
-  /* max-height: 100%;
-  overflow: auto; */
 }
 .py__make-settings {
   flex: 2 0 0;
@@ -263,7 +256,7 @@ body {
   border-radius: 10px;
   position: absolute;
   top: 0;
-  left: 105%;
+  left: calc(100% + 2px);
   padding: 0;
   width: 240px;
   z-index: 20;
@@ -271,7 +264,7 @@ body {
   overflow: auto;
   list-style-type: none;
 }
-.py__settings-select-options ul.py__sub-options-ul.active {
+.py__options-ul-li:hover ul.py__sub-options-ul {
   display: block;
 }
 .py__settings-select-options ul.py__sub-options-ul .py__sub-options-item {
@@ -289,11 +282,13 @@ body {
 .py__settings-select-options ul.py__sub-options-ul .py__sub-options-item svg {
   fill: #000000;
 }
-.py__settings-select-options ul.py__sub-options-ul .py__sub-options-item.active {
+.py__settings-select-options ul.py__sub-options-ul .py__sub-options-item.active,
+.py__settings-select-options ul.py__sub-options-ul .py__sub-options-item:hover {
   background: #000000;
   color: #FFFFFF;
 }
-.py__settings-select-options ul.py__sub-options-ul .py__sub-options-item.active svg {
+.py__settings-select-options ul.py__sub-options-ul .py__sub-options-item.active svg,
+.py__settings-select-options ul.py__sub-options-ul .py__sub-options-item:hover svg {
   fill: #FFFFFF;
 }
 .py__settings-select-options ul.py__sub-options-ul .py__sub-options-item * {
@@ -335,11 +330,37 @@ body {
 }
 .py__settings-content {
   position: relative;
-  /* height: calc(100vh - 218px); */
   max-height: 100%;
   overflow: auto;
   display: flex;
   flex-direction: column;
+}
+.py__section-item-href {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  font-family: Inter;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+  color: #000000;
+  padding: 10px 16px;
+  border: 1px solid #C4C4C4;
+  margin-bottom: 5px;
+}
+.py__section-item-href:hover {
+  background: #000000;
+  color: #FFFFFF;
+}
+.py__section-item-href svg {
+  fill: #000000;
+}
+.py__section-item-href:hover svg {
+  fill: #ffffff;
+}
+.py__section-item-href * {
+  pointer-events: none;
 }
 
 /* SETTINGS DROPDOWN */
@@ -627,7 +648,7 @@ select {
   margin: 0 auto;
   border: 0;
   width: 100%;
-  height: calc(100vh - 243px);
+  height: calc(100vh - 190px);
 }
 .py__preview-select select {
   background: #FFFFFF;
@@ -675,43 +696,6 @@ select {
   background: rgba(255, 255, 255, 0.7);
   z-index: 50;
 }
-.py__loading-wrap.py__animate {
-  display: flex;
-}
-.py__loading {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.py__loading:after {
-  content: " ";
-  display: block;
-  border-radius: 50%;
-  width: 0;
-  height: 0;
-  margin: 8px;
-  box-sizing: border-box;
-  border: 32px solid #111111;
-  border-color: #111111 transparent #111111 transparent;
-}
-.py__animate .py__loading:after {
-  animation: py-loading 1.2s infinite;
-}
-@keyframes py-loading {
-  0% {
-    transform: rotate(0);
-    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
-  50% {
-    transform: rotate(900deg);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-  100% {
-    transform: rotate(1800deg);
-  }
-}
-
 /* FULL LOADING */
 .py__full-loading-wrapper {
   position: fixed;
@@ -725,11 +709,12 @@ select {
   background: rgba(255, 255, 255, 0.7);
   z-index: 50;
 }
-.py__full-loading-wrapper.py__animate {
+.py__full-loading-wrapper.py__animate,
+.py__loading-wrap.py__animate {
   display: flex;
 }
 .py__full-loading {
-  color: official;
+  color: inherit;
   display: inline-block;
   position: relative;
   width: 80px;

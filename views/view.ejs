@@ -178,6 +178,8 @@
                 <%- include('sections/spacing', {settings: settings, section: item }) %> 
             <% } else if(item.name === 'main product'){ %>
                 <%- include('sections/main-product', {settings: settings, section: item }) %>    
+            <% } else if(item.name === 'main collection product grid'){ %>
+                <%- include('sections/main-collection-product-grid', {collection: collection, settings: settings, section: item }) %>        
             <% } else if(item.name === 'footer'){ %>
                 <%- include('sections/footer', {settings: settings, section: item, localization: false }) %>
             <% } %>

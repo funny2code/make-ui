@@ -1,0 +1,629 @@
+<link rel="stylesheet" href="/assets/component-filter-style-1.css">
+
+<div class="page-width collection-filters bc-collection-page-fillters" id="main-collection-filters" data-id="<%= collection?.id %>">
+    <% if(section.settings.enable_filtering || section.settings.enable_sorting){ %>
+      <% var total_active_values = 0 %>
+      <collection-filters-form class="facets small-hide">
+        <form id="CollectionFiltersForm" class="facets__form">
+          <% if(section.settings.enable_sorting){ %>
+            <div class="collection-filters__item sorting">
+              <details class="disclosure-has-popup facets__disclosure js-filter" data-index="tag-0">              
+                <summary class="facets__summary">
+                  <div>
+                    <label class="collection-filters__label" for="SortBy"><%= 'Sort By' %></label>
+                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                    </path></svg>
+
+                  </div>
+                </summary>
+                <div class="facets__display">
+                  <div class="select">
+                    <% var sort_by = collection?.sort_by || collection?.default_sort_by %>
+                    <select name="sort_by" class="select__select collection-filters__sort" id="SortBy" aria-describedby="a11y-refresh-page-message">
+                      <% collection?.sort_options?.forEach((option, index)=>{ %>
+                        <option value="<%= option?.value  %>"<% if(option?.value === sort_by){ %> selected="selected"<% } %>><%= option?.name  %></option>
+                      <% }) %>
+                    </select>
+                    <%- include('./icon-caret') %>
+                  </div>
+                </div>
+              </details>
+
+              <noscript>
+                <button type="submit" class="button button--small">sort button</button>
+              </noscript>
+            </div>
+          <% } %>
+          <% if(section.settings.enable_filtering){ %>
+            <% if(section.blocks.length){ %>
+
+              <% section.blocks.forEach((block, index)=>{ %>                
+              <% if(block?.type === 'filter'){ %>
+                <% var filterName = block?.settings?.label.toLowerCase() %>                              
+                <% if(filterName === 'colors' || filterName === 'color'){  %>                
+                  <details class="disclosure-has-popup facets__disclosure js-filter" data-index="tag-<%= index %>">
+                    <summary class="facets__summary">
+                      <div>
+                        <span><%= block?.settings?.label  %></span>
+                        <%- include('./icon-caret') %>
+                      </div>
+                    </summary>
+                    <div class="facets__display">
+
+                      <% var filterTagNames = ''.split(',') %>                      
+                      <% if(collection?.products.length){ %>
+                        <ul class="facets__list list-unstyled color_filter_list Filter-<%= block?.settings?.label  %>" role="list">
+                        <% collection?.products.forEach((prod, index)=>{ %>
+                          <% var colorTitle = prod?.title.split(' / ').pop() %>        
+                          <% var color = colorTitle.trim().replace(' ', '-').toLowerCase() %>                    
+                          <% if(filterTagNames?.includes(colorTitle)){ %>
+                            <% return %>
+                          <% } else { %>
+                          <% var new_color = colorTitle.split(", ") %>
+                          <% var filterTagNames = filterTagNames + new_color %>
+                          <li class="list-menu__item facets__item">
+                            <label style="align-items: center;" for="Filter-<%= block?.settings?.label  %>-<%= index %>" class="facet-checkbox">
+                              <input style="display:none" type="checkbox"
+                                data-type="true"
+                                name="Filter-<%= block?.settings?.label %>"
+                                value="<%= color %>"
+                                id="Filter-<%= block?.settings?.label %>-<%= index %>"
+                                onclick="selectOnlyThis(this,'Filter-<%= block?.settings?.label %>')"
+                                <% if(current_tags.includes(color)){ %>checked<% } %>
+                              >
+
+                              <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                                <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
+                              </svg>
+
+                              <svg class="icon icon-checkmark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 9" fill="none" width="10px" height="10px">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.35.643a.5.5 0 01.006.707l-6.77 6.886a.5.5 0 01-.719-.006L.638 4.845a.5.5 0 11.724-.69l2.872 3.011 6.41-6.517a.5.5 0 01.707-.006h-.001z" fill="currentColor"/>
+                              </svg>
+                              <%= colorTitle %>
+                              
+                              <span style="margin-bottom:0px;margin-left:5px;height: 20px;width: 20px;border-radius:5px;" class="bc-colors__icon" data-color="<%=color%>"></span>
+                              
+                            </label>
+                          </li>
+                        <% } %>
+                        <% }) %>                      
+                        </ul>
+                      <% } %>
+                    </div>
+                  </details>
+                <% } else { %>
+                  <details class="disclosure-has-popup facets__disclosure js-filter" data-index="tag-<%= index %>">
+                    <summary class="facets__summary">
+                      <div>
+                        <span><%= block?.settings?.label %></span>
+                        <%- include('./icon-caret') %>
+                      </div>
+                    </summary>
+                    <div class="facets__display">
+
+                      <% var filterTagNames = block?.settings?.tags?.split('|') %>
+                      <% var filterPrefix = block?.settings?.tag_prefix %>
+
+                      <ul class="facets__list list-unstyled Filter-<%= block?.settings?.label %>" role="list">
+                        <% filterTagNames?.forEach((name, index)=>{ %>
+                          <li class="list-menu__item facets__item">
+                            <label style="align-items: center;" for="Filter-<%= block?.settings?.label %>-<%= index %>" class="facet-checkbox">
+                              <input style="display:none" type="checkbox"
+                                data-type="true"
+                                name="Filter-<%= block?.settings?.label %>"
+                                value="<%= filterPrefix %><%= name %>"
+                                id="Filter-<%= block?.settings?.label %>-<%= index %>"
+                                onclick="selectOnlyThis(this,'Filter-<%= block?.settings?.label %>')"
+                                <% if(current_tags.includes(name)){ %>checked<% } %>
+                              >
+
+                              <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                                <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
+                              </svg>
+
+                              <svg class="icon icon-checkmark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 9" fill="none" width="10px" height="10px">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.35.643a.5.5 0 01.006.707l-6.77 6.886a.5.5 0 01-.719-.006L.638 4.845a.5.5 0 11.724-.69l2.872 3.011 6.41-6.517a.5.5 0 01.707-.006h-.001z" fill="currentColor"/>
+                              </svg>
+                              <%= name.replace('-', ' ') %>
+                              <% var filterName = block?.settings?.label.toLowerCase() %>
+                              <% var colorId = name.trim().replace(' ', '_').toLowerCase()  %>
+                              <% if(filterName === 'colors' || filterName === 'color'){  %>
+                              <span style="margin-bottom:0px;margin-left:5px;height: 20px;width: 20px;border-radius:5px;" class="bc-colors__icon" data-color="<%=colorId%>"></span>
+                              <% } %>
+                            </label>
+                          </li>
+                        <% }) %>
+                      </ul>
+                    </div>
+                  </details>
+                <% } %>
+              <% } %>
+              <% }) %>
+
+            <% } %>
+
+          
+            <div class="facets__wrapper">              
+
+              <% collection?.filters?.forEach((filter, index)=>{ %>
+                <% var total_active_values = total_active_values + filter?.active_values?.length %>
+                <% if(filter?.type === 'list'){ %>
+                  <details class="disclosure-has-popup facets__disclosure js-filter" data-index="<%= index %>">
+                    <summary class="facets__summary">
+                      <div>
+                        <span><%= filter?.label  %></span>
+                        <span class="count-bubble"><% if(filter?.active_values?.length){ %><%= filter?.active_values?.length %><% } %></span>
+                        <%- include('./icon-caret') %>
+                      </div>
+                    </summary>
+                    <div class="facets__display">
+                      <div class="facets__header">
+                        <span class="facets__selected no-js-hidden"><%= 'Selected: count ' + filter?.active_values?.length %></span>
+                        <a href="<%= filter?.url_to_remove %>" class="facets__reset link underlined-link js-facet-remove" >Reset</a>
+                      </div>
+
+                      <ul class="facets__list list-unstyled Filter--aaa" role="list">
+                        <% filter?.values?.forEach((value,index)=>{ %>
+                          <li class="list-menu__item facets__item">
+                            <label for="Filter-<%= filter?.label  %>-<%= index %>" class="facet-checkbox<% if(value?.count === 0 && value?.active === false){ %> facet-checkbox--disabled<% } %>">
+                              <input style="display:none" type="checkbox"
+                                name="<%= value?.param_name %>"
+                                value="<%= value?.value %>"
+                                id="Filter-<%= filter?.label %>-<%= index %>"
+                                onclick="selectOnlyThis(this,'Filter-<%= block?.settings?.label %>')"
+                                <% if(value?.active){ %>checked<% } %>
+                                <% if(value?.count === 0 && value?.active === false){ %>disabled<% } %>
+                              >
+
+                              <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                                <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
+                              </svg>
+
+                              <svg class="icon icon-checkmark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 9" fill="none" width="10px" height="10px">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.35.643a.5.5 0 01.006.707l-6.77 6.886a.5.5 0 01-.719-.006L.638 4.845a.5.5 0 11.724-.69l2.872 3.011 6.41-6.517a.5.5 0 01.707-.006h-.001z" fill="currentColor"/>
+                              </svg>
+                              <%= value?.label  %> (<%= value?.count %>)
+                            </label>
+                          </li>
+                        <% }) %>
+                      </ul>
+                    </div>
+                  </details>
+                <% } else if(filter?.type === 'price_range'){ %>
+                  <%
+                    var currencies_using_comma_decimals = 'ANG,ARS,BRL,BYN,BYR,CLF,CLP,COP,CRC,CZK,DKK,EUR,HRK,HUF,IDR,ISK,MZN,NOK,PLN,RON,RUB,SEK,TRY,UYU,VES,VND'.split(',');
+                    var uses_comma_decimals = false;
+                    if(currencies_using_comma_decimals.includes(cart?.currency?.iso_code)){
+                      uses_comma_decimals = true;
+                    }
+                  %>
+                  <details class="disclosure-has-popup facets__disclosure js-filter" data-index="<%= index %>">
+                    <summary class="facets__summary">
+                      <div>
+                        <span><%= filter?.label  %></span>
+                        <span class="count-bubble<% if(filter?.min_value?.value || filter?.max_value?.value){ %><%= filter?.active_values?.length %> count-bubble--dot<% } %>"></span>
+                        <%- include('./icon-caret') %>
+                      </div>
+                    </summary>
+                    <div class="facets__display">
+                      <div class="facets__header">
+                        <% var max_price_amount = filter?.range_max %>
+                        <span class="facets__selected">max price: <%= max_price_amount %></span>
+                        <a href="<%= filter?.url_to_remove %>" class="facets__reset link underlined-link js-facet-remove" >reset</a>
+                      </div>
+                      <price-range class="facets__price">
+                        <div class="field">
+                          <span class="field__currency"><%= cart?.currency?.symbol %></span>
+                          <input class="field__input"
+                            name="<%= filter?.min_value?.param_name %>"
+                            id="Filter-<%= filter?.label  %>-<%= index %>"
+                            <% if(filter?.min_value?.value){ %>
+                              <% if(uses_comma_decimals){ %>
+                                value="<%= filter?.min_value?.value.replace('.', '').replace(',', '.') %>"
+                              <% } else { %>
+                                value="<%= filter?.min_value?.value.replace(',', '') %>"
+                              <% } %>
+                            <% } %>
+                            type="number"
+                            placeholder="0"
+                            min="0"
+                            max="<%= filter?.range_max.replace(',', '') %>"/>
+                          <label class="field__label" for="Search-In-Modal">Form</label>
+                        </div>
+                        <div class="field">
+                          <span class="field__currency"><%= cart?.currency?.symbol %></span>
+                          <input class="field__input"
+                            name="<%= filter?.max_value?.param_name %>"
+                            id="Filter-<%= filter?.label  %>-<%= index %>"
+                            <% if(filter?.max_value?.value){ %>
+                              <% if(uses_comma_decimals){ %>
+                                value="<%= filter?.max_value?.value.replace('.', '').replace(',', '.') %>"
+                              <% } else { %>
+                                value="<%= filter?.max_value?.value.replace(',', '') %>"
+                              <% } %>
+                            <% } %>
+                            type="number"
+                            placeholder="<%= filter?.range_max.replace(',', '') %>"
+                            min="0"
+                            max="<%= filter?.range_max.replace(',', '') %>"/>
+                          <label class="field__label" for="Search-In-Modal">to</label>
+                        </div>
+                      </div>
+                    </price-range>
+                  </details>
+                <% } %>
+              <% }) %>
+              <noscript>
+                <button type="submit" class="facets__button button">Filter Button</button>
+              </noscript>
+            </div>
+          <% } %>
+
+          <div class="active-facets active-facets-desktop">
+            <a href="<%= collection?.url %>?sort_by=<%= sort_by %>" class="active-facets__button button button--secondary js-facet-remove" <% if(current_tags){ %>data-type="clear_all"<% } %>>clear all</a>
+            <% collection?.filters?.forEach((filter, index)=>{ %>
+              <% filter?.active_values?.forEach((value, index)=>{ %>
+                <a class="active-facets__button active-facets__button--light button button--tertiary js-facet-remove" href="<%= value?.url_to_remove %>" data-value="<%= value?.value  %>">
+                  <%= value?.label  %>
+                  <%- include('./icon-close-small') %>
+                </a>
+              <% }) %>
+              <% if(filter?.type === "price_range"){ %>
+                <% if(filter?.min_value?.value || filter?.max_value?.value){ %>
+                  <a class="active-facets__button active-facets__button--light button button--tertiary js-facet-remove" href="<%= filter?.url_to_remove %>" >
+                    <% if(filter?.min_value?.value){ %><%= filter?.min_value?.value %><% } else { %><%= 0 %><% } %>-<% if(filter?.max_value?.value){ %><%= filter?.max_value?.value %><% } else { %><%= filter?.range_max %><% } %>
+                    <%- include('./icon-close-small') %>
+                  </a>
+                <% } %>
+              <% } %>
+            <% }) %>
+            <% if(current_tags){ %>
+              <% current_tags.forEach((tag, index)=>{ %>
+                <a class="active-facets__button active-facets__button--light button button--tertiary js-facet-remove" href="<%= tag  %>" data-value="<%= tag  %>" data-type="<%= tag  %>">
+                  <%= tag.replace("C_COVERAGES_", "").replace("C_FABRICS_", "").replace("C_TYPES_", "") %>
+                  <%- include('./icon-close-small') %>
+                </a>
+              <% }) %>
+            <% } %>
+          </div>
+
+          <% if(collection?.current_vendor || collection?.current_type){ %>
+            <input type="hidden" name="q" value="<%= collection?.current_vendor %><%= collection?.current_type %>">
+          <% } %>
+        </form>
+      </collection-filters-form>
+      
+      <menu-drawer class="mobile-facets__wrapper">
+        <details class="disclosure-has-popup medium-hide large-up-hide">
+          <summary>
+            <span class="mobile-facets__open button button--secondary">
+              <span>SHOW FILTERS</span>
+              <span class="count-bubble">
+                <% if(total_active_values > 0){ %><%= total_active_values %><% } %>
+              </span>
+            </span>
+            <span tabindex="0" class="mobile-facets__close mobile-facets__close--no-js"><%- include('./icon-close') %></span>
+          </summary>
+          <collection-filters-form>
+            <form id="CollectionFiltersFormMobile" class="mobile-facets">
+              <div class="mobile-facets__inner">
+                <div class="mobile-facets__header">
+                  <div class="mobile-facets__header-inner">
+                    <h2 class="mobile-facets__heading">filter and sort</h2>
+                    <p class="mobile-facets__count"><%= 'Product Count' + collection?.products_count + ' ' + collection?.all_products_count %></p>
+                  </div>
+                </div>
+                <div class="mobile-facets__main">
+                  <% if(section.settings.enable_sorting){ %>
+                    <div class="mobile-facets__details js-filter" data-index="mobile-<%= '1' %>">
+                      <div class="mobile-facets__summary">
+                        <div class="mobile-facets__sort">
+                          <label for="SortBy-mobile">Sort by</label>
+                          <div class="select">
+                            <select name="sort_by" class="select__select" id="SortBy-mobile" aria-describedby="a11y-refresh-page-message">
+                              <% collection?.sort_options?.forEach((option, index)=>{ %>
+                                <option value="<%= option?.value  %>"<% if(option?.value === sort_by){ %> selected="selected"<% } %>><%= option?.name  %></option>
+                              <% }) %>
+                            </select>
+                            <%- include('./icon-caret') %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% } %>
+
+
+                  <% if(section.settings.enable_filtering){ %>
+                    <% var filter_block = 0 %>
+                    <% if(section.blocks.length){ %>                      
+                      <% section?.blocks?.forEach((block, index)=>{ %>
+                        <% if(block?.type === 'filter'){ %>
+                          <% var filter_block = filter_block + 1 %>
+                          <% var filterTagNames = block?.settings?.tags?.split('|') %>
+                          <% var filterPrefix = block?.settings?.tag_prefix %>
+                          <% var filterName = block?.settings?.label.toLowerCase() %>                              
+                          <% if(filterName === 'colors' || filterName === 'color'){  %>                
+                            <details class="mobile-facets__details js-filter tag_filter" data-index="mobile-<%= index %>">
+                              <summary class="mobile-facets__summary">
+                                <div>
+                                  <span><%= block?.settings?.label %></span>                               
+                                  <span class="mobile-facets__arrow no-js-hidden"><%- include('./icon-arrow') %></span>
+                                  <noscript><%- include('./icon-caret') %></noscript>
+                                </div>
+                              </summary>
+                              <div class="mobile-facets__submenu">
+                                <button class="mobile-facets__close-button link link--text focus-inset" aria-expanded="true" type="button">
+                                  <%- include('./icon-arrow') %>
+                                  <%= block?.settings?.label %>
+                                </button> 
+                                  <% var filterTagNames = ''.split(',') %>                      
+                                  <% if(collection?.products.length){ %>
+                                    <ul class="mobile-facets__list list-unstyled" role="list">                        
+                                    <% collection?.products.forEach((prod, index)=>{ %>
+                                      <% var colorTitle = prod?.title.split(' / ').pop() %>        
+                                      <% var color = colorTitle.trim().replace(' ', '-').toLowerCase() %>                    
+                                      <% if(filterTagNames?.includes(colorTitle)){ %>
+                                        <% return %>
+                                      <% } else { %>
+                                      <% var new_color = colorTitle.split(", ") %>
+                                      <% var filterTagNames = filterTagNames + new_color %>                    
+
+                                      <li class="mobile-facets__item list-menu__item">
+                                        <label for="Filter-<%= block?.settings?.label  %>-mobile-<%= index %>" class="mobile-facets__label">
+                                          <input class="mobile-facets__checkbox"
+                                            type="checkbox"
+                                            data-type="true"
+                                            name="Filter-mobile-<%= block?.settings?.label %>"
+                                            value="<%= color %>"
+                                            id="Filter-<%= block?.settings?.label  %>-mobile-<%= index %>"
+                                            onclick="selectOnlyThis(this,'Filter-mobile-<%= block?.settings?.label %>')"
+                                            <% if(current_tags.includes(color)){ %>checked<% } %>                                        
+                                          >
+
+                                          <span class="mobile-facets__highlight"></span>
+
+                                          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                                            <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
+                                          </svg>
+
+                                          <svg class="icon icon-checkmark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 9" fill="none" width="10px" height="10px">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.35.643a.5.5 0 01.006.707l-6.77 6.886a.5.5 0 01-.719-.006L.638 4.845a.5.5 0 11.724-.69l2.872 3.011 6.41-6.517a.5.5 0 01.707-.006h-.001z" fill="currentColor"/>
+                                          </svg>
+
+                                          <%= colorTitle %><span style="margin-bottom:0px;margin-left:5px;height: 20px;width: 20px;border-radius:5px;" class="bc-colors__icon" data-color="<%=color%>"></span>
+                                          
+                                        </label>
+                                      </li>
+                                    <% } %>
+                                    <% }) %>                      
+                                    </ul>
+                                  <% } %>
+                                </div>
+                            </details>
+                          <% } else { %>
+                            <details class="mobile-facets__details js-filter tag_filter" data-index="mobile-<%= index %>">
+                              <summary class="mobile-facets__summary">
+                                <div>
+                                  <span><%= block?.settings?.label %></span>                               
+                                  <span class="mobile-facets__arrow no-js-hidden"><%- include('./icon-arrow') %></span>
+                                  <noscript><%- include('./icon-caret') %></noscript>
+                                </div>
+                              </summary>
+                              <div class="mobile-facets__submenu">
+                                <button class="mobile-facets__close-button link link--text focus-inset" aria-expanded="true" type="button">
+                                  <%- include('./icon-arrow') %>
+                                  <%= block?.settings?.label %>
+                                </button>
+                                <ul class="mobile-facets__list list-unstyled" role="list">
+                                  <% filterTagNames?.forEach((name, index)=>{ %>
+                                    <li class="mobile-facets__item list-menu__item">
+                                      <label for="Filter-<%= block?.settings?.label  %>-mobile-<%= index %>" class="mobile-facets__label">
+                                        <input class="mobile-facets__checkbox"
+                                          type="checkbox"
+                                          data-type="true"
+                                          name="Filter-mobile-<%= block?.settings?.label %>"
+                                          value="<%= filterPrefix %><%= name %>"
+                                          id="Filter-<%= block?.settings?.label %>-mobile-<%= index %>"
+                                          onclick="selectOnlyThis(this,'Filter-mobile-<%= block?.settings?.label %>')"
+                                          <% if(current_tags.includes(name)){ %>checked<% } %>                                        
+                                        >
+      
+                                        <span class="mobile-facets__highlight"></span>
+      
+                                        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                                          <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
+                                        </svg>
+      
+                                        <svg class="icon icon-checkmark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 9" fill="none" width="10px" height="10px">
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.35.643a.5.5 0 01.006.707l-6.77 6.886a.5.5 0 01-.719-.006L.638 4.845a.5.5 0 11.724-.69l2.872 3.011 6.41-6.517a.5.5 0 01.707-.006h-.001z" fill="currentColor"/>
+                                        </svg>
+      
+                                        <%= name.replace('-', ' ') %>
+                                      </label>
+                                    </li>
+                                  <% }) %>
+                                </ul>
+      
+                                <div class="no-js-hidden mobile-facets__footer">
+                                  <a href="<%= collection?.url %>" class="mobile-facets__clear button button--secondary js-facet-remove">clear</a>
+                                  <button type="button" class="no-js-hidden button button--primary" onclick="this.closest('.mobile-facets__wrapper').querySelector('summary').click()">apply</button>
+                                  <noscript><button class="button button--primary">apply</button></noscript>
+                                </div>
+                              </div>
+                            </details>
+                          <% } %>             
+                        <% } %>
+                      <% }) %>
+                    <% } %>                  
+
+
+                    <% collection?.filters?.forEach((filter, index)=>{ %>
+                      <% if(filter?.type === 'list'){ %>
+                        <details class="mobile-facets__details js-filter" data-index="mobile-<%= index + filter_block %>">
+                          <summary class="mobile-facets__summary">
+                            <div>
+                              <span><%= filter?.label %></span>
+                              <span class="count-bubble">
+                                <% if(filter?.active_values?.length){ %><%= filter?.active_values?.length %><% } %>
+                              </span>
+                              <span class="mobile-facets__arrow no-js-hidden"><%- include('./icon-arrow') %></span>
+                              <noscript><%- include('./icon-caret') %></noscript>
+                            </div>
+                          </summary>
+                          <div class="mobile-facets__submenu">
+                            <button class="mobile-facets__close-button link link--text focus-inset" aria-expanded="true" type="button">
+                              <%- include('./icon-arrow') %>
+                              <%= filter?.label %>
+                            </button>
+                            <ul class="mobile-facets__list list-unstyled" role="list">
+                              <% filter?.values?.forEach((value, index)=>{ %>
+                                <li class="mobile-facets__item list-menu__item">
+                                  <label for="Filter-<%= filter?.label  %>-mobile-<%= index %>" class="mobile-facets__label<% if(value?.count === 0 && value?.active === false){ %> mobile-facets__label--disabled<% } %>">
+                                    <input class="mobile-facets__checkbox"
+                                      type="checkbox"
+                                      name="<%= value?.param_name %>"
+                                      value="<%= value?.value %>"
+                                      id="Filter-<%= filter?.label %>-mobile-<%= index %>"
+                                      onclick="selectOnlyThis(this,'Filter-<%= block?.settings?.label %>')"
+                                      <% if(value?.active){ %>checked<% } %>
+                                      <% if(value?.count === 0 && value?.active === false){ %>disabled<% } %>
+                                    >
+
+                                    <span class="mobile-facets__highlight"></span>
+
+                                    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                                      <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
+                                    </svg>
+
+                                    <svg class="icon icon-checkmark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 9" fill="none" width="10px" height="10px">
+                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.35.643a.5.5 0 01.006.707l-6.77 6.886a.5.5 0 01-.719-.006L.638 4.845a.5.5 0 11.724-.69l2.872 3.011 6.41-6.517a.5.5 0 01.707-.006h-.001z" fill="currentColor"/>
+                                    </svg>
+
+                                    <%= value?.label  %> (<%= value?.count %>)
+                                  </label>
+                                </li>
+                              <% }) %>
+                            </ul>
+
+                            <div class="no-js-hidden mobile-facets__footer">
+                              <a href="<%= collection?.url %>" class="mobile-facets__clear button button--secondary js-facet-remove">clear</a>
+                              <button type="button" class="no-js-hidden button button--primary" onclick="this.closest('.mobile-facets__wrapper').querySelector('summary').click()">Apply</button>
+                              <noscript><button class="button button--primary">Apply</button></noscript>
+                            </div>
+                          </div>
+                        </details>
+                      <% } else if(filter?.type === 'price_range'){ %>
+                        <details class="mobile-facets__details js-filter" data-index="mobile-<%= index %>">
+                          <summary class="mobile-facets__summary">
+                            <div>
+                              <span><%= filter?.label  %></span>
+                              <span class="count-bubble<% if(filter?.min_value?.value || filter?.max_value?.value){ %><%= filter?.active_values?.length %> count-bubble--dot<% } %>"></span>
+                              <span class="mobile-facets__arrow no-js-hidden"><%- include('./icon-arrow') %></span>
+                              <noscript><%- include('./icon-caret') %></noscript>
+                            </div>
+                          </summary>
+                          <div class="mobile-facets__submenu">
+                            <button class="mobile-facets__close-button link link--text focus-inset" aria-expanded="true" type="button">
+                              <%- include('./icon-arrow') %>
+                              <%= filter?.label %>
+                            </button>
+
+                            <p class="mobile-facets__info"><%= "max price: " + max_price_amount %></p>
+
+                            <price-range class="facets__price">
+                              <div class="field">
+                                <span class="field__currency"><%= cart?.currency?.symbol %></span>
+                                <input class="field__input"
+                                  name="<%= filter?.min_value?.param_name %>"
+                                  id="Filter-<%= filter?.label  %>-<%= index %>"
+                                  <% if(filter?.min_value?.value){ %>
+                                    <% if(uses_comma_decimals){ %>
+                                      value="<%= filter?.min_value?.value.replace('.', '').replace(',', '.') %>"
+                                    <% } else { %>
+                                      value="<%= filter?.min_value?.value.replace(',', '') %>"
+                                    <% } %>
+                                  <% } %>
+                                  type="number"
+                                  placeholder="0"
+                                  min="0"
+                                  max="<%= Math.ceil(filter?.range_max / 100) %>"/>
+                                <label class="field__label" for="Search-In-Modal">from</label>
+                              </div>
+                              <div class="field">
+                                <span class="field__currency"><%= cart?.currency?.symbol %></span>
+                                <input class="field__input"
+                                  name="<%= filter?.max_value?.param_name %>"
+                                  id="Filter-<%= filter?.label  %>-<%= index %>"
+                                  <% if(filter?.max_value?.value){ %>
+                                    <% if(uses_comma_decimals){ %>
+                                      value="<%= filter?.max_value?.value.replace('.', '').replace(',', '.') %>"
+                                    <% } else { %>
+                                      value="<%= filter?.max_value?.value.replace(',', '') %>"
+                                    <% } %>
+                                  <% } %>
+                                  type="number"
+                                  placeholder="<%= Math.ceil(filter?.range_max / 100) %>"
+                                  min="0"
+                                  max="<%= Math.ceil(filter?.range_max / 100) %>"/>
+                                <label class="field__label" for="Search-In-Modal">to</label>
+                              </div>
+                            </price-range>
+                          </div>
+                        </details>
+                      <% } %>
+                    <% }) %>
+                  <% } %>
+
+                  
+
+                  <div class="mobile-facets__footer">
+                    <a href="<%= collection?.url %>" class="mobile-facets__clear button button--secondary js-facet-remove">Clear</a>
+                    <button type="button" class="no-js-hidden button button--primary" onclick="this.closest('.mobile-facets__wrapper').querySelector('summary').click()">Apply</button>
+                    <noscript><button class="button button--primary">Apply</button></noscript>
+                  </div>
+                </div>
+
+                <% if(collection?.current_vendor || collection?.current_type){ %>
+                  <input type="hidden" name="q" value="<%= collection?.current_vendor %><%= collection?.current_type %>">
+                <% } %>
+              </div>
+            </form>
+          </collection-filters-form>
+        </details>
+      </menu-drawer>
+
+      <div class="active-facets active-facets-mobile">
+        <a href="<%= collection?.url %>?sort_by=<%= sort_by %>" class="active-facets__button button button--secondary js-facet-remove" data-type="clear_all">Clear All</a>
+        <% collection?.filters?.forEach((filter, index)=>{ %>
+          <% filter?.active_values?.forEach((value, index)=>{ %>
+            <a class="active-facets__button active-facets__button--light button button--tertiary js-facet-remove" href="<%= value?.url_to_remove %>" data-value="<%= value?.value  %>">
+              <%= value?.label  %>
+              <%- include('./icon-close-small') %>
+            </a>
+          <% }) %>
+
+          <% if(filter?.type === "price_range"){ %>
+            <% if(filter?.min_value?.value || filter?.max_value?.value){ %>
+              <a class="active-facets__button active-facets__button--light button button--tertiary js-facet-remove" href="<%= filter?.url_to_remove %>">
+                <% if(filter?.min_value?.value){ %><%= filter?.min_value?.value %><% } else { %><%= 0 %><% } %>-<% if(filter?.max_value?.value){ %><%= filter?.max_value?.value %><% } else { %><%= filter?.range_max %><% } %>
+                <%- include('./icon-close-small') %>
+              </a>
+            <% } %>
+          <% } %>
+        <% }) %>
+        <% if(current_tags){ %>
+          <% current_tags.forEach((tag, index)=>{ %>
+            <a class="active-facets__button active-facets__button--light button button--tertiary js-facet-remove" href="<%= tag  %>" data-type="<%= tag  %>" data-value="<%= tag  %>">
+              <%= tag.replace("C_COVERAGES_","").replace("C_FABRICS_","").replace("C_TYPES_","")  %>
+              <%- include('./icon-close-small') %>
+            </a>
+          <% }) %>
+        <% } %>
+      </div>
+    <% } %>
+
+    
+  </div>
+
+  <script src="/assets/collection-filters-form.js" defer="defer"></script>

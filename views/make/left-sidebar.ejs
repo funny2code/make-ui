@@ -1,0 +1,33 @@
+<div class="py__settings-select">
+    <div class="py__settings-select-options">
+        <ul class="py__options-ul">
+            <% sidebar.forEach((item, index) => { %>
+                <li class="py__options-ul-li py__options-ul-li-<%=index%>">
+                    <% if(item.subOptions){ %>
+                        <a class="py__settings-select-options-item <% if(item.type === 'page' || activeType === 'section'){ %>active<% } %>">
+                            <span><%- include('../icons', {type: item.icon}) %></span>
+                            <span class="py__select-option-label"><%= item.title %></span>
+                        </a>
+                        <ul class="py__sub-options-ul">
+                            <% var subMenuItems = item.type === 'page' ? pageNames : pageSections %>
+                            <% subMenuItems.forEach(subOption => { %>
+                                <% var subMenuLinks = item.type === 'page' ? `page=${subOption.name}` : `page=${page}&section=${subOption.name}` %>
+                                <li>
+                                    <a href="/themes/<%=id%>?<%=subMenuLinks%>" class="py__sub-options-item py__get-section-button <% if(item.type === 'page' && subOption.name === page || activeType === 'section' && subOption.name === active){ %>active<% } %>">
+                                        <span><%= subOption.name %></span>
+                                        <span><%- include('../icons', {type:'arrow_right'}) %></span>
+                                    </a>
+                                </li>
+                            <% }) %>
+                        </ul>
+                    <% } else { %>
+                        <a href="/themes/<%=id%>?page=<%=page%>&<%=item.type%>=<%=item.name%>" class="py__settings-select-options-item py__get-section-button <% if(item.name === active){ %>active<% } %>">
+                            <span><%- include('../icons', {type: item.icon}) %></span>
+                            <span class="py__select-option-label"><%= item.title %></span>
+                        </a>
+                    <% } %>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</div>

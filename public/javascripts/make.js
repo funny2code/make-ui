@@ -283,12 +283,15 @@
             if(!data) return;
             let parser = new DOMParser();
             let html = parser.parseFromString(data, "text/html");
-            let oldSettingsWrap = document.querySelector('.py__make-sidebar');
-            let newSettingsWrap = html.querySelector('.py__make-sidebar');
+            let oldSettingsWrap = document.querySelector('.py__make-settings');
+            let newSettingsWrap = html.querySelector('.py__make-settings');
             let oldIframeWrap = document.querySelector('.py__preview-iframe');
             let newIframeWrap = html.querySelector('.py__preview-iframe');
+            let oldSidebarWrap = document.querySelector('.py__preview-iframe');
+            let newSidebarWrap = html.querySelector('.py__preview-iframe');
             oldSettingsWrap && newSettingsWrap ? oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML : null;
             oldIframeWrap && newIframeWrap ? oldIframeWrap.innerHTML = newIframeWrap.innerHTML : null;
+            oldSidebarWrap && newSidebarWrap ? oldSidebarWrap.innerHTML = newSidebarWrap.innerHTML : null;
         }).catch(err => console.log(err));
     };
 
@@ -296,23 +299,8 @@
     const getSettingsLists = (event) => {
         if(!event) return;
         event.preventDefault();
-        // if(event.target.classList.contains('active')) return;
+        if(event.target.classList.contains('active')) return;
         let el = event.target;
-        if(el.classList.contains('py__sub-options-item')){
-            let activeSubOption = document.querySelector('.py__sub-options-item.active');
-            if(activeSubOption) activeSubOption.classList.remove('active');
-            el.classList.add('active');
-            el.closest('.py__sub-options-ul').classList.remove('active');
-        } else {
-            let settingOptionItem = document.querySelector('.py__settings-select-options-item.active');
-            if (settingOptionItem) settingOptionItem.classList.remove('active');
-            let activeSubMenu = document.querySelector('.py__sub-options-ul.active');
-            if(activeSubMenu) activeSubMenu.classList.remove('active');
-            let elWrapper = el.closest('.py__options-ul-li');
-            let subMenu = elWrapper && elWrapper?.querySelector('.py__sub-options-ul');
-            if(subMenu) subMenu.classList.add('active');
-            if(subMenu) el.classList.add('active');
-        }
         let content = document.querySelector('.py__settings-content');
         
         let url = el.getAttribute('href');
@@ -336,7 +324,7 @@
             iframe.setAttribute('src', iframeUrl);
         }
         
-        if (content) content.querySelector('.py__loading-wrap').classList.add('py__animate');
+        if(content) content.querySelector('.py__loading-wrap').classList.add('py__animate');
 
         el.classList.add('active');
         fetch(url)
@@ -473,11 +461,11 @@
 
     // Sidebar Select Settings Open Close Fun
     document.addEventListener('click', (e)=>{
-        if(e && e.target.classList.contains('py__settings-select')){
-            e.target.classList.contains('active') 
-            ? e.target.classList.remove('active')
-            : e.target.classList.add('active');
-        }
+        // if(e && e.target.classList.contains('py__settings-select')){
+        //     e.target.classList.contains('active') 
+        //     ? e.target.classList.remove('active')
+        //     : e.target.classList.add('active');
+        // }
         if(e && e.target.classList.contains('py__settings-item-name')){
             e.target.closest('.py__settings-item-wrapper').classList.contains('active') 
             ? e.target.closest('.py__settings-item-wrapper').classList.remove('active')
@@ -485,8 +473,7 @@
         }
         if(e && e.target.classList.contains('py__get-button')) getItemFromSettings(e);
         if(e && e.target.classList.contains('py__button-view')) toggleIframePreview(e);
-        if(e && e.target.classList.contains('py__settings-select-options-item')) getSettingsLists(e);
-        if(e && e.target.classList.contains('py__sub-options-item')) getSettingsLists(e);
+        if(e && e.target.classList.contains('py__get-section-button')) getSettingsLists(e);
         if(e && e.target.classList.contains('py__save-button')) save(e);
         if(e && e.target.classList.contains('py__download-button')) download(e);
     });

@@ -97,7 +97,6 @@ router.get('/:id', async (req, res, next) => {
           }
 
           sectionSettings.push({name: item.name, settings: sectionChildSettings, blocks: blocks});
-          console.log(blocks, "Blocks");
           // el.presets ? el.presets[0]?.blocks && el.presets[0].blocks.length 
           // ? sectionSettings.push({name: el.name, settings: sectionChildSettings, blocks: el.presets[0].blocks}) 
           // : sectionSettings.push({name: el.name, settings: sectionChildSettings, blocks: []})
