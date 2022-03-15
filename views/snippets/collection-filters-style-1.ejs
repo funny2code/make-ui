@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/assets/component-filter-style-1.css">
 
-<div class="page-width collection-filters bc-collection-page-fillters" id="main-collection-filters" data-id="<%= collection?.id %>">
+<div class="page-width collection-filters bc-collection-page-fillters py-<%=section.settings.filter_bg_color%> py-<%=section.settings.filter_color%>" id="main-collection-filters" data-id="<%= collection?.id %>">
     <% if(section.settings.enable_filtering || section.settings.enable_sorting){ %>
       <% var total_active_values = 0 %>
       <collection-filters-form class="facets small-hide">

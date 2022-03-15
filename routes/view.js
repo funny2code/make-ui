@@ -130,7 +130,7 @@ router.post('/:id', async (req, res, next) => {
   var theme = '', sections = '', pageResult = '';
   var defaultSettings = {}, defaultSections = [];
   if(!id || !page) return next();
-  if(!settings?.length && !section?.length) return next();
+  if(!settings?.length && !section?.length && !blocks?.length) return next();
 
   try{
     theme = await themesModel.findById(id).exec();

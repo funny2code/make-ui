@@ -11,12 +11,46 @@
     "collection_type": "custom",
     "published_scope": "web",
     "admin_graphql_api_id": "gid:\/\/shopify\/Collection\/273928093857",
+    "sort_options": [
+      { 
+        "value": "manual",
+        "name": "Featured"
+      },
+      {
+        "value": "best-selling",
+        "name": "Best selling"
+      },
+      {
+        "value": "title-ascending",
+        "name": "Alphabetically, A-Z"
+      },
+      {
+        "value": "title-descending",
+        "name": "Alphabetically, Z-A"
+      },
+      {
+        "value": "price-ascending",
+        "name": "Price, low to high"
+      },
+      {
+        "value": "price-descending",
+        "name": "Price, high to low"
+      },
+      {
+        "value": "created-ascending",
+        "name": "Date, old to new"
+      },
+      {
+        "value": "created-descending",
+        "name": "Date, new to old"
+      }
+    ],
     "image": {
       "created_at": "2021-09-12T16:52:05+04:00",
-      "alt": "",
-      "width": 1273,
-      "height": 1920,
-      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0584\/1993\/7441\/collections\/D1Espresso.jpg?v=1632482002"
+      "alt": "Collection Title",
+      "width": 1500,
+      "height": 750,
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0584\/1993\/7441\/files\/pexels-edgars-kisuro-1488463.jpg?v=1639586888"
     },
     "products": [
       {

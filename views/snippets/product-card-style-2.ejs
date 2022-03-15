@@ -3,33 +3,33 @@
   <a href="<%= product_card_product?.url || '#' %>" class="full-unstyled-link">
     <span class="visually-hidden"><%= product_card_product?.title %></span>
   </a>  
-  <div class="card card--product<% if(product_card_product?.images[0]){ %> card--text-only card--soft<% } %>" tabindex="-1">
+  <div class="card card--product<% if(!product_card_product?.image){ %> card--text-only card--soft<% } %>" tabindex="-1">
     <div class="card__inner">
-      <% if(product_card_product?.images[0]){ %>
+      <% if(product_card_product?.image){ %>
       <%
-        var featured_media_aspect_ratio = product_card_product?.images[0]?.aspect_ratio;
-        if(product_card_product?.images[0].aspect_ratio){
+        var featured_media_aspect_ratio = product_card_product?.image?.aspect_ratio;
+        if(product_card_product?.image.aspect_ratio){
           var featured_media_aspect_ratio = 1;
         }
       %>
       
         <div><a href="<%= product_card_product?.url || '#' %>" class="full-unstyled-link img-wrapper-link">
           <div class="media media--transparent media--<%= media_size %> feature-img-wrapper"
-               <% if(media_size === 'adapt' && product_card_product?.images[0]){ %> style="padding-bottom: <%= 1 / featured_media_aspect_ratio * 100 %>%;"<% } %>
+               <% if(media_size === 'adapt' && product_card_product?.image){ %> style="padding-bottom: <%= 1 / featured_media_aspect_ratio * 100 %>%;"<% } %>
                >
-            <img srcset="<% if(product_card_product?.images[0].width >= 165){ %><%= product_card_product?.images[0].src %> 165w,<% } %>
-                         <% if(product_card_product?.images[0].width >= 360){ %><%= product_card_product?.images[0].src %> 360w,<% } %>
-                         <% if(product_card_product?.images[0].width >= 533){ %><%= product_card_product?.images[0].src %> 533w,<% } %>
-                         <% if(product_card_product?.images[0].width >= 720){ %><%= product_card_product?.images[0].src %> 720w,<% } %>
-                         <% if(product_card_product?.images[0].width >= 940){ %><%= product_card_product?.images[0].src %> 940w,<% } %>
-                         <% if(product_card_product?.images[0].width >= 1066){ %><%= product_card_product?.images[0].src %> 1066w<% } %>"
-                 src="<%= product_card_product?.images[0].src %>"
+            <img srcset="<% if(product_card_product?.image.width >= 165){ %><%= product_card_product?.image.src %> 165w,<% } %>
+                         <% if(product_card_product?.image.width >= 360){ %><%= product_card_product?.image.src %> 360w,<% } %>
+                         <% if(product_card_product?.image.width >= 533){ %><%= product_card_product?.image.src %> 533w,<% } %>
+                         <% if(product_card_product?.image.width >= 720){ %><%= product_card_product?.image.src %> 720w,<% } %>
+                         <% if(product_card_product?.image.width >= 940){ %><%= product_card_product?.image.src %> 940w,<% } %>
+                         <% if(product_card_product?.image.width >= 1066){ %><%= product_card_product?.image.src %> 1066w<% } %>"
+                 src="<%= product_card_product?.image.src %>"
                  sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
-                 alt="<%= product_card_product?.images[0].alt  %>"
+                 alt="<%= product_card_product?.image.alt  %>"
                  loading="lazy"
                  class="motion-reduce main-feature-img"
-                 width="<%= product_card_product?.images[0].width %>"
-                 height="<%= product_card_product?.images[0].height %>"
+                 width="<%= product_card_product?.image.width %>"
+                 height="<%= product_card_product?.image.height %>"
                  >
           </div></a>
           <slider-component class="slider-mobile-gutter">
@@ -37,8 +37,8 @@
               Product info
             </a>
             <ul class="product__media-list list-unstyled slider slider--desktop" role="list">
-              <% if(product?.selected_or_first_available_variant?.image){ %>
-                <% var media = product?.selected_or_first_available_variant?.images[0] %>
+              <% if(product?.image){ %>
+                <% var media = product?.image %>
                 <li class="product__media-item slider__slide<% if(media?.media_type !== 'image'){ %> product__media-item--full<% } %>" data-media-id="<%= product?.id %>-<%= media?.id %>">
                   <a href="<%= product_card_product?.url || '#' %>" class="full-unstyled-link">
                     <div class="product__media media" <% if(media?.aspect_ratio){ %>style="padding-top: <%= 1 / media?.aspect_ratio * 100 %>%;"<% } %>>
@@ -57,7 +57,7 @@
                 </li>
               <% } %>
               <% product?.images.forEach((media,index)=>{ %>
-                <% if(media?.id !== product?.selected_or_first_available_variant?.images[0].id){ %>
+                <% if(media?.id !== product?.image.id){ %>
                   <li class="product__media-item slider__slide<% if(media?.media_type !== 'image'){ %> product__media-item--full<% } %>" data-media-id="<%= media?.id %>">
                     <a href="<%= product_card_product?.url || '#' %>" class="full-unstyled-link">
                     <div class="product__media media" <% if(media?.aspect_ratio){ %>style="padding-top: <%= 1 / media?.aspect_ratio * 100 %>%;"<% } %>>
@@ -127,7 +127,7 @@
               <% } %>                    
               <% }) %>
               <% } %>" >
-    <div class="quick-add-cart-wrapper">
+    <div class="quick-add-cart-wrapper py-<%=section.settings.card_bg_color%>">
       <div class="quick-add-area">
         <% var size_ab = false %>
         <% if(product_card_product?.variants.length > 1){ %> 

@@ -334,8 +334,7 @@
   top: -70px;
   z-index: -1;
   border-top: 1px solid #d3cec5;
-  border-bottom: 1px solid #d3cec5;
-  background: white;
+  border-bottom: 1px solid #d3cec5;  
   height: 50px;
 }
 .grid__item:hover .quick-add-cart-wrapper{

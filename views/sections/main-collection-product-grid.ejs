@@ -124,15 +124,14 @@
               <% if(collection?.products_count === 4){ %> grid--4-col-desktop<% } else { %> grid--one-third-max grid--2-col-tablet grid--4-col-desktop grid--quarter-max<% } %>
             <% } %>">
             <%  collection?.products.forEach((product, index)=>{ %>
-              <li class="grid__item" <% if(section.settings.item_space){ %>style="padding-left:<%=section.settings.item_space%>px;padding-bottom:<%=section.settings.item_space%>px"<% } %>>
+              <li class="grid__item py-<%=section.settings.card_color%>" <% if(section.settings.item_space){ %>style="padding-left:<%=section.settings.item_space%>px;padding-bottom:<%=section.settings.item_space%>px"<% } %>>
                 <%- include('../snippets/product-card',
                   {product_card_product: product,
                   media_size: section.settings.image_ratio,
                   show_secondary_image: section.settings.show_secondary_image,
                   add_image_padding: section.settings.add_image_padding,
                   show_vendor: section.settings.show_vendor,
-                  show_colors: section.settings.show_colors,
-                  images_size: 'adapt'})
+                  show_colors: section.settings.show_colors})
                 %>
               </li>
             <% }) %>
@@ -185,7 +184,7 @@
 
           <ul id="main-collection-product-grid" data-id="<%= collection.id %>" class="grid grid--2-col grid--3-col-tablet grid--4-col-desktop">
             <% collection?.products.forEach((product, index)=>{ %>
-              <li class="grid__item" <% if(section.settings.item_space){ %>style="padding-bottom:<%=section.settings.item_space%>px"<% } %>>
+              <li class="grid__item py-<%=section.settings.card_color%>" <% if(section.settings.item_space){ %>style="padding-left:<%=section.settings.item_space%>px;padding-bottom:<%=section.settings.item_space%>px"<% } %>>
                 <%- include('../snippets/product-card-style-2',
                   {product_card_product: product,
                   media_size: section.settings.image_ratio,
@@ -209,6 +208,5 @@
 
 
   <script src="/assets/product-form.js" defer="defer"></script>
-  <script src="/assets/collection-card-style-2.js" defer="defer"></script>
   <% } %>
 </div>

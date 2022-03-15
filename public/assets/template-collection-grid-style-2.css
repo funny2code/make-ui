@@ -55,16 +55,13 @@
 }
 
 div.collection>.grid{
-  margin-left:0px;
-  gap:1px;
-  background-color: var(--py-btn-bg-color-avarge);
+  margin-left:0px;  
   margin-bottom:0px;
   padding-top:1px;
   padding-bottom:1px;
 }
 div.collection>.grid .grid__item{
-  padding-left:0px;
-  background:white;
+  padding-left:0px; 
 }
 @media screen and (max-width: 750px) {
   .bc-collection-page-main {

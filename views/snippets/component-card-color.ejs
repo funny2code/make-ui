@@ -11,7 +11,7 @@
               </div>
               <% }) %>
               <% if(option.values.length > limit){ %>
-               <div class="extra-colors"> + <%= option.values.size - 4 %></div>
+               <div class="extra-colors"> + <%= option.values.length - 4 %></div>
               <% } %>
             <% } else { %>
               <% option.values.forEach((value, index) => { %>

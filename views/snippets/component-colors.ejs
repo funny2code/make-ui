@@ -1,52 +1,52 @@
-<div class="bc-colors bc-colors-{{ settings.c_s_style }}">
-    {%- assign productType = product.type | handleize | prepend: 'color-' -%}
-    {%- assign productColorTitle = product.title | split: ' / ' | last -%}
-    {%- assign productColorImage = productColorTitle | strip | replace: ' ', '_' | downcase | prepend: 'c_' -%}
-    {%- assign productColor = productColorTitle | strip | replace: ' ', '_' | downcase | prepend: 'c_bg_' -%}
-    {%- if show_heading -%}
+<div class="bc-colors bc-colors-<%= settings.c_s_style %>">
+    <% var productType = 'color-' + product?.type?.replace(/ /g, '-') %>
+    <% var productColorTitle = product?.title?.split(' / ').pop() %>
+    <% var productColorImage = 'c_' + productColorTitle?.trim()?.replace(' ', '_')?.toLowerCase() %>
+    <% var productColor = 'c_bg_' + productColorTitle?.trim()?.replace(' ', '_')?.toLowerCase() %>
+    <% if(show_heading){ %>
         <h2 class="bc-colors__heading"> 
-        {%- if settings.c_s_style == 'style-2' -%}
-        COLOR <b>{{ productColorTitle }}</b>
-        {%- else -%}
+        <% if(settings.c_s_style === 'style-2'){ %>
+        COLOR <b><%= productColorTitle %></b>
+        <% } else { %>
         CHOOSE A COLOR
-        {%- endif -%}
+        <% } %>
         </h2>
-    {%- endif -%}
-    {%- if collections[productType].products.size > 0 -%}
-    {%- for prod in collections[productType].products -%}
-        {%- assign colorTitle = prod.title | split: ' / ' | last -%}        
-        {%- assign color = colorTitle | strip | replace: ' ', '-' | downcase  -%}
-        {%- if colorTitle == productColorTitle -%}
+    <% } %>
+    <% if(collections && collections[productType]?.products?.length){ %>
+    <% collections[productType]?.products.forEach((prod, index) => { %>
+        <% var colorTitle = prod?.title.split(' / ').pop() %>        
+        <% var color = colorTitle.trim().replace(' ', '-').toLowerCase()  %>
+        <% if(colorTitle === productColorTitle){ %>
         <div class="bc-colors__item bc-colors__item-selected">
             <div class="bc-colors__icon" 
-            data-color="{{color}}"
-            {% if settings.c_s_style == 'style-2' %}title="{{colorTitle}}"{% endif %}></div>
-            {%- if settings.c_s_style == 'style-1' -%}
-                <span class="bc-colors__name">{{ colorTitle }}</span>
-            {%- endif -%}
+            data-color="<%=color%>"
+            <% if(settings.c_s_style === 'style-2'){ %>title="<%=colorTitle%>"<% } %>></div>
+            <% if(settings.c_s_style === 'style-1'){ %>
+                <span class="bc-colors__name"><%= colorTitle %></span>
+            <% } %>
         </div>
-        {%- else -%}
+        <% } else { %>
         <div class="bc-colors__item">
-            <a href="{{ prod.url }}">
+            <a href="<%= prod?.url %>">
             <div class="bc-colors__icon" 
-            data-color="{{color}}"
-            {% if settings.c_s_style == 'style-2' %}title="{{colorTitle}}"{% endif %}>
+            data-color="<%=color%>"
+            <% if(settings.c_s_style === 'style-2'){ %>title="<%=colorTitle%>"<% } %>>
             </div>
-            {%- if settings.c_s_style == 'style-1' -%}
-                <span class="bc-colors__name">{{ colorTitle }}</span>
-            {%- endif -%}
+            <% if(settings.c_s_style === 'style-1'){ %>
+                <span class="bc-colors__name"><%= colorTitle %></span>
+            <% } %>
             </a>
         </div>
-        {%- endif -%}
-    {%- endfor -%}
-    {%- else -%}
+        <% } %>
+    <% }) %>
+    <% } else { %>
     <div class="bc-colors__item bc-colors__item-selected">
         <div class="bc-colors__icon" 
-        {% if settings[productColorImage] != blank %}style="background-image: url({{ settings[productColorImage] | img_url: '50x' }});"{% elsif settings[productColor] != blank %}style="background-color:{{ settings[productColor] }};"{% endif %}
-        {% if settings.c_s_style == 'style-2' %}title="{{productColorTitle}}"{% endif %}></div>
-        {%- if settings.c_s_style == 'style-1' -%}
-            <span class="bc-colors__name">{{ productColorTitle }}</span>
-        {%- endif -%}
+        <% if(settings[productColorImage]){ %>style="background-image: url(<%= settings[productColorImage] %>);"<% } else if(settings[productColor]){ %>style="background-color:<%= settings[productColor] %>;"<% } %>
+        <% if(settings.c_s_style === 'style-2'){ %>title="<%=productColorTitle%>"<% } %>></div>
+        <% if(settings.c_s_style === 'style-1'){ %>
+            <span class="bc-colors__name"><%= productColorTitle %></span>
+        <% } %>
     </div>
-    {%- endif -%}
+    <% } %>
 </div>

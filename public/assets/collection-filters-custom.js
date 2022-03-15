@@ -19,7 +19,7 @@ class CustomFilters extends HTMLElement {
             this.onSubmitHandler(event);
         }, 500);
         this.formDrawer.addEventListener('input', this.debouncedOnSubmit.bind(this));
-        this.sortBy.addEventListener('change', this.sortByFun.bind(this));
+        this.sortBy && this.sortBy.addEventListener('change', this.sortByFun.bind(this));
     }
 
     drawerOpen(){
