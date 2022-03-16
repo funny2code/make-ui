@@ -6,6 +6,16 @@
     var saveButton = document.querySelector('.py__save-button'); 
     var downloadButton = document.querySelector('.py__download-button');
 
+    // Colors names Objects 
+    const colorsNamesContrast = {
+        "py_header_bg_color_1": "py_header_link_color_1",
+        "py_header_bg_color_2": "py_header_link_color_2",
+        "py_search_bg_color": "py_search_color",
+        "py_search_hover_bg_color": "py_search_hover_color",
+        "settings_py_cart_bg_color": "settings_py_cart_color",
+        "settings_ck_btn_bg": "settings_ck_btn_color"
+    };
+
     // Colors Contrast Fun 
     const getContrastYIQ = (hexcolor) => {
         if(!hexcolor) return;
@@ -370,7 +380,8 @@
 
         if(uniqName.includes('bg')){
             let textUniqName = uniqName.replace('_bg', '');
-            let textColorInput = document.querySelector(`[name="${textUniqName}"]`);
+            let findInColorsJson = colorsNamesContrast[uniqName];
+            let textColorInput = findInColorsJson ? document.querySelector(`[name="${findInColorsJson}"]`) : document.querySelector(`[name="${textUniqName}"]`);
             if(textColorInput){ 
                 let newColor = getContrastYIQ(value);
                 let childWrapper = textColorInput.closest('.py__comp-color');
@@ -378,6 +389,7 @@
                 let childForColor = childWrapper.querySelector('.py__label-for-color');
                 childIsColor.value = newColor;
                 childForColor.style.backgroundColor = newColor;
+                textColorInput.value = newColor;
             }
         }
 
