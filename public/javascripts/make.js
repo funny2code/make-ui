@@ -6,6 +6,17 @@
     var saveButton = document.querySelector('.py__save-button'); 
     var downloadButton = document.querySelector('.py__download-button');
 
+    // Colors Contrast Fun 
+    const getContrastYIQ = (hexcolor) => {
+        if(!hexcolor) return;
+        hexcolor = hexcolor.replace("#", "");
+        var r = parseInt(hexcolor.substr(0,2),16);
+        var g = parseInt(hexcolor.substr(2,2),16);
+        var b = parseInt(hexcolor.substr(4,2),16);
+        var yiq = ((r*299)+(g*587)+(b*114))/1000;
+        return (yiq >= 128) ? '#000000' : '#ffffff';
+    };
+
     // Save old settings values
     const saveSettingsValues = (id=false) => {
         let settingsWrapper = document.querySelector('.py__make-settings');
@@ -356,6 +367,20 @@
         isColor.value = value;
         forColor.style.backgroundColor = value;
         checkSettings(uniqName, value);
+
+        if(uniqName.includes('bg')){
+            let textUniqName = uniqName.replace('_bg', '');
+            let textColorInput = document.querySelector(`[name="${textUniqName}"]`);
+            if(textColorInput){ 
+                let newColor = getContrastYIQ(value);
+                let childWrapper = textColorInput.closest('.py__comp-color');
+                let childIsColor = childWrapper.querySelector('.is__color');
+                let childForColor = childWrapper.querySelector('.py__label-for-color');
+                childIsColor.value = newColor;
+                childForColor.style.backgroundColor = newColor;
+            }
+        }
+
         viewIframe();
     };
     // Text Component Function
@@ -366,6 +391,22 @@
         checkSettings(uniqName, value);
         value !== focuseValue ? viewIframe() : null;
         if(uniqName === 'settings_theme_name' && value !== focuseValue) downloadButton.setAttribute('data-name', value);
+    };
+    // Textarea Component Function
+    const textareaComp = (event) => {
+        if(!event) return;
+        let uniqName = event.target.getAttribute('name');
+        let value = event.target.value;
+        checkSettings(uniqName, value);
+        value !== focuseValue ? viewIframe() : null;
+    };
+    // Richtext Component Function
+    const richtextComp = (event) => {
+        if(!event) return;
+        let uniqName = event.target.getAttribute('name');
+        let value = event.target.value;
+        checkSettings(uniqName, value);
+        value !== focuseValue ? viewIframe() : null;
     };
     // Select Component Function
     const selectComp = (event) => {
@@ -436,6 +477,10 @@
                     focuseValue = e.target.value;
                     break;
                 case 'textarea':
+                    focuseValue = e.target.value;
+                    break;
+                case 'richtext':
+                    focuseValue = e.target.value;
                     break;
                 default:
                     break;
@@ -451,6 +496,10 @@
                     textComp(e);
                     break;
                 case 'textarea':
+                    textareaComp(e);
+                    break;
+                case 'richtext':
+                    richtextComp(e);
                     break;
                 default:
                     break;

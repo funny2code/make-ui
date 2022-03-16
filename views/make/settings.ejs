@@ -24,6 +24,10 @@
                         <%- include('../components/range', {global: global, data: item}) %>
                     <% } else if(item.type === 'text' && item.label === 'Google Font' && fonts){ %>
                         <%- include('../components/font', {global: global, data: item, fonts: fonts}) %>
+                    <% } else if(item.type === 'textarea'){ %>
+                        <%- include('../components/textarea', {global: global, data: item}) %>
+                    <% } else if(item.type === 'richtext'){ %>
+                        <%- include('../components/richtext', {global: global, data: item}) %>    
                     <% } else if(item.type === 'paragraph'){ %>
                         <%- include('../components/paragraph', {data: item}) %>
                     <% } %>

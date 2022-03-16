@@ -182,6 +182,8 @@
                 <%- include('sections/main-collection-product-grid', {collection: collection, settings: settings, section: item }) %>        
             <% } else if(item.name === 'main collection banner'){ %>
                 <%- include('sections/main-collection-banner', {collection: collection, settings: settings, section: item }) %>            
+            <% } else if(item.name === 'product recommendations'){ %>
+                <%- include('sections/product-recommendations', {collection: collection, settings: settings, section: item }) %>                
             <% } else if(item.name === 'footer'){ %>
                 <%- include('sections/footer', {settings: settings, section: item, localization: false }) %>
             <% } %>

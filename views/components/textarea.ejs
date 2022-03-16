@@ -1,0 +1,14 @@
+<div class="py__settings-item">
+    <div class="py__settings-item-header">
+        <label><%= data.label %></label>
+        <% if(data.info){ %>
+            <div class="py__tooltip">
+                <%- include('../icons', {type: 'info'}) %>
+                <p class="py__tooltiptext"><%= data.info %></p>
+            </div>
+        <% } %>
+    </div>
+    <div class="py__comp-textarea">
+        <textarea type="textarea" name="<%= global !== "section" ? global + "_" + data.id : data.id %>"><%= data.default %></textarea>
+    </div>
+</div>
