@@ -428,6 +428,17 @@
         let container = event.target.closest('.py__settings-item');
         let isHaveGlobal = container.querySelector('.py__get-result-wrapper');
         checkSettings(uniqName, value);
+
+        if(uniqName.includes('bg')){
+            let textUniqName = uniqName.replace('_bg', '');
+            let findInColorsJson = colorsNamesContrast[uniqName];
+            let textColorInput = findInColorsJson ? document.querySelector(`[name="${findInColorsJson}"]`) : document.querySelector(`[name="${textUniqName}"]`);
+            if(textColorInput){ 
+                let newVal = value.includes('dark') ? 'light' : 'dark';
+                textColorInput.selectedIndex = [...textColorInput.options].findIndex(option => option.value.includes(newVal));
+            }
+        }
+
         viewIframe();
         if(isHaveGlobal) getItemFromSettings(event, true);
     };
