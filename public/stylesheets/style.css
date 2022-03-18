@@ -66,7 +66,7 @@ textarea {
   box-sizing: border-box;
   border-radius: 10px;
   background: transparent;
-  min-height: 43px;
+  min-height: 37px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -200,9 +200,14 @@ textarea {
 }
 .py__make-settings {
   flex: 2 0 0;
-  margin-top: 50px;
-  height: calc(100vh - 150px);
+}
+.py__settings-form {
+  margin-top: 10px;
+  height: calc(100vh - 143px);
   overflow-y: auto;
+}
+.py__settings-form.py__settings-form-mgtop {
+  margin-top: 48px;
 }
 .py__settings-select {
   position: relative;
@@ -561,6 +566,21 @@ textarea {
   line-height: 14px;
 }
 /* SELECT COMP */
+.py__sections-dropdown-listener {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  box-sizing: border-box;
+  box-shadow: 0px 1px 2px rgb(31 41 55 / 8%);
+  border-radius: 4px;
+  min-height: 36px;
+  padding: 0 16px;
+  font-family: Inter;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: #374151;
+  outline: none;
+}
 select {
   background: #FFFFFF;
   border: 1px solid #E9E9E9;
@@ -661,7 +681,7 @@ select {
   margin: 0 auto;
   border: 0;
   width: 100%;
-  height: calc(100vh - 190px);
+  height: calc(100vh - 183px);
 }
 .py__preview-select select {
   background: #FFFFFF;

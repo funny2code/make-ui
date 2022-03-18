@@ -319,13 +319,18 @@
     // Get Global settings or Section settings dynamic function
     const getSettingsLists = (event) => {
         if(!event) return;
-        event.preventDefault();
-        if(event.target.classList.contains('active')) return;
-        let el = event.target;
-        let content = document.querySelector('.py__settings-content');
         
-        let url = el.getAttribute('href');
+        let el = event.target, url = null;
+        if(event.type === 'change'){
+            url = el.options[el.selectedIndex].getAttribute('data-href');
+        } else {
+            event.preventDefault();
+            if(el.classList.contains('active')) return;
+            url = el.getAttribute('href');
+        }
+
         if(!url) return;
+        let content = document.querySelector('.py__settings-content');
         
         window.history.replaceState({ }, '', url);
         let urlSearch = new URLSearchParams(url);
@@ -379,7 +384,7 @@
         checkSettings(uniqName, value);
 
         if(uniqName.includes('bg')){
-            let textUniqName = uniqName.replace('_bg', '');
+            let textUniqName = uniqName.replace('bg_', '');
             let findInColorsJson = colorsNamesContrast[uniqName];
             let textColorInput = findInColorsJson ? document.querySelector(`[name="${findInColorsJson}"]`) : document.querySelector(`[name="${textUniqName}"]`);
             if(textColorInput){ 
@@ -430,9 +435,10 @@
         checkSettings(uniqName, value);
 
         if(uniqName.includes('bg')){
-            let textUniqName = uniqName.replace('_bg', '');
-            let findInColorsJson = colorsNamesContrast[uniqName];
+            let textUniqName = uniqName.replace('bg_', '');
+            let findInColorsJson = colorsNamesContrast[textUniqName];
             let textColorInput = findInColorsJson ? document.querySelector(`[name="${findInColorsJson}"]`) : document.querySelector(`[name="${textUniqName}"]`);
+            console.log(textColorInput, findInColorsJson);
             if(textColorInput){ 
                 let newVal = value.includes('dark') ? 'light' : 'dark';
                 textColorInput.selectedIndex = [...textColorInput.options].findIndex(option => option.value.includes(newVal));
@@ -483,12 +489,9 @@
                     break;
             }
         }
-        if(e && e.target.classList.contains('is__checkbox')){
-            checkboxComp(e);
-        }
-        if(e && e.target.classList.contains('py__preview-pages-select')){
-            changeViewPage(e);
-        }
+        if(e && e.target.classList.contains('is__checkbox')) return checkboxComp(e);
+        if(e && e.target.classList.contains('py__preview-pages-select')) return changeViewPage(e);
+        if(e && e.target.classList.contains('py__sections-dropdown-listener')) return getSettingsLists(e);
     });
 
     // Input fileds Focus fun (text, textarea and etc)

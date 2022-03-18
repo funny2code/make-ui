@@ -62,7 +62,16 @@
                 </div>
             </div>
             <div class="py__make-settings">
-                <form class="py__settings-form" method="post" action="/save/<%= id %>?<% if(activeType === 'section'){%>section=<%=active%><% } else { %>global=<%=active%><% } %>" aria-multiline="true">
+                <% if(pageSections && section){ %>
+                    <select class="py__sections-dropdown-listener">
+                        <% pageSections.forEach((item, index)=>{ %>
+                            <option value="<%=item.name%>" data-href="/themes/<%=id%>?page=<%=page%>&section=<%=item.name%>" <% if(item.name === active){ %>selected<% } %>>
+                                <%=item.name%>
+                            </option>
+                        <% }) %> 
+                    </select>
+                <% } %>
+                <form class="py__settings-form <% if(!section){ %>py__settings-form-mgtop<% } %>" method="post" action="/save/<%= id %>?<% if(activeType === 'section'){%>section=<%=active%><% } else { %>global=<%=active%><% } %>" aria-multiline="true">
                     <% if(pageSections && !settings && !section){ %>
                         <div class="py__settings-content">
                             <div class="py__loading-wrap">
@@ -78,7 +87,7 @@
                                     <div></div>
                                 </div>
                             </div>
-                            <h2 class="py__settings-heading py__back-button-wrap">Sections</h2>
+                            <h2 class="py__settings-heading py__back-button-wrap"><%=page%> Sections</h2>
                             <% pageSections.forEach((item, index)=>{ %>
                                 <a href="/themes/<%=id%>?page=<%=page%>&section=<%=item.name%>" class="py__section-item-href py__get-section-button <% if(item.name === active){ %>active<% } %>">
                                     <span class="py__section-item-href-name"><%= item.name %></span>
@@ -87,7 +96,7 @@
                             <% }) %> 
                         </div>
                     <% } %>
-                    <% if(settings){ %>
+                    <% if(settings){ %> 
                         <div class="py__settings-content">
                             <div class="py__loading-wrap">
                                 <div class="py__full-loading">
