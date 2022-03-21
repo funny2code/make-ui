@@ -126,10 +126,11 @@
               </a>
             {%- else -%}
               <div class="collage-content">
-                <div class="collage-card__no-image card-colored color-background-1 card__text-spacing center">
-                  <h3 class="h2">{{ 'onboarding.product_title' | t }}</h3>
+                <div class="collage-card__image-wrapper media media--transparent card-colored color-background-1 card__text-spacing center">
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
                 </div>
                 <div class="collage-content__info">
+                  <h3 class="h2">{{ 'onboarding.product_title' | t }}</h3>
                   <span class="price">{% render 'price' %}</span>
                 </div>
               </div>
@@ -180,7 +181,11 @@
                 </a>
               {%- else -%}
                 <div class="collage-content card card-colored color-{{ block.settings.color_scheme }}">
-                  <div class="collage-card__no-image card__text-spacing card__text-hover">
+                  <div class="collage-card__image-wrapper media media--transparent media--hover-effect">
+                         {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg placeholder collage-card__image' }}
+                      </div> 
+                      <div class="overlay-card"></div>
+                      <div class="collage-content__info">
                     <h3 class="h2">
                       {{ 'onboarding.collection_title' | t }}<span class="icon-wrap">&nbsp;{% render 'icon-arrow' %}</span>
                     </h3>

@@ -3,6 +3,13 @@
         <% if(global === "section"){ %>
             <input type="hidden" name="section_name" value="<%= active %>"/>
         <% } %>
+        <% if(page === "Home Page"){ %>
+            <input type="hidden" name="template_name" value="index"/>
+        <% } else if(page === "Collection Page"){ %>
+            <input type="hidden" name="template_name" value="collection"/>
+        <% } else if(page === "Product Page"){ %>
+            <input type="hidden" name="template_name" value="product"/>
+        <% } %> 
         <% settings.forEach(item => { %>
             <% if(global === "settings" && item.type === 'header' && item.content !== '__________'){ %>
                 <div class="py__settings-item-wrapper">

@@ -26,12 +26,24 @@
               </a>
             {%- endif -%}
           </div>
+          {%- else -%}
+          {% assign n_index = forloop.index | modulo:6 | plus: 1 %}
+          <div class="collection-two-column_image__wrap bc-{{settings.section_style}}-bt py-bg-c-light">
+              {%- if block.settings.button_link != blank -%}
+              <a href="{{ block.settings.button_link }}">
+                <span class="visually-hidden">Collection Image</span>
+                {%- endif -%}
+                {{ 'collection-' | append: n_index  | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- if block.settings.button_link != blank -%}
+              </a>
+            {%- endif -%}
+          </div>        
+          {%- endif-%}
           {%- if block.settings.button_label != blank -%}
           <a class="button button-cus-{{ block.id }} bc-coll-two-col-{{settings.section_style}}-style"{% if block.settings.button_link == blank %} aria-disabled="true" role="link"{% else %} href="{{ block.settings.button_link }}"{% endif %}>
             {{ block.settings.button_label | escape }}
           </a>
-          {%- render 'style', sufix: '.button-cus', id: block.id, style: block.settings -%}
-          {%- endif-%}
+          {%- render 'style', sufix: '.button-cus', id: block.id, style: block.settings -%}          
           {%- endif -%}
         </li>
         {%- endfor -%}

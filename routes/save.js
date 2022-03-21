@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const themesModel = require('../models/themes');
 const sectionsModel = require('../models/sections');
+const path = require('path');
+const fs = require('fs');
 
 
 
@@ -54,6 +56,7 @@ router.post('/:id', async (req, res, next) => {
   }
 
   // Theme Section Settings Save Function
+  let productTemplate = section?.length && section[0]?.template ? require(path.join(__dirname, `../baseTheme/templates/${section[0]?.template}.json`)) : null;
   if(section?.length && themeSections?.sections){
     themeSections.sections.map(el => {
         if(el.name === section[0]?.name){
@@ -66,6 +69,26 @@ router.post('/:id', async (req, res, next) => {
                     })
                 })
             }
+            if(productTemplate?.sections){
+                Object.entries(productTemplate?.sections).forEach(templateSection => {
+                    let templateSectionName = templateSection[1]?.type ? templateSection[1]?.type.replace(/-/g, ' ') : null;
+                    if(templateSectionName && templateSectionName === section[0]?.name){
+                        templateSection[1].settings = section[0].settings;
+                    }
+                    if(templateSection[1]?.blocks && blocks?.length){
+                        Object.entries(templateSection[1]?.blocks).forEach(block => {
+                            let templateBlockName = block[1]?.type ? block[1]?.type : null;
+                            blocks.forEach(newBlock => {
+                                if(templateBlockName && templateBlockName === newBlock.type && newBlock?.settings){
+                                    block[1].settings = newBlock.settings;
+                                }
+                            })
+                        })
+                    }
+                });
+                if(productTemplate) fs.writeFileSync(path.join(__dirname, `../basetheme/templates/${section[0]?.template}.json`), JSON.stringify(productTemplate, null, 2), 'utf-8');
+            }
+            
             if(el?.blocks?.length && blocks?.length){
                 el?.blocks.map(block => {
                     blocks.forEach(newBlock => {

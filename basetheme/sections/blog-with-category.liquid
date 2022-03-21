@@ -86,6 +86,39 @@
                                 </article>
                             </li>
                         {%- endfor -%}
+                        {% else %}
+                        {%- for i in (1..4) -%}
+                            <li class="bc-blog-with-category__blog-item">
+                                <article class="bc-article-card{% if show_image == false %} bc-article-card--no-image{% endif %}">
+                                    <a href="/" class="bc-article-content">                                        
+                                        <div class="bc-article-card__image-wrapper py-bg-c-light">
+                                            <div class="bc-article-card__image media media--landscape">
+                                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                                            </div>
+                                        </div>                                        
+
+                                        <div class="bc-article-card__info">
+                                            <header class="bc-article-card__header">
+                                                <h2 class="bc-article-card__title" >
+                                                    article title
+                                                </h2>                                                
+                                                {%- if block.settings.show_author -%}
+                                                    <span class="caption-with-letter-spacing">article author</span>
+                                                {%- endif -%}
+                                            </header>
+
+                                            
+                                            <p class="bc-article-card__excerpt">                                                
+                                                article-excerpt article-excerpt article-excerpt article-excerpt article-excerpt article-excerpt
+                                            </p>                                           
+
+                                            <div class="bc-article-card__footer">                                                
+                                            </div>
+                                        </div>
+                                    </a>
+                                </article>
+                            </li>
+                        {%- endfor -%}
                         {%- endif -%}
                     </ul>
                 {%- endfor -%}

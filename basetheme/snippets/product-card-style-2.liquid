@@ -12,7 +12,7 @@
     {% render 'product-card-style-2', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 {% assign product = product_card_product %}
-<div class="card-wrapper">
+<div class="card-wrapper py-{{section.settings.card_bg_color}}">
   <a href="{{ product_card_product.url | default: '#' }}" class="full-unstyled-link">
     <span class="visually-hidden">{{ product_card_product.title | escape }}</span>
   </a>  
@@ -144,7 +144,7 @@
               {%- endfor -%}
 
               {%- endunless -%}" >
-    <div class="quick-add-cart-wrapper">
+    <div class="quick-add-cart-wrapper py-{{section.settings.card_bg_color}}">
       <div class="quick-add-area">
         {%assign size_ab = false %}
         {%- unless product_card_product.has_only_default_variant -%} 

@@ -13,18 +13,27 @@
     {%- endif -%}
     <ul class="collection-see-list bc-scroll-hide">
       {%- for block in section.blocks -%}
-      <li class="collection-see-list__item">
-        {%- if block.settings.image != blank -%}
+      <li class="collection-see-list__item">        
         {%- if block.settings.button_link -%}
         <a href="{{ block.settings.button_link }}" target="_blank">
-          {%- endif -%}
-          <div class="collection-see_image__wrap">
-            {%- render 'resimg', image: block.settings.image -%}
+          {%- endif -%}                     
+          {%- if block.settings.image != blank -%}
+          <div class="collection-see_image__wrap"> 
+            {%- render 'resimg', image: block.settings.image -%}  
             {%- if block.settings.button_label != blank -%}
               <div class="collection-see__btn">{{ block.settings.button_label }}</div>
             {%- endif -%}            
           </div>
+          {%- else -%}
+          {% assign n_index = forloop.index | modulo:6 | plus: 1 %}
+          <div class="collection-see_image__wrap py-bg-c-light">
+            {{ 'collection-' | append: n_index  | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- if block.settings.button_label != blank -%}
+              <div class="collection-see__btn">{{ block.settings.button_label }}</div>
+            {%- endif -%}  
+          </div>                
           {%- endif -%}
+          
           {%- if block.settings.title != blank -%}
             <h3 class="collection-see__name">{{ block.settings.title }}</h3>
           {%- endif -%}

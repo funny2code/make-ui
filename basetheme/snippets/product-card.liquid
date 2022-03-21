@@ -12,7 +12,7 @@
     {% render 'product-card', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 
-<div class="card-wrapper">
+<div class="card-wrapper py-{{section.settings.card_bg_color}}">
   <span class="visually-hidden">{{ product_card_product.title | escape }}</span>
   <div class="card card--product{% if product_card_product.featured_media == nil %} card--text-only card--soft{% endif %}" tabindex="-1">
     <div class="card__inner">
@@ -120,6 +120,6 @@
   </div>
 
   {%- if show_colors -%}
-  {% render 'component-colors', product: product_card_product, show_heading: false %}
+  {% render 'component-card-color', options: product_card_product.options_with_values %}
   {%- endif -%}
 </div>

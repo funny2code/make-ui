@@ -1,7 +1,7 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Make",
+    "theme_name": "Make Ui",
     "theme_version": "1.0.0",
     "theme_author": "Shopify",
     "theme_documentation_url": "https://shopify.dev/themes/tools/dawn",
@@ -28,13 +28,13 @@
         "type": "color",
         "id": "py_bg_color_avarge",
         "label": "Background Average",
-        "default": "#70ffd9"
+        "default": "#ffffff"
       },
       {
         "type": "color",
         "id": "py_bg_color_light",
         "label": "Background Light",
-        "default": "#c224b5"
+        "default": "#dcebf4"
       },
       {
         "type": "paragraph",
@@ -373,7 +373,7 @@
         "type": "text",
         "id": "body_font_google",
         "label": "Google Font",
-        "default": "Playfair Display"
+        "default": "Roboto"
       },
       {
         "type": "header",
@@ -392,7 +392,7 @@
         "type": "text",
         "id": "h1_font_size",
         "label": "H1 Font Size",
-        "default": "28px"
+        "default": "36px"
       },
       {
         "type": "text",
@@ -1461,7 +1461,7 @@
           }
         ],
         "label": "Cart Style",
-        "default": "style-2"
+        "default": "style-1"
       },
       {
         "type": "text",
@@ -1483,7 +1483,7 @@
             "value": "bottom"
           }
         ],
-        "default": "top",
+        "default": "bottom",
         "info": "This option will work for only Cart style 1"
       },
       {
@@ -1500,7 +1500,7 @@
             "value": "two-c"
           }
         ],
-        "default": "one-c",
+        "default": "two-c",
         "info": "This option will work for only Cart style 2"
       },
       {

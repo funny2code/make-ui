@@ -4,15 +4,15 @@
 .coll-filters {
   position: sticky;
   width: 100%;
-  z-index: 4;
-  background: var(--py-bg-color-light);
+  z-index: 4;  
   display:block;
+  top:0px !important;
 }
 .coll-filters__wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;  
-  border-bottom:1px solid var(--py-bg-color-avarge);
+  border-bottom:1px solid;
   flex-wrap: wrap;
 }
 .coll-filter-overlay {
@@ -47,8 +47,7 @@
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
-  font-size: 1.2rem;
-  color: var(--color-foreground-75);
+  font-size: 1.2rem;  
 }
 .coll-filter-drawer {
   position: fixed;
@@ -57,8 +56,7 @@
   width: 400px;
   height: 100vh;
   z-index: 20;
-  transition: transform .5s ease, visibility .5s ease;
-  background: var(--py-bg-color-light);
+  transition: transform .5s ease, visibility .5s ease;  
   touch-action: manipulation;
   border-top: 1px solid #cfcfcf;
   border-left: 1px solid #cfcfcf;
@@ -76,7 +74,7 @@
   justify-content: center;
   height: 75px;
   padding: 0 30px;
-  border-bottom: 1px solid #cfcfcf;
+  border-bottom: 1px solid ;
 }
 
 .coll-filter-drawer__form {
@@ -123,8 +121,7 @@
   -webkit-box-shadow: 0 2px 2px rgb(0 0 0 / 4%), 0 4px 8px rgb(0 0 0 / 8%);
   box-shadow: 0 2px 2px rgb(0 0 0 / 4%), 0 4px 8px rgb(0 0 0 / 8%);
   border-radius: 1px;
-  width: 29rem; 
-  background: var(--py-bg-color-light);
+  width: 29rem;   
 }
 .filter-option-wrapper.open .filter-group-display {
   display: -moz-box;
@@ -144,7 +141,7 @@
 }
 .filter-group-display__list-item label {
   display: inline-block;
-  border: 1px solid #000000;
+  border: 1px solid ;
   padding: 3px 8px;
   text-align: center;
   cursor: pointer;
@@ -152,8 +149,7 @@
 .filter-group-display__list-item.filter-group-display__list-item-color label {
   position: relative;
   width: 33px;
-  height: 33px;
-  border-color: var(--py-btn-color-avarge);
+  height: 33px;  
 }
 .filter-group-display__list-item.filter-group-display__list-item-color label::after {
   content: "";
@@ -162,17 +158,7 @@
   left: 0px;
   width: 31px;
   height: 31px;
-  border: 2px solid #ffffff;
-}
-.filter-group-display__list-item:not(.filter-group-display__list-item-color) label:hover,
-.filter-group-display__list-item:not(.filter-group-display__list-item-color) input:checked + label {
-  border-color: #000000;
-  background-color: #000000;
-  color: #ffffff;
-}
-.filter-group-display__list-item-color label:hover,
-.filter-group-display__list-item-color input:checked + label {
-  border-color: #000000;
+  border: 2px solid ;
 }
 .filter-group-display__list-item input {
   opacity: 0;
@@ -189,7 +175,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 7px 10px;
-  border: 1px solid #000000;
+  border: 1px solid ;
   font-size: 14px;
 } 
 .filter-group-display__price-range-item>input {
@@ -262,8 +248,7 @@
   border-top: 1px solid var(--py-btn-bg-color-avarge);
 }
 .filter-triger,.sort-triger{
-  width:calc(50% - 0.5px);
-  background-color: var(--py-bg-color-light);
+  width:calc(50% - 0.5px);  
   padding: 8px;
   text-align: center;
 }
@@ -275,8 +260,8 @@
   z-index: 2;
   padding: 1.6rem;
   display: none;
-  flex-direction: column;  
-  background: var(--py-bg-color-light);
+  flex-direction: column;
+  
   -webkit-box-shadow: 0 2px 2px rgb(0 0 0 / 4%), 0 4px 8px rgb(0 0 0 / 8%);
   box-shadow: 0 2px 2px rgb(0 0 0 / 4%), 0 4px 8px rgb(0 0 0 / 8%);
   border-radius: 1px;

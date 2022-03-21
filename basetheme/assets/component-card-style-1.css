@@ -208,7 +208,7 @@
     color: inherit;
     display: block;
     position: relative;
-    text-decoration: none;
+    text-decoration: none;    
   }
   
   .card-wrapper:focus-within .card {
@@ -262,7 +262,33 @@
   .card:hover .card-colored .overlay-card {
     background-color: var(--color-card-hover);
   }
-  
+  .bc-card-color {
+    margin-top: .9rem;
+  }
+
+  .bc-card-color__list {
+    display: flex;
+    justify-content: center;
+  }
+
+  .bc-card-color__item {
+    position: relative;
+    width: 1.419rem;
+    height: 1.419rem;
+    margin-right: .7rem;
+  }
+
+  .bc-card-color__list *{
+    line-height:1;
+  }
+  .pd-colors__icon{
+      display: inline-block;
+      height: 16px;
+      width: 16px;    
+      border-radius: 16px;
+      border: 1px solid #bbb9b9;
+  }
+
   @media screen and (min-width: 990px) {
     .card .media.media--hover-effect > img:only-child,
     .card-wrapper .media.media--hover-effect > img:only-child {

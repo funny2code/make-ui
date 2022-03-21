@@ -1,12 +1,11 @@
 {% comment %}theme-check-disable TemplateLength{% endcomment %}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
-{{ 'section-main-product-style-1.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-product-a.css' | asset_url | stylesheet_tag }}
 {{ 'component-accordion-style-1.css' | asset_url | stylesheet_tag }}
 {{ 'component-badge.css' | asset_url | stylesheet_tag }}
 {{ 'component-price-style-1.css' | asset_url | stylesheet_tag }}
 {{ 'component-variants.css' | asset_url | stylesheet_tag }}
 {% comment %} {{ 'component-rte.css' | asset_url | stylesheet_tag }} {% endcomment %}
-
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {% assign sizeCharts = product.metafields.sizecharts  %}
 {% assign colortitle = product.metafields.color.color_name.value | downcase %}
 {% assign colorvalue = product.metafields.color.color_value.value %}
@@ -93,29 +92,29 @@
   <link id="ModelViewerOverride" rel="stylesheet" href="{{ 'component-model-viewer-ui.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
-<section class="{% if section.settings.media_position != "top" %}page-width{% endif %} py-{{section.settings.section_bg_color}}" >
-  <div class="product grid grid--1-col {% if product.media.size == 0 %}product--no-media{% endif %} media-style__{{section.settings.media_position}} mobile-media-style__{{section.settings.media_position_m}}">
+<section >
+  <div class="product grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
     <div class="grid__item product__media-wrapper">
       <slider-component class="slider-mobile-gutter">
         <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
           {{ "accessibility.skip_to_product_info" | t }}
         </a>
-        <ul class="product__media-list grid grid--peek list-unstyled slider {% if product.media.size > 3 %}grid--3-col-tablet grid--4-col-desktop{% elsif product.media.size > 2 %}grid--3-col-tablet {% else %} grid--2-col-tablet {% endif %} {% if section.settings.media_position == "top" %}slider--desktop{% else %}grid-desktop{% endif %}  {% if section.settings.media_position_m == "top" %}slider--mobile  {% else %}grid-mobile{% endif %}" role="list">
+        <ul class="product__media-list grid grid--peek list-unstyled slider slider--mobile" role="list">
           {%- if product.selected_or_first_available_variant.featured_media != null -%}
             {%- assign media = product.selected_or_first_available_variant.featured_media -%}
-            <li class="product__media-item grid__item slider__slide{% if media.media_type != 'image' %} product__media-item--full{% endif %}" data-media-id="{{ section.id }}-{{ media.id }}">
+            <li class="product__media-item grid__item slider__slide{% if media.media_type != 'image' %} product__media-item--full{% endif %} alt-{{media.alt}}" data-media-id="{{ section.id }}-{{ media.id }}">
               {% render 'product-thumbnail', media: media, position: 'featured', loop: section.settings.enable_video_looping, modal_id: section.id %}
             </li>
           {%- endif -%}
           {%- for media in product.media -%}
             {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
-              <li class="product__media-item grid__item slider__slide{% if media.media_type != 'image' %} product__media-item--full{% endif %}" data-media-id="{{ section.id }}-{{ media.id }}">
+              <li class="product__media-item grid__item slider__slide{% if media.media_type != 'image' %} product__media-item--full{% endif %}  alt-{{media.alt}}" data-media-id="{{ section.id }}-{{ media.id }}">
                 {% render 'product-thumbnail', media: media, position: forloop.index, loop: section.settings.enable_video_looping, modal_id: section.id %}
               </li>
             {%- endunless -%}
           {%- endfor -%}
         </ul>
-        <div class="slider-buttons slider-buttons--overlay no-js-hidden {% if product.media.size > 3 %}slider-buttons-desktop{% endif %} {% if product.media.size < 2 %} small-hide{% endif %}">
+        <div class="slider-buttons slider-buttons--overlay no-js-hidden{% if product.media.size < 2 %} small-hide{% endif %}">
           <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}">{% render 'icon-caret' %}</button>
           <div class="slider-counter caption">
             <span class="slider-counter--current">1</span>
@@ -141,11 +140,11 @@
         </button>
       {%- endif -%}
     </div>
-    <div class="product__info-wrapper {% if section.settings.media_position == "left" %} grid__item {% elsif section.settings.media_position == "top" %}full-width {% endif %} py-{{section.settings.page_width}}">
+    <div class="product__info-wrapper grid__item">
       <div id="ProductInfo-{{ section.id }}" class="product__info-container{% if section.settings.enable_sticky_info %} product__info-container--sticky{% endif %}">
         {%- assign product_form_id = 'product-form-' | append: section.id -%}
-        <div class="product-badge" style='width:100%;'>{% render 'component-badge', meta: product.metafields.selling, vertical: false %}</div>
-        <div class="product_info_left_col">  
+
+        {% render 'component-badge', meta: product.metafields.selling, vertical: false %}
         
         {%- for block in section.blocks -%}
           {%- case block.type -%}
@@ -177,233 +176,7 @@
             <div class="no-js-hidden bc-product-price-wrapper" id="price-{{ section.id }}">
               {%- render 'price', product: product, use_variant: true, show_badges: false, price_class: 'price--large' -%}
             </div>
-            {{ form | payment_terms }}          
-          {%- when 'quantity_selector' -%}
-            <div class="product-form__input product-form__quantity">
-              <label class="form__label" for="Quantity-{{ section.id }}">
-                {{ 'products.product.quantity.label' | t }}
-              </label>
-              <quantity-input class="quantity">
-                <button class="quantity__button no-js-hidden" name="minus" type="button">
-                  <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
-                  {% render 'icon-minus' %}
-                </button>
-                <input class="quantity__input"
-                    type="number"
-                    name="quantity"
-                    id="Quantity-{{ section.id }}"
-                    min="1"
-                    value="1"
-                    form="product-form-{{ section.id }}"
-                  >
-                <button class="quantity__button no-js-hidden" name="plus" type="button">
-                  <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape }}</span>
-                  {% render 'icon-plus' %}
-                </button>
-              </quantity-input>
-            </div>
-          {%- when 'variant_picker' -%}
-          <style>
-            .product-form__input input[type='radio'] + label{
-              background:{{block.settings.option_bg_color}};
-              color:{{block.settings.option_color}};
-              border:1px solid;
-              border-color:{{block.settings.option_br_color}} !important;
-            }
-            .product-form__input input[type='radio']:checked + label {
-              background:{{block.settings.selected_option_bg_color}};
-              color:{{block.settings.selected_option_color}};
-              border-color:{{block.settings.selected_option_br_color}} !important;
-              cursor: default;
-            } 
-            .general-picker-sm_radius .product-form__input input[type='radio'] + label{
-              border-radius:6px;
-            }
-            .general-picker-f_radius .product-form__input input[type='radio'] + label{
-              border-radius:60px;
-            }
-            .general-picker-f_radius .product-form__input input[type='radio'] + label[for*=ize]{
-              width: 40px;
-              height: 40px;
-            }
-            .color-picker-name .product-form__input input[type='radio'] + label[for*=olor] span{
-              display:none;
-            }
-            .color-picker-color .product-form__input input[type='radio'] + label[for*=olor]{
-              font-size: 0px;
-              border-radius: 50%;
-              padding: 0px;
-              min-width: auto;
-              border: 1px solid;
-            }
-            .color-picker-color .product-form__input input[type='radio']:checked + label[for*=olor]{
-              border: 2px solid;
-            }
-            .color-picker-color .product-form__input input[type='radio'] + label[for*=olor] span{
-              margin-right: 0px;
-              width: 30px;
-              height: 30px;
-              border: 2px solid transparent;
-            }
-            .color-picker-color .product-form__input input[type='radio']:checked + label[for*=olor] span{
-              border: 2px solid white;
-            }
-          </style>
-            <div class="variant-picker-container color-picker-{{block.settings.color_picker_type}} general-picker-{{block.settings.general_picker_type}}">
-            {% comment %}            
-        	  {%- render 'component-colors', product: product, show_heading: true -%}            
-            {% endcomment %}
-        
-            {%- unless product.has_only_default_variant -%}              
-                <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}">                  
-                    {%- for option in product.options_with_values -%}
-                        {%- liquid
-                          assign optionName = option.name | downcase
-                          assign color = false
-                          if optionName contains 'color' or optionName contains 'colour'
-                        assign color = true
-                          endif -%}
-                        <fieldset class="js product-form__input" product-option = "{{optionName}}">
-                          <legend class="form__label">{{ option.name }}: <span class="selected-value">{{option.selected_value}}</span></legend>
-                          {%- for value in option.values -%}
-                            <input type="radio" id="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}"
-                                  name="{{ option.name }}"
-                                  value="{{ value | escape }}"
-                                  form="product-form-{{ section.id }}"
-                                  {% if option.selected_value == value %}checked{% endif %}
-                            >
-                            
-                            <label for="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}">
-                              {% unless color %}                                
-                              {% if value == "ONESIZE" %}OS{% else %}{%- assign valueSize = value | size -%}{%- if valueSize < 5  -%}{{ value }}{%- else -%}{%- assign variantNameObject = value | split: ' ' -%}{%- for variantName in variantNameObject -%}{%- assign forVariantName = variantName | size -%}{%- if forVariantName < 4 -%}{{ variantName }}{%- else -%}{{ variantName | slice: 0 }}{%- endif -%}{%- endfor -%}{%- endif -%}{%- endif -%}
-                              {% else %}
-                                <span class="pd-colors__icon" data-color="{{ value | downcase }}"></span>{{ value }}
-                              {% endunless %}  
-                          </label>
-                          {%- endfor -%}
-                        </fieldset>
-                    {%- endfor -%}                  
-                  <div id="preorderbunner"></div>
-                  <script type="application/json">
-                    {{ product.variants | json }}
-                  </script>
-                  <script id="product-variants-metafields" type="application/json">
-                  [
-                    {%- for variant in product.variants -%}
-                          {
-                          	"{{variant.id}}" : 
-                            {%- if variant.metafields.order.size > 0 -%}
-                              {%- for item in variant.metafields.order -%}
-                                  {%- if forloop.first -%}
-                                      {
-                                  {%- endif -%}
-                                          "{{item[0]}}" : "{{ item[1] }}"{%- unless forloop.last -%},{%- endunless -%}
-                                  {%- if forloop.last -%}
-                                      }
-                                  {%- endif -%}
-                              {%- endfor -%}
-                            {%- else -%}
-                            	""
-                            {%- endif -%}
-                          }{%- unless forloop.last -%},{%- endunless -%}
-                    {%- endfor -%}
-                  ]
-                  </script>
-                </variant-radios>              
-            {%- endunless -%}
-            </div>
-        {%- if sizeCharts.cm_content != blank or sizeCharts.inches_content != blank -%}
-        <modal-opener class="product-popup-modal__opener no-js-hidden" data-modal="#PopupModal-sizecharts">
-          <button id="ProductPopup-sizecharts" class="product-popup-modal__button link bc-size-chart-button" type="button" aria-haspopup="dialog">VIEW SIZING CHART</button>
-        </modal-opener>
-        {%- endif -%}
-          
-
-            <noscript>
-              <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
-                <label class="form__label" for="Variants-{{ section.id }}">{{ 'products.product.product_variants' | t }}</label>
-                <div class="select">
-                  <select name="id" id="Variants-{{ section.id }}" class="select__select" form="product-form">
-                    {%- for variant in product.variants -%}
-                      <option
-                        {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
-                        {% if variant.available == false %}disabled{% endif %}
-                        value="{{ variant.id }}"
-                      >
-                        {{ variant.title }}
-                        {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
-                        - {{ variant.price | money | strip_html }}
-                      </option>
-                    {%- endfor -%}
-                  </select>
-                  {% render 'icon-caret' %}
-                </div>
-              </div>
-            </noscript>
-          {%- when 'buy_buttons' -%}
-            <product-form class="product-form">
-              {%- form 'product', product, id: product_form_id, class: 'form product-form__flex', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                {%- if product.metafields.gift.product_id != blank -%}
-                <input type="hidden" name="gift_id" value="{{ product.metafields.gift.product_id }}">
-                {%- endif -%}
-                <div id="bc-order-id"></div>
-              	<div class="product-form__buttons">
-                  <button
-                    type="submit"
-                    name="add"
-                    class="product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}{%comment%}button--secondary{%endcomment%} button--primar{% else %}button--primary{% endif %}"
-                    {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
-                    {% if block.settings.bg_color != blank or block.settings.color != blank %}style="{% if block.settings.bg_color != blank %}background-color:{{ block.settings.bg_color }};box-shadow:0 0 0 .1rem {{ block.settings.bg_color }};{% endif %}{% if block.settings.color != blank %}color:{{ block.settings.color }};{% endif %}"{% endif %}
-                  > 
-                    <span class="product-form__submit-label">
-                      {%- if product.selected_or_first_available_variant.available -%}
-                        {%- if block.settings.btn != blank -%}
-                          {{ block.settings.btn }}
-                        {%- else -%}
-                          {{ 'products.product.add_to_cart' | t }}
-                        {%- endif -%}
-                      {%- else -%}
-                        {{ 'products.product.sold_out' | t }}
-                      {%- endif -%}
-                    </span>
-                   
-                  </button>
-                  {%- if block.settings.show_dynamic_checkout -%}
-                    {{ form | payment_button }}
-                  {%- endif -%}
-                </div>
-              {%- endform -%}
-            </product-form>
-
-            {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
-
-            {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities | where: 'pick_up_enabled', true -%}
-
-            <pickup-availability class="product__pickup-availabilities no-js-hidden"
-              {% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %} available{% endif %}
-              data-base-url="{{ shop.url }}{{ routes.root_url }}"
-              data-variant-id="{{ product.selected_or_first_available_variant.id }}"
-              data-has-only-default-variant="{{ product.has_only_default_variant }}"
-            >
-              <template>
-                <pickup-availability-preview class="pickup-availability-preview">
-                  {% render 'icon-unavailable' %}
-                  <div class="pickup-availability-info">
-                    <p class="caption-large">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
-                    <button class="pickup-availability-button link link--text underlined-link">{{ 'products.product.pickup_availability.refresh' | t }}</button>
-                  </div>
-                </pickup-availability-preview>
-              </template>
-            </pickup-availability>
-
-            <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
-          {%- endcase -%}
-        {%- endfor -%}
-        </div>
-        <div class="product_info_right_col">
-        {%- for block in section.blocks -%}
-          {%- case block.type -%}
+            {{ form | payment_terms }}
           {%- when 'description' -%}
             {%- if product.description != blank -%}
               <div class="product__description rte">
@@ -432,6 +205,30 @@
                   {%- endif -%}
                 </div>
               </details>
+            </div>
+          {%- when 'quantity_selector' -%}
+            <div class="product-form__input product-form__quantity">
+              <label class="form__label" for="Quantity-{{ section.id }}">
+                {{ 'products.product.quantity.label' | t }}
+              </label>
+              <quantity-input class="quantity">
+                <button class="quantity__button no-js-hidden" name="minus" type="button">
+                  <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
+                  {% render 'icon-minus' %}
+                </button>
+                <input class="quantity__input"
+                    type="number"
+                    name="quantity"
+                    id="Quantity-{{ section.id }}"
+                    min="1"
+                    value="1"
+                    form="product-form-{{ section.id }}"
+                  >
+                <button class="quantity__button no-js-hidden" name="plus" type="button">
+                  <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape }}</span>
+                  {% render 'icon-plus' %}
+                </button>
+              </quantity-input>
             </div>
           {%- when 'popup' -%}
               <modal-opener class="product-popup-modal__opener no-js-hidden" data-modal="#PopupModal-{{ block.id }}">
@@ -472,12 +269,198 @@
               </details>
             </share-button>
             <script src="{{ 'share.js' | asset_url }}" defer="defer"></script>
+          {%- when 'variant_picker' -%}
+        
+            {% comment %}            
+        	  {%- render 'component-colors', product: product, show_heading: true -%}            
+            {% endcomment %}
+        
+            {%- unless product.has_only_default_variant -%}
+              {%- if block.settings.picker_type == 'button' -%}
+                <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}">
+                  
+                    {%- for option in product.options_with_values -%}
+                        {%- liquid
+                          assign optionName = option.name | downcase
+                          assign color = false
+                          if optionName contains 'color' or optionName contains 'colour'
+                          assign color = true
+                          endif -%}
+                        {% if color %}
+                        <style id="media-option-style">
+                          .product__media-item.grid__item.alt-{{option.selected_value}}{
+                            display:block;
+                          }
+                        </style>
+                        {% endif %}
+                        <fieldset class="js product-form__input " product-option = "{{optionName}}">
+                          <legend class="form__label">{{ option.name }} <span class="selected-value">{{option.selected_value}}</span></legend>
+                          {%- for value in option.values -%}
+                            <input type="radio" id="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}"
+                                  name="{{ option.name }}"
+                                  value="{{ value | escape }}"
+                                  form="product-form-{{ section.id }}"
+                                  {% if option.selected_value == value %}checked{% endif %}
+                            >
+                            
+                            <label for="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}">
+                              {% unless color %}                                
+                              {% if value == "ONESIZE" %}OS{% else %}{%- assign valueSize = value | size -%}{%- if valueSize < 5  -%}{{ value }}{%- else -%}{%- assign variantNameObject = value | split: ' ' -%}{%- for variantName in variantNameObject -%}{%- assign forVariantName = variantName | size -%}{%- if forVariantName < 4 -%}{{ variantName }}{%- else -%}{{ variantName | slice: 0 }}{%- endif -%}{%- endfor -%}{%- endif -%}{%- endif -%}
+                              {% else %}
+                                <span class="pd-colors__icon" data-color="{{ value | downcase }}"></span>
+                              {% endunless %}  
+                          </label>
+                          {%- endfor -%}
+                        </fieldset>
+                    {%- endfor -%}
+                  
+                  <div id="preorderbunner"></div>
+                  <script type="application/json">
+                    {{ product.variants | json }}
+                  </script>
+                  <script id="product-variants-metafields" type="application/json">
+                  [
+                    {%- for variant in product.variants -%}
+                          {
+                          	"{{variant.id}}" : 
+                            {%- if variant.metafields.order.size > 0 -%}
+                              {%- for item in variant.metafields.order -%}
+                                  {%- if forloop.first -%}
+                                      {
+                                  {%- endif -%}
+                                          "{{item[0]}}" : "{{ item[1] }}"{%- unless forloop.last -%},{%- endunless -%}
+                                  {%- if forloop.last -%}
+                                      }
+                                  {%- endif -%}
+                              {%- endfor -%}
+                            {%- else -%}
+                            	""
+                            {%- endif -%}
+                          }{%- unless forloop.last -%},{%- endunless -%}
+                    {%- endfor -%}
+                  ]
+                  </script>
+                </variant-radios>
+              {%- else -%}
+                <variant-selects class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}">
+                  {%- for option in product.options_with_values -%}
+                    <div class="product-form__input product-form__input--dropdown">
+                      <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+                        {{ option.name }}
+                      </label>
+                      <div class="select">
+                        <select id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                          class="select__select"
+                          name="options[{{ option.name | escape }}]"
+                          form="product-form-{{ section.id }}"
+                        >
+                          {%- for value in option.values -%}
+                            <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
+                              {{ value }}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                        {% render 'icon-caret' %}
+                      </div>
+                    </div>
+                  {%- endfor -%}
 
-          {%- when 'goes' -%}
-            {%- if block.settings.prod != blank -%}
-              {%- assign prod = all_products[block.settings.prod] -%}
-              {%- render 'goes', prod: prod, title: block.settings.heading -%}
-            {%- endif -%}
+                  <script type="application/json">
+                    {{ product.variants | json }}
+                  </script>
+                </variant-selects>
+              {%- endif -%}
+            {%- endunless -%}
+        
+        {%- if sizeCharts.cm_content != blank or sizeCharts.inches_content != blank -%}
+        <modal-opener class="product-popup-modal__opener no-js-hidden" data-modal="#PopupModal-sizecharts">
+          <button id="ProductPopup-sizecharts" class="product-popup-modal__button link bc-size-chart-button" type="button" aria-haspopup="dialog">VIEW SIZING CHART</button>
+        </modal-opener>
+        {%- endif -%}
+          
+
+            <noscript>
+              <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
+                <label class="form__label" for="Variants-{{ section.id }}">{{ 'products.product.product_variants' | t }}</label>
+                <div class="select">
+                  <select name="id" id="Variants-{{ section.id }}" class="select__select" form="product-form">
+                    {%- for variant in product.variants -%}
+                      <option
+                        {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+                        {% if variant.available == false %}disabled{% endif %}
+                        value="{{ variant.id }}"
+                      >
+                        {{ variant.title }}
+                        {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+                        - {{ variant.price | money | strip_html }}
+                      </option>
+                    {%- endfor -%}
+                  </select>
+                  {% render 'icon-caret' %}
+                </div>
+              </div>
+            </noscript>
+          {%- when 'buy_buttons' -%}
+           <div class="buy-button-area">
+            {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
+
+            {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities | where: 'pick_up_enabled', true -%}
+
+            <pickup-availability class="product__pickup-availabilities no-js-hidden"
+              {% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %} available{% endif %}
+              data-base-url="{{ shop.url }}{{ routes.root_url }}"
+              data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+              data-has-only-default-variant="{{ product.has_only_default_variant }}"
+            >
+              <template>
+                <pickup-availability-preview class="pickup-availability-preview">
+                  {% render 'icon-unavailable' %}
+                  <div class="pickup-availability-info">
+                    <p class="caption-large">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
+                    <button class="pickup-availability-button link link--text underlined-link">{{ 'products.product.pickup_availability.refresh' | t }}</button>
+                  </div>
+                </pickup-availability-preview>
+              </template>
+            </pickup-availability>
+
+            <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
+        
+            <product-form class="product-form">
+              {%- form 'product', product, id: product_form_id, class: 'form product-form__flex', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                {%- if product.metafields.gift.product_id != blank -%}
+                <input type="hidden" name="gift_id" value="{{ product.metafields.gift.product_id }}">
+                {%- endif -%}
+                <div id="bc-order-id"></div>
+              	<div class="product-form__buttons">
+                  <button
+                    type="submit"
+                    name="add"
+                    class="product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}{%comment%}button--secondary{%endcomment%} button--primar{% else %}button--primary{% endif %}"
+                    {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+                    {% if block.settings.bg_color != blank or block.settings.color != blank %}style="{% if block.settings.bg_color != blank %}background-color:{{ block.settings.bg_color }};box-shadow:0 0 0 .1rem {{ block.settings.bg_color }};{% endif %}{% if block.settings.color != blank %}color:{{ block.settings.color }};{% endif %}"{% endif %}
+                  >
+                    
+                      <span class="product-form__submit-label">
+                        {%- if product.selected_or_first_available_variant.available -%}
+                          {%- if block.settings.btn != blank -%}
+                            {{ block.settings.btn }}
+                          {%- else -%}
+                            {{ 'products.product.add_to_cart' | t }}
+                          {%- endif -%}
+                        {%- else -%}
+                          {{ 'products.product.sold_out' | t }}
+                        {%- endif -%}
+                      </span>
+                    
+                  </button>
+                  {%- if block.settings.show_dynamic_checkout -%}
+                    {{ form | payment_button }}
+                  {%- endif -%}
+                </div>
+              {%- endform -%}
+             </product-form>
+           </div>            
 
           {%- endcase -%}
         {%- endfor -%}
@@ -789,7 +772,10 @@
   }
 </style>
 <script>
-  
+  document.querySelectorAll('.metafield-multi_line_text_field').forEach(item => {
+    let content  = item.innerText;
+    item.innerHTML = content;
+  });
   var shipping_chart = document.querySelectorAll('.shipping-and-returns .accordion__content h3');
   for(i=0;i<shipping_chart.length;i++){    
     if(shipping_chart[i].textContent.toLowerCase().includes('shipping chart')){
@@ -806,7 +792,7 @@
 </script>
 {% schema %}
 {
-  "name": "main product",
+  "name": "product a",
   "tag": "section",
   "class": "js-product-section-main",
   "blocks": [
@@ -1090,24 +1076,6 @@
           "label": "Page"
         }
       ]
-    },
-    {
-      "type": "goes",
-      "name": "goes",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Headign",
-          "default": "Goes with:"
-        },
-        {
-          "type": "product",
-          "id": "prod",
-          "label": "Product"
-        }
-      ]
     }
   ],
   "settings": [
@@ -1115,38 +1083,6 @@
       "type": "header",
       "content": "Media",
       "info": "Learn more about [media types](https://help.shopify.com/manual/products/product-media)"
-    },
-    {
-      "type": "select",
-      "id": "media_position",
-      "options": [
-        {
-          "value": "top",
-          "label": "Top Slider"
-        },
-        {
-          "value": "left",
-          "label": "Left Vertical"
-        }
-      ],
-      "default": "left",
-      "label": "Media Gallery Style"
-    },
-    {
-      "type": "select",
-      "id": "media_position_m",
-      "options": [
-        {
-          "value": "top",
-          "label": "Top Slider"
-        },
-        {
-          "value": "grid",
-          "label": "Grid"
-        }
-      ],
-      "default": "grid",
-      "label": "Media Gallery Style Mobile"
     },
     {
       "type": "checkbox",
@@ -1161,65 +1097,13 @@
       "label": "Enable video looping"
     },
     {
-      "type": "select",
-      "id": "section_bg_color",
-      "label": "Background Color",
-      "options": [
-        {
-          "label": "None",
-          "value": "none"
-        },
-        {
-          "label": "Unset",
-          "value": "unset"
-        },
-        {
-          "label": "Background Dark",
-          "value": "bg-c-dark"
-        },
-        {
-          "label": "Background Average",
-          "value": "bg-c-average"
-        },
-        {
-          "label": "Background Light",
-          "value": "bg-c-light"
-        }
-      ],
-      "default": "bg-c-average"
-    },
-    {
-      "type": "select",
-      "id": "page_width",
-      "label": "Container (Width)",
-      "options": [
-        {
-          "label": "Unset",
-          "value": "width-un"
-        },
-        {
-          "label": "Width Large",
-          "value": "width-l"
-        },
-        {
-          "label": "Width Medium",
-          "value": "width-m"
-        },
-        {
-          "label": "Width Small",
-          "value": "width-s"
-        }
-      ],
-      "default": "width-un"
-    },
-    {
       "type": "header",
       "content": "Product Title Font Style"
     },
     {
       "type": "checkbox",
       "id": "custom_font_style",
-      "default": true,
+      "default": false,
       "label": "Use Custom Style"
     },
     {
@@ -1429,75 +1313,6 @@
       "id": "info_letterspacing",
       "label": "Letter-spacing",
       "info": "Ex: 0.5px"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Product main",
-      "blocks": [
-        {
-          "type": "text",
-          "settings": [
-            {
-              "text": "Text block"
-            },
-            {
-              "text_style": "body"
-            }
-          ]
-        },
-        {
-          "type": "title"
-        },
-        {
-          "type": "type"
-        },
-        {
-          "type": "price"
-        },
-        {
-          "type": "quantity_selector"
-        },
-        {
-          "type": "variant_picker",
-          "settings": [
-            {
-              "picker_type": "button"
-            }
-          ]
-        },
-        {
-          "type": "buy_buttons"
-        },
-        {
-          "type": "description"
-        },
-        {
-          "type": "share"
-        },
-        {
-          "type": "collapsible_tab",
-          "settings": [
-            {
-              "heading": "Collapsible tab"
-            },
-            {
-              "icon": "check_mark"
-            }
-          ]
-        },
-        {
-          "type": "popup"
-        },
-        {
-          "type": "goes",
-          "settings": [
-            {
-              "heading": "Goes with:"
-            }
-          ]
-        }
-      ]
     }
   ]
 }

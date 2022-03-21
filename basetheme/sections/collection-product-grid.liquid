@@ -45,7 +45,13 @@
 .py-c-light .card-wrapper *{
   color: var(--py-color-light);
 }
- 
+.card-wrapper{
+  padding-bottom:15px;
+  height:100%;
+} 
+body.collection #shopify-section-header,body.collection  #shopify-section-header-2 {
+  z-index: inherit;
+}
 {% if section.settings.custom_font_style %}
 
   .card-wrapper .card-information__text{
@@ -82,7 +88,7 @@
 
 
 
-<div class="bc-collection-page-main filter-{{section.settings.filter_style}} py-{{section.settings.color}} py-{{section.settings.bg_color}} py-{{section.settings.page_y_pd}} py-{{section.settings.page_x_pd}} py-{{section.settings.page_y_mg}}">
+<div class="bc-collection-page-main filter-{{section.settings.filter_style}} py-{{section.settings.bg_color}} py-{{section.settings.page_y_pd}} py-{{section.settings.page_x_pd}} py-{{section.settings.page_y_mg}}">
   
   {%- if section.settings.filter_style == 'style-1' -%}
     {%- render 'collection-filters-style-1' -%}
@@ -133,14 +139,14 @@
             grid grid--2-col
             {% if collection.products_count < 4 %} grid--{{ collection.products_count }}-col-tablet{% else %}
               {% if collection.products_count == 4 %} grid--4-col-desktop{% else %} grid--one-third-max grid--2-col-tablet grid--4-col-desktop grid--quarter-max{% endif %}
-            {% endif %}">
+            {% endif %}" style="margin-left:-{{section.settings.item_space}}px">
             {%- for product in collection.products -%}
-              <li class="grid__item" style="padding-left:{{section.settings.item_space}}px;padding-bottom:{{section.settings.item_space}}px">
+              <li class="grid__item py-{{section.settings.card_color}}" style="padding-bottom:{{section.settings.item_space}}px; padding-left:{{section.settings.item_space}}px;">
                 {% render 'product-card',
                   product_card_product: product,
                   media_size: section.settings.image_ratio,
                   show_secondary_image: section.settings.show_secondary_image,
-                  add_image_padding: section.settings.add_image_padding,
+                  add_image_padding: false,
                   show_vendor: section.settings.show_vendor,
                   show_colors: section.settings.show_colors
                 %}
@@ -195,16 +201,16 @@
             {{ 'sections.collection_template.product_count' | t: product_count: collection.products_count, count: collection.all_products_count }}
           </p>
 
-          <ul id="main-collection-product-grid" data-id="{{ section.id }}" class="grid grid--2-col grid--3-col-tablet grid--4-col-desktop">
+          <ul id="main-collection-product-grid" data-id="{{ section.id }}" class="grid grid--2-col grid--3-col-tablet grid--4-col-desktop" style="margin-left:-{{section.settings.item_space}}px">
             {%- for product in collection.products -%}
-              <li class="grid__item" style="padding-bottom:{{section.settings.item_space}}px">
+              <li class="grid__item py-{{section.settings.card_color}}" style="padding-bottom:{{section.settings.item_space}}px;padding-left:{{section.settings.item_space}}px">
                 {% render 'product-card-style-2',
                   product_card_product: product,
                   media_size: section.settings.image_ratio,
                   show_secondary_image: section.settings.show_secondary_image,
-                  add_image_padding: section.settings.add_image_padding,
+                  add_image_padding: false,
                   show_vendor: section.settings.show_vendor,
-                  show_colors: section.settings.show_colors
+                  show_colors: section.settings.show_colors                  
                 %}
               </li>
             {%- endfor -%}
@@ -226,7 +232,7 @@
 </div>
 {% schema %}
 {
-  "name": "main collection product grid",
+  "name": "collection product grid",
   "class": "collection-grid-section",
   "settings": [
     {
@@ -242,7 +248,7 @@
           "label": "Style 2"
         }
       ],
-      "default": "style-1",
+      "default": "style-2",
       "label": "Grid Style"
     },
     {
@@ -251,7 +257,7 @@
       "min": 8,
       "max": 48,
       "step": 4,
-      "default": 16,
+      "default": 44,
       "label": "Products per page"
     },
     {
@@ -263,33 +269,33 @@
       "id": "item_space",
       "min": 0,
       "max": 40,
-      "step": 5,
+      "step": 1,
       "default": 10,
       "label": "Item Space"
     },
     {
       "type": "select",
       "id": "bg_color",
-      "label": "Background Color",
+      "label": "Section Background ",
       "options": [
         {
-          "label": "None",
-          "value": "none"
-        },
-        {
           "label": "Unset",
-          "value": "unset"
+          "value": "bg-c-un"
         },
         {
-          "label": "Background Dark",
+          "label": "None",
+          "value": "bg-c-none"
+        },
+        {
+          "label": "Dark",
           "value": "bg-c-dark"
         },
         {
-          "label": "Background Average",
+          "label": "Average",
           "value": "bg-c-average"
         },
         {
-          "label": "Background Light",
+          "label": "Light",
           "value": "bg-c-light"
         }
       ],
@@ -305,24 +311,24 @@
           "value": "width-un"
         },
         {
-          "label": "Width Large",
+          "label": "Large",
           "value": "width-l"
         },
         {
-          "label": "Width Medium",
+          "label": "Medium",
           "value": "width-m"
         },
         {
-          "label": "Width Small",
+          "label": "Small",
           "value": "width-s"
         }
       ],
       "default": "width-un"
     },
     {
-      "type": "select",
       "id": "page_x_mg",
-      "label": "Container Margin Hotizontal",
+      "type": "select",
+      "label": "Container Margin Horizontal",
       "options": [
         {
           "label": "Unset",
@@ -333,23 +339,23 @@
           "value": "mg-x-n"
         },
         {
-          "label": "Margin H XL",
+          "label": "XL",
           "value": "mg-x-xl"
         },
         {
-          "label": "Margin H L",
+          "label": "L",
           "value": "mg-x-l"
         },
         {
-          "label": "Margin H M",
+          "label": "M",
           "value": "mg-x-m"
         },
         {
-          "label": "Margin H S",
+          "label": "S",
           "value": "mg-x-s"
         },
         {
-          "label": "Margin H XS",
+          "label": "XS",
           "value": "mg-x-xs"
         }
       ],
@@ -369,23 +375,23 @@
           "value": "mg-y-n"
         },
         {
-          "label": "Margin V XL",
+          "label": "XL",
           "value": "mg-y-xl"
         },
         {
-          "label": "Margin V L",
+          "label": "L",
           "value": "mg-y-l"
         },
         {
-          "label": "Margin V M",
+          "label": "M",
           "value": "mg-y-m"
         },
         {
-          "label": "Margin V S",
+          "label": "S",
           "value": "mg-y-s"
         },
         {
-          "label": "Margin V XS",
+          "label": "XS",
           "value": "mg-y-xs"
         }
       ],
@@ -405,27 +411,27 @@
           "value": "pd-x-n"
         },
         {
-          "label": "Padding H XL",
+          "label": "XL",
           "value": "pd-x-xl"
         },
         {
-          "label": "Padding H L",
+          "label": "L",
           "value": "pd-x-l"
         },
         {
-          "label": "Padding H M",
+          "label": "M",
           "value": "pd-x-m"
         },
         {
-          "label": "Padding H S",
+          "label": "S",
           "value": "pd-x-s"
         },
         {
-          "label": "Padding H XS",
+          "label": "XS",
           "value": "pd-x-xs"
         }
       ],
-      "default": "pd-x-unset"
+      "default": "pd-x-n"
     },
     {
       "type": "select",
@@ -441,27 +447,27 @@
           "value": "pd-y-n"
         },
         {
-          "label": "Padding V XL",
+          "label": "XL",
           "value": "pd-y-xl"
         },
         {
-          "label": "Padding V L",
+          "label": "L",
           "value": "pd-y-l"
         },
         {
-          "label": "Padding V M",
+          "label": "M",
           "value": "pd-y-m"
         },
         {
-          "label": "Padding V S",
+          "label": "S",
           "value": "pd-y-s"
         },
         {
-          "label": "Padding V XS",
+          "label": "XS",
           "value": "pd-y-xs"
         }
       ],
-      "default": "pd-y-xs"
+      "default": "pd-y-n"
     },
     {
       "type": "header",
@@ -484,7 +490,7 @@
           "label": "Square"
         }
       ],
-      "default": "adapt",
+      "default": "square",
       "label": "Image ratio"
     },
     {
@@ -512,6 +518,58 @@
       "label": "Show Colors"
     },
     {
+      "type": "select",
+      "id": "card_bg_color",
+      "label": "Card Background",
+      "options": [
+        {
+          "label": "Unset",
+          "value": "bg-c-un"
+        },
+        {
+          "label": "None",
+          "value": "bg-c-none"
+        },
+        {
+          "label": "Dark",
+          "value": "bg-c-dark"
+        },
+        {
+          "label": "Average",
+          "value": "bg-c-average"
+        },
+        {
+          "label": "Light",
+          "value": "bg-c-light"
+        }
+      ],
+      "default": "bg-c-dark"
+    },
+    {
+      "type": "select",
+      "id": "card_color",
+      "label": "Card Color",
+      "options": [
+        {
+          "label": "None",
+          "value": "c-none"
+        },
+        {
+          "label": "Dark",
+          "value": "c-dark"
+        },
+        {
+          "label": "Average",
+          "value": "c-average"
+        },
+        {
+          "label": "Light",
+          "value": "c-light"
+        }
+      ],
+      "default": "c-light"
+    },
+    {
       "type": "header",
       "content": "Filtering and sorting"
     },
@@ -533,7 +591,7 @@
           "value": "style-3"
         }
       ],
-      "default": "style-1"
+      "default": "style-2"
     },
     {
       "type": "checkbox",
@@ -547,6 +605,50 @@
       "id": "enable_sorting",
       "default": false,
       "label": "Enable sorting"
+    },
+    {
+      "type": "select",
+      "id": "filter_bg_color",
+      "label": "Filter Background",
+      "options": [
+        {
+          "label": "Unset",
+          "value": "bg-c-un"
+        },
+        {
+          "label": "None",
+          "value": "bg-c-none"
+        },
+        {
+          "label": "Dark",
+          "value": "bg-c-dark"
+        },
+        {
+          "label": "Average",
+          "value": "bg-c-average"
+        },
+        {
+          "label": "Light",
+          "value": "bg-c-light"
+        }
+      ],
+      "default": "bg-c-dark"
+    },
+    {
+      "type": "select",
+      "id": "filter_color",
+      "label": "Filter Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "c-dark"
+        },
+        {
+          "label": "Light",
+          "value": "c-light"
+        }
+      ],
+      "default": "c-light"
     },
     {
       "type": "text",

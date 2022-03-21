@@ -1,5 +1,37 @@
 {{ 'component-filter-style-2.css' | asset_url | stylesheet_tag }}
-<custom-filters class="coll-filters">
+<style>
+.filter-group-display__list-item-color label::after {
+  border: 2px solid;
+}
+.py-c-light .filter-group-display__list-item:not(.filter-group-display__list-item-color) label:hover,
+.py-c-light .filter-group-display__list-item:not(.filter-group-display__list-item-color) input:checked + label {
+  background-color: var(--py-color-light);
+  color: var(--py-bg-color-dark);
+}
+.py-c-light .filter-group-display__list-item-color label:hover,
+.py-c-light .filter-group-display__list-item-color input:checked + label{  
+  color: var(--py-color-dark);
+}
+.py-c-light .filter-group-display__list-item-color label:hover,
+.py-c-light .filter-group-display__list-item-color input:checked + label{  
+  box-shadow: 0px 0px 4px 3px var(--py-color-light);
+}
+
+.py-c-dark .filter-group-display__list-item:not(.filter-group-display__list-item-color) label:hover,
+.py-c-dark .filter-group-display__list-item:not(.filter-group-display__list-item-color) input:checked + label{
+  background-color: var(--py-color-dark);
+  color: var(--py-bg-color-light);
+}
+.py-c-dark .filter-group-display__list-item-color label:hover,
+.py-c-dark .filter-group-display__list-item-color input:checked + label{  
+  color: var(--py-color-light);
+}
+.py-c-dark .filter-group-display__list-item-color label:hover,
+.py-c-dark .filter-group-display__list-item-color input:checked + label{  
+  box-shadow: 0px 0px 4px 3px var(--py-color-dark);
+}
+</style>
+<custom-filters class="coll-filters py-{{section.settings.filter_bg_color}}  py-{{section.settings.filter_color}}">
     <div class="coll-filters__wrapper">
         <div class="coll-filters__mode">
             <button class="btn-unstyle" aria-label="Show two products per row">
@@ -17,7 +49,7 @@
             <div class="coll-filters__type-sort">
                 <div class="select">
                     {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
-                    <select name="sort_by" class="select__select coll-filters__select-sort" id="SortBy" aria-describedby="a11y-refresh-page-message">
+                    <select name="sort_by" class="select__select coll-filters__select-sort py-{{section.settings.filter_bg_color}}" id="SortBy" aria-describedby="a11y-refresh-page-message">
                       {%- for option in collection.sort_options -%}
                         <option value="{{ option.value | escape }}"{% if option.value == sort_by %} selected="selected"{% endif %}>{{ option.name | escape }}</option>
                       {%- endfor -%}
@@ -34,10 +66,10 @@
     </div>
 
     <div class="coll-filter-overlay" aria-hidden="true">&nbsp;</div> 
-    <div class="coll-filter-drawer" aria-hidden="true">
+    <div class="coll-filter-drawer py-{{section.settings.filter_bg_color}}" aria-hidden="true">
         <div class="coll-filter-drawer__header">
             {%- if heading != blank -%}
-            <h2 class="coll-filter-drawer__heading">{{ heading }}</h2>
+            <h2 class="coll-filter-drawer__heading py-{{section.settings.filter_color}}">{{ heading }}</h2>
             {%- endif -%}
             <button class="btn-unstyle coll-filter-drawer__close" aria-label="Close filter drawer">
                 <svg class="Icon Icon--close " role="presentation" viewBox="0 0 16 14">

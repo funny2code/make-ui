@@ -22,6 +22,16 @@
             {%- else -%}
               {%- render 'resimg', image: block.settings.image, classimg: 'partners-list__item-img' -%}
             {%- endif -%}
+          {%- else -%}
+            {%- if forloop.first -%}
+            <div class="media py-bg-c-light" style="padding-bottom: 40%;">
+               {{ 'image' | placeholder_svg_tag: 'placeholder-svg partners-list__item-img active' }}
+            </div>             
+            {%- else -%}
+              <div class="media py-bg-c-light" style="padding-bottom: 40%;">
+               {{ 'image' | placeholder_svg_tag: 'placeholder-svg partners-list__item-img' }}
+            </div>
+            {%- endif -%}
           {%- endif -%}
         </div>
       </li>

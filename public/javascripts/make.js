@@ -65,7 +65,7 @@
         
         let fullLoading = document.querySelector('.py__full-loading-wrapper');
         fullLoading.classList.add('py__animate');
-        let settings = {}, section = [], sectionName = '', sectionSettings = {};
+        let settings = {}, section = [], sectionName = '', templateName = '', sectionSettings = {};
         let blocks = []; 
         let blockItems = {
             type: "",
@@ -75,7 +75,9 @@
         let formData = new FormData(form);
         formData.forEach((value, key) => {
             let newValue = value === "true" || value === "false" 
-            ? value === "true" ? true : false : value;
+            ? value === "true" 
+            ? true : false : /^\d+$/.test(value) 
+            ? parseInt(value) : value;
             if(key === 'logo') return;
             if(key.includes('settings_')){ 
                 settings[key.replace('settings_', '')] = newValue;
@@ -88,14 +90,18 @@
                     blockItems.settings[key.replace('block_', '')] = newValue
                 }
             } else { 
-                key === 'section_name' 
-                ? sectionName = newValue
-                : sectionSettings[key] = newValue;
+                if(key === 'section_name'){ 
+                    sectionName = newValue;
+                } else if(key === 'template_name'){
+                    templateName = newValue;
+                } else { 
+                    sectionSettings[key] = newValue;
+                }
             }
         });
         
         if(sectionName && Object.keys(sectionSettings).length){
-            section.push({ name: sectionName, settings: sectionSettings});
+            section.push({ name: sectionName, template: templateName, settings: sectionSettings});
         }
 
         let data = {

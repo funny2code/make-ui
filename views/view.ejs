@@ -150,8 +150,8 @@
                 <%- include('sections/collection-our', {settings: settings, section: item }) %>
             <% } else if(item.name === 'featured collection'){ %>
                 <%- include('sections/featured-collection', {collection: collection, settings: settings, section: item }) %>
-            <% } else if(item.name === 'main image with two products'){ %>
-                <%- include('sections/main-image-with-two-products', {collection: collection, settings: settings, section: item }) %>    
+            <% } else if(item.name === 'image with two products'){ %>
+                <%- include('sections/image-with-two-products', {collection: collection, settings: settings, section: item }) %>    
             <% } else if(item.name === 'image with text'){ %>
                 <%- include('sections/image-with-text', {settings: settings, section: item }) %>
             <% } else if(item.name === 'rich text'){ %>
@@ -176,12 +176,12 @@
                 <%- include('sections/slider', {settings: settings, section: item }) %> 
             <% } else if(item.name === 'spacing'){ %>
                 <%- include('sections/spacing', {settings: settings, section: item }) %> 
-            <% } else if(item.name === 'main product'){ %>
-                <%- include('sections/main-product', {settings: settings, section: item }) %>    
-            <% } else if(item.name === 'main collection product grid'){ %>
-                <%- include('sections/main-collection-product-grid', {collection: collection, settings: settings, section: item }) %>        
-            <% } else if(item.name === 'main collection banner'){ %>
-                <%- include('sections/main-collection-banner', {collection: collection, settings: settings, section: item }) %>            
+            <% } else if(item.name === 'product'){ %>
+                <%- include('sections/product', {settings: settings, section: item }) %>    
+            <% } else if(item.name === 'collection product grid'){ %>
+                <%- include('sections/collection-product-grid', {collection: collection, settings: settings, section: item }) %>        
+            <% } else if(item.name === 'collection banner'){ %>
+                <%- include('sections/collection-banner', {collection: collection, settings: settings, section: item }) %>            
             <% } else if(item.name === 'product recommendations'){ %>
                 <%- include('sections/product-recommendations', {collection: collection, settings: settings, section: item }) %>                
             <% } else if(item.name === 'footer'){ %>

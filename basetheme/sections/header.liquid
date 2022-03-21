@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-search-' | append: settings.header_style | append: '.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-search-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-cart-notification-' | append: settings.cart_style | append: '.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-header-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
 
 
 <noscript>{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-search-' | append: settings.header_style | append: '.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-search-style-1.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-menu-drawer.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-cart-notification-' | append: settings.cart_style | append: '.css' | asset_url | stylesheet_tag }}</noscript>
 
@@ -30,7 +30,7 @@
   .top-left-nav-item,
   .header__icons *,
   .header-wrapper a,
-  .list-menu__item,
+  .header-wrapper .list-menu__item,
   .header-wrapper .link--text{
     color:{{section.settings.py_header_link_color_1}};
   }
@@ -38,7 +38,7 @@
   .top-left-nav-item:hover,
   .header__icons>*:hover *,
   .header-wrapper a:hover,
-  .list-menu__item:hover{
+  .header-wrapper .list-menu__item:hover{
     color:{{section.settings.py_header_link_hov_color_1}};
   }
   .header--top-left .header__inline-menu .list-menu__item,
@@ -63,6 +63,9 @@
     height: 1.8rem;
     width: 1.8rem;
   }
+  .search-modal.modal__content,.menu-drawer{
+    z-index:9999;
+  }
   .header-search-container .header__icon--search form .search__input.field__input,
   .header-search-container .header__icon--search form .field__label,
   .header-search-container .header__icon--search form .search__button svg{
@@ -80,26 +83,93 @@
     padding-top: 5px;
   }
   @media(min-width:990px){
-    .header--top-left-with-nav{
+    .header--top-left-with-nav,.header--top-left{
       padding:0px;      
+    }     
+    .header--top-left.py-pd-y-xl{      
+      padding-top:var(--py-pd-y-xl);
     } 
-    .header--top-left{
-      padding:0px;
-      padding-top:var(--py-{{section.settings.page_y_pd}});
+    .header--top-left.py-pd-y-l{      
+      padding-top:var(--py-pd-y-l);
     } 
-    .header--top-left .header__heading,
-    .header--top-left-with-nav .header__heading{
-      padding-left:var(--py-{{section.settings.page_x_pd}});
+    .header--top-left.py-pd-y-m{      
+      padding-top:var(--py-pd-y-m);
     }
-    .header--top-left .header__icons,
-    .header--top-left-with-nav .header__icons{
-      padding-right:var(--py-{{section.settings.page_x_pd}});
+    .header--top-left.py-pd-y-s{      
+      padding-top:var(--py-pd-y-s);
+    } 
+    .header--top-left.py-pd-y-xs{      
+      padding-top:var(--py-pd-y-xs);
+    } 
+    
+    .header--top-left.py-pd-x-xl .header__heading,
+    .header--top-left-with-nav.py-pd-x-xl .header__heading{
+      padding-left:var(--py-pd-x-xl);
+    }
+    .header--top-left.py-pd-x-l .header__heading,
+    .header--top-left-with-nav.py-pd-x-l .header__heading{
+      padding-left:var(--py-pd-x-l);
+    }
+    .header--top-left.py-pd-x-m .header__heading,
+    .header--top-left-with-nav.py-pd-x-m .header__heading{
+      padding-left:var(--py-pd-x-m);
+    }
+    .header--top-left.py-pd-x-s .header__heading,
+    .header--top-left-with-nav.py-pd-x-s .header__heading{
+      padding-left:var(--py-pd-x-s);
+    }
+    .header--top-left.py-pd-x-xs .header__heading,
+    .header--top-left-with-nav.py-pd-x-xs .header__heading{
+      padding-left:var(--py-pd-x-xs);
+    }
+    .header--top-left.py-pd-x-xl .header__icons,
+    .header--top-left-with-nav.py-pd-x-xl .header__icons{
+      padding-right:var(--py-pd-x-xl);
+    }
+    .header--top-left.py-pd-x-l .header__icons,
+    .header--top-left-with-nav.py-pd-x-l .header__icons{
+      padding-right:var(--py-pd-x-l);
+    }
+    .header--top-left.py-pd-x-m .header__icons,
+    .header--top-left-with-nav.py-pd-x-m .header__icons{
+      padding-right:var(--py-pd-x-m);
+    }
+    .header--top-left.py-pd-x-s .header__icons,
+    .header--top-left-with-nav.py-pd-x-s .header__icons{
+      padding-right:var(--py-pd-x-s);
+    }
+    .header--top-left.py-pd-x-xs .header__icons,
+    .header--top-left-with-nav.py-pd-x-xs .header__icons{
+      padding-right:var(--py-pd-x-xs);
     }
     .header--top-left .header__inline-menu,
     .header--top-left-with-nav .header__inline-menu{ 
-      background: {{section.settings.py_header_bg_color_2}};
-      padding-left: var(--py-{{section.settings.page_x_pd}});
-      padding-right: var(--py-{{section.settings.page_x_pd}});      
+      background: {{section.settings.py_header_bg_color_2}};           
+    }
+    .header--top-left.py-pd-x-xl .header__inline-menu,
+    .header--top-left-with-nav.py-pd-x-xl .header__inline-menu{       
+      padding-left: var(--py-pd-x-xl);
+      padding-right: var(--py-pd-x-xl);      
+    }
+    .header--top-left.py-pd-x-l .header__inline-menu,
+    .header--top-left-with-nav.py-pd-x-l .header__inline-menu{       
+      padding-left: var(--py-pd-x-l);
+      padding-right: var(--py-pd-x-l);      
+    }
+    .header--top-left.py-pd-x-m .header__inline-menu,
+    .header--top-left-with-nav.py-pd-x-m .header__inline-menu{       
+      padding-left: var(--py-pd-x-m);
+      padding-right: var(--py-pd-x-m);      
+    }
+    .header--top-left.py-pd-x-s .header__inline-menu,
+    .header--top-left-with-nav.py-pd-x-s .header__inline-menu{       
+      padding-left: var(--py-pd-x-s);
+      padding-right: var(--py-pd-x-s);      
+    }
+    .header--top-left.py-pd-x-xs .header__inline-menu,
+    .header--top-left-with-nav.py-pd-x-xs .header__inline-menu{      
+      padding-left: var(--py-pd-x-xs);
+      padding-right: var(--py-pd-x-xs);      
     }
     .header--top-left .header__inline-menu{
       margin-top:8px;
@@ -107,10 +177,27 @@
     .top-left-nav-tabs{
       display:flex;
     }
-    .top-left-nav-item{
-      padding:var(--py-{{section.settings.page_y_pd}}) 20px;
+    .top-left-nav-item{     
       cursor: pointer;
       font-weight: 600;
+    }
+    .top-left-nav-item {
+        padding: 20px;
+    }
+    .header--top-left-with-nav.py-pd-y-xl .top-left-nav-item{
+      padding:var(--py-pd-y-xl) 20px;      
+    }
+    .header--top-left-with-nav.py-pd-y-l .top-left-nav-item{
+      padding:var(--py-pd-y-l) 20px;      
+    }
+    .header--top-left-with-nav.py-pd-y-m .top-left-nav-item{
+      padding:var(--py-pd-y-m) 20px;      
+    }
+    .header--top-left-with-nav.py-pd-y-s .top-left-nav-item{
+      padding:var(--py-pd-y-s) 20px;      
+    }
+    .header--top-left-with-nav.py-pd-y-xs .top-left-nav-item{
+      padding:var(--py-pd-y-xs) 20px;      
     }
     .top-left-nav-item.active{
       background:{{section.settings.py_header_bg_color_2}};
@@ -134,7 +221,8 @@
     width:100%;
   }
   body.index .header-position-fixed,
-  body.index .header-position-fixed .header__inline-menu{
+  body.index .header-position-fixed .header__inline-menu,
+  body.index .header-position-fixed .top-left-nav-item.active{
     background-color:transparent !important;
   }
   body.index .header-position-fixed .header-search-container{
@@ -721,7 +809,7 @@
     {%- endif -%}
 
     {%- if section.settings.logo_position == 'middle-center' or section.settings.menu == blank -%}
-      <details-modal class="header__search">
+      <details-modal class="header__search hidden">
         <details>
           <summary class="header__icon header__icon--search header__icon--summary link link--text focus-inset modal__toggle" aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
             <span>
@@ -1009,7 +1097,9 @@
         <div class="header-top-left-nav-container">
           <div class="top-left-nav-tabs">
             <div class="top-left-nav-item active" data-index="1">Main Menu 1</div>
+            {%- if section.settings.menu-2 != blank-%}
             <div class="top-left-nav-item" data-index="2">Main Menu 2</div>
+            {%- endif -%}
           </div>
         </div>
     {% endif %}
@@ -1493,7 +1583,7 @@
           "label": "Static"
         }
       ],
-      "default": "fixed",
+      "default": "static",
       "label": "Header Position"
     },
     {
@@ -1521,7 +1611,7 @@
           "label": "Top Left with Nav"
         }
       ],
-      "default": "middle-left",
+      "default": "top-left-with-nav",
       "label": "Logo position on large screen"
     },
     {
@@ -1561,13 +1651,13 @@
       "type": "color",
       "id": "py_header_bg_color_1",
       "label": "Main Background",
-      "default": "#052f6d"
+      "default": "#ffffff"
     },
     {
       "type": "color",
       "id": "py_header_bg_color_2",
       "label": "Bottom Background",
-      "default": "#ffffff"
+      "default": "#6243d0"
     },
     {
       "type": "color",
@@ -1579,7 +1669,7 @@
       "type": "color",
       "id": "py_header_link_color_1",
       "label": "Main Link",
-      "default": "#ffffff"
+      "default": "#000000"
     },
     {
       "type": "color",
@@ -1591,7 +1681,7 @@
       "type": "color",
       "id": "py_header_link_color_2",
       "label": "Bottom Link",
-      "default": "#000000"
+      "default": "#fffafa"
     },
     {
       "type": "color",
@@ -1681,7 +1771,7 @@
           "value": "pd-x-xs"
         }
       ],
-      "default": "pd-x-un"
+      "default": "pd-x-m"
     },
     {
       "type": "select",

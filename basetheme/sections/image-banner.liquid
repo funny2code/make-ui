@@ -21,8 +21,8 @@
           >
         </div>
       {%- elsif section.settings.image_2 == blank -%}
-        <div class="media placeholder">
-          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        <div class="media placeholder py-bg-c-light" style="padding-bottom: 53.4375%;opacity: 0.1;">
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
         </div>
       {%- endif -%}
       {%- if section.settings.image_2 != blank -%}
@@ -399,7 +399,8 @@
         {
           "type": "color",
           "id": "color",
-          "label": "Text Color"
+          "label": "Text Color",
+          "default": "#ffffff"
         },
         {
           "type": "text",
@@ -463,7 +464,8 @@
         {
           "type": "color",
           "id": "m_color",
-          "label": "Text Color"
+          "label": "Text Color",
+          "default": "#000000"
         },
         {
           "type": "text",
@@ -540,7 +542,8 @@
         {
           "type": "color",
           "id": "color",
-          "label": "Text Color"
+          "label": "Text Color",
+          "default": "#ffffff"
         },
         {
           "type": "text",
@@ -604,7 +607,8 @@
         {
           "type": "color",
           "id": "m_color",
-          "label": "Text Color"
+          "label": "Text Color",
+          "default": "#000000"
         },
         {
           "type": "text",
@@ -667,17 +671,20 @@
         {
           "type": "color",
           "id": "bg",
-          "label": "Background Color"
+          "label": "Background Color",
+          "default": "#000000"
         },
         {
           "type": "color",
           "id": "border",
-          "label": "border Color"
+          "label": "border Color",
+          "default": "#ffffff"
         },
         {
           "type": "color",
           "id": "color",
-          "label": "Text Color"
+          "label": "Text Color",
+          "default": "#ffffff"
         },
         {
           "type": "text",
@@ -726,17 +733,20 @@
         {
           "type": "color",
           "id": "m_bg",
-          "label": "Background Color"
+          "label": "Background Color",
+          "default": "#000000"
         },
         {
           "type": "color",
           "id": "m_border",
-          "label": "border Color"
+          "label": "border Color",
+          "default": "#000000"
         },
         {
           "type": "color",
           "id": "m_color",
-          "label": "Text Color"
+          "label": "Text Color",
+          "default": "#000000"
         },
         {
           "type": "text",

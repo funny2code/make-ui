@@ -1,9 +1,9 @@
 .coll-filters {
   position: sticky;
   width: 100%;
-  z-index: 3;
-  background: #efefef;
+  z-index: 999;  
   display:block;
+  top:0px !important;
 }
 .coll-filters__wrapper {
   display: flex;
@@ -62,20 +62,19 @@
   width: 159px;
   text-transform: uppercase;
   font-family: var(--font-body-family);
-    font-style: var(--font-body-style);
-      font-weight: var(--font-body-weight);
-        font-size: 1.2rem;
-        color: var(--color-foreground-75);
-          }
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
+  font-size: 1.2rem;
+ }
 .coll-filter-drawer {
   position: fixed;
-  top: 0;
+  top: 0px !important;
   right: 0;
-  width: 400px;
+  width:100%;
+  max-width: 400px;
   height: 100vh;
   z-index: 20;
-  transition: transform .5s ease, visibility .5s ease;
-  background: #ffffff;
+  transition: transform .5s ease, visibility .5s ease;  
   touch-action: manipulation;
   border-top: 1px solid #cfcfcf;
   border-left: 1px solid #cfcfcf;
@@ -147,7 +146,7 @@
 }
 .filter-group-display__list-item label {
   display: inline-block;
-  border: 1px solid #000000;
+  border: 1px solid;
   padding: 3px 8px;
   text-align: center;
   cursor: pointer;
@@ -155,8 +154,7 @@
 .filter-group-display__list-item.filter-group-display__list-item-color label {
   position: relative;
   width: 33px;
-  height: 33px;
-  border-color: #ffffff;
+  height: 33px;  
 }
 .filter-group-display__list-item.filter-group-display__list-item-color label::after {
   content: "";
@@ -164,18 +162,15 @@
   top: 0px;
   left: 0px;
   width: 31px;
-  height: 31px;
-  border: 2px solid #ffffff;
+  height: 31px;  
 }
 .filter-group-display__list-item:not(.filter-group-display__list-item-color) label:hover,
 .filter-group-display__list-item:not(.filter-group-display__list-item-color) input:checked + label {
-  border-color: #000000;
-  background-color: #000000;
-  color: #ffffff;
+  
 }
 .filter-group-display__list-item-color label:hover,
 .filter-group-display__list-item-color input:checked + label {
-  border-color: #000000;
+  
 }
 .filter-group-display__list-item input {
   opacity: 0;
@@ -192,7 +187,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 7px 10px;
-  border: 1px solid #000000;
+  border: 1px solid;
   font-size: 14px;
 } 
 .filter-group-display__price-range-item>input {
@@ -205,6 +200,7 @@
   background: 0 0;
   border: none;
   text-align: end;
+  color: inherit;
 }
 .filter-group-display__price-range-item>input[type="number"]:focus,
 .filter-group-display__price-range-item>input[type="number"]:focus-visible {

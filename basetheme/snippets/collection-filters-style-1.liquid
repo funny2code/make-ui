@@ -1,5 +1,5 @@
 {{ 'component-filter-style-1.css' | asset_url | stylesheet_tag }}
-<div class="page-width collection-filters bc-collection-page-fillters" id="main-collection-filters" data-id="{{ section.id }}">
+<div class="page-width collection-filters bc-collection-page-fillters py-{{section.settings.filter_bg_color}} py-{{section.settings.filter_color}}" id="main-collection-filters" data-id="{{ section.id }}">
     {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
       {%- assign total_active_values = 0 -%}
       <collection-filters-form class="facets small-hide">
@@ -306,9 +306,9 @@
             <span tabindex="0" class="mobile-facets__close mobile-facets__close--no-js">{%- render 'icon-close' -%}</span>
           </summary>
           <collection-filters-form>
-            <form id="CollectionFiltersFormMobile" class="mobile-facets">
+            <form id="CollectionFiltersFormMobile" class="mobile-facets py-{{section.settings.filter_bg_color}}">
               <div class="mobile-facets__inner">
-                <div class="mobile-facets__header">
+                <div class="mobile-facets__header py-{{section.settings.filter_bg_color}}">
                   <div class="mobile-facets__header-inner">
                     <h2 class="mobile-facets__heading">{{ 'sections.collection_template.filter_and_sort' | t }}</h2>
                     <p class="mobile-facets__count">{{ 'sections.collection_template.product_count' | t: product_count: collection.products_count, count: collection.all_products_count }}</p>
@@ -352,7 +352,7 @@
                                   <noscript>{% render 'icon-caret' %}</noscript>
                                 </div>
                               </summary>
-                              <div class="mobile-facets__submenu">
+                              <div class="mobile-facets__submenu py-{{section.settings.filter_bg_color}}">
                                 <button class="mobile-facets__close-button link link--text focus-inset" aria-expanded="true" type="button">
                                   {% render 'icon-arrow' %}
                                   {{ block.settings.label | escape }}
@@ -410,7 +410,7 @@
                                   <noscript>{% render 'icon-caret' %}</noscript>
                                 </div>
                               </summary>
-                              <div class="mobile-facets__submenu">
+                              <div class="mobile-facets__submenu py-{{section.settings.filter_bg_color}}">
                                 <button class="mobile-facets__close-button link link--text focus-inset" aria-expanded="true" type="button">
                                   {% render 'icon-arrow' %}
                                   {{ block.settings.label | escape }}
@@ -445,7 +445,7 @@
                                   {%- endfor -%}
                                 </ul>
       
-                                <div class="no-js-hidden mobile-facets__footer">
+                                <div class="no-js-hidden mobile-facets__footer py-{{section.settings.filter_bg_color}}">
                                   <a href="{{ collection.url }}" class="mobile-facets__clear button button--secondary js-facet-remove">{{ 'sections.collection_template.clear' | t }}</a>
                                   <button type="button" class="no-js-hidden button button--primary" onclick="this.closest('.mobile-facets__wrapper').querySelector('summary').click()">{{ 'sections.collection_template.apply' | t }}</button>
                                   <noscript><button class="button button--primary">{{ 'sections.collection_template.apply' | t }}</button></noscript>
@@ -472,7 +472,7 @@
                               <noscript>{% render 'icon-caret' %}</noscript>
                             </div>
                           </summary>
-                          <div class="mobile-facets__submenu">
+                          <div class="mobile-facets__submenu py-{{section.settings.filter_bg_color}}">
                             <button class="mobile-facets__close-button link link--text focus-inset" aria-expanded="true" type="button">
                               {% render 'icon-arrow' %}
                               {{ filter.label | escape }}
@@ -507,7 +507,7 @@
                               {%- endfor -%}
                             </ul>
 
-                            <div class="no-js-hidden mobile-facets__footer">
+                            <div class="no-js-hidden mobile-facets__footer py-{{section.settings.filter_bg_color}}">
                               <a href="{{ collection.url }}" class="mobile-facets__clear button button--secondary js-facet-remove">{{ 'sections.collection_template.clear' | t }}</a>
                               <button type="button" class="no-js-hidden button button--primary" onclick="this.closest('.mobile-facets__wrapper').querySelector('summary').click()">{{ 'sections.collection_template.apply' | t }}</button>
                               <noscript><button class="button button--primary">{{ 'sections.collection_template.apply' | t }}</button></noscript>
@@ -524,7 +524,7 @@
                               <noscript>{% render 'icon-caret' %}</noscript>
                             </div>
                           </summary>
-                          <div class="mobile-facets__submenu">
+                          <div class="mobile-facets__submenu py-{{section.settings.filter_bg_color}}">
                             <button class="mobile-facets__close-button link link--text focus-inset" aria-expanded="true" type="button">
                               {% render 'icon-arrow' %}
                               {{ filter.label | escape }}
@@ -578,7 +578,7 @@
 
                   
 
-                  <div class="mobile-facets__footer">
+                  <div class="mobile-facets__footer py-{{section.settings.filter_bg_color}}">
                     <a href="{{ collection.url }}" class="mobile-facets__clear button button--secondary js-facet-remove">{{ 'sections.collection_template.clear' | t }}</a>
                     <button type="button" class="no-js-hidden button button--primary" onclick="this.closest('.mobile-facets__wrapper').querySelector('summary').click()">{{ 'sections.collection_template.apply' | t }}</button>
                     <noscript><button class="button button--primary">{{ 'sections.collection_template.apply' | t }}</button></noscript>
