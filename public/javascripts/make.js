@@ -131,12 +131,37 @@
         .catch(err => console.error(err));
     };
 
+    // SignUp Function
+    const signup = () => {
+
+        let fullLoading = document.querySelector('.py__full-loading-wrapper');
+        fullLoading.classList.add('py__animate');
+    
+
+        fetch('/signup', {
+            method:'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.text())
+        .then(data => {
+            if(!data) return;
+            let body = document.querySelector('body');
+            body.insertAdjacentHTML('afterend', data);
+            fullLoading.classList.remove('py__animate');
+        })
+        .catch(err => console.error(err));
+    };
+
     // Download function
     const download = (event) => {
 
         if(!event) return;
-        
         event.preventDefault();
+        if(true) return signup();
+
         let btn = event.target;
         let url = btn.getAttribute('href');
         let id = btn.getAttribute('data-id');

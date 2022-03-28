@@ -1,0 +1,57 @@
+<div class="py__signup">
+    <div class="py__signup-wrapper">
+        <form action="/signup" method="post" class="py__signup-form">
+            <div class="py__signup-header">
+                <h2 class="py-title">make</h2>
+                <h5 class="py-subtitle">Download your theme with a subscription or 1 time payment</h5>
+            </div>
+            <div class="py__signup-email-and-password-wrap">
+                <div class="py__signup-email-wrap">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="email@gmail.com">
+                </div>  
+                <div class="py__signup-password-wrap">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password">
+                </div>  
+            </div>
+            <div class="py__signup-subscription-wrap">
+                <div class="py__signup-subsription-header">
+                    <h3>Subscription Type</h3>
+                </div>
+                <div class="py__signup-monthly-wrap">
+                    <input type="radio" id="subscriptionmonthly" name="subscription_monthly" checked aria-checked="true">
+                    <label for="subscriptionmonthly">Monthly Subscription - $50 USD / month</label>
+                </div>  
+                <div class="py__signup-lifetime-wrap">
+                    <input type="radio" id="subscriptionlifetime" name="subscription_lifetime" aria-checked="false">
+                    <label for="subscriptionlifetime">Lifetime Membership - $550 USD / month</label>
+                </div>  
+            </div>
+            <div class="py__signup-creditcard-wrap">
+                <div class="py__signup-cardnumber-wrap">
+                    <label for="cardnumber">Credit Card Number</label>
+                    <input type="number" id="cardnumber" name="card_number" placeholder="Your credit card number">
+                </div>  
+                <div class="py__signup-cardexpiry-wrap">
+                    <label for="cardexpirymonth">Expiry</label>
+                    <input type="number" id="cardexpirymonth" name="card_expiry_month" placeholder="MM">
+                    <input type="number" id="cardexpiryyear" name="card_expiry_year" placeholder="YY">
+                </div>  
+                <div class="py__signup-cardcvv-wrap">
+                    <label for="cardcvv">Expiry</label>
+                    <input type="number" id="cardcvv" name="card_cvv" placeholder="CVV">
+                </div> 
+            </div>
+            <div class="py__signup-agree-wrap">
+                <input type="checkbox" id="agree">
+                <label for="agree">I agree to Terms and Conditions</label>
+            </div>
+            <div class="py__signup-sumit-wrap">
+                <button type="submit" class="py__button py__button-blue py__button-signup">
+                    Confirm Sign Up
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -10,6 +10,7 @@ const viewRouter = require('./routes/view');
 const getRouter = require('./routes/get');
 const saveRouter = require('./routes/save');
 const downloadRouter = require('./routes/download');
+const signupRouter = require('./routes/signup');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use('/themes', themesRouter);
 app.use('/view', viewRouter);
 app.use('/get', getRouter);
 app.use('/save', saveRouter);
+app.use('/signup', signupRouter);
 app.use('/download', downloadRouter);
 
 // catch 404 and forward to error handler
