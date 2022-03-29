@@ -745,6 +745,19 @@ select {
   color: #000000;
   margin: 0;
 }
+.py__signup-error-wrap {
+  display: none;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  padding: 20px;
+  margin: 16px 0;
+  border: 1px solid;
+  border-radius: 3px;
+}
+.py__signup-error-wrap.active {
+  display: block;
+}
 .py__signup-email-and-password-wrap {
   display: flex;
   flex-wrap: wrap;

@@ -4,6 +4,7 @@
             <div class="py__signup-header">
                 <h2 class="py-title">make</h2>
                 <h5 class="py-subtitle">Download your theme with a subscription or 1 time payment</h5>
+                <div class="py__signup-error-wrap"></div>
             </div>
             <div class="py__signup-email-and-password-wrap">
                 <div class="py__signup-email-wrap">
@@ -20,27 +21,27 @@
                     <h3>Subscription Type</h3>
                 </div>
                 <div class="py__signup-monthly-wrap">
-                    <input type="radio" id="subscriptionmonthly" name="subscription_monthly" checked aria-checked="true">
+                    <input type="radio" id="subscriptionmonthly" name="subscription" value="monthly" checked aria-checked="true">
                     <label for="subscriptionmonthly">Monthly Subscription - $50 USD / month</label>
                 </div>  
                 <div class="py__signup-lifetime-wrap">
-                    <input type="radio" id="subscriptionlifetime" name="subscription_lifetime" aria-checked="false">
+                    <input type="radio" id="subscriptionlifetime" name="subscription" value="lifetime" aria-checked="false">
                     <label for="subscriptionlifetime">Lifetime Membership - $550 USD / month</label>
                 </div>  
             </div>
             <div class="py__signup-creditcard-wrap">
                 <div class="py__signup-cardnumber-wrap">
                     <label for="cardnumber">Credit Card Number</label>
-                    <input type="number" id="cardnumber" name="card_number" placeholder="Your credit card number">
+                    <input type="number" id="cardnumber" name="number" placeholder="Your credit card number">
                 </div>  
                 <div class="py__signup-cardexpiry-wrap">
                     <label for="cardexpirymonth">Expiry</label>
-                    <input type="number" id="cardexpirymonth" name="card_expiry_month" placeholder="MM">
-                    <input type="number" id="cardexpiryyear" name="card_expiry_year" placeholder="YY">
+                    <input type="number" id="cardexpirymonth" name="exp_month" placeholder="MM">
+                    <input type="number" id="cardexpiryyear" name="exp_year" placeholder="YY">
                 </div>  
                 <div class="py__signup-cardcvv-wrap">
                     <label for="cardcvv">Expiry</label>
-                    <input type="number" id="cardcvv" name="card_cvv" placeholder="CVV">
+                    <input type="number" id="cardcvv" name="cvc" placeholder="CVV">
                 </div> 
             </div>
             <div class="py__signup-agree-wrap">

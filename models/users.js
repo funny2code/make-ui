@@ -10,7 +10,8 @@ const schema = new db.Schema({
   },
   password: { 
     type: String, 
-    required: true 
+    required: true,
+    min: 8 
   },
   billingID: String,
   plan: { 
@@ -29,23 +30,27 @@ const schema = new db.Schema({
   }
 });
 
-schema.pre('save', function(next) {
-    if (!this.isModified('password')) return next();
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-        if (err) return next(err);
-        bcrypt.hash(this.password, salt, function(err, hash) {
-            if (err) return next(err);
-            this.password = hash;
-            next();
-        });
-    });
-});
-     
-schema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
-};
+schema.pre("save", function (next) {
+  const user = this
+
+  if (this.isModified("password") || this.isNew) {
+    bcrypt.genSalt(SALT_WORK_FACTOR, function (saltError, salt) {
+      if (saltError) {
+        return next(saltError)
+      } else {
+        bcrypt.hash(user.password, salt, function(hashError, hash) {
+          if (hashError) {
+            return next(hashError)
+          }
+
+          user.password = hash
+          next()
+        })
+      }
+    })
+  } else {
+    return next()
+  }
+})
 
 module.exports = db.model('Users', schema);

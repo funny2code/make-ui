@@ -131,8 +131,8 @@
         .catch(err => console.error(err));
     };
 
-    // SignUp Function
-    const signup = () => {
+    // Get Register Popup Function
+    const getRegister = () => {
 
         let fullLoading = document.querySelector('.py__full-loading-wrapper');
         fullLoading.classList.add('py__animate');
@@ -150,7 +150,40 @@
             if(!data) return;
             let body = document.querySelector('body');
             body.insertAdjacentHTML('afterend', data);
-            fullLoading.classList.remove('py__animate');
+        })
+        .catch(err => console.error(err))
+        .finally(fullLoading.classList.remove('py__animate'));
+    };
+
+    // SignUp Function
+    const signup = (event) => {
+        
+        if(!event) return;
+        event.preventDefault();
+        let form = event.target;
+        let url = event.target.getAttribute('action');
+        if(!url) return;
+        let formData = new FormData(form);
+        let ObjectFormData = Object.fromEntries(formData.entries());
+
+        fetch(url, {
+            method:'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(ObjectFormData)
+        })
+        .then(res => res.text())
+        .then(data => {
+            if(!data) return;
+            if(data === "ok"){
+                document.querySelector('.py__signup').remove();
+            } else {
+                let errorWrap = document.querySelector('.py__signup-error-wrap');
+                errorWrap.textContent = data;
+                errorWrap.classList.add('active'); 
+            }
         })
         .catch(err => console.error(err));
     };
@@ -160,7 +193,7 @@
 
         if(!event) return;
         event.preventDefault();
-        if(true) return signup();
+        if(true) return getRegister();
 
         let btn = event.target;
         let url = btn.getAttribute('href');
@@ -545,6 +578,10 @@
         }
     }, true);
 
+    document.addEventListener('submit', (e)=>{
+        if(e && e.target.classList.contains('py__signup-form')) return signup(e);
+    })
+
     document.addEventListener('blur', (e)=>{
         if(e && e.target.getAttribute('name')){
             let type = e.target.getAttribute('type');
@@ -567,11 +604,6 @@
 
     // Sidebar Select Settings Open Close Fun
     document.addEventListener('click', (e)=>{
-        // if(e && e.target.classList.contains('py__settings-select')){
-        //     e.target.classList.contains('active') 
-        //     ? e.target.classList.remove('active')
-        //     : e.target.classList.add('active');
-        // }
         if(e && e.target.classList.contains('py__settings-item-name')){
             e.target.closest('.py__settings-item-wrapper').classList.contains('active') 
             ? e.target.closest('.py__settings-item-wrapper').classList.remove('active')
