@@ -22,7 +22,7 @@ router.post('/', async (req, res, next) => {
   
   try {
     const findUser = await UsersModel.findOne({email}).exec();
-    if(findUser) return res.status(409).send({status: 400, message: `This email (${email}) already exists.`});
+    if(findUser) return res.status(409).send({status: 409, message: `This email (${email}) already exists.`});
 
     const createCustomer = await stripe.customers.create({
       email: email,

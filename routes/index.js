@@ -12,7 +12,11 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
   
-  res.render('index', { make: make, themes: themes });
+  res.render('index', {
+    user: req?.session?.user || null, 
+    make: make, 
+    themes: themes 
+  });
 
 });
 
