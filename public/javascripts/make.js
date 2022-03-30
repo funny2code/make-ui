@@ -132,7 +132,10 @@
     };
 
     // Get Register Popup Function
-    const getRegister = () => {
+    const getRegister = (event) => {
+        
+        if(!event) return;
+        event.preventDefault();
 
         let fullLoading = document.querySelector('.py__full-loading-wrapper');
         fullLoading.classList.add('py__animate');
@@ -177,11 +180,19 @@
         .then(res => res.text())
         .then(data => {
             if(!data) return;
-            if(data === "ok"){
-                document.querySelector('.py__signup').remove();
+            let parseData = JSON.parse(data);
+            if(parseData.status === "active"){
+                return location.reload();
+            } else if(parseData.status === "requires_confirmation"){
+                let stripe = Stripe('pk_test_hnMkmoqkvZxUjOrnEkPIVd80');
+                stripe.confirmCardPayment(parseData.client_secret)
+                .then(function(result) {
+                    if(result?.error) return
+                    if(result?.paymentIntent) return location.reload();
+                });
             } else {
                 let errorWrap = document.querySelector('.py__signup-error-wrap');
-                errorWrap.textContent = data;
+                errorWrap.textContent = parseData.message;
                 errorWrap.classList.add('active'); 
             }
         })
@@ -193,7 +204,6 @@
 
         if(!event) return;
         event.preventDefault();
-        if(true) return getRegister();
 
         let btn = event.target;
         let url = btn.getAttribute('href');
@@ -609,6 +619,7 @@
             ? e.target.closest('.py__settings-item-wrapper').classList.remove('active')
             : e.target.closest('.py__settings-item-wrapper').classList.add('active');
         }
+        if(e && e.target.classList.contains('py__signup-button')) getRegister(e);
         if(e && e.target.classList.contains('py__get-button')) getItemFromSettings(e);
         if(e && e.target.classList.contains('py__button-view')) toggleIframePreview(e);
         if(e && e.target.classList.contains('py__get-section-button')) getSettingsLists(e);

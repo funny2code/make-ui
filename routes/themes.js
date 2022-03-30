@@ -39,6 +39,7 @@ router.get('/:id', async (req, res, next) => {
   const sections = section ? sectionsResult.sections.filter(item => item.name === section) : null;
   
   res.render('theme', {
+    user: req?.session?.user || null, 
     make: make, 
     id: theme._id,
     page: page,

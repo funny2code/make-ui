@@ -6,7 +6,7 @@
             </h1>
         </div>
         <div class="py__header-login">
-            <% if(id){ %>
+            <% if(user){ %>
                 <a class="py__button py__button-black py__save-button" aria-disabled="true">
                     Save Changes
                 </a>
@@ -14,8 +14,8 @@
                     Download Theme
                 </a>
             <% } else { %>
-                <a href="/login" class="py__button py__button-white">
-                    Login
+                <a href="/signup" class="py__button py__button-white py__signup-button">
+                    Sign Up
                 </a>
             <% } %>
         </div>

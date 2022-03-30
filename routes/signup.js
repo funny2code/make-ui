@@ -4,7 +4,7 @@ const make = require('../config/make');
 const themesModel = require('../models/themes');
 const UsersModel = require('../models/users');
 const Stripe = require('stripe');
-const stripe = new Stripe('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');
+const stripe = new Stripe('sk_test_KvnHx6I2Whw62ETg5j6X2nTq');
 
 /* GET SignUp. */
 router.get('/', async (req, res, next) => {
@@ -18,16 +18,17 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
 
   const {email, password, subscription, number, exp_month, exp_year, cvc} = req.body;
-  if(!email || !password || !subscription || !number || !exp_month || !exp_year || !cvc) return res.status(400).send("Please enter all fields.");
+  if(!email || !password || !subscription || !number || !exp_month || !exp_year || !cvc) return res.status(400).send({status: 400, message: "Please enter all fields."});
   
   try {
     const findUser = await UsersModel.findOne({email}).exec();
-    if(findUser) return res.status(409).send(`This email (${email}) already exists.`);
-    const customer = await stripe.customers.create({
+    if(findUser) return res.status(409).send({status: 400, message: `This email (${email}) already exists.`});
+
+    const createCustomer = await stripe.customers.create({
       email: email,
     });
-    if(!customer) return res.status(500).send('Sorry any issue please try again few minuts ago!')
-    const newPaymentMethod = await stripe.paymentMethods.create({
+
+    const createPayment = await stripe.paymentMethods.create({
       type: 'card',
       card: {
         number: number,
@@ -36,23 +37,52 @@ router.post('/', async (req, res, next) => {
         cvc: cvc,
       },
     });
-    if(!newPaymentMethod) return  res.status(500).send('Sorry any issue please try again few minuts ago!');
-    console.log(customer, newPaymentMethod)
-    // const paymentMethod = await stripe.paymentMethods.attach(
-    //   'pm_1KiYAZ2eZvKYlo2CgMZ7EcTR',
-    //   {customer: 'cus_4QE4N83DfMpDkX'}
-    // );
+
+    const attached = await stripe.paymentMethods.attach(createPayment.id, {
+      customer: createCustomer.id,
+    });
+
+    const updateCustomerPaymentDefault = await stripe.customers.update(createCustomer.id, {
+      invoice_settings: {
+        default_payment_method: createPayment.id,
+      }
+    });
+
+    const price = await stripe.prices.retrieve(subscription);
 
     const newUser = new UsersModel({email, password, subscription});
-    if(!newUser) return res.status(500).send('Sorry any issue please try again few minuts ago!'); 
+
     newUser.save((err, user) => {
       if(err) return next();
       req.session.user = user;
-      console.log(customer);
-      return res.status(200).send("ok");
     });
+
+    if (price.recurring !== null) {
+      const newSubscription = await stripe.subscriptions.create({
+        customer: createCustomer.id,
+        items: [{ plan: subscription }],
+        default_payment_method: createPayment.id,
+      });
+      let sendClient = {
+        status: newSubscription.status
+      }
+      return res.status(200).send(sendClient);
+    } else {
+      const newPaymentIntentes = await stripe.paymentIntents.create({
+        customer: createCustomer.id,
+        currency: price.currency,
+        amount: price.unit_amount,
+        payment_method: createPayment.id,
+      });
+      let sendClient = {
+        status: newPaymentIntentes.status,
+        client_secret: newPaymentIntentes.client_secret
+      }
+      return res.status(200).send(sendClient);
+    }
+
   } catch (err){
-    return next(err);
+    return err.type === 'StripeCardError' ? res.status(err.raw.statusCode).send({status: err.raw.statusCode, message: err.raw.message}) : res.status(500).send({status: 500, message: "SORRY! Plese try again few minuts late."});
   }
   
 });
