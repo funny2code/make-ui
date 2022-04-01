@@ -8,7 +8,7 @@
         <script src="https://js.stripe.com/v3/"></script>
     </head>
     <body>
-        <%- include('make/header', {id: id, themeName: settings ? settings[0]?.theme_name : null }) %>
+        <%- include('make/header', {id: id, show: true, themeName: settings ? settings[0]?.theme_name : null }) %>
         <div class="py__make">
             <div class="py__make-sidebar">
                 <% if(sidebar){ %>

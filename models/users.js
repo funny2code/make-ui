@@ -13,21 +13,19 @@ const schema = new db.Schema({
     required: true,
     min: 8 
   },
-  billingID: String,
   plan: { 
     type: String, 
     enum: ['monthly', 'lifetime'], 
     default: 'monthly',
     required: true 
   },
-  hasTrial: { 
-    type: Boolean, 
-    default: false 
-  },
-  endDate: { 
-    type: Date, 
-    default: null 
+  status: {
+    type: String,
+    default: 'paused',
+    require: true
   }
+},{
+  timestamps: true
 });
 
 schema.pre("save", function (next) {

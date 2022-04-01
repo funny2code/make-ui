@@ -715,6 +715,7 @@ select {
   z-index: 999;
 }
 .py__signup-wrapper {
+  position: relative;
   background: rgba(245, 245, 245, 0.81);
   backdrop-filter: blur(34px);
   border-radius: 10px;
@@ -869,6 +870,95 @@ select {
   line-height: 33px;
 }
 .py__button-signup {
+  width: 285px;
+  height: 60px;
+}
+/* ===== LOGIN ===== */
+.py__login {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow: auto;
+  background: rgba(255, 255, 255, 0.86);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  z-index: 999;
+}
+.py__login-wrapper {
+  position: relative;
+  background: rgba(245, 245, 245, 0.81);
+  backdrop-filter: blur(34px);
+  border-radius: 10px;
+  width: 56%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 40px 40px 60px 40px;
+}
+.py__login-wrapper form {
+  margin: 0;
+}
+.py__login-header {
+  margin-bottom: 46px;
+}
+.py__login-header .py-title {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 29px;
+  color: #000000;
+  margin-bottom: 27px;
+}
+.py__login-error-wrap {
+  display: none;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  padding: 20px;
+  margin: 16px 0;
+  border: 1px solid;
+  border-radius: 3px;
+}
+.py__login-error-wrap.active {
+  display: block;
+}
+.py__login-email-and-password-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 38px;
+  gap: 18px;
+}
+.py__login label {
+  display: block;
+  width: 100%;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+  margin-bottom: 13px;
+}
+.py__login input[type="email"],
+.py__login input[type="password"] {
+  background: #FFFFFF;
+  border: 1px solid #E9E9E9;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 7px rgb(0 0 0 / 5%);
+  border-radius: 10px;
+  min-height: 75px;
+  padding: 0 22px;
+  min-width: 285px;
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 24px;
+  color: #676767;
+}
+.py__login-signup {
   width: 285px;
   height: 60px;
 }

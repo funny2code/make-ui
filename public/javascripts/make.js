@@ -158,6 +158,33 @@
         .finally(fullLoading.classList.remove('py__animate'));
     };
 
+    // Get Login Popup Function
+    const getLogin = (event) => {
+        
+        if(!event) return;
+        event.preventDefault();
+
+        let fullLoading = document.querySelector('.py__full-loading-wrapper');
+        fullLoading.classList.add('py__animate');
+    
+
+        fetch('/login', {
+            method:'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.text())
+        .then(data => {
+            if(!data) return;
+            let body = document.querySelector('body');
+            body.insertAdjacentHTML('afterend', data);
+        })
+        .catch(err => console.error(err))
+        .finally(fullLoading.classList.remove('py__animate'));
+    };
+
     // SignUp Function
     const signup = (event) => {
         
@@ -168,6 +195,9 @@
         if(!url) return;
         let formData = new FormData(form);
         let ObjectFormData = Object.fromEntries(formData.entries());
+        let fullLoading = form.closest('.py__signup-wrapper').querySelector('.py__loading-wrap');
+        fullLoading.classList.add('py__animate');
+        console.log(fullLoading);
 
         fetch(url, {
             method:'post',
@@ -182,19 +212,57 @@
             if(!data) return;
             let parseData = JSON.parse(data);
             if(parseData.status === "active"){
-                return location.reload();
+                return location.href = location.origin;
             } else if(parseData.status === "requires_confirmation"){
                 let stripe = Stripe('pk_test_hnMkmoqkvZxUjOrnEkPIVd80');
                 stripe.confirmCardPayment(parseData.client_secret)
                 .then(function(result) {
                     if(result?.error) return
-                    if(result?.paymentIntent) return location.reload();
+                    if(result?.paymentIntent) return location.href = location.origin;
                 });
             } else {
                 let errorWrap = document.querySelector('.py__signup-error-wrap');
                 errorWrap.textContent = parseData.message;
                 errorWrap.classList.add('active'); 
             }
+            fullLoading.classList.remove('py__animate');
+        })
+        .catch(err => console.error(err));
+    };
+
+    // Login Function
+    const login = (event) => {
+        
+        if(!event) return;
+        event.preventDefault();
+        let form = event.target;
+        let url = event.target.getAttribute('action');
+        if(!url) return;
+        let formData = new FormData(form);
+        let ObjectFormData = Object.fromEntries(formData.entries());
+        let fullLoading = form.closest('.py__login-wrapper').querySelector('.py__loading-wrap');
+        fullLoading.classList.add('py__animate');
+
+        fetch(url, {
+            method:'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(ObjectFormData)
+        })
+        .then(res => res.text())
+        .then(data => {
+            if(!data) return;
+            let parseData = JSON.parse(data);
+            if(parseData.status === 200){
+                return location.href = location.origin;
+            } else {
+                let errorWrap = document.querySelector('.py__login-error-wrap');
+                errorWrap.textContent = parseData.message;
+                errorWrap.classList.add('active'); 
+            }
+            fullLoading.classList.remove('py__animate');
         })
         .catch(err => console.error(err));
     };
@@ -481,7 +549,7 @@
         let value = event.target.value;
         checkSettings(uniqName, value);
         value !== focuseValue ? viewIframe() : null;
-        if(uniqName === 'settings_theme_name' && value !== focuseValue) downloadButton.setAttribute('data-name', value);
+        if(uniqName === 'settings_theme_name' && value !== focuseValue) downloadButton?.setAttribute('data-name', value);
     };
     // Textarea Component Function
     const textareaComp = (event) => {
@@ -588,10 +656,7 @@
         }
     }, true);
 
-    document.addEventListener('submit', (e)=>{
-        if(e && e.target.classList.contains('py__signup-form')) return signup(e);
-    })
-
+    // Input fileds Blur fun (text, textarea and etc)
     document.addEventListener('blur', (e)=>{
         if(e && e.target.getAttribute('name')){
             let type = e.target.getAttribute('type');
@@ -610,6 +675,13 @@
             }
         }
     }, true);
+
+
+    // Form Submit fun
+    document.addEventListener('submit', (e)=>{
+        if(e && e.target.classList.contains('py__signup-form')) return signup(e);
+        if(e && e.target.classList.contains('py__login-form')) return login(e);
+    });
     
 
     // Sidebar Select Settings Open Close Fun
@@ -619,12 +691,15 @@
             ? e.target.closest('.py__settings-item-wrapper').classList.remove('active')
             : e.target.closest('.py__settings-item-wrapper').classList.add('active');
         }
-        if(e && e.target.classList.contains('py__signup-button')) getRegister(e);
-        if(e && e.target.classList.contains('py__get-button')) getItemFromSettings(e);
-        if(e && e.target.classList.contains('py__button-view')) toggleIframePreview(e);
-        if(e && e.target.classList.contains('py__get-section-button')) getSettingsLists(e);
-        if(e && e.target.classList.contains('py__save-button')) save(e);
-        if(e && e.target.classList.contains('py__download-button')) download(e);
+        if(e && e.target.classList.contains('py__signup-button')) return getRegister(e);
+        if(e && e.target.classList.contains('py__login-button')) return getLogin(e);
+        if(e && e.target.classList.contains('py__signup')) return e.target.remove();
+        if(e && e.target.classList.contains('py__login')) return e.target.remove();
+        if(e && e.target.classList.contains('py__get-button')) return getItemFromSettings(e);
+        if(e && e.target.classList.contains('py__button-view')) return toggleIframePreview(e);
+        if(e && e.target.classList.contains('py__get-section-button')) return getSettingsLists(e);
+        if(e && e.target.classList.contains('py__save-button')) return save(e);
+        if(e && e.target.classList.contains('py__download-button')) return download(e);
     });
 
     // Before Unload

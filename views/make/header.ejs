@@ -7,13 +7,18 @@
         </div>
         <div class="py__header-login">
             <% if(user){ %>
-                <a class="py__button py__button-black py__save-button" aria-disabled="true">
-                    Save Changes
-                </a>
-                <a href="/download" class="py__button py__button-white py__download-button" aria-disabled="false" data-id="<%=id%>" data-name="<%= themeName ? themeName: 'make' %>">
-                    Download Theme
-                </a>
+                <% if(show){ %>
+                    <a class="py__button py__button-black py__save-button" aria-disabled="true">
+                        Save Changes
+                    </a>
+                    <a href="/download" class="py__button py__button-white py__download-button" aria-disabled="false" data-id="<%=id%>" data-name="<%= themeName ? themeName: 'make' %>">
+                        Download Theme
+                    </a>
+                <% } %>
             <% } else { %>
+                <a href="/login" class="py__button py__button-white py__login-button">
+                    Login
+                </a>
                 <a href="/signup" class="py__button py__button-white py__signup-button">
                     Sign Up
                 </a>

@@ -11,6 +11,7 @@ const viewRouter = require('./routes/view');
 const getRouter = require('./routes/get');
 const saveRouter = require('./routes/save');
 const downloadRouter = require('./routes/download');
+const loginRouter = require('./routes/login');
 const signupRouter = require('./routes/signup');
 
 const app = express();
@@ -37,6 +38,7 @@ app.use('/themes', themesRouter);
 app.use('/view', viewRouter);
 app.use('/get', getRouter);
 app.use('/save', saveRouter);
+app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/download', downloadRouter);
 

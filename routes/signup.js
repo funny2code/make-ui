@@ -24,9 +24,8 @@ router.post('/', async (req, res, next) => {
     const findUser = await UsersModel.findOne({email}).exec();
     if(findUser) return res.status(409).send({status: 409, message: `This email (${email}) already exists.`});
 
-    const createCustomer = await stripe.customers.create({
-      email: email,
-    });
+    const customer = await stripe.customers.list({email: email});
+    const createCustomer = await customer?.data?.length ? customer.data[0] : stripe.customers.create({email: email});
 
     const createPayment = await stripe.paymentMethods.create({
       type: 'card',
@@ -38,47 +37,64 @@ router.post('/', async (req, res, next) => {
       },
     });
 
-    const attached = await stripe.paymentMethods.attach(createPayment.id, {
-      customer: createCustomer.id,
-    });
-
-    const updateCustomerPaymentDefault = await stripe.customers.update(createCustomer.id, {
-      invoice_settings: {
-        default_payment_method: createPayment.id,
-      }
-    });
-
+    const attached = await stripe.paymentMethods.attach(createPayment.id, {customer: createCustomer.id});
+    const updateCustomerPaymentDefault = await stripe.customers.update(createCustomer.id, {invoice_settings: {default_payment_method: createPayment.id}});
     const price = await stripe.prices.retrieve(subscription);
 
-    const newUser = new UsersModel({email, password, subscription});
-
-    newUser.save((err, user) => {
-      if(err) return next();
-      req.session.user = user;
-    });
-
     if (price.recurring !== null) {
+
       const newSubscription = await stripe.subscriptions.create({
         customer: createCustomer.id,
         items: [{ plan: subscription }],
         default_payment_method: createPayment.id,
       });
-      let sendClient = {
+      
+      const sendClient = {
         status: newSubscription.status
       }
-      return res.status(200).send(sendClient);
+
+      const newUser = await new UsersModel({
+        email, 
+        password, 
+        subscription,
+        plan: "monthly",
+        status: "active"
+      });
+  
+      newUser.save((err, user) => {
+        if(err) return next();
+        req.session.user = user;
+        return res.status(200).send(sendClient);
+      });
+      
     } else {
+
       const newPaymentIntentes = await stripe.paymentIntents.create({
         customer: createCustomer.id,
         currency: price.currency,
         amount: price.unit_amount,
         payment_method: createPayment.id,
       });
-      let sendClient = {
+
+      const sendClient = {
         status: newPaymentIntentes.status,
         client_secret: newPaymentIntentes.client_secret
       }
-      return res.status(200).send(sendClient);
+      
+      const newUser = new UsersModel({
+        email, 
+        password, 
+        subscription,
+        plan: "lifetime",
+        status: "active"
+      });
+  
+      newUser.save((err, user) => {
+        if(err) return next();
+        req.session.user = user;
+        return res.status(200).send(sendClient);
+      });
+
     }
 
   } catch (err){
