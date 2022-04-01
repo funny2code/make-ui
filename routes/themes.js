@@ -31,43 +31,43 @@ router.get('/:id', async (req, res, next) => {
     pageResult = await pagesModel.findOne({theme_id: theme._id, name: page}).exec();
     if(!pageResult) return next();
     sectionsResult = await sectionsModel.findOne({theme_id: theme._id}).exec();
-    if(req.session.user){
-      userTheme = await UsersthemeModel.findOne({user_id: req.session.user._id}).exec();
-      if(!userTheme){
-        const userTheme = await new UsersthemeModel({
-          user_id: req.session.user._id,
-          settings: theme?.settings,
-          sidebar: theme?.sidebar,
-        });
-        userTheme.save((err, result) => {
-          if(err) return next();
-          theme = result;
-        });
-        const userPageNames = await new UsersPageModel({
-          user_id: req.session.user._id,
-          theme_id: userTheme._id,
-          name: pageResult?.name,
-          sections: pageResult?.sections
-        });
-        userPageNames.save((err, result) => {
-          if(err) return next();
-          pageResult = result;
-        });
-        const userSectionsResult = await new UsersSectionModel({
-          user_id: req.session.user._id,
-          theme_id: userTheme._id,
-          sections: sectionsResult?.sections
-        });
-        userSectionsResult.save((err, result) => {
-          if(err) return next();
-          sectionsResult = result;
-        });
-      } else {
-        theme = userTheme;
-        pageResult = await UsersPageModel.findOne({theme_id: theme._id, name: page}).exec();
-        sectionsResult = await UsersSectionModel.findOne({theme_id: theme._id}).exec();
-      }
-    }
+    // if(req.session.user){
+    //   userTheme = await UsersthemeModel.findOne({user_id: req.session.user._id}).exec();
+    //   if(!userTheme){
+    //     const userTheme = await new UsersthemeModel({
+    //       user_id: req.session.user._id,
+    //       settings: theme?.settings,
+    //       sidebar: theme?.sidebar,
+    //     });
+    //     userTheme.save((err, result) => {
+    //       if(err) return next();
+    //       theme = result;
+    //     });
+    //     const userPageNames = await new UsersPageModel({
+    //       user_id: req.session.user._id,
+    //       theme_id: userTheme._id,
+    //       name: pageResult?.name,
+    //       sections: pageResult?.sections
+    //     });
+    //     userPageNames.save((err, result) => {
+    //       if(err) return next();
+    //       pageResult = result;
+    //     });
+    //     const userSectionsResult = await new UsersSectionModel({
+    //       user_id: req.session.user._id,
+    //       theme_id: userTheme._id,
+    //       sections: sectionsResult?.sections
+    //     });
+    //     userSectionsResult.save((err, result) => {
+    //       if(err) return next();
+    //       sectionsResult = result;
+    //     });
+    //   } else {
+    //     theme = userTheme;
+    //     pageResult = await UsersPageModel.findOne({theme_id: theme._id, name: page}).exec();
+    //     sectionsResult = await UsersSectionModel.findOne({theme_id: theme._id}).exec();
+    //   }
+    // }
   } catch (err){
     return next(err);
   }
