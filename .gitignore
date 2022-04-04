@@ -1,3 +1,4 @@
+.env
 helpers.ejs
 sections.json
 package-lock.json
