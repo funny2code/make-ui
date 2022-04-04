@@ -1,0 +1,14 @@
+<div class="py__theme">
+    <div class="py__theme-image_wrapper">
+    </div>
+    <div class="py__theme-info">
+        <% if(settings[0].theme_name){ %>
+            <h3 class="py__theme-title"><%=settings[0].theme_name%></h3>
+        <% } %>
+        <div class="py__theme-details">
+            <a href="/users/<%=user._id%>/themes/<%=id%>?page=Home%20Page&global=Global%20Styles" class="py__button py__button-blue">
+                Customize theme
+            </a>
+        </div>
+    </div>
+</div>

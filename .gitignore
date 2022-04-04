@@ -3,3 +3,4 @@ helpers.ejs
 sections.json
 package-lock.json
 settings.json
+themejson.json

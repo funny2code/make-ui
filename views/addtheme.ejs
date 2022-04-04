@@ -1,0 +1,32 @@
+<div class="py__addtheme">
+    <div class="py__addtheme-wrapper">
+        <div class="py__loading-wrap">
+            <div class="py__full-loading">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <form action="/add/<%=userId%>/<%=themeId%>" method="post" class="py__addtheme-form">
+            <div class="py__addtheme-header">
+                <h2 class="py-title">make</h2>
+                <div class="py__addtheme-error-wrap"></div>
+            </div>
+            <div class="py__addtheme-name-wrap">
+                <label for="password">Your Theme Name</label>
+                <input type="text" id="themename" name="themename" placeholder="Enter Theme Name">
+            </div> 
+            <div class="py__addtheme-submit-wrap">
+                <button type="submit" class="py__button py__button-blue py__button-add-theme-user">
+                    add theme
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

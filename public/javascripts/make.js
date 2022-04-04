@@ -30,7 +30,7 @@
     // Save old settings values
     const saveSettingsValues = (id=false) => {
         let settingsWrapper = document.querySelector('.py__make-settings');
-        settingsWrapper.querySelectorAll('[name]').forEach(element => {
+        settingsWrapper?.querySelectorAll('[name]').forEach(element => {
             settingsValues[element.getAttribute('name')] = element.value;
             settingsValuesBool[element.getAttribute('name')] = id && element.getAttribute('name') === id ? true : false;
             previewSettingsValues[element.getAttribute('name')] = element.value;
@@ -64,7 +64,7 @@
         if(!form || !url) return;
         
         let fullLoading = document.querySelector('.py__full-loading-wrapper');
-        fullLoading.classList.add('py__animate');
+        fullLoading?.classList.add('py__animate');
         let settings = {}, section = [], sectionName = '', templateName = '', sectionSettings = {};
         let blocks = []; 
         let blockItems = {
@@ -126,7 +126,7 @@
                 downloadButton.setAttribute('aria-disabled', 'false');
                 saveSettingsValues();
             } 
-            fullLoading.classList.remove('py__animate');
+            fullLoading?.classList.remove('py__animate');
         })
         .catch(err => console.error(err));
     };
@@ -138,7 +138,7 @@
         event.preventDefault();
 
         let fullLoading = document.querySelector('.py__full-loading-wrapper');
-        fullLoading.classList.add('py__animate');
+        fullLoading?.classList.add('py__animate');
     
 
         fetch('/signup', {
@@ -153,9 +153,9 @@
             if(!data) return;
             let body = document.querySelector('body');
             body.insertAdjacentHTML('afterend', data);
+            fullLoading?.classList.remove('py__animate');
         })
-        .catch(err => console.error(err))
-        .finally(fullLoading.classList.remove('py__animate'));
+        .catch(err => console.error(err));
     };
 
     // Get Login Popup Function
@@ -165,7 +165,7 @@
         event.preventDefault();
 
         let fullLoading = document.querySelector('.py__full-loading-wrapper');
-        fullLoading.classList.add('py__animate');
+        fullLoading?.classList.add('py__animate');
     
 
         fetch('/login', {
@@ -180,9 +180,34 @@
             if(!data) return;
             let body = document.querySelector('body');
             body.insertAdjacentHTML('afterend', data);
+            fullLoading?.classList.remove('py__animate');
         })
-        .catch(err => console.error(err))
-        .finally(fullLoading.classList.remove('py__animate'));
+        .catch(err => console.error(err));
+    };
+
+    // Get Add Theme Popup Function
+    const getAddTheme = (event) => {
+        
+        if(!event) return;
+        event.preventDefault();
+        let el = event.target;
+        let url = el.getAttribute('href');
+        if(!url) return;
+
+        fetch(url, {
+            method:'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.text())
+        .then(data => {
+            if(!data) return;
+            let body = document.querySelector('body');
+            body.insertAdjacentHTML('afterend', data);
+        })
+        .catch(err => console.error(err));
     };
 
     // SignUp Function
@@ -196,7 +221,7 @@
         let formData = new FormData(form);
         let ObjectFormData = Object.fromEntries(formData.entries());
         let fullLoading = form.closest('.py__signup-wrapper').querySelector('.py__loading-wrap');
-        fullLoading.classList.add('py__animate');
+        fullLoading?.classList.add('py__animate');
         console.log(fullLoading);
 
         fetch(url, {
@@ -225,7 +250,7 @@
                 errorWrap.textContent = parseData.message;
                 errorWrap.classList.add('active'); 
             }
-            fullLoading.classList.remove('py__animate');
+            fullLoading?.classList.remove('py__animate');
         })
         .catch(err => console.error(err));
     };
@@ -241,7 +266,7 @@
         let formData = new FormData(form);
         let ObjectFormData = Object.fromEntries(formData.entries());
         let fullLoading = form.closest('.py__login-wrapper').querySelector('.py__loading-wrap');
-        fullLoading.classList.add('py__animate');
+        fullLoading?.classList.add('py__animate');
 
         fetch(url, {
             method:'post',
@@ -262,7 +287,44 @@
                 errorWrap.textContent = parseData.message;
                 errorWrap.classList.add('active'); 
             }
-            fullLoading.classList.remove('py__animate');
+            fullLoading?.classList.remove('py__animate');
+        })
+        .catch(err => console.error(err));
+    };
+
+    // Login Function
+    const addTheme = (event) => {
+        
+        if(!event) return;
+        event.preventDefault();
+        let form = event.target;
+        let url = event.target.getAttribute('action');
+        if(!url) return;
+        let formData = new FormData(form);
+        let ObjectFormData = Object.fromEntries(formData.entries());
+        let fullLoading = form.closest('.py__addtheme-wrapper').querySelector('.py__loading-wrap');
+        fullLoading?.classList.add('py__animate');
+
+        fetch(url, {
+            method:'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(ObjectFormData)
+        })
+        .then(res => res.text())
+        .then(data => {
+            if(!data) return;
+            let parseData = JSON.parse(data);
+            if(parseData.status === 200){
+                return location.href = location.origin;
+            } else {
+                let errorWrap = document.querySelector('.py__addtheme-error-wrap');
+                errorWrap.textContent = parseData.message;
+                errorWrap.classList.add('active'); 
+            }
+            fullLoading?.classList.remove('py__animate');
         })
         .catch(err => console.error(err));
     };
@@ -275,12 +337,14 @@
 
         let btn = event.target;
         let url = btn.getAttribute('href');
-        let id = btn.getAttribute('data-id');
+        let themeId = btn.getAttribute('data-id');
+        let userId = btn.getAttribute('data-user-id');
         let themeName = btn.getAttribute('data-name');
-        if(!url || !id) return;
+        if(!url || !themeId) return;
         
         let fullLoading = document.querySelector('.py__full-loading-wrapper');
-        fullLoading.classList.add('py__animate');
+        fullLoading?.classList.add('py__animate');
+        let data = userId ? {userId: userId, themeId: themeId} : {themeId: themeId};
 
         fetch(url, {
             method:'POST',
@@ -288,7 +352,7 @@
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body:JSON.stringify({id:id})
+            body:JSON.stringify(data)
         })
         .then(res => res.blob())
         .then(data => {
@@ -302,7 +366,7 @@
             a.click();
             window.URL.revokeObjectURL(objectUrl);
             a.remove();
-            fullLoading.classList.remove('py__animate');
+            fullLoading?.classList.remove('py__animate');
         })
         .catch(err => console.log(err));
     };
@@ -483,12 +547,16 @@
             let urlParams = new URL(location.href);
             let iframeSearchParams = new URLSearchParams(urlParams.search);
             iframeSearchParams.set('section', sectionName); 
-            let iframeUrl = urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString(); 
+            let iframeUrl =  urlParams.pathname.indexOf('/users/') !== -1 
+            ? '/view' + urlParams.pathname + '?' + iframeSearchParams.toString()
+            : urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString(); 
             iframe.setAttribute('src', iframeUrl);
         } else {
             let urlParams = new URL(location.href);
             let iframeSearchParams = new URLSearchParams(urlParams.search);
-            let iframeUrl = urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString();
+            let iframeUrl = urlParams.pathname.indexOf('/users/') !== -1 
+            ? '/view' + urlParams.pathname + '?' + iframeSearchParams.toString()
+            : urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString();
             iframe.setAttribute('src', iframeUrl);
         }
         
@@ -681,6 +749,7 @@
     document.addEventListener('submit', (e)=>{
         if(e && e.target.classList.contains('py__signup-form')) return signup(e);
         if(e && e.target.classList.contains('py__login-form')) return login(e);
+        if(e && e.target.classList.contains('py__addtheme-form')) return addTheme(e);
     });
     
 
@@ -693,8 +762,10 @@
         }
         if(e && e.target.classList.contains('py__signup-button')) return getRegister(e);
         if(e && e.target.classList.contains('py__login-button')) return getLogin(e);
+        if(e && e.target.classList.contains('py__button-add-theme')) return getAddTheme(e);
         if(e && e.target.classList.contains('py__signup')) return e.target.remove();
         if(e && e.target.classList.contains('py__login')) return e.target.remove();
+        if(e && e.target.classList.contains('py__addtheme')) return e.target.remove();
         if(e && e.target.classList.contains('py__get-button')) return getItemFromSettings(e);
         if(e && e.target.classList.contains('py__button-view')) return toggleIframePreview(e);
         if(e && e.target.classList.contains('py__get-section-button')) return getSettingsLists(e);
@@ -704,7 +775,7 @@
 
     // Before Unload
     window.addEventListener("beforeunload", function (e) {
-        if (saveButton.getAttribute('aria-disabled') === "true") return undefined;
+        if (!saveButton || saveButton?.getAttribute('aria-disabled') === "true") return undefined;
         let confirmationMessage = 'If you leave before saving, your changes will be lost.';
         (e || window.event).returnValue = confirmationMessage;
         return confirmationMessage;

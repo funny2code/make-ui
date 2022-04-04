@@ -1,9 +1,11 @@
 <header class="py__header">
     <div class="py__header-top">
         <div class="py__header-logo">
-            <h1 class="py__header-title">
-                <%= make.title %>
-            </h1>
+            <a href="/">
+                <h1 class="py__header-title">
+                    <%= make.title %>
+                </h1>
+            </a>
         </div>
         <div class="py__header-login">
             <% if(user){ %>
@@ -11,7 +13,8 @@
                     <a class="py__button py__button-black py__save-button" aria-disabled="true">
                         Save Changes
                     </a>
-                    <a href="/download" class="py__button py__button-white py__download-button" aria-disabled="false" data-id="<%=id%>" data-name="<%= themeName ? themeName: 'make' %>">
+                    <a href="/download" class="py__button py__button-white py__download-button" aria-disabled="false"
+                        <% if(user){ %>data-user-id="<%=user._id%>"<% } %> data-id="<%=id%>" data-name="<%= themeName ? themeName: 'make' %>">
                         Download Theme
                     </a>
                 <% } %>

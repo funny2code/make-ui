@@ -4,29 +4,30 @@ const SALT_WORK_FACTOR = 10;
 
 const schema = new db.Schema({
   email: {
-    type: String, 
-    required: true, 
+    type: String,
+    required: true,
     index: { unique: true }
   },
-  password: { 
-    type: String, 
-    required: true,
-    min: 8 
+  password: {
+    type: String,
+    required: true
   },
-  plan: { 
-    type: String, 
-    enum: ['monthly', 'lifetime'], 
+  plan: {
+    type: String,
+    enum: ['monthly', 'lifetime'],
     default: 'monthly',
-    required: true 
+    required: true
   },
   status: {
     type: String,
-    default: 'paused',
+    default: 'active',
     require: true
   }
-},{
-  timestamps: true
-});
+  }, 
+  {
+    timestamps: true
+  }
+);
 
 schema.pre("save", function (next) {
   const user = this
@@ -36,7 +37,7 @@ schema.pre("save", function (next) {
       if (saltError) {
         return next(saltError)
       } else {
-        bcrypt.hash(user.password, salt, function(hashError, hash) {
+        bcrypt.hash(user.password, salt, function (hashError, hash) {
           if (hashError) {
             return next(hashError)
           }

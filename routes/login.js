@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const make = require('../config/make');
-const UsersModel = require('../models/users');
+const modelUsers = require('../models/Users');
 const bcrypt = require('bcrypt');
 const Stripe = require('stripe');
 const stripe = new Stripe('sk_test_KvnHx6I2Whw62ETg5j6X2nTq');
@@ -21,7 +21,7 @@ router.post('/', async (req, res, next) => {
   if(!email || !password) return res.status(400).send({status: 400, message: "Please enter all fields."});
   
   try {
-    const findUser = await UsersModel.findOne({email}).exec();
+    const findUser = await modelUsers.findOne({email}).exec();
     if(!findUser) return res.status(401).send({status: 401, message: "Email or password is incorrect!"});
     const checkPassowrd = bcrypt.compareSync(
         password,

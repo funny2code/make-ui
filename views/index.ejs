@@ -8,6 +8,19 @@
   </head>
   <body>
     <%- include('make/header', {id: false, show: false, themeName: make?.themes_name}) %>
+    <% if(usersThemes){ %>
+      <div class="py__user-themes">
+        <div class="py__user-themes-header">
+          <h2 class="py__user-themes-title">Welcome <%= user.email %>!</h2>
+          <p class="py__user-themes-description">Your themes (<%= usersThemes?.length %>)</p>
+          <div class="py__user-themes-wrap">
+            <% usersThemes.forEach((theme, index)=>{ %>
+              <%- include('make/usertheme', {id: theme._id, settings: theme.theme_set}) %>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    <% } %>
     <% if(themes){ %>
       <% if(make.themes_name || make.themes_desc){ %>
         <div class="py__themes-heading">
@@ -21,9 +34,11 @@
       <% } %>
       <div class="py__themes">
         <% themes.forEach(theme => { %>
-          <%- include('make/theme', {id: theme._id, settings: theme.settings}) %>
+          <%- include('make/theme', {id: theme._id, settings: theme.theme_set}) %>
         <% }) %>
       </div>
     <% } %>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="/javascripts/make.js"></script>
   </body>
 </html>

@@ -7,12 +7,16 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const themesRouter = require('./routes/themes');
+const userThemesRouter = require('./routes/userthemes');
 const viewRouter = require('./routes/view');
+const viewUserRouter = require('./routes/viewuser');
 const getRouter = require('./routes/get');
 const saveRouter = require('./routes/save');
+const saveUserRouter = require('./routes/saveuser');
 const downloadRouter = require('./routes/download');
 const loginRouter = require('./routes/login');
 const signupRouter = require('./routes/signup');
+const addThemeRouter = require('./routes/addtheme');
 
 const app = express();
 
@@ -35,12 +39,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/themes', themesRouter);
+app.use('/users', userThemesRouter);
 app.use('/view', viewRouter);
+app.use('/view/users', viewUserRouter);
 app.use('/get', getRouter);
 app.use('/save', saveRouter);
+app.use('/save/users', saveUserRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/download', downloadRouter);
+app.use('/add', addThemeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

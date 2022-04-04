@@ -1,22 +1,26 @@
 const express = require('express');
 const router = express.Router();
 const make = require('../config/make');
-const themesModel = require('../models/themes');
+const modelThemes = require('../models/Themes');
+const modelUsersThemes = require('../models/UsersThemes');
 
-/* GET home page. */
+/* GET All Themes and User Themes. */
 router.get('/', async (req, res, next) => {
-  let themes = '';
+
   try {
-    themes = await themesModel.find({});
+    const Themes = await modelThemes.find({}, '_id, theme_set');
+    const UsersThemes = req.session.user ? await modelUsersThemes.find({user_id: req.session.user._id}, '_id theme_set').exec() : null; 
+
+    res.render('index', {
+      user: req?.session?.user || null, 
+      make: make, 
+      themes: Themes,
+      usersThemes: UsersThemes
+    });
+
   } catch (err){
     next(err);
   }
-  
-  res.render('index', {
-    user: req?.session?.user || null, 
-    make: make, 
-    themes: themes 
-  });
 
 });
 
