@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const make = require('../config/make');
-const modelUsers = require('../models/Users');
+const modelUsers = require('../models/users');
 const bcrypt = require('bcrypt');
 const Stripe = require('stripe');
 const stripe = new Stripe('sk_test_KvnHx6I2Whw62ETg5j6X2nTq');

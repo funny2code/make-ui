@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const modelThemes = require('../models/Themes');
+const modelThemes = require('../models/themes');
 
 /* GET GLOBAL SETTINGS ITEM (COLOR FONT PADDING AND ETC) */
 router.get('/:id', async (req, res, next) => {
