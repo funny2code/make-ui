@@ -1,3 +1,4 @@
+const { Schema } = require('mongoose');
 const db = require('./db');
 
 const schema = new db.Schema({
