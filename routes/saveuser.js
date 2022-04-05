@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const modelUsersThemes = require('../models/usersthemes');
+const modelUsersThemes = require('../models/customer-themes');
 const path = require('path');
 const fs = require('fs');
 

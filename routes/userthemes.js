@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const make = require('../config/make');
-const modelUsersThemes = require('../models/usersthemes');
+const modelUsersThemes = require('../models/customer-themes');
 const fonts = require('../config/fonts');
 
 /* GET users listing. */

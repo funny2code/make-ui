@@ -5,7 +5,7 @@ const shop = require('../config/shop');
 const collection = require('../config/collection');
 const product = require('../config/product');
 const cart = require('../config/cart');
-const modelUsersThemes = require('../models/usersthemes');
+const modelUsersThemes = require('../models/customer-themes');
 
 /* GET theme settings and sections for Iframe View. */
 router.get('/:userId/themes/:themeId', async (req, res, next) => {
