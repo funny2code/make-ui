@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const modelThemes = require('../models/Themes');
-const modelUsersThemes = require('../models/UsersThemes');
+const modelThemes = require('../models/themes');
+const modelUsersThemes = require('../models/usersthemes');
 const path = require('path');
 const fse = require('fs-extra');
 

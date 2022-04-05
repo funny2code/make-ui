@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const make = require('../config/make');
-const modelThemes = require('../models/Themes');
+const modelThemes = require('../models/themes');
 const fonts = require('../config/fonts');
 
 /* GET Theme Settings and Sections. */

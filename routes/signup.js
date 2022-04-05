@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const make = require('../config/make');
-const modelUsers = require('../models/Users');
+const modelUsers = require('../models/users');
 const path = require('path');
-const {constants} = require('fs');
 const fs = require('fs').promises;
 require('dotenv').config();
 const Stripe = require('stripe');
