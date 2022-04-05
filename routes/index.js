@@ -1,7 +1,8 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
 const make = require('../config/make');
-const modelThemes = require('../models/Themes');
+const modelThemes = require(path.join(__dirname, '../models/Themes'));
 const modelUsersThemes = require('../models/UsersThemes');
 
 /* GET All Themes and User Themes. */
