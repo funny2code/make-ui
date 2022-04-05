@@ -1,0 +1,74 @@
+{
+  "sections": {
+    "banner": {
+      "type": "collection-banner",
+      "blocks": {
+        "6c14fd5b-07d0-4a2b-9de6-d3167a51ad1a": {
+          "type": "collection"
+        }
+      },
+      "block_order": [
+        "6c14fd5b-07d0-4a2b-9de6-d3167a51ad1a"
+      ]
+    },
+    "email": {
+      "type": "collection-email-banner",
+      "blocks": {
+        "1ee999f0-ba47-4f95-92c3-bf1f3d0edbfd": {
+          "type": "collection"
+        }
+      },
+      "block_order": [
+        "1ee999f0-ba47-4f95-92c3-bf1f3d0edbfd"
+      ]
+    },
+    "product-grid": {
+      "type": "collection-product-grid",
+      "settings": {
+        "collection_style": "style-2",
+        "products_per_page": 44,
+        "item_space": 10,
+        "bg_color": "bg-c-dark",
+        "page_width": "width-un",
+        "page_x_mg": "mg-x-un",
+        "page_y_mg": "mg-y-un",
+        "page_x_pd": "pd-x-n",
+        "page_y_pd": "pd-y-n",
+        "image_ratio": "square",
+        "show_secondary_image": false,
+        "add_image_padding": false,
+        "show_vendor": true,
+        "show_colors": false,
+        "card_bg_color": "bg-c-dark",
+        "card_color": "c-light",
+        "filter_style": "style-2",
+        "enable_filtering": false,
+        "enable_sorting": false,
+        "filter_bg_color": "bg-c-dark",
+        "filter_color": "c-light",
+        "filter_heading": "FILTERS",
+        "filter_btn_label": "SEE RESULTS",
+        "custom_font_style": true,
+        "title_fontsize": "",
+        "title_fontsize_m": "",
+        "title_fontweight": "",
+        "title_fontstretch": "",
+        "title_fontstyle": "normal",
+        "title_lineheight": "",
+        "title_letterspacing": "",
+        "info_fontsize": "",
+        "info_fontsize_m": "",
+        "info_fontweight": "",
+        "info_fontstretch": "",
+        "info_fontstyle": "normal",
+        "info_lineheight": "",
+        "info_letterspacing": ""
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "email",
+    "product-grid"
+  ]
+}
