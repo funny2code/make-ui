@@ -52,4 +52,4 @@ schema.pre("save", function (next) {
   }
 })
 
-module.exports = db.model('Users', schema);
+module.exports = db.model('users', schema);

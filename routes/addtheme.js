@@ -6,7 +6,7 @@ const path = require('path');
 const fse = require('fs-extra');
 
 /* GET Add Theme Popup. */
-router.get('/:userId/:themeId', async (req, res, next) => {
+router.get('/:userId/:themeId', (req, res, next) => {
     
     const {userId, themeId} = req.params;
     if(!userId || !themeId || !req.session.user || userId !== req?.session?.user?._id) return next();

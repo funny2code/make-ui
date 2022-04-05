@@ -28,7 +28,7 @@ router.post('/', async (req, res, next) => {
     if(findUser) return res.status(409).send({status: 409, message: `This email (${email}) already exists.`});
 
     const customer = await stripe.customers.list({email: email});
-    const createCustomer = await customer?.data?.length ? customer.data[0] : stripe.customers.create({email: email});
+    const createCustomer = customer?.data?.length ? customer.data[0] : await stripe.customers.create({email: email});
 
     const createPayment = await stripe.paymentMethods.create({
       type: 'card',
@@ -41,7 +41,7 @@ router.post('/', async (req, res, next) => {
     });
 
     const attached = await stripe.paymentMethods.attach(createPayment.id, {customer: createCustomer.id});
-    const updateCustomerPaymentDefault = await stripe.customers.update({customer: createCustomer.id}, {invoice_settings: {default_payment_method: createPayment.id}});
+    const updateCustomerPaymentDefault = await stripe.customers.update(createCustomer.id, {invoice_settings: {default_payment_method: createPayment.id}});
     const price = await stripe.prices.retrieve(subscription);
 
     if (price.recurring !== null) {

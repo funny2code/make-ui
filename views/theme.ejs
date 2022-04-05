@@ -71,7 +71,7 @@
                         <% }) %> 
                     </select>
                 <% } %>
-                <form class="py__settings-form <% if(!section){ %>py__settings-form-mgtop<% } %>" method="post" action="/save/<%= user ? 'users/' + user._id + '/themes/' + : id %>?<% if(activeType === 'section'){%>section=<%=active%><% } else { %>global=<%=active%><% } %>" aria-multiline="true">
+                <form class="py__settings-form <% if(!section){ %>py__settings-form-mgtop<% } %>" method="post" action="/save/<%= user ? 'users/' + user._id + '/themes/' + id : id %>?<% if(activeType === 'section'){%>section=<%=active%><% } else { %>global=<%=active%><% } %>" aria-multiline="true">
                     <% if(pageSections && !settings && !section){ %>
                         <div class="py__settings-content">
                             <div class="py__loading-wrap">

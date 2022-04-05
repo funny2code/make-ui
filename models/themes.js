@@ -15,4 +15,4 @@ const schema = new db.Schema({
     }
 });
 
-module.exports = db.model('Themes', schema);
+module.exports = db.model('themes', schema);
