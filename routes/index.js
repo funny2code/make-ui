@@ -3,7 +3,7 @@ const path = require('path');
 const router = express.Router();
 const make = require('../config/make');
 const modelThemes = require('../models/themes');
-// const modelUsersThemes = require('../models/usersthemes');
+const modelUsersThemes = require('../models/usersthemes');
 
 /* GET All Themes and User Themes. */
 router.get('/', async (req, res, next) => {
