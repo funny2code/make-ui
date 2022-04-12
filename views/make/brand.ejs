@@ -1,0 +1,70 @@
+<div class="py__brand">
+    <div class="py__brand-bg-colors-wrapper">
+        <div class="py__brand-bg-colors-item">
+            <div <% if(settings.py_bg_color_dark){ %>style="background-color: <%= settings.py_bg_color_dark %>;"<% } %>>
+                &nbsp;
+            </div>
+            <span>Background Dark</span>
+        </div>
+        <div class="py__brand-bg-colors-item">
+            <div <% if(settings.py_bg_color_avarge){ %>style="background-color: <%= settings.py_bg_color_avarge %>;"<% } %>>
+                &nbsp;
+            </div>
+            <span>Background Avearge</span>
+        </div>
+        <div class="py__brand-bg-colors-item">
+            <div <% if(settings.py_bg_color_light){ %>style="background-color: <%= settings.py_bg_color_light %>;"<% } %>>
+                &nbsp;
+            </div>
+            <span>Background Light</span>
+        </div>
+        <div class="py__brand-color-item" <% if(settings.py_color_dark){ %>style="color:<%=settings.py_color_dark%>;"<% } %>>Label Dark</div>
+        <div class="py__brand-color-item" <% if(settings.py_color_avarge){ %>style="color:<%=settings.py_color_avarge%>;"<% } %>>Label Average</div>
+        <div class="py__brand-color-item" <% if(settings.py_color_light){ %>style="color:<%=settings.py_color_light%>;"<% } %>>Label Light</div>
+    </div>
+    <div class="py__brand-items">
+        <div class="py__fonts-headings">
+            <div class="py__fonts-header">
+                <h2 class="py__fonts-header-title">Fonts</h2>
+            </div>
+            <h1>Heading 1</h1>
+            <h2>Heading 2</h2>
+            <h3>Heading 3</h3>
+            <h4>Heading 4</h4>
+            <h5>Heading 5</h5>
+            <h6>Heading 6</h6>
+        </div>
+        <div class="py__fonts-paragraph">
+            <div class="py__fonts-header">
+                <h2 class="py__fonts-header-title">Paragraph</h2>
+            </div>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+                Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <div class="py__fonts-buttons">
+            <div class="py__fonts-header">
+                <h2 class="py__fonts-header-title">Buttons</h2>
+            </div>
+            <button class="button" type="button">Learn More</button>
+        </div>
+        <div class="py__fonts-navigation">
+            <div class="py__fonts-header">
+                <h2 class="py__fonts-header-title">Navigation Links</h2>
+            </div>
+            <a href="#">Link</a>
+        </div>
+        <div class="py__fonts-fileds">
+            <div class="py__fonts-header">
+                <h2 class="py__fonts-header-title">Inputs Fileds</h2>
+            </div>
+            <div class="field">
+                <input type="text" id="example" class="field__input" placeholder="Example">
+                <label for="example" class="field__label">Example</label>
+            </div>
+        </div>
+    </div>
+</div>

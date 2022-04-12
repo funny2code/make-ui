@@ -1,0 +1,113 @@
+  .bc-slider-with-text {
+    position: relative;
+  }
+  .bc-slider-with-text .page-width {
+    max-width: 100%;
+    padding: 0;
+  }
+  .bc-slider-with-text__wrapper {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .bc-slider-with-text__slider-wrapper,
+  .bc-slider-with-text__text-wrapper {
+    flex: 1 0 50%;
+  }
+  .bc-slider-with-text__text-wrapper {
+    text-align: center;
+  }
+  .bc-slider-with-text__text-content {
+    max-width: 75%;
+    margin: 0 auto;
+  }
+  .bc-slider-with-text__text-heading {
+    color: inherit;
+    font-weight: 600;
+    font-size: 3rem;
+    line-height: 3.6rem;
+    padding: 1.4rem 0;
+    margin-top: 0;
+    margin-bottom: 1.8rem;
+  }
+  .bc-slider-with-text__text-wrapper .bc-flex {
+    display: flex;
+  }
+  .bc-slider-with-text__text-wrapper .bc-flex>div {
+    flex: 1 0 0;
+    flex-direction: column;
+    display: flex;
+    padding: 0 .4rem;
+  }
+  .bc-slider-with-text__text-label,
+  .bc-slider-with-text__text-value {
+    font-weight: bold;
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+    text-transform: uppercase;
+    padding: 1.5rem 0;
+  }
+  .bc-slider-with-text__text-value {
+    font-weight: normal;
+  }
+  .bc-slider-with-text__text-title {
+    font-weight: 600;
+    font-size: 3rem;
+    line-height: 3.6rem;
+    color: inherit;
+    margin-top: 3rem;
+    margin-bottom: 0;
+  }
+  .bc-slider-with-text__text-text {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .bc-slider-with-text__icon {
+    position: absolute;
+    left: 5.2rem;
+    top: -10.1rem;
+    z-index: 1;
+  }
+  .hello {
+    font-size: 22px;
+  }
+
+
+  @media screen and (max-width: 550px) {
+    
+    .bc-slider-with-text__icon {
+      display: none;
+    }
+    .bc-slider-with-text__text-content {
+      max-width: 100%;
+      padding: 3.4rem 2.6rem 4.9rem 2.6rem;
+    }
+    .bc-slider-with-text__text-heading {
+      font-size: 2rem;
+      line-height: 2.4rem;
+      padding: 0;
+      margin-bottom: .9rem;
+    }
+    .bc-slider-with-text__text-label, 
+    .bc-slider-with-text__text-value {
+      font-size: 1.3rem;
+      line-height: 1.6rem;
+      padding: 1rem 0;
+    }
+    .bc-slider-with-text__text-title {
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+    }
+    .bc-slider-with-text__text-text {
+      font-size: 1.3rem;
+      line-height: 1.6rem;
+      margin-top: 1.9rem;
+    }
+    .bc-slider-with-text__text-text>p {
+      margin: 0;
+    }
+
+  }
+  

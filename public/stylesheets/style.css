@@ -30,6 +30,9 @@ textarea {
 a {
   text-decoration: none;
 }
+img {
+  max-width: 100%;
+}
 
 /* BUTTONS */
 .py__button {
@@ -174,9 +177,29 @@ a {
   width: calc(33.333% - 32px);
 }
 .py__theme-image_wrapper {
-  background: #EAEDF0;
-  border-radius: 10px;
+  background: #d2d2d2;
+  position: relative;
+  padding-right: 30%;
   min-height: 152px;
+  max-height: 280px;
+  overflow: hidden;
+  padding-left: 13px;
+  padding-top: 13px;
+}
+.py__theme-image_mobile-wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 8px;
+  width: 35%;
+  max-height: 80%;
+}
+.py__theme-image_wrapper img {
+  box-shadow: -2px -2px 10px #000000;
+  border-radius: 8px;
+  border-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  vertical-align: bottom;
 }
 .py__theme-info {
   padding: 18px 2px 12px 2px;

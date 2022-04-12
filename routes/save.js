@@ -9,7 +9,7 @@ const fs = require('fs');
 /* POST SAVE FUNCTION */
 router.post('/:id', async (req, res, next) => {
 
-    if (!req.session.user && req?.session?.user?.roles !== 'Admin') return next();
+    if (!req.session.user && !req?.session?.user?.isAdmin) return next();
 
     const { id } = req.params;
     const { settings, section, blocks } = req.body;

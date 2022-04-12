@@ -1,5 +1,9 @@
 <div class="py__theme">
-    <div class="py__theme-image_wrapper">
+    <div class="py__theme-image_wrapper" data-id="<%=id%>">
+        <img src="/screens/screenshot-<%=id%>.png">
+        <div class="py__theme-image_mobile-wrapper">
+            <img src="/screens/mobile-screenshot-<%=id%>.png">
+        </div>
     </div>
     <div class="py__theme-info">
         <% if(settings[0].theme_name){ %>

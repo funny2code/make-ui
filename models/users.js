@@ -22,6 +22,10 @@ const schema = new db.Schema({
     type: String,
     default: 'active',
     require: true
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false
   }
   }, 
   {
