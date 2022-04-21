@@ -26,6 +26,7 @@ class CustomFilters extends HTMLElement {
         this.drawer.setAttribute('aria-hidden', false);
         this.overlay.setAttribute('aria-hidden', false);
         this.body.style.overflow = "hidden";
+        document.querySelector('.coll-filters').style.zIndex = 999;
     }
 
     sortByFun(event){
@@ -42,6 +43,7 @@ class CustomFilters extends HTMLElement {
         this.drawer.setAttribute('aria-hidden', true);
         this.overlay.setAttribute('aria-hidden', true);
         this.body.style.overflow = null;
+      document.querySelector('.coll-filters').style.zIndex = 50;
     }
 
     onSubmitHandler(event) {

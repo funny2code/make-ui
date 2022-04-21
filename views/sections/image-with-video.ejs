@@ -1,5 +1,42 @@
 <% if(section.blocks.length){ %>
+<section class="section-1">
 <link rel="stylesheet" href="/assets/component-image-with-video.css">
+<style>
+  .section-1 .bc-image-with-video__heading{
+    <% if(section.settings.heading_color){ %>
+    color: <%=section.settings.heading_color%>;
+    <% } %>
+    <% if(section.settings.heading_font_size){ %>
+    font-size: <%=section.settings.heading_font_size%>;
+    <% } %>
+    <% if(section.settings.heading_font_style){ %>
+    font-style: <%=section.settings.heading_font_style%>;
+    <% } %>
+    <% if(section.settings.heading_font_weight){ %>
+    font-weight: <%=section.settings.heading_font_weight%>;
+    <% } %>
+    <% if(section.settings.heading_line_height){ %>
+    line-height: <%=section.settings.heading_line_height%>;
+    <% } %>
+  }
+  .section-1 .bc-image-with-video__text{
+    <% if(section.settings.text_color){ %>
+    color: <%=section.settings.text_color%>;
+    <% } %>
+    <% if(section.settings.text_font_size){ %>
+    font-size: <%=section.settings.text_font_size%>;
+    <% } %>
+    <% if(section.settings.text_font_style){ %>
+    font-style: <%=section.settings.text_font_style%>;
+    <% } %>
+    <% if(section.settings.text_font_weight){ %>
+    font-weight: <%=section.settings.text_font_weight%>;
+    <% } %>
+    <% if(section.settings.text_line_height){ %>
+    line-height: <%=section.settings.text_line_height%>;
+    <% } %>
+  }
+</style>
 
 <image-with-video class="bc-image-with-video bc-<%=settings.section_style%>-bt">
     <% if(section.blocks.length){ %>
@@ -54,4 +91,5 @@
       <% }) %>
     <% } %>
 </image-with-video>
+</section>
 <% } %>

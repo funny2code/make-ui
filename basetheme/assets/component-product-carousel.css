@@ -74,14 +74,7 @@
 .product-carousel .bc-card-color__list *{
   line-height:1;
 }
-.product-carousel .pd-colors__icon{
-    display: inline-block;
-    height: 30px;
-    width: 30px;
-    margin-right: 8px;
-    border-radius: 30px;
-    border: 1px solid #bbb9b9;
-}
+
 .product-carousel:not(.bc-br-bt) .card-information{
   margin-top:10px;
 }

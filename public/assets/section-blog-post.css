@@ -21,7 +21,7 @@
   height: 19rem;
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@media screen and (min-width: 750px) and (max-width: 799px) {
   .article-template__hero-medium {
     height: 34.9rem;
   }
@@ -31,7 +31,7 @@
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .article-template__hero-medium {
     height: 54.5rem;
   }
@@ -155,7 +155,7 @@
   margin: 2rem 0 2.5rem;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .article-template__comments .pagination-wrapper {
     margin: 5rem 0 8rem;
   }

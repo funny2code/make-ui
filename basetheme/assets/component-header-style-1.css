@@ -2,7 +2,7 @@ header-drawer {
   justify-self: start;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   header-drawer {
     display: none;
   }

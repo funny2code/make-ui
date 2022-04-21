@@ -161,7 +161,6 @@ img {
 }
 .py__themes {
   display: flex;
-  justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 32px;

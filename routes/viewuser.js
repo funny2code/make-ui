@@ -3,8 +3,13 @@ const router = express.Router();
 const makeMenu = require('../config/menu');
 const shop = require('../config/shop');
 const collection = require('../config/collection');
+const collections = require('../config/collections');
 const product = require('../config/product');
 const cart = require('../config/cart');
+const blog = require('../config/blogs');
+const article = require('../config/article');
+const customer = require('../config/customer');
+const gift = require('../config/gift');
 const modelUsersThemes = require('../models/customer-themes');
 
 
@@ -57,7 +62,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
                     sectionSettings.push({ name: item.name, settings: sectionChildSettings, blocks: blocks });
                 }
             });
-        } else if (global === 'Global Styles') {
+        } else if (global === 'Global Styles' || global === undefined) {
             theme.theme_pag.map(pageItem => {
                 if(pageItem.name === page) {
                     pageItem.items.forEach(item => {
@@ -92,8 +97,13 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
             menu: makeMenu,
             shop: shop,
             collection: collection,
+            collections: collections,
             product: product,
             cart: cart,
+            blog: blog,
+            article: article,
+            customer: customer,
+            gift: gift,
             component: global,
             settings: settings,
             sections: sectionSettings
@@ -159,7 +169,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                     defaultSections.push({ name: el.name, settings: sectionChildSettings, blocks: blocks });
                 }
             });
-        } else if (global === 'Global Styles') {
+        } else if (global === 'Global Styles' || global === undefined) {
             theme?.theme_pag.map(pageItem => {
                 if(pageItem.name === page) {
                     pageItem?.items.map(item => {
@@ -205,11 +215,16 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
             menu: makeMenu,
             shop: shop,
             collection: collection,
+            collections: collections,
             product: product,
             cart: cart,
+            blog: blog,
+            article: article,
+            customer: customer,
+            gift: gift,
             component: global,
-            settings: defaultSettings,
-            sections: defaultSections
+            settings: settings,
+            sections: sectionSettings
         });
 
     } catch (err) {

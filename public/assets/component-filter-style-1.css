@@ -408,7 +408,7 @@ a.active-facets__button:focus {
   width: 100%;
   height: 100%;
   background: #00000080;
-  z-index: 999;
+  z-index: 50;
 }
 
 .bc-coll-mobile__filter-popup.open {
@@ -448,7 +448,7 @@ a.active-facets__button:focus {
   position: fixed;
   top: 23vh;
   right: 20px;
-  z-index: 999;
+  z-index: 50;
 }
 
 .mobile-facets__wrapper .disclosure-has-popup[open] > summary::before {

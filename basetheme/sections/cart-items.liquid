@@ -232,25 +232,51 @@
 
 {% schema %}
 {
-  "name": "cart items",
+  "name": "t:sections.main-cart-items.name",
   "class": "cart__items-wrapper",
   "settings": [
     {
       "type": "checkbox",
       "id": "show_vendor",
       "default": false,
-      "label": "Show vendor"
+      "label": "t:sections.main-cart-items.settings.show_vendor.label"
     },
     {
-      "type": "color",
-      "id": "item_bg",
-      "default": "#ddd",
-      "label": "Item Background"
+      "type": "select",
+      "id": "item_bg",      
+      "label": "Item Background",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+          }
+        ],
+      "default": "var(--py-bg-color-middle-dark)"
     },
     {
       "type": "text",
       "id": "item_radius",
-      "default": "10",
+      "default": "10",        
       "label": "Item Border Radius"
     }
   ]

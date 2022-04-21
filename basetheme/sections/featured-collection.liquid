@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-price-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-badge.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-card-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-product-card-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'template-collection-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
 
 <noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-price-style-1.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-badge.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-card-style-1.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-product-card-style-1.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'template-collection-style-1.css' | asset_url | stylesheet_tag }}</noscript>
 
 <style type="text/css">
@@ -113,19 +113,19 @@
 
 {% schema %}
 {
-  "name": "featured collection",
+  "name": "t:sections.featured-collection.name",
   "tag": "section",
   "settings": [
     {
       "type": "text",
       "id": "title",
       "default": "Featured collection",
-      "label": "Heading"
+      "label": "t:sections.featured-collection.settings.title.label"
     },
     {
       "type": "collection",
       "id": "collection",
-      "label": "Collection"
+      "label": "t:sections.featured-collection.settings.collection.label"
     },
     {
       "type": "range",
@@ -134,23 +134,23 @@
       "max": 12,
       "step": 2,
       "default": 4,
-      "label": "Maximum products to show"
+      "label": "t:sections.featured-collection.settings.products_to_show.label"
     },
     {
       "type": "checkbox",
       "id": "show_view_all",
       "default": true,
-      "label": "Enable \"View all\" button if collection has more products than shown"
+      "label": "t:sections.featured-collection.settings.show_view_all.label"
     },
     {
       "type": "checkbox",
       "id": "swipe_on_mobile",
       "default": false,
-      "label": "Enable swipe on mobile"
+      "label": "t:sections.featured-collection.settings.swipe_on_mobile.label"
     },
     {
       "type": "header",
-      "content": "Product card"
+      "content": "t:sections.featured-collection.settings.header.content"
     },
     {
       "type": "select",
@@ -158,42 +158,42 @@
       "options": [
         {
           "value": "adapt",
-          "label": "Adapt to image"
+          "label": "t:sections.featured-collection.settings.image_ratio.options__1.label"
         },
         {
           "value": "portrait",
-          "label": "Portrait"
+          "label": "t:sections.featured-collection.settings.image_ratio.options__2.label"
         },
         {
           "value": "square",
-          "label": "Square"
+          "label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
         }
       ],
       "default": "adapt",
-      "label": "Image ratio"
+      "label": "t:sections.featured-collection.settings.image_ratio.label"
     },
     {
       "type": "checkbox",
       "id": "show_secondary_image",
       "default": false,
-      "label": "Show second image on hover"
+      "label": "t:sections.featured-collection.settings.show_secondary_image.label"
     },
     {
       "type": "checkbox",
       "id": "add_image_padding",
       "default": false,
-      "label": "Add padding"
+      "label": "t:sections.featured-collection.settings.add_image_padding.label"
     },
     {
       "type": "checkbox",
       "id": "show_vendor",
       "default": false,
-      "label": "Show vendor"
+      "label": "t:sections.featured-collection.settings.show_vendor.label"
     }
   ],
   "presets": [
     {
-      "name": "Featured collection"
+      "name": "t:sections.featured-collection.presets.name"
     }
   ]
 }

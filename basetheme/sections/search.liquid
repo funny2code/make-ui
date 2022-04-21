@@ -1,13 +1,13 @@
 {{ 'template-collection-style-1.css' | asset_url | stylesheet_tag }}
 
 <link rel="stylesheet" href="{{ 'component-badge.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-card-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-product-card-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-price-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-search-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-variants.css' | asset_url }}" media="print" onload="this.media='all'">
 
 <noscript>{{ 'component-badge.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-card-style-1.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-product-card-style-1.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-price-style-1.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-search-style-1.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-variants.css' | asset_url | stylesheet_tag }}</noscript>
@@ -58,7 +58,7 @@
             name="q"
             value="{{ search.terms | escape }}"
             {% if search.performed %}autofocus{% endif %}
-            placeholder="{{ 'general.search.search' | t }}"
+            placeholder="{{ 'general.search.search' | t }}" autocomplete="off"
           >
           <label class="field__label" for="Search-In-Template" aria-hidden="true">{{ 'general.search.search' | t }}</label>
           <input type="hidden" name="type" value="product,page,article">
@@ -114,7 +114,7 @@
                                       {%- if item.image.src.width >= 940 -%}{{ item.image.src | img_url: '940x' }} 714w{%- endif -%}"
                                   src="{{ item.image.src | img_url: '533x' }}"
                                   loading="lazy"
-                                  sizes="(min-width: 1200px) 268px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                                  sizes="(min-width: 1200px) 268px, (min-width: 800px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                                   width="{{ item.image.src.width }}"
                                   height="{{ item.image.src.height }}"
                                   alt="{{ item.image.src.alt | escape }}"
@@ -184,12 +184,12 @@
 </style>
 {% schema %}
 {
-  "name": "search",
+  "name": "t:sections.main-search.name",
   "tag": "section",
   "settings": [
     {
       "type": "header",
-      "content": "Product card"
+      "content": "t:sections.main-search.settings.header__1.content"
     },
     {
       "type": "select",
@@ -197,53 +197,53 @@
       "options": [
         {
           "value": "adapt",
-          "label": "Adapt to image"
+          "label": "t:sections.main-search.settings.image_ratio.options__1.label"
         },
         {
           "value": "portrait",
-          "label": "Portrait"
+          "label": "t:sections.main-search.settings.image_ratio.options__2.label"
         },
         {
           "value": "square",
-          "label": "Square"
+          "label": "t:sections.main-search.settings.image_ratio.options__3.label"
         }
       ],
       "default": "adapt",
-      "label": "Image ratio"
+      "label": "t:sections.main-search.settings.image_ratio.label"
     },
     {
       "type": "checkbox",
       "id": "show_secondary_image",
       "default": false,
-      "label": "Show second image on hover"
+      "label": "t:sections.main-search.settings.show_secondary_image.label"
     },
     {
       "type": "checkbox",
       "id": "enable_image_padding",
       "default": false,
-      "label": "Add image padding"
+      "label": "t:sections.main-search.settings.enable_image_padding.label"
     },
     {
       "type": "checkbox",
       "id": "show_vendor",
       "default": false,
-      "label": "Show vendor"
+      "label": "t:sections.main-search.settings.show_vendor.label"
     },
     {
       "type": "header",
-      "content": "Blog card"
+      "content": "t:sections.main-search.settings.header__2.content"
     },
     {
       "type": "checkbox",
       "id": "article_show_date",
       "default": true,
-      "label": "Show date"
+      "label": "t:sections.main-search.settings.article_show_date.label"
     },
     {
       "type": "checkbox",
       "id": "article_show_author",
       "default": false,
-      "label": "Show author"
+      "label": "t:sections.main-search.settings.article_show_author.label"
     }
   ]
 }

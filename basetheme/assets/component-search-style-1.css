@@ -21,23 +21,18 @@
     padding: .5rem 0;
   }
   .bc-search-result-wrapper {
-    position: relative;
-    background: var(--color-background);
-    height: 39vh;
+    position: relative;    
+    max-height: 68vh;
     overflow: auto;
     padding-top: 1rem;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-  }
-  .bc-search-result-wrapper::-webkit-scrollbar {
-    width: 0;
-    background: transparent;
-  }
+  }  
   .bc-search-result-inner-wrapper {
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
   }
   .bc-search-result-wrapper.have-result {

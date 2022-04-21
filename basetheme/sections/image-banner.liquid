@@ -73,7 +73,7 @@
 </script>
 {% schema %}
 {
-  "name": "image banner",
+  "name": "Hero Banner",
   "tag": "section",
   "settings": [
     {
@@ -109,9 +109,36 @@
       "default": false
     },
     {
-      "type": "color",
+      "type": "select",
       "id": "ov_bg_color",
-      "label": "Background"
+      "label": "Background",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+          }
+        ],
+        "default": "var(--py-bg-color-avarge)"
     },
     {
       "type": "image_picker",
@@ -133,15 +160,15 @@
       "options": [
         {
           "value": "flex-start",
-          "label": "Top"
+          "label": "t:sections.image-banner.settings.desktop_text_box_position.options__1.label"
         },
         {
           "value": "center",
-          "label": "Center"
+          "label": "t:sections.image-banner.settings.desktop_text_box_position.options__2.label"
         },
         {
           "value": "flex-end",
-          "label": "Bottom"
+          "label": "t:sections.image-banner.settings.desktop_text_box_position.options__3.label"
         }
       ],
       "default": "center",
@@ -222,15 +249,15 @@
       "options": [
         {
           "value": "flex-start",
-          "label": "Top"
+          "label": "t:sections.image-banner.settings.desktop_text_box_position.options__1.label"
         },
         {
           "value": "center",
-          "label": "Center"
+          "label": "t:sections.image-banner.settings.desktop_text_box_position.options__2.label"
         },
         {
           "value": "flex-end",
-          "label": "Bottom"
+          "label": "t:sections.image-banner.settings.desktop_text_box_position.options__3.label"
         }
       ],
       "default": "center",
@@ -316,46 +343,46 @@
       "id": "anim",
       "label": "Animation Type",
       "options": [
-        {
-          "value": "fade-up",
-          "label": "Fade In Up"
-        },
-        {
-          "value": "fade-down",
-          "label": "Fade In Down"
-        },
-        {
-          "value": "fade-right",
-          "label": "Fade In Right"
-        },
-        {
-          "value": "fade-left",
-          "label": "Fade In Left"
-        },
-        {
-          "value": "flip-up",
-          "label": "Flip In Up"
-        },
-        {
-          "value": "flip-down",
-          "label": "Flip In Down"
-        },
-        {
-          "value": "flip-left",
-          "label": "Flip In Left"
-        },
-        {
-          "value": "flip-right",
-          "label": "Flip In Right"
-        },
-        {
-          "value": "zoom-in",
-          "label": "Zoom In"
-        },
-        {
-          "value": "zoom-out",
-          "label": "Zoom Out"
-        }
+      {
+        "value": "fade-up",
+        "label": "Fade In Up"
+      },
+      {
+        "value": "fade-down",
+        "label": "Fade In Down"
+      },
+      {
+        "value": "fade-right",
+        "label": "Fade In Right"
+      },
+      {
+        "value": "fade-left",
+        "label": "Fade In Left"
+      },
+      {
+        "value": "flip-up",
+        "label": "Flip In Up"
+      },
+      {
+        "value": "flip-down",
+        "label": "Flip In Down"
+      },
+      {
+        "value": "flip-left",
+        "label": "Flip In Left"
+      },
+      {
+        "value": "flip-right",
+        "label": "Flip In Right"
+      },
+      {
+        "value": "zoom-in",
+        "label": "Zoom In"
+      },
+      {
+        "value": "zoom-out",
+        "label": "Zoom Out"
+      }
       ],
       "default": "zoom-out"
     }
@@ -363,14 +390,14 @@
   "blocks": [
     {
       "type": "heading",
-      "name": "Heading",
+      "name": "t:sections.image-banner.blocks.heading.name",
       "limit": 1,
       "settings": [
         {
           "type": "text",
           "id": "heading",
           "default": "Image banner",
-          "label": "Heading"
+          "label": "t:sections.image-banner.blocks.heading.settings.heading.label"
         },
         {
           "type": "header",
@@ -397,10 +424,24 @@
           "label": "Text Aligment"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "color",
           "label": "Text Color",
-          "default": "#ffffff"
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-light)"
         },
         {
           "type": "text",
@@ -462,10 +503,24 @@
           "label": "Text Aligment"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "m_color",
           "label": "Text Color",
-          "default": "#000000"
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-light)"
         },
         {
           "type": "text",
@@ -506,14 +561,14 @@
     },
     {
       "type": "text",
-      "name": "Text",
+      "name": "t:sections.image-banner.blocks.text.name",
       "limit": 1,
       "settings": [
         {
           "type": "richtext",
           "id": "text",
           "default": "<p>Give customers details about the banner image(s) or content on the template.</p>",
-          "label": "Description"
+          "label": "t:sections.image-banner.blocks.text.settings.text.label"
         },
         {
           "type": "header",
@@ -540,10 +595,24 @@
           "label": "Text Aligment"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "color",
           "label": "Text Color",
-          "default": "#ffffff"
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-light)"
         },
         {
           "type": "text",
@@ -605,10 +674,24 @@
           "label": "Text Aligment"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "m_color",
           "label": "Text Color",
-          "default": "#000000"
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-light)"
         },
         {
           "type": "text",
@@ -649,42 +732,96 @@
     },
     {
       "type": "buttons",
-      "name": "Buttons",
+      "name": "t:sections.image-banner.blocks.buttons.name",
       "limit": 1,
       "settings": [
         {
           "type": "text",
           "id": "button_label_1",
           "default": "Button label",
-          "label": "First button label",
-          "info": "Leave the label blank to hide the button."
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_label_1.label",
+          "info": "t:sections.image-banner.blocks.buttons.settings.button_label_1.info"
         },
         {
           "type": "url",
           "id": "button_link_1",
-          "label": "First button link"
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_link_1.label"
         },
         {
           "type": "header",
           "content": "Desktop Settings"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "bg",
           "label": "Background Color",
-          "default": "#000000"
+          "options": [          
+              {
+                "label": "Transparent",
+                "value": "transparent"
+              },        
+              {
+                "label": "Dark",
+                "value": "var(--py-bg-color-dark)"
+              },
+              {
+                "label": "Middle Dark",
+                "value": "var(--py-bg-color-middle-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-bg-color-avarge)"
+              },
+              {
+                "label": "Middle Light",
+                "value": "var(--py-bg-color-middle-light)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-bg-color-light)"
+              }
+            ],
+            "default": "var(--py-bg-color-dark)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "border",
           "label": "border Color",
-          "default": "#ffffff"
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-light)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "color",
           "label": "Text Color",
-          "default": "#ffffff"
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-light)"
         },
         {
           "type": "text",
@@ -731,22 +868,76 @@
           "content": "Mobile Settings"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "m_bg",
           "label": "Background Color",
-          "default": "#000000"
+          "options": [          
+              {
+                "label": "Transparent",
+                "value": "transparent"
+              },        
+              {
+                "label": "Dark",
+                "value": "var(--py-bg-color-dark)"
+              },
+              {
+                "label": "Middle Dark",
+                "value": "var(--py-bg-color-middle-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-bg-color-avarge)"
+              },
+              {
+                "label": "Middle Light",
+                "value": "var(--py-bg-color-middle-light)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-bg-color-light)"
+              }
+            ],
+            "default": "var(--py-bg-color-dark)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "m_border",
           "label": "border Color",
-          "default": "#000000"
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-light)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "m_color",
           "label": "Text Color",
-          "default": "#000000"
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-light)"
         },
         {
           "type": "text",

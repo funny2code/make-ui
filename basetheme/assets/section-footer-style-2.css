@@ -181,7 +181,7 @@
     margin-bottom: 2.5rem;
   }
   
-  @media screen and (min-width: 990px) {
+  @media screen and (min-width: 800px) {
     .footer-block__heading {
       font-size: 1.8rem;
     }
@@ -320,7 +320,7 @@
     }
   }
   
-  @media screen and (max-width: 989px) {
+  @media screen and (max-width: 799px) {
     noscript .localization-form:only-child,
     .footer__localization noscript {
       width: 100%;
@@ -519,7 +519,7 @@
     }
   }
   
-  @media screen and (max-width: 989px) {
+  @media screen and (max-width: 799px) {
     .footer-block__details-content .list-menu__item--link {
       padding-top: 0;
       padding-bottom: 0;

@@ -10,8 +10,7 @@
     flex-wrap: wrap;
     font-size: 15px;
     letter-spacing: 0.1rem;
-    line-height: 1.5;
-    color: var(--color-foreground);
+    line-height: 1.5;    
   }
   
   .card-wrapper .price {
@@ -90,8 +89,7 @@
   }
   
   .price--on-sale .price-item--regular {
-    text-decoration: line-through;
-    color: var(--color-foreground-75);
+    text-decoration: line-through;    
   }
   
   .unit-price {
@@ -99,8 +97,7 @@
     letter-spacing: 0.04rem;
     line-height: 1.2;
     margin-top: 0.2rem;
-    text-transform: uppercase;
-    color: var(--color-foreground-70);
+    text-transform: uppercase;   
   }
   .price-item--discount svg {
     width: 18px;

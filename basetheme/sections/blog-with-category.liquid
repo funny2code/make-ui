@@ -1,6 +1,62 @@
 {{ 'section-blog-with-category.css' | asset_url | stylesheet_tag }}
-
-<div class="bc-blog-with-category bc-{{settings.section_style}}-bt">
+<style>
+  .section-{{section.id}} .bc-blog-with-category__category-item,
+  .section-{{section.id}} .bc-blog-with-category__category-item path{
+    {%if section.settings.cat_heading_color != blank%}
+    color: {{section.settings.cat_heading_color}};
+    fill:{{section.settings.cat_heading_color}};
+    {% endif %}    
+  }  
+  .section-{{section.id}} .bc-blog-with-category__category-item{
+    {%if section.settings.cat_heading_font_size != blank%}
+    font-size: {{section.settings.cat_heading_font_size}};
+    {% endif %}
+    {%if section.settings.cat_heading_font_style != blank%}
+    font-style: {{section.settings.cat_heading_font_style}};
+    {% endif %}
+    {%if section.settings.cat_heading_font_weight != blank%}
+    font-weight: {{section.settings.cat_heading_font_weight}};
+    {% endif %}
+    {%if section.settings.cat_heading_line_height != blank%}
+    line-height: {{section.settings.cat_heading_line_height}};
+    {% endif %}
+  }
+  .section-{{section.id}} .bc-article-card__title{
+    {%if section.settings.heading_color != blank%}
+    color: {{section.settings.heading_color}};
+    {% endif %}
+    {%if section.settings.heading_font_size != blank%}
+    font-size: {{section.settings.heading_font_size}};
+    {% endif %}
+    {%if section.settings.heading_font_style != blank%}
+    font-style: {{section.settings.heading_font_style}};
+    {% endif %}
+    {%if section.settings.heading_font_weight != blank%}
+    font-weight: {{section.settings.heading_font_weight}};
+    {% endif %}
+    {%if section.settings.heading_line_height != blank%}
+    line-height: {{section.settings.heading_line_height}};
+    {% endif %}
+  }
+  .section-{{section.id}} .bc-article-card__excerpt{
+    {%if section.settings.excerpt_color != blank%}
+    color: {{section.settings.excerpt_color}};
+    {% endif %}
+    {%if section.settings.excerpt_font_size != blank%}
+    font-size: {{section.settings.excerpt_font_size}};
+    {% endif %}
+    {%if section.settings.excerpt_font_style != blank%}
+    font-style: {{section.settings.excerpt_font_style}};
+    {% endif %}
+    {%if section.settings.excerpt_font_weight != blank%}
+    font-weight: {{section.settings.excerpt_font_weight}};
+    {% endif %}
+    {%if section.settings.excerpt_line_height != blank%}
+    line-height: {{section.settings.excerpt_line_height}};
+    {% endif %}
+  }
+</style>
+<div class="bc-blog-with-category section-{{section.id}} bc-{{settings.section_style}}-bt py-{{section.settings.section_bg_color}}">
   <div class="page-width page-width-{{settings.section_style}}">
     <blog-category class="bc-blog-with-category__wrapper">
         {%- if section.blocks.size > 0 -%}
@@ -135,84 +191,302 @@
 
 
 {% schema %}
-{
-  "name": "blog with category",
-  "tag": "section",
-  "settings": [
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background"
-    },
-    {
-      "type": "color",
-      "id": "color",
-      "label": "Content",
-      "default": "#422626"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "blog",
-      "name": "Blog",
-      "limit": 4,
-      "settings": [
-        {
-          "type": "text",
-          "id": "category",
-          "label": "Category Label",
-          "default": "Healthy Undies"
-        },
-        {
-          "type": "blog",
-          "id": "blog",
-          "label": "Blog"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_date",
-          "label": "Show Date",
-          "default": false
-        },
-        {
-          "type": "checkbox",
-          "id": "show_author",
-          "label": "Show Author",
-          "default": false
-        },
-        {
-          "type": "checkbox",
-          "id": "show_read_more",
-          "label": "Show Read More",
-          "default": false
-        },
-        {
-          "type": "checkbox",
-          "id": "show_comment",
-          "label": "Show Comment",
-          "default": false
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Blog with Category",
-      "blocks": [
-        {
-          "type": "blog"
-        },
-        {
-          "type": "blog"
-        },
-        {
-          "type": "blog"
-        },
-        {
-          "type": "blog"
-        }
-      ]
-    }
-  ]
-}
+  {
+    "name": "Blog With Category",
+    "tag": "section",
+    "settings": [	 
+      {
+        "type": "select",
+        "id": "section_bg_color",
+        "label": "Info section Background Color",
+        "options": [
+          {
+            "label": "Unset",
+            "value": "bg-c-un"
+          },
+          {
+            "label": "None",
+            "value": "bg-c-none"
+          },        
+          {
+            "label": "Dark",
+            "value": "bg-c-dark"
+          },
+          {
+            "label": "Average",
+            "value": "bg-c-average"
+          },
+          {
+            "label": "Light",
+            "value": "bg-c-light"
+          }
+        ],
+        "default": "bg-c-un"
+      },
+      {
+        "type": "select",
+        "id": "cat_heading_color",        
+        "label": "Categroy List Color",
+        "options": [
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+      },
+      {
+        "type": "text",
+        "id": "cat_heading_font_size",
+        "label": "Categroy List Font Size",
+        "info": "Ex: 24px"
+      },
+      {
+        "type": "text",
+        "id": "cat_heading_font_weight",
+        "label": "Categroy List Font Weight",
+        "info": "Ex: 500 or 600"
+      },
+      {
+        "type": "text",
+        "id": "cat_heading_line_height",
+        "label": "Categroy List line height",
+        "info": "Ex: 30px"
+      },
+      {
+        "type": "select",
+        "id": "cat_heading_font_style",
+        "label": "Categroy List Font Style",
+        "options": [
+          {
+            "label": "normal",
+            "value": "normal"
+          },
+          {
+            "label": "italic",
+            "value": "italic"
+          }
+        ],
+        "default": "normal"
+      },
+      {
+        "type": "select",
+        "id": "heading_color",        
+        "label": "Blog Title Color",
+        "options": [
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+      },
+      {
+        "type": "text",
+        "id": "heading_font_size",
+        "label": "Blog Title Font Size",
+        "info": "Ex: 24px"
+      },
+      {
+        "type": "text",
+        "id": "heading_font_weight",
+        "label": "Blog Title Font Weight",
+        "info": "Ex: 500 or 600"
+      },
+      {
+        "type": "text",
+        "id": "heading_line_height",
+        "label": "Blog Title line height",
+        "info": "Ex: 30px"
+      },
+      {
+        "type": "select",
+        "id": "heading_font_style",
+        "label": "Blog Title Font Style",
+        "options": [
+          {
+            "label": "normal",
+            "value": "normal"
+          },
+          {
+            "label": "italic",
+            "value": "italic"
+          }
+        ],
+        "default": "normal"
+      },
+      {
+        "type": "select",
+        "id": "excerpt_color",        
+        "label": "Blog excerpt Color",
+        "options": [
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+      },
+      {
+        "type": "text",
+        "id": "excerpt_font_size",
+        "label": "Blog excerpt Font Size",
+        "info": "Ex: 24px"
+      },
+      {
+        "type": "text",
+        "id": "excerpt_font_weight",
+        "label": "Blog excerpt Font Weight",
+        "info": "Ex: 500 or 600"
+      },
+      {
+        "type": "text",
+        "id": "excerpt_line_height",
+        "label": "Blog excerpt line height",
+        "info": "Ex: 30px"
+      },
+      {
+        "type": "select",
+        "id": "excerpt_font_style",
+        "label": "Blog excerpt Font Style",
+        "options": [
+          {
+            "label": "normal",
+            "value": "normal"
+          },
+          {
+            "label": "italic",
+            "value": "italic"
+          }
+        ],
+        "default": "normal"
+      }     
+	],
+	"blocks": [ 
+	  {
+		"type": "blog",
+		"name": "Blog",
+		"limit": 4,
+		"settings": [
+          {
+            "type": "text",
+            "id": "category",
+            "label": "Category Label",
+            "default": "Healthy Undies"
+          },
+		  {
+			"type": "blog",
+			"id": "blog",
+			"label": "Blog"
+		  },
+          {
+            "type": "checkbox",
+            "id": "show_date",
+            "label": "Show Date",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "show_author",
+            "label": "Show Author",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "show_read_more",
+            "label": "Show Read More",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "show_comment",
+            "label": "Show Comment",
+            "default": false
+          }
+		]
+	  }
+	],
+	"presets": [
+	  {
+		"name": "Blog with Category",
+		"blocks": [ 
+		   {"type": "blog"},
+		   {"type": "blog"},
+           {"type": "blog"},
+		   {"type": "blog"}
+		]
+	  }
+	]
+  }
 {% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+
+    class BlogCategory extends HTMLElement {
+
+        constructor(){
+            super();
+            
+            this.blogContents = this.querySelectorAll('.bc-blog-with-category__blog-list');
+            this.blogButtons = this.querySelectorAll('.bc-blog-with-category__category-item');
+            this.blogButtons.length && this.blogButtons.forEach(button => {
+                button.addEventListener('click', this.open.bind(this));
+            });
+        }
+
+        open(event){
+            
+            if(!event.target) return;
+            let tabElem = event.target;
+            let index = tabElem.getAttribute('data-index');
+            
+            this.blogButtons.length && this.blogButtons.forEach(tab => {
+                if(tab.getAttribute('data-index') === index){
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            this.blogContents.length && this.blogContents.forEach(content => {
+                if(content.getAttribute('data-index') === index){
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+
+        }
+
+    };
+
+    customElements.define('blog-category', BlogCategory);
+
+{% endjavascript %}

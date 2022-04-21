@@ -1,4 +1,4 @@
-{{ 'component-card-style-1.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-card-style-1.css' | asset_url | stylesheet_tag }}
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 
 <div class="page-width bc-collection-list">
@@ -73,13 +73,13 @@
 
 {% schema %}
 {
-  "name": "list collections",
+  "name": "t:sections.main-list-collections.name",
   "class": "bc-collection-list-section",
   "settings": [
     {
       "type": "text",
       "id": "title",
-      "label": "Heading",
+      "label": "t:sections.main-list-collections.settings.title.label",
       "default": "Collections"
     },
     {
@@ -88,31 +88,31 @@
       "options": [
         {
           "value": "alphabetical",
-          "label": "Alphabetically, A-Z"
+          "label": "t:sections.main-list-collections.settings.sort.options__1.label"
         },
         {
           "value": "alphabetical_reversed",
-          "label": "Alphabetically, Z-A"
+          "label": "t:sections.main-list-collections.settings.sort.options__2.label"
         },
         {
           "value": "date_reversed",
-          "label": "Date, new to old"
+          "label": "t:sections.main-list-collections.settings.sort.options__3.label"
         },
         {
           "value": "date",
-          "label": "Date, old to new"
+          "label": "t:sections.main-list-collections.settings.sort.options__4.label"
         },
         {
           "value": "products_high",
-          "label": "Product count, high to low"
+          "label": "t:sections.main-list-collections.settings.sort.options__5.label"
         },
         {
           "value": "products_low",
-          "label": "Product count, low to high"
+          "label": "t:sections.main-list-collections.settings.sort.options__6.label"
         }
       ],
       "default": "alphabetical",
-      "label": "Sort collections by:"
+      "label": "t:sections.main-list-collections.settings.sort.label"
     },
     {
       "type": "select",
@@ -120,32 +120,74 @@
       "options": [
         {
           "value": "adapt",
-          "label": "Adapt to image"
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__1.label"
         },
         {
           "value": "portrait",
-          "label": "Portrait"
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__2.label"
         },
         {
           "value": "square",
-          "label": "Square"
+          "label": "t:sections.main-list-collections.settings.image_ratio.options__3.label"
         }
       ],
       "default": "adapt",
-      "label": "Image ratio",
-      "info": "To add images, [edit your collections](https://help.shopify.com/en/manual/products/collections)"
+      "label": "t:sections.main-list-collections.settings.image_ratio.label",
+      "info": "t:sections.main-list-collections.settings.image_ratio.info"
     },
     {
-      "type": "color",
-      "id": "border_color",
-      "default": "#000000",
-      "label": "Border Color"
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "t:sections.main-list-collections.settings.color_scheme.options__1.label"
+        },
+        {
+          "value": "accent-2",
+          "label": "t:sections.main-list-collections.settings.color_scheme.options__2.label"
+        },
+        {
+          "value": "background-1",
+          "label": "t:sections.main-list-collections.settings.color_scheme.options__3.label"
+        },
+        {
+          "value": "background-2",
+          "label": "t:sections.main-list-collections.settings.color_scheme.options__4.label"
+        },
+        {
+          "value": "inverse",
+          "label": "t:sections.main-list-collections.settings.color_scheme.options__5.label"
+        }
+      ],
+      "default": "background-1",
+      "label": "t:sections.main-list-collections.settings.color_scheme.label"
+    },
+    {
+      "type": "select",
+      "id": "border_color",      
+      "label": "Border Color",
+      "options": [ 
+         {
+           "label": "Dark",
+           "value": "var(--py-color-dark)"
+         },
+         {
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
+         }
+        ],
+      "default": "var(--py-color-dark)"
     },
     {
       "type": "checkbox",
       "id": "image_padding",
       "default": false,
-      "label": "Add image padding"
+      "label": "t:sections.main-list-collections.settings.image_padding.label"
     }
   ]
 }

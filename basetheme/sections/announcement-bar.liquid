@@ -34,32 +34,100 @@
 
 {% schema %}
 {
-  "name": "announcement bar",
+  "name": "t:sections.announcement-bar.name",
   "max_blocks": 12,
-  "settings": [
+  "settings": [    
     {
       "type": "select",
-      "id": "bg_color",
-      "label": "Background",
+      "id": "py_announcement_bg_color",
+      "label": "Background Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+          }
+        ],
+        "default": "var(--py-bg-color-dark)"
+    },
+    {
+      "type": "select",
+      "id": "py_announcement_color",
+      "label": "Text Color",
       "options": [
-        {
-          "label": "None",
-          "value": "none"
-        },
-        {
-          "label": "Background Dark",
-          "value": "bg-c-dark"
-        },
-        {
-          "label": "Background Average",
-          "value": "bg-c-average"
-        },
-        {
-          "label": "Background Light",
-          "value": "bg-c-light"
-        }
-      ],
-      "default": "bg-c-dark"
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-light)"
+    },
+    {
+      "type": "select",
+      "id": "py_announcement_link_color",
+      "label": "Link Color",
+      "options": [
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-light)"
+    },
+    {
+      "type": "select",
+      "id": "py_announcement_link_hov_color",
+      "label": "Link Hover Color",
+      "options": [
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-avarge)"
     },
     {
       "type": "select",
@@ -75,23 +143,23 @@
           "value": "pd-x-n"
         },
         {
-          "label": "Padding H XL",
+          "label": "XL",
           "value": "pd-x-xl"
         },
         {
-          "label": "Padding H L",
+          "label": "L",
           "value": "pd-x-l"
         },
         {
-          "label": "Padding H M",
+          "label": "M",
           "value": "pd-x-m"
         },
         {
-          "label": "Padding H S",
+          "label": "S",
           "value": "pd-x-s"
         },
         {
-          "label": "Padding H XS",
+          "label": "XS",
           "value": "pd-x-xs"
         }
       ],
@@ -111,27 +179,27 @@
           "value": "pd-y-n"
         },
         {
-          "label": "Padding V XL",
+          "label": "XL",
           "value": "pd-y-xl"
         },
         {
-          "label": "Padding V L",
+          "label": "L",
           "value": "pd-y-l"
         },
         {
-          "label": "Padding V M",
+          "label": "M",
           "value": "pd-y-m"
         },
         {
-          "label": "Padding V S",
+          "label": "S",
           "value": "pd-y-s"
         },
         {
-          "label": "Padding V XS",
+          "label": "XS",
           "value": "pd-y-xs"
         }
       ],
-      "default": "pd-y-xs"
+      "default": "pd-y-un"
     },
     {
       "type": "select",
@@ -147,23 +215,23 @@
           "value": "fs-xl"
         },
         {
-          "label": "Font Size L",
+          "label": "Large",
           "value": "fs-l"
         },
         {
-          "label": "Font Size M",
+          "label": "Medium",
           "value": "fs-m"
         },
         {
-          "label": "Font Size XS",
+          "label": "X Small",
           "value": "fs-xs"
         },
         {
-          "label": "Font Size S",
+          "label": "Small",
           "value": "fs-s"
         }
       ],
-      "default": "fs-s"
+      "default": "fs-un"
     },
     {
       "type": "select",
@@ -187,37 +255,34 @@
           "value": "br-y"
         }
       ],
-      "default": "br-none"
+      "default": "br-y"
     }
   ],
   "blocks": [
     {
       "type": "announcement",
-      "name": "Announcement",
+      "name": "t:sections.announcement-bar.blocks.announcement.name",
       "settings": [
         {
           "type": "text",
           "id": "text",
           "default": "Welcome to our store",
-          "label": "Text"
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Link"
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
         }
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "announcement bar",
-      "blocks": [
-        {
-          "type": "announcement"
-        }
-      ]
-    }
-  ]
+  "default": {
+    "blocks": [
+      {
+        "type": "announcement"
+      }
+    ]
+  }
 }
 {% endschema %}

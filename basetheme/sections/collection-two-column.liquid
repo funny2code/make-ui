@@ -53,217 +53,362 @@
   {%- endif -%}
   
   {% schema %}
-{
-  "name": "collection two column",
-  "tag": "section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "default": "KNOWN FOR THEIR METICULOUS CUTS.",
-      "label": "Heading"
-    },
-    {
-      "type": "header",
-      "content": "Desktop Settings"
-    },
-    {
-      "type": "color",
-      "id": "color",
-      "label": "Text Color"
-    },
-    {
-      "type": "text",
-      "id": "weight",
-      "label": "Font Weight"
-    },
-    {
-      "type": "text",
-      "id": "size",
-      "label": "Font Size"
-    },
-    {
-      "type": "header",
-      "content": "Mobile Settings"
-    },
-    {
-      "type": "color",
-      "id": "m_color",
-      "label": "Text Color"
-    },
-    {
-      "type": "text",
-      "id": "m_weight",
-      "label": "Font Weight"
-    },
-    {
-      "type": "text",
-      "id": "m_size",
-      "label": "Font Size"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "column",
-      "name": "Column",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "button_label",
-          "default": "Button label",
-          "label": "Heading"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Description"
-        },
-        {
-          "type": "header",
-          "content": "Desktop Settings"
-        },
-        {
-          "type": "color",
-          "id": "bg",
-          "label": "Background Color"
-        },
-        {
-          "type": "color",
-          "id": "border",
-          "label": "border Color"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "Text Color"
-        },
-        {
-          "type": "text",
-          "id": "size",
-          "label": "Font Size"
-        },
-        {
-          "type": "text",
-          "id": "weight",
-          "label": "Font Weight"
-        },
-        {
-          "type": "text",
-          "id": "width",
-          "label": "Width"
-        },
-        {
-          "type": "header",
-          "content": "Mobile Settings"
-        },
-        {
-          "type": "color",
-          "id": "m_bg",
-          "label": "Background Color"
-        },
-        {
-          "type": "color",
-          "id": "m_border",
-          "label": "border Color"
-        },
-        {
-          "type": "color",
-          "id": "m_color",
-          "label": "Text Color"
-        },
-        {
-          "type": "text",
-          "id": "m_size",
-          "label": "Font Size"
-        },
-        {
-          "type": "text",
-          "id": "m_weight",
-          "label": "Font Weight"
-        },
-        {
-          "type": "text",
-          "id": "m_width",
-          "label": "Width"
-        },
-        {
-          "type": "header",
-          "content": "Animation"
-        },
-        {
-          "type": "checkbox",
-          "id": "enable_anim",
-          "label": "Enable Animation",
-          "default": false
-        },
-        {
-          "type": "select",
-          "id": "anim",
-          "label": "Animation Type",
-          "options": [
+  {
+    "name": "Colection Two Column",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "default": "KNOWN FOR THEIR METICULOUS CUTS.",
+        "label": "t:sections.multicolumn.settings.title.label"
+      },
+      {
+        "type": "header",
+        "content": "Desktop Settings"
+      },
+      {
+        "type": "select",
+        "id": "color",
+        "label": "Text Color",
+        "options": [ 
             {
-              "value": "fade-up",
-              "label": "Fade In Up"
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
             },
             {
-              "value": "fade-down",
-              "label": "Fade In Down"
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
             },
             {
-              "value": "fade-right",
-              "label": "Fade In Right"
-            },
-            {
-              "value": "fade-left",
-              "label": "Fade In Left"
-            },
-            {
-              "value": "flip-up",
-              "label": "Flip In Up"
-            },
-            {
-              "value": "flip-down",
-              "label": "Flip In Down"
-            },
-            {
-              "value": "flip-left",
-              "label": "Flip In Left"
-            },
-            {
-              "value": "flip-right",
-              "label": "Flip In Right"
-            },
-            {
-              "value": "zoom-in",
-              "label": "Zoom In"
-            },
-            {
-              "value": "zoom-out",
-              "label": "Zoom Out"
+              "label": "Light",
+              "value": "var(--py-color-light)"
             }
           ],
-          "default": "zoom-in"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Collection Two Column",
-      "blocks": [
-        {
-          "type": "column"
-        },
-        {
-          "type": "column"
-        }
-      ]
-    }
-  ]
-}
-{% endschema %}
+        "default": "var(--py-color-dark)"
+      },
+      {
+        "type": "text",
+        "id": "weight",
+        "label": "Font Weight"
+      },
+      {
+        "type": "text",
+        "id": "size",
+        "label": "Font Size"
+      },
+      {
+        "type": "header",
+        "content": "Mobile Settings"
+      },
+      {
+        "type": "select",
+        "id": "m_color",
+        "label": "Text Color",
+        "options": [ 
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+        "default": "var(--py-color-dark)"
+      },
+      {
+        "type": "text",
+        "id": "m_weight",
+        "label": "Font Weight"
+      },
+      {
+        "type": "text",
+        "id": "m_size",
+        "label": "Font Size"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "column",
+        "name": "t:sections.multicolumn.blocks.column.name",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "t:sections.multicolumn.blocks.column.settings.image.label"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "default": "Button label",
+            "label": "t:sections.multicolumn.settings.button_label.label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "t:sections.multicolumn.settings.button_link.label"
+          },
+          {
+            "type": "header",
+            "content": "Desktop Settings"
+          },
+          {
+            "type": "select",
+            "id": "bg",
+            "label": "Background Color",
+            "options": [          
+                {
+                  "label": "Transparent",
+                  "value": "transparent"
+                },        
+                {
+                  "label": "Dark",
+                  "value": "var(--py-bg-color-dark)"
+                },
+                {
+                  "label": "Middle Dark",
+                  "value": "var(--py-bg-color-middle-dark)"
+                },
+                {
+                  "label": "Average",
+                  "value": "var(--py-bg-color-avarge)"
+                },
+                {
+                  "label": "Middle Light",
+                  "value": "var(--py-bg-color-middle-light)"
+                },
+                {
+                  "label": "Light",
+                  "value": "var(--py-bg-color-light)"
+                }
+              ],
+            "default": "var(--py-bg-color-dark)"
+          },
+          {
+            "type": "select",
+            "id": "border",
+            "label": "border Color",
+            "options": [ 
+                {
+                  "label": "Dark",
+                  "value": "var(--py-color-dark)"
+                },
+                {
+                  "label": "Average",
+                  "value": "var(--py-color-avarge)"
+                },
+                {
+                  "label": "Light",
+                  "value": "var(--py-color-light)"
+                }
+              ],
+            "default": "var(--py-color-dark)"
+          },
+          {
+            "type": "select",
+            "id": "color",
+            "label": "Text Color",
+            "options": [ 
+                {
+                  "label": "Dark",
+                  "value": "var(--py-color-dark)"
+                },
+                {
+                  "label": "Average",
+                  "value": "var(--py-color-avarge)"
+                },
+                {
+                  "label": "Light",
+                  "value": "var(--py-color-light)"
+                }
+              ],
+            "default": "var(--py-color-light)"
+          },
+          {
+            "type": "text",
+            "id": "size",
+            "label": "Font Size"
+          },
+          {
+            "type": "text",
+            "id": "weight",
+            "label": "Font Weight"
+          },
+          {
+            "type": "text",
+            "id": "width",
+            "label": "Width"
+          },
+          {
+            "type": "header",
+            "content": "Mobile Settings"
+          },
+          {
+            "type": "select",
+            "id": "m_bg",
+            "label": "Background Color",
+            "options": [          
+                {
+                  "label": "Transparent",
+                  "value": "transparent"
+                },        
+                {
+                  "label": "Dark",
+                  "value": "var(--py-bg-color-dark)"
+                },
+                {
+                  "label": "Middle Dark",
+                  "value": "var(--py-bg-color-middle-dark)"
+                },
+                {
+                  "label": "Average",
+                  "value": "var(--py-bg-color-avarge)"
+                },
+                {
+                  "label": "Middle Light",
+                  "value": "var(--py-bg-color-middle-light)"
+                },
+                {
+                  "label": "Light",
+                  "value": "var(--py-bg-color-light)"
+                }
+              ],
+            "default": "var(--py-bg-color-dark)"
+          },
+          {
+            "type": "select",
+            "id": "m_border",
+            "label": "border Color",
+            "options": [ 
+                {
+                  "label": "Dark",
+                  "value": "var(--py-color-dark)"
+                },
+                {
+                  "label": "Average",
+                  "value": "var(--py-color-avarge)"
+                },
+                {
+                  "label": "Light",
+                  "value": "var(--py-color-light)"
+                }
+              ],
+            "default": "var(--py-color-dark)"
+          },
+          {
+            "type": "select",
+            "id": "m_color",
+            "label": "Text Color",
+            "options": [ 
+                {
+                  "label": "Dark",
+                  "value": "var(--py-color-dark)"
+                },
+                {
+                  "label": "Average",
+                  "value": "var(--py-color-avarge)"
+                },
+                {
+                  "label": "Light",
+                  "value": "var(--py-color-light)"
+                }
+              ],
+            "default": "var(--py-color-light)"
+          },
+          {
+            "type": "text",
+            "id": "m_size",
+            "label": "Font Size"
+          },
+          {
+            "type": "text",
+            "id": "m_weight",
+            "label": "Font Weight"
+          },
+          {
+            "type": "text",
+            "id": "m_width",
+            "label": "Width"
+          },
+          {
+            "type": "header",
+            "content": "Animation"
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_anim",
+            "label": "Enable Animation",
+            "default": false
+          },
+          {
+            "type": "select",
+            "id": "anim",
+            "label": "Animation Type",
+            "options": [
+              {
+                "value": "fade-up",
+                "label": "Fade In Up"
+              },
+              {
+                "value": "fade-down",
+                "label": "Fade In Down"
+              },
+              {
+                "value": "fade-right",
+                "label": "Fade In Right"
+              },
+              {
+                "value": "fade-left",
+                "label": "Fade In Left"
+              },
+              {
+                "value": "flip-up",
+                "label": "Flip In Up"
+              },
+              {
+                "value": "flip-down",
+                "label": "Flip In Down"
+              },
+              {
+                "value": "flip-left",
+                "label": "Flip In Left"
+              },
+              {
+                "value": "flip-right",
+                "label": "Flip In Right"
+              },
+              {
+                "value": "zoom-in",
+                "label": "Zoom In"
+              },
+              {
+                "value": "zoom-out",
+                "label": "Zoom Out"
+              }
+            ],
+            "default": "zoom-in"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Colection Two Column",
+        "blocks": [
+          {
+            "type": "column"
+          },
+          {
+            "type": "column"
+          }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+  

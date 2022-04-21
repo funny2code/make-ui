@@ -12,17 +12,43 @@
 
 {% schema %}
 {
-  "name": "spacing",
+  "name": "Spacing",
   "settings": [
     {
       "type": "header",
       "content": "Background color"
     },
     {
+      "type": "select",
       "id": "background-color",
-      "label": "Background color",
-      "type": "color",
-      "default": "#ffffff"
+      "label": "Background color",      
+      "options": [          
+         {
+            "label": "Transparent",
+            "value": "transparent"
+         },        
+         {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+         },
+         {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+         },
+         {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+         },
+         {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+         },
+         {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+         }
+       ],
+     "default": "transparent"
     },
     {
       "id": "spacing-value-desktop",
@@ -43,6 +69,7 @@
       "default": 5
     }
   ],
+
   "presets": [
     {
       "name": "Spacing",

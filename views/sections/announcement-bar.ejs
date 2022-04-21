@@ -1,26 +1,33 @@
-<section id="shopify-section-announcement-bar">
-  <% if(section.blocks.length){ %>
-    <% section.blocks.forEach(block => { %>
-      <% if(block.type === 'announcement'){ %>
-        <div class="announcement-bar center py-<%=section.settings.bg_color%> py-<%=section.settings.page_x_pd%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.br%>" role="region" aria-label="">
-          <% if(block.settings?.text){ %>
-            <% if(block.settings?.link){ %>
-              <a href="<%=block.settings?.link%>" class="announcement-bar__link link link--text">
-            <% } %>
-                <span class="announcement-bar__message py-<%=section.settings.fs%>">
-                  <%=block.settings?.text%>
-                </span>
-            <% if(block.settings?.link){ %>
-              </a>
-            <% } %>
-          <% } else { %>
-            <span class="announcement-bar__message py-<%=section.settings.fs%>">
-              FREE WORLDWIDE SHIPPING
+<style>
+  .announcement-bar{
+    background-color: <%=section.settings.py_announcement_bg_color%>;
+  }
+  .announcement-bar__message{
+    color:<%=section.settings.py_announcement_color%>;
+  }
+  .announcement-bar__link{
+    color:<%=section.settings.py_announcement_link_color%>;
+  }
+  .announcement-bar__link:hover{
+    color:<%=section.settings.py_announcement_link_hov_color%>;
+  }
+</style>
+<% let d = section.settings %>
+<% section?.blocks?.forEach((block, index) => { %>
+  <% if(block.type === 'announcement'){ %>
+    <div class="announcement-bar center py-<%=d.page_x_pd%> py-<%=d.page_y_pd%> py-<%=d.br%>" role="region" aria-label="announcement">
+      <% if(block.settings.text){ %>
+        <% if(block.settings.link){ %>
+          <a href="<%= block.settings.link %>" class="announcement-bar__link link link--text">
+        <% } %>
+            <span class="announcement-bar__message py-<%=d.fs%>">
+              <%- block.settings.text -%>
             </span>
-          <% } %>
-        </div>
+        <% if(block.settings.link){ %>
+          </a>
+        <% } %>
       <% } %>
-    <% }) %>
+    </div>
   <% } %>
-</section>
+<% }) %>
 

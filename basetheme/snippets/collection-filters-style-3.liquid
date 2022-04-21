@@ -37,7 +37,7 @@
   fill:var(--py-color-dark);
 }
 </style>
-<custom-filters class="coll-filters py-{{section.settings.filter_bg_color}}  py-{{section.settings.filter_color}}">
+<custom-filters class="coll-filters py-{{section.settings.filter_bar_bg_color}}  py-{{section.settings.filter_bar_color}}">
     <div class="coll-filters__wrapper">
       <form class="coll-filter-drawer__form">
 
@@ -52,7 +52,7 @@
             <span class="coll-filter-drawer__item-heading">Sort By </span> <span class="selected-values"></span>
             <svg viewBox="0 0 9 4" class="css-1nown46 e27xunx0"><path d="M8.19629 0L4.19629 4L0.196289 0H8.19629Z"></path></svg>
           </div>
-          <div class="filter-group-display py-{{section.settings.filter_bg_color}}">
+          <div class="filter-group-display py-{{section.settings.filter_bar_bg_color}}">
             <div class='option-heading'>Sort By: <div class="close-draw"><svg viewBox="0 0 10 10" width="11" stroke="#000000" stroke-width="1px"><path d="M1,1 L10,10"></path><path d="M10,1 L1,10"></path></svg></div></div>
             <ul class="option-list">
               {%- for option in collection.sort_options -%}
@@ -74,7 +74,7 @@
             {%- assign type = filter.label | downcase | strip -%}
           </div>
 
-          <div class="filter-group-display py-{{section.settings.filter_bg_color}}" filter-type="{{filter.type}}">
+          <div class="filter-group-display py-{{section.settings.filter_bar_bg_color}}" filter-type="{{filter.type}}">
             <div class='option-heading'><span class="go-back-option"><span class='mobile-only'>← Filter by </span> {{ filter.label }}:</span> <span class='reset_filter'>Reset</span></div>
             {%- case filter.type -%}
             {%- when 'list' -%}
@@ -99,7 +99,7 @@
               {%- endfor -%}
             </ul>
             {%- when 'price_range' -%}
-            <div class="filter-group-display__price-range py-{{section.settings.filter_bg_color}}">
+            <div class="filter-group-display__price-range py-{{section.settings.filter_bar_bg_color}}">
               <div class="filter-group-display__price-range-item filter-group-display__price-range-from">
                 <span>{{ cart.currency.symbol }}</span>
 

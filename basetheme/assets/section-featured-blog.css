@@ -71,7 +71,7 @@
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .blog__posts.articles-wrapper {
     padding-bottom: 0;
   }
@@ -114,7 +114,7 @@
   }
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@media screen and (min-width: 750px) and (max-width: 799px) {
   .slider.blog__posts--1-items,
   .slider.blog__posts--2-items {
     padding-bottom: 0;

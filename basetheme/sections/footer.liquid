@@ -238,43 +238,43 @@
 
 {% schema %}
 {
-  "name": "footer",
+  "name": "t:sections.footer.name",
   "blocks": [
     {
       "type": "link_list",
-      "name": "Menu",
+      "name": "t:sections.footer.blocks.link_list.name",
       "settings": [
         {
           "type": "text",
           "id": "heading",
           "default": "Quick links",
-          "label": "Heading",
-          "info": "A heading is required to display the menu."
+          "label": "t:sections.footer.blocks.link_list.settings.heading.label",
+          "info": "t:sections.footer.blocks.link_list.settings.heading.info"
         },
         {
           "type": "link_list",
           "id": "menu",
           "default": "footer",
-          "label": "Menu",
-          "info": "Displays only top-level menu items."
+          "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+          "info": "t:sections.footer.blocks.link_list.settings.menu.info"
         }
       ]
     },
     {
       "type": "text",
-      "name": "Text",
+      "name": "t:sections.footer.blocks.text.name",
       "settings": [
         {
           "type": "text",
           "id": "heading",
           "default": "Heading",
-          "label": "Heading"
+          "label": "t:sections.footer.blocks.text.settings.heading.label"
         },
         {
           "type": "richtext",
           "id": "subtext",
           "default": "<p>Share store details, promotions, or brand content with your customers.</p>",
-          "label": "Subtext"
+          "label": "t:sections.footer.blocks.text.settings.subtext.label"
         }
       ]
     }
@@ -290,36 +290,60 @@
           "value": "none"
         },
         {
-          "label": "Background Dark",
+          "label": "Dark",
           "value": "bg-c-dark"
         },
         {
-          "label": "Background Average",
+          "label": "Average",
           "value": "bg-c-average"
         },
         {
-          "label": "Background Light",
+          "label": "Light",
           "value": "bg-c-light"
         }
       ],
-      "default": "bg-c-light"
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "color",
+      "label": "Color",
+      "options": [
+        {
+          "label": "None",
+          "value": "none"
+        },
+        {
+          "label": "Dark",
+          "value": "c-dark"
+        },
+        {
+          "label": "Average",
+          "value": "c-average"
+        },
+        {
+          "label": "Light",
+          "value": "c-light"
+        }
+      ],
+      "default": "none"
     },
     {
       "type": "header",
-      "content": "Email Signup",
-      "info": "Subscribers added to your “accepted marketing” [customer list.](https://help.shopify.com/en/manual/customers/manage-customers)"
+      "content": "t:sections.footer.settings.header__1.content",
+      "info": "t:sections.footer.settings.header__1.info"
     },
     {
       "type": "checkbox",
       "id": "newsletter_enable",
       "default": true,
-      "label": "Show email signup"
+      "label": "t:sections.footer.settings.newsletter_enable.label"
     },
     {
       "type": "text",
       "id": "newsletter_heading",
       "default": "Sign up to our emails",
-      "label": "Heading"
+      "label": "t:sections.footer.settings.newsletter_heading.label"
     },
     {
       "type": "textarea",
@@ -329,68 +353,54 @@
     },
     {
       "type": "header",
-      "content": "Social media icons",
-      "info": "To display your social media accounts, link them in your theme settings."
+      "content": "t:sections.footer.settings.header__2.content",
+      "info": "t:sections.footer.settings.header__2.info"
     },
     {
       "type": "checkbox",
       "id": "show_social",
       "default": false,
-      "label": "Show social media icons"
+      "label": "t:sections.footer.settings.show_social.label"
     },
     {
       "type": "header",
-      "content": "Country/region selector",
-      "info": "To add a country/region, go to your [payment settings.](/admin/settings/payments)"
+      "content": "t:sections.footer.settings.header__3.content",
+      "info": "t:sections.footer.settings.header__4.info"
     },
     {
       "type": "checkbox",
       "id": "enable_country_selector",
       "default": true,
-      "label": "Enable country/region selector"
+      "label": "t:sections.footer.settings.enable_country_selector.label"
     },
     {
       "type": "header",
-      "content": "Language selector",
-      "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
+      "content": "t:sections.footer.settings.header__5.content",
+      "info": "t:sections.footer.settings.header__6.info"
     },
     {
       "type": "checkbox",
       "id": "enable_language_selector",
       "default": true,
-      "label": "Enable language selector"
+      "label": "t:sections.footer.settings.enable_language_selector.label"
     },
     {
       "type": "header",
-      "content": "Payment methods"
+      "content": "t:sections.footer.settings.header__7.content"
     },
     {
       "type": "checkbox",
       "id": "payment_enable",
       "default": true,
-      "label": "Show payment icons"
+      "label": "t:sections.footer.settings.payment_enable.label"
     }
   ],
-  "presets": [
-    {
-      "name": "footer",
-      "blocks": [
-        {
-          "type": "text",
-          "settings": {
-            "heading": "ABOUT 437",
-            "subtext": "<p><a href=\"https://shop437.com/pages/our-story\" target=\"_self\" title=\"Our Story New\">OUR STORY</a></p><p><a href=\"https://shop437.com/blogs/press\" target=\"_self\" title=\"https://shop437.com/blogs/press\">PRESS</a></p><p><a href=\"https://shop437.com/blogs/blog/\" target=\"_self\" title=\"https://shop437.com/blogs/blog/\">BLOG</a></p><p><a href=\"https://shop437.com/pages/careers\" target=\"_self\" title=\"https://shop437.com/pages/careers\">CAREERS</a></p><p><a href=\"https://shop437.com/pages/newsletter-signup\" target=\"_self\" title=\"https://shop437.com/pages/newsletter-signup\">NEWSLETTER</a></p><p><a href=\"https://shop437.com/pages/privacy-policy\" target=\"_self\" title=\"https://shop437.com/pages/privacy-policy\">PRIVACY POLICY</a></p><p><a href=\"https://shop437.com/pages/terms-conditions-2\" target=\"_self\" title=\"https://shop437.com/pages/terms-conditions-2\">TERMS &amp; CONDITIONS</a></p><p><a href=\"/pages/sustainability\" title=\"SUSTAINABILITY\">SUSTAINABILITY</a></p>"
-          }
-        },
-        {
-          "type": "text",
-          "settings": {
-            "heading": "ORDER INFORMATION",
-            "subtext": "<p><a href=\"https://shop437.com/pages/faqs\" target=\"_self\" title=\"https://shop437.com/pages/faqs\">FAQ</a></p><p><a href=\"https://shop437.com/pages/contact\" target=\"_self\" title=\"https://shop437.com/pages/contact\">CONTACT</a></p><p><a href=\"https://shop437.com/blogs/try-on-reviews\" target=\"_self\" title=\"https://shop437.com/blogs/try-on-reviews\">TRY ON REVIEWS</a></p><p><a href=\"https://shop437.com/pages/customer-care\" target=\"_self\" title=\"https://shop437.com/pages/customer-care\">SIZING &amp; SUIT CARE</a></p><p><a href=\"https://shop437.com/pages/shipping\" title=\"https://shop437.com/pages/shipping\">SHIPPING &amp; RETURNS POLICY</a></p><p><a href=\"https://returns.shop437.com/#/\" target=\"_blank\" title=\"https://returns.shop437.com/#/\">START A RETURN</a></p><p><a href=\"https://shop437.com/pages/437fam\" target=\"_self\" title=\"Become a 437 affiliate today and joing the #437FAM\">#437FAM</a></p><p><a href=\"https://shop437.com/products/437-gift-card?_pos=1&amp;_sid=ba36d4920&amp;_ss=r\" target=\"_self\" title=\"https://shop437.com/products/437-gift-card?_pos=1&amp;_sid=ba36d4920&amp;_ss=r\">GIFT CARDS</a></p>"
-          }
-        }
-      ]
-    }
-  ]
+  "default": {
+    "blocks": [
+      {
+        "type": "link_list"
+      }
+    ]
+  }
 }
 {% endschema %}

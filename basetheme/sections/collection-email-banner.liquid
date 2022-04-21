@@ -39,7 +39,7 @@
 
 {% schema %}
 {
-  "name": "collection email banner",
+  "name": "Collection Email",
   "blocks": [
     {
       "type": "collection",
@@ -83,9 +83,36 @@
           "default": "70vh"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "w_bg_color",
-          "label": "Background"
+          "label": "Background",
+          "options": [          
+              {
+                "label": "Transparent",
+                "value": "transparent"
+              },        
+              {
+                "label": "Dark",
+                "value": "var(--py-bg-color-dark)"
+              },
+              {
+                "label": "Middle Dark",
+                "value": "var(--py-bg-color-middle-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-bg-color-avarge)"
+              },
+              {
+                "label": "Middle Light",
+                "value": "var(--py-bg-color-middle-light)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-bg-color-light)"
+              }
+            ],
+          "default": "transparent"
         },
         {
           "type": "image_picker",
@@ -98,15 +125,15 @@
           "options": [
             {
               "label": "Content",
-              "value": "content"
+              "value": "content"    
             },
             {
               "label": "Cover",
-              "value": "cover"
+              "value": "cover"    
             },
             {
               "label": "Repeat",
-              "value": "repeat"
+              "value": "repeat"    
             }
           ],
           "default": "cover",
@@ -118,15 +145,15 @@
           "options": [
             {
               "label": "Left",
-              "value": "flex-start"
+              "value": "flex-start"    
             },
             {
               "label": "Center",
-              "value": "center"
+              "value": "center"    
             },
             {
               "label": "Right",
-              "value": "flex-end"
+              "value": "flex-end"    
             }
           ],
           "default": "center",
@@ -138,15 +165,15 @@
           "options": [
             {
               "label": "Top",
-              "value": "flex-start"
+              "value": "flex-start"    
             },
             {
               "label": "Center",
-              "value": "center"
+              "value": "center"    
             },
             {
               "label": "Bottom",
-              "value": "flex-end"
+              "value": "flex-end"    
             }
           ],
           "default": "center",
@@ -209,9 +236,24 @@
           "default": "0 0 20px 0"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "t_color",
-          "label": "Color"
+          "label": "Content Color",
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-light)"
         },
         {
           "type": "header",
@@ -228,9 +270,36 @@
           "default": "50vh"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "w_m_bg_color",
-          "label": "Background"
+          "label": "Background Color",
+          "options": [          
+              {
+                "label": "Transparent",
+                "value": "transparent"
+              },        
+              {
+                "label": "Dark",
+                "value": "var(--py-bg-color-dark)"
+              },
+              {
+                "label": "Middle Dark",
+                "value": "var(--py-bg-color-middle-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-bg-color-avarge)"
+              },
+              {
+                "label": "Middle Light",
+                "value": "var(--py-bg-color-middle-light)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-bg-color-light)"
+              }
+            ],
+          "default": "transparent"
         },
         {
           "type": "image_picker",
@@ -243,15 +312,15 @@
           "options": [
             {
               "label": "Content",
-              "value": "content"
+              "value": "content"    
             },
             {
               "label": "Cover",
-              "value": "cover"
+              "value": "cover"    
             },
             {
               "label": "Repeat",
-              "value": "repeat"
+              "value": "repeat"    
             }
           ],
           "default": "cover",
@@ -263,15 +332,15 @@
           "options": [
             {
               "label": "Left",
-              "value": "flex-start"
+              "value": "flex-start"    
             },
             {
               "label": "Center",
-              "value": "center"
+              "value": "center"    
             },
             {
               "label": "Right",
-              "value": "flex-end"
+              "value": "flex-end"    
             }
           ],
           "default": "center",
@@ -283,15 +352,15 @@
           "options": [
             {
               "label": "Top",
-              "value": "flex-start"
+              "value": "flex-start"    
             },
             {
               "label": "Center",
-              "value": "center"
+              "value": "center"    
             },
             {
               "label": "Bottom",
-              "value": "flex-end"
+              "value": "flex-end"    
             }
           ],
           "default": "center",
@@ -353,9 +422,24 @@
           "default": "0 0 20px 0"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "t_m_color",
-          "label": "Color"
+          "label": "Content Color",
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-light)"
         }
       ]
     }

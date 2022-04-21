@@ -84,7 +84,7 @@
   margin: 2rem 0 0 auto;
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@media screen and (min-width: 750px) and (max-width: 799px) {
   .cart-item cart-remove-button {
     width: 4.5rem;
     height: 4.5rem;
@@ -273,7 +273,7 @@ cart-remove-button .icon-remove {
   }
   
 }
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .cart-item .cart-item__quantity,
   .cart-items .cart-items__heading--wide {
     padding-left: 10rem;

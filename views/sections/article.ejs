@@ -1,0 +1,262 @@
+<link rel="stylesheet" href="/assets/section-blog-post.css">
+<style>
+  @media(min-width:800px){
+  .py-horizontal{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .py-horizontal>div{
+      width:48%;
+  }
+  }
+</style>
+<article class="article-template <% if(section.settings.layout === 'horizontal'){ %> py-<%=section.settings.page_width%><% } %>" itemscope itemtype="http://schema.org/BlogPosting">
+<div class="main-content-container py-<%=section.settings.layout%>">
+  <% section.blocks.forEach((block, index)=>{ %>
+    <% if(block.type === 'featured_image'){ %>
+        <% if(article?.image){ %>
+        <style>
+          <% if(block.settings.image_display === 'repeat'){ %>
+          .article-template__hero-container img{
+            visibility: hidden;
+          }
+          .article-template__hero-container .media{
+            background-image:url(<%= article?.image %>);
+            background-repeat:repeat;
+          }
+          .py-width-full.article-template__hero-container{
+            max-width:100%;
+          }
+          <% } %>
+          <% if(block.settings.image_height !== 'default'){ %>
+          .article-template__hero-container .media{
+            padding-bottom:<%=block.settings.image_height%>;
+          }
+          <% } %>
+        </style>
+          <div class="article-template__hero-container py-width-<%=block.settings.image_width%> <% if(section.settings.layout === 'vertical' && block.settings.image_width !== 'full'){ %> py-<%=section.settings.page_width%><% } %>">
+            <div class="article-template__hero-<%= block.settings.image_display %> media"
+              itemprop="image"
+              <% if(block.settings.image_height === 'default' && article?.image){ %> style="padding-bottom: <%= 1 / article?.image.aspect_ratio * 100 %>%;"<% } %>
+            >
+              <img srcset="<% if(article?.image.width >= 350){ %><%= article?.image.src %> 350w,<% } %>
+                  <% if(article?.image.width >= 700){ %><%= article?.image.src %> 700w,<% } %>
+                  <% if(article?.image.width >= 749){ %><%= article?.image.src %> 749w,<% } %>
+                  <% if(article?.image.width >= 1498){ %><%= article?.image.src %> 1498w,<% } %>
+                  <% if(article?.image.width >= 1100){ %><%= article?.image.src %> 1100w,<% } %>
+                  <% if(article?.image.width >= 2200){ %><%= article?.image.src %> 2200w,<% } %>"
+                sizes="(min-width: 1200px) 1100px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+                src="<%= article?.image.src %>"
+                loading="lazy"
+                width="<%= article?.image.width %>"
+                height="<%= article?.image.height %>"
+                alt="<%= article?.image.alt %>">
+            </div>
+          </div>
+        <% } %>
+     <% } %>
+  <% }) %>
+  <div class="article-template__content-container <% if(section.settings.layout === 'vertical'){ %> py-<%=section.settings.page_width%><% } %>">
+  <% section.blocks.forEach((block, index) => { %>
+    <% if(block.type === 'title'){ %>
+        <style>
+          .article-template__title{
+            font-size:<%=block.settings.title_font_size%>px;
+            color:<%=block.settings.title_color%>;
+            text-align:<%=block.settings.title_align%>;
+          }
+          .blog-date{
+            font-size:<%=block.settings.date_font_size%>px;
+            color:<%=block.settings.date_color%>;
+            text-align:<%=block.settings.date_align%>;
+          }
+          .blog-author{
+            font-size:<%=block.settings.author_font_size%>px;
+            color:<%=block.settings.author_color%>;
+            text-align:<%=block.settings.author_align%>;
+          }          
+        </style>
+          <header class="page-width">
+            <h1 class="article-template__title" itemprop="headline"><%= article?.title %></h1>
+            <% if(block.settings.blog_show_date){ %>
+              <p class="caption-with-letter-spacing blog-date" itemprop="dateCreated pubdate datePublished"><%= article?.published_at %></p>
+            <% } %>
+            <% if(block.settings.blog_show_author){ %>
+              <p class="caption-with-letter-spacing blog-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name"><%= article?.author %></span>
+              </p>
+            <% } %>
+          </header>
+
+        <% } else if(block.type === 'content'){ %>
+           <style>              
+              .article-template__content{
+                font-size:<%=block.settings.content_font_size%>px;
+                color:<%=block.settings.content_color%>;
+                text-align:<%=block.settings.content_align%>;
+              }
+          </style>
+          <div class="article-template__content page-width rte" itemprop="articleBody">
+              <%- article?.content -%>
+          </div>
+
+        <% } else if(block.type === 'social_sharing'){ %>
+          <div class="article-template__social-sharing page-width">
+            <% include('../snippets/social-sharing', {share_title: article?.title, share_permalink: article?.url, share_image: article?.image}) %>
+          </div>
+        <% } %>
+  <% }) %>
+  </div>
+  </div>
+  <div class="center py-pd-y-l">
+    <a href="<%= blog?.url %>" class="article-template__link link">
+      <% include('../snippets/icon-arrow') %>
+      <%= blog?.title %>
+    </a>
+  </div>
+  <% if(blog?.comments_enabled){ %>
+    <div class="article-template__comment-wrapper background-secondary">
+      <div id="comments" class="page-width">
+        <% if(article?.comments_count > 0){ %>
+          <% var anchorId = '#Comments-' + article?.id %>
+
+          <h2 id="Comments-<%= article?.id %>"><%= article?.comments_count %></h2>
+          <%# paginate article?.comments by 5 %>
+            <div class="article-template__comments">
+              <% if(comment.status === 'pending' && comment.content){ %>
+                <article id="<%= comment.id %>" class="article-template__comments-comment">
+                  <%= comment.content %>
+                  <footer class="right">
+                    <span class="circle-divider caption-with-letter-spacing"><%= comment.author %></span>
+                  </footer>
+                </article>
+              <% } %>
+
+              <% article?.comments.forEach((comment,index)=>{ %>
+                <article id="<%= comment.id %>" class="article-template__comments-comment">
+                  <%= comment.content %>
+                  <footer class="right">
+                    <span class="circle-divider caption-with-letter-spacing"><%= comment.author %></span><span class="caption-with-letter-spacing"><%= comment.created_at %></span>
+                  </footer>
+                </article>
+              <% }) %>
+              <% include('../snippets/pagination', {paginate: paginate, anchor: anchorId}) %>
+            </div>
+          <%# endpaginate %>
+        <% } %>
+        <form>
+          <%
+            var post_message = 'blogs.article?.success'
+            if(blog?.moderated && comment.status === 'unapproved'){
+              post_message = 'blogs.article?.success_moderated'
+            }
+          %>
+          <h2>title</h2>
+          <% if(form.errors){ %>
+            <div class="form__message" role="alert">
+              <h3 class="form-status caption-large" tabindex="-1" autofocus>
+                <% include('../snippets/icon-error') %> Error heading
+              </h3>
+            </div>
+            <ul class="form-status-list caption-large">
+              <% form.errors.forEach((field, index)=>{ %>
+                <li>
+                  <a href="#CommentForm-<%= field %>" class="link">
+                    <% if(form.errors.translated_fields[field].indexOf('author') !== -1){ %>
+                      <%= 'blogs.article?.name' | t %>
+                    <% } else if(form.errors.translated_fields[field].indexOf('body') !== -1){ %>
+                     <%= 'blogs.article?.message' | t %>
+                    <% } else { %>
+                      <%= form.errors.translated_fields[field] %>
+                    <% } %>
+                    <%= form.errors.messages[field] %>
+                  </a>
+                </li>
+              <% }) %>
+            </ul>
+          <% } else if(form.posted_successfully){ %>
+            <div class="form-status-list form__message" role="status">
+              <h3 class="form-status" tabindex="-1" autofocus><% include('../snippets/icon-success') %> <%= post_message %></h3>
+            </div>
+          <% } %>
+
+          <div <% if(blog?.moderated === false){ %> class="article-template__comments-fields"<% } %>>
+            <div class="article-template__comment-fields">
+              <div class="field field--with-error">
+                <input
+                  type="text"
+                  name="comment[author]"
+                  id="CommentForm-author"
+                  class="field__input"
+                  autocomplete="name"
+                  value="<%= form.author %>"
+                  aria-required="true"
+                  <% if(form.errors.indexOf('author') !== -1){ %>
+                    aria-invalid="true"
+                    aria-describedby="CommentForm-author-error"
+                  <% } %>
+                  placeholder="name"
+                >
+                <label class="field__label" for="CommentForm-author">name<span aria-hidden="true">*</span></label>
+                <% if(form.errors.indexOf('author') !== -1){ %>
+                  <small id="CommentForm-author-error">
+                    <span class="form__message"><% include('../snippets/icon-error') %>name<%= form.errors.messages['author'] %>.</span>
+                  </small>
+                <% } %>
+              </div>
+              <div class="field field--with-error">
+                <input
+                  type="email"
+                  name="comment[email]"
+                  id="CommentForm-email"
+                  autocomplete="email"
+                  class="field__input"
+                  value="<%= form.email %>"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  aria-required="true"
+                  <% if(form.errors.indexOf('email') !== -1){ %>
+                    aria-invalid="true"
+                    aria-describedby="CommentForm-email-error"
+                  <% } %>
+                  placeholder="email"
+                >
+                <label class="field__label" for="CommentForm-email">email<span aria-hidden="true">*</span></label>
+                <% if(form.errors.indexOf('email') !== -1){ %>
+                  <small id="CommentForm-email-error">
+                    <span class="form__message"><% include('../snippets/icon-error') %>email <%= form.errors.messages['email'] %>.</span>
+                  </small>
+                <% } %>
+              </div>
+            </div>
+            <div class="field field--with-error">
+              <textarea
+                rows="5"
+                name="comment[body]"
+                id="CommentForm-body"
+                class="text-area field__input"
+                aria-required="true"
+                <% if(form.errors.indexOf('body') !== -1){ %>
+                  aria-invalid="true"
+                  aria-describedby="CommentForm-body-error"
+                <% } %>
+                placeholder="message"
+              ><%= form.body %></textarea>
+                <label class="form__label field__label" for="CommentForm-body">message <span aria-hidden="true">*</span></label>
+            </div>
+            <% if(form.errors.indexOf('body') !== -1){ %>
+              <small id="CommentForm-body-error">
+                <span class="form__message"><% include('../snippets/icon-error') %>message <%= form.errors.messages['body'] %>.</span>
+              </small>
+            <% } %>
+          </div>
+          <% if(blog?.moderated){ %>
+            <p class="article-template__comment-warning caption">moderated</p>
+          <% } %>
+          <input type="submit" class="button" value="post">
+        </form>
+      </div>
+  </div>
+  <% } %>
+</article>

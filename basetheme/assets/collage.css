@@ -58,7 +58,7 @@
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .collage {
     grid-template-columns: minmax(auto, 73rem) minmax(30rem, 36rem);
   }
@@ -469,7 +469,7 @@
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .collage-video__modal-toggle {
     right: 4.3rem;
     top: 3rem;
@@ -497,7 +497,7 @@
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .collage-video__modal-video {
     width: calc(100% - 8.6rem);
     height: calc(100% - 7rem);

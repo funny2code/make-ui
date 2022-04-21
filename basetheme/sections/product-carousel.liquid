@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="preload" href="{{ 'component-card-style-1.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="{{ 'component-product-card-style-1.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{{ 'component-price-style-1.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="stylesheet" href="{{ 'component-badge.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="preload" href="{{ 'component-rte.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -7,7 +7,7 @@
 <link rel="preload" href="{{ 'component-product-carousel.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{{ 'component-modal-quickview.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-<noscript>{{ 'component-card-style-1.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-product-card-style-1.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-variants.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
@@ -88,19 +88,19 @@
 
 {% schema %}
 {
-  "name": "product carousel",
+  "name": "Product Carousel",
   "tag": "section",
   "settings": [
     {
       "type": "text",
       "id": "title",
       "default": "Featured collection",
-      "label": "Heading"
+      "label": "t:sections.featured-collection.settings.title.label"
     },
     {
       "type": "collection",
       "id": "collection",
-      "label": "Collection"
+      "label": "t:sections.featured-collection.settings.collection.label"
     },
     {
       "type": "range",
@@ -124,7 +124,7 @@
       "type": "checkbox",
       "id": "show_view_all",
       "default": true,
-      "label": "Enable \"View all\" button if collection has more products than shown"
+      "label": "t:sections.featured-collection.settings.show_view_all.label"
     },
     {
       "type": "checkbox",
@@ -134,7 +134,7 @@
     },
     {
       "type": "header",
-      "content": "Product card"
+      "content": "t:sections.featured-collection.settings.header.content"
     },
     {
       "type": "select",
@@ -142,31 +142,31 @@
       "options": [
         {
           "value": "adapt",
-          "label": "Adapt to image"
+          "label": "t:sections.featured-collection.settings.image_ratio.options__1.label"
         },
         {
           "value": "portrait",
-          "label": "Portrait"
+          "label": "t:sections.featured-collection.settings.image_ratio.options__2.label"
         },
         {
           "value": "square",
-          "label": "Square"
+          "label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
         }
       ],
-      "default": "portrait",
-      "label": "Image ratio"
+      "default": "adapt",
+      "label": "t:sections.featured-collection.settings.image_ratio.label"
     },
     {
       "type": "checkbox",
       "id": "show_secondary_image",
       "default": false,
-      "label": "Show second image on hover"
+      "label": "t:sections.featured-collection.settings.show_secondary_image.label"
     },
     {
       "type": "checkbox",
       "id": "show_vendor",
       "default": false,
-      "label": "Show vendor"
+      "label": "t:sections.featured-collection.settings.show_vendor.label"
     }
   ],
   "presets": [

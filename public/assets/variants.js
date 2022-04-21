@@ -69,6 +69,7 @@ class VariantSelects extends HTMLElement {
       if (this.currentVariant?.available) {
         pickUpAvailability.fetchAvailability(this.currentVariant.id);	
       } else {
+        document.querySelector('.pickup-card-wrapper').classList.remove('available');
         pickUpAvailability.removeAttribute('available');
         pickUpAvailability.innerHTML = '';
       }
@@ -91,7 +92,7 @@ class VariantSelects extends HTMLElement {
           document.getElementById('bc-order-id').innerHTML = '';
         } else { 
           this.toggleAddButton(true, variantStrings.soldOut);
-          let htmlNew = `<div class="bc-order-wrapper">
+          let htmlNew = `<div class="bc-order-wrapper sold-out-card">
                         <h3 class="title">Sold Out</h3>
                         <p class="message">Sorry, ${this.currentVariant?.name.replace(this.currentVariant?.title, '')} is sold out in size ${this.currentVariant?.title}.</p>
                       </div>`;

@@ -456,6 +456,7 @@ class ModalDialog extends HTMLElement {
     this.setAttribute('open', '');
     this.querySelector('.template-popup')?.loadContent();
     trapFocus(this, this.querySelector('[role="dialog"]'));
+    if(document.querySelector('.product__info-container--sticky') !== null) document.querySelector('.product__info-wrapper').style.zIndex = '11';
   }
 
   hide() {
@@ -463,6 +464,7 @@ class ModalDialog extends HTMLElement {
     this.removeAttribute('open');
     removeTrapFocus(this.openedBy);
     window.pauseAllMedia();
+    if(document.querySelector('.product__info-container--sticky') !== null) document.querySelector('.product__info-wrapper').style.zIndex = '0';
   }
 }
 customElements.define('modal-dialog', ModalDialog);

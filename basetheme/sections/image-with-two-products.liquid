@@ -1,8 +1,8 @@
 {{ 'main-image-with-two-products.css' | asset_url | stylesheet_tag }}
-<link rel="preload" href="{{ 'component-card-style-1.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="{{ 'component-product-card-style-1.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{{ 'component-price-style-1.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{{ 'component-variants.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript>{{ 'component-card-style-1.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-product-card-style-1.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-price-style-1.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-variants.css' | asset_url | stylesheet_tag }}</noscript>
 
@@ -64,7 +64,7 @@
 
 {% schema %}
 {
-  "name": "image with two products",
+  "name": "Image With Two Products",
   "tag": "section",
   "settings": [
     {
@@ -91,13 +91,27 @@
         }
       ],
       "label": "Image Position",
-      "default": "right"
+      "default": "left"
     },
     {
-      "type": "color",
+      "type": "select",
       "id": "color",
-      "label": "Content",
-      "default": "#000000"
+      "label": "Content Color",
+      "options": [ 
+         {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+         },
+         {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+         },
+         {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+         }
+       ],
+      "default": "var(--py-color-dark)"
     },
     {
       "type": "text",
@@ -174,46 +188,46 @@
       "id": "anim",
       "label": "Animation Type",
       "options": [
-        {
-          "value": "fade-up",
-          "label": "Fade In Up"
-        },
-        {
-          "value": "fade-down",
-          "label": "Fade In Down"
-        },
-        {
-          "value": "fade-right",
-          "label": "Fade In Right"
-        },
-        {
-          "value": "fade-left",
-          "label": "Fade In Left"
-        },
-        {
-          "value": "flip-up",
-          "label": "Flip In Up"
-        },
-        {
-          "value": "flip-down",
-          "label": "Flip In Down"
-        },
-        {
-          "value": "flip-left",
-          "label": "Flip In Left"
-        },
-        {
-          "value": "flip-right",
-          "label": "Flip In Right"
-        },
-        {
-          "value": "zoom-in",
-          "label": "Zoom In"
-        },
-        {
-          "value": "zoom-out",
-          "label": "Zoom Out"
-        }
+      {
+        "value": "fade-up",
+        "label": "Fade In Up"
+      },
+      {
+        "value": "fade-down",
+        "label": "Fade In Down"
+      },
+      {
+        "value": "fade-right",
+        "label": "Fade In Right"
+      },
+      {
+        "value": "fade-left",
+        "label": "Fade In Left"
+      },
+      {
+        "value": "flip-up",
+        "label": "Flip In Up"
+      },
+      {
+        "value": "flip-down",
+        "label": "Flip In Down"
+      },
+      {
+        "value": "flip-left",
+        "label": "Flip In Left"
+      },
+      {
+        "value": "flip-right",
+        "label": "Flip In Right"
+      },
+      {
+        "value": "zoom-in",
+        "label": "Zoom In"
+      },
+      {
+        "value": "zoom-out",
+        "label": "Zoom Out"
+      }
       ],
       "default": "zoom-in"
     }
@@ -235,19 +249,19 @@
           "options": [
             {
               "value": "adapt",
-              "label": "Adapt to image"
+              "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
             },
             {
               "value": "portrait",
-              "label": "Portrait"
+              "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
             },
             {
               "value": "square",
-              "label": "Square"
+              "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
             }
           ],
           "default": "square",
-          "label": "Image ratio"
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
         },
         {
           "type": "header",
@@ -264,46 +278,46 @@
           "id": "anim",
           "label": "Animation Type",
           "options": [
-            {
-              "value": "fade-up",
-              "label": "Fade In Up"
-            },
-            {
-              "value": "fade-down",
-              "label": "Fade In Down"
-            },
-            {
-              "value": "fade-right",
-              "label": "Fade In Right"
-            },
-            {
-              "value": "fade-left",
-              "label": "Fade In Left"
-            },
-            {
-              "value": "flip-up",
-              "label": "Flip In Up"
-            },
-            {
-              "value": "flip-down",
-              "label": "Flip In Down"
-            },
-            {
-              "value": "flip-left",
-              "label": "Flip In Left"
-            },
-            {
-              "value": "flip-right",
-              "label": "Flip In Right"
-            },
-            {
-              "value": "zoom-in",
-              "label": "Zoom In"
-            },
-            {
-              "value": "zoom-out",
-              "label": "Zoom Out"
-            }
+          {
+            "value": "fade-up",
+            "label": "Fade In Up"
+          },
+          {
+            "value": "fade-down",
+            "label": "Fade In Down"
+          },
+          {
+            "value": "fade-right",
+            "label": "Fade In Right"
+          },
+          {
+            "value": "fade-left",
+            "label": "Fade In Left"
+          },
+          {
+            "value": "flip-up",
+            "label": "Flip In Up"
+          },
+          {
+            "value": "flip-down",
+            "label": "Flip In Down"
+          },
+          {
+            "value": "flip-left",
+            "label": "Flip In Left"
+          },
+          {
+            "value": "flip-right",
+            "label": "Flip In Right"
+          },
+          {
+            "value": "zoom-in",
+            "label": "Zoom In"
+          },
+          {
+            "value": "zoom-out",
+            "label": "Zoom Out"
+          }
           ],
           "default": "zoom-in"
         }
@@ -312,7 +326,15 @@
   ],
   "presets": [
     {
-      "name": "Imagw with two products"
+      "name": "Imagw with two products",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
     }
   ]
 }

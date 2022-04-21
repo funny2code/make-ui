@@ -1,0 +1,178 @@
+<link rel="stylesheet" href="/assets/template-collection-style-1.css">
+
+<link rel="stylesheet" href="/assets/component-badge.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/component-product-card-style-1.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/component-price-style-1.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/component-search-style-1.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/assets/component-variants.css" media="print" onload="this.media='all'">
+
+<style>
+  .template-search__search {
+    margin: 0 auto;
+    max-width: 29.5rem;
+  }
+
+  .template-search__search .search {
+    margin-top: 3rem;
+  }
+
+  .template-search__results {
+    margin-top: 6rem;
+  }
+
+  .template-search--empty {
+    padding-bottom: 18rem;
+  }
+
+  @media screen && (min-width: 750px) {
+    .template-search__search {
+      max-width: 47.8rem;
+    }
+  }
+
+  .search__button .icon {
+    height: 1.8rem;
+  }
+</style>
+
+<div class="template-search <% if(!search?.performed && search?.results?.size === 0){ %> template-search--empty<% } %>">
+  <div class="page-width center">
+    <% if(search?.performed){ %>
+      <h1 class="h2">Title</h1>
+    <% } else { %>
+      <h1 class="h2">Search</h1>
+    <% } %>
+    <div class="template-search__search">
+      <form action="" method="get" role="search" class="search">
+        <div class="field">
+          <input
+            class="search__input field__input"
+            id="Search-In-Template"
+            type="search"
+            name="q"
+            value="<%= search?.terms %>"
+            <% if(search?.performed){ %>autofocus<% } %>
+            placeholder="search" autocomplete="off"
+          >
+          <label class="field__label" for="Search-In-Template" aria-hidden="true">Search</label>
+          <input type="hidden" name="type" value="product,page,article">
+          <input type="hidden" name="options[fields]" value="title,product_type,variants.title">
+          <input name="options[prefix]" type="hidden" value="last">
+          <button type="submit" class="search__button field__button focus-inset" aria-label="search">
+            <svg class="icon icon-search">
+              <use xlink:href="#icon-search">
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+    <% if(search?.performed){ %>
+      <p role="status" >
+        <% if(search?.results_count === 0){ %>
+          No Results
+        <% } else { %>
+        <span><span class="result_number"></span> results found for “ ... ”</span>        
+        <% } %>
+      </p>
+    <% } %>
+  </div>
+  <% if(search?.performed && search?.results.size > 0){ %>
+    <%# paginate search?.results by 100 %>
+      <div class="template-search__results page-width">
+        <ul class="grid grid--4-col-desktop grid--3-col-tablet grid--2-col grid--one-third-max grid--quarter-max negative-margin" role="list">
+          <% search?.results?.forEach((item, index)=>{ %>
+            <% if(item.object_type === 'product'){ %>                
+                <li aria-tags="<%=item.tags%>" class="search-result-items grid__item <% if(item.object_type !== 'product'){ %> grid__item--small<% } %>">
+                    <% var product_settings = section.settings.product_show_vendor ? 'vendor,': 'title,price' %>
+                    <%- include('../snippets/product-card', {
+                        product_card_product: item,
+                        media_size: section.settings.image_ratio,
+                        show_secondary_image: section.settings.show_secondary_image,
+                        enable_image_padding: section.settings.enable_image_padding,
+                        show_vendor: section.settings.show_vendor,
+                        show_colors: true
+                      })
+                    %>
+                    
+                    <% } else if(item.object_type === 'article'){ %>
+                      <a href="#" class="card-wrapper">
+                        <div class="card card--search card--soft<% if(!item.image){ %> card--text-only<% } %>">
+                          <div class="card__inner">
+                            <% if(item.image){ %>
+                              <div class="media media--cropped">
+                                <img
+                                  srcset="<% if(item.image.src.width >= 165){ %><%= item.image.src %> 165w,<% } %>
+                                      <% if(item.image.src.width >= 360){ %><%= item.image.src %> 268w,<% } %>
+                                      <% if(item.image.src.width >= 533){ %><%= item.image.src %> 357w,<% } %>
+                                      <% if(item.image.src.width >= 720){ %><%= item.image.src %> 536w,<% } %>
+                                      <% if(item.image.src.width >= 940){ %><%= item.image.src %> 714w<% } %>"
+                                  src="<%= item.image.src %>"
+                                  loading="lazy"
+                                  sizes="(min-width: 1200px) 268px, (min-width: 800px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                                  width="<%= item.image.src.width %>"
+                                  height="<%= item.image.src.height %>"
+                                  alt="<%= item.image.src.alt %>"
+                              >
+                              </div>
+                            <% } %>
+                            <div class="card__content">
+                              <h2 class="card__heading h3"><%= item.title %></h2>
+                              <div class="card-article-info caption-with-letter-spacing h5">
+                                <% if(section.settings.article_show_date){ %>
+                                  <span class="circle-divider"><%= item.published_at %></span>
+                                <% } %>
+                                <% if(section.settings.article_show_author){ %>
+                                  <span><%= item.author %></span>
+                                <% } %>
+                              </div>
+                            </div>
+                            <div class="card__badge">
+                              <span class="badge color-background-1">Blog</span>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    <% } else if(item.object_type === 'page'){ %>
+                      <a href="#" class="card-wrapper">
+                        <div class="card card--search card--soft card--text-only">
+                          <div class="card__inner">
+                            <div class="card__content"><h2 class="card__heading h3"><%= item.title %></h2></div>
+                            <div class="card__badge">
+                              <span class="badge color-background-1">Page</span>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                  
+                </li>
+            <% } %>
+          <% }) %>
+        </ul>
+        <%# if(paginate.pages > 1){ %>
+          <%# include('../snippets/pagination', paginate: paginate, class: 'pagination-wrapper-small' %>
+        <%# } %>
+      </div>
+    <%# endpaginate %>
+  <% } %>
+</div>
+<script>
+  if(document.querySelector('.search-modal__content .search-modal__form').hasAttribute('data-hide-tags')){
+      hide_tags = document.querySelector('.search-modal__content .search-modal__form').getAttribute('data-hide-tags').split('|');  
+      list_items =document.querySelectorAll('.search-result-items');
+      for (i = 0; i < list_items.length; i++) {
+        for(j = 0; j < hide_tags.length; j++ ){
+          if(list_items[i].getAttribute('aria-tags').indexOf(hide_tags[j])>=0){
+            list_items[i].classList.add("hide");
+            break;
+          }
+        }
+      }
+
+    }document.querySelector('.result_number').innerText = document.querySelectorAll('.search-result-items:not(.hide)').length
+    
+</script>
+<style>
+  .search-result-items.hide{
+    display:none;
+  }
+</style>

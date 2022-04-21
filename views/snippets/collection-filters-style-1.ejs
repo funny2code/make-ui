@@ -40,7 +40,7 @@
 
               <% section.blocks.forEach((block, index)=>{ %>                
               <% if(block?.type === 'filter'){ %>
-                <% var filterName = block?.settings?.label.toLowerCase() %>                              
+                <% var filterName = block?.settings?.label?.toLowerCase() %>                              
                 <% if(filterName === 'colors' || filterName === 'color'){  %>                
                   <details class="disclosure-has-popup facets__disclosure js-filter" data-index="tag-<%= index %>">
                     <summary class="facets__summary">
@@ -70,7 +70,7 @@
                                 value="<%= color %>"
                                 id="Filter-<%= block?.settings?.label %>-<%= index %>"
                                 onclick="selectOnlyThis(this,'Filter-<%= block?.settings?.label %>')"
-                                <% if(current_tags.includes(color)){ %>checked<% } %>
+                                <% if(current_tags && current_tags?.includes(color)){ %>checked<% } %>
                               >
 
                               <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -115,7 +115,7 @@
                                 value="<%= filterPrefix %><%= name %>"
                                 id="Filter-<%= block?.settings?.label %>-<%= index %>"
                                 onclick="selectOnlyThis(this,'Filter-<%= block?.settings?.label %>')"
-                                <% if(current_tags.includes(name)){ %>checked<% } %>
+                                <% if(current_tags && current_tags?.includes(name)){ %>checked<% } %>
                               >
 
                               <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -279,7 +279,7 @@
               <% } %>
             <% }) %>
             <% if(current_tags){ %>
-              <% current_tags.forEach((tag, index)=>{ %>
+              <% current_tags?.forEach((tag, index)=>{ %>
                 <a class="active-facets__button active-facets__button--light button button--tertiary js-facet-remove" href="<%= tag  %>" data-value="<%= tag  %>" data-type="<%= tag  %>">
                   <%= tag.replace("C_COVERAGES_", "").replace("C_FABRICS_", "").replace("C_TYPES_", "") %>
                   <%- include('./icon-close-small') %>
@@ -342,7 +342,7 @@
                           <% var filter_block = filter_block + 1 %>
                           <% var filterTagNames = block?.settings?.tags?.split('|') %>
                           <% var filterPrefix = block?.settings?.tag_prefix %>
-                          <% var filterName = block?.settings?.label.toLowerCase() %>                              
+                          <% var filterName = block?.settings?.label?.toLowerCase() %>                              
                           <% if(filterName === 'colors' || filterName === 'color'){  %>                
                             <details class="mobile-facets__details js-filter tag_filter" data-index="mobile-<%= index %>">
                               <summary class="mobile-facets__summary">
@@ -378,7 +378,7 @@
                                             value="<%= color %>"
                                             id="Filter-<%= block?.settings?.label  %>-mobile-<%= index %>"
                                             onclick="selectOnlyThis(this,'Filter-mobile-<%= block?.settings?.label %>')"
-                                            <% if(current_tags.includes(color)){ %>checked<% } %>                                        
+                                            <% if(current_tags && current_tags?.includes(color)){ %>checked<% } %>                                        
                                           >
 
                                           <span class="mobile-facets__highlight"></span>
@@ -426,7 +426,7 @@
                                           value="<%= filterPrefix %><%= name %>"
                                           id="Filter-<%= block?.settings?.label %>-mobile-<%= index %>"
                                           onclick="selectOnlyThis(this,'Filter-mobile-<%= block?.settings?.label %>')"
-                                          <% if(current_tags.includes(name)){ %>checked<% } %>                                        
+                                          <% if(current_tags && current_tags?.includes(name)){ %>checked<% } %>                                        
                                         >
       
                                         <span class="mobile-facets__highlight"></span>
@@ -613,7 +613,7 @@
           <% } %>
         <% }) %>
         <% if(current_tags){ %>
-          <% current_tags.forEach((tag, index)=>{ %>
+          <% current_tags?.forEach((tag, index)=>{ %>
             <a class="active-facets__button active-facets__button--light button button--tertiary js-facet-remove" href="<%= tag  %>" data-type="<%= tag  %>" data-value="<%= tag  %>">
               <%= tag.replace("C_COVERAGES_","").replace("C_FABRICS_","").replace("C_TYPES_","")  %>
               <%- include('./icon-close-small') %>

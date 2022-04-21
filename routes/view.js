@@ -3,8 +3,13 @@ const router = express.Router();
 const makeMenu = require('../config/menu');
 const shop = require('../config/shop');
 const collection = require('../config/collection');
+const collections = require('../config/collections');
 const product = require('../config/product');
 const cart = require('../config/cart');
+const blog = require('../config/blogs');
+const article = require('../config/article');
+const customer = require('../config/customer');
+const gift = require('../config/gift');
 const modelThemes = require('../models/themes');
 
 /* GET theme settings and sections for Iframe View. */
@@ -55,7 +60,7 @@ router.get('/:id', async (req, res, next) => {
           sectionSettings.push({ name: item.name, settings: sectionChildSettings, blocks: blocks });
         }
       });
-    } else if (global !== 'Cart') {
+    } else if (global === 'Global Styles' || global === undefined) {
       theme.theme_pag.map(pageItem => {
         if (pageItem.name === page) {
           pageItem.items.forEach(item => {
@@ -90,8 +95,14 @@ router.get('/:id', async (req, res, next) => {
       menu: makeMenu,
       shop: shop,
       collection: collection,
+      collections: collections,
       product: product,
       cart: cart,
+      blog: blog,
+      article: article,
+      customer: customer,
+      gift: gift,
+      component: global,
       settings: settings,
       sections: sectionSettings
     });
@@ -122,7 +133,7 @@ router.post('/:id', async (req, res, next) => {
     const defaultSettings = {}; 
     const defaultSections = [];
 
-    theme?.settings && theme.settings.map(el => {
+    theme?.theme_set && theme.theme_set.map(el => {
       if (el.settings) {
         for (var k in el.settings) {
           settings?.length ? Object.keys(settings[0]).length && settings[0][el.settings[k].id]
@@ -156,7 +167,7 @@ router.post('/:id', async (req, res, next) => {
           defaultSections.push({ name: el.name, settings: sectionChildSettings, blocks: blocks });
         }
       });
-    } else if (global !== 'Cart') {
+    } else if (global === 'Global Styles' || global === undefined) {
       theme?.theme_pag.map(pageName => {
         if(pageName === page){
           theme?.theme_pag?.items.map(item => {
@@ -201,9 +212,15 @@ router.post('/:id', async (req, res, next) => {
     res.render('view', {
       menu: makeMenu,
       shop: shop,
+      collections: collections,
       collection: collection,
       product: product,
       cart: cart,
+      blog: blog,
+      article: article,
+      customer: customer,
+      gift: gift,
+      component: global,
       settings: defaultSettings,
       sections: defaultSections
     });

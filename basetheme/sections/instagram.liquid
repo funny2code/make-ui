@@ -26,7 +26,7 @@
 
 {% schema %}
 {
-  "name": "instagram",
+  "name": "Instagram",
   "tag": "section",
   "settings": [
     {
@@ -51,9 +51,24 @@
       "content": "Desktop Settings"
     },
     {
-      "type": "color",
+      "type": "select",
       "id": "color",
-      "label": "Text Color"
+      "label": "Text Color",
+      "options": [ 
+         {
+           "label": "Dark",
+           "value": "var(--py-color-dark)"
+         },
+         {
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
+         }
+        ],
+      "default": "var(--py-color-dark)"
     },
     {
       "type": "text",
@@ -70,9 +85,24 @@
       "content": "Mobile Settings"
     },
     {
-      "type": "color",
+      "type": "select",
       "id": "m_color",
-      "label": "Text Color"
+      "label": "Text Color",
+      "options": [ 
+         {
+           "label": "Dark",
+           "value": "var(--py-color-dark)"
+         },
+         {
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
+         }
+        ],
+      "default": "var(--py-color-dark)"
     },
     {
       "type": "text",

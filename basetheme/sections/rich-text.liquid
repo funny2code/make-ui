@@ -25,7 +25,7 @@
 
 {% schema %}
 {
-  "name": "rich text",
+  "name": "t:sections.rich-text.name",
   "tag": "section",
   "settings": [
     {
@@ -38,27 +38,51 @@
       "label": "Background Color",
       "options": [
         {
-          "label": "None",
-          "value": "none"
-        },
-        {
           "label": "Unset",
-          "value": "unset"
+          "value": "bg-c-un"
         },
         {
-          "label": "Background Dark",
+          "label": "None",
+          "value": "bg-c-none"
+        },        
+        {
+          "label": "Dark",
           "value": "bg-c-dark"
         },
         {
-          "label": "Background Average",
+          "label": "Average",
           "value": "bg-c-average"
         },
         {
-          "label": "Background Light",
+          "label": "Light",
           "value": "bg-c-light"
         }
       ],
-      "default": "bg-c-light"
+      "default": "bg-c-un"
+    },
+    {
+      "type": "select",
+      "id": "color",
+      "label": "Color",
+      "options": [        
+        {
+          "label": "None",
+          "value": "c-none"
+        },        
+        {
+          "label": "Dark",
+          "value": "c-dark"
+        },
+        {
+          "label": "Average",
+          "value": "c-average"
+        },
+        {
+          "label": "Light",
+          "value": "c-light"
+        }
+      ],
+      "default": "c-dark"
     },
     {
       "type": "select",
@@ -70,15 +94,15 @@
           "value": "width-un"
         },
         {
-          "label": "Width Large",
+          "label": "Large",
           "value": "width-l"
         },
         {
-          "label": "Width Medium",
+          "label": "Medium",
           "value": "width-m"
         },
         {
-          "label": "Width Small",
+          "label": "Small",
           "value": "width-s"
         }
       ],
@@ -98,23 +122,23 @@
           "value": "mg-x-n"
         },
         {
-          "label": "Margin H XL",
+          "label": "XL",
           "value": "mg-x-xl"
         },
         {
-          "label": "Margin H L",
+          "label": "L",
           "value": "mg-x-l"
         },
         {
-          "label": "Margin H M",
+          "label": "M",
           "value": "mg-x-m"
         },
         {
-          "label": "Margin H S",
+          "label": "S",
           "value": "mg-x-s"
         },
         {
-          "label": "Margin H XS",
+          "label": "XS",
           "value": "mg-x-xs"
         }
       ],
@@ -134,23 +158,23 @@
           "value": "mg-y-n"
         },
         {
-          "label": "Margin V XL",
+          "label": "XL",
           "value": "mg-y-xl"
         },
         {
-          "label": "Margin V L",
+          "label": "L",
           "value": "mg-y-l"
         },
         {
-          "label": "Margin V M",
+          "label": "M",
           "value": "mg-y-m"
         },
         {
-          "label": "Margin V S",
+          "label": "S",
           "value": "mg-y-s"
         },
         {
-          "label": "Margin V XS",
+          "label": "XS",
           "value": "mg-y-xs"
         }
       ],
@@ -170,23 +194,23 @@
           "value": "pd-x-n"
         },
         {
-          "label": "Padding H XL",
+          "label": "XL",
           "value": "pd-x-xl"
         },
         {
-          "label": "Padding H L",
+          "label": "L",
           "value": "pd-x-l"
         },
         {
-          "label": "Padding H M",
+          "label": "M",
           "value": "pd-x-m"
         },
         {
-          "label": "Padding H S",
+          "label": "S",
           "value": "pd-x-s"
         },
         {
-          "label": "Padding H XS",
+          "label": "XS",
           "value": "pd-x-xs"
         }
       ],
@@ -206,27 +230,27 @@
           "value": "pd-y-n"
         },
         {
-          "label": "Padding V XL",
+          "label": "XL",
           "value": "pd-y-xl"
         },
         {
-          "label": "Padding V L",
+          "label": "L",
           "value": "pd-y-l"
         },
         {
-          "label": "Padding V M",
+          "label": "M",
           "value": "pd-y-m"
         },
         {
-          "label": "Padding V S",
+          "label": "S",
           "value": "pd-y-s"
         },
         {
-          "label": "Padding V XS",
+          "label": "XS",
           "value": "pd-y-xs"
         }
       ],
-      "default": "pd-y-m"
+      "default": "pd-y-un"
     },
     {
       "type": "select",
@@ -250,20 +274,20 @@
           "value": "br-y"
         }
       ],
-      "default": "br-none"
+      "default": "br-y"
     }
   ],
   "blocks": [
     {
       "type": "heading",
-      "name": "Heading",
+      "name": "t:sections.rich-text.blocks.heading.name",
       "limit": 1,
       "settings": [
         {
           "type": "text",
           "id": "heading",
           "default": "Talk about your brand",
-          "label": "Heading"
+          "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
         },
         {
           "type": "header",
@@ -283,36 +307,36 @@
               "value": "fs-xl"
             },
             {
-              "label": "Font Size L",
+              "label": "Large",
               "value": "fs-l"
             },
             {
-              "label": "Font Size M",
+              "label": "Medium",
               "value": "fs-m"
             },
             {
-              "label": "Font Size XS",
+              "label": "X Small",
               "value": "fs-xs"
             },
             {
-              "label": "Font Size S",
+              "label": "Small",
               "value": "fs-s"
             }
           ],
-          "default": "fs-s"
+          "default": "fs-un"
         }
       ]
     },
     {
       "type": "text",
-      "name": "Text",
+      "name": "t:sections.rich-text.blocks.text.name",
       "limit": 1,
       "settings": [
         {
           "type": "richtext",
           "id": "text",
           "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
-          "label": "Description"
+          "label": "t:sections.rich-text.blocks.text.settings.text.label"
         },
         {
           "type": "header",
@@ -332,23 +356,23 @@
               "value": "fs-xl"
             },
             {
-              "label": "Font Size L",
+              "label": "Large",
               "value": "fs-l"
             },
             {
-              "label": "Font Size M",
+              "label": "Medium",
               "value": "fs-m"
             },
             {
-              "label": "Font Size XS",
+              "label": "X Small",
               "value": "fs-xs"
             },
             {
-              "label": "Font Size S",
+              "label": "Small",
               "value": "fs-s"
             }
           ],
-          "default": "fs-s"
+          "default": "fs-un"
         },
         {
           "type": "select",
@@ -362,17 +386,17 @@
             {
               "label": "None",
               "value": "c-none"
-            },
+            },        
             {
-              "label": "Label Dark",
+              "label": "Dark",
               "value": "c-dark"
             },
             {
-              "label": "Label Average",
+              "label": "Average",
               "value": "c-average"
             },
             {
-              "label": "Label Light",
+              "label": "Light",
               "value": "c-light"
             }
           ],
@@ -382,38 +406,95 @@
     },
     {
       "type": "button",
-      "name": "Button",
+      "name": "t:sections.rich-text.blocks.button.name",
       "limit": 1,
       "settings": [
         {
           "type": "text",
           "id": "button_label",
           "default": "Button label",
-          "label": "Button label"
+          "label": "t:sections.rich-text.blocks.button.settings.button_label.label"
         },
         {
           "type": "url",
           "id": "button_link",
-          "label": "Button link"
+          "label": "t:sections.rich-text.blocks.button.settings.button_link.label"
         },
         {
           "type": "header",
           "content": "Desktop Settings"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "bg",
-          "label": "Background Color"
+          "label": "Background Color",
+          "options": [          
+             {
+                "label": "Transparent",
+                "value": "transparent"
+             },        
+             {
+                "label": "Dark",
+                "value": "var(--py-bg-color-dark)"
+             },
+             {
+                "label": "Middle Dark",
+                "value": "var(--py-bg-color-middle-dark)"
+             },
+             {
+                "label": "Average",
+                "value": "var(--py-bg-color-avarge)"
+             },
+             {
+                "label": "Middle Light",
+                "value": "var(--py-bg-color-middle-light)"
+             },
+             {
+                "label": "Light",
+                "value": "var(--py-bg-color-light)"
+             }
+           ],
+          "default": "var(--py-bg-color-dark)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "border",
-          "label": "border Color"
+          "label": "border Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-dark)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "color",
-          "label": "Text Color"
+          "label": "Text Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-light)"
         },
         {
           "type": "text",
@@ -435,19 +516,76 @@
           "content": "Mobile Settings"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "m_bg",
-          "label": "Background Color"
+          "label": "Background Color",
+          "options": [          
+             {
+                "label": "Transparent",
+                "value": "transparent"
+             },        
+             {
+                "label": "Dark",
+                "value": "var(--py-bg-color-dark)"
+             },
+             {
+                "label": "Middle Dark",
+                "value": "var(--py-bg-color-middle-dark)"
+             },
+             {
+                "label": "Average",
+                "value": "var(--py-bg-color-avarge)"
+             },
+             {
+                "label": "Middle Light",
+                "value": "var(--py-bg-color-middle-light)"
+             },
+             {
+                "label": "Light",
+                "value": "var(--py-bg-color-light)"
+             }
+           ],
+          "default": "var(--py-bg-color-dark)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "m_border",
-          "label": "border Color"
+          "label": "border Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-dark)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "m_color",
-          "label": "Text Color"
+          "label": "Text Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-light)"
         },
         {
           "type": "text",
@@ -469,7 +607,7 @@
   ],
   "presets": [
     {
-      "name": "Rich text",
+      "name": "t:sections.rich-text.presets.name",
       "blocks": [
         {
           "type": "heading"

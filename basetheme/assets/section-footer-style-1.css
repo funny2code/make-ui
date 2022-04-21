@@ -188,7 +188,7 @@ footer.py-c-light *{
   font-size: 2rem;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 800px) {
   .footer-block__heading {
     font-size: 1.8rem;
   }
@@ -332,7 +332,7 @@ footer.py-c-light *{
   }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 799px) {
   noscript .localization-form:only-child,
   .footer__localization noscript {
     width: 100%;
@@ -502,7 +502,7 @@ footer details[open] summary ~ * {
   }
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 799px) {
   .footer-block__details-content .list-menu__item--link {
     padding-top: 1rem;
     padding-bottom: 1rem;

@@ -49,29 +49,30 @@
 
 {% schema %}
 {
-  "name": "collection see",
+  "name": "Colection See",
   "tag": "section",
   "settings": [
     {
       "type": "text",
       "id": "title",
       "default": "SEEN ON",
-      "label": "Heading"
+      "label": "t:sections.multicolumn.settings.title.label"
     }
   ],
   "blocks": [
     {
       "type": "column",
-      "name": "Column",
+      "name": "t:sections.multicolumn.blocks.column.name",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image"
+          "label": "t:sections.multicolumn.blocks.column.settings.image.label"
         },
-        {
+		{
           "type": "text",
           "id": "title",
+          "default": "Our Collection",
           "label": "Title"
         },
         {
@@ -79,9 +80,24 @@
           "content": "Desktop Settings"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "color",
-          "label": "Text Color"
+          "label": "Text Color",
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-dark)"
         },
         {
           "type": "text",
@@ -98,9 +114,24 @@
           "content": "Mobile Settings"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "m_color",
-          "label": "Text Color"
+          "label": "Text Color",
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-dark)"
         },
         {
           "type": "text",
@@ -112,15 +143,15 @@
           "id": "m_size",
           "label": "Font Size"
         },
-        {
+		    {
           "type": "text",
           "id": "button_label",
-          "label": "Label"
+          "label": "t:sections.multicolumn.settings.button_label.label"
         },
         {
           "type": "url",
           "id": "button_link",
-          "label": "Link"
+          "label": "t:sections.multicolumn.settings.button_link.label"
         }
       ]
     }
@@ -135,16 +166,16 @@
         {
           "type": "column"
         },
-        {
+		{
           "type": "column"
         },
-        {
+		{
           "type": "column"
         },
-        {
+		{
           "type": "column"
         },
-        {
+		{
           "type": "column"
         }
       ]

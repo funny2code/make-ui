@@ -48,135 +48,195 @@
   {%- endif -%}
   
   {% schema %}
-{
-  "name": "collection our",
-  "tag": "section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "default": "KNOWN FOR OUR",
-      "label": "Heading"
-    },
-    {
-      "type": "header",
-      "content": "Desktop Settings"
-    },
-    {
-      "type": "color",
-      "id": "color",
-      "label": "Text Color"
-    },
-    {
-      "type": "text",
-      "id": "weight",
-      "label": "Font Weight"
-    },
-    {
-      "type": "text",
-      "id": "size",
-      "label": "Font Size"
-    },
-    {
-      "type": "header",
-      "content": "Mobile Settings"
-    },
-    {
-      "type": "color",
-      "id": "m_color",
-      "label": "Text Color"
-    },
-    {
-      "type": "text",
-      "id": "m_weight",
-      "label": "Font Weight"
-    },
-    {
-      "type": "text",
-      "id": "m_size",
-      "label": "Font Size"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "column",
-      "name": "Column",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "default": "Title",
-          "label": "Title"
-        },
-        {
-          "type": "header",
-          "content": "Desktop Settings"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "Text Color"
-        },
-        {
-          "type": "text",
-          "id": "weight",
-          "label": "Font Weight"
-        },
-        {
-          "type": "text",
-          "id": "size",
-          "label": "Font Size"
-        },
-        {
-          "type": "header",
-          "content": "Mobile Settings"
-        },
-        {
-          "type": "color",
-          "id": "m_color",
-          "label": "Text Color"
-        },
-        {
-          "type": "text",
-          "id": "m_weight",
-          "label": "Font Weight"
-        },
-        {
-          "type": "text",
-          "id": "m_size",
-          "label": "Font Size"
-        },
-        {
-          "type": "richtext",
-          "id": "text",
-          "default": "<p>If you haven't felt our 437 fabric yet, you're in for a treat. We pride ourselves on creating luxe swimwear and apparel that uses the highest quality fabrics designed to flatter the body.</p>",
-          "label": "Text"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Link"
-        },
-        {
-          "type": "header",
-          "content": "Animation"
-        },
-        {
-          "type": "checkbox",
-          "id": "enable_anim",
-          "label": "Enable Animation",
-          "default": false
-        },
-        {
-          "type": "select",
-          "id": "anim",
-          "label": "Animation Type",
-          "options": [
+  {
+    "name": "Colection Our",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "default": "KNOWN FOR OUR",
+        "label": "t:sections.multicolumn.settings.title.label"
+      },
+      {
+        "type": "header",
+        "content": "Desktop Settings"
+      },
+      {
+        "type": "select",
+        "id": "color",
+        "label": "Text Color",
+        "options": [ 
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+        "default": "var(--py-color-dark)"
+      },
+      {
+        "type": "text",
+        "id": "weight",
+        "label": "Font Weight"
+      },
+      {
+        "type": "text",
+        "id": "size",
+        "label": "Font Size"
+      },
+      {
+        "type": "header",
+        "content": "Mobile Settings"
+      },
+      {
+        "type": "select",
+        "id": "m_color",
+        "label": "Text Color",
+        "options": [ 
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+        "default": "var(--py-color-dark)"
+      },
+      {
+        "type": "text",
+        "id": "m_weight",
+        "label": "Font Weight"
+      },
+      {
+        "type": "text",
+        "id": "m_size",
+        "label": "Font Size"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "column",
+        "name": "t:sections.multicolumn.blocks.column.name",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "t:sections.multicolumn.blocks.column.settings.image.label"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "default": "Title",
+            "label": "Title"
+          },
+          {
+            "type": "header",
+            "content": "Desktop Settings"
+          },
+          {
+            "type": "select",
+            "id": "color",
+            "label": "Text Color",
+            "options": [ 
+                {
+                  "label": "Dark",
+                  "value": "var(--py-color-dark)"
+                },
+                {
+                  "label": "Average",
+                  "value": "var(--py-color-avarge)"
+                },
+                {
+                  "label": "Light",
+                  "value": "var(--py-color-light)"
+                }
+              ],
+            "default": "var(--py-color-dark)"
+          },
+          {
+            "type": "text",
+            "id": "weight",
+            "label": "Font Weight"
+          },
+          {
+            "type": "text",
+            "id": "size",
+            "label": "Font Size"
+          },
+          {
+            "type": "header",
+            "content": "Mobile Settings"
+          },
+          {
+            "type": "select",
+            "id": "m_color",
+            "label": "Text Color",
+            "options": [ 
+                {
+                  "label": "Dark",
+                  "value": "var(--py-color-dark)"
+                },
+                {
+                  "label": "Average",
+                  "value": "var(--py-color-avarge)"
+                },
+                {
+                  "label": "Light",
+                  "value": "var(--py-color-light)"
+                }
+              ],
+            "default": "var(--py-color-dark)"
+          },
+          {
+            "type": "text",
+            "id": "m_weight",
+            "label": "Font Weight"
+          },
+          {
+            "type": "text",
+            "id": "m_size",
+            "label": "Font Size"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "default": "<p>If you haven't felt our 437 fabric yet, you're in for a treat. We pride ourselves on creating luxe swimwear and apparel that uses the highest quality fabrics designed to flatter the body.</p>",
+            "label": "Text"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Link"
+          },
+          {
+            "type": "header",
+            "content": "Animation"
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_anim",
+            "label": "Enable Animation",
+            "default": false
+          },
+          {
+            "type": "select",
+            "id": "anim",
+            "label": "Animation Type",
+            "options": [
             {
               "value": "fade-up",
               "label": "Fade In Up"
@@ -217,27 +277,22 @@
               "value": "zoom-out",
               "label": "Zoom Out"
             }
-          ],
-          "default": "zoom-in"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Colection Our",
-      "blocks": [
-        {
-          "type": "column"
-        },
-        {
-          "type": "column"
-        },
-        {
-          "type": "column"
-        }
-      ]
-    }
-  ]
-}
-{% endschema %}
+            ],
+            "default": "zoom-in"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Colection Our",
+        "blocks": [
+          {"type": "column"},
+          {"type": "column"},
+          {"type": "column"}
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+  

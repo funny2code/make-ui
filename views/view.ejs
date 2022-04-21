@@ -1,226 +1,298 @@
 <!DOCTYPE html>
-  <html class="no-js" lang="en">
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta name="theme-color" content="">
-      <link rel="stylesheet" href="/assets/base-style.css">
-      <link rel="stylesheet" href="/stylesheets/view.css">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
-      <script src="/assets/global.js" defer="defer"></script>
-      <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
-      <% if(settings.body_font_google){ %>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="stylesheet" href="/assets/base-style.css">
+    <link rel="stylesheet" href="/stylesheets/view.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <script src="/assets/global.js" defer="defer"></script>
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+    <% if(settings.body_font_google){ %>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=<%= settings.body_font_google %>">
-      <% } %>
-      <% if(settings.enable_global_anim){ %>
-        <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style">
-      <% } %>
-      <% if(component){ %> 
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-      <% } %>
-    </head>
-    <% if(settings){ %>
+        <% } %>
+            <% if(settings.enable_global_anim){ %>
+                <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style">
+                <% } %>
+                    <% if(component){ %>
+                        <link
+                            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+                            rel="stylesheet">
+                        <% } %>
+</head>
+<% if(settings){ %>
     <style>
         :root {
-            --font-body-family: <%= settings.body_font_google ? settings.body_font_google : settings.body_font %>;
+            --font-body-family: <%=settings.body_font_google ? settings.body_font_google: settings.body_font %>;
 
-            --py-bg-color-dark: <%= settings.py_bg_color_dark %>;
-            --py-bg-color-avarge: <%= settings.py_bg_color_avarge %>;
-            --py-bg-color-light: <%= settings.py_bg_color_light %>;
+            --py-bg-color-dark: <%=settings.py_bg_color_dark %>;
+            --py-bg-color-middle-dark: <%=settings.py_bg_color_middle_dark %>;
+            --py-bg-color-avarge: <%=settings.py_bg_color_avarge %>;
+            --py-bg-color-middle-light: <%=settings.py_bg_color_middle_light %>;
+            --py-bg-color-light: <%=settings.py_bg_color_light %>;
 
-            --py-color-dark: <%= settings.py_color_dark %>;
-            --py-color-avarge: <%= settings.py_color_avarge %>;
-            --py-color-light: <%= settings.py_color_light %>;
+            --py-color-dark: <%=settings.py_color_dark %>;
+            --py-color-avarge: <%=settings.py_color_avarge %>;
+            --py-color-light: <%=settings.py_color_light %>;
 
-            --py-btn-bg-color-dark: <%= settings.py_btn_bg_color_dark %>;
-            --py-btn-bg-color-avarge: <%= settings.py_btn_bg_color_avarge %>;
-            --py-btn-bg-color-light: <%= settings.py_btn_bg_color_light %>;
+            --py-btn-bg-color-dark: <%=settings.py_btn_bg_color_dark %>;
+            --py-btn-bg-color-avarge: <%=settings.py_btn_bg_color_avarge %>;
+            --py-btn-bg-color-light: <%=settings.py_btn_bg_color_light %>;
 
-            --py-btn-color-dark: <%= settings.py_btn_color_dark %>;
-            --py-btn-color-avarge: <%= settings.py_btn_color_avarge %>;
-            --py-btn-color-light: <%= settings.py_btn_color_light %>;
+            --py-btn-color-dark: <%=settings.py_btn_color_dark %>;
+            --py-btn-color-avarge: <%=settings.py_btn_color_avarge %>;
+            --py-btn-color-light: <%=settings.py_btn_color_light %>;
 
-            --py-btn-hov-bg-color-dark: <%= settings.py_btn_hov_bg_color_dark %>;
-            --py-btn-hov-bg-color-avarge: <%= settings.py_btn_hov_bg_color_avarge %>;
-            --py-btn-hov-bg-color-light: <%= settings.py_btn_hov_bg_color_light %>;
+            --py-btn-hov-bg-color-dark: <%=settings.py_btn_hov_bg_color_dark %>;
+            --py-btn-hov-bg-color-avarge: <%=settings.py_btn_hov_bg_color_avarge %>;
+            --py-btn-hov-bg-color-light: <%=settings.py_btn_hov_bg_color_light %>;
 
-            --py-btn-hov-color-dark: <%= settings.py_btn_hov_color_dark %>;
-            --py-btn-hov-color-avarge: <%= settings.py_btn_hov_color_avarge %>;
-            --py-btn-hov-color-light: <%= settings.py_btn_hov_color_light %>;
+            --py-btn-hov-color-dark: <%=settings.py_btn_hov_color_dark %>;
+            --py-btn-hov-color-avarge: <%=settings.py_btn_hov_color_avarge %>;
+            --py-btn-hov-color-light: <%=settings.py_btn_hov_color_light %>;
 
-            --py-body-bg-color: <%= settings.py_bg_body_color %>;
-            --py-body-color: <%= settings.py_body_color %>;
-            --py-body-link-color: <%= settings.py_body_link_color %>;
-            --py-body-link-hov-color: <%= settings.py_body_link_hov_color %>;
+            --py-body-bg-color: <%=settings.py_bg_body_color %>;
+            --py-body-color: <%=settings.py_body_color %>;
+            --py-body-link-color: <%=settings.py_body_link_color %>;
+            --py-body-link-hov-color: <%=settings.py_body_link_hov_color %>;
 
-            --py-announcement-bg-color: <%= settings.py_announcement_bg_color %>;
-            --py-announcement-color: <%= settings.py_announcement_color %>;
-            --py-announcement-link-color: <%= settings.py_announcement_link_color %>;
-            --py-announcement-link-hov-color: <%= settings.py_announcement_link_hov_color %>;
+            --py-footer-bg-color: <%=settings.py_footer_bg_color %>;
+            --py-footer-color: <%=settings.py_footer_color %>;
+            --py-footer-link-color: <%=settings.py_footer_link_color %>;
+            --py-footer-link-hov-color: <%=settings.py_footer_link_hov_color %>;
 
-            --py-header-bg-color: <%= settings.py_header_bg_color %>;
-            --py-header-color: <%= settings.py_header_color %>;
-            --py-header-link-color: <%= settings.py_header_link_color %>;
-            --py-header-link-hov-color: <%= settings.py_header_link_hov_color %>;
+            --py-bag-bg-color: <%=settings.py_bag_bg_color %>;
+            --py-bag-color: <%=settings.py_bag_color %>;
 
-            --py-footer-bg-color: <%= settings.py_footer_bg_color %>;
-            --py-footer-color: <%= settings.py_footer_color %>;
-            --py-footer-link-color: <%= settings.py_footer_link_color %>;
-            --py-footer-link-hov-color: <%= settings.py_footer_link_hov_color %>;
+            --py-social-bg-color: <%=settings.py_social_bg_color %>;
+            --py-social-color: <%=settings.py_social_color %>;
 
-            --py-bag-bg-color: <%= settings.py_bag_bg_color %>;
-            --py-bag-color: <%= settings.py_bag_color %>;
+            --py-cart-bg-color: <%=settings.py_cart_bg_color %>;
+            --py-cart-color: <%=settings.py_cart_color %>;
 
-            --py-social-bg-color: <%= settings.py_social_bg_color %>;
-            --py-social-color: <%= settings.py_social_color %>;
+            --py-heading-color: <%=settings.py_heading_color %>;
+            --py-title-color: <%=settings.py_title_color %>;
+            --py-sub-title-color: <%=settings.py_sub_title_color %>;
 
-            --py-cart-bg-color: <%= settings.py_cart_bg_color %>;
-            --py-cart-color: <%= settings.py_cart_color %>;  
+            --py-field-bg-color: <%=settings.py_field_bg_color %>;
+            --py-field-color: <%=settings.py_field_color %>;
+            --py-field-br-color: <%=settings.py_field_br_color %>;
+            --py-field-focus-color: <%=settings.py_field_focus_color %>;
 
-            --py-heading-color: <%= settings.py_heading_color %>;
-            --py-title-color: <%= settings.py_title_color %>;
-            --py-sub-title-color: <%= settings.py_sub_title_color %>;
+            --py-page-width: <%=settings.py_page_width %>;
+            --py-page-pd: <%=settings.py_page_pd %>;
+            --py-page-mg: <%=settings.py_page_mg %>;
 
-            --py-field-bg-color: <%= settings.py_field_bg_color %>;
-            --py-field-color: <%= settings.py_field_color %>;
-            --py-field-br-color: <%= settings.py_field_br_color %>;
-            --py-field-focus-color: <%= settings.py_field_focus_color %>;
+            --py-width-l: <%=settings.py_width_l %>;
+            --py-width-m: <%=settings.py_width_m %>;
+            --py-width-s: <%=settings.py_width_s %>;
 
-            --py-page-width: <%= settings.py_page_width %>;
-            --py-page-pd: <%= settings.py_page_pd %>;
-            --py-page-mg: <%= settings.py_page_mg %>;
+            --py-pd-x-xl: <%=settings.py_pd_x_xl %>;
+            --py-pd-x-l: <%=settings.py_pd_x_l %>;
+            --py-pd-x-m: <%=settings.py_pd_x_m %>;
+            --py-pd-x-s: <%=settings.py_pd_x_s %>;
+            --py-pd-x-xs: <%=settings.py_pd_x_xs %>;
 
-            --py-width-l: <%= settings.py_width_l %>;
-            --py-width-m: <%= settings.py_width_m %>;
-            --py-width-s: <%= settings.py_width_s %>;
-            
-            --py-pd-x-xl: <%= settings.py_pd_x_xl %>;
-            --py-pd-x-l: <%= settings.py_pd_x_l %>;
-            --py-pd-x-m: <%= settings.py_pd_x_m %>;
-            --py-pd-x-s: <%= settings.py_pd_x_s %>;
-            --py-pd-x-xs: <%= settings.py_pd_x_xs %>;
+            --py-pd-y-xl: <%=settings.py_pd_y_xl %>;
+            --py-pd-y-l: <%=settings.py_pd_y_l %>;
+            --py-pd-y-m: <%=settings.py_pd_y_m %>;
+            --py-pd-y-s: <%=settings.py_pd_y_s %>;
+            --py-pd-y-xs: <%=settings.py_pd_y_xs %>;
 
-            --py-pd-y-xl: <%= settings.py_pd_y_xl %>;
-            --py-pd-y-l: <%= settings.py_pd_y_l %>;
-            --py-pd-y-m: <%= settings.py_pd_y_m %>;
-            --py-pd-y-s: <%= settings.py_pd_y_s %>;
-            --py-pd-y-xs: <%= settings.py_pd_y_xs %>;
+            --py-pd-x-tablet-xl: <%=settings.py_pd_x_tablet_xl %>;
+            --py-pd-x-tablet-l: <%=settings.py_pd_x_tablet_l %>;
+            --py-pd-x-tablet-m: <%=settings.py_pd_x_tablet_m %>;
+            --py-pd-x-tablet-s: <%=settings.py_pd_x_tablet_s %>;
+            --py-pd-x-tablet-xs: <%=settings.py_pd_x_tablet_xs %>;
 
-            --py-mg-x-xl: <%= settings.py_mg_x_xl %>;
-            --py-mg-x-l: <%= settings.py_mg_x_l %>;
-            --py-mg-x-m: <%= settings.py_mg_x_m %>;
-            --py-mg-x-s: <%= settings.py_mg_x_s %>;
-            --py-mg-x-xs: <%= settings.py_mg_x_xs %>;
+            --py-pd-y-tablet-xl: <%=settings.py_pd_y_tablet_xl %>;
+            --py-pd-y-tablet-l: <%=settings.py_pd_y_tablet_l %>;
+            --py-pd-y-tablet-m: <%=settings.py_pd_y_tablet_m %>;
+            --py-pd-y-tablet-s: <%=settings.py_pd_y_tablet_s %>;
+            --py-pd-y-tablet-xs: <%=settings.py_pd_y_tablet_xs %>;
 
-            --py-mg-y-xl: <%= settings.py_mg_y_xl %>;
-            --py-mg-y-l: <%= settings.py_mg_y_l %>;
-            --py-mg-y-m: <%= settings.py_mg_y_m %>;
-            --py-mg-y-s: <%= settings.py_mg_y_s %>;
-            --py-mg-y-xs: <%= settings.py_mg_y_xs %>;
-            
-            --py-fs-xl: <%= settings.py_fs_xl %>;
-            --py-fs-l: <%= settings.py_fs_l %>;
-            --py-fs-m: <%= settings.py_fs_m %>;
-            --py-fs-s: <%= settings.py_fs_s %>;
-            --py-fs-xs: <%= settings.py_fs_xs %>;
+            --py-pd-x-mobile-xl: <%=settings.py_pd_x_mobile_xl %>;
+            --py-pd-x-mobile-l: <%=settings.py_pd_x_mobile_l %>;
+            --py-pd-x-mobile-m: <%=settings.py_pd_x_mobile_m %>;
+            --py-pd-x-mobile-s: <%=settings.py_pd_x_mobile_s %>;
+            --py-pd-x-mobile-xs: <%=settings.py_pd_x_mobile_xs %>;
 
-            --py-br-c: <%= settings.py_br_c %>;
-            --py-br-s: <%= settings.py_br_s %>;
-            --py-br-x: <%= settings.py_br_x %>;
-            --py-br-y: <%= settings.py_br_y %>;
-            --py-br: <%= settings.py_br %>;
+            --py-pd-y-mobile-xl: <%=settings.py_pd_y_mobile_xl %>;
+            --py-pd-y-mobile-l: <%=settings.py_pd_y_mobile_l %>;
+            --py-pd-y-mobile-m: <%=settings.py_pd_y_mobile_m %>;
+            --py-pd-y-mobile-s: <%=settings.py_pd_y_mobile_s %>;
+            --py-pd-y-mobile-xs: <%=settings.py_pd_y_mobile_xs %>;
+
+            --py-mg-x-xl: <%=settings.py_mg_x_xl %>;
+            --py-mg-x-l: <%=settings.py_mg_x_l %>;
+            --py-mg-x-m: <%=settings.py_mg_x_m %>;
+            --py-mg-x-s: <%=settings.py_mg_x_s %>;
+            --py-mg-x-xs: <%=settings.py_mg_x_xs %>;
+
+            --py-mg-y-xl: <%=settings.py_mg_y_xl %>;
+            --py-mg-y-l: <%=settings.py_mg_y_l %>;
+            --py-mg-y-m: <%=settings.py_mg_y_m %>;
+            --py-mg-y-s: <%=settings.py_mg_y_s %>;
+            --py-mg-y-xs: <%=settings.py_mg_y_xs %>;
+
+            --py-mg-x-tablet-xl: <%=settings.py_mg_x_tablet_xl %>;
+            --py-mg-x-tablet-l: <%=settings.py_mg_x_tablet_l %>;
+            --py-mg-x-tablet-m: <%=settings.py_mg_x_tablet_m %>;
+            --py-mg-x-tablet-s: <%=settings.py_mg_x_tablet_s %>;
+            --py-mg-x-tablet-xs: <%=settings.py_mg_x_tablet_xs %>;
+
+            --py-mg-y-tablet-xl: <%=settings.py_mg_y_tablet_xl %>;
+            --py-mg-y-tablet-l: <%=settings.py_mg_y_tablet_l %>;
+            --py-mg-y-tablet-m: <%=settings.py_mg_y_tablet_m %>;
+            --py-mg-y-tablet-s: <%=settings.py_mg_y_tablet_s %>;
+            --py-mg-y-tablet-xs: <%=settings.py_mg_y_tablet_xs %>;
+
+            --py-mg-x-mobile-xl: <%=settings.py_mg_x_mobile_xl %>;
+            --py-mg-x-mobile-l: <%=settings.py_mg_x_mobile_l %>;
+            --py-mg-x-mobile-m: <%=settings.py_mg_x_mobile_m %>;
+            --py-mg-x-mobile-s: <%=settings.py_mg_x_mobile_s %>;
+            --py-mg-x-mobile-xs: <%=settings.py_mg_x_mobile_xs %>;
+
+            --py-mg-y-mobile-xl: <%=settings.py_mg_y_mobile_xl %>;
+            --py-mg-y-mobile-l: <%=settings.py_mg_y_mobile_l %>;
+            --py-mg-y-mobile-m: <%=settings.py_mg_y_mobile_m %>;
+            --py-mg-y-mobile-s: <%=settings.py_mg_y_mobile_s %>;
+            --py-mg-y-mobile-xs: <%=settings.py_mg_y_mobile_xs %>;
+
+            --py-fs-xl: <%=settings.py_fs_xl %>;
+            --py-fs-l: <%=settings.py_fs_l %>;
+            --py-fs-m: <%=settings.py_fs_m %>;
+            --py-fs-s: <%=settings.py_fs_s %>;
+            --py-fs-xs: <%=settings.py_fs_xs %>;
+
+            --py-br-c: <%=settings.py_br_c %>;
+            --py-br-s: <%=settings.py_br_s %>;
+            --py-br-x: <%=settings.py_br_x %>;
+            --py-br-y: <%=settings.py_br_y %>;
+            --py-br: <%=settings.py_br %>;
         }
     </style>
     <% } %>
-<body class="index">
 
-    <% if(component){ %>
-        <% if(component === 'Cart'){ %>
-            <%- include('snippets/cart-drawer', {settings: settings}) %>
-        <% } else if(component === 'Global Styles'){ %>
-            <%- include('make/brand', {settings: settings}) %>
-        <% } else if(component === 'Typography Settings'){ %>
-            <%- include('make/fonts', {settings: settings}) %>    
-        <% } %>
-    <% } %>
+    <body class="index">
 
-    <% if(sections && sections.length){ %>
-        <% sections.forEach(item => { %>
-            <% if(item.name === 'header'){ %>
-                <%- include('sections/header', {menu: menu, settings: settings, section: item }) %>
-            <% } else if(item.name === 'announcement bar'){ %>
-                <%- include('sections/announcement-bar', {settings: settings, section: item }) %>
-            <% } else if(item.name === 'image banner'){ %>
-                <%- include('sections/image-banner', {settings: settings, section: item }) %>
-            <% } else if(item.name === 'marquee'){ %>
-                <%- include('sections/marquee', {settings: settings, section: item }) %>
-            <% } else if(item.name === 'image with video'){ %>
-                <%- include('sections/image-with-video', {settings: settings, section: item }) %>
-            <% } else if(item.name === 'partners'){ %>
-                <%- include('sections/partners', {settings: settings, section: item }) %>
-            <% } else if(item.name === 'collection see'){ %>
-                <%- include('sections/collection-see', {settings: settings, section: item }) %>
-            <% } else if(item.name === 'collection our'){ %>
-                <%- include('sections/collection-our', {settings: settings, section: item }) %>
-            <% } else if(item.name === 'featured collection'){ %>
-                <%- include('sections/featured-collection', {collection: collection, settings: settings, section: item }) %>
-            <% } else if(item.name === 'image with two products'){ %>
-                <%- include('sections/image-with-two-products', {collection: collection, settings: settings, section: item }) %>    
-            <% } else if(item.name === 'image with text'){ %>
-                <%- include('sections/image-with-text', {settings: settings, section: item }) %>
-            <% } else if(item.name === 'rich text'){ %>
-                <%- include('sections/rich-text', {settings: settings, section: item }) %> 
-            <% } else if(item.name === 'collection two column'){ %>
-                <%- include('sections/collection-two-column', {settings: settings, section: item }) %>    
-            <% } else if(item.name === 'collage'){ %>
-                <%- include('sections/collage', {settings: settings, section: item, product: product }) %>
-            <% } else if(item.name === 'collection list'){ %>
-                <%- include('sections/collection-list', {settings: settings, section: item, collection: collection }) %>      
-            <% } else if(item.name === 'accordion with product'){ %>
-                <%- include('sections/accordion-with-product', {settings: settings, section: item, product: product }) %>
-            <% } else if(item.name === 'multicolumn'){ %>
-                <%- include('sections/multicolumn', {settings: settings, section: item }) %>
-            <% } else if(item.name === 'newsletter'){ %>
-                <%- include('sections/newsletter', {settings: settings, section: item }) %>
-            <% } else if(item.name === 'product carousel'){ %>
-                <%- include('sections/product-carousel', {settings: settings, section: item }) %>
-            <% } else if(item.name === 'slider with text'){ %>
-                <%- include('sections/slider-with-text', {settings: settings, section: item }) %>  
-            <% } else if(item.name === 'slider'){ %>
-                <%- include('sections/slider', {settings: settings, section: item }) %> 
-            <% } else if(item.name === 'spacing'){ %>
-                <%- include('sections/spacing', {settings: settings, section: item }) %> 
-            <% } else if(item.name === 'product'){ %>
-                <%- include('sections/product', {settings: settings, section: item }) %>    
-            <% } else if(item.name === 'collection product grid'){ %>
-                <%- include('sections/collection-product-grid', {collection: collection, settings: settings, section: item }) %>        
-            <% } else if(item.name === 'collection banner'){ %>
-                <%- include('sections/collection-banner', {collection: collection, settings: settings, section: item }) %>            
-            <% } else if(item.name === 'product recommendations'){ %>
-                <%- include('sections/product-recommendations', {collection: collection, settings: settings, section: item }) %>                
-            <% } else if(item.name === 'footer'){ %>
-                <%- include('sections/footer', {settings: settings, section: item, localization: false }) %>
+        <% if(component){ %>
+            <% if(component==='Cart' ){ %>
+                <%- include('snippets/cart-drawer', {settings: settings}) %>
+            <% } else if(component==='Global Styles' ){ %>
+                <%- include('make/brand', {settings: settings}) %>
+            <% } else if(component==='Typography Settings' ){ %>
+                <%- include('make/fonts', {settings: settings}) %>
             <% } %>
-        <% }) %>
-    <% } %>
+        <% } %>
+
+        <% if(sections && sections.length){ %>
+            <% sections.forEach(item=> { %>
+                <% if(item.name==='header' ){ %>
+                    <%- include('sections/header', {menu: menu, settings: settings, section: item }) %>
+                <% } else if(item.name==='announcement bar' ){ %>
+                    <%- include('sections/announcement-bar', {settings: settings, section: item }) %>
+                <% } else if(item.name==='image banner' ){ %>
+                    <%- include('sections/image-banner', {settings: settings, section: item }) %>
+                <% } else if(item.name==='marquee' ){ %>
+                    <%- include('sections/marquee', {settings: settings, section: item }) %>
+                <% } else if(item.name==='image with video'){ %>
+                    <%- include('sections/image-with-video', {settings: settings, section: item }) %>
+                <% } else if(item.name==='partners'){ %>
+                    <%- include('sections/partners', {settings: settings, section: item }) %>
+                <% } else if(item.name==='collection see'){ %>
+                    <%- include('sections/collection-see', {settings: settings, section: item }) %>
+                <% } else if(item.name==='collection our'){ %>
+                    <%- include('sections/collection-our', {settings:settings,section:item}) %>
+                <% } else if(item.name==='featured collection'){ %>
+                    <%- include('sections/featured-collection', {collection: collection, settings:settings, section:item}) %>
+                <% } else if(item.name==='image with two products'){ %>
+                    <%- include('sections/image-with-two-products', {collection: collection, settings: settings, section: item }) %>
+                <% } else if(item.name==='image with text'){ %>
+                    <%- include('sections/image-with-text', {settings:settings,section:item}) %>
+                <% } else if(item.name==='rich text'){ %>
+                    <%- include('sections/rich-text', {settings:settings,section:item}) %>
+                <% } else if(item.name==='collection two column'){ %>
+                    <%- include('sections/collection-two-column', {settings:settings, section:item}) %>
+                <% } else if(item.name==='collage'){ %>
+                    <%- include('sections/collage', {settings: settings, section: item, product: product}) %>
+                <% } else if(item.name==='collection list'){ %>
+                    <%- include('sections/collection-list', {settings: settings, section:item, collection:collection}) %>
+                <% } else if(item.name==='accordion with product'){%>
+                    <%- include('sections/accordion-with-product', {settings: settings,section:item, product: product}) %>
+                <% } else if(item.name==='multicolumn'){ %>
+                    <%- include('sections/multicolumn', {settings: settings, section: item}) %>
+                <% } else if(item.name==='newsletter'){ %>
+                    <%- include('sections/newsletter', {settings: settings, section: item}) %>
+                <% } else if(item.name==='product carousel'){ %>
+                    <%- include('sections/product-carousel', {settings: settings, section: item})%>
+                <% } else if(item.name==='slider with text'){ %>
+                    <%- include('sections/slider-with-text', {settings: settings, section: item})%>
+                <% } else if(item.name==='slider'){ %>
+                    <%- include('sections/slider', {settings: settings, section: item}) %>
+                <% } else if(item.name==='spacing'){%>
+                    <%- include('sections/spacing', {settings: settings, section: item}) %>
+                <% } else if(item.name==='product'){ %>
+                    <%- include('sections/product', {settings: settings, section: item}) %>
+                <% } else if(item.name==='collection product grid'){ %>
+                    <%- include('sections/collection-product-grid', {collection: collection, settings: settings, section: item}) %>
+                <% } else if(item.name==='collection banner'){ %>
+                    <%- include('sections/collection-banner', {collection: collection, settings: settings, section: item }) %>
+                <% } else if(item.name==='product recommendations'){ %>
+                    <%- include('sections/product-recommendations', {collection: collection, settings: settings, section: item}) %>
+                <% } else if(item.name==='404'){ %>
+                    <%- include('sections/404', {settings: settings, section: item}) %>
+                <% } else if(item.name==='article'){ %>
+                    <%- include('sections/article', {blog: blog, article: article, settings: settings, section: item}) %>
+                <% } else if(item.name==='blog'){ %>
+                    <%- include('sections/blog', {blog: blog, settings: settings, section: item}) %>    
+                <% } else if(item.name==='contact page'){ %>
+                    <%- include('sections/contact-page', {settings: settings, section: item}) %>
+                <% } else if(item.name==='customer account'){ %>
+                    <%- include('sections/customer-account', {customer: customer, paginate: false, settings: settings, section: item}) %>
+                <% } else if(item.name==='customers activate account'){ %>
+                    <%- include('sections/customers-activate-account', {form: false, settings: settings, section: item}) %>
+                <% } else if(item.name==='customers addresses'){ %>
+                    <%- include('sections/customers-addresses', {form: false, all_country_option_tags: false, customer: customer, paginate: false, settings: settings, section: item}) %>        
+                <% } else if(item.name==='customers login'){ %>
+                    <%- include('sections/customers-login', {form: false, settings: settings, section: item}) %> 
+                <% } else if(item.name==='customers register'){ %>
+                    <%- include('sections/customers-register', {form: false, settings: settings, section: item}) %>            
+                <% } else if(item.name==='customers reset password'){ %>
+                    <%- include('sections/customers-reset-password', {form: false, settings: settings, section: item}) %>                
+                <% } else if(item.name==='gift card'){ %>
+                    <%- include('sections/gift-card', {gift_card: gift, settings: settings, section: item}) %>                    
+                <% } else if(item.name==='list collections'){ %>
+                    <%- include('sections/list-collections', {collections: collections, settings: settings, section: item}) %>                        
+                <% } else if(item.name==='page'){ %>
+                    <%- include('sections/page', {settings: settings, section: item}) %>
+                <% } else if(item.name==='search'){ %>
+                    <%- include('sections/search', {search: false, settings: settings, section: item}) %>                            
+                <% } else if(item.name==='footer'){ %>
+                    <%- include('sections/footer', {settings: settings, section: item, localization: false }) %>
+                <% } %>
+            <% }) %>
+        <% } %>
 
     <script src="https://cdn.shopify.com/s/javascripts/currencies.js" defer="defer"></script>
     <script src="/assets/slider.js" defer="defer"></script>
     <!-- <script src="/assets/variants.js" defer="defer"></script> -->
     <% if(settings.enable_global_anim){ %>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        let data = {
-        disable: "<%=settings.anim_mobile%>",
-        delay: "<%=settings.anim_delay%>",
-        duration: "<%=settings.anim_duration%>",
-        easing: "<%=settings.anim_easing%>",
-        once: "<%=settings.anim_once%>",
-        anchorPlacement: "<%=settings.anim_anchor%>",
-        };
-        AOS.init(data);
-    </script>
-    <% } %>
-</body>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            let data = {
+                disable: "<%=settings.anim_mobile%>",
+                delay: "<%=settings.anim_delay%>",
+                duration: "<%=settings.anim_duration%>",
+                easing: "<%=settings.anim_easing%>",
+                once: "<%=settings.anim_once%>",
+                anchorPlacement: "<%=settings.anim_anchor%>",
+            };
+            AOS.init(data);
+        </script>
+        <% } %>
+    </body>
 </html>

@@ -37,22 +37,26 @@ class PickupAvailability extends HTMLElement {
     this.querySelector('button').addEventListener('click', this.onClickRefreshList);
   }
 
-  renderPreview(sectionInnerHTML) {
+  renderPreview(sectionInnerHTML) {    
     const drawer = document.querySelector('pickup-availability-drawer');
     if (drawer) drawer.remove();
-    if (!sectionInnerHTML.querySelector('pickup-availability-preview')) {
+    if (!sectionInnerHTML.querySelector('pickup-availability-preview') || sectionInnerHTML.querySelector('.pickup-availability-info').innerHTML == '') {
       this.innerHTML = "";
       this.removeAttribute('available');
+      document.querySelector('.pickup-card-wrapper').classList.remove('available');
+
       return;
     }
 
     this.innerHTML = sectionInnerHTML.querySelector('pickup-availability-preview').outerHTML;
     this.setAttribute('available', '');
-
+    document.querySelector('.pickup-card-wrapper').classList.add('available');
     document.body.appendChild(sectionInnerHTML.querySelector('pickup-availability-drawer'));
 
-    this.querySelector('button').addEventListener('click', (evt) => {
-      document.querySelector('pickup-availability-drawer').show(evt.target);
+    this.querySelectorAll('button').forEach((element) => {
+        element.addEventListener('click', (evt) => {
+          document.querySelector('pickup-availability-drawer').show(evt.target);
+        });
     });
   }
 }

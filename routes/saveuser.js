@@ -103,10 +103,10 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
         
         const browser = await puppeteer.launch();
         const pageBrowser = await browser.newPage();
-        await pageBrowser.goto(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&global=Global%20Styles&share=fkmksn@e34rra5454421s2dfsfwr2434524s');
+        await pageBrowser.goto(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s');
         pageBrowser.setViewport({width: 1400, height: 700, deviceScaleFactor: 1});
         await pageBrowser.screenshot({ path: path.join(__dirname, '../public/screens/screenshot-' + themeId + '.png'), fullPage: true});
-        await pageBrowser.goto(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&global=Global%20Styles&share=fkmksn@e34rra5454421s2dfsfwr2434524s');
+        await pageBrowser.goto(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s');
         pageBrowser.setViewport({width: 375, height: 512, deviceScaleFactor: 3});
         await pageBrowser.screenshot({ path: path.join(__dirname, '../public/screens/mobile-screenshot-' + themeId + '.png')});
         await browser.close();

@@ -80,38 +80,95 @@
 
 {% schema %}
 {
-  "name": "partners",
+  "name": "Partners",
   "tag": "section",
   "settings": [
     {
       "type": "text",
       "id": "button_label",
       "default": "Button label",
-      "label": "Button Label"
+      "label": "t:sections.multicolumn.settings.button_label.label"
     },
     {
       "type": "url",
       "id": "button_link",
-      "label": "Button Link"
+      "label": "t:sections.multicolumn.settings.button_link.label"
     },
     {
       "type": "header",
       "content": "Desktop Settings"
     },
     {
-      "type": "color",
+      "type": "select",
       "id": "bg",
-      "label": "Background Color"
+      "label": "Background Color",
+      "options": [          
+         {
+            "label": "Transparent",
+            "value": "transparent"
+         },        
+         {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+         },
+         {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+         },
+         {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+         },
+         {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+         },
+         {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+         }
+       ],
+      "default": "var(--py-bg-color-dark)"
     },
     {
-      "type": "color",
+      "type": "select",
       "id": "border",
-      "label": "border Color"
+      "label": "border Color",
+      "options": [ 
+         {
+           "label": "Dark",
+           "value": "var(--py-color-dark)"
+         },
+         {
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
+         }
+        ],
+      "default": "var(--py-color-dark)"
     },
     {
-      "type": "color",
+      "type": "select",
       "id": "color",
-      "label": "Text Color"
+      "label": "Text Color",
+      "options": [ 
+         {
+           "label": "Dark",
+           "value": "var(--py-color-dark)"
+         },
+         {
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
+         }
+        ],
+      "default": "var(--py-color-light)"
     },
     {
       "type": "text",
@@ -133,19 +190,76 @@
       "content": "Mobile Settings"
     },
     {
-      "type": "color",
+      "type": "select",
       "id": "m_bg",
-      "label": "Background Color"
+      "label": "Background Color",
+      "options": [          
+         {
+            "label": "Transparent",
+            "value": "transparent"
+         },        
+         {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+         },
+         {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+         },
+         {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+         },
+         {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+         },
+         {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+         }
+       ],
+      "default": "var(--py-bg-color-dark)"
     },
     {
-      "type": "color",
+      "type": "select",
       "id": "m_border",
-      "label": "border Color"
+      "label": "border Color",
+      "options": [ 
+         {
+           "label": "Dark",
+           "value": "var(--py-color-dark)"
+         },
+         {
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
+         }
+        ],
+      "default": "var(--py-color-dark)"
     },
     {
-      "type": "color",
+      "type": "select",
       "id": "m_color",
-      "label": "Text Color"
+      "label": "Text Color",
+      "options": [ 
+         {
+           "label": "Dark",
+           "value": "var(--py-color-dark)"
+         },
+         {
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
+         }
+        ],
+      "default": "var(--py-color-light)"
     },
     {
       "type": "text",
@@ -166,12 +280,12 @@
   "blocks": [
     {
       "type": "column",
-      "name": "Column",
+      "name": "t:sections.multicolumn.blocks.column.name",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image"
+          "label": "t:sections.multicolumn.blocks.column.settings.image.label"
         },
         {
           "type": "text",
@@ -183,9 +297,24 @@
           "content": "Desktop Settings"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "color",
-          "label": "Text Color"
+          "label": "Text Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-dark)"
         },
         {
           "type": "text",
@@ -202,9 +331,24 @@
           "content": "Mobile Settings"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "m_color",
-          "label": "Text Color"
+          "label": "Text Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-dark)"
         },
         {
           "type": "text",

@@ -30,7 +30,8 @@
 .cart-notification span,
 .cart-notification h2,
 .cart-notification label,
-.cart-notification h3 {
+.cart-notification h3,
+.cart-notification h6{
   color: var(--py-cart-color);
 }
 

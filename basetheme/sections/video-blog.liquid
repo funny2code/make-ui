@@ -1,5 +1,4 @@
 {{ 'component-article-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-card-style-1.css' | asset_url | stylesheet_tag }}
 {{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
 
 
@@ -35,53 +34,53 @@
 
 {% schema %}
 {
-  "name": "video blog",
+  "name": "t:sections.main-blog.name",
   "tag": "section",
   "settings": [
     {
       "type": "header",
-      "content": "Blog post card"
+      "content": "t:sections.main-blog.settings.header.content"
     },
     {
       "type": "checkbox",
       "id": "show_image",
       "default": true,
-      "label": "Show featured image",
-      "info": "For best results, use an image with a 2:3 aspect ratio."
+      "label": "t:sections.main-blog.settings.show_image.label",
+      "info": "t:sections.main-blog.settings.show_image.info"
     },
     {
       "type": "paragraph",
-      "content": "To change excerpts, edit your [blog posts.](https://help.shopify.com/en/manual/online-store/blogs/writing-blogs#display-an-excerpt-from-a-blog-post)"
+      "content": "t:sections.main-blog.settings.paragraph.content"
     }
   ],
   "blocks": [
     {
       "type": "title",
-      "name": "Title",
+      "name": "t:sections.main-blog.blocks.title.name",
       "limit": 1,
       "settings": [
         {
           "type": "checkbox",
           "id": "show_date",
           "default": true,
-          "label": "Show date"
+          "label": "t:sections.main-blog.blocks.title.settings.show_date.label"
         },
         {
           "type": "checkbox",
           "id": "show_author",
           "default": false,
-          "label": "Show author"
+          "label": "t:sections.main-blog.blocks.title.settings.show_author.label"
         }
       ]
     },
     {
       "type": "summary",
-      "name": "Excerpt",
+      "name": "t:sections.main-blog.blocks.summary.name",
       "limit": 1
     },
     {
       "type": "link",
-      "name": "Link",
+      "name": "t:sections.main-blog.blocks.link.name",
       "limit": 1
     }
   ]

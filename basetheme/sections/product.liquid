@@ -12,7 +12,27 @@
 {% assign colorvalue = product.metafields.color.color_value.value %}
 {% assign colorimage = product.metafields.color.color_image.value  %}
 <style>
-  
+  .product__info-container .product__text,
+  .product__info-container .product__title,
+  .product__info-container .price,
+  .product__info-container .form__label,
+  .product__info-container .product__description{
+    color: {{section.settings.info_color}};
+  }  
+  .bc-selling-tag .bc-vertical-tag-inner {
+      background-color: {{section.settings.info_color}};;    
+      color: {{section.settings.section_bg_color}};
+  }
+  .main-product-section,.product__info-wrapper{
+     background-color:{{section.settings.section_bg_color}};
+  }
+  .breadcrumb-nav{
+     background-color:{{section.settings.section_bg_color}};
+     padding: 20px 0px;
+  }
+  .breadcrumb-nav *{
+    color: {{section.settings.info_color}};
+  }
   .bc-colors__icon[data-color="{{ colortitle }}"] {
     background-color: {{ colorvalue }};
   {% if colorimage %}
@@ -20,69 +40,19 @@
     background-image: url('{{ colorimage | img_url: '50x' }}');
     background-size: cover;
   {% endif %}
+  }  
+  .main-product-section{
+    padding-bottom: var(--py-pd-y-m);
+  }
+  #main_media_slide{
+    margin-left:-{{section.settings.pd_media_space}}px;
+  }
+  #main_media_slide>li{
+    padding-left:{{section.settings.pd_media_space}}px;
+    padding-bottom:{{section.settings.pd_media_space}}px;
   }
 </style>
 
-{% if section.settings.custom_font_style %}
-<style>
-  .product__info-container .product__title{
-    font-size: {{section.settings.title_fontsize}};
-    font-weight: {{section.settings.title_fontweight}};
-    font-stretch:{{section.settings.title_fontstretch}};
-    font-style:{{section.settings.title_fontstyle}};
-    line-height:{{section.settings.title_lineheight}};
-    letter-spacing:{{section.settings.title_letterspacing}}
-  }
-  @media(max-width:749px){
-    .product__info-container .product__title{
-        font-size: {{section.settings.title_fontsize_m}}
-    }
-  }
-  .product__info-container .bc-product-price-wrapper *{
-    font-size: {{section.settings.price_fontsize}};
-    font-weight: {{section.settings.price_fontweight}};
-    font-stretch:{{section.settings.price_fontstretch}};
-    font-style:{{section.settings.price_fontstyle}};
-    line-height:{{section.settings.price_lineheight}};
-    letter-spacing:{{section.settings.price_letterspacing}}
-  }
-  @media(max-width:749px){
-    .product__info-container .bc-product-price-wrapper *{
-        font-size: {{section.settings.price_fontsize_m}}
-    }
-  }
-  .product__info-container .bc-colors__heading,
-  .product__info-container fieldset.product-form__input .form__label{
-    font-size: {{section.settings.option_fontsize}};
-    font-weight: {{section.settings.option_fontweight}};
-    font-stretch:{{section.settings.option_fontstretch}};
-    font-style:{{section.settings.option_fontstyle}};
-    line-height:{{section.settings.option_lineheight}};
-    letter-spacing:{{section.settings.option_letterspacing}}
-  }
-  @media(max-width:749px){
-    .product__info-container .bc-colors__heading,
-    .product__info-container fieldset.product-form__input .form__label{
-        font-size: {{section.settings.option_fontsize_m}}
-    }
-  }
-  .product__info-container fieldset label,
-  .product__info-container .accordion__content p{
-    font-size: {{section.settings.info_fontsize}};
-    font-weight: {{section.settings.info_fontweight}};
-    font-stretch:{{section.settings.info_fontstretch}};
-    font-style:{{section.settings.info_fontstyle}};
-    line-height:{{section.settings.info_lineheight}};
-    letter-spacing:{{section.settings.info_letterspacing}}
-  }
-  @media(max-width:749px){
-    .product__info-container fieldset label,
-    .product__info-container .accordion__content p{
-        font-size: {{section.settings.info_fontsize_m}}
-    }
-  }
-</style>
-{% endif %}
 
 <link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="print" onload="this.media='all'">
 
@@ -92,24 +62,39 @@
   <link id="ModelViewerStyle" rel="stylesheet" href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css" media="print" onload="this.media='all'">
   <link id="ModelViewerOverride" rel="stylesheet" href="{{ 'component-model-viewer-ui.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
-
-<section class="{% if section.settings.media_position != "top" %}page-width{% endif %} py-{{section.settings.section_bg_color}}" >
-  <div class="product grid grid--1-col media-style__{{section.settings.media_position}} mobile-media-style__{{section.settings.media_position_m}}">
+{% if  section.settings.enable_breadcrumb_nav %}{%- include "breadcrumb" -%}{% endif %}
+<section class="main-product-section {% if section.settings.media_style != "top" and section.settings.media_style != "horizontal_grid" %}page-width{% endif %}" >
+  <div class="product grid grid--1-col media-style__{{section.settings.media_style}} mobile-media-style__{{section.settings.media_style_m}} {% if section.settings.media_style != "top" and section.settings.media_style != "horizontal_grid" %}py-{{section.settings.page_width}}{% endif %}">
     <div class="grid__item product__media-wrapper">
       <slider-component class="slider-mobile-gutter">
         <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
           {{ "accessibility.skip_to_product_info" | t }}
         </a>
-        <ul class="product__media-list grid grid--peek list-unstyled slider {% if product.media.size > 3 or product.media.size == 0 %}grid--3-col-tablet grid--4-col-desktop{% elsif product.media.size > 2 %}grid--3-col-tablet {% else %} grid--2-col-tablet {% endif %} {% if section.settings.media_position == "top" %}slider--desktop{% else %}grid-desktop{% endif %}  {% if section.settings.media_position_m == "top" %}slider--mobile  {% else %}grid-mobile{% endif %}" role="list">
+        <ul id="main_media_slide" class="product__media-list grid grid--peek list-unstyled slider 
+                   {% if section.settings.media_style == "top" %}
+                     {% if product.media.size > 3 or product.media.size == 0 %}
+                       grid--3-col-tablet grid--4-col-desktop
+                     {% elsif product.media.size > 2 %}grid--3-col-tablet 
+                     {% else %}grid--2-col-tablet {% endif %} 
+                   {% elsif section.settings.media_style == "horizontal_grid" %}
+                     {% if product.media.size > 2 or product.media.size == 0 %}
+                       grid--3-col-tablet                      
+                     {% else %}grid--2-col-tablet {% endif %}                    
+                   {% elsif section.settings.media_style == "carousel" or section.settings.media_style == "carousel_w_thumb" %}grid--1-col-tablet{% endif %} 
+                   
+                   {% if section.settings.media_style == "top" or section.settings.media_style == "carousel" or section.settings.media_style == "carousel_w_thumb" %}
+                     slider--desktop {% else %}grid-desktop{% endif %}  
+                   
+                   {% if section.settings.media_style_m == "top" or section.settings.media_style_m == "carousel" %}slider--mobile  {% else %}grid-mobile{% endif %}" role="list">
           {%- if product.selected_or_first_available_variant.featured_media != null -%}
             {%- assign media = product.selected_or_first_available_variant.featured_media -%}
-            <li class="product__media-item grid__item slider__slide{% if media.media_type != 'image' %} product__media-item--full{% endif %}" data-media-id="{{ section.id }}-{{ media.id }}">
+            <li class="product__media-item grid__item active slider__slide{% if media.media_type != 'image' %} product__media-item--full{% endif %}" data-media-id="{{ section.id }}-{{ media.id }}" data-index="1">
               {% render 'product-thumbnail', media: media, position: 'featured', loop: section.settings.enable_video_looping, modal_id: section.id %}
             </li>
           {%- endif -%}
           {%- for media in product.media -%}
             {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
-              <li class="product__media-item grid__item slider__slide{% if media.media_type != 'image' %} product__media-item--full{% endif %}" data-media-id="{{ section.id }}-{{ media.id }}">
+              <li class="product__media-item grid__item slider__slide {% if forloop.index == 1%}active{% endif %} {% if media.media_type != 'image' %} product__media-item--full{% endif %}" data-media-id="{{ section.id }}-{{ media.id }}" data-index="{{forloop.index}}">
                 {% render 'product-thumbnail', media: media, position: forloop.index, loop: section.settings.enable_video_looping, modal_id: section.id %}
               </li>
             {%- endunless -%}
@@ -122,7 +107,14 @@
           {% endfor %}
           {% endif %}
         </ul>
-        <div class="slider-buttons slider-buttons--overlay no-js-hidden {% if product.media.size > 3 %}slider-buttons-desktop{% endif %} {% if product.media.size < 2 %} small-hide{% endif %}">
+        <div class="slider-buttons slider-buttons--overlay no-js-hidden 
+                    {% if section.settings.media_style == "top" and product.media.size > 3 %}
+                    slider-buttons-desktop
+                    {% endif %}
+                    {% if section.settings.media_style == "carousel" or section.settings.media_style == "carousel_w_thumb" %}
+                    {% if product.media.size > 1 %}slider-buttons-desktop{% endif %} 
+                    {% endif %}
+                    {% if product.media.size < 2 %} small-hide {% else %} slider-buttons-mobile{% endif %}">
           <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}">{% render 'icon-caret' %}</button>
           <div class="slider-counter caption">
             <span class="slider-counter--current">1</span>
@@ -131,8 +123,92 @@
             <span class="slider-counter--total">{{ product.media.size }}</span>
           </div>
           <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{% render 'icon-caret' %}</button>
-        </div>
+        </div>        
       </slider-component>
+      {% if section.settings.media_style == "vertical_w_thumb" or section.settings.media_style == "carousel_w_thumb" %}
+      {% if product.media.size > 1 %}
+      <div class="carousel-thumb-container small-hide">
+        <slider-component class="slider-mobile-gutter">        
+          <ul class="product__media-list grid grid--peek list-unstyled slider {% if section.settings.media_style == "carousel_w_thumb"%} grid--3-col-tablet grid--4-col-desktop slider--desktop{% endif %}" role="list">
+            {%- if product.selected_or_first_available_variant.featured_media != null -%}
+              {%- assign media = product.selected_or_first_available_variant.featured_media -%}
+              <li class="product__media-item grid__item active slider__slide{% if media.media_type != 'image' %} product__media-item--full{% endif %}" data-media-id="{{ section.id }}-{{ media.id }}" data-index="1">
+                {% render 'product-thumbnail', media: media, position: 'featured', loop: section.settings.enable_video_looping, modal_id: section.id %}
+              </li>
+            {%- endif -%}
+            {%- for media in product.media -%}
+              {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+                <li class="product__media-item grid__item slider__slide {% if forloop.index == 1%}active{% endif %} {% if media.media_type != 'image' %} product__media-item--full{% endif %}" data-media-id="{{ section.id }}-{{ media.id }}" data-index="{{forloop.index}}">
+                  {% render 'product-thumbnail', media: media, position: forloop.index, loop: section.settings.enable_video_looping, modal_id: section.id %}
+                </li>
+              {%- endunless -%}
+            {%- endfor -%}
+            {% if product.media.size == 0 %}
+            {%for i in (1..4) %}
+              <li class="product__media-item grid__item slider__slide  py-bg-c-light">
+                {{ 'product-' | append: i  | placeholder_svg_tag: 'placeholder-svg' }}
+              </li>          
+            {% endfor %}
+            {% endif %}
+          </ul>
+          <div class="slider-buttons slider-buttons--overlay small-hide no-js-hidden 
+                      {% if product.media.size > 4 %} slider-buttons-desktop {% endif %} {% if section.settings.media_style == "vertical_w_thumb"%} hidden{% endif %}">
+            <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}">{% render 'icon-caret' %}</button>
+            <div class="slider-counter caption">
+              <span class="slider-counter--current">1</span>
+              <span aria-hidden="true"> / </span>
+              <span class="visually-hidden">{{ 'accessibility.of' | t }}</span>
+              <span class="slider-counter--total">{{ product.media.size }}</span>
+            </div>
+            <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{% render 'icon-caret' %}</button>
+          </div>        
+        </slider-component>
+      </div>
+      {%- case section.settings.media_style -%}
+          {%- when 'carousel_w_thumb' -%}
+          <script> 
+            var main_slide = document.querySelector('#main_media_slide');
+            document.querySelectorAll('.carousel-thumb-container ul>li.product__media-item').forEach((item)=>{  
+              item.addEventListener("click", function(event){
+                if(this.className.indexOf('active')>=0){
+                  return false;
+                }else{                  
+                  var current_index = this.getAttribute('data-index');
+                  document.querySelector('.carousel-thumb-container ul>li.product__media-item.active').classList.remove('active');                  
+                  main_slide.scrollTo({left: main_slide.querySelector('li.product__media-item').clientWidth*(current_index-1) });
+                  this.classList.add('active');
+                }
+              });
+            })
+          </script>
+          {%- when 'vertical_w_thumb' -%}
+          <script> 
+            var main_slide = document.querySelector('#main_media_slide');
+            document.querySelectorAll('.carousel-thumb-container ul>li.product__media-item').forEach((item)=>{  
+              item.addEventListener("click", function(event){
+                if(this.className.indexOf('active')>=0){
+                  return false;
+                }else{                  
+                  var current_index = this.getAttribute('data-index');
+                  var top_position = main_slide.getBoundingClientRect().top + document.documentElement.scrollTop;
+                  document.querySelector('.carousel-thumb-container ul>li.product__media-item.active').classList.remove('active'); 
+                  for(i=0;i<current_index - 1;i++){
+                    top_position+= main_slide.querySelectorAll('li.product__media-item')[i].clientHeight;
+                  }                  
+                  window.scroll({
+                      top: top_position,
+                      behavior:"smooth"
+                  });
+                  this.classList.add('active');
+                }
+              });
+            })
+          </script>
+      {%- endcase -%}
+      
+      {% endif %} 
+      {% endif %}
+      
       {%- if first_3d_model -%}
         <button
           class="button button--full-width product__xr-button"
@@ -148,7 +224,7 @@
         </button>
       {%- endif -%}
     </div>
-    <div class="product__info-wrapper {% if section.settings.media_position == "left" %} grid__item {% elsif section.settings.media_position == "top" %}full-width {% endif %} py-{{section.settings.page_width}}">
+    <div class="product__info-wrapper  py-{{section.settings.page_width}} py-{{section.settings.info_section_padding}} {% if section.settings.media_style == "top" or section.settings.media_style == "horizontal_grid"  %} full-width {% endif %}">
       <div id="ProductInfo-{{ section.id }}" class="product__info-container{% if section.settings.enable_sticky_info %} product__info-container--sticky{% endif %}">
         {%- assign product_form_id = 'product-form-' | append: section.id -%}
         <div class="product-badge" style='width:100%;'>{% render 'component-badge', meta: product.metafields.selling, vertical: false %}</div>
@@ -163,6 +239,21 @@
               {{- block.settings.text -}}
             </p>
           {%- when 'title' -%}
+            <style>
+              .product__info-container .product__title{
+                font-size: {{block.settings.title_fontsize}}px;
+                font-weight: {{block.settings.title_fontweight}};
+                font-stretch:{{block.settings.title_fontstretch}};
+                font-style:{{block.settings.title_fontstyle}};
+                line-height:{{block.settings.title_lineheight}};
+                letter-spacing:{{block.settings.title_letterspacing}}
+              }
+              @media(max-width:749px){
+                .product__info-container .product__title{
+                    font-size: {{block.settings.title_fontsize_m}}px;
+                }
+              }
+          </style>
             <h1 class="product__title">
               {{ product.title | escape }}
             </h1>
@@ -181,11 +272,36 @@
             </h5>
             
           {%- when 'price' -%}
+            <style>  
+              .product__info-container .bc-product-price-wrapper *{
+                font-size: {{block.settings.price_fontsize}}px;
+                font-weight: {{block.settings.price_fontweight}};
+                font-stretch:{{block.settings.price_fontstretch}};
+                font-style:{{block.settings.price_fontstyle}};
+                line-height:{{block.settings.price_lineheight}};
+                letter-spacing:{{block.settings.price_letterspacing}}
+              }
+              @media(max-width:749px){
+                .product__info-container .bc-product-price-wrapper *{
+                    font-size: {{block.settings.price_fontsize_m}}px;
+                }
+              }
+            </style>
             <div class="no-js-hidden bc-product-price-wrapper" id="price-{{ section.id }}">
               {%- render 'price', product: product, use_variant: true, show_badges: false, price_class: 'price--large' -%}
             </div>
             {{ form | payment_terms }}          
           {%- when 'quantity_selector' -%}
+          <style>
+            .quantity .quantity__button{
+              border:1px solid;
+              border-radius:50%;
+              color:{{block.settings.option_color}};
+            }
+            .quantity .quantity__input{
+              color:{{block.settings.option_color}};
+            }
+          </style>
             <div class="product-form__input product-form__quantity">
               <label class="form__label" for="Quantity-{{ section.id }}">
                 {{ 'products.product.quantity.label' | t }}
@@ -216,6 +332,7 @@
               color:{{block.settings.option_color}};
               border:1px solid;
               border-color:{{block.settings.option_br_color}} !important;
+              font-size: {{block.settings.option_fontsize}}px;
             }
             .product-form__input input[type='radio']:checked + label {
               background:{{block.settings.selected_option_bg_color}};
@@ -255,6 +372,25 @@
             .color-picker-color .product-form__input input[type='radio']:checked + label[for*=olor] span{
               border: 2px solid white;
             }
+            .product__info-container .bc-colors__heading,
+            .product__info-container fieldset.product-form__input .form__label{
+              font-size: {{block.settings.option_fontsize}}px;
+              font-weight: {{block.settings.option_fontweight}};
+              font-stretch:{{block.settings.option_fontstretch}};
+              font-style:{{block.settings.option_fontstyle}};
+              line-height:{{block.settings.option_lineheight}};
+              letter-spacing:{{block.settings.option_letterspacing}}
+            }            
+            @media(max-width:749px){
+              .product__info-container .bc-colors__heading,
+              .product__info-container fieldset.product-form__input .form__label{
+                  font-size: {{block.settings.option_fontsize_m}}px;
+              }
+              .product-form__input input[type='radio'] + label{
+                font-size: {{block.settings.option_fontsize_m}}px;
+              }
+            }
+            
           </style>
             <div class="variant-picker-container color-picker-{{block.settings.color_picker_type}} general-picker-{{block.settings.general_picker_type}}">
             {% comment %}            
@@ -320,7 +456,7 @@
             {%- endunless -%}
             </div>
         {%- if sizeCharts.cm_content != blank or sizeCharts.inches_content != blank -%}
-        <modal-opener class="product-popup-modal__opener no-js-hidden" data-modal="#PopupModal-sizecharts">
+        <modal-opener class="product-popup-modal__opener no-js-hidden " data-modal="#PopupModal-sizecharts">
           <button id="ProductPopup-sizecharts" class="product-popup-modal__button link bc-size-chart-button" type="button" aria-haspopup="dialog">VIEW SIZING CHART</button>
         </modal-opener>
         {%- endif -%}
@@ -361,8 +497,10 @@
                     name="add"
                     class="product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}{%comment%}button--secondary{%endcomment%} button--primar{% else %}button--primary{% endif %}"
                     {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
-                    {% if block.settings.bg_color != blank or block.settings.color != blank %}style="{% if block.settings.bg_color != blank %}background-color:{{ block.settings.bg_color }};box-shadow:0 0 0 .1rem {{ block.settings.bg_color }};{% endif %}{% if block.settings.color != blank %}color:{{ block.settings.color }};{% endif %}"{% endif %}
-                  > 
+                    > 
+                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.5 8H12.5V5H15.5V3H12.5V0H10.5V3H7.5V5H10.5V8ZM6.5 17C5.96957 17 5.46086 17.2107 5.08579 17.5858C4.71071 17.9609 4.5 18.4696 4.5 19C4.5 19.5304 4.71071 20.0391 5.08579 20.4142C5.46086 20.7893 5.96957 21 6.5 21C7.03043 21 7.53914 20.7893 7.91421 20.4142C8.28929 20.0391 8.5 19.5304 8.5 19C8.5 18.4696 8.28929 17.9609 7.91421 17.5858C7.53914 17.2107 7.03043 17 6.5 17ZM16.5 17C15.9696 17 15.4609 17.2107 15.0858 17.5858C14.7107 17.9609 14.5 18.4696 14.5 19C14.5 19.5304 14.7107 20.0391 15.0858 20.4142C15.4609 20.7893 15.9696 21 16.5 21C17.0304 21 17.5391 20.7893 17.9142 20.4142C18.2893 20.0391 18.5 19.5304 18.5 19C18.5 18.4696 18.2893 17.9609 17.9142 17.5858C17.5391 17.2107 17.0304 17 16.5 17ZM6.67 13.75L6.7 13.63L7.6 12H15.05C15.8 12 16.46 11.59 16.8 10.97L20.66 3.96L18.92 3H18.91L17.81 5L15.05 10H8.03L7.9 9.73L5.66 5L4.71 3L3.77 1H0.5V3H2.5L6.1 10.59L4.75 13.04C4.59 13.32 4.5 13.65 4.5 14C4.5 14.5304 4.71071 15.0391 5.08579 15.4142C5.46086 15.7893 5.96957 16 6.5 16H18.5V14H6.92C6.79 14 6.67 13.89 6.67 13.75Z"/>
+                    </svg>
                     <span class="product-form__submit-label">
                       {%- if product.selected_or_first_available_variant.available -%}
                         {%- if block.settings.btn != blank -%}
@@ -384,25 +522,113 @@
             </product-form>
 
             {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
-
+            <style>
+              button.product-form__submit{
+                border-radius:{{block.settings.btn_border_radius}}px;
+                border:{{block.settings.btn_border_width}}px solid {{block.settings.br_color}};
+                background-color:{{block.settings.bg_color}};
+                color:{{block.settings.color}};
+                font-size:{{block.settings.btn_font_size}}px;
+              }
+              button.product-form__submit svg{
+                margin-right: 15px;
+                fill:{{block.settings.color}};
+              }
+              button.product-form__submit:hover{
+                color: {{block.settings.btn_hover_color}};
+                border-color: {{block.settings.btn_hover_color}};
+                background-color:{{block.settings.btn_hover_bg_color}};
+              }
+              button.product-form__submit:hover svg{
+                fill: {{block.settings.btn_hover_color}};
+              }
+              .pickup-card-wrapper{
+                border-radius:{{block.settings.pick_up_card_radius}}px;
+                border:{{block.settings.pick_up_border_width}}px solid {{block.settings.pick_up_border_color}};
+                background-color:{{block.settings.pick_up_bg_color}};
+              }
+              .pickup-location-item{
+                background-color: {{block.settings.pick_up_location_bg_color}};
+                border-radius:{{block.settings.pick_up_location_radius}}px;
+                padding: var(--py-pd-x-s) var(--py-pd-y-m);
+                margin-bottom: var(--py-mg-x-s);
+              }
+              .pickup-location-item *{
+                color:{{block.settings.pick_up_location_info_color}}
+              }
+              .pickup-card-title{
+                font-size:{{block.settings.pick_up_title_font_size}}px;
+                color:{{block.settings.pick_up_info_color}};
+              }
+              .pickup-card-description{
+                font-size:{{block.settings.pick_up_desc_font_size}}px;
+                color:{{block.settings.pick_up_info_color}};
+              }
+              pickup-availability-drawer{
+                background: {{block.settings.pick_up_bg_color}};                
+              }
+              pickup-availability-drawer *{
+                color:{{block.settings.pick_up_info_color}};
+              }
+              #preorderbunner .bc-order-wrapper{
+                border-radius:{{block.settings.pre_order_card_radius}}px;
+                border:{{block.settings.pre_order_border_width}}px solid {{block.settings.pre_order_border_color}};
+                background-color:{{block.settings.pre_order_bg_color}};
+              }
+              #preorderbunner .bc-order-wrapper .title{
+                color:{{block.settings.pre_order_info_color}};
+                font-size:{{block.settings.pre_order_title_font_size}}px;
+              }
+              #preorderbunner .bc-order-wrapper .message,.bc-order-wrapper .product-popup-modal__button{
+                color:{{block.settings.pre_order_info_color}};
+                font-size:font-size:{{block.settings.pre_order_desc_font_size}}px;
+              }
+              #PopupModal-preorder .product-popup-modal__content{
+                background-color:{{block.settings.pre_order_bg_color}};
+              }
+              #PopupModal-preorder .product-popup-modal__content *{
+                color:{{block.settings.pre_order_info_color}};
+              }
+              #preorderbunner .bc-order-wrapper.sold-out-card{
+                border-radius:{{block.settings.sold_out_card_radius}}px;
+                border:{{block.settings.sold_out_border_width}}px solid {{block.settings.sold_out_border_color}};
+                background-color:{{block.settings.sold_out_bg_color}};
+              }
+              #preorderbunner .bc-order-wrapper.sold-out-card .title{
+                color:{{block.settings.sold_out_info_color}};
+                font-size:{{block.settings.sold_out_title_font_size}}px;
+              }
+              #preorderbunner .bc-order-wrapper.sold-out-card .message,.bc-order-wrapper.sold-out-card .product-popup-modal__button{
+                color:{{block.settings.sold_out_info_color}};
+                font-size:font-size:{{block.settings.sold_out_desc_font_size}}px;
+              }
+              #PopupModal-preorder .product-popup-modal__content{
+                background-color:{{block.settings.sold_out_bg_color}};
+              }
+              #PopupModal-preorder .product-popup-modal__content *{
+                color:{{block.settings.sold_out_info_color}};
+              }
+            </style> 
             {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities | where: 'pick_up_enabled', true -%}
-
-            <pickup-availability class="product__pickup-availabilities no-js-hidden"
-              {% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %} available{% endif %}
-              data-base-url="{{ shop.url }}{{ routes.root_url }}"
-              data-variant-id="{{ product.selected_or_first_available_variant.id }}"
-              data-has-only-default-variant="{{ product.has_only_default_variant }}"
-            >
-              <template>
-                <pickup-availability-preview class="pickup-availability-preview">
-                  {% render 'icon-unavailable' %}
-                  <div class="pickup-availability-info">
-                    <p class="caption-large">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
-                    <button class="pickup-availability-button link link--text underlined-link">{{ 'products.product.pickup_availability.refresh' | t }}</button>
-                  </div>
-                </pickup-availability-preview>
-              </template>
-            </pickup-availability>
+            <div class="pickup-card-wrapper py-pd-y-m py-pd-x-m {% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %} available{% endif %}">
+              <div class="pickup-card-title">Pickup Available</div>
+              <div class="pickup-card-description">{{block.settings.pick_up_txt}}</div>
+              <pickup-availability class="product__pickup-availabilities no-js-hidden"
+                {% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %} available{% endif %}
+                data-base-url="{{ shop.url }}{{ routes.root_url }}"
+                data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                data-has-only-default-variant="{{ product.has_only_default_variant }}"
+              >
+                <template>
+                  <pickup-availability-preview class="pickup-availability-preview">                  
+                    <div class="pickup-availability-info">
+                      <p class="caption-large">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
+                      <button class="pickup-availability-button link link--text underlined-link">{{ 'products.product.pickup_availability.refresh' | t }}</button>
+                    </div>
+                  </pickup-availability-preview>
+                </template>
+               </pickup-availability>
+             </div>
 
             <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
           {%- endcase -%}
@@ -412,6 +638,21 @@
         {%- for block in section.blocks -%}
           {%- case block.type -%}
           {%- when 'description' -%}
+            <style>
+              .product__info-container .product__description{
+                font-size: {{block.settings.info_fontsize}}px;
+                font-weight: {{block.settings.info_fontweight}};
+                font-stretch:{{block.settings.info_fontstretch}};
+                font-style:{{block.settings.info_fontstyle}};
+                line-height:{{block.settings.info_lineheight}};
+                letter-spacing:{{block.settings.info_letterspacing}}
+              }
+              @media(max-width:749px){
+                .product__info-container .product__description{
+                    font-size: {{block.settings.info_fontsize_m}}px
+                }
+              }
+            </style>
             {%- if product.description != blank -%}
               <div class="product__description rte">
                 {{ product.description }}
@@ -419,9 +660,20 @@
             {%- endif -%}
           {%- when 'collapsible_tab' -%}
             {%- assign headingLow = block.settings.heading | downcase | strip -%}
-            <div class="product__accordion accordion {{headingLow | replace: ' ', '-'}}" {% if block.settings.bg_color != blank %}style="background-color:{{ block.settings.bg_color }};"{% endif %}>
+            <style>
+              .accordion_{{headingLow | replace: ' ', '-'}}{
+                background-color:{{block.settings.bg_color}};
+                color:{{ block.settings.color }};
+                border-color:{{ block.settings.border_color }};
+              }
+              .accordion_{{headingLow | replace: ' ', '-'}} *{
+                color:{{ block.settings.color }};
+                fill:{{ block.settings.color }};
+              }
+            </style>
+            <div class="product__accordion accordion accordion_{{headingLow | replace: ' ', '-'}}">
               <details>
-                <summary {% if block.settings.color != blank %}style="color:{{ block.settings.color }};"{% endif %}>
+                <summary>
                   <div class="summary__title">
                     {% render 'icon-accordion', icon: block.settings.icon %}
                     <h2 class="h4 accordion__title">
@@ -430,7 +682,7 @@
                   </div>
                   {% render 'icon-caret' %}
                 </summary>
-                <div class="accordion__content" {% if block.settings.color != blank %}style="color:{{ block.settings.color }};"{% endif %}>
+                <div class="accordion__content">
                   {%- if headingLow == 'details' and product.description != blank -%}
                     {{ product.description }}
                   {%- else -%}
@@ -489,254 +741,164 @@
           {%- endcase -%}
         {%- endfor -%}
       </div>
-    </div>
-  </div>
-
-  {% comment %} <product-modal id="ProductModal-{{ section.id }}" class="product-media-modal">
-    <div role="dialog" aria-label="{{ 'products.modal.label' | t }}" aria-modal="true" tabindex="-1">
-      <button id="ModalClose-{{ section.id }}" type="button" class="product-media-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close' %}</button>
-
-      <div class="product-media-modal__content" role="document" aria-label="{{ 'products.modal.label' | t }}" tabindex="0">
-        {%- for media in product.media -%}
-          {%- if media.media_type == 'image' -%}
-            <img
-              srcset="{%- if media.preview_image.width >= 550 -%}{{ media.preview_image | img_url: '550x' }} 550w,{%- endif -%}
-                      {%- if media.preview_image.width >= 1100 -%}{{ media.preview_image | img_url: '1100x' }} 1100w,{%- endif -%}
-                      {%- if media.preview_image.width >= 1680 -%}{{ media.preview_image | img_url: '1680x' }} 1680w,{%- endif -%}
-                      {%- if media.preview_image.width >= 2048 -%}{{ media.preview_image | img_url: '2048x' }} 2048w,{%- endif -%}
-                      {%- if media.preview_image.width >= 4096 -%}{{ media.preview_image | img_url: '4096x' }} 4096w{%- endif -%}"
-              sizes="(min-width: 750px) calc(100vw - 12rem), 100vw"
-              src="{{ media.preview_image | img_url: '750x' }}"
-              alt="{{ media.alt | escape }}"
-              loading="lazy"
-              width="1100"
-              height="{{ 1100 | divided_by: media.preview_image.aspect_ratio | ceil }}"
-              data-media-id="{{ media.id }}"
-            >
-          {%- else -%}
-            {%- if media.media_type == 'model' -%}
-              <div class="product-media-modal__model" data-media-id="{{ media.id }}">
-                <product-model class="deferred-media media" style="padding-top: min(calc(100vh - 12rem), 100%)">
-            {%- else -%}
-              <deferred-media class="deferred-media media" style="padding-top: min(calc(100vh - 12rem), {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%)" data-media-id="{{ media.id }}">
-            {%- endif -%}
-
-              <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster" type="button">
-                <span class="deferred-media__poster-button motion-reduce">
-                  {%- if media.media_type == 'model' -%}
-                    {%- render 'icon-3d-model' -%}
-                  {%- else -%}
-                    {%- render 'icon-play' -%}
-                  {%- endif -%}
-                </span>
-                <img
-                  srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %}
-                          {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %}
-                          {% if media.preview_image.width >= 550 %}{{ media.preview_image | img_url: '550x' }} 550w,{% endif %}
-                          {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w{% endif %}"
-                  src="{{ media | img_url: '550x550' }}"
-                  sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
-                  loading="lazy"
-                  width="576"
-                  height="{{ 576 | divided_by: media.preview_image.aspect_ratio }}"
-                  alt="{{ media.preview_image.alt | escape }}"
-                >
-              </button>
-              <template>
-                {%- case media.media_type -%}
-                {%- when 'external_video' -%}
-                  {%- assign video_class = 'js-' | append: media.host -%}
-                  {%- if media.host == 'youtube' -%}
-                    {{ media | external_video_url: autoplay: true, loop: section.settings.enable_video_looping, playlist: media.external_id | external_video_tag: class: video_class, loading: "lazy" }}
-                  {%- else -%}
-                    {{ media | external_video_url: autoplay: true, loop: section.settings.enable_video_looping | external_video_tag: class: video_class, loading: "lazy" }}
-                  {%- endif -%}
-                {%- when 'video' -%}
-                  {{ media | media_tag: image_size: "2048x", autoplay: true, loop: section.settings.enable_video_looping, controls: true, preload: "none", autoplay: true }}
-                {%- when 'model' -%}
-                  {{ media | media_tag: image_size: "2048x", toggleable: true }}
-                {%- endcase -%}
-              </template>
-
-            {%- if media.media_type == 'model' -%}
-                </product-model>
-                <button
-                  class="button button--full-width product__xr-button"
-                  type="button"
-                  aria-label="{{ 'products.product.xr_button_label' | t }}"
-                  data-shopify-xr
-                  data-shopify-model3d-id="{{ media.id }}"
-                  data-shopify-title="title"
-                  data-shopify-xr-hidden
-                  >
-                  {% render 'icon-3d-model' %}
-                  {{ 'products.product.xr_button' | t }}
-                </button>
-              </div>
-            {%- else -%}
-              </deferred-media>
-            {%- endif -%}
-          {%- endif -%}
-        {%- endfor -%}
       </div>
     </div>
-  </product-modal> {% endcomment %}
 
-  {% assign popups = section.blocks | where: "type", "popup" %}
-  {%- for block in popups -%}
-    <modal-dialog id="PopupModal-{{ block.id }}" class="product-popup-modal">
-      <div role="dialog" aria-label="{{ block.settings.link_label }}" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
-        <button id="ModalClose-{{ block.id }}" type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close' %}</button>
-        <div class="product-popup-modal__content-info">
-          <h1 class="h2">{{ block.settings.page.title }}</h1>
-          {{ block.settings.page.content }}
-        </div>
-      </div>
-    </modal-dialog>
-  {%- endfor -%}
-  
-  {%- if sizeCharts.cm_content != blank or sizeCharts.inches_content != blank -%}
-  <modal-dialog id="PopupModal-sizecharts" class="product-popup-modal">
-    <div role="dialog" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
-      <button id="ModalClose-sizecharts" type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close' %}</button>
-      <size-charts class="product-popup-modal__content-info">
-        {%- if sizeCharts.cm_content != blank and sizeCharts.inches_content != blank -%}
-        <div class="bc-size-charts-tabs">
-          <h2 class="bc-size-charts-tabs-item active" data-index="cm">CM</h2>
-          <h2 class="bc-size-charts-tabs-item" data-index="inches">Inches</h2>
-        </div>
-        {%- endif -%}
-        {%- if sizeCharts.cm_content != blank -%}
-        <div data-id="cm" class="bc-size-charts-content active">
-          {%- assign image = sizeCharts.cm_content -%}
-          <div class="media" {% if image != blank %}style="padding-bottom: 100%;"{% endif %}>
-              <img srcset="{{ image | img_url: '165x' }} 165w,
-                  {{ image | img_url: '360x' }} 360w,
-                  {{ image | img_url: '535x' }} 535w,
-                  {{ image | img_url: '720x' }} 720w,
-                  {{ image | img_url: '940x' }} 940w,
-                  {{ image | img_url: '1070x' }} 1070w"
-                  src="{{ image | img_url: '720x' }}"
-                  sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
-                  alt="{{ image.alt | escape }}"
-                  loading="lazy"
-                  width="720"
-                  height="720"
-              />
-          </div>  
-        </div>
-        {%- endif -%}
-        {%- if sizeCharts.inches_content != blank -%}
-        {%- assign image = sizeCharts.inches_content -%}
-        <div data-id="inches" class="bc-size-charts-content {% if sizeCharts.cm_content == blank %}active{% endif %}">
-          {%- assign image = sizeCharts.inches_content -%}
-          <div class="media" {% if image != blank %}style="padding-bottom: 100%;"{% endif %}>
-              <img srcset="{{ image | img_url: '165x' }} 165w,
-                  {{ image | img_url: '360x' }} 360w,
-                  {{ image | img_url: '535x' }} 535w,
-                  {{ image | img_url: '720x' }} 720w,
-                  {{ image | img_url: '940x' }} 940w,
-                  {{ image | img_url: '1070x' }} 1070w"
-                  src="{{ image | img_url: '720x' }}"
-                  sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
-                  alt="{{ image.alt | escape }}"
-                  loading="lazy"
-                  width="720"
-                  height="720"
-              />
+    {% assign popups = section.blocks | where: "type", "popup" %}
+    {%- for block in popups -%}
+      <modal-dialog id="PopupModal-{{ block.id }}" class="product-popup-modal">
+        <div role="dialog" aria-label="{{ block.settings.link_label }}" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
+          <button id="ModalClose-{{ block.id }}" type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close' %}</button>
+          <div class="product-popup-modal__content-info">
+            <h1 class="h2">{{ block.settings.page.title }}</h1>
+            {{ block.settings.page.content }}
           </div>
         </div>
-        {%- endif -%}
-      </size-charts>
+      </modal-dialog>
+    {%- endfor -%}
+
+    {%- if sizeCharts.cm_content != blank or sizeCharts.inches_content != blank -%}
+    <modal-dialog id="PopupModal-sizecharts" class="product-popup-modal">
+      <div role="dialog" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
+        <button id="ModalClose-sizecharts" type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close' %}</button>
+        <size-charts class="product-popup-modal__content-info">
+          {%- if sizeCharts.cm_content != blank and sizeCharts.inches_content != blank -%}
+          <div class="bc-size-charts-tabs">
+            <h2 class="bc-size-charts-tabs-item active" data-index="cm">CM</h2>
+            <h2 class="bc-size-charts-tabs-item" data-index="inches">Inches</h2>
+          </div>
+          {%- endif -%}
+          {%- if sizeCharts.cm_content != blank -%}
+          <div data-id="cm" class="bc-size-charts-content active">
+            {%- assign image = sizeCharts.cm_content -%}
+            <div class="media" {% if image != blank %}style="padding-bottom: 100%;"{% endif %}>
+                <img srcset="{{ image | img_url: '165x' }} 165w,
+                    {{ image | img_url: '360x' }} 360w,
+                    {{ image | img_url: '535x' }} 535w,
+                    {{ image | img_url: '720x' }} 720w,
+                    {{ image | img_url: '940x' }} 940w,
+                    {{ image | img_url: '1070x' }} 1070w"
+                    src="{{ image | img_url: '720x' }}"
+                    sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                    alt="{{ image.alt | escape }}"
+                    loading="lazy"
+                    width="720"
+                    height="720"
+                />
+            </div>  
+          </div>
+          {%- endif -%}
+          {%- if sizeCharts.inches_content != blank -%}
+          {%- assign image = sizeCharts.inches_content -%}
+          <div data-id="inches" class="bc-size-charts-content {% if sizeCharts.cm_content == blank %}active{% endif %}">
+            {%- assign image = sizeCharts.inches_content -%}
+            <div class="media" {% if image != blank %}style="padding-bottom: 100%;"{% endif %}>
+                <img srcset="{{ image | img_url: '165x' }} 165w,
+                    {{ image | img_url: '360x' }} 360w,
+                    {{ image | img_url: '535x' }} 535w,
+                    {{ image | img_url: '720x' }} 720w,
+                    {{ image | img_url: '940x' }} 940w,
+                    {{ image | img_url: '1070x' }} 1070w"
+                    src="{{ image | img_url: '720x' }}"
+                    sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                    alt="{{ image.alt | escape }}"
+                    loading="lazy"
+                    width="720"
+                    height="720"
+                />
+            </div>
+          </div>
+          {%- endif -%}
+        </size-charts>
+      </div>
+    </modal-dialog>
+    {%- endif -%}
+    <div style="display:none">
+      <modal-opener class="product-popup-modal__opener no-js-hidden" data-modal="#PopupModal-shippingcharts">
+        <button id="ProductPopup-shippingcharts" class="product-popup-modal__button link bc-shipping-chart-button" type="button" aria-haspopup="dialog"></button>
+      </modal-opener>    
     </div>
-  </modal-dialog>
-  {%- endif -%}
-  <div style="display:none">
-    <modal-opener class="product-popup-modal__opener no-js-hidden" data-modal="#PopupModal-shippingcharts">
-      <button id="ProductPopup-shippingcharts" class="product-popup-modal__button link bc-shipping-chart-button" type="button" aria-haspopup="dialog"></button>
-    </modal-opener>    
+    <modal-dialog id="PopupModal-shippingcharts" class="product-popup-modal">
+      <div role="dialog" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
+        <button id="ModalClose-shippingcharts" type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close' %}</button>
+        <shipping-chart class="product-popup-modal__content-info">
+          <div  class="bc-shipping-charts-content ">
+            <div class="on-shippingrates-wrapper"><div class="mt5">
+              <div class="grid ga3 pv2 bt bb b--light-gray" style="grid-template-columns: 1fr 1fr 2fr 1fr;">
+              <div class="b"><span class="f7">COUNTRY</span></div>
+              <div class="b"><span class="f7">COST</span></div>
+              <div class="b"><span class="f7">DELIVERY TIME</span></div>
+              <div class="b"><span class="f7">SPEND $100+</span></div>
+              <div class=""><span class="f7">USA</span></div>
+              <div class=""><span class="f7">FREE</span></div>
+              <div class=""><span class="f7">4-6 BUSINESS DAYS</span></div>
+              <div class=""><span class="f7">FREE</span></div>
+              <div class=""><span class="f7">CANADA</span></div>
+              <div class=""><span class="f7">FREE</span></div>
+              <div class=""><span class="f7">CANADA: 4-6 BUSINESS DAYS ONTARIO: 3-4 BUSINESS DAYS</span></div>
+              <div class=""><span class="f7">FREE</span></div>
+              <div class=""><span class="f7">UK</span></div>
+              <div class=""><span class="f7">$30</span></div>
+              <div class=""><span class="f7">2-7 BUSINESS DAYS</span></div>
+              <div class=""><span class="f7">FREE</span></div>
+              <div class=""><span class="f7">AUSTRALIA</span></div>
+              <div class=""><span class="f7">$30</span></div>
+              <div class=""><span class="f7">2-7 BUSINESS DAYS</span></div>
+              <div class=""><span class="f7">FREE</span></div>
+              <div class=""><span class="f7">INTERNATIONAL</span></div>
+              <div class=""><span class="f7">$30</span></div>
+              <div class=""><span class="f7">2-7 BUSINESS DAYS</span></div>
+              <div class=""><span class="f7">FREE</span></div>
+              </div>
+              <p class="mt4 f6">We ship to the following countries:</p>
+              <div class="grid ga3" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+              <div><span class="f7">AUSTRALIA</span></div>
+              <div><span class="f7">AUSTRIA</span></div>
+              <div><span class="f7">BELGIUM</span></div>
+              <div><span class="f7">BRAZIL</span></div>
+              <div><span class="f7">CANADA</span></div>
+              <div><span class="f7">CROATIA</span></div>
+              <div><span class="f7">DENMARK</span></div>
+              <div><span class="f7">ESTONIA</span></div>
+              <div><span class="f7">FINLAND</span></div>
+              <div><span class="f7">FRANCE</span></div>
+              <div><span class="f7">GERMANY</span></div>
+              <div><span class="f7">GIBRALTAR</span></div>
+              <div><span class="f7">GREECE</span></div>
+              <div><span class="f7">HONG KONG</span></div>
+              <div><span class="f7">HUNGARY</span></div>
+              <div><span class="f7">IRELAND</span></div>
+              <div><span class="f7">ISRAEL</span></div>
+              <div><span class="f7">ITALY</span></div>
+              <div><span class="f7">JAPAN</span></div>
+              <div><span class="f7">KOREA</span></div>
+              <div><span class="f7">LATVIA</span></div>
+              <div><span class="f7">LITHUANIA</span></div>
+              <div><span class="f7">LUXEMBOURG</span></div>
+              <div><span class="f7">MALAYSIA</span></div>
+              <div><span class="f7">MALTA</span></div>
+              <div><span class="f7">NETHERLANDS</span></div>
+              <div><span class="f7">NEW ZEALAND</span></div>
+              <div><span class="f7">NORWAY</span></div>
+              <div><span class="f7">POLAND</span></div>
+              <div><span class="f7">PORTUGAL</span></div>
+              <div><span class="f7">RUSSIA</span></div>
+              <div><span class="f7">SINGAPORE</span></div>
+              <div><span class="f7">SOUTH KOREA</span></div>
+              <div><span class="f7">SPAIN</span></div>
+              <div><span class="f7">SWEDEN</span></div>
+              <div><span class="f7">SWITZERLAND</span></div>
+              <div><span class="f7">UNITED KINGDOM</span></div>
+              <div><span class="f7">UNITED STATES</span></div>
+              </div>
+              </div></div>
+          </div>
+        </shipping-chart>
+      </div>
+    </modal-dialog>
+    {%- render 'instagram-feed' -%}
+    {%- render 'tiktok-feed' -%}
   </div>
-  <modal-dialog id="PopupModal-shippingcharts" class="product-popup-modal">
-    <div role="dialog" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
-      <button id="ModalClose-shippingcharts" type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close' %}</button>
-      <shipping-chart class="product-popup-modal__content-info">
-        <div  class="bc-shipping-charts-content ">
-          <div class="on-shippingrates-wrapper"><div class="mt5">
-            <div class="grid ga3 pv2 bt bb b--light-gray" style="grid-template-columns: 1fr 1fr 2fr 1fr;">
-            <div class="b"><span class="f7">COUNTRY</span></div>
-            <div class="b"><span class="f7">COST</span></div>
-            <div class="b"><span class="f7">DELIVERY TIME</span></div>
-            <div class="b"><span class="f7">SPEND $100+</span></div>
-            <div class=""><span class="f7">USA</span></div>
-            <div class=""><span class="f7">FREE</span></div>
-            <div class=""><span class="f7">4-6 BUSINESS DAYS</span></div>
-            <div class=""><span class="f7">FREE</span></div>
-            <div class=""><span class="f7">CANADA</span></div>
-            <div class=""><span class="f7">FREE</span></div>
-            <div class=""><span class="f7">CANADA: 4-6 BUSINESS DAYS ONTARIO: 3-4 BUSINESS DAYS</span></div>
-            <div class=""><span class="f7">FREE</span></div>
-            <div class=""><span class="f7">UK</span></div>
-            <div class=""><span class="f7">$30</span></div>
-            <div class=""><span class="f7">2-7 BUSINESS DAYS</span></div>
-            <div class=""><span class="f7">FREE</span></div>
-            <div class=""><span class="f7">AUSTRALIA</span></div>
-            <div class=""><span class="f7">$30</span></div>
-            <div class=""><span class="f7">2-7 BUSINESS DAYS</span></div>
-            <div class=""><span class="f7">FREE</span></div>
-            <div class=""><span class="f7">INTERNATIONAL</span></div>
-            <div class=""><span class="f7">$30</span></div>
-            <div class=""><span class="f7">2-7 BUSINESS DAYS</span></div>
-            <div class=""><span class="f7">FREE</span></div>
-            </div>
-            <p class="mt4 f6">We ship to the following countries:</p>
-            <div class="grid ga3" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
-            <div><span class="f7">AUSTRALIA</span></div>
-            <div><span class="f7">AUSTRIA</span></div>
-            <div><span class="f7">BELGIUM</span></div>
-            <div><span class="f7">BRAZIL</span></div>
-            <div><span class="f7">CANADA</span></div>
-            <div><span class="f7">CROATIA</span></div>
-            <div><span class="f7">DENMARK</span></div>
-            <div><span class="f7">ESTONIA</span></div>
-            <div><span class="f7">FINLAND</span></div>
-            <div><span class="f7">FRANCE</span></div>
-            <div><span class="f7">GERMANY</span></div>
-            <div><span class="f7">GIBRALTAR</span></div>
-            <div><span class="f7">GREECE</span></div>
-            <div><span class="f7">HONG KONG</span></div>
-            <div><span class="f7">HUNGARY</span></div>
-            <div><span class="f7">IRELAND</span></div>
-            <div><span class="f7">ISRAEL</span></div>
-            <div><span class="f7">ITALY</span></div>
-            <div><span class="f7">JAPAN</span></div>
-            <div><span class="f7">KOREA</span></div>
-            <div><span class="f7">LATVIA</span></div>
-            <div><span class="f7">LITHUANIA</span></div>
-            <div><span class="f7">LUXEMBOURG</span></div>
-            <div><span class="f7">MALAYSIA</span></div>
-            <div><span class="f7">MALTA</span></div>
-            <div><span class="f7">NETHERLANDS</span></div>
-            <div><span class="f7">NEW ZEALAND</span></div>
-            <div><span class="f7">NORWAY</span></div>
-            <div><span class="f7">POLAND</span></div>
-            <div><span class="f7">PORTUGAL</span></div>
-            <div><span class="f7">RUSSIA</span></div>
-            <div><span class="f7">SINGAPORE</span></div>
-            <div><span class="f7">SOUTH KOREA</span></div>
-            <div><span class="f7">SPAIN</span></div>
-            <div><span class="f7">SWEDEN</span></div>
-            <div><span class="f7">SWITZERLAND</span></div>
-            <div><span class="f7">UNITED KINGDOM</span></div>
-            <div><span class="f7">UNITED STATES</span></div>
-            </div>
-            </div></div>
-        </div>
-      </shipping-chart>
-    </div>
-  </modal-dialog>
-  {%- render 'instagram-feed' -%}
-  {%- render 'tiktok-feed' -%}
-  
 </section>
 
 {% javascript %}
@@ -809,11 +971,13 @@
         window.location.href = '/pages/shipping';
       });
     }
-  }
+  } 
+  
 </script>
+
 {% schema %}
 {
-  "name": "product",
+  "name": "t:sections.main-product.name",
   "tag": "section",
   "class": "js-product-section-main",
   "blocks": [
@@ -822,13 +986,13 @@
     },
     {
       "type": "text",
-      "name": "Text",
+      "name": "t:sections.main-product.blocks.text.name",
       "settings": [
         {
           "type": "text",
           "id": "text",
-          "default": "Product Name",
-          "label": "Text"
+          "default": "Text block",
+          "label": "t:sections.main-product.blocks.text.settings.text.label"
         },
         {
           "type": "select",
@@ -836,26 +1000,92 @@
           "options": [
             {
               "value": "body",
-              "label": "Body"
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__1.label"
             },
             {
               "value": "subtitle",
-              "label": "Subtitle"
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__2.label"
             },
             {
               "value": "uppercase",
-              "label": "Uppercase"
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__3.label"
             }
           ],
           "default": "body",
-          "label": "Text style"
+          "label": "t:sections.main-product.blocks.text.settings.text_style.label"
         }
       ]
     },
     {
       "type": "title",
-      "name": "Title",
-      "limit": 1
+      "name": "t:sections.main-product.blocks.title.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Product Title Font Style"
+        },
+        {
+          "type": "range",
+          "id": "title_fontsize",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "default": 24,
+          "label": "Font size Desktop"
+        },
+        {
+          "type": "range",
+          "id": "title_fontsize_m",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "default": 18,
+          "label": "Font size Mobile"
+        },
+        {
+          "type": "range",
+          "id": "title_fontweight",
+          "min": 100,
+          "max": 900,
+          "step": 100,
+          "default": 600,
+          "label": "Font-weight"      
+        },
+        {
+          "type": "text",
+          "id": "title_fontstretch",
+          "label": "Font-stretch",
+          "info": "Ex: 40%"
+        },
+        {
+          "type": "select",
+          "id": "title_fontstyle",
+          "options": [
+            {
+              "value": "normal",
+              "label": "normal"
+            },
+            {
+              "value": "italic",
+              "label": "italic"
+            }
+          ],
+          "default": "normal",
+          "label": "Font-style"
+        },
+        {
+          "type": "text",
+          "id": "title_lineheight",
+          "label": "Lineheight"      
+        },
+        {
+          "type": "text",
+          "id": "title_letterspacing",
+          "label": "Letter-spacing",
+          "info":"Ex: 0.5px"
+        }
+      ]
     },
     {
       "type": "type",
@@ -864,17 +1094,105 @@
     },
     {
       "type": "price",
-      "name": "Price",
-      "limit": 1
+      "name": "t:sections.main-product.blocks.price.name",
+      "limit": 1,
+      "settings":[
+        {
+          "type": "header",
+          "content": "Product price Font Style"
+        },
+        {
+          "type": "range",
+          "id": "price_fontsize",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "default": 24,
+          "label": "Font size Desktop"
+        },
+        {
+          "type": "range",
+          "id": "price_fontsize_m",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "default": 20,
+          "label": "Font size Mobile"
+        },
+        {
+          "type": "range",
+          "id": "price_fontweight",
+          "min": 100,
+          "max": 900,
+          "step": 100,
+          "default": 400,
+          "label": "Font-weight"      
+        },
+        {
+          "type": "text",
+          "id": "price_fontstretch",
+          "label": "Font-stretch",
+          "info": "Ex: 40%"
+        },
+        {
+          "type": "select",
+          "id": "price_fontstyle",
+          "options": [
+            {
+              "value": "normal",
+              "label": "normal"
+            },
+            {
+              "value": "italic",
+              "label": "italic"
+            }
+          ],
+          "default": "normal",
+          "label": "Font-style"
+        },
+        {
+          "type": "text",
+          "id": "price_lineheight",
+          "label": "Lineheight"      
+        },
+        {
+          "type": "text",
+          "id": "price_letterspacing",
+          "label": "Letter-spacing",
+          "info":"Ex: 0.5px"     
+        }
+      ]
     },
     {
       "type": "quantity_selector",
-      "name": "Quantity selector",
-      "limit": 1
+      "name": "t:sections.main-product.blocks.quantity_selector.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "option_color",
+          "label": "Selector Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-dark)"
+        }
+      ]
     },
     {
       "type": "variant_picker",
-      "name": "Variant picker",
+      "name": "t:sections.main-product.blocks.variant_picker.name",
       "limit": 1,
       "settings": [
         {
@@ -894,7 +1212,7 @@
               "label": "Name"
             }
           ],
-          "default": "color_name",
+          "default": "color",
           "label": "Color Option Layout"
         },
         {
@@ -914,63 +1232,374 @@
               "label": "Full Radius"
             }
           ],
-          "default": "f_radius",
+          "default": "sm_radius",
           "label": "General Option Layout"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "option_bg_color",
-          "label": "Option Background",
-          "default": "#ffffff"
+          "label": "Option Background Color",
+          "options": [          
+             {
+                "label": "Transparent",
+                "value": "transparent"
+             },        
+             {
+                "label": "Dark",
+                "value": "var(--py-bg-color-dark)"
+             },
+             {
+                "label": "Middle Dark",
+                "value": "var(--py-bg-color-middle-dark)"
+             },
+             {
+                "label": "Average",
+                "value": "var(--py-bg-color-avarge)"
+             },
+             {
+                "label": "Middle Light",
+                "value": "var(--py-bg-color-middle-light)"
+             },
+             {
+                "label": "Light",
+                "value": "var(--py-bg-color-light)"
+             }
+           ],
+          "default": "var(--py-bg-color-avarge)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "option_br_color",
-          "label": "Option Border",
-          "default": "#000000"
+          "label": "Option Border Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-dark)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "option_color",
-          "label": "Option Text",
-          "default": "#000000"
+          "label": "Option Text Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-light)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "selected_option_bg_color",
-          "label": "Selected Option Background",
-          "default": "#c81e70"
+          "label": "Selected Option Background Color",
+          "options": [          
+             {
+                "label": "Transparent",
+                "value": "transparent"
+             },        
+             {
+                "label": "Dark",
+                "value": "var(--py-bg-color-dark)"
+             },
+             {
+                "label": "Middle Dark",
+                "value": "var(--py-bg-color-middle-dark)"
+             },
+             {
+                "label": "Average",
+                "value": "var(--py-bg-color-avarge)"
+             },
+             {
+                "label": "Middle Light",
+                "value": "var(--py-bg-color-middle-light)"
+             },
+             {
+                "label": "Light",
+                "value": "var(--py-bg-color-light)"
+             }
+           ],
+          "default": "var(--py-bg-color-dark)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "selected_option_br_color",
-          "label": "Selected Option Border",
-          "default": "#000000"
+          "label": "Selected Option Border Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-light)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "selected_option_color",
-          "label": "Selected Option Text",
-          "default": "#ffffff"
+          "label": "Selected Option Text Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-avarge)"
+        },
+        {
+          "type": "header",
+          "content": "Product Option Font Style"
+        },
+        {
+          "type": "range",
+          "id": "option_fontsize",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "default": 18,
+          "label": "Font size Desktop"     
+        },
+        {
+          "type": "range",
+          "id": "option_fontsize_m",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "default": 18,
+          "label": "Font size Mobile"
+        },
+        {
+          "type": "range",
+          "id": "option_fontweight",
+          "min": 100,
+          "max": 900,
+          "step": 100,
+          "default": 400,
+          "label": "Font-weight"      
+        },
+        {
+          "type": "text",
+          "id": "option_fontstretch",
+          "label": "Font-stretch",
+          "info": "Ex: 40%"
+        },
+        {
+          "type": "select",
+          "id": "option_fontstyle",
+          "options": [
+            {
+              "value": "normal",
+              "label": "normal"
+            },
+            {
+              "value": "italic",
+              "label": "italic"
+            }
+          ],
+          "default": "normal",
+          "label": "Font-style"
+        },
+        {
+          "type": "text",
+          "id": "option_lineheight",
+          "label": "Lineheight"      
+        },
+        {
+          "type": "text",
+          "id": "option_letterspacing",
+          "label": "Letter-spacing",
+          "info":"Ex: 0.5px"     
         }
       ]
     },
     {
       "type": "buy_buttons",
-      "name": "Buy buttons",
+      "name": "Add to Cart",
       "limit": 1,
       "settings": [
         {
-          "type": "color",
+          "type": "select",
           "id": "bg_color",
-          "label": "Background",
-          "default": "#c81e70"
+          "label": "Button Background Color",
+          "options": [          
+             {
+                "label": "Transparent",
+                "value": "transparent"
+             },        
+             {
+                "label": "Dark",
+                "value": "var(--py-bg-color-dark)"
+             },
+             {
+                "label": "Middle Dark",
+                "value": "var(--py-bg-color-middle-dark)"
+             },
+             {
+                "label": "Average",
+                "value": "var(--py-bg-color-avarge)"
+             },
+             {
+                "label": "Middle Light",
+                "value": "var(--py-bg-color-middle-light)"
+             },
+             {
+                "label": "Light",
+                "value": "var(--py-bg-color-light)"
+             }
+           ],
+          "default": "var(--py-bg-color-dark)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "color",
-          "label": "Label",
-          "default": "#ffffff"
+          "label": "Button Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-light)"
+        },
+        {
+          "type": "select",
+          "id": "btn_hover_bg_color",
+          "label": "Button Hover Background Color",
+          "options": [          
+             {
+                "label": "Transparent",
+                "value": "transparent"
+             },        
+             {
+                "label": "Dark",
+                "value": "var(--py-bg-color-dark)"
+             },
+             {
+                "label": "Middle Dark",
+                "value": "var(--py-bg-color-middle-dark)"
+             },
+             {
+                "label": "Average",
+                "value": "var(--py-bg-color-avarge)"
+             },
+             {
+                "label": "Middle Light",
+                "value": "var(--py-bg-color-middle-light)"
+             },
+             {
+                "label": "Light",
+                "value": "var(--py-bg-color-light)"
+             }
+           ],
+          "default": "var(--py-bg-color-dark)"
+        },
+        {
+          "type": "select",
+          "id": "btn_hover_color",
+          "label": "Button Hover Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-avarge)"
+        },
+        {
+          "type": "select",
+          "id": "br_color",
+          "label": "Button Border Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-light)"
+        },
+        {
+          "type": "range",
+          "id": "btn_border_width",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 1,
+          "label": "Button Border Width"
+        },
+        {
+          "type": "range",
+          "id": "btn_border_radius",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "default": 1,
+          "label": "Button Border Radius"
+        },
+        {
+          "type": "range",
+          "id": "btn_font_size",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "default": 18,
+          "label": "Button Font Size"
         },
         {
           "type": "text",
@@ -981,63 +1610,592 @@
           "type": "checkbox",
           "id": "show_dynamic_checkout",
           "default": true,
-          "label": "Show dynamic checkout buttons",
-          "info": "Using the payment methods available on your store, customers see their preferred option, like PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+          "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
+          "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
+        },
+        {
+          "type": "header",
+          "content": "Sold Out Card Style"
+        },
+        {
+          "type": "select",
+          "id": "sold_out_bg_color",
+          "label": "Sold Out Background Color",
+          "options": [          
+            {
+              "label": "Transparent",
+              "value": "transparent"
+            },        
+            {
+              "label": "Dark",
+              "value": "var(--py-bg-color-dark)"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "var(--py-bg-color-middle-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-bg-color-avarge)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-bg-color-middle-light)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-bg-color-light)"
+            }
+          ],
+          "default": "var(--py-bg-color-light)"
+        },
+        {
+          "type": "select",
+          "id": "sold_out_info_color",
+          "label": "Sold Out Info Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+          "default": "var(--py-color-dark)"
+        },
+        {
+          "type": "range",
+          "id": "sold_out_card_radius",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "default": 7,
+          "label": "Sold Out Border Radius"
+        },
+        {
+          "type": "select",
+          "id": "sold_out_border_color",
+          "label": "Sold Out Border Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+          "default": "var(--py-color-dark)"
+        },
+        {
+          "type": "range",
+          "id": "sold_out_border_width",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 1,
+          "label": "Sold Out Border Width"
+        },
+        {
+          "type": "range",
+          "id": "sold_out_title_font_size",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "default": 18,
+          "label": "Sold Out Title Font Size"
+        },
+        {
+          "type": "range",
+          "id": "sold_out_desc_font_size",
+          "min": 8,
+          "max": 32,
+          "step": 1,
+          "default": 14,
+          "label": "Sold Out Description Font Size"
+        },
+        {
+          "type": "header",
+          "content": "Pre Order Card Style"
+        },
+        {
+          "type": "select",
+          "id": "pre_order_bg_color",
+          "label": "Pre Order Background Color",
+          "options": [          
+            {
+              "label": "Transparent",
+              "value": "transparent"
+            },        
+            {
+              "label": "Dark",
+              "value": "var(--py-bg-color-dark)"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "var(--py-bg-color-middle-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-bg-color-avarge)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-bg-color-middle-light)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-bg-color-light)"
+            }
+          ],
+          "default": "var(--py-bg-color-light)"
+        },
+        {
+          "type": "select",
+          "id": "pre_order_info_color",
+          "label": "Pre Order Info Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+          "default": "var(--py-color-dark)"
+        },
+        {
+          "type": "range",
+          "id": "pre_order_card_radius",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "default": 7,
+          "label": "Pre Order Border Radius"
+        },
+        {
+          "type": "select",
+          "id": "pre_order_border_color",
+          "label": "Pre Order Border Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+          "default": "var(--py-color-dark)"
+        },
+        {
+          "type": "range",
+          "id": "pre_order_border_width",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 1,
+          "label": "Pre Order Border Width"
+        },
+        {
+          "type": "range",
+          "id": "pre_order_title_font_size",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "default": 18,
+          "label": "Pre Order Title Font Size"
+        },
+        {
+          "type": "range",
+          "id": "pre_order_desc_font_size",
+          "min": 8,
+          "max": 32,
+          "step": 1,
+          "default": 14,
+          "label": "Pre Order Description Font Size"
+        },
+        {
+          "type": "header",
+          "content": "Pick Up Card Style"
+        },
+        {
+          "type": "select",
+          "id": "pick_up_bg_color",
+          "label": "Pick Up Card Background ",
+          "options": [          
+            {
+              "label": "Transparent",
+              "value": "transparent"
+            },        
+            {
+              "label": "Dark",
+              "value": "var(--py-bg-color-dark)"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "var(--py-bg-color-middle-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-bg-color-avarge)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-bg-color-middle-light)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-bg-color-light)"
+            }
+          ],
+          "default": "var(--py-bg-color-light)"
+        },
+        {
+          "type": "select",
+          "id": "pick_up_info_color",
+          "label": "Pick Up Card Info Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+          "default": "var(--py-color-dark)"
+        },
+        {
+          "type": "range",
+          "id": "pick_up_card_radius",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "default": 7,
+          "label": "Pick Up Card Border Radius"
+        },
+        {
+          "type": "select",
+          "id": "pick_up_border_color",
+          "label": "Pick Up Card Border Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+          "default": "var(--py-color-dark)"
+        },
+        {
+          "type": "range",
+          "id": "pick_up_border_width",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 1,
+          "label": "Pick Up Card Border Width"
+        },
+        {
+          "type": "range",
+          "id": "pick_up_title_font_size",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "default": 18,
+          "label": "Pick Up Title Font Size"
+        },
+        {
+          "type": "text",
+          "id": "pick_up_txt",
+          "label": "Pick Up Description",
+          "default": "This item is available for pickup at these locations:"
+        },
+        {
+          "type": "range",
+          "id": "pick_up_desc_font_size",
+          "min": 8,
+          "max": 32,
+          "step": 1,
+          "default": 14,
+          "label": "Pick Up Description Font Size"
+        },
+        {
+          "type": "select",
+          "id": "pick_up_location_bg_color",
+          "label": "Pick Up Location Background Color",
+          "options": [          
+            {
+              "label": "Transparent",
+              "value": "transparent"
+            },        
+            {
+              "label": "Dark",
+              "value": "var(--py-bg-color-dark)"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "var(--py-bg-color-middle-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-bg-color-avarge)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-bg-color-middle-light)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-bg-color-light)"
+            }
+          ],
+          "default": "var(--py-bg-color-light)"
+        },
+        {
+          "type": "select",
+          "id": "pick_up_location_info_color",
+          "label": "Pick Up Location Info Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+          "default": "var(--py-color-dark)"
+        },
+        {
+          "type": "range",
+          "id": "pick_up_location_radius",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "default": 8,
+          "label": "Pick Up Location Border Radius"
         }
       ]
     },
     {
       "type": "description",
-      "name": "Description",
-      "limit": 1
+      "name": "t:sections.main-product.blocks.description.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Product info Font Style"
+        },
+        {
+          "type": "range",
+          "id": "info_fontsize",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "default": 17,
+          "label": "Font size Desktop"
+        },
+        {
+          "type": "range",
+          "id": "info_fontsize_m",
+          "min": 10,
+          "max": 40,
+          "step": 1,
+          "default": 15,
+          "label": "Font size Mobile"
+        },
+        {
+          "type": "range",
+          "id": "info_fontweight",
+          "min": 100,
+          "max": 900,
+          "step": 100,
+          "default": 400,
+          "label": "Font-weight"      
+        },
+        {
+          "type": "text",
+          "id": "info_fontstretch",
+          "label": "Font-stretch",
+          "info": "Ex: 40%"
+        },
+        {
+          "type": "select",
+          "id": "info_fontstyle",
+          "options": [
+            {
+              "value": "normal",
+              "label": "normal"
+            },
+            {
+              "value": "italic",
+              "label": "italic"
+            }
+          ],
+          "default": "normal",
+          "label": "Font-style"
+        },
+        {
+          "type": "text",
+          "id": "info_lineheight",
+          "label": "Lineheight"      
+        },
+        {
+          "type": "text",
+          "id": "info_letterspacing",
+          "label": "Letter-spacing",
+          "info":"Ex: 0.5px"     
+        }
+      ]
     },
     {
       "type": "share",
-      "name": "Share",
+      "name": "t:sections.main-product.blocks.share.name",
       "limit": 1,
       "settings": [
         {
           "type": "paragraph",
-          "content": "If you include a link in social media posts, the page’s featured image will be shown as the preview image. [Learn more](https://help.shopify.com/en/manual/online-store/images/showing-social-media-thumbnail-images)."
+          "content": "t:sections.main-product.blocks.share.settings.featured_image_info.content"
         },
         {
           "type": "paragraph",
-          "content": "A store title and description are included with the preview image. [Learn more](https://help.shopify.com/en/manual/promoting-marketing/seo/adding-keywords#set-a-title-and-description-for-your-online-store)."
+          "content": "t:sections.main-product.blocks.share.settings.title_info.content"
         }
       ]
     },
     {
       "type": "collapsible_tab",
-      "name": "Collapsible tab",
+      "name": "t:sections.main-product.blocks.collapsible_tab.name",
       "settings": [
         {
-          "type": "color",
+          "type": "select",
           "id": "bg_color",
-          "label": "background",
-          "default": "#731173"
+          "label": "Background Color",
+          "options": [          
+             {
+                "label": "Transparent",
+                "value": "transparent"
+             },        
+             {
+                "label": "Dark",
+                "value": "var(--py-bg-color-dark)"
+             },
+             {
+                "label": "Middle Dark",
+                "value": "var(--py-bg-color-middle-dark)"
+             },
+             {
+                "label": "Average",
+                "value": "var(--py-bg-color-avarge)"
+             },
+             {
+                "label": "Middle Light",
+                "value": "var(--py-bg-color-middle-light)"
+             },
+             {
+                "label": "Light",
+                "value": "var(--py-bg-color-light)"
+             }
+           ],
+          "default": "var(--py-bg-color-dark)"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "color",
-          "label": "Content",
-          "default": "#ffffff"
+          "label": "Content Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-light)"
+        },
+        {
+          "type": "select",
+          "id": "border_color",
+          "label": "Border Color",
+          "options": [ 
+             {
+               "label": "Dark",
+               "value": "var(--py-color-dark)"
+             },
+             {
+               "label": "Average",
+               "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Light",
+               "value": "var(--py-color-light)"
+             }
+            ],
+          "default": "var(--py-color-light)"
         },
         {
           "type": "text",
           "id": "heading",
           "default": "Collapsible tab",
-          "info": "Heading",
-          "label": "Include a heading that explains the content."
+          "info": "t:sections.main-product.blocks.collapsible_tab.settings.heading.info",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.heading.label"
         },
         {
           "type": "richtext",
           "id": "content",
-          "label": "Tab content"
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
         },
         {
           "type": "page",
           "id": "page",
-          "label": "Tab content from page"
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.page.label"
         },
         {
           "type": "select",
@@ -1045,120 +2203,120 @@
           "options": [
             {
               "value": "none",
-              "label": "None"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__1.label"
             },
             {
               "value": "box",
-              "label": "Box"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__2.label"
             },
             {
               "value": "chat_bubble",
-              "label": "Chat bubble"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__3.label"
             },
             {
               "value": "check_mark",
-              "label": "Check mark"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__4.label"
             },
             {
               "value": "dryer",
-              "label": "Dryer"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__5.label"
             },
             {
               "value": "eye",
-              "label": "Eye"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__6.label"
             },
             {
               "value": "heart",
-              "label": "Heart"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__7.label"
             },
             {
               "value": "iron",
-              "label": "Iron"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__8.label"
             },
             {
               "value": "leaf",
-              "label": "Leaf"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__9.label"
             },
             {
               "value": "leather",
-              "label": "Leather"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__10.label"
             },
             {
               "value": "lock",
-              "label": "Lock"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__11.label"
             },
             {
               "value": "map_pin",
-              "label": "Map pin"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__12.label"
             },
             {
               "value": "pants",
-              "label": "Pants"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__13.label"
             },
             {
               "value": "plane",
-              "label": "Plane"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__14.label"
             },
             {
               "value": "price_tag",
-              "label": "Price tag"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__15.label"
             },
             {
               "value": "question_mark",
-              "label": "Question mark"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__16.label"
             },
             {
               "value": "return",
-              "label": "Return"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__17.label"
             },
             {
               "value": "ruler",
-              "label": "Ruler"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__18.label"
             },
             {
               "value": "shirt",
-              "label": "Shirt"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__19.label"
             },
             {
               "value": "shoe",
-              "label": "Shoe"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__20.label"
             },
             {
               "value": "silhouette",
-              "label": "Silhouette"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__21.label"
             },
             {
               "value": "star",
-              "label": "Star"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__22.label"
             },
             {
               "value": "truck",
-              "label": "Truck"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__23.label"
             },
             {
               "value": "washing",
-              "label": "Washing"
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__24.label"
             }
           ],
-          "default": "heart",
-          "label": "Icon"
+          "default": "check_mark",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.label"
         }
       ]
     },
     {
       "type": "popup",
-      "name": "Pop-up",
+      "name": "t:sections.main-product.blocks.popup.name",
       "settings": [
         {
           "type": "text",
           "id": "link_label",
           "default": "Pop-up link text",
-          "label": "Link label"
+          "label": "t:sections.main-product.blocks.popup.settings.link_label.label"
         },
         {
           "id": "page",
           "type": "page",
-          "label": "Page"
+          "label": "t:sections.main-product.blocks.popup.settings.page.label"
         }
       ]
     },
@@ -1177,372 +2335,218 @@
           "type": "product",
           "id": "prod",
           "label": "Product"
-        }
+        }        
       ]
     }
   ],
   "settings": [
     {
       "type": "header",
-      "content": "Media",
-      "info": "Learn more about [media types](https://help.shopify.com/manual/products/product-media)"
+      "content": "t:sections.main-product.settings.header.content",
+      "info": "t:sections.main-product.settings.header.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_breadcrumb_nav",
+      "default": true,
+      "label": "Breadcrumb Navigation"
     },
     {
       "type": "select",
-      "id": "media_position",
-      "options": [
+      "id": "media_style",
+      "options": [        
         {
-          "value": "top",
-          "label": "Top Slider"
+          "value": "vertical_grid",
+          "label": "Vertical Grid"
         },
         {
-          "value": "left",
-          "label": "Left Vertical"
+          "value": "horizontal_grid",
+          "label": "Horizontal Grid"
+        },
+        {
+          "value": "vertical",
+          "label": "Vertical - One Column Info"
+        },
+        {
+          "value": "vertical_two_col",
+          "label": "Vertical - Two Column Info"
+        },
+        {
+          "value": "carousel",
+          "label": "Big Carousel"
+        },
+        {
+          "value": "carousel_w_thumb",
+          "label": "Big Carousel w/thumbnails"
+        },
+        {
+          "value": "top",
+          "label": "Horizontal Carousel"
+        },
+        {
+          "value": "vertical_w_thumb",
+          "label": "Vertical w/thumbnails"
         }
       ],
-      "default": "left",
+      "default": "carousel_w_thumb",
       "label": "Media Gallery Style"
     },
     {
       "type": "select",
-      "id": "media_position_m",
-      "options": [
-        {
-          "value": "top",
-          "label": "Top Slider"
-        },
+      "id": "media_style_m",
+      "options": [        
         {
           "value": "grid",
           "label": "Grid"
+        },
+        {
+          "value": "vertical",
+          "label": "Vertical"
+        },
+        {
+          "value": "carousel",
+          "label": "Carousel"
+        },
+        {
+          "value": "top",
+          "label": "Horizontal Carousel"
         }
       ],
-      "default": "grid",
+      "default": "top",
       "label": "Media Gallery Style Mobile"
+    },
+    {
+      "type": "range",
+      "id": "pd_media_space",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 10,
+      "label": "Media space"
     },
     {
       "type": "checkbox",
       "id": "enable_sticky_info",
       "default": true,
-      "label": "Enable sticky product information on large screens"
+      "label": "t:sections.main-product.settings.enable_sticky_info.label"
     },
     {
       "type": "checkbox",
       "id": "enable_video_looping",
       "default": false,
-      "label": "Enable video looping"
+      "label": "t:sections.main-product.settings.enable_video_looping.label"
     },
     {
       "type": "select",
       "id": "section_bg_color",
-      "label": "Background Color",
-      "options": [
+      "label": "Info section Background Color",                
+      "options": [          
         {
-          "label": "None",
-          "value": "none"
+            "label": "Transparent",
+            "value": "transparent"
+        },        
+        {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
         },
         {
-          "label": "Unset",
-          "value": "unset"
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
         },
         {
-          "label": "Background Dark",
-          "value": "bg-c-dark"
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
         },
         {
-          "label": "Background Average",
-          "value": "bg-c-average"
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
         },
         {
-          "label": "Background Light",
-          "value": "bg-c-light"
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
         }
       ],
-      "default": "bg-c-dark"
+      "default": "var(--py-bg-color-dark)"
+    },
+    {
+      "type": "select",
+      "id": "info_color",
+      "label": "Content Color",
+      "options": [ 
+         {
+           "label": "Dark",
+           "value": "var(--py-color-dark)"
+         },
+         {
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
+         }
+        ],
+      "default": "var(--py-color-light)"
     },
     {
       "type": "select",
       "id": "page_width",
-      "label": "Container (Width)",
+      "label": "Info section Container (Width)",
       "options": [
         {
           "label": "Unset",
           "value": "width-un"
         },
         {
-          "label": "Width Large",
+          "label": "Large",
           "value": "width-l"
         },
         {
-          "label": "Width Medium",
+          "label": "Medium",
           "value": "width-m"
         },
         {
-          "label": "Width Small",
+          "label": "Small",
           "value": "width-s"
         }
       ],
       "default": "width-un"
     },
     {
-      "type": "header",
-      "content": "Product Title Font Style"
-    },
-    {
-      "type": "checkbox",
-      "id": "custom_font_style",
-      "default": true,
-      "label": "Use Custom Style"
-    },
-    {
-      "type": "text",
-      "id": "title_fontsize",
-      "label": "Font size Desktop",
-      "info": "Ex: 20px "
-    },
-    {
-      "type": "text",
-      "id": "title_fontsize_m",
-      "label": "Font size Mobile"
-    },
-    {
-      "type": "text",
-      "id": "title_fontweight",
-      "label": "Font-weight"
-    },
-    {
-      "type": "text",
-      "id": "title_fontstretch",
-      "label": "Font-stretch",
-      "info": "Ex: 40%"
-    },
-    {
       "type": "select",
-      "id": "title_fontstyle",
+      "id": "info_section_padding",
+      "label": "Info section Padding Horizontal",
       "options": [
         {
-          "value": "normal",
-          "label": "normal"
+          "label": "Unset",
+          "value": "pd-x-un"
         },
         {
-          "value": "italic",
-          "label": "italic"
+          "label": "None",
+          "value": "pd-x-n"
+        },
+        {
+          "label": "XL",
+          "value": "pd-x-xl"
+        },
+        {
+          "label": "L",
+          "value": "pd-x-l"
+        },
+        {
+          "label": "M",
+          "value": "pd-x-m"
+        },
+        {
+          "label": "S",
+          "value": "pd-x-s"
+        },
+        {
+          "label": "XS",
+          "value": "pd-x-xs"
         }
       ],
-      "default": "italic",
-      "label": "Font-style"
-    },
-    {
-      "type": "text",
-      "id": "title_lineheight",
-      "label": "Lineheight"
-    },
-    {
-      "type": "text",
-      "id": "title_letterspacing",
-      "label": "Letter-spacing",
-      "info": "Ex: 0.5px"
-    },
-    {
-      "type": "header",
-      "content": "Product price Font Style"
-    },
-    {
-      "type": "text",
-      "id": "price_fontsize",
-      "label": "Font size Desktop",
-      "info": "Ex: 20px "
-    },
-    {
-      "type": "text",
-      "id": "price_fontsize_m",
-      "label": "Font size Mobile"
-    },
-    {
-      "type": "text",
-      "id": "price_fontweight",
-      "label": "Font-weight"
-    },
-    {
-      "type": "text",
-      "id": "price_fontstretch",
-      "label": "Font-stretch",
-      "info": "Ex: 40%"
-    },
-    {
-      "type": "select",
-      "id": "price_fontstyle",
-      "options": [
-        {
-          "value": "normal",
-          "label": "normal"
-        },
-        {
-          "value": "italic",
-          "label": "italic"
-        }
-      ],
-      "default": "normal",
-      "label": "Font-style"
-    },
-    {
-      "type": "text",
-      "id": "price_lineheight",
-      "label": "Lineheight"
-    },
-    {
-      "type": "text",
-      "id": "price_letterspacing",
-      "label": "Letter-spacing",
-      "info": "Ex: 0.5px"
-    },
-    {
-      "type": "header",
-      "content": "Product Option Font Style"
-    },
-    {
-      "type": "text",
-      "id": "option_fontsize",
-      "label": "Font size Desktop",
-      "info": "Ex: 20px "
-    },
-    {
-      "type": "text",
-      "id": "option_fontsize_m",
-      "label": "Font size Mobile"
-    },
-    {
-      "type": "text",
-      "id": "option_fontweight",
-      "label": "Font-weight"
-    },
-    {
-      "type": "text",
-      "id": "option_fontstretch",
-      "label": "Font-stretch",
-      "info": "Ex: 40%"
-    },
-    {
-      "type": "select",
-      "id": "option_fontstyle",
-      "options": [
-        {
-          "value": "normal",
-          "label": "normal"
-        },
-        {
-          "value": "italic",
-          "label": "italic"
-        }
-      ],
-      "default": "normal",
-      "label": "Font-style"
-    },
-    {
-      "type": "text",
-      "id": "option_lineheight",
-      "label": "Lineheight"
-    },
-    {
-      "type": "text",
-      "id": "option_letterspacing",
-      "label": "Letter-spacing",
-      "info": "Ex: 0.5px"
-    },
-    {
-      "type": "header",
-      "content": "Product info Font Style"
-    },
-    {
-      "type": "text",
-      "id": "info_fontsize",
-      "label": "Font size Desktop",
-      "info": "Ex: 20px "
-    },
-    {
-      "type": "text",
-      "id": "info_fontsize_m",
-      "label": "Font size Mobile"
-    },
-    {
-      "type": "text",
-      "id": "info_fontweight",
-      "label": "Font-weight"
-    },
-    {
-      "type": "text",
-      "id": "info_fontstretch",
-      "label": "Font-stretch",
-      "info": "Ex: 40%"
-    },
-    {
-      "type": "select",
-      "id": "info_fontstyle",
-      "options": [
-        {
-          "value": "normal",
-          "label": "normal"
-        },
-        {
-          "value": "italic",
-          "label": "italic"
-        }
-      ],
-      "default": "normal",
-      "label": "Font-style"
-    },
-    {
-      "type": "text",
-      "id": "info_lineheight",
-      "label": "Lineheight"
-    },
-    {
-      "type": "text",
-      "id": "info_letterspacing",
-      "label": "Letter-spacing",
-      "info": "Ex: 0.5px"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Product main",
-      "blocks": [
-        {
-          "type": "text"
-        },
-        {
-          "type": "title"
-        },
-        {
-          "type": "type"
-        },
-        {
-          "type": "price"
-        },
-        {
-          "type": "quantity_selector"
-        },
-        {
-          "type": "variant_picker"
-        },
-        {
-          "type": "buy_buttons"
-        },
-        {
-          "type": "description"
-        },
-        {
-          "type": "share"
-        },
-        {
-          "type": "collapsible_tab"
-        },
-        {
-          "type": "popup"
-        },
-        {
-          "type": "goes"
-        }
-      ]
+      "default": "pd-x-m"
     }
   ]
 }

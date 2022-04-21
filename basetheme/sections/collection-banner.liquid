@@ -123,7 +123,7 @@
 
 {% schema %}
 {
-  "name": "collection banner",
+  "name": "t:sections.main-collection-banner.name",
   "blocks": [
     {
       "type": "collection",
@@ -145,7 +145,7 @@
           "type": "checkbox",
           "id": "show_collection_description",
           "default": false,
-          "label": "Show collection description"
+          "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
         },
         {
           "type": "image_picker",
@@ -175,15 +175,56 @@
           "default": false
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "ov_bg_color",
-          "label": "Background"
+          "label": "Background",
+          "options": [          
+              {
+                "label": "Transparent",
+                "value": "transparent"
+              },        
+              {
+                "label": "Dark",
+                "value": "var(--py-bg-color-dark)"
+              },
+              {
+                "label": "Middle Dark",
+                "value": "var(--py-bg-color-middle-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-bg-color-avarge)"
+              },
+              {
+                "label": "Middle Light",
+                "value": "var(--py-bg-color-middle-light)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-bg-color-light)"
+              }
+            ],
+          "default": "transparent"
         },
         {
-          "type": "color",
+          "type": "select",
           "id": "color",
           "label": "Texts Color",
-          "default": "#ffffff"
+          "options": [ 
+              {
+                "label": "Dark",
+                "value": "var(--py-color-dark)"
+              },
+              {
+                "label": "Average",
+                "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Light",
+                "value": "var(--py-color-light)"
+              }
+            ],
+            "default": "var(--py-color-light)"
         },
         {
           "type": "image_picker",
@@ -209,15 +250,15 @@
               "value": "width-un"
             },
             {
-              "label": "Width Large",
+              "label": "Large",
               "value": "width-l"
             },
             {
-              "label": "Width Medium",
+              "label": "Medium",
               "value": "width-m"
             },
             {
-              "label": "Width Small",
+              "label": "Small",
               "value": "width-s"
             }
           ],
@@ -225,73 +266,37 @@
         },
         {
           "type": "select",
-          "id": "page_x_mg",
-          "label": "Container Margin Hotizontal",
-          "options": [
-            {
-              "label": "Unset",
-              "value": "mg-x-un"
-            },
-            {
-              "label": "None",
-              "value": "mg-x-n"
-            },
-            {
-              "label": "Margin H XL",
-              "value": "mg-x-xl"
-            },
-            {
-              "label": "Margin H L",
-              "value": "mg-x-l"
-            },
-            {
-              "label": "Margin H M",
-              "value": "mg-x-m"
-            },
-            {
-              "label": "Margin H S",
-              "value": "mg-x-s"
-            },
-            {
-              "label": "Margin H XS",
-              "value": "mg-x-xs"
-            }
-          ],
-          "default": "mg-x-un"
-        },
-        {
-          "type": "select",
           "id": "page_y_mg",
           "label": "Container Margin Vertical",
           "options": [
-            {
+              {
               "label": "Unset",
               "value": "mg-y-un"
-            },
-            {
+              },
+              {
               "label": "None",
               "value": "mg-y-n"
-            },
-            {
-              "label": "Margin V XL",
+              },
+              {
+              "label": "XL",
               "value": "mg-y-xl"
-            },
-            {
-              "label": "Margin V L",
+              },
+              {
+              "label": "L",
               "value": "mg-y-l"
-            },
-            {
-              "label": "Margin V M",
+              },
+              {
+              "label": "M",
               "value": "mg-y-m"
-            },
-            {
-              "label": "Margin V S",
+              },
+              {
+              "label": "S",
               "value": "mg-y-s"
-            },
-            {
-              "label": "Margin V XS",
+              },
+              {
+              "label": "XS",
               "value": "mg-y-xs"
-            }
+              }
           ],
           "default": "mg-y-un"
         },
@@ -309,23 +314,23 @@
               "value": "pd-x-n"
             },
             {
-              "label": "Padding H XL",
+              "label": "XL",
               "value": "pd-x-xl"
             },
             {
-              "label": "Padding H L",
+              "label": "L",
               "value": "pd-x-l"
             },
             {
-              "label": "Padding H M",
+              "label": "M",
               "value": "pd-x-m"
             },
             {
-              "label": "Padding H S",
+              "label": "S",
               "value": "pd-x-s"
             },
             {
-              "label": "Padding H XS",
+              "label": "XS",
               "value": "pd-x-xs"
             }
           ],
@@ -345,27 +350,27 @@
               "value": "pd-y-n"
             },
             {
-              "label": "Padding V XL",
+              "label": "XL",
               "value": "pd-y-xl"
             },
             {
-              "label": "Padding V L",
+              "label": "L",
               "value": "pd-y-l"
             },
             {
-              "label": "Padding V M",
+              "label": "M",
               "value": "pd-y-m"
             },
             {
-              "label": "Padding V S",
+              "label": "S",
               "value": "pd-y-s"
             },
             {
-              "label": "Padding V XS",
+              "label": "XS",
               "value": "pd-y-xs"
             }
           ],
-          "default": "pd-y-xs"
+          "default": "pd-y-un"
         },
         {
           "type": "select",
