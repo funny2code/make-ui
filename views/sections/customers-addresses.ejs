@@ -108,9 +108,9 @@
         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
       </symbol>
     </svg>
-    <h1>Title</h1>
+    <h1>Addresses</h1>
     <a href="#">
-      return
+      Return to Account details
     </a>
   
     <div data-address>
@@ -120,10 +120,10 @@
         aria-expanded="false"
         aria-controls="AddAddress"
       >
-        Add New
+        Add a new address
       </button>
       <div id="AddAddress" class="edit_panel">
-        <h2 id="AddressNewHeading">Add New</h2>
+        <h2 id="AddressNewHeading">Add a new address</h2>
         <form aria-labelledBy="AddressNewHeading">
           <div class="field"> 
             <label for="AddressFirstNameNew">First Name</label>
@@ -202,10 +202,10 @@
     <ul role="list">
       <% customer.addresses.forEach((address,index)=>{ %>
         <li data-address>
-          <% if(address === customer.default_address){ %>
+          <% if(address === customer?.default_address){ %>
             <h2>Default</h2>
           <% } %>
-          <%= address.address1 %>
+          <p><%= address.address1 %></p>
           <button
             class="edit_address_btn"
             type="button"
@@ -357,10 +357,19 @@
   </div>
 <%# endpaginate %>
 </div>
-  <script>
-    document.querySelectorAll('.edit_panel_overlay').forEach(element => {
-      element.addEventListener('click', function(event){
-        this.previousElementSibling.querySelector('.cancel_submit').click();
-      });
+
+<script src="/assets/customer.js" defer></script>
+
+<script>
+  window.onload = () => {
+    typeof CustomerAddresses !== 'undefined' && new CustomerAddresses();
+  }
+</script>
+
+<script>
+  document.querySelectorAll('.edit_panel_overlay').forEach(element => {
+    element.addEventListener('click', function(event){
+      this.previousElementSibling.querySelector('.cancel_submit').click();
     });
-  </script>  
+  });
+</script>  

@@ -486,7 +486,8 @@
           "S",
           "M",
           "L"
-        ]
+        ],
+        "selected_value": "XS"
       },
       {
         "id": 9180988440737,
@@ -499,7 +500,8 @@
           "Green",
           "Brown",
           "Grey"
-        ]
+        ],
+        "selected_value": "Blue"
       }
     ],
     "images": [

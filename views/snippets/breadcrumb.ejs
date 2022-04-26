@@ -1,0 +1,41 @@
+<% if(template !== 'index'){ %>
+<div class="breadcrumb-nav">
+  <div class="page-width">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <% if(template === 'product'){ %>
+      <% if(collection){ %>            
+      <% if(collection?.handle){ %>
+      <% var url = '/collections/' + collection?.handle %>
+      <li><a href="<%=url%>"><%= collection?.title %></a></li>
+      <% } %>
+      <% } %>
+
+      <li><span><%= product.title %></span></li>
+
+      <% } else if(template === 'collection' && collection?.handle){ %>
+      <% if(current_tags){ %>
+      <% var url = '/collections/' + collection?.handle %>
+      <li><a href="<%=url%>"><%= collection?.title %></a></li>
+      <% } else { %>
+      <li><%= collection?.title %></li>
+      <% } %>
+
+      <% } else if(template === 'article'){ %>
+      <li><a href="<%= blog.url %>"><%= blog.title %></a></li>
+      <li><%= article.title %></li>
+      <% } else if(template === 'customers' && template !== "customers/account"){ %>
+      <% var account = 'Title main'%>
+      <li><%= account %></li>
+      <li><%= page_title %></li>
+
+      <% } else if(template === 'page'){ %>
+      <li><%= page.title %></li>
+
+      <% } else { %>
+      <li><%= page_title %></li>
+      <% }%>
+    </ul>
+  </div>
+</div>
+<% } %>

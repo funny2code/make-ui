@@ -1,20 +1,21 @@
-<article class="article-card<% if(article.image || show_image === false){ %> article-card--no-image<% } %>" aria-labelledby="Article-<%= article.id %>">
-  <a href="<%= article.url %>" class="article-content motion-reduce">
-    <% if(show_image === true && article.image){ %>
+<article class="article-card<% if(!article?.image || show_image === false){ %> article-card--no-image<% } %>" aria-labelledby="Article-<%= article?.id %>">
+  <a href="<%= article?.url %>" class="article-content motion-reduce">
+    <% if(show_image === true && article?.image){ %>
       <div class="article-card__image-wrapper">
-        <div class="article-card__image media media--landscape">
+        <div class="article-card__image media media--<%= section.settings.image_ratio %>" 
+             <% if(section.settings.image_ratio === 'adapt'){ %> style="padding-bottom: <%= 1 / article?.image?.aspect_ratio * 100 %>%;"<% } %>>
           <img srcset="
-            <% if(article.image.src.width >= 165){ %><%= article.image.src %> 165w,<% } %>
-            <% if(article.image.src.width >= 360){ %><%= article.image.src %> 360w,<% } %>
-            <% if(article.image.src.width >= 533){ %><%= article.image.src %> 533w,<% } %>
-            <% if(article.image.src.width >= 720){ %><%= article.image.src %> 720w,<% } %>
-            <% if(article.image.src.width >= 940){ %><%= article.image.src %> 940w,<% } %>
-            <% if(article.image.src.width >= 1066){ %><%= article.image.src %> 1066w,<% } %>"
-            src="<%= article.image.src %>"
+            <% if(article?.image.width >= 165){ %><%= article?.image.src %> 165w,<% } %>
+            <% if(article?.image.width >= 360){ %><%= article?.image.src %> 360w,<% } %>
+            <% if(article?.image.width >= 533){ %><%= article?.image.src %> 533w,<% } %>
+            <% if(article?.image.width >= 720){ %><%= article?.image.src %> 720w,<% } %>
+            <% if(article?.image.width >= 940){ %><%= article?.image.src %> 940w,<% } %>
+            <% if(article?.image.width >= 1066){ %><%= article?.image.src %> 1066w,<% } %>"
+            src="<%= article?.image.src %>"
             sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
-            alt="<%= article.image.src.alt %>"
-            width="<%= article.image.width %>"
-            height="<%= article.image.height %>"
+            alt="<%= article?.image.alt %>"
+            width="<%= article?.image.width %>"
+            height="<%= article?.image.height %>"
             loading="lazy"
             class="motion-reduce"
           >
@@ -23,41 +24,71 @@
     <% } %>
 
     <div class="article-card__info">
-      <% section.blocks.forEach((block, index)=>{ %>
+      <% section?.blocks?.forEach((block,index)=>{ %>
         <% if(block.type === 'title'){ %>
             <header class="article-card__header">
-              <h2 class="article-card__title" id="Article-<%= article.id %>">
-                <%= article.title %>
+              <style>              
+              .article-card__header *{
+                color:<%=block?.settings?.title_color%>;                
+              }
+              .article-card__title{
+                font-size:<%=block?.settings?.title_font_size%>px;
+                font-weight:<%=block?.settings?.title_font_weight%>;
+              }
+              @media(max-width:749px){
+                .article-card__title{
+                  font-size:<%=block?.settings?.title_m_font_size%>px;                  
+                }
+              }
+            </style>
+            
+              <h2 class="article-card__title" id="Article-<%= article?.id %>">
+                <%= article?.title %>
               </h2>
-              <% if(block.settings.show_date){ %>
+              <% if(block?.settings?.show_date){ %>
                 <span class="circle-divider caption-with-letter-spacing">
-                  <%= article.published_at %>
+                  <% var date = new Date(article?.published_at) %>
+                  <%= date.getUTCMonth() + 1 + ' ' + date.getUTCDate() + ', ' + date.getUTCFullYear() %>
                 </span>
               <% } %>
-              <% if(block.settings.show_author){ %>
-                <span class="caption-with-letter-spacing"><%= article.author -%></span>
+              <% if(block?.settings?.show_author){ %>
+                <span class="caption-with-letter-spacing"><%= article?.author %></span>
               <% } %>
             </header>
 
-          <% } else if(block.type === 'summary'){ %>
-            <% if(article.excerpt.lenght > 0 || article.content.lenght > 0){ %>
-              <p class="article-card__excerpt rte-width">
-                <% if(article.excerpt.lenght > 0){ %>
-                  <%= article.excerpt %>
-                <% } else { %>
-                  <%= article.content %>
-                <% } %>
-              </p>
-            <% } %>
-
           <% } else if(block.type === 'link'){ %>
             <div class="article-card__footer">
-              <span class="link article-card__link" aria-label="<%= article.title %>">
+              <style>              
+              .article-card__link{
+                font-size:<%=block?.settings?.btn_font_size%>px; 
+                color:<%=block?.settings?.btn_color%>;
+                font-weight:<%=block?.settings?.btn_font_weight%>;
+                padding: 10px 20px;
+                display: inline-block;
+                background: <%=block?.settings?.btn_bg_color%>;
+                border: <%=block?.settings?.btn_border_width%>px solid <%=block?.settings?.btn_br_color%>;
+                border-radius: <%=block?.settings?.btn_border_radius%>px;
+                margin-left:20px;
+              }
+              .article-card__link:hover{
+                color:<%=block?.settings?.btn_hover_color%>;
+                background: <%=block?.settings?.btn_hover_bg_color%>;
+                border-color:<%=block?.settings?.btn_hover_br_color%>;
+              }
+              @media(max-width:749px){
+                .article-card__link{
+                  margin-left:0px;
+                  margin-top:20px;
+                }
+              }
+            </style>
+            
+              <span class="link article-card__link" aria-label="read_more_title">
                 Read More
               </span>
 
-              <% if(article.comments_count > 0 && blog.comments_enabled){ %>
-                <span><%= article.comments_count %></span>
+              <% if(article?.comments_count > 0 && blog?.comments_enabled){ %>
+                <span>comments</span>
               <% } %>
             </div>
         <% } %>

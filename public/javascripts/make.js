@@ -63,7 +63,7 @@
         
         if(!form || !url) return;
         
-        let fullLoading = document.querySelector('.py__full-loading-wrapper');
+        let fullLoading = document.querySelector('.py__loading-wrap');
         fullLoading?.classList.add('py__animate');
         let settings = {}, section = [], sectionName = '', templateName = '', sectionSettings = {};
         let blocks = []; 
@@ -137,7 +137,7 @@
         if(!event) return;
         event.preventDefault();
 
-        let fullLoading = document.querySelector('.py__full-loading-wrapper');
+        let fullLoading = document.querySelector('.py__loading-wrap');
         fullLoading?.classList.add('py__animate');
     
 
@@ -164,7 +164,7 @@
         if(!event) return;
         event.preventDefault();
 
-        let fullLoading = document.querySelector('.py__full-loading-wrapper');
+        let fullLoading = document.querySelector('.py__loading-wrap');
         fullLoading?.classList.add('py__animate');
     
 
@@ -342,7 +342,7 @@
         let themeName = btn.getAttribute('data-name');
         if(!url || !themeId) return;
         
-        let fullLoading = document.querySelector('.py__full-loading-wrapper');
+        let fullLoading = document.querySelector('.py__loading-wrap');
         fullLoading?.classList.add('py__animate');
         let data = userId ? {userId: userId, themeId: themeId} : {themeId: themeId};
 

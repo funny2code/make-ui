@@ -1,24 +1,59 @@
 <link rel="stylesheet" href="/assets/component-article-card.css">
 <link rel="stylesheet" href="/assets/section-main-blog.css">
 
+<style>
+  .title--primary{
+    color: <%=section.settings.general_color%>;
+  }
+  .blog-articles{
+    grid-gap :<%=section.settings.item_space%>px;
+    margin-right:-<%=section.settings.item_space%>px;
+  }
+  .blog-articles > .article .article-card__info{
+    padding:25px 15px;
+  }
+  .blog-articles > .article *{
+    text-align:<%=section.settings.info_align%>;
+  }
+  @media screen and (min-width: 800px) {    
+    .blog-articles > .article{      
+      width: calc(50% - <%=section.settings.item_space%>px);
+      border-radius:<%=section.settings.card_radius%>px;
+      overflow:hidden;
+    }
+  } 
+  @media screen and (max-width:799px){
+    .blog-articles > .article{      
+      width: 90%;
+      margin-left:5%;
+      border-radius:<%=section.settings.card_radius%>px;
+      overflow:hidden;
+    }
+    .blog-articles{
+      margin-right:0px;
+    }
+  }
+</style>
 
 <%# paginate blog.articles by 18 %>
 
-<div class="main-blog page-width">
-  <h1 class="title--primary"><%= blog.title %><br/>
-    <a target="_blank" class="rss-feed font--accent" style="font-size: 12px;display: inherit;font-weight: 400;" href="<%= shop.url %><%= blog.url %>.atom">RSS</a>
-  </h1>
+  <div class="main-blog py-<%=section.settings.bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%>">
+    <div class="page-width py-<%=section.settings.page_width%> py-<%=section.settings.page_y_mg%> py-<%=section.settings.page_y_mg%>">
+      <h1 class="title--primary"><%= blog.title %><br/>
+        <a target="_blank" class="rss-feed font--accent" style="font-size: 12px;display: inherit;font-weight: 400;" href="<%= shop.url %><%= blog.url %>.atom">RSS</a>
+      </h1>
 
-  <div class="blog-articles">
-    <% blog.articles.forEach((article,index)=>{ %>
-      <div class="blog-articles__article article">
-        <%- include('../snippets/article-card', {article: article, show_image: section.settings.show_image}) %>
+      <div class="blog-articles">
+        <% blog?.articles?.forEach((article,index)=>{ %>
+          <div class="blog-articles__article article py-<%=section.settings.card_bg_color%>">
+            <%- include('../snippets/article-card', {article: article, show_image: section.settings.show_image}) %>
+          </div>
+        <% }) %>
       </div>
-    <% }) %>
-  </div>
 
-  <%# if paginate.pages > 1 %>
-    <%# render 'pagination', paginate: paginate %>
-  <%# endif %>
-</div>
+      <%# if(paginate.pages > 1){ %>
+        <%# include('../snippets/pagination', {paginate: paginate}) %>
+      <%# } %>
+    </div>
+  </div>
 <%# endpaginate %>

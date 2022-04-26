@@ -1,7 +1,7 @@
 {%- for option in options -%}
 {%- assign optionName = option.name | downcase -%}
 {% assign option_index = forloop.index %} 
-{%- if optionName contains 'olor' or optionName contains 'olour' -%}
+{%- if optionName contains 'color' or optionName contains 'colour' -%}
     <div class="bc-card-color">
         <div class="bc-card-color__list" option_index="{{option_index}}">
             {% if limit != null and limit !='' %}

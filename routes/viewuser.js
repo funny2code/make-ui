@@ -223,11 +223,12 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
             customer: customer,
             gift: gift,
             component: global,
-            settings: settings,
-            sections: sectionSettings
+            settings: defaultSettings,
+            sections: defaultSections
         });
 
     } catch (err) {
+        console.log(err);
         next(err);
     }
 

@@ -17,7 +17,10 @@
     <% if(block.type === 'featured_image'){ %>
         <% if(article?.image){ %>
         <style>
-          <% if(block.settings.image_display === 'repeat'){ %>
+          .article-template__hero-container .media{
+            border-radius:<%=block?.settings?.img_border_radius%>px;
+          }
+          <% if(block?.settings?.image_display === 'repeat'){ %>
           .article-template__hero-container img{
             visibility: hidden;
           }
@@ -29,16 +32,21 @@
             max-width:100%;
           }
           <% } %>
-          <% if(block.settings.image_height !== 'default'){ %>
+          <% if(block?.settings?.image_height !== 'default'){ %>
           .article-template__hero-container .media{
-            padding-bottom:<%=block.settings.image_height%>;
+            padding-bottom:<%=block?.settings?.image_height%>;
+          }
+          <% } %>
+          <% if(section.settings.layout === 'vertical' && block?.settings?.image_width === 'full'){ %>
+          .article-template{
+            padding-top:0px;
           }
           <% } %>
         </style>
-          <div class="article-template__hero-container py-width-<%=block.settings.image_width%> <% if(section.settings.layout === 'vertical' && block.settings.image_width !== 'full'){ %> py-<%=section.settings.page_width%><% } %>">
-            <div class="article-template__hero-<%= block.settings.image_display %> media"
+          <div class="article-template__hero-container py-width-<%=block?.settings?.image_width%> <% if(section.settings.layout === 'vertical' && block?.settings?.image_width !== 'full'){ %> py-<%=section.settings.page_width%><% } %>">
+            <div class="article-template__hero-<%= block?.settings?.image_display %> media"
               itemprop="image"
-              <% if(block.settings.image_height === 'default' && article?.image){ %> style="padding-bottom: <%= 1 / article?.image.aspect_ratio * 100 %>%;"<% } %>
+              <% if(block?.settings?.image_height === 'default' && article?.image){ %> style="padding-bottom: <%= 1 / article?.image.aspect_ratio * 100 %>%;"<% } %>
             >
               <img srcset="<% if(article?.image.width >= 350){ %><%= article?.image.src %> 350w,<% } %>
                   <% if(article?.image.width >= 700){ %><%= article?.image.src %> 700w,<% } %>
@@ -62,27 +70,27 @@
     <% if(block.type === 'title'){ %>
         <style>
           .article-template__title{
-            font-size:<%=block.settings.title_font_size%>px;
-            color:<%=block.settings.title_color%>;
-            text-align:<%=block.settings.title_align%>;
+            font-size:<%=block?.settings?.title_font_size%>px;
+            color:<%=block?.settings?.title_color%>;
+            text-align:<%=block?.settings?.title_align%>;
           }
           .blog-date{
-            font-size:<%=block.settings.date_font_size%>px;
-            color:<%=block.settings.date_color%>;
-            text-align:<%=block.settings.date_align%>;
+            font-size:<%=block?.settings?.date_font_size%>px;
+            color:<%=block?.settings?.date_color%>;
+            text-align:<%=block?.settings?.date_align%>;
           }
           .blog-author{
-            font-size:<%=block.settings.author_font_size%>px;
-            color:<%=block.settings.author_color%>;
-            text-align:<%=block.settings.author_align%>;
+            font-size:<%=block?.settings?.author_font_size%>px;
+            color:<%=block?.settings?.author_color%>;
+            text-align:<%=block?.settings?.author_align%>;
           }          
         </style>
           <header class="page-width">
             <h1 class="article-template__title" itemprop="headline"><%= article?.title %></h1>
-            <% if(block.settings.blog_show_date){ %>
+            <% if(block?.settings?.blog_show_date){ %>
               <p class="caption-with-letter-spacing blog-date" itemprop="dateCreated pubdate datePublished"><%= article?.published_at %></p>
             <% } %>
-            <% if(block.settings.blog_show_author){ %>
+            <% if(block?.settings?.blog_show_author){ %>
               <p class="caption-with-letter-spacing blog-author" itemprop="author" itemscope itemtype="http://schema.org/Person">
                 <span itemprop="name"><%= article?.author %></span>
               </p>
@@ -92,9 +100,9 @@
         <% } else if(block.type === 'content'){ %>
            <style>              
               .article-template__content{
-                font-size:<%=block.settings.content_font_size%>px;
-                color:<%=block.settings.content_color%>;
-                text-align:<%=block.settings.content_align%>;
+                font-size:<%=block?.settings?.content_font_size%>px;
+                color:<%=block?.settings?.content_color%>;
+                text-align:<%=block?.settings?.content_align%>;
               }
           </style>
           <div class="article-template__content page-width rte" itemprop="articleBody">

@@ -1,0 +1,217 @@
+{
+  "sections": {
+    "164253890362d227ae": {
+      "type": "image-banner",
+      "blocks": {
+        "16425389039f659f32-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Make Ui",
+            "align": "center",
+            "color": "var(--py-color-light)",
+            "weight": "",
+            "size": "",
+            "padding": "",
+            "margin": "",
+            "width": "",
+            "height": "",
+            "c_css": "",
+            "m_align": "center",
+            "m_color": "var(--py-color-light)",
+            "m_weight": "",
+            "m_size": "",
+            "m_padding": "",
+            "m_margin": "",
+            "m_width": "",
+            "m_height": "",
+            "m_c_css": ""
+          }
+        },
+        "16425389039f659f32-2": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Learn More",
+            "bg": "var(--py-bg-color-dark)",
+            "border": "var(--py-color-dark)",
+            "color": "var(--py-color-light)",
+            "b_width": "",
+            "size": "",
+            "weight": "",
+            "padding": "",
+            "margin": "",
+            "width": "",
+            "height": "",
+            "c_css": "",
+            "m_bg": "var(--py-bg-color-dark)",
+            "m_border": "var(--py-color-light)",
+            "m_color": "var(--py-color-light)",
+            "m_b_width": "",
+            "m_size": "",
+            "m_weight": "",
+            "m_padding": "",
+            "m_margin": "",
+            "m_width": "",
+            "m_height": "",
+            "m_c_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "16425389039f659f32-0",
+        "16425389039f659f32-2"
+      ],
+      "settings": {
+        "show_lazy": true,
+        "show_override": false,
+        "ov_bg_color": "var(--py-bg-color-avarge)",
+        "ov_opacity": "",
+        "pv": "center",
+        "ph": "center",
+        "align": "center",
+        "padding": "",
+        "margin": "",
+        "width": "",
+        "height": "",
+        "c_css": "",
+        "m_pv": "center",
+        "m_ph": "center",
+        "m_align": "center",
+        "m_padding": "",
+        "m_margin": "",
+        "m_width": "",
+        "m_height": "",
+        "m_c_css": "",
+        "enable_anim": false,
+        "anim": "zoom-out"
+      }
+    },
+    "1640386503a8111c26": {
+      "type": "marquee",
+      "settings": {
+        "marquee": "MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE | MAKE       \n        ",
+        "pause": false,
+        "direction": "left",
+        "behavior": "scroll",
+        "speed": 10,
+        "bg_color": "bg-c-average",
+        "page_width": "width-un",
+        "page_x_mg": "mg-x-un",
+        "page_y_mg": "mg-y-un",
+        "page_x_pd": "pd-x-n",
+        "page_y_pd": "pd-y-xl",
+        "font_size": "fs-xl",
+        "br": "br-none"
+      }
+    },
+    "16397085288e7549f7": {
+      "type": "image-with-video",
+      "blocks": {
+        "1639708527c22574f8-0": {
+          "type": "image",
+          "settings": {}
+        },
+        "fbff2156-b56f-463c-89e9-f6c022514e7f": {
+          "type": "video",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "1639708527c22574f8-0",
+        "fbff2156-b56f-463c-89e9-f6c022514e7f"
+      ],
+      "settings": {
+        "heading": "MAKE UI VIDEO NAME",
+        "heading_color": "var(--py-color-dark)",
+        "heading_font_size": "",
+        "heading_font_weight": "",
+        "heading_line_height": "",
+        "heading_font_style": "normal",
+        "text": "<p>Your Video Description Content</p>",
+        "text_color": "var(--py-color-dark)",
+        "text_font_size": "",
+        "text_font_weight": "",
+        "text_line_height": "",
+        "text_font_style": "normal",
+        "btn": "Learn More",
+        "align": "center",
+        "position": "bc_left",
+        "v_position": "bc_v_center"
+      }
+    },
+    "1650654428c3ab222d": {
+      "type": "featured-blog",
+      "blocks": {
+        "1650654428f31a1383-0": {
+          "type": "title",
+          "settings": {
+            "show_date": true,
+            "show_author": false,
+            "title_color": "var(--py-color-dark)",
+            "title_font_size": 22,
+            "title_font_weight": 500,
+            "title_m_font_size": 18
+          }
+        },
+        "1650654428f31a1383-1": {
+          "type": "link",
+          "settings": {
+            "btn_bg_color": "var(--py-bg-color-light)",
+            "btn_color": "var(--py-color-dark)",
+            "btn_br_color": "var(--py-color-dark)",
+            "btn_hover_bg_color": "var(--py-bg-color-light)",
+            "btn_hover_color": "var(--py-color-dark)",
+            "btn_hover_br_color": "var(--py-color-dark)",
+            "btn_font_size": 16,
+            "btn_font_weight": 600,
+            "btn_border_width": 1,
+            "btn_border_radius": 38
+          }
+        }
+      },
+      "block_order": [
+        "1650654428f31a1383-0",
+        "1650654428f31a1383-1"
+      ],
+      "settings": {
+        "blog": "news",
+        "show_image": true,
+        "bg_color": "bg-c-dark",
+        "title": "Blog Post Section Title",
+        "title_color": "var(--py-color-light)",
+        "title_font_size": 24,
+        "title_font_weight": 600,
+        "page_width": "width-un",
+        "page_x_mg": "mg-x-un",
+        "page_y_mg": "mg-y-un",
+        "page_x_pd": "pd-x-m",
+        "page_y_pd": "pd-y-m",
+        "image_ratio": "adapt",
+        "item_space": 8,
+        "card_radius": 10,
+        "card_bg_color": "bg-c-average",
+        "info_align": "left"
+      }
+    },
+    "1650657885dc5179e5": {
+      "type": "product-carousel",
+      "settings": {
+        "title": "Featured collection",
+        "collection": "",
+        "products_col_limit": 5,
+        "products_limit": 10,
+        "show_view_all": true,
+        "enable_swipe": false,
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "show_vendor": false
+      }
+    }
+  },
+  "order": [
+    "164253890362d227ae",
+    "1640386503a8111c26",
+    "16397085288e7549f7",
+    "1650654428c3ab222d",
+    "1650657885dc5179e5"
+  ]
+}

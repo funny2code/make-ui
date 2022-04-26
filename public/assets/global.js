@@ -144,6 +144,12 @@ if ((typeof window.Shopify) == 'undefined') {
   window.Shopify = {};
 }
 
+Shopify.bind = function(fn, scope) {
+  return function() {
+    return fn.apply(scope, arguments);
+  }
+};
+
 Shopify.formatMoney = function(cents, format) {
   if (typeof cents == 'string') { cents = cents.replace('.',''); }
   var value = '';
@@ -186,12 +192,6 @@ Shopify.formatMoney = function(cents, format) {
   }
 
   return formatString.replace(placeholderRegex, value);
-};
-
-Shopify.bind = function(fn, scope) {
-  return function() {
-    return fn.apply(scope, arguments);
-  }
 };
 
 Shopify.setSelectorByValue = function(selector, value) {
@@ -256,14 +256,14 @@ Shopify.CountryProvinceSelector.prototype = {
 
   countryHandler: function(e) {
     var opt       = this.countryEl.options[this.countryEl.selectedIndex];
-    var raw       = opt.getAttribute('data-provinces');
-    var provinces = JSON.parse(raw);
+    var raw       = opt?.getAttribute('data-provinces');
+    var provinces = raw && JSON.parse(raw);
 
     this.clearOptions(this.provinceEl);
-    if (provinces && provinces.length == 0) {
+    if (provinces && provinces?.length == 0) {
       this.provinceContainer.style.display = 'none';
     } else {
-      for (var i = 0; i < provinces.length; i++) {
+      for (var i = 0; i < provinces?.length; i++) {
         var opt = document.createElement('option');
         opt.value = provinces[i][0];
         opt.innerHTML = provinces[i][1];

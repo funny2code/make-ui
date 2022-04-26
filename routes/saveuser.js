@@ -13,12 +13,11 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
     const { settings, section, blocks } = req.body;
 
     if (!userId || !themeId || !req.session.user || req?.session?.user?._id !== userId) return next();
-    if (!settings?.length && !section?.length) return next();
+    if (!settings?.length && !section?.length && !blocks.length) return next();
 
     try {
 
         const theme = await modelUsersThemes.findById(themeId).exec();
-
         if (!theme) return next();
         if (section && !theme?.theme_sec) return res.sendStatus(500).send("error");
 
@@ -28,14 +27,14 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                 if (el.settings) {
                     el.settings.map(oldItem => {
                         Object.entries(settings[0]).forEach(newItem => {
-                            if (oldItem.id === newItem[0] && oldItem?.default && newItem[1] && newItem[1] !== "") {
+                            if (oldItem.id === newItem[0] && newItem[1] !== "") {
                                 oldItem.default = oldItem?.type === "range" ? parseInt(newItem[1]) : newItem[1];
                             }
                         })
                     })
                 } else {
                     Object.entries(settings[0]).forEach(newItem => {
-                        if (newItem[0] === "theme_name" && el.theme_name && newItem[1] && newItem[1] !== "") {
+                        if (newItem[0] === "theme_name" && el.theme_name && newItem[1] !== "") {
                             el.theme_name = newItem[1];
                         }
                     })
@@ -53,7 +52,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                     if (el.settings) {
                         el.settings.map(oldItem => {
                             Object.entries(section[0]?.settings).forEach(newItem => {
-                                if (oldItem.id === newItem[0] && oldItem?.default && newItem[1] && newItem[1] !== "") {
+                                if (oldItem.id === newItem[0] && newItem[1] !== "") {
                                     oldItem.default = oldItem?.type === "range" ? parseInt(newItem[1]) : newItem[1];
                                 }
                             })
@@ -84,7 +83,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                                 if (block.type === newBlock.type && block?.settings && newBlock?.settings) {
                                     block.settings.map(oldSetting => {
                                         Object.entries(newBlock.settings).map(newSetting => {
-                                            if (oldSetting.id === newSetting[0] && newSetting[1] && newSetting[1] !== "") {
+                                            if (oldSetting.id === newSetting[0] && newSetting[1] !== "") {
                                                 oldSetting.default = oldSetting?.type === "range" ? parseInt(newSetting[1]) : newSetting[1];
                                             }
                                         })
@@ -101,20 +100,19 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
             });
         }
         
-        const browser = await puppeteer.launch();
-        const pageBrowser = await browser.newPage();
-        await pageBrowser.goto(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s');
-        pageBrowser.setViewport({width: 1400, height: 700, deviceScaleFactor: 1});
-        await pageBrowser.screenshot({ path: path.join(__dirname, '../public/screens/screenshot-' + themeId + '.png'), fullPage: true});
-        await pageBrowser.goto(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s');
-        pageBrowser.setViewport({width: 375, height: 512, deviceScaleFactor: 3});
-        await pageBrowser.screenshot({ path: path.join(__dirname, '../public/screens/mobile-screenshot-' + themeId + '.png')});
-        await browser.close();
+        // const browser = await puppeteer.launch();
+        // const pageBrowser = await browser.newPage();
+        // await pageBrowser.goto(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s');
+        // pageBrowser.setViewport({width: 1400, height: 700, deviceScaleFactor: 1});
+        // await pageBrowser.screenshot({ path: path.join(__dirname, '../public/screens/screenshot-' + themeId + '.png'), fullPage: true});
+        // await pageBrowser.goto(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s');
+        // pageBrowser.setViewport({width: 375, height: 512, deviceScaleFactor: 3});
+        // await pageBrowser.screenshot({ path: path.join(__dirname, '../public/screens/mobile-screenshot-' + themeId + '.png')});
+        // await browser.close();
 
         res.status(200).send('success');
 
     } catch (err) {
-        console.log(err);
         return res.status(500).send("error");
     }
 
