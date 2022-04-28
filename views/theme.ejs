@@ -21,7 +21,7 @@
                         <div class="py__preview-select">
                             <select class="py__preview-pages-select">
                                 <% pageNames.forEach(item => { %> 
-                                    <option data-href="<% if(user){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=item.name%>" <% if(page === item.name){ %>selected<% } %>>
+                                    <option data-href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=item.name%>" <% if(page === item.name){ %>selected<% } %>>
                                         <%=item.name%>
                                     </option>
                                 <% }) %>
@@ -57,7 +57,11 @@
                                 <div></div>
                             </div>
                         </div>
-                        <iframe src="/view/<%= user ? 'users/' + user._id + '/themes/' + id : id%>?page=<%=page%><% if(activeType === 'section'){%>&section=<%=active%><% } else { %>&global=<%=active%><% } %>" class="py__view-iframe"></iframe>
+                        <% if(isAdmin){ %>
+                            <iframe src="/view/<%=id%>?page=<%=page%><% if(activeType === 'section'){%>&section=<%=active%><% } else { %>&global=<%=active%><% } %>" class="py__view-iframe"></iframe>
+                        <% } else { %>
+                            <iframe src="/view/<%= user ? 'users/' + user._id + '/themes/' + id : id%>?page=<%=page%><% if(activeType === 'section'){%>&section=<%=active%><% } else { %>&global=<%=active%><% } %>" class="py__view-iframe"></iframe>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -65,13 +69,13 @@
                 <% if(pageSections && section){ %>
                     <select class="py__sections-dropdown-listener">
                         <% pageSections.forEach((item, index)=>{ %>
-                            <option value="<%=item.name%>" data-href="<% if(user){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page%>&section=<%=item.name%>" <% if(item.name === active){ %>selected<% } %>>
+                            <option value="<%=item.name%>" data-href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page%>&section=<%=item.name%>" <% if(item.name === active){ %>selected<% } %>>
                                 <%=item.name%>
                             </option>
                         <% }) %> 
                     </select>
                 <% } %>
-                <form class="py__settings-form <% if(!section){ %>py__settings-form-mgtop<% } %>" method="post" action="/save/<%= user ? 'users/' + user._id + '/themes/' + id : id %>?<% if(activeType === 'section'){%>section=<%=active%><% } else { %>global=<%=active%><% } %>" aria-multiline="true">
+                <form class="py__settings-form <% if(!section){ %>py__settings-form-mgtop<% } %>" method="post" action="/save/<%= (user && !isAdmin) ? 'users/' + user._id + '/themes/' + id : id %>?<% if(activeType === 'section'){%>section=<%=active%><% } else { %>global=<%=active%><% } %>" aria-multiline="true">
                     <% if(pageSections && !settings && !section){ %>
                         <div class="py__settings-content">
                             <div class="py__loading-wrap">
@@ -89,7 +93,7 @@
                             </div>
                             <h2 class="py__settings-heading py__back-button-wrap"><%=page%> Sections</h2>
                             <% pageSections.forEach((item, index)=>{ %>
-                                <a href="<% if(user){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page%>&section=<%=item.name%>" class="py__section-item-href py__get-section-button <% if(item.name === active){ %>active<% } %>">
+                                <a href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page%>&section=<%=item.name%>" class="py__section-item-href py__get-section-button <% if(item.name === active){ %>active<% } %>">
                                     <span class="py__section-item-href-name"><%= item.name %></span>
                                     <span><%- include('icons', {type:'arrow_right'}) %></span>
                                 </a>

@@ -125,7 +125,7 @@ html.no-js .no-js-hidden {
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: var(--py-body-link-color);
 }
 .link--text {
   color: var(--py-body-link-color);

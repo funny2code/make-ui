@@ -15,6 +15,7 @@ const saveRouter = require('./routes/save');
 const saveUserRouter = require('./routes/saveuser');
 const downloadRouter = require('./routes/download');
 const loginRouter = require('./routes/login');
+const logOutRouter = require('./routes/logout');
 const signupRouter = require('./routes/signup');
 const addThemeRouter = require('./routes/addtheme');
 
@@ -23,7 +24,7 @@ const app = express();
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(session({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-    saveUninitialized:true,
+    saveUninitialized: true,
     cookie: { maxAge: oneDay },
     resave: false
 }));
@@ -46,6 +47,7 @@ app.use('/get', getRouter);
 app.use('/save', saveRouter);
 app.use('/save/users', saveUserRouter);
 app.use('/login', loginRouter);
+app.use('/logout', logOutRouter);
 app.use('/signup', signupRouter);
 app.use('/download', downloadRouter);
 app.use('/add', addThemeRouter);

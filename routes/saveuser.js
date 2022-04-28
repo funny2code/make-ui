@@ -3,7 +3,7 @@ const router = express.Router();
 const modelUsersThemes = require('../models/customer-themes');
 const path = require('path');
 const fs = require('fs');
-const puppeteer = require('puppeteer');
+const Pageres = require('pageres');
 
 
 /* POST SAVE FUNCTION */
@@ -95,20 +95,15 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                 }
             });
             modelUsersThemes.findByIdAndUpdate(themeId, { theme_sec: theme.theme_sec }, { new: true }).exec((err) => {
-                console.log(err);
                 if(err) return res.status(500).send("error");
             });
         }
         
-        // const browser = await puppeteer.launch();
-        // const pageBrowser = await browser.newPage();
-        // await pageBrowser.goto(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s');
-        // pageBrowser.setViewport({width: 1400, height: 700, deviceScaleFactor: 1});
-        // await pageBrowser.screenshot({ path: path.join(__dirname, '../public/screens/screenshot-' + themeId + '.png'), fullPage: true});
-        // await pageBrowser.goto(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s');
-        // pageBrowser.setViewport({width: 375, height: 512, deviceScaleFactor: 3});
-        // await pageBrowser.screenshot({ path: path.join(__dirname, '../public/screens/mobile-screenshot-' + themeId + '.png')});
-        // await browser.close();
+        await new Pageres({delay: 2})
+            .src(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s', ['1440x900'], {crop: true, filename: 'screen-' + themeId})
+            .src(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s', ['414x736'], {crop: true, filename: 'm-screen-' + themeId})
+            .dest(path.join(__dirname, '../public/screens/'))
+            .run();
 
         res.status(200).send('success');
 

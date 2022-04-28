@@ -30,7 +30,8 @@ router.get('/:id', async (req, res, next) => {
     theme.theme_pag.forEach(item => pageNames.push({name:item.name}));
     
     res.render('theme', {
-      user: req?.session?.user || null, 
+      user: req?.session?.user || null,
+      isAdmin: req?.session?.user?.isAdmin || null, 
       make: make, 
       id: theme._id,
       page: page,

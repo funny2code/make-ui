@@ -13,7 +13,7 @@
                             <% subMenuItems.forEach(subOption => { %>
                                 <% var subMenuLinks = item.type === 'page' ? `page=${subOption.name}` : `page=${page}&section=${subOption.name}` %>
                                 <li>
-                                    <a href="<% if(user){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?<%=subMenuLinks%>" class="py__sub-options-item py__get-section-button <% if(item.type === 'page' && subOption.name === page || activeType === 'section' && subOption.name === active){ %>active<% } %>">
+                                    <a href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?<%=subMenuLinks%>" class="py__sub-options-item py__get-section-button <% if(item.type === 'page' && subOption.name === page || activeType === 'section' && subOption.name === active){ %>active<% } %>">
                                         <span><%= subOption.name %></span>
                                         <span><%- include('../icons', {type:'arrow_right'}) %></span>
                                     </a>
@@ -21,7 +21,7 @@
                             <% }) %>
                         </ul>
                     <% } else { %>
-                        <a href="<% if(user){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page%>&<%=item.type%>=<%=item.name%>" class="py__settings-select-options-item py__get-section-button <% if(item.name === active){ %>active<% } %>">
+                        <a href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page%>&<%=item.type%>=<%=item.name%>" class="py__settings-select-options-item py__get-section-button <% if(item.name === active){ %>active<% } %>">
                             <span><%- include('../icons', {type: item.icon}) %></span>
                             <span class="py__select-option-label"><%= item.title %></span>
                         </a>

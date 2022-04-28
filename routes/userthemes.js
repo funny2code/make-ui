@@ -32,6 +32,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
 
     res.render('theme', {
       user: req?.session?.user || null,
+      isAdmin: false,
       make: make,
       id: theme._id,
       page: page,

@@ -1,5 +1,9 @@
 <div class="py__theme">
     <div class="py__theme-image_wrapper">
+        <img src="/screens/screen-<%=id%>.png">
+        <div class="py__theme-image_mobile-wrapper">
+            <img src="/screens/m-screen-<%=id%>.png">
+        </div>
     </div>
     <div class="py__theme-info">
         <% if(settings[0].theme_name){ %>
@@ -7,6 +11,11 @@
         <% } %>
         <div class="py__theme-details">
             <% if(user){ %>
+                <% if(user.isAdmin){ %>
+                    <a href="/themes/<%=id%>?page=Home%20Page" class="py__button py__button-blue">
+                        Customize theme
+                    </a>
+                <% } %>
                 <a href="/add/<%=user._id%>/<%=id%>" class="py__button py__button-blue py__button-add-theme">
                     Add this theme
                 </a>
