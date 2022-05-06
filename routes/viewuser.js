@@ -125,7 +125,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
     const sectionHandle = req.query.section;
 
     if (!themeId || !userId || !page || !req.session.user || req?.session?.user?._id !== userId) return next();
-    if (!settings?.length && !section?.length && !blocks.length) return next();
+    if (!settings?.length && !section?.length && !blocks?.length) return next();
 
     try {
 

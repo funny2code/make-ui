@@ -2,7 +2,7 @@
     <div class="py__settings-wrapper">
         <% blocks.forEach(block => { %>
             <% if(block.type && block.type !== '@app'){ %>
-                <div class="py__settings-item-wrapper">
+                <div class="py__settings-item-wrapper  py__settings-block-item" data-type="<%=block.type%>">
                     <div class="py__settings-item-name">
                         <span><%= block.name %></span>
                         <span class="py__settings-item-icon"><%- include('../icons', {type: 'arrow_bottom'}) %></span>

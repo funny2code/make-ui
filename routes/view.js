@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const storage = require('node-localstorage').LocalStorage;
 const makeMenu = require('../config/menu');
 const shop = require('../config/shop');
 const collection = require('../config/collection');
@@ -11,12 +12,16 @@ const article = require('../config/article');
 const customer = require('../config/customer');
 const gift = require('../config/gift');
 const modelThemes = require('../models/themes');
+const localStorage = new storage('./scratch');
+
 
 /* GET theme settings and sections for Iframe View. */
 router.get('/:id', async (req, res, next) => {
 
   const { id } = req.params;
   const { page, section, global } = req.query;
+  const storageData = localStorage.getItem('theme');
+  const localData = storageData ? JSON.parse(storageData) : null;
 
   if (!id || !page) return next();
 
@@ -32,7 +37,9 @@ router.get('/:id', async (req, res, next) => {
     theme.theme_set && theme.theme_set.map(el => {
       if (el.settings) {
         for (var k in el.settings) {
-          settings[el.settings[k].id] = el.settings[k].default;
+          localData?.settings[el.settings[k].id] 
+          ? settings[el.settings[k].id] = localData?.settings[el.settings[k].id]
+          : settings[el.settings[k].id] = el.settings[k].default
         }
       }
     });
@@ -40,24 +47,45 @@ router.get('/:id', async (req, res, next) => {
     if (section) {
       theme.theme_sec && theme.theme_sec.map(item => {
         if (item.name === section) {
-          const sectionChildSettings = {};
-          const blocks = [];
-          if (item.settings) {
-            for (var k in item.settings) {
-              sectionChildSettings[item.settings[k].id] = item.settings[k].default;
-            }
-          }
-          if (item?.blocks?.length) {
-            item.blocks.forEach((block, index) => {
-              blocks[index] = { type: block.type, settings: {} };
-              if (block && block?.settings) {
-                for (var i in block.settings) {
-                  blocks[index].settings[block.settings[i].id] = block.settings[i].default;
+            const findLocalSection = localData?.sections?.length && localData?.sections?.filter(localItem => localItem.name === section);
+            const sectionChildSettings = {};
+            const blocks = [];
+            if(findLocalSection?.length){
+              if(findLocalSection[0].name === section){
+                if (findLocalSection[0].settings) {
+                  Object.entries(findLocalSection[0].settings).forEach(([key, value]) => {
+                    sectionChildSettings[key] = value;
+                  });
+                }
+                if (findLocalSection[0].blocks?.length) {
+                  findLocalSection[0].blocks.forEach((block, index) => {
+                    blocks[index] = { type: block.type, settings: {} };
+                    if (block && block?.settings) {
+                      Object.entries(block.settings).forEach(([key, value]) => {
+                        blocks[index].settings[key] = value;
+                      })
+                    }
+                  })
                 }
               }
-            })
-          }
-          sectionSettings.push({ name: item.name, settings: sectionChildSettings, blocks: blocks });
+            } else {
+              if (item.settings) {
+                for (var k in item.settings) {
+                  sectionChildSettings[item.settings[k].id] = item.settings[k].default;
+                }
+              }
+              if (item?.blocks?.length) {
+                item.blocks.forEach((block, index) => {
+                  blocks[index] = { type: block.type, settings: {} };
+                  if (block && block?.settings) {
+                    for (var i in block.settings) {
+                      blocks[index].settings[block.settings[i].id] = block.settings[i].default;
+                    }
+                  }
+                })
+              }
+            }
+            sectionSettings.push({ name: item.name, settings: sectionChildSettings, blocks: blocks });
         }
       });
     } else if (global === 'Global Styles' || global === undefined) {
@@ -68,20 +96,41 @@ router.get('/:id', async (req, res, next) => {
               if (item.name === el.name) {
                 const sectionChildSettings = {};
                 const blocks = [];
-                if (el.settings) {
-                  for (var k in el.settings) {
-                    sectionChildSettings[el.settings[k].id] = el.settings[k].default;
-                  }
-                }
-                if (el?.blocks?.length) {
-                  el.blocks.forEach((block, index) => {
-                    blocks[index] = { type: block.type, settings: {} };
-                    if (block && block?.settings) {
-                      for (var i in block.settings) {
-                        blocks[index].settings[block.settings[i].id] = block.settings[i].default;
-                      }
+                const findLocalSection = localData?.sections?.length && localData?.sections?.filter(localItem => localItem.name === el.name);
+                if(findLocalSection?.length){
+                  if(item.name === findLocalSection[0]?.name){
+                    if (findLocalSection[0].settings) {
+                      Object.entries(findLocalSection[0].settings).forEach(([key, value]) => {
+                        sectionChildSettings[key] = value;
+                      })
                     }
-                  })
+                    if (findLocalSection[0]?.blocks?.length) {
+                      findLocalSection[0].blocks.forEach((block, index) => {
+                        blocks[index] = { type: block.type, settings: {} };
+                        if (block && block?.settings) {
+                          Object.entries(block.settings).forEach(([key, value]) => {
+                            blocks[index].settings[key] = value;
+                          })
+                        }
+                      })
+                    }
+                  } 
+                } else {
+                  if (el.settings) {
+                    for (var k in el.settings) {
+                      sectionChildSettings[el.settings[k].id] = el.settings[k].default;
+                    }
+                  }
+                  if (el?.blocks?.length) {
+                    el.blocks.forEach((block, index) => {
+                      blocks[index] = { type: block.type, settings: {} };
+                      if (block && block?.settings) {
+                        for (var i in block.settings) {
+                          blocks[index].settings[block.settings[i].id] = block.settings[i].default;
+                        }
+                      }
+                    })
+                  }
                 }
                 sectionSettings.push({ name: item.name, settings: sectionChildSettings, blocks: blocks });
               }
@@ -118,12 +167,13 @@ router.get('/:id', async (req, res, next) => {
 router.post('/:id', async (req, res, next) => {
 
   const { id } = req.params;
-  const { settings, section, blocks } = req.body;
+  const {settings, sections} = req.body;
   const { page, global } = req.query;
   const sectionHandle = req.query.section;
-
+  localStorage.setItem('theme', JSON.stringify(req.body));
+  
   if (!id || !page) return next();
-  if (!settings?.length && !section?.length && !blocks?.length) return next();
+  if (!settings && !sections?.length) return next();
 
   try {
 
@@ -136,8 +186,8 @@ router.post('/:id', async (req, res, next) => {
     theme?.theme_set && theme.theme_set.map(el => {
       if (el.settings) {
         for (var k in el.settings) {
-          settings?.length ? Object.keys(settings[0]).length && settings[0][el.settings[k].id]
-            ? defaultSettings[el.settings[k].id] = settings[0][el.settings[k].id]
+          settings ? Object.keys(settings).length && settings[el.settings[k].id]
+            ? defaultSettings[el.settings[k].id] = settings[el.settings[k].id]
             : defaultSettings[el.settings[k].id] = el.settings[k].default
             : defaultSettings[el.settings[k].id] = el.settings[k].default;
         }
@@ -198,14 +248,14 @@ router.post('/:id', async (req, res, next) => {
       });
     }
 
-    if (section?.length || blocks?.length) {
+    if (sections?.length) {
       defaultSections.forEach(item => {
-        if (section?.length && item.name === section[0].name) {
-          item.settings = section[0].settings;
-        }
-        if (blocks?.length && item?.blocks?.length) {
-          item.blocks = blocks;
-        }
+        sections.forEach(section => {
+          if(item.name === section.name) {
+            item.settings = section.settings;
+            item.blocks = section.blocks;
+          }
+        })
       });
     }
 

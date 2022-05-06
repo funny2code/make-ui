@@ -2,7 +2,10 @@
 
     // GLOBAL VARIABLES
     var focuseValue = "";
-    var settingsValues = {}, settingsValuesBool = {}, previewSettingsValues = {};
+    var theme = {
+        settings: {},
+        sections: [],
+    };
     var saveButton = document.querySelector('.py__save-button'); 
     var downloadButton = document.querySelector('.py__download-button');
 
@@ -29,86 +32,175 @@
 
     // Save old settings values
     const saveSettingsValues = (id=false) => {
-        let settingsWrapper = document.querySelector('.py__make-settings');
-        settingsWrapper?.querySelectorAll('[name]').forEach(element => {
-            settingsValues[element.getAttribute('name')] = element.value;
-            settingsValuesBool[element.getAttribute('name')] = id && element.getAttribute('name') === id ? true : false;
-            previewSettingsValues[element.getAttribute('name')] = element.value;
-        });
+        let data = document.querySelector('.py__settings-section-item');
+        let blockSettings = document.querySelectorAll('.py__settings-block-item');
+        let sectionName = data?.getAttribute('data-section-name');
+        let templateName = data?.getAttribute('data-template-name');
+
+        let section = {name: null, template_name: null, settings: {}, blocks: []};
+        
+        section.template_name = templateName;
+
+        if(!sectionName){
+            data?.querySelectorAll('[name]').forEach(element => {
+                theme.settings[element.getAttribute('name').replace('settings_', '')] = element.value;
+                // settingsValuesBool[element.getAttribute('name')] = id && element.getAttribute('name') === id ? true : false;
+                // previewSettingsValues[element.getAttribute('name')] = element.value;
+            });
+        }
+
+        if(theme?.sections?.length){
+            let checking = theme?.sections?.filter(sectionItem => sectionItem.name === sectionName);
+            if(checking.length){
+
+                theme?.sections?.forEach(sectionItem => {
+                    if(sectionItem.name === sectionName){
+                        data?.querySelectorAll('[name]').forEach(element => {
+                            sectionItem.settings[element.getAttribute('name')] = element.value;
+                            // settingsValuesBool[element.getAttribute('name')] = id && element.getAttribute('name') === id ? true : false;
+                            // previewSettingsValues[element.getAttribute('name')] = element.value;
+                        });
+                    }
+                    if(blockSettings?.length){
+                        blockSettings.forEach(block=>{
+                            sectionItem?.blocks.forEach(localBlock => {
+                                if(localBlock.type === block.getAttribute('data-type')){
+                                    block.querySelectorAll('[name]').forEach(element => {
+                                        localBlock.settings[element.getAttribute('name').replace('block_', '')] = element.value;
+                                    });
+                                }
+                            })
+                        });
+                    }
+                });
+
+                
+
+            } else {
+
+                section.name = sectionName;
+                data?.querySelectorAll('[name]').forEach(element => {
+                    section.settings[element.getAttribute('name')] = element.value;
+                    // settingsValuesBool[element.getAttribute('name')] = id && element.getAttribute('name') === id ? true : false;
+                    // previewSettingsValues[element.getAttribute('name')] = element.value;
+                });
+
+                if(blockSettings?.length){
+                    blockSettings.forEach(block=>{
+                        let blockItem = {type: block.getAttribute('data-type'),settings: {}};
+                        block?.querySelectorAll('[name]')?.forEach(element => {
+                            blockItem.settings[element.getAttribute('name').replace('block_', '')] = element.value;
+                        });
+                        section.blocks.push(blockItem);
+                    });
+                };
+            }
+        } else {
+
+            section.name = sectionName;
+            data?.querySelectorAll('[name]').forEach(element => {
+                section.settings[element.getAttribute('name')] = element.value;
+                // settingsValuesBool[element.getAttribute('name')] = id && element.getAttribute('name') === id ? true : false;
+            });
+
+            if(blockSettings?.length){
+                blockSettings.forEach(block=>{
+                    let blockItem = {type: block.getAttribute('data-type'),settings: {}};
+                    block?.querySelectorAll('[name]')?.forEach(element => {
+                        blockItem.settings[element.getAttribute('name').replace('block_', '')] = element.value;
+                    });
+                    section.blocks.push(blockItem);
+                });
+            };
+
+        }
+
+        console.log(section.name);
+        if(section.name){
+            theme.sections.push(section);
+        }
+        // localStorage.setItem("theme", JSON.stringify(theme));
+        console.log(theme, "Hello");
     };
 
     // Check settings values 
     const checkSettings = (id, value) => {
-        if(settingsValues[id] === value){
-            let isDisabled = true; 
-            settingsValuesBool[id] = false;
-            Object.entries(settingsValuesBool).forEach(([key, val]) => {
-                if(val) return isDisabled = false; 
-            });
-            if(isDisabled){
-                saveButton && saveButton.setAttribute('aria-disabled', 'true');
-                downloadButton && downloadButton.setAttribute('aria-disabled', 'false');
-            }
-        } else {
-            saveButton && saveButton.setAttribute('aria-disabled', 'false');
-            downloadButton && downloadButton.setAttribute('aria-disabled', 'true');
-            settingsValuesBool[id] = true;
-        }       
+        // if(settingsValues[id] === value){
+        //     let isDisabled = true; 
+        //     settingsValuesBool[id] = false;
+        //     Object.entries(settingsValuesBool).forEach(([key, val]) => {
+        //         if(val) return isDisabled = false; 
+        //     });
+        //     if(isDisabled){
+        //         saveButton && saveButton.setAttribute('aria-disabled', 'true');
+        //         downloadButton && downloadButton.setAttribute('aria-disabled', 'false');
+        //     }
+        // } else {
+        //     saveButton && saveButton.setAttribute('aria-disabled', 'false');
+        //     downloadButton && downloadButton.setAttribute('aria-disabled', 'true');
+        //     settingsValuesBool[id] = true;
+        // }       
     };
 
     // Save Function
-    const save = () => {
+    const save = (userId=false,themeId=false) => {
         let form = document.querySelector('form.py__settings-form');
         let url = form.getAttribute('action');
         
         if(!form || !url) return;
         
-        let fullLoading = document.querySelector('.py__loading-wrap');
-        fullLoading?.classList.add('py__animate');
-        let settings = {}, section = [], sectionName = '', templateName = '', sectionSettings = {};
-        let blocks = []; 
-        let blockItems = {
-            type: "",
-            settings: {}
-        }; 
-
-        let formData = new FormData(form);
-        formData.forEach((value, key) => {
-            let newValue = value === "true" || value === "false" 
-            ? value === "true" 
-            ? true : false : /^\d+$/.test(value) 
-            ? parseInt(value) : value;
-            if(key === 'logo') return;
-            if(key.includes('settings_')){ 
-                settings[key.replace('settings_', '')] = newValue;
-            } else if(key.includes('block_')){
-                if(key.includes('block_type_')){
-                    blockItems.type = newValue;
-                    blocks.push(blockItems);
-                    blockItems = {type:"",settings: {}};
-                } else {
-                    blockItems.settings[key.replace('block_', '')] = newValue
-                }
-            } else { 
-                if(key === 'section_name'){ 
-                    sectionName = newValue;
-                } else if(key === 'template_name'){
-                    templateName = newValue;
-                } else { 
-                    sectionSettings[key] = newValue;
-                }
-            }
-        });
-        
-        if(sectionName && Object.keys(sectionSettings).length){
-            section.push({ name: sectionName, template: templateName, settings: sectionSettings});
+        if(userId && themeId){
+            url = '/save/users/' + userId + '/themes/' + themeId;
         }
 
-        let data = {
-            settings: Object.keys(settings).length ? [settings] : null,
-            section: section.length ? section : null,
-            blocks: blocks?.length ? blocks : null,
-        };
+        let fullLoading = document.querySelector('.py__loading-wrap');
+        fullLoading?.classList.add('py__animate');
+        // let settings = {}, section = [], sectionName = '', templateName = '', sectionSettings = {};
+        // let blocks = []; 
+        // let blockItems = {
+        //     type: "",
+        //     settings: {}
+        // }; 
+
+        // let formData = new FormData(form);
+        // formData.forEach((value, key) => {
+        //     let newValue = value === "true" || value === "false" 
+        //     ? value === "true" 
+        //     ? true : false : /^\d+$/.test(value) 
+        //     ? parseInt(value) : value;
+        //     if(key === 'logo') return;
+        //     if(key.includes('settings_')){ 
+        //         settings[key.replace('settings_', '')] = newValue;
+        //     } else if(key.includes('block_')){
+        //         if(key.includes('block_type_')){
+        //             blockItems.type = newValue;
+        //             blocks.push(blockItems);
+        //             blockItems = {type:"",settings: {}};
+        //         } else {
+        //             blockItems.settings[key.replace('block_', '')] = newValue
+        //         }
+        //     } else { 
+        //         if(key === 'section_name'){ 
+        //             sectionName = newValue;
+        //         } else if(key === 'template_name'){
+        //             templateName = newValue;
+        //         } else { 
+        //             sectionSettings[key] = newValue;
+        //         }
+        //     }
+        // });
+        
+        // if(sectionName && Object.keys(sectionSettings).length){
+        //     section.push({ name: sectionName, template: templateName, settings: sectionSettings});
+        // }
+
+        // let data = {
+        //     settings: Object.keys(settings).length ? [settings] : null,
+        //     section: section.length ? section : null,
+        //     blocks: blocks?.length ? blocks : null,
+        // };
+
+        console.log(url, theme, "DAVVV");
 
         fetch(url, {
             method:'POST',
@@ -116,14 +208,18 @@
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }, 
-            body:JSON.stringify(data)
+            body:JSON.stringify(theme)
         })
         .then(res => res.text())
         .then(data => {
             if(!data) return;
             if(data === "success"){
-                saveButton.setAttribute('aria-disabled', 'true');
-                downloadButton.setAttribute('aria-disabled', 'false');
+                saveButton?.setAttribute('aria-disabled', 'true');
+                downloadButton?.setAttribute('aria-disabled', 'false');
+                if(userId && themeId){
+                    let redirect = `/users/${userId}/themes/${themeId}?page=Home%20Page&global=Global%20Styles`;
+                    download(false,themeId,userId,"Make Ui",redirect);
+                }
                 saveSettingsValues();
             } 
             fullLoading?.classList.remove('py__animate');
@@ -217,12 +313,12 @@
         event.preventDefault();
         let form = event.target;
         let url = event.target.getAttribute('action');
-        if(!url) return;
+        let themeId = document.querySelector('.py__signup-button')?.getAttribute('data-id'); 
+        if(!url || !themeId) return;
         let formData = new FormData(form);
         let ObjectFormData = Object.fromEntries(formData.entries());
         let fullLoading = form.closest('.py__signup-wrapper').querySelector('.py__loading-wrap');
         fullLoading?.classList.add('py__animate');
-        console.log(fullLoading);
 
         fetch(url, {
             method:'post',
@@ -233,24 +329,30 @@
             body: JSON.stringify(ObjectFormData)
         })
         .then(res => res.text())
-        .then(data => {
+        .then((data) => {
             if(!data) return;
             let parseData = JSON.parse(data);
-            if(parseData.status === "active"){
-                return location.href = location.origin;
-            } else if(parseData.status === "requires_confirmation"){
+            console.log(parseData, '--- register');
+            if(parseData.response.status === "active"){
+                let addThemeFun = addTheme(false, parseData.id, themeId, {themename: "Make Ui"});
+            } else if(parseData.response.status === "requires_confirmation"){
                 let stripe = Stripe('pk_test_hnMkmoqkvZxUjOrnEkPIVd80');
                 stripe.confirmCardPayment(parseData.client_secret)
-                .then(function(result) {
-                    if(result?.error) return
-                    if(result?.paymentIntent) return location.href = location.origin;
+                .then((result) => {
+                    if(result?.error) return;
+                    if(result?.paymentIntent && parseData.id){
+                        let addThemeFun = addTheme(false, parseData.id, themeId, {themename: "Make Ui"});
+                        setTimeout(() =>{
+                            console.log(addThemeFun);
+                        }, 3000)
+                    }
                 });
             } else {
                 let errorWrap = document.querySelector('.py__signup-error-wrap');
-                errorWrap.textContent = parseData.message;
-                errorWrap.classList.add('active'); 
+                errorWrap.textContent = parseData.response.message;
+                errorWrap?.classList.add('active');
+                fullLoading?.classList.remove('py__animate'); 
             }
-            fullLoading?.classList.remove('py__animate');
         })
         .catch(err => console.error(err));
     };
@@ -292,18 +394,28 @@
         .catch(err => console.error(err));
     };
 
-    // Login Function
-    const addTheme = (event) => {
+    // ADD Theme Function
+    const addTheme = (event=false, userId=false, themeId=false, dataValues=false) => {
         
-        if(!event) return;
-        event.preventDefault();
-        let form = event.target;
-        let url = event.target.getAttribute('action');
-        if(!url) return;
-        let formData = new FormData(form);
-        let ObjectFormData = Object.fromEntries(formData.entries());
-        let fullLoading = form.closest('.py__addtheme-wrapper').querySelector('.py__loading-wrap');
-        fullLoading?.classList.add('py__animate');
+        let url = '';
+        let ObjectFormData = '';
+        let fullLoading = '';
+
+        if(userId && themeId && dataValues){
+            url = '/add/' + userId + '/' + themeId;
+            ObjectFormData = dataValues;
+            fullLoading = document.querySelector('.py__signup-wrapper').querySelector('.py__loading-wrap');
+        } else {
+            if(!event) return;
+            event.preventDefault();
+            let form = event.target;
+            url = event.target.getAttribute('action');
+            if(!url) return;
+            let formData = new FormData(form);
+            ObjectFormData = Object.fromEntries(formData.entries());
+            fullLoading = form.closest('.py__addtheme-wrapper').querySelector('.py__loading-wrap');
+            fullLoading?.classList.add('py__animate');
+        }
 
         fetch(url, {
             method:'post',
@@ -318,33 +430,49 @@
             if(!data) return;
             let parseData = JSON.parse(data);
             if(parseData.status === 200){
-                return location.href = location.origin;
+                if(userId && parseData.response.theme_id){
+                    save(userId, parseData.response.theme_id);
+                } else {
+                    return location.href = location.origin;
+                }
             } else {
                 let errorWrap = document.querySelector('.py__addtheme-error-wrap');
-                errorWrap.textContent = parseData.message;
-                errorWrap.classList.add('active'); 
+                if(errorWrap){
+                    errorWrap.textContent = parseData.response.message;
+                    errorWrap.classList.add('active'); 
+                }
+                fullLoading?.classList.remove('py__animate');
             }
-            fullLoading?.classList.remove('py__animate');
         })
         .catch(err => console.error(err));
     };
 
     // Download function
-    const download = (event) => {
+    const download = (event=false, zThemeId=false, zUserId=false, zThemeName=false, href=false) => {
 
-        if(!event) return;
-        event.preventDefault();
-
-        let btn = event.target;
-        let url = btn.getAttribute('href');
-        let themeId = btn.getAttribute('data-id');
-        let userId = btn.getAttribute('data-user-id');
-        let themeName = btn.getAttribute('data-name');
-        if(!url || !themeId) return;
-        
+        let url = '', data = '', themeName = ''; 
         let fullLoading = document.querySelector('.py__loading-wrap');
-        fullLoading?.classList.add('py__animate');
-        let data = userId ? {userId: userId, themeId: themeId} : {themeId: themeId};
+
+        if(zThemeId && zUserId && zThemeName){
+            url = '/download';
+            data = zUserId ? {userId: zUserId, themeId: zThemeId} : {themeId: zThemeId};
+            themeName = zThemeName
+            if(!zThemeId) return;
+        } else {
+            if(!event) return;
+            event.preventDefault();
+
+            let btn = event.target;
+            url = btn.getAttribute('href');
+            themeName = btn.getAttribute('data-name');
+            let themeId = btn.getAttribute('data-id');
+            let userId = btn.getAttribute('data-user-id');
+            fullLoading?.classList.add('py__animate');
+            data = userId ? {userId: userId, themeId: themeId} : {themeId: themeId};
+            if(!themeId) return;
+        }
+
+        if(!url) return;
 
         fetch(url, {
             method:'POST',
@@ -367,58 +495,57 @@
             window.URL.revokeObjectURL(objectUrl);
             a.remove();
             fullLoading?.classList.remove('py__animate');
+            if(href) return location.href = href;
         })
         .catch(err => console.log(err));
     };
 
     // View Iframe Fun
     const viewIframe = () => {
-        let form = document.querySelector('form.py__settings-form');
+        // let form = document.querySelector('form.py__settings-form');
         let iframe = document.querySelector('iframe.py__view-iframe');
-        if(!iframe || !form) return;
+        // if(!iframe || !form) return;
         let url = iframe.getAttribute('src');
-        let settings = {}; 
-        let section = []; 
-        let sectionName = '';
-        let sectionSettings = {}; 
-        let blocks = []; 
-        let blockItems = {
-            type: "",
-            settings: {}
-        }; 
+        // let settings = {}; 
+        // let section = []; 
+        // let sectionName = document.querySelector('.py__settings-section-item').getAttribute('data-section-name');
+        // let sectionSettings = {}; 
+        // let blocks = []; 
+        // let blockItems = {
+        //     type: "",
+        //     settings: {}
+        // }; 
 
-        let formData = new FormData(form);
-        formData.forEach((value, key) => {
-            let newValue = value === "true" || value === "false" 
-            ? value === "true" ? true : false : value;
-            if(key === 'logo') return;
-            if(key.includes('settings_')){ 
-                settings[key.replace('settings_', '')] = newValue;
-            } else if(key.includes('block_')){
-                if(key.includes('block_type_')){
-                    blockItems.type = newValue;
-                    blocks.push(blockItems);
-                    blockItems = {type:"",settings: {}};
-                } else {
-                    blockItems.settings[key.replace('block_', '')] = newValue
-                }
-            } else { 
-                key === 'section_name' 
-                ? sectionName = newValue
-                : sectionSettings[key] = newValue;
-            }
-        });
+        // let formData = new FormData(form);
+        // formData.forEach((value, key) => {
+        //     let newValue = value === "true" || value === "false" 
+        //     ? value === "true" ? true : false : value;
+        //     if(key === 'logo') return;
+        //     if(key.includes('settings_')){ 
+        //         settings[key.replace('settings_', '')] = newValue;
+        //     } else if(key.includes('block_')){
+        //         if(key.includes('block_type_')){
+        //             blockItems.type = newValue;
+        //             blocks.push(blockItems);
+        //             blockItems = {type:"",settings: {}};
+        //         } else {
+        //             blockItems.settings[key.replace('block_', '')] = newValue
+        //         }
+        //     } else { 
+        //         sectionSettings[key] = newValue;
+        //     }
+        // });
         
 
-        if(sectionName && Object.keys(sectionSettings).length){
-            section.push({ name: sectionName, settings: sectionSettings});
-        }
+        // if(sectionName && Object.keys(sectionSettings).length){
+        //     section.push({ name: sectionName, settings: sectionSettings});
+        // }
 
-        let data = {
-            settings: Object.keys(settings).length ? [settings] : null,
-            section: section.length ? section : null,
-            blocks: blocks?.length ? blocks: null,
-        };
+        // let data = {
+        //     settings: Object.keys(settings).length ? [settings] : null,
+        //     section: section.length ? section : null,
+        //     blocks: blocks?.length ? blocks: null,
+        // };
 
         fetch(url, {
             method:'POST',
@@ -426,7 +553,7 @@
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }, 
-            body:JSON.stringify(data)
+            body:JSON.stringify(theme)
         })
         .then(res => res.text())
         .then(data => {
@@ -575,6 +702,7 @@
             let newSidebar = html.querySelector('.py__settings-select-options');
             oldSettingsWrap && newSettingsWrap ? oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML : null;
             oldSidebar && newSidebar ? oldSidebar.innerHTML = newSidebar.innerHTML : null;
+            saveSettingsValues();
         }).catch(err => console.log(err));
     };
 
@@ -591,7 +719,7 @@
         let forColor = wrapper.querySelector('.py__label-for-color');
         isColor.value = value;
         forColor.style.backgroundColor = value;
-        checkSettings(uniqName, value);
+        saveSettingsValues();
 
         if(uniqName.includes('bg')){
             let textUniqName = uniqName.replace('bg_', '');
@@ -615,7 +743,7 @@
         if(!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
-        checkSettings(uniqName, value);
+        saveSettingsValues();
         value !== focuseValue ? viewIframe() : null;
         if(uniqName === 'settings_theme_name' && value !== focuseValue) downloadButton?.setAttribute('data-name', value);
     };
@@ -624,7 +752,7 @@
         if(!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
-        checkSettings(uniqName, value);
+        saveSettingsValues();
         value !== focuseValue ? viewIframe() : null;
     };
     // Richtext Component Function
@@ -632,7 +760,7 @@
         if(!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
-        checkSettings(uniqName, value);
+        saveSettingsValues();
         value !== focuseValue ? viewIframe() : null;
     };
     // Select Component Function
@@ -642,13 +770,12 @@
         let value = event.target.value;
         let container = event.target.closest('.py__settings-item');
         let isHaveGlobal = container.querySelector('.py__get-result-wrapper');
-        checkSettings(uniqName, value);
+        saveSettingsValues();
 
         if(uniqName.includes('bg')){
             let textUniqName = uniqName.replace('bg_', '');
             let findInColorsJson = colorsNamesContrast[textUniqName];
             let textColorInput = findInColorsJson ? document.querySelector(`[name="${findInColorsJson}"]`) : document.querySelector(`[name="${textUniqName}"]`);
-            console.log(textColorInput, findInColorsJson);
             if(textColorInput){ 
                 let newVal = value.includes('dark') ? 'light' : 'dark';
                 textColorInput.selectedIndex = [...textColorInput.options].findIndex(option => option.value.includes(newVal));
@@ -666,7 +793,7 @@
         let hiddenFiled = content.querySelector('input[type="hidden"]');
         hiddenFiled.value = event.target.checked ? true : false;
         let value = hiddenFiled.value;
-        checkSettings(uniqName, value);
+        saveSettingsValues();
         viewIframe();
     }
     // Range Component Function
@@ -674,7 +801,7 @@
         if(!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
-        checkSettings(uniqName, value);
+        saveSettingsValues();
         viewIframe();
     }
 

@@ -38,6 +38,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
       page: page,
       sidebar: theme.app_sid || null,
       fonts: fonts,
+      localData: false,
       settings: settings,
       section: sections ? sections[0] : null,
       pageNames: pageNames,

@@ -26,9 +26,11 @@
                 <a href="/login" class="py__button py__button-white py__login-button">
                     Log In
                 </a>
-                <a href="/signup" class="py__button py__button-white py__signup-button">
-                    Sign Up
+                <% if(show){ %>
+                <a href="/signup" class="py__button py__button-white py__signup-button" data-id="<%=id%>">
+                    Download Theme
                 </a>
+                <% } %>
             <% } %>
         </div>
     </div>

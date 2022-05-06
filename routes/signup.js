@@ -21,11 +21,11 @@ router.post('/', async (req, res, next) => {
 
   if(req.session.user) return next();
   const {email, password, subscription, number, exp_month, exp_year, cvc} = req.body;
-  if(!email || !password || !subscription || !number || !exp_month || !exp_year || !cvc) return res.status(400).send({status: 400, message: "Please enter all fields."});
+  if(!email || !password || !subscription || !number || !exp_month || !exp_year || !cvc) return res.status(400).send({response: {status: 400, message: "Please enter all fields."}});
   
   try {
     const findUser = await modelUsers.findOne({email}).exec();
-    if(findUser) return res.status(409).send({status: 409, message: `This email (${email}) already exists.`});
+    if(findUser) return res.status(409).send({response: {status: 409, message: `This email (${email}) already exists.`}});
 
     const customer = await stripe.customers.list({email: email});
     const createCustomer = customer?.data?.length ? customer.data[0] : await stripe.customers.create({email: email});
@@ -68,7 +68,8 @@ router.post('/', async (req, res, next) => {
         if(err) return next();
         req.session.user = user;
         await fs.mkdir(path.join(__dirname, `../users/user-${user._id}`), {recursive: true});
-        return res.status(200).send(sendClient);
+        let data = {id: user._id, response: sendClient};
+        return res.status(200).send(data);
       });
       
     } else {
@@ -97,14 +98,17 @@ router.post('/', async (req, res, next) => {
         if(err) return next();
         req.session.user = user;
         await fs.mkdir(path.join(__dirname, `../users/user-${user._id}`), {recursive: true});
-        return res.status(200).send(sendClient);
+        let data = {id: user._id, response: sendClient};
+        return res.status(200).send(data);
       });
 
     }
 
   } catch (err){
     console.log(err);
-    return err.type === 'StripeCardError' ? res.status(err.raw.statusCode).send({status: err.raw.statusCode, message: err.raw.message}) : res.status(500).send({status: 500, message: "SORRY! Plese try again few minuts late."});
+    return err.type === 'StripeCardError' 
+    ? res.status(err.raw.statusCode).send({response:{status: err.raw.statusCode, message: err.raw.message}}) 
+    : res.status(500).send({response:{status: 500, message: "SORRY! Plese try again few minuts late."}});
   }
   
 });

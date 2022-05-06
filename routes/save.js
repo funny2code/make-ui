@@ -16,7 +16,7 @@ router.post('/:id', async (req, res, next) => {
     const { settings, section, blocks } = req.body;
 
     if (!id) return next();
-    if (!settings?.length && !section?.length && !blocks.length) return next();
+    if (!settings?.length && !section?.length && !blocks?.length) return next();
 
     try {
 

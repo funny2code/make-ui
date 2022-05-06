@@ -1,15 +1,15 @@
 <% if(settings){ %>
-    <div class="py__settings-wrapper">
-        <% if(global === "section"){ %>
-            <input type="hidden" name="section_name" value="<%= active %>"/>
-        <% } %>
-        <% if(page === "Home Page"){ %>
-            <input type="hidden" name="template_name" value="index"/>
-        <% } else if(page === "Collection Page"){ %>
-            <input type="hidden" name="template_name" value="collection"/>
-        <% } else if(page === "Product Page"){ %>
-            <input type="hidden" name="template_name" value="product"/>
-        <% } %> 
+    <% 
+        var templateName = null;
+        if(page === "Home Page"){ 
+            templateName = "index"
+        } else if(page === "Collection Page"){ 
+            templateName = "collection"
+        } else if(page === "Product Page"){ 
+            templateName = "product"
+        } 
+    %> 
+    <div class="py__settings-wrapper py__settings-section-item" <% if(global === "section"){ %>data-section-name="<%=active%>"<% } %> data-template-name="<%=templateName%>">
         <% settings.forEach((item, index) => { %>
             <% if(global === "settings" && item.type === 'header' && index !== 0){ %>
                     </div>
