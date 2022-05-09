@@ -12,6 +12,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
     const { userId, themeId } = req.params;
     const { settings, sections} = req.body;
 
+    
     if (!userId || !themeId || !req.session.user || req?.session?.user?._id !== userId) return next();
     if (!settings && !sections?.length) return next();
 
