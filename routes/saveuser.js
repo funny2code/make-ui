@@ -111,7 +111,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
 
     } catch (err) {
         console.log(err);
-        return res.status(500).send("error");
+        return res.status(500).send(err);
     }
 
 });

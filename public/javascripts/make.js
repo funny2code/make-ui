@@ -883,7 +883,7 @@
         loading = document.querySelector('.py__loading-wrap');
         saveButton = document.querySelector('.py__save-button');
         downloadButton = document.querySelector('.py__download-button');
-        themeName = document.querySelector('[name="settings_theme_name"]').value;
+        themeName = document.querySelector('[name="settings_theme_name"]')?.value;
     });
 
 })();
