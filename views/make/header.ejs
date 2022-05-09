@@ -3,9 +3,6 @@
         <div class="py__header-logo">
             <a href="/">
                 <img src="/images/logo.png" alt="<%=make.title%>" width="120"/>
-                <!-- <h1 class="py__header-title">
-                    <%= make.title %>
-                </h1> -->
             </a>
         </div>
         <div class="py__header-login">
@@ -15,7 +12,7 @@
                         Save Changes
                     </a>
                     <a href="/download" class="py__button py__button-white py__download-button" aria-disabled="false"
-                        <% if(user){ %>data-user-id="<%=user._id%>"<% } %> data-id="<%=id%>" data-name="<%= themeName ? themeName: 'make' %>">
+                        <% if(user){ %>data-user-id="<%=user._id%>"<% } %> data-id="<%=id%>">
                         Download Theme
                     </a>
                 <% } %>

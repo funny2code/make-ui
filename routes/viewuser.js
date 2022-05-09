@@ -120,12 +120,12 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
 router.post('/:userId/themes/:themeId', async (req, res, next) => {
 
     const { userId, themeId } = req.params;
-    const { settings, section, blocks } = req.body;
+    const { settings, sections } = req.body;
     const { page, global } = req.query;
     const sectionHandle = req.query.section;
 
     if (!themeId || !userId || !page || !req.session.user || req?.session?.user?._id !== userId) return next();
-    if (!settings?.length && !section?.length && !blocks?.length) return next();
+    if (!settings && !sections?.length) return next();
 
     try {
 
@@ -138,8 +138,8 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
         theme?.theme_set && theme.theme_set.map(el => {
             if (el.settings) {
                 for (var k in el.settings) {
-                    settings?.length ? Object.keys(settings[0]).length && settings[0][el.settings[k].id]
-                        ? defaultSettings[el.settings[k].id] = settings[0][el.settings[k].id]
+                    settings ? Object.keys(settings).length && settings[el.settings[k].id]
+                        ? defaultSettings[el.settings[k].id] = settings[el.settings[k].id]
                         : defaultSettings[el.settings[k].id] = el.settings[k].default
                         : defaultSettings[el.settings[k].id] = el.settings[k].default;
                 }
@@ -171,7 +171,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
             });
         } else if (global === 'Global Styles' || global === undefined) {
             theme?.theme_pag.map(pageItem => {
-                if(pageItem.name === page) {
+                if (pageItem.name === page) {
                     pageItem?.items.map(item => {
                         theme?.theme_sec.map(el => {
                             if (item.name === el.name) {
@@ -200,14 +200,14 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
             });
         }
 
-        if (section?.length || blocks?.length) {
+        if (sections?.length) {
             defaultSections.forEach(item => {
-                if (section?.length && item.name === section[0].name) {
-                    item.settings = section[0].settings;
+              sections.forEach(section => {
+                if(item.name === section.name) {
+                  item.settings = section.settings;
+                  item.blocks = section.blocks;
                 }
-                if (blocks?.length && item?.blocks?.length) {
-                    item.blocks = blocks;
-                }
+              })
             });
         }
 

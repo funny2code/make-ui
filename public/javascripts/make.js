@@ -6,8 +6,10 @@
         settings: {},
         sections: [],
     };
-    var saveButton = document.querySelector('.py__save-button'); 
-    var downloadButton = document.querySelector('.py__download-button');
+    var saveButton = null; 
+    var downloadButton = null;
+    var loading = null;
+    var themeName = null;
 
     // Colors names Objects 
     const colorsNamesContrast = {
@@ -32,33 +34,28 @@
 
     // Save old settings values
     const saveSettingsValues = (id=false) => {
+
         let data = document.querySelector('.py__settings-section-item');
         let blockSettings = document.querySelectorAll('.py__settings-block-item');
         let sectionName = data?.getAttribute('data-section-name');
         let templateName = data?.getAttribute('data-template-name');
 
         let section = {name: null, template_name: null, settings: {}, blocks: []};
-        
         section.template_name = templateName;
 
         if(!sectionName){
             data?.querySelectorAll('[name]').forEach(element => {
-                theme.settings[element.getAttribute('name').replace('settings_', '')] = element.value;
-                // settingsValuesBool[element.getAttribute('name')] = id && element.getAttribute('name') === id ? true : false;
-                // previewSettingsValues[element.getAttribute('name')] = element.value;
+                theme.settings[element.getAttribute('name').replace('settings_', '')] =  (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
             });
         }
 
         if(theme?.sections?.length){
             let checking = theme?.sections?.filter(sectionItem => sectionItem.name === sectionName);
             if(checking.length){
-
                 theme?.sections?.forEach(sectionItem => {
                     if(sectionItem.name === sectionName){
                         data?.querySelectorAll('[name]').forEach(element => {
-                            sectionItem.settings[element.getAttribute('name')] = element.value;
-                            // settingsValuesBool[element.getAttribute('name')] = id && element.getAttribute('name') === id ? true : false;
-                            // previewSettingsValues[element.getAttribute('name')] = element.value;
+                            sectionItem.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
                         });
                     }
                     if(blockSettings?.length){
@@ -66,61 +63,64 @@
                             sectionItem?.blocks.forEach(localBlock => {
                                 if(localBlock.type === block.getAttribute('data-type')){
                                     block.querySelectorAll('[name]').forEach(element => {
-                                        localBlock.settings[element.getAttribute('name').replace('block_', '')] = element.value;
+                                        localBlock.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
                                     });
                                 }
                             })
                         });
                     }
                 });
-
-                
-
             } else {
-
                 section.name = sectionName;
                 data?.querySelectorAll('[name]').forEach(element => {
-                    section.settings[element.getAttribute('name')] = element.value;
-                    // settingsValuesBool[element.getAttribute('name')] = id && element.getAttribute('name') === id ? true : false;
-                    // previewSettingsValues[element.getAttribute('name')] = element.value;
+                    section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
                 });
-
                 if(blockSettings?.length){
                     blockSettings.forEach(block=>{
                         let blockItem = {type: block.getAttribute('data-type'),settings: {}};
                         block?.querySelectorAll('[name]')?.forEach(element => {
-                            blockItem.settings[element.getAttribute('name').replace('block_', '')] = element.value;
+                            blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
                         });
                         section.blocks.push(blockItem);
                     });
                 };
             }
         } else {
-
             section.name = sectionName;
             data?.querySelectorAll('[name]').forEach(element => {
-                section.settings[element.getAttribute('name')] = element.value;
-                // settingsValuesBool[element.getAttribute('name')] = id && element.getAttribute('name') === id ? true : false;
+                section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
             });
-
             if(blockSettings?.length){
                 blockSettings.forEach(block=>{
                     let blockItem = {type: block.getAttribute('data-type'),settings: {}};
                     block?.querySelectorAll('[name]')?.forEach(element => {
-                        blockItem.settings[element.getAttribute('name').replace('block_', '')] = element.value;
+                        blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
                     });
                     section.blocks.push(blockItem);
                 });
             };
-
         }
 
-        console.log(section.name);
         if(section.name){
             theme.sections.push(section);
         }
-        // localStorage.setItem("theme", JSON.stringify(theme));
-        console.log(theme, "Hello");
+        console.log(theme, "---THEME SETTINGS");
+    };
+
+    // FETCH CONFIG FUNCTION
+    const fetchConfig = (method='POST', type = 'json') => {
+        return {
+          method: method,
+          headers: { 'Content-Type': 'application/json', 'Accept': `application/${type}` }
+        };
+    };
+
+    // ERROR FUNCTION 
+    const errorHandle = (el = '.py__error-wrapper', message) => {
+        let errorWraper = document.querySelector(el);
+        errorWraper.textContent = message;
+        errorWraper?.classList.add('active');
+        loading?.classList.remove('py__animate'); 
     };
 
     // Check settings values 
@@ -143,18 +143,14 @@
     };
 
     // Save Function
-    const save = (userId=false,themeId=false) => {
+    const save = () => {
+
         let form = document.querySelector('form.py__settings-form');
         let url = form.getAttribute('action');
         
         if(!form || !url) return;
-        
-        if(userId && themeId){
-            url = '/save/users/' + userId + '/themes/' + themeId;
-        }
 
-        let fullLoading = document.querySelector('.py__loading-wrap');
-        fullLoading?.classList.add('py__animate');
+        loading?.classList.add('py__animate');
         // let settings = {}, section = [], sectionName = '', templateName = '', sectionSettings = {};
         // let blocks = []; 
         // let blockItems = {
@@ -200,8 +196,6 @@
         //     blocks: blocks?.length ? blocks : null,
         // };
 
-        console.log(url, theme, "DAVVV");
-
         fetch(url, {
             method:'POST',
             headers: {
@@ -213,16 +207,13 @@
         .then(res => res.text())
         .then(data => {
             if(!data) return;
-            if(data === "success"){
+            let dataParse = JSON.parse(data);
+            if(dataParse?.status === 200){
                 saveButton?.setAttribute('aria-disabled', 'true');
                 downloadButton?.setAttribute('aria-disabled', 'false');
-                if(userId && themeId){
-                    let redirect = `/users/${userId}/themes/${themeId}?page=Home%20Page&global=Global%20Styles`;
-                    download(false,themeId,userId,"Make Ui",redirect);
-                }
                 saveSettingsValues();
             } 
-            fullLoading?.classList.remove('py__animate');
+            loading?.classList.remove('py__animate');
         })
         .catch(err => console.error(err));
     };
@@ -232,9 +223,7 @@
         
         if(!event) return;
         event.preventDefault();
-
-        let fullLoading = document.querySelector('.py__loading-wrap');
-        fullLoading?.classList.add('py__animate');
+        loading?.classList.add('py__animate');
     
 
         fetch('/signup', {
@@ -249,7 +238,7 @@
             if(!data) return;
             let body = document.querySelector('body');
             body.insertAdjacentHTML('afterend', data);
-            fullLoading?.classList.remove('py__animate');
+            loading?.classList.remove('py__animate');
         })
         .catch(err => console.error(err));
     };
@@ -259,9 +248,7 @@
         
         if(!event) return;
         event.preventDefault();
-
-        let fullLoading = document.querySelector('.py__loading-wrap');
-        fullLoading?.classList.add('py__animate');
+        loading?.classList.add('py__animate');
     
 
         fetch('/login', {
@@ -276,7 +263,7 @@
             if(!data) return;
             let body = document.querySelector('body');
             body.insertAdjacentHTML('afterend', data);
-            fullLoading?.classList.remove('py__animate');
+            loading?.classList.remove('py__animate');
         })
         .catch(err => console.error(err));
     };
@@ -307,54 +294,69 @@
     };
 
     // SignUp Function
-    const signup = (event) => {
+    const signup = async (event) => {
         
         if(!event) return;
         event.preventDefault();
         let form = event.target;
         let url = event.target.getAttribute('action');
         let themeId = document.querySelector('.py__signup-button')?.getAttribute('data-id'); 
+        let body = null;
         if(!url || !themeId) return;
+        loading?.classList.add('py__animate');
+        
         let formData = new FormData(form);
         let ObjectFormData = Object.fromEntries(formData.entries());
-        let fullLoading = form.closest('.py__signup-wrapper').querySelector('.py__loading-wrap');
-        fullLoading?.classList.add('py__animate');
+        body = JSON.stringify(ObjectFormData);
+        
+        // Signup Ajax POST 
+        let signupFun = await fetch(url, {...fetchConfig(), body});
+        let signupFunRes = await signupFun.text();
+        let signupFunParse = JSON.parse(signupFunRes);
 
-        fetch(url, {
-            method:'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(ObjectFormData)
-        })
-        .then(res => res.text())
-        .then((data) => {
-            if(!data) return;
-            let parseData = JSON.parse(data);
-            console.log(parseData, '--- register');
-            if(parseData.response.status === "active"){
-                let addThemeFun = addTheme(false, parseData.id, themeId, {themename: "Make Ui"});
-            } else if(parseData.response.status === "requires_confirmation"){
-                let stripe = Stripe('pk_test_hnMkmoqkvZxUjOrnEkPIVd80');
-                stripe.confirmCardPayment(parseData.client_secret)
-                .then((result) => {
-                    if(result?.error) return;
-                    if(result?.paymentIntent && parseData.id){
-                        let addThemeFun = addTheme(false, parseData.id, themeId, {themename: "Make Ui"});
-                        setTimeout(() =>{
-                            console.log(addThemeFun);
-                        }, 3000)
-                    }
-                });
-            } else {
-                let errorWrap = document.querySelector('.py__signup-error-wrap');
-                errorWrap.textContent = parseData.response.message;
-                errorWrap?.classList.add('active');
-                fullLoading?.classList.remove('py__animate'); 
-            }
-        })
-        .catch(err => console.error(err));
+        // Signup Ajax Response
+        if(signupFunParse.status !== "active" && signupFunParse.status !== "requires_confirmation") return errorHandle('.py__signup-error-wrap', signupFunParse.message);
+        if(signupFunParse.status === "requires_confirmation"){
+            let stripe = Stripe('pk_test_hnMkmoqkvZxUjOrnEkPIVd80');
+            let stripeResponse = await stripe.confirmCardPayment(signupFunParse?.client_secret);
+            if(stripeResponse?.error || !stripeResponse?.paymentIntent) return;
+        }
+
+        // Add Theme Ajax POST;
+        let addThemeUrl = `/add/${signupFunParse.id}/${themeId}`;
+        body = JSON.stringify({themename: themeName});
+        let addThemeFun = await fetch(addThemeUrl, {...fetchConfig(), body});
+        let addThemeResponse = await addThemeFun.text();
+        let addThemeParse = JSON.parse(addThemeResponse);
+        if(addThemeParse.status !== 200) return errorHandle('.py__signup-error-wrap', addThemeParse.message);
+
+        // Save Theme Settings Ajax POST
+        let saveUrl = `/save/users/${signupFunParse.id}/themes/${addThemeParse.theme_id}`;
+        body = JSON.stringify(theme);
+        let saveFun = await fetch(saveUrl, {...fetchConfig(), body});
+        let saveFunResponse = await saveFun.text();
+        let saveFunParse = JSON.parse(saveFunResponse);
+        if(saveFunParse.status !== 200) return errorHandle('.py__signup-error-wrap', saveFunParse.message);
+        
+
+        // DOWNLOAD Fun Ajax POST
+        let downloadUrl = '/download';
+        body = JSON.stringify({userId: signupFunParse.id, themeId: addThemeParse.theme_id});
+        let downloadFun = await fetch(downloadUrl, {...fetchConfig(), body});
+        let downloadFunResponse = await downloadFun.blob();
+        if(!downloadFunResponse) return errorHandle('.py__signup-error-wrap', 'Error! please try again few minutes late.');
+        
+        let downloadObjectUrl = window.URL.createObjectURL(downloadFunResponse);
+        let createElement = document.createElement('a');
+        createElement.style.display = 'none';
+        createElement.href = downloadObjectUrl;
+        createElement.download = themeName + '.zip';
+        document.body.appendChild(createElement);
+        createElement.click();
+        window.URL.revokeObjectURL(downloadObjectUrl);
+        createElement.remove();
+        loading?.classList.remove('py__animate');
+        return location.href = `/users/${signupFunParse.id}/themes/${addThemeParse.theme_id}?page=Home%20Page&global=Global%20Styles`;
     };
 
     // Login Function
@@ -367,8 +369,7 @@
         if(!url) return;
         let formData = new FormData(form);
         let ObjectFormData = Object.fromEntries(formData.entries());
-        let fullLoading = form.closest('.py__login-wrapper').querySelector('.py__loading-wrap');
-        fullLoading?.classList.add('py__animate');
+        loading?.classList.add('py__animate');
 
         fetch(url, {
             method:'post',
@@ -382,40 +383,24 @@
         .then(data => {
             if(!data) return;
             let parseData = JSON.parse(data);
-            if(parseData.status === 200){
-                return location.href = location.origin;
-            } else {
-                let errorWrap = document.querySelector('.py__login-error-wrap');
-                errorWrap.textContent = parseData.message;
-                errorWrap.classList.add('active'); 
-            }
-            fullLoading?.classList.remove('py__animate');
+            if(parseData.status !== 200) return errorHandle('.py__login-error-wrap', parseData.message);
+            loading?.classList.remove('py__animate');
+            return location.href = location.origin;
         })
         .catch(err => console.error(err));
     };
 
     // ADD Theme Function
-    const addTheme = (event=false, userId=false, themeId=false, dataValues=false) => {
+    const addTheme = (event) => {
         
-        let url = '';
-        let ObjectFormData = '';
-        let fullLoading = '';
-
-        if(userId && themeId && dataValues){
-            url = '/add/' + userId + '/' + themeId;
-            ObjectFormData = dataValues;
-            fullLoading = document.querySelector('.py__signup-wrapper').querySelector('.py__loading-wrap');
-        } else {
-            if(!event) return;
-            event.preventDefault();
-            let form = event.target;
-            url = event.target.getAttribute('action');
-            if(!url) return;
-            let formData = new FormData(form);
-            ObjectFormData = Object.fromEntries(formData.entries());
-            fullLoading = form.closest('.py__addtheme-wrapper').querySelector('.py__loading-wrap');
-            fullLoading?.classList.add('py__animate');
-        }
+        if(!event) return;
+        event.preventDefault();
+        let form = event.target;
+        let url = event.target.getAttribute('action');
+        if(!url) return;
+        let formData = new FormData(form);
+        let ObjectFormData = Object.fromEntries(formData.entries());
+        loading?.classList.add('py__animate');
 
         fetch(url, {
             method:'post',
@@ -429,51 +414,28 @@
         .then(data => {
             if(!data) return;
             let parseData = JSON.parse(data);
-            if(parseData.status === 200){
-                if(userId && parseData.response.theme_id){
-                    save(userId, parseData.response.theme_id);
-                } else {
-                    return location.href = location.origin;
-                }
-            } else {
-                let errorWrap = document.querySelector('.py__addtheme-error-wrap');
-                if(errorWrap){
-                    errorWrap.textContent = parseData.response.message;
-                    errorWrap.classList.add('active'); 
-                }
-                fullLoading?.classList.remove('py__animate');
-            }
+            if(parseData.status !== 200) return errorHandle('.py__addtheme-error-wrap', parseData.message);
+            loading?.classList.remove('py__animate');
+            return location.href = location.origin;
         })
         .catch(err => console.error(err));
     };
 
     // Download function
-    const download = (event=false, zThemeId=false, zUserId=false, zThemeName=false, href=false) => {
+    const download = (event) => {
 
-        let url = '', data = '', themeName = ''; 
-        let fullLoading = document.querySelector('.py__loading-wrap');
+        if(!event) return;
+        event.preventDefault();
 
-        if(zThemeId && zUserId && zThemeName){
-            url = '/download';
-            data = zUserId ? {userId: zUserId, themeId: zThemeId} : {themeId: zThemeId};
-            themeName = zThemeName
-            if(!zThemeId) return;
-        } else {
-            if(!event) return;
-            event.preventDefault();
-
-            let btn = event.target;
-            url = btn.getAttribute('href');
-            themeName = btn.getAttribute('data-name');
-            let themeId = btn.getAttribute('data-id');
-            let userId = btn.getAttribute('data-user-id');
-            fullLoading?.classList.add('py__animate');
-            data = userId ? {userId: userId, themeId: themeId} : {themeId: themeId};
-            if(!themeId) return;
-        }
-
-        if(!url) return;
-
+        let btn = event.target;
+        let url = btn.getAttribute('href');
+        let themeId = btn.getAttribute('data-id');
+        let userId = btn.getAttribute('data-user-id');
+        let data = userId ? {userId: userId, themeId: themeId} : {themeId: themeId};
+        
+        if(!url || !themeId) return;
+        loading?.classList.add('py__animate');
+        
         fetch(url, {
             method:'POST',
             headers: {
@@ -494,8 +456,7 @@
             a.click();
             window.URL.revokeObjectURL(objectUrl);
             a.remove();
-            fullLoading?.classList.remove('py__animate');
-            if(href) return location.href = href;
+            loading?.classList.remove('py__animate');
         })
         .catch(err => console.log(err));
     };
@@ -504,8 +465,9 @@
     const viewIframe = () => {
         // let form = document.querySelector('form.py__settings-form');
         let iframe = document.querySelector('iframe.py__view-iframe');
+        
         // if(!iframe || !form) return;
-        let url = iframe.getAttribute('src');
+        let url = iframe?.getAttribute('src');
         // let settings = {}; 
         // let section = []; 
         // let sectionName = document.querySelector('.py__settings-section-item').getAttribute('data-section-name');
@@ -630,7 +592,7 @@
         let url = el.options[el.selectedIndex].getAttribute('data-href');
         if(!url) return;
         window.history.replaceState({ }, '', url);
-        document.querySelectorAll('.py__loading-wrap').forEach(item => item.classList.add('py__animate'));
+        // document.querySelectorAll('.py__loading-wrap').forEach(item => item.classList.add('py__animate'));
         fetch(url)
         .then(res => res.text())
         .then(data => {
@@ -687,7 +649,7 @@
             iframe.setAttribute('src', iframeUrl);
         }
         
-        if(content) content.querySelector('.py__loading-wrap').classList.add('py__animate');
+        // if(content) content.querySelector('.py__loading-wrap').classList.add('py__animate');
 
         el.classList.add('active');
         fetch(url)
@@ -735,7 +697,7 @@
                 textColorInput.value = newColor;
             }
         }
-
+        saveButton?.setAttribute('aria-disabled', false);
         viewIframe();
     };
     // Text Component Function
@@ -744,8 +706,9 @@
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
         saveSettingsValues();
-        value !== focuseValue ? viewIframe() : null;
-        if(uniqName === 'settings_theme_name' && value !== focuseValue) downloadButton?.setAttribute('data-name', value);
+        (value !== focuseValue) ? viewIframe() : null;
+        if(uniqName === 'settings_theme_name' && value !== focuseValue) themeName = value;
+        saveButton?.setAttribute('aria-disabled', false);
     };
     // Textarea Component Function
     const textareaComp = (event) => {
@@ -754,6 +717,7 @@
         let value = event.target.value;
         saveSettingsValues();
         value !== focuseValue ? viewIframe() : null;
+        saveButton?.setAttribute('aria-disabled', false);
     };
     // Richtext Component Function
     const richtextComp = (event) => {
@@ -762,6 +726,7 @@
         let value = event.target.value;
         saveSettingsValues();
         value !== focuseValue ? viewIframe() : null;
+        saveButton?.setAttribute('aria-disabled', false);
     };
     // Select Component Function
     const selectComp = (event) => {
@@ -784,6 +749,7 @@
 
         viewIframe();
         if(isHaveGlobal) getItemFromSettings(event, true);
+        saveButton?.setAttribute('aria-disabled', false);
     };
     // Checkbox Component Function
     const checkboxComp = (event) => {
@@ -795,6 +761,7 @@
         let value = hiddenFiled.value;
         saveSettingsValues();
         viewIframe();
+        saveButton?.setAttribute('aria-disabled', false);
     }
     // Range Component Function
     const rangeComp = (event) => {
@@ -803,6 +770,7 @@
         let value = event.target.value;
         saveSettingsValues();
         viewIframe();
+        saveButton?.setAttribute('aria-disabled', false);
     }
 
     //---------------------------------------
@@ -911,6 +879,10 @@
     // When Page Content is Loaded
     document.addEventListener('DOMContentLoaded', ()=> {
         saveSettingsValues();
+        loading = document.querySelector('.py__loading-wrap');
+        saveButton = document.querySelector('.py__save-button');
+        downloadButton = document.querySelector('.py__download-button');
+        themeName = document.querySelector('[name="settings_theme_name"]') || "theme";
     });
 
 })();

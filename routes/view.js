@@ -170,6 +170,7 @@ router.post('/:id', async (req, res, next) => {
   const {settings, sections} = req.body;
   const { page, global } = req.query;
   const sectionHandle = req.query.section;
+  
   localStorage.setItem('theme', JSON.stringify(req.body));
   
   if (!id || !page) return next();

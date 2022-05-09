@@ -9,12 +9,14 @@
             templateName = "product"
         } 
     %> 
-    <div class="py__settings-wrapper py__settings-section-item" <% if(global === "section"){ %>data-section-name="<%=active%>"<% } %> data-template-name="<%=templateName%>">
+    <div class="py__settings-wrapper <% if(global === "section"){ %>py__settings-section-item<% } %>" <% if(global === "section"){ %>data-section-name="<%=active%>"<% } %> data-template-name="<%=templateName%>">
         <% settings.forEach((item, index) => { %>
+
             <% if(global === "settings" && item.type === 'header' && index !== 0){ %>
                     </div>
                 </div>
             <% } %>
+
             <% if(global === "settings" && item.type === 'header'){ %>
                 <div class="py__settings-item-wrapper">
                     <div class="py__settings-item-name">
@@ -42,6 +44,11 @@
                 <%- include('../components/richtext', {global: global, data: item}) %>    
             <% } else if(item.type === 'paragraph'){ %>
                 <%- include('../components/paragraph', {data: item}) %>
+            <% } %>
+
+            <% if(global === "settings" && (index + 1) === settings.length){ %>
+                    </div>
+                </div>
             <% } %>
                 
         <% }) %>

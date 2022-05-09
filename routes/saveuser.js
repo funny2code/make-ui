@@ -12,8 +12,6 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
     const { userId, themeId } = req.params;
     const { settings, sections} = req.body;
 
-    console.log(settings, sections?.length);
-
     if (!userId || !themeId || !req.session.user || req?.session?.user?._id !== userId) return next();
     if (!settings && !sections?.length) return next();
 
@@ -109,7 +107,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
             .dest(path.join(__dirname, '../public/screens/'))
             .run();
 
-        res.status(200).send('success');
+        res.status(200).send({status: 200, message: 'success'});
 
     } catch (err) {
         return res.status(500).send("error");

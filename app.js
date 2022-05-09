@@ -21,13 +21,14 @@ const addThemeRouter = require('./routes/addtheme');
 
 const app = express();
 
-const oneDay = 1000 * 60 * 60 * 24;
+const oneMonth = 31000 * 60 * 60 * 24;
 app.use(session({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
     saveUninitialized: true,
-    cookie: { maxAge: oneDay },
+    cookie: { maxAge: oneMonth },
     resave: false
 }));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

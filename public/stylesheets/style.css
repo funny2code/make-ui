@@ -1107,39 +1107,25 @@ select {
   justify-content: center;
   align-items: center;
   background: rgba(255, 255, 255, 0.7);
-  z-index: 50;
+  z-index: 1000;
 }
-/* FULL LOADING */
-.py__full-loading-wrapper {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.7);
-  z-index: 50;
-}
-.py__full-loading-wrapper.py__animate,
 .py__loading-wrap.py__animate {
   display: flex;
 }
-.py__full-loading {
+.py__loading {
   color: inherit;
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
 }
-.py__full-loading div {
+.py__loading div {
   transform-origin: 40px 40px;
 }
-.py__animate .py__full-loading div {
+.py__animate .py__loading div {
   animation: py-full-loading 1.2s linear infinite;
 }
-.py__full-loading div:after {
+.py__loading div:after {
   content: " ";
   display: block;
   position: absolute;
@@ -1150,51 +1136,51 @@ select {
   border-radius: 20%;
   background: #000000;
 }
-.py__full-loading div:nth-child(1) {
+.py__loading div:nth-child(1) {
   transform: rotate(0deg);
   animation-delay: -1.1s;
 }
-.py__full-loading div:nth-child(2) {
+.py__loading div:nth-child(2) {
   transform: rotate(30deg);
   animation-delay: -1s;
 }
-.py__full-loading div:nth-child(3) {
+.py__loading div:nth-child(3) {
   transform: rotate(60deg);
   animation-delay: -0.9s;
 }
-.py__full-loading div:nth-child(4) {
+.py__loading div:nth-child(4) {
   transform: rotate(90deg);
   animation-delay: -0.8s;
 }
-.py__full-loading div:nth-child(5) {
+.py__loading div:nth-child(5) {
   transform: rotate(120deg);
   animation-delay: -0.7s;
 }
-.py__full-loading div:nth-child(6) {
+.py__loading div:nth-child(6) {
   transform: rotate(150deg);
   animation-delay: -0.6s;
 }
-.py__full-loading div:nth-child(7) {
+.py__loading div:nth-child(7) {
   transform: rotate(180deg);
   animation-delay: -0.5s;
 }
-.py__full-loading div:nth-child(8) {
+.py__loading div:nth-child(8) {
   transform: rotate(210deg);
   animation-delay: -0.4s;
 }
-.py__full-loading div:nth-child(9) {
+.py__loading div:nth-child(9) {
   transform: rotate(240deg);
   animation-delay: -0.3s;
 }
-.py__full-loading div:nth-child(10) {
+.py__loading div:nth-child(10) {
   transform: rotate(270deg);
   animation-delay: -0.2s;
 }
-.py__full-loading div:nth-child(11) {
+.py__loading div:nth-child(11) {
   transform: rotate(300deg);
   animation-delay: -0.1s;
 }
-.py__full-loading div:nth-child(12) {
+.py__loading div:nth-child(12) {
   transform: rotate(330deg);
   animation-delay: 0s;
 }

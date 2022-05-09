@@ -1,19 +1,7 @@
 <div class="py__addtheme">
     <div class="py__addtheme-wrapper">
-        <div class="py__loading-wrap">
-            <div class="py__full-loading">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
         <form action="/add/<%=userId%>/<%=themeId%>" method="post" class="py__addtheme-form">
+            <input type="hidden" name="screen" value="true">
             <div class="py__addtheme-header">
                 <h2 class="py-title">make</h2>
                 <div class="py__addtheme-error-wrap"></div>
