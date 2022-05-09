@@ -1,6 +1,6 @@
 (function(){
 
-    
+
     // GLOBAL VARIABLES
     var focuseValue = "";
     var theme = {
@@ -10,7 +10,7 @@
     var saveButton = null; 
     var downloadButton = null;
     var loading = null;
-    var themeName = null;
+    var themeName = "makeTheme";
 
     // Colors names Objects 
     const colorsNamesContrast = {
@@ -883,7 +883,7 @@
         loading = document.querySelector('.py__loading-wrap');
         saveButton = document.querySelector('.py__save-button');
         downloadButton = document.querySelector('.py__download-button');
-        themeName = document.querySelector('[name="settings_theme_name"]') || "theme";
+        themeName = document.querySelector('[name="settings_theme_name"]').value;
     });
 
 })();
