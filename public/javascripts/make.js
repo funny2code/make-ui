@@ -521,10 +521,16 @@
         .then(res => res.text())
         .then(data => {
             if(!data) return;
-            let parser = new DOMParser();
-            let html = parser.parseFromString(data, "text/html");
-            let iframeContent = iframe.contentDocument || iframe.contentWindow.document;
-            iframeContent && html ? iframeContent.querySelector('html').innerHTML = html.querySelector('html').innerHTML : null;
+            // let parser = new DOMParser();
+            // let html = parser.parseFromString(data, "text/html");
+            // let iframeContent = iframe.contentDocument || iframe.contentWindow.document;
+            // iframeContent && html ? iframeContent.querySelector('html').innerHTML = html.querySelector('html').innerHTML : null;
+            
+            let ifrm = iframe.contentWindow || iframe.contentDocument.document || iframe.contentDocument;
+            ifrm.document.open();
+            ifrm.document.write(data);
+            ifrm.document.close();
+
         })
         .catch(err => console.error(err));
     };

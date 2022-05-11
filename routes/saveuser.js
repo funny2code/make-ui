@@ -101,11 +101,14 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
             });
         }
         
-        // await new Pageres({delay: 2})
-        //     .src(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s', ['1440x900'], {crop: true, filename: 'screen-' + themeId})
-        //     .src(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s', ['414x736'], {crop: true, filename: 'm-screen-' + themeId})
-        //     .dest(path.join(__dirname, '../public/screens/'))
-        //     .run();
+        await new Pageres({
+            delay: 2,
+            launchOptions: {args: ['--no-sandbox', '--disable-setuid-sandbox']}
+        })
+        .src(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s', ['1440x900'], {crop: true, filename: 'screen-' + themeId})
+        .src(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + themeId + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s', ['414x736'], {crop: true, filename: 'm-screen-' + themeId})
+        .dest(path.join(__dirname, '../public/screens/'))
+        .run();
 
         res.status(200).send({status: 200, message: 'success'});
 
