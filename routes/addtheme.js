@@ -48,11 +48,14 @@ router.post('/:userId/:themeId', async (req, res, next) => {
       if(err) return next();
       const copyFolder = await fse.copy(path.join(__dirname, '../basetheme'), path.join(__dirname, `../users/user-${userId}/theme-${newtheme._id}`));
       if(screen){
-        await new Pageres({delay: 2})
-              .src(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + newtheme._id + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s', ['1440x900'], {crop: true, filename: 'screen-' + newtheme._id})
-              .src(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + newtheme._id + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s', ['414x736'], {crop: true, filename: 'm-screen-' + newtheme._id})
-              .dest(path.join(__dirname, '../public/screens/'))
-              .run();
+        await new Pageres({
+          delay: 2,
+          launchOptions: {args: ['--no-sandbox', '--disable-setuid-sandbox']}
+      })
+      .src(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + newtheme._id + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s', ['1440x900'], {crop: true, filename: 'screen-' + newtheme._id})
+      .src(req.protocol + '://' + req.get('host') + '/view/users/' + userId + '/themes/' + newtheme._id + '?page=Home%20Page&share=fkmksn@e34rra5454421s2dfsfwr2434524s', ['414x736'], {crop: true, filename: 'm-screen-' + newtheme._id})
+      .dest(path.join(__dirname, '../public/screens/'))
+      .run();
       }
       return res.status(200).send({status: 200, theme_id: newtheme._id, message: "Sucsess!"});
     })

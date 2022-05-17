@@ -151,6 +151,99 @@
   .header--top-left .bc-search-result-wrapper .bc-cart__item .bc-cart__info-wrapper{
     width:50%;
   }
+  .bc-search-result-wrapper .bc-cart__item{
+    padding-bottom:<%=section.settings.item_space%>px;
+    padding-left:<%=section.settings.item_space / 2%>px;
+    padding-right:<%=section.settings.item_space / 2%>px;
+  }
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper{
+    background-color:<%=section.settings.card_bg_color%>;
+    border-radius:<%=section.settings.card_radius%>px;
+    padding-bottom:10px;
+    height:100%;
+  }
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper *:not(.card-view-product){
+    color: <%=section.settings.card_color%>;
+  }
+  
+  <% if(section.settings.image_ratio === "portrait"){ %>
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__image-img{
+    position:absolute;
+    left:0;
+    top:0;
+    height:100%;
+  } 
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__image-wrapper>a{
+    position:relative;
+    padding-bottom:125%;
+    overflow: hidden;
+    display:block;
+  }      
+  <% } %> 
+  <% if(section.settings.image_ratio === "square"){ %>
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__image-img{
+    position:absolute;
+    left:0;
+    top:0;
+    height:100%;
+  } 
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__image-wrapper>a{
+    position:relative;
+    padding-bottom:100%;
+    overflow: hidden;
+    display:block;
+  }      
+  <% } %> 
+  <% if(section.settings.info_align === "center"){ %>
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper *{
+    justify-content: center;
+    text-align:center;
+  }              
+  <% } %> 
+  <% if(section.settings.show_vendor){ %>
+  .bc-search-result-wrapper .bc-cart__item .bc-cart__vendor{
+    display:block !important;
+  }              
+  <% } %> 
+  <% if(section.settings.show_view_product){ %>
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .card-button-wrapper{
+    display:flex !important;
+  }              
+  <% } %> 
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__title{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  <% if(section.settings.custom_font_style){ %>
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__title{
+    font-size: <%=section.settings.title_fontsize%>;
+    font-weight: <%=section.settings.title_fontweight%>;
+    font-stretch:<%=section.settings.title_fontstretch%>;
+    font-style:<%=section.settings.title_fontstyle%>;
+    line-height:<%=section.settings.title_lineheight%>;
+    letter-spacing:<%=section.settings.title_letterspacing%>
+  }
+  @media(max-width:749px){
+    .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__title{
+      font-size: <%=section.settings.title_fontsize_m%>
+    }
+  }
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__price-and-properties *{
+    font-size: <%=section.settings.info_fontsize%>;
+    font-weight: <%=section.settings.info_fontweight%>;
+    font-stretch:<%=section.settings.info_fontstretch%>;
+    font-style:<%=section.settings.info_fontstyle%>;
+    line-height:<%=section.settings.info_lineheight%>;
+    letter-spacing:<%=section.settings.info_letterspacing%>
+  }
+  @media(max-width:749px){
+    .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__price-and-properties *{
+      font-size: <%=section.settings.info_fontsize_m%>
+    }
+  }              
+  <% } %>
   .search-sidebar:not(.header--top-left) form.search .search__input.field__input{
     border-top: none;
     border-left: none;
@@ -327,30 +420,34 @@
   #loopcheckout{
     background-color:<%=settings.ck_btn_bg%>;
     color:<%=settings.ck_btn_color%>;
+    min-height:36px;
   }
   #loopcheckout:hover{
     background-color:<%=settings.ck_btn_hover_bg%>;
     color:<%=settings.ck_btn_hover_color%>;
   }
-  .bc-cart__item .bc-cart__title{
+  cart-notification .bc-cart__item .bc-cart__title{
     font-size:<%=settings.item_title_font_size%>;
   }
-  .bc-cart__item .bc-cart__variant-title{
+  cart-notification .bc-cart__item .bc-cart__variant-title{
     font-size:<%=settings.item_title_font_size%>;
   }
-  .bc-cart__item .bc-cart__price-wrapper{
+  cart-notification .bc-cart__item .bc-cart__price-wrapper{
     font-size:<%=settings.item_price_font_size%>;
   }
-  .bc-cart__item .bc-cart__properties-wrapper{
+  cart-notification .bc-cart__item .bc-cart__properties-wrapper{
     font-size:<%=settings.item_content_font_size%>;
   }
   <% if(settings.button_radius){ %>
-  .bc-cart__buttons-wrapper .button{
-    border-radius: <%=settings.button_radius%>px;  
+  cart-notification .bc-cart__buttons-wrapper .button{
+    border-radius: <%=settings.button_radius%>px; 
   }
   <% } %>
+  cart-notification .bc-cart__buttons-wrapper .button{
+    border:none;
+  }
   <% if(settings.item_bg){ %>
-  .bc-cart__item{
+  cart-notification .bc-cart__item {  
     padding:10px;
     background-color:<%=settings.item_bg%>;
     <% if(settings.item_radius){ %>
@@ -359,7 +456,7 @@
   }
   <% } %>  
   <% if(settings.item_radius){ %>
-  .bc-cart__item .bc-cart__image-wrapper img{
+  cart-notification .bc-cart__item .bc-cart__image-wrapper img{
     border-radius: <%=settings.item_radius%>px;
   } 
   <% } %>
@@ -367,6 +464,7 @@
   #loopcheckoutdynamic{
     margin-top: 15px;
     background: #5b32f6;
+    min-height:36px;
   }
   #loopcheckoutdynamic:hover{
     box-shadow: 0 0 10px black;
@@ -829,7 +927,7 @@
           <details-modal class="header__search">
             <details>
               <summary class="header__icon--search header__icon--summary link link--text focus-inset modal__toggle" aria-haspopup="dialog" aria-label="search">
-                <form action="#" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags = "<%=section.settings.search_hide_tags%>" <%}%>>
+                <form action="#" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags = "<%=section.settings.search_hide_tags%>" <% } %>>
                   <div class="field">
                     <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value="" placeholder="search" autocomplete="off">
                     <label class="field__label" for="Search-In-Modal"><%=section.settings.py_search_placeholder%></label>
@@ -847,7 +945,7 @@
               <div class="search-modal modal__content" role="dialog" aria-modal="true" aria-label="search">
                 <div class="search-modal__content" tabindex="-1">             
 
-                  <div class="bc-search-result-wrapper">
+                  <div class="bc-search-result-wrapper" data_btn_class="py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>">
                     <div class="bc-cart__not-products">Sorry no results found</div>
                     <div class="bc-search-result-inner-wrapper"></div>
                     <% if(section.settings.search_menu){ %>
@@ -904,7 +1002,7 @@
           </summary>
           <div class="search-modal modal__content " role="dialog" aria-modal="true" aria-label="search">
             <div class="search-modal__content" tabindex="-1">
-              <form action="#" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags = "<%=section.settings.search_hide_tags%>" <%}%>>
+              <form action="#" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags = "<%=section.settings.search_hide_tags%>" <% } %>>
                 <div class="bc-search__input-title"><%=section.settings.py_search_title%></div>
                 <div class="field">
                   <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value="" placeholder="search" autocomplete="off">
@@ -918,7 +1016,7 @@
                     </svg>
                   </button>
                 </div>                
-                <div class="bc-search-result-wrapper">
+                <div class="bc-search-result-wrapper" data_btn_class="py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>">
                   <div class="bc-cart__not-products">Sorry no results found</div>
                   <div class="bc-search-result-inner-wrapper"></div>
                   <% if(section.settings.search_menu){ %>

@@ -9,42 +9,129 @@
 
 <%- include('../snippets/modal-quickview') %>
 
+<style type="text/css">
+  
+  .product-carousel-1 .title,
+  .product-carousel-1 .slider-button{
+    color:<%=section.settings.title_color%>;
+  }
+  .product-carousel-1{
+    background-color:<%=section.settings.section_bg_color%>;    
+  }
+  .py-c-dark .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+    color: var(--py-color-dark);
+      }
+  .py-c-average .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+    color: var(--py-color-avarge);
+      }
+  .py-c-light .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+    color: var(--py-color-light);
+      }
+  .card-wrapper{
+    padding-bottom:15px;
+    height:100%;
+  } 
+  .product-list-1 .py-center .price,
+  .product-list-1 .py-center .card-color-wrapper,
+  .product-list-1 .py-center ul.variant-options,
+  .product-list-1 .py-center .card-button-wrapper{
+    justify-content: center;
+  }  
+  <% if(section.settings.custom_font_style){ %>
 
-<div class="collection collection-slide product-carousel page-width bc-<%=settings.section_style%>-bt">
-  <div class="<% if(section.settings.show_view_all && section.settings.enable_swipe){ %>title-wrapper-with-link<% } %><% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %><% if(collection.products_count > 2 && section.settings.enable_swipe && section.settings.products_limit > 2){ %> title-wrapper--self-padded-tablet-down<% } %>">
+  .product-list-1 .card-wrapper .card-information__text{
+    font-size: <%=section.settings.title_fontsize%>;
+    font-weight: <%=section.settings.title_fontweight%>;
+    font-stretch:<%=section.settings.title_fontstretch%>;
+    font-style:<%=section.settings.title_fontstyle%>;
+    line-height:<%=section.settings.title_lineheight%>;
+    letter-spacing:<%=section.settings.title_letterspacing%>
+  }
+  @media(max-width:749px){
+    .product-list-1 .card-wrapper .card-information__text{
+      font-size: <%=section.settings.title_fontsize_m%>
+    }
+  }
+  .product-list-1 .card-wrapper .price *{
+    font-size: <%=section.settings.info_fontsize%>;
+    font-weight: <%=section.settings.info_fontweight%>;
+    font-stretch:<%=section.settings.info_fontstretch%>;
+    font-style:<%=section.settings.info_fontstyle%>;
+    line-height:<%=section.settings.info_lineheight%>;
+    letter-spacing:<%=section.settings.info_letterspacing%>
+  }
+  @media(max-width:749px){
+    .product-list-1 .card-wrapper .price *{
+      font-size: <%=section.settings.info_fontsize_m%>
+    }
+  }              
+  <% } %>
+  
+  .product-carousel .slider-button {    
+    width: 31px;
+    height: 31px;
+    border: 1px solid;
+    margin-left: 11px;
+    border-radius: 50px; 
+  }
+  .product-carousel .slider-button[disabled]{
+    opacity:0.5;
+  }
+  .product-carousel  .slider-button .icon {
+    height: 0.67rem;
+  }
+  .bc-br-bt.product-carousel .slider-buttons {
+    top: -78px;
+    right: 15px;
+  }
+  .bc-br-bt.product-carousel .slider {
+    margin: 0;
+  }
+</style>
+
+<div class="collection collection-slide product-carousel  product-carousel-1 page-width bc-<%=settings.section_style%>-bt py-pd-y-m">
+  <div class="<% if(section.settings.show_view_all){  %>title-wrapper-with-link<% } %><% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %><% if(collection?.all_products_count > 2  && section.settings.products_limit > 2){ %> title-wrapper--self-padded-tablet-down<% } %>">
     <h2 class="title<% if(!section.settings.title){ %> title--no-heading<% } %>"><%= section.settings.title %></h2>
 
-    <% if(section.settings.show_view_all && section.settings.enable_swipe){ %>
-      <a href="<%= collection.url %>" class="link underlined-link large-up-hide">View all</a>
+    <% if(section.settings.show_view_all){ %>
+      <a href="<%= collection?.url %>" class="link underlined-link large-up-hide">View all</a>
     <% } %>
   </div>
 
   <% 
-    var products_to_display = collection.products_count
+    var products_to_display = collection?.products_count
     var carousel_num = section.settings.products_col_limit
 
-    if(collection.products_count > section.settings.products_limit){
+    if(collection?.products_count > section.settings.products_limit){
       products_to_display = section.settings.products_limit
     }    
   %>
 
   <slider-component class="slider-mobile-gutter">
-    <ul class="grid grid--1-col grid--3-col-tablet grid--<%=carousel_num%>-col-desktop <% if(collection.products_count > 2 && section.settings.enable_swipe && section.settings.products_limit > 2){ %> slider slider--desktop <% } %><% if(!section.settings.show_view_all || Object.keys(collection.products).length < section.settings.products_limit){ %> negative-margin<% } %><% if(section.settings.show_view_all && Object.keys(collection.products).length > section.settings.products_limit){ %> negative-margin--small<% } %>" role="list">
-      <% collection.products.forEach((product, index) => { %>
-        <% if(index <= section.settings.products_limit){ %> 
-          <li class="grid__item<% if(collection.products_count > 2 && section.settings.enable_swipe && section.settings.products_limit > 2){ %> slider__slide<% } %>">
-            <%- include('../snippets/product-card-carousel',
-              {product_card_product: product,
-              media_size: section.settings.image_ratio,
-              show_secondary_image: section.settings.show_secondary_image,            
-              show_vendor: section.settings.show_vendor})
-            %>
-          </li>
-        <% } %> 
+    <ul class="grid product-list-1 grid--1-col grid--3-col-tablet grid--<%=carousel_num%>-col-desktop <% if(collection?.all_products_count > 2 && section.settings.products_limit > 2){ %> slider slider--desktop <% } %><% if(section.settings.show_view_all === false || collection?.products?.length < section.settings.products_limit){ %> negative-margin<% } %><% if(section.settings.show_view_all && collection?.products?.length > section.settings.products_limit){ %> negative-margin--small<% } %>" role="list">
+      <% collection?.products.forEach((product,index)=>{ %>
+        <% if(index<section.settings.products_limit){ %>
+        <li class="grid__item py-<%=section.settings.card_color%> <% if(collection?.all_products_count > 2  && section.settings.products_limit > 2){ %> slider__slide<% } %>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
+          <%- include('../snippets/product-card',
+                {product_card_product: product,
+                media_size: section.settings.image_ratio,
+                media_gallery:section.settings.image_gallery,
+                tag_field:section.settings.tag_field,                                   
+                show_vendor: section.settings.show_vendor,
+                show_colors: section.settings.show_colors,
+                show_view_product: section.settings.show_view_product,
+                show_quick_add: section.settings.show_quick_add,
+                show_variants_on_hover: section.settings.show_variants_on_hover,
+                card_bg_color: section.settings.card_bg_color,
+                card_radius: section.settings.card_radius,
+                info_align: section.settings.info_align})
+          %>
+        </li>
+        <% } %>
       <% }) %>
     </ul>    
-    <% if(collection.products_count > 2 && section.settings.enable_swipe && section.settings.products_limit > 2){ %>
-      <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(collection.products_count < 4){ %>large-up-hide medium-hide<% } %><% if(collection.products_count < 3){ %> small-hide<% } %>">
+    <% if(collection?.all_products_count > 2 && section.settings.products_limit > 2){ %>
+      <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(collection?.products_count < 4){ %>large-up-hide medium-hide<% } %><% if(collection?.products_count < 3){ %> small-hide<% } %>">
         <div class="slider-counter caption">
           <span class="slider-counter--current">1</span>
           <span aria-hidden="true"> / </span>
@@ -57,11 +144,11 @@
     <% } %>
   </slider-component>  
 
-  <% if(section.settings.show_view_all && collection.products_count > section.settings.m_products_limit){ %>
-    <div class="center<% if(section.settings.enable_swipe){ %> small-hide medium-hide<% } %>">
-      <a href="<%= collection.url %>"
+  <% if(section.settings.show_view_all && collection?.products_count > section.settings.m_products_limit){ %>
+    <div class="center small-hide medium-hide">
+      <a href="<%= collection?.url %>"
         class="button"
-        aria-label="view all label <%= collection.title %>"
+        aria-label="view all label <%= collection?.title %>"
       >
         View all
       </a>

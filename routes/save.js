@@ -13,24 +13,24 @@ router.post('/:id', async (req, res, next) => {
     if (!req.session.user && !req?.session?.user?.isAdmin) return next();
 
     const { id } = req.params;
-    const { settings, section, blocks } = req.body;
+    const { settings, sections } = req.body;
 
     if (!id) return next();
-    if (!settings?.length && !section?.length && !blocks?.length) return next();
+    if (!settings && !sections?.length) return next();
 
     try {
 
         const theme = await modelThemes.findById(id).exec();
 
         if (!theme) return next();
-        if (section && !theme?.theme_sec) return res.sendStatus(500).send("error");
+        if (!theme?.theme_sec) return res.sendStatus(500).send({status: 500, message: "error"});
 
         // Theme Global Settings Save Function  
-        if (settings?.length && theme.theme_set) {
+        if (settings && theme.theme_set) {
             theme.theme_set.map(el => {
                 if (el.settings) {
                     el.settings.map(oldItem => {
-                        Object.entries(settings[0]).forEach(newItem => {
+                        Object.entries(settings).forEach(newItem => {
                             if (oldItem.id === newItem[0] && newItem[1] !== "") {
                                 console.log("works");
                                 oldItem.default = oldItem?.type === "range" ? parseInt(newItem[1]) : newItem[1];
@@ -38,7 +38,7 @@ router.post('/:id', async (req, res, next) => {
                         })
                     })
                 } else {
-                    Object.entries(settings[0]).forEach(newItem => {
+                    Object.entries(settings).forEach(newItem => {
                         if (newItem[0] === "theme_name" && newItem[1] !== "") {
                             el.theme_name = newItem[1];
                         }
@@ -46,18 +46,19 @@ router.post('/:id', async (req, res, next) => {
                 }
             });
             modelThemes.findByIdAndUpdate(id, { theme_set: theme.theme_set }, { new: true }).exec(err => {
-                if (err) return res.status(500).send("error");
+                if (err) return res.status(500).send({status: 500, message: "error"});
             });
         }
 
         // Theme Section Settings Save Function
-        let productTemplate = section?.length && section[0]?.template ? require(path.join(__dirname, `../baseTheme/templates/${section[0]?.template}.json`)) : null;
-        if (section?.length && theme.theme_sec) {
+        if (sections?.length && theme.theme_sec) {
             theme.theme_sec.map(el => {
-                if (el.name === section[0]?.name) {
-                    if (el.settings) {
+                let findSection = sections.filter(item => item.name === el.name);
+                let productTemplate = findSection[0]?.template ? require(path.join(__dirname, `../baseTheme/templates/${section[0]?.template}.json`)) : null;
+                if (findSection?.length) {
+                    if (el.settings && findSection[0]?.settings) {
                         el.settings.map(oldItem => {
-                            Object.entries(section[0]?.settings).forEach(newItem => {
+                            Object.entries(findSection[0]?.settings).forEach(newItem => {
                                 if (oldItem.id === newItem[0] && newItem[1] !== "") {
                                     oldItem.default = oldItem?.type === "range" ? parseInt(newItem[1]) : newItem[1];
                                 }
@@ -67,13 +68,13 @@ router.post('/:id', async (req, res, next) => {
                     if (productTemplate?.sections) {
                         Object.entries(productTemplate?.sections).forEach(templateSection => {
                             let templateSectionName = templateSection[1]?.type ? templateSection[1]?.type.replace(/-/g, ' ') : null;
-                            if (templateSectionName && templateSectionName === section[0]?.name) {
-                                templateSection[1].settings = section[0].settings;
+                            if (templateSectionName && templateSectionName === findSection[0]?.name) {
+                                templateSection[1].settings = findSection[0].settings;
                             }
-                            if (templateSection[1]?.blocks && blocks?.length) {
+                            if (templateSection[1]?.blocks && findSection[0]?.blocks?.length) {
                                 Object.entries(templateSection[1]?.blocks).forEach(block => {
                                     let templateBlockName = block[1]?.type ? block[1]?.type : null;
-                                    blocks.forEach(newBlock => {
+                                    findSection[0]?.blocks.forEach(newBlock => {
                                         if (templateBlockName && templateBlockName === newBlock.type && newBlock?.settings) {
                                             block[1].settings = newBlock.settings;
                                         }
@@ -81,11 +82,11 @@ router.post('/:id', async (req, res, next) => {
                                 })
                             }
                         });
-                        if (productTemplate) fs.writeFileSync(path.join(__dirname, `../basetheme/templates/${section[0]?.template}.json`), JSON.stringify(productTemplate, null, 2), 'utf-8');
+                        if (productTemplate) fs.writeFileSync(path.join(__dirname, `../baseTheme/templates/${findSection[0]?.template}.json`), JSON.stringify(productTemplate, null, 2), 'utf-8');
                     }
-                    if (el?.blocks?.length && blocks?.length) {
+                    if (el?.blocks?.length && findSection[0]?.blocks?.length) {
                         el?.blocks.map(block => {
-                            blocks.forEach(newBlock => {
+                            findSection[0]?.blocks.forEach(newBlock => {
                                 if (block.type === newBlock.type && block?.settings && newBlock?.settings) {
                                     block.settings.map(oldSetting => {
                                         Object.entries(newBlock.settings).map(newSetting => {
@@ -101,7 +102,7 @@ router.post('/:id', async (req, res, next) => {
                 }
             });
             modelThemes.findByIdAndUpdate(id, { theme_sec: theme.theme_sec }, { new: true }).exec((err) => {
-                if(err) return res.sendStatus(500).send("error");
+                if(err) return res.sendStatus(500).send({status: 500, message: "error"});
             });
         }
 
@@ -111,10 +112,10 @@ router.post('/:id', async (req, res, next) => {
             .dest(path.join(__dirname, '../public/screens/'))
             .run();
 
-        res.status(200).send('success');
+        res.status(200).send({status: 200, message: 'success'});
 
     } catch (err) {
-        return res.sendStatus(500).send("error");
+        return res.sendStatus(500).send({status: 500, message: "error"});
     }
 
 });

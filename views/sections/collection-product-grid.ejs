@@ -67,13 +67,13 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
 
           <ul id="main-collection-product-grid" data-id="cpg-1" class="grid grid--2-col grid--3-col-tablet grid--4-col-desktop product-list-cpg-1" style="margin-left:-<%=section.settings.item_space%>px;padding-top:<%=section.settings.item_space%>px">
             <style>
-              .py-c-dark .card-wrapper *{
+              .py-c-dark .card-wrapper *:not(.card-quick-add):not(.card-view-product){
                 color: var(--py-color-dark);
               }
-              .py-c-average .card-wrapper *{
+              .py-c-average .card-wrapper *:not(.card-quick-add):not(.card-view-product){
                 color: var(--py-color-avarge);
               }
-              .py-c-light .card-wrapper *{
+              .py-c-light .card-wrapper *:not(.card-quick-add):not(.card-view-product){
                 color: var(--py-color-light);
               }
               .card-wrapper{
@@ -85,17 +85,6 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
               .product-list-cpg-1 .py-center ul.variant-options,
               .product-list-cpg-1 .py-center .card-button-wrapper{
                 justify-content: center;
-              }
-              .card-information__wrapper .card-button-wrapper a{
-                border:<%=section.settings.card_btn_border_width%>px solid <%=section.settings.card_btn_br_color%>;
-                border-radius:<%=section.settings.card_btn_border_radius%>px;
-                background-color:<%=section.settings.card_btn_bg_color%>;
-                color:<%=section.settings.card_btn_color%>;                
-              }
-              .card-information__wrapper .card-button-wrapper a:hover{
-                background-color:<%=section.settings.card_btn_hover_bg_color%>;
-                color:<%=section.settings.card_btn_hover_color%>;
-                border-color:<%=section.settings.card_btn_hover_br_color%>;
               }
               <% if(section.settings.custom_font_style){ %>
 

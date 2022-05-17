@@ -8,7 +8,7 @@
     background-color:<%=section.settings.page_bg_color%>;
     padding:5px;   
   }
-  .page-container .customer *{
+  .page-container .customer *:not(.login_btn)*{
     color:<%=section.settings.page_color%>;
   }
   .page-container .customer .field input {
@@ -20,17 +20,8 @@
     width:100%;
   }
   .page-container .customer .login_btn{
-    border:<%=section.settings.login_btn_border_width%>px solid <%=section.settings.login_btn_br_color%>;
-    border-radius:<%=section.settings.login_btn_border_radius%>px;
-    background-color:<%=section.settings.login_btn_bg_color%>;
-    color:<%=section.settings.login_btn_color%>;
     width:100%;
   }
-  .page-container .customer .login_btn:hover{
-    background-color:<%=section.settings.login_btn_hover_bg_color%>;
-    color:<%=section.settings.login_btn_hover_color%>;
-    border-color:<%=section.settings.login_btn_hover_br_color%>;
-  } 
 </style>
 
 <div class="page-container">
@@ -159,7 +150,7 @@
           </a>
         <% } %>
 
-        <button class="login_btn">
+        <button class="login_btn button py-btn-<%=section.settings.login_btn_color%> py-btn-hover-<%=section.settings.login_btn_hover_color%> py-btn-<%=section.settings.login_btn_size%>">
           Sign In
         </button>
 
@@ -176,7 +167,7 @@
         <h2>Guest Title</h2>
 
         <form>
-          <button class="login_btn">
+          <button class="login_btn button py-btn-<%=section.settings.login_btn_color%> py-btn-hover-<%=section.settings.login_btn_hover_color%> py-btn-<%=section.settings.login_btn_size%>">
             Guest Continue
           </button>
         </form>

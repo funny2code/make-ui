@@ -8,7 +8,7 @@
     background-color:<%=section.settings.page_bg_color%>;
     padding:5px;    
   }
-  .page-container .customer *{
+  .page-container .customer *:not(.register_btn){
     color:<%=section.settings.page_color%>;
   }
   .page-container .customer .field input {
@@ -20,16 +20,7 @@
     width:100%;
   }
   .page-container .customer .register_btn{
-    border:<%=section.settings.register_btn_border_width%>px solid <%=section.settings.register_btn_br_color%>;
-    border-radius:<%=section.settings.register_btn_border_radius%>px;
-    background-color:<%=section.settings.register_btn_bg_color%>;
-    color:<%=section.settings.register_btn_color%>;
     width:100%;
-  }
-  .page-container .customer .register_btn:hover{
-    background-color:<%=section.settings.register_btn_hover_bg_color%>;
-    color:<%=section.settings.register_btn_hover_color%>;
-    border-color:<%=section.settings.register_btn_hover_br_color%>;
   }
 </style>
 
@@ -151,7 +142,7 @@
           <%= form?.errors?.translated_fields['password'] %> <%= form?.errors?.messages['password'] %>.
         </span>
       <% } %>
-      <button class="register_btn">
+      <button class="register_btn button py-btn-<%=section.settings.register_btn_color%> py-btn-hover-<%=section.settings.register_btn_hover_color%> py-btn-<%=section.settings.register_btn_size%>">
         Create
       </button>
     </form>

@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/assets/component-variants.css">
 
 
-<product-recommendations class="product-recommendations page-width" data-url="/recommendations/products?section_id=recommendations&product_id=<%= product?.id %>&limit=8">
+<product-recommendations class="product-recommendations collection" data-url="/recommendations/products?section_id=recommendations&product_id=<%= product?.id %>&limit=8">
   <% if(collection.products_count > 0){ %>
     <h2 class="product-recommendations__heading"><%= section.settings.heading %></h2>
     <ul class="grid grid--2-col grid--3-col-tablet  product-list-1 <% if(collection.products_count > 3){ %> grid--4-col-desktop grid--quarter-max<% } %> bc-scroll-hide"  style="margin-left:-<%=section.settings.item_space%>px;" role="list">
@@ -16,13 +16,13 @@
         .product-recommendations__heading{
           color:<%=section.settings.title_color%>;
         }
-        .py-c-dark .card-wrapper *{
+        .py-c-dark .card-wrapper *:not(.card-quick-add):not(.card-view-product){
           color: var(--py-color-dark);
         }
-        .py-c-average .card-wrapper *{
+        .py-c-average .card-wrapper *:not(.card-quick-add):not(.card-view-product){
           color: var(--py-color-avarge);
         }
-        .py-c-light .card-wrapper *{
+        .py-c-light .card-wrapper *:not(.card-quick-add):not(.card-view-product){
           color: var(--py-color-light);
         }
         .card-wrapper{

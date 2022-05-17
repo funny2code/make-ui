@@ -17,7 +17,7 @@
   .product__info-container .product__description{
     color: <%=section.settings.info_color%>;
   }  
-  .bc-selling-tag .bc-vertical-tag-inner {
+  .product__info-container .bc-selling-tag .bc-vertical-tag-inner {
       background-color: <%=section.settings.info_color%>;;    
       color: <%=section.settings.section_bg_color%>;
   }
@@ -538,7 +538,7 @@
                 <% } %>
                 </div>
                 <div class="product-form__buttons">
-                  <button type="submit" name="add" class="product-form__submit button button--full-width button--primary"> 
+                  <button type="submit" name="add" class="product-form__submit button button--full-width button--primary py-btn-<%=block.settings.add_btn_size%>"> 
                     <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10.5 8H12.5V5H15.5V3H12.5V0H10.5V3H7.5V5H10.5V8ZM6.5 17C5.96957 17 5.46086 17.2107 5.08579 17.5858C4.71071 17.9609 4.5 18.4696 4.5 19C4.5 19.5304 4.71071 20.0391 5.08579 20.4142C5.46086 20.7893 5.96957 21 6.5 21C7.03043 21 7.53914 20.7893 7.91421 20.4142C8.28929 20.0391 8.5 19.5304 8.5 19C8.5 18.4696 8.28929 17.9609 7.91421 17.5858C7.53914 17.2107 7.03043 17 6.5 17ZM16.5 17C15.9696 17 15.4609 17.2107 15.0858 17.5858C14.7107 17.9609 14.5 18.4696 14.5 19C14.5 19.5304 14.7107 20.0391 15.0858 20.4142C15.4609 20.7893 15.9696 21 16.5 21C17.0304 21 17.5391 20.7893 17.9142 20.4142C18.2893 20.0391 18.5 19.5304 18.5 19C18.5 18.4696 18.2893 17.9609 17.9142 17.5858C17.5391 17.2107 17.0304 17 16.5 17ZM6.67 13.75L6.7 13.63L7.6 12H15.05C15.8 12 16.46 11.59 16.8 10.97L20.66 3.96L18.92 3H18.91L17.81 5L15.05 10H8.03L7.9 9.73L5.66 5L4.71 3L3.77 1H0.5V3H2.5L6.1 10.59L4.75 13.04C4.59 13.32 4.5 13.65 4.5 14C4.5 14.5304 4.71071 15.0391 5.08579 15.4142C5.46086 15.7893 5.96957 16 6.5 16H18.5V14H6.92C6.79 14 6.67 13.89 6.67 13.75Z"></path>
                     </svg>
@@ -579,7 +579,7 @@
                   <button
                     type="submit"
                     name="add"
-                    class="product-form__submit button button--full-width <% if(block?.settings?.show_dynamic_checkout && !product?.selling_plan_groups){ %><%#comment%>button--secondary<%#endcomment%> button--primar<% } else { %>button--primary<% } %>"
+                    class="product-form__submit button button--full-width py-btn-<%=block.settings.add_btn_size%> <% if(block.settings.show_dynamic_checkout && !product.selling_plan_groups){ %>button--primar<% } else { %>button--primary<% } %>"
                     <% if(product?.variants[0]?.available === false){ %>disabled<% } %>
                     > 
                     <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,19 +1,36 @@
 <link rel="stylesheet" href="/assets/section-multicolumn.css">
 <link rel="stylesheet" href="/assets/component-slider.css">
 
-<div class="multicolumn background-<%= section.settings.background_style %><% if(!section.settings.title){ %> no-heading<% } %>">
+<style>
+  .multicolumn-card__info  .col_title{
+    color: <%=section.settings.col_info_color%>;
+    font-size:<%=section.settings.col_title_font_size%>px;
+    font-weight:<%=section.settings.col_title_font_weight%>
+  }
+  .multicolumn-card__info .rte{
+    font-size:<%=section.settings.col_text_font_size%>px;
+    color: <%=section.settings.col_info_color%>;
+  }
+  @media(max-width:749px){
+    .multicolumn-card__info  .col_title{
+      font-size:<%=section.settings.col_title_m_font_size%>px;                  
+    }    
+  }
+</style>
+<div class="py-<%=section.settings.section_bg%>" style="padding:1px 0px;">
+<div class="multicolumn<% if(!section.settings.title){ %> no-heading<% } %>">
   <div class="page-width">
     <div class="title-wrapper-with-link title-wrapper--self-padded-mobile<% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %>">
       <h2 class="title">
         <%= section.settings.title %>
       </h2>
       <% if(section.settings.button_label && section.settings.swipe_on_mobile){ %>
-        <a href="<%= section.settings.button_link %>" class="link underlined-link large-up-hide"><%= section.settings.button_label %></a>
+        <a href="#" class="button py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%> large-up-hide"><%= section.settings.button_label %></a>
       <% } %>
     </div>
     <slider-component class="slider-mobile-gutter">
-      <ul class="multicolumn-list grid grid--1-col<% if(section.blocks.length > 3 && section.settings.image_width !== 'full'){ %> grid--2-col-tablet grid--4-col-desktop<% } else if(section.blocks.length > 3 && section.settings.image_width === 'full'){ %> grid--2-col-tablet<% } else { %> grid--3-col-tablet<% } %><% if(section.settings.swipe_on_mobile && section.blocks.length > 1){ %> slider slider--mobile grid--peek<% } %>"
-        id="Slider-1>"
+      <ul class="multicolumn-list grid grid--1-col grid--2-col-tablet grid--<%=section.settings.column_number%>-col-desktop<% if(section.settings.swipe_on_mobile && section.blocks.length > 1){ %> slider slider--mobile grid--peek<% } %>"
+        id="Slider-1"
         role="list"
       >
         <%
@@ -26,7 +43,7 @@
         %>
         <% section.blocks.forEach((block, index) => { %>
           <li class="multicolumn-list__item grid__item<% if(section.settings.swipe_on_mobile){ %> slider__slide<% } %><% if(section.settings.column_alignment === 'center'){ %> center<% } %>">
-            <div class="multicolumn-card">
+            <div class="multicolumn-card py-<%=section.settings.col_bg_color%>">
               <% if(block.settings?.image){ %>
                 <% if(section.settings.image_ratio === 'adapt' || section.settings.image_ratio === 'circle'){ %>
                   <% var spaced_image = true %>
@@ -66,7 +83,7 @@
                 </div>
               <% } %> 
               <div class="multicolumn-card__info">
-                <h3><%= block.settings?.title ? block.settings?.title : 'Title' %></h3>
+                <h3 class="col_title"><%= block.settings?.title ? block.settings?.title : 'Title' %></h3>
                 <div class="rte"><%- block.settings?.text ? block.settings?.text : "<p>Description Content Is Here!</p>" -%></div>
               </div>
             </div>
@@ -89,10 +106,11 @@
     </slider-component>
     <div class="center<% if(section.settings.swipe_on_mobile){ %> small-hide medium-hide<% } %>">
       <% if(section.settings.button_label){ %>
-        <a class="button button--primary"<% if(!section.settings.button_link){ %> aria-disabled="true" role="link"<% } else { %> href="<%= section.settings.button_link %>"<% } %>>
+        <a class="button button--primary py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>"<% if(!section.settings.button_link){ %> aria-disabled="true" role="link"<% } else { %> href="<%= section.settings.button_link %>"<% } %>>
           <%= section.settings.button_label %>
         </a>
       <% } %>
     </div>
   </div>
+</div>
 </div>

@@ -31,9 +31,14 @@
           <div class="banner__buttons<% if(block.settings?.button_label_1 && block.settings?.button_link_1 && block.settings?.button_label_2 && block.settings?.button_link_2){ %> banner__buttons--multiple<% } %>">
             <% if(block.settings?.button_label_1){ %>
               <% var buttonStyle = include('../snippets/style', {style: block.settings}) %>
-              <a href="<%= block.settings?.button_link_1 %>" class="button button--primary"<% if(!block.settings?.button_link_1){ %> aria-disabled="true"<% } %> <% if(buttonStyle){ %>style="<%= buttonStyle.replace(/(\r\n|\n|\r)/gm, "") %>"<% } %>>
+              <a id="bunner__button-1" href="<%= block.settings.button_link_1 %>" class="button py-btn-<%=block.settings.view_btn_color%> py-btn-hover-<%=block.settings.view_btn_hover_color%> py-btn-<%=block.settings.view_btn_size%>"<% if(!block.settings.button_link_1){ %> aria-disabled="true"<% } %>>
                 <%= block.settings?.button_label_1 %>
               </a>
+              <style>
+                #bunner__button-1 {
+                  <%=block.settings.c_css%>
+                }
+              </style>
             <% } %>
           </div>
         <% } %>

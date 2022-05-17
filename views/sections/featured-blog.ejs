@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/assets/component-article-card.css">
 
 <style>
-  .title--primary{
+  .blog-carousel .title--primary {
     color: <%=section.settings.title_color%>;
     font-size:<%=section.settings.title_font_size%>px;
     font-weight:<%=section.settings.title_font_weight%>
@@ -71,8 +71,8 @@
   
 </style>
 
-  <div class="main-blog blog-carousel py-<%=section.settings.bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%>">
-    <div class="page-width py-<%=section.settings.page_width%> py-<%=section.settings.page_y_mg%> py-<%=section.settings.page_y_mg%>">
+<div class="main-blog blog-carousel py-<%=section.settings.bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%>  bc-<%=settings.section_style%>-bt">
+  <div class="page-width py-<%=section.settings.page_width%> py-<%=section.settings.page_y_mg%> py-<%=section.settings.page_y_mg%>">
       <h1 class="title--primary"><%= section.settings.title %></h1>
       <div class="blog-articles">
         <slider-component class="slider-mobile-gutter">

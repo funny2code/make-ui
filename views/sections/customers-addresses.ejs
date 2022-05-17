@@ -9,7 +9,7 @@
     padding:5px;
     text-align:<%=section.settings.page_align%>;
   }
-  .page-container .customer *{
+  .page-container .customer *:not(.add_address_btn,.delete_address_btn,.edit_address_btn){
     color:<%=section.settings.page_color%>;
   }
   .page-container .customer .edit_panel{
@@ -33,7 +33,7 @@
     z-index: 99;
     background: #00000082;
   }
-  .page-container .customer .edit_panel *{
+  .page-container .customer .edit_panel *:not(.submit_address){
     color:<%=section.settings.panel_color%>;
   }
   .page-container .customer .edit_panel h2{
@@ -60,43 +60,8 @@
     padding: 12px 15px;
     width:100%;
   }
-  .page-container .customer .add_address_btn{
-    border:<%=section.settings.add_btn_border_width%>px solid <%=section.settings.add_btn_br_color%>;
-    border-radius:<%=section.settings.add_btn_border_radius%>px;
-    background-color:<%=section.settings.add_btn_bg_color%>;
-    color:<%=section.settings.add_btn_color%>;    
-  }
-  .page-container .customer .add_address_btn:hover{
-    background-color:<%=section.settings.add_btn_hover_bg_color%>;
-    color:<%=section.settings.add_btn_hover_color%>;
-    border-color:<%=section.settings.add_btn_hover_br_color%>;
-  } 
-  .page-container .customer .delete_address_btn,
-  .page-container .customer .edit_address_btn{
-    border:<%=section.settings.edit_btn_border_width%>px solid <%=section.settings.edit_btn_br_color%>;
-    border-radius:<%=section.settings.edit_btn_border_radius%>px;
-    background-color:<%=section.settings.edit_btn_bg_color%>;
-    color:<%=section.settings.edit_btn_color%>;  
-    padding: 5px 15px;
-    min-height: initial;
-  }
-  .page-container .customer .delete_address_btn:hover,
-  .page-container .customer .edit_address_btn:hover{
-    background-color:<%=section.settings.edit_btn_hover_bg_color%>;
-    color:<%=section.settings.edit_btn_hover_color%>;
-    border-color:<%=section.settings.edit_btn_hover_br_color%>;
-  }
-  .page-container .customer .submit_address{
-    border:<%=section.settings.submit_btn_border_width%>px solid <%=section.settings.submit_btn_br_color%>;
-    border-radius:<%=section.settings.submit_btn_border_radius%>px;
-    background-color:<%=section.settings.submit_btn_bg_color%>;
-    color:<%=section.settings.submit_btn_color%>;  
+  .page-container .customer .submit_address{ 
     width:100%;
-  }
-  .page-container .customer .submit_address:hover{
-    background-color:<%=section.settings.submit_btn_hover_bg_color%>;
-    color:<%=section.settings.submit_btn_hover_color%>;
-    border-color:<%=section.settings.submit_btn_hover_br_color%>;
   }
   
 </style>
@@ -115,7 +80,7 @@
   
     <div data-address>
       <button
-        class="add_address_btn"      
+        class="add_address_btn button py-btn-<%=section.settings.add_btn_color%> py-btn-hover-<%=section.settings.add_btn_hover_color%> py-btn-<%=section.settings.add_btn_size%>"      
         type="button"
         aria-expanded="false"
         aria-controls="AddAddress"
@@ -187,7 +152,7 @@
             <label for="address_default_address_new">Set Default</label>
           </div>
           <div>
-            <button class="submit_address">Add</button>
+            <button class="submit_address button py-btn-<%=section.settings.submit_btn_color%> py-btn-hover-<%=section.settings.submit_btn_hover_color%> py-btn-<%=section.settings.submit_btn_size%>">Add</button>
             <button class="cancel_submit" type="reset">
               <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
                 <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"></path>
@@ -207,7 +172,7 @@
           <% } %>
           <p><%= address.address1 %></p>
           <button
-            class="edit_address_btn"
+            class="edit_address_btn button py-btn-<%=section.settings.edit_btn_color%> py-btn-hover-<%=section.settings.edit_btn_hover_color%> py-btn-<%=section.settings.edit_btn_size%>"
             type="button"
             id="EditFormButton_<%= address?.id %>"
             aria-label="edit_address <%= index %>"
@@ -218,7 +183,7 @@
             Edit
           </button>
           <button
-            class="delete_address_btn"
+            class="delete_address_btn button py-btn-<%=section.settings.edit_btn_color%> py-btn-hover-<%=section.settings.edit_btn_hover_color%> py-btn-<%=section.settings.edit_btn_size%>"
             type="button"
             aria-label="delete <%= index %>"
             data-target="<%= address?.url %>"
@@ -299,7 +264,7 @@
                 </label>
               </div>
               <div>
-                <button class="submit_address">Update</button>
+                <button class="submit_address button py-btn-<%=section.settings.submit_btn_color%> py-btn-hover-<%=section.settings.submit_btn_hover_color%> py-btn-<%=section.settings.submit_btn_size%>">Update</button>
                 <button class="cancel_submit" type="reset">
                   <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
                     <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"></path>

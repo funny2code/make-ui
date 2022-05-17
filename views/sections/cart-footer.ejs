@@ -30,11 +30,11 @@
                   </button>
                 </noscript>
 
-                <button type="submit" class="cart__checkout-button button" name="checkout"<% if(!cart){ %> disabled<% } %> form="cart">
+                <button type="submit" class="cart__checkout-button button py-btn-<%=block.settings.btn_color%> py-btn-hover-<%=block.settings.btn_hover_color%> py-btn-<%=block.settings.btn_size%>" name="checkout"<% if(!cart){ %> disabled<% } %> form="cart">
                   Checkout
                 </button>
                 <% if(section?.settings.enable_dynamic_pay){ %>
-                <button id="loopcheckoutdynamic" class="button button--primary button--full-width" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
+                <button id="loopcheckoutdynamic" class="button button--primary button--full-width py-btn-<%=block.settings.btn_size%>" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
                 <% } %>
                </div>
 
@@ -94,7 +94,7 @@
 
       this.addEventListener('change', debounce((event) => {
         const body = JSON.stringify({ note: event.target.value });
-        fetch(`${routes.cart_update_url}`, {...fetchConfig(), ...{ body}});
+        fetch(`${routes.cart_update_url}`, {...fetchConfig(), ...{ body%>);
       }, 300))
     }
   }
