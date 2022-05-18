@@ -16,17 +16,11 @@ router.get('/:id', async (req, res, next) => {
 
   if(!id || !page) return next();
 
-  const activeType = global ? 'global' : 'section';
-  const active = global ? global : section;
-
   try{
     const theme = await modelThemes.findById(id).exec();
     if(!theme) return next();
 
-    const settings = global ? global !== 'Global Styles' 
-    ? theme.theme_set.filter(item => item.name === global)
-    : theme.theme_set.filter(item => item.name === 'theme_info' || item.name === global)
-    : null;
+    const settings = theme.theme_set;
 
     // console.log(settings);
 
@@ -37,10 +31,13 @@ router.get('/:id', async (req, res, next) => {
             if(localData?.settings[el.settings[k].id]) el.settings[k].default = localData?.settings[el.settings[k].id]
           }
         }
-      })
-    }
-  
-    const sections = section ? theme.theme_sec.filter(item => item.name === section) : null;
+    })
+}
+
+    const pageSections = theme.theme_pag.filter(item => { if(item.name === page) return item.items});
+    const sections = []; 
+    theme.theme_sec.filter(section => {pageSections[0].items.forEach(item => {if(item.name === section.name) return sections.push(section)})});
+    console.log(sections);
     if(localData?.sections?.length && sections){
       sections.forEach(section => {
         const findLocalSection = localData?.sections?.filter(localSection => localSection.name === section.name);
@@ -64,26 +61,22 @@ router.get('/:id', async (req, res, next) => {
         }
       })
     }
-    const pageSections = theme.theme_pag.filter(item => { if(item.name === page) return item.items});
     const pageNames = []; 
     theme.theme_pag.forEach(item => pageNames.push({name:item.name}));
 
+    // console.log(pageSections[0].items, "PAGE SECTIONS");
 
-    res.render('theme', {
+    res.render('random', {
       user: req?.session?.user || null,
       isAdmin: req?.session?.user?.isAdmin || null, 
       make: make, 
       id: theme._id,
       page: page,
-      sidebar: theme.app_sid || null,
       fonts: fonts,
       localData: localData,
       settings: settings,
-      section: sections ? sections[0] : null,
-      pageNames: pageNames,
-      pageSections: pageSections[0].items,
-      active: active,
-      activeType: activeType
+      section: sections,
+      pageNames: pageNames
     });
 
   } catch (err){

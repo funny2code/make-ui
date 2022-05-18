@@ -7,6 +7,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const themesRouter = require('./routes/themes');
+const randomRouter = require('./routes/random');
 const userThemesRouter = require('./routes/userthemes');
 const viewRouter = require('./routes/view');
 const viewUserRouter = require('./routes/viewuser');
@@ -41,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/themes', themesRouter);
+app.use('/random', randomRouter);
 app.use('/users', userThemesRouter);
 app.use('/view', viewRouter);
 app.use('/view/users', viewUserRouter);

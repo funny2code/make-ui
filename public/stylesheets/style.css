@@ -126,6 +126,34 @@ img {
   color: #000000;
   margin-bottom: 0;
 }
+/* RANDOM HEADER */
+.py__header-random {
+  display: flex;
+}
+.py__header-random-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 23px;
+}
+.py__header-random-buttons {
+  display: flex;
+  align-items: center;
+}
+.py__button-random {
+  min-height: 35px;
+  border-radius: 4px;
+  align-items: center;
+  line-height: normal;
+  margin-left: 11px;
+}
+.py__button-random * {
+  pointer-events: none;
+}
+.py__button-svg {
+  height: 19px;
+  margin-right: 8px;
+}
 
 /* USER THEMES */
 .py__user-themes {
@@ -235,6 +263,19 @@ img {
 }
 .py__make-preview {
   flex: 10 0 0;
+}
+.py__preview-random-content {
+  display: flex;
+  gap: 12px;
+}
+.py__preview-iframe-desktop {
+  width: 51%;
+}
+.py__preview-iframe-tablet {
+  width: 30%;
+}
+.py__preview-iframe-mobile {
+  width: 19%;
 }
 .py__make-settings {
   flex: 2 0 0;
@@ -714,12 +755,20 @@ select {
   border-radius: 10px;
   padding: 20px;
 }
+.py__preview-random-iframe {
+  border-radius: 0;
+  padding: 0;
+  background: unset;
+}
 .py__preview-iframe iframe {
   display: block;
   margin: 0 auto;
   border: 0;
   width: 100%;
   height: calc(100vh - 183px);
+}
+.py__preview-random-iframe iframe {
+  border-radius: 8px;
 }
 .py__preview-select select {
   background: #FFFFFF;

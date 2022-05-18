@@ -12,7 +12,7 @@
         <div class="py__theme-details">
             <% if(user){ %>
                 <% if(user.isAdmin){ %>
-                    <a href="/themes/<%=id%>?page=Home%20Page&global=Global%20Styles" class="py__button py__button-blue">
+                    <a href="/random/<%=id%>?page=Home%20Page" class="py__button py__button-blue">
                         Customize theme
                     </a>
                 <% } %>
@@ -20,7 +20,7 @@
                     Add this theme
                 </a>
             <% } else { %>
-                <a href="/themes/<%=id%>?page=Home%20Page&global=Global%20Styles" class="py__button py__button-blue">
+                <a href="/random/<%=id%>?page=Home%20Page" class="py__button py__button-blue">
                     Start with this theme
                 </a>
             <% } %>

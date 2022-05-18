@@ -219,10 +219,13 @@ router.post('/:id', async (req, res, next) => {
         }
       });
     } else if (global === 'Global Styles' || global === undefined) {
+      console.log("WORKSSSSSSSSSSSS");
       theme?.theme_pag.map(pageName => {
-        if(pageName === page){
-          theme?.theme_pag?.items.map(item => {
+        console.log(pageName.name === page, "PAGE NAME CHECKING");
+        if(pageName.name === page){
+          pageName?.items.map(item => {
             theme?.theme_sec.map(el => {
+              console.log(item.name === el.name);
               if (item.name === el.name) {
                 let sectionChildSettings = {};
                 let blocks = [];
@@ -259,6 +262,8 @@ router.post('/:id', async (req, res, next) => {
         })
       });
     }
+
+    console.log(defaultSections, "POSYTTTTTTTTTTTTTTTTTTTTT");
 
     res.render('view', {
       menu: makeMenu,

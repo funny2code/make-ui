@@ -525,12 +525,13 @@
             // let html = parser.parseFromString(data, "text/html");
             // let iframeContent = iframe.contentDocument || iframe.contentWindow.document;
             // iframeContent && html ? iframeContent.querySelector('html').innerHTML = html.querySelector('html').innerHTML : null;
-            
-            let ifrm = iframe.contentWindow || iframe.contentDocument.document || iframe.contentDocument;
-            ifrm.document.open();
-            ifrm.document.write(data);
-            ifrm.document.close();
-
+            let myIframes = document.querySelectorAll('iframe.py__view-iframe');
+            myIframes.forEach(iframeItem =>{
+                let ifrm = iframeItem.contentWindow || iframeItem.contentDocument.document || iframeItem.contentDocument;
+                ifrm.document.open();
+                ifrm.document.write(data);
+                ifrm.document.close();
+            })
         })
         .catch(err => console.error(err));
     };
@@ -608,13 +609,17 @@
             let html = parser.parseFromString(data, "text/html");
             let oldSettingsWrap = document.querySelector('.py__make-settings');
             let newSettingsWrap = html.querySelector('.py__make-settings');
-            let oldIframeWrap = document.querySelector('.py__preview-iframe');
+            let oldIframeWrap = document.querySelectorAll('.py__preview-iframe');
             let newIframeWrap = html.querySelector('.py__preview-iframe');
-            let oldSidebarWrap = document.querySelector('.py__preview-iframe');
-            let newSidebarWrap = html.querySelector('.py__preview-iframe');
+            // let oldSidebarWrap = document.querySelector('.py__preview-iframe');
+            // let newSidebarWrap = html.querySelector('.py__preview-iframe');
             oldSettingsWrap && newSettingsWrap ? oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML : null;
-            oldIframeWrap && newIframeWrap ? oldIframeWrap.innerHTML = newIframeWrap.innerHTML : null;
-            oldSidebarWrap && newSidebarWrap ? oldSidebarWrap.innerHTML = newSidebarWrap.innerHTML : null;
+            if(oldIframeWrap.length && newIframeWrap){
+                oldIframeWrap.forEach(oldItem => {  
+                    oldItem.innerHTML = newIframeWrap.innerHTML;
+                });
+            }
+            // oldSidebarWrap && newSidebarWrap ? oldSidebarWrap.innerHTML = newSidebarWrap.innerHTML : null;
         }).catch(err => console.log(err));
     };
 
@@ -674,6 +679,49 @@
             saveSettingsValues();
         }).catch(err => console.log(err));
     };
+
+
+    // RANDOM COLOR FUNCTION
+    const generateRandomColor = () => {
+        // let letters = '0123456789ABCDEF';
+        // let color = '#';
+        // for (var i = 0; i < 6; i++) {
+        //   color += letters[Math.floor(Math.random() * 16)];
+        // }
+        // return color;
+        
+        // return "#" + ("00000" + Math.floor(Math.random() * Math.pow(16, 6)).toString(16)).slice(-6);
+
+        var color = Math.floor(Math.random() * 255).toString(16);
+        if (color.length === 1)
+        {
+            color.concat('0');
+        }
+        return '#' + color + color + color;
+    };
+
+    const randomFun = (event) => {
+
+       if(!event) return;
+       event.preventDefault();
+
+       let inputFileds = document.querySelectorAll('[name]');
+       if(!inputFileds.length) return;
+       inputFileds.forEach(filed => {
+           let filedType = filed.getAttribute('type');
+           if(filedType === "color"){
+               let color = generateRandomColor();
+               let closestWrap = filed.closest('.py__comp-color');
+               let isColor = closestWrap.querySelector('.is__color');
+               let isColorLabel = closestWrap.querySelector('.py__label-for-color');
+               isColorLabel.style.backgroundColor = color;
+               isColor.value = color;
+               filed.value = color;
+           }
+       });
+       saveSettingsValues();
+       viewIframe();
+    };  
 
     //---------------------------------------
     // COMPONENTS FUN
@@ -873,6 +921,7 @@
         if(e && e.target.classList.contains('py__get-section-button')) return getSettingsLists(e);
         if(e && e.target.classList.contains('py__save-button')) return save(e);
         if(e && e.target.classList.contains('py__download-button')) return download(e);
+        if(e && e.target.classList.contains('py__button-random')) return randomFun(e);
     });
 
     // Before Unload
