@@ -683,21 +683,21 @@
 
     // RANDOM COLOR FUNCTION
     const generateRandomColor = () => {
-        // let letters = '0123456789ABCDEF';
-        // let color = '#';
-        // for (var i = 0; i < 6; i++) {
-        //   color += letters[Math.floor(Math.random() * 16)];
-        // }
-        // return color;
+        let letters = '0123456789ABCDEF';
+        let color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
         
         // return "#" + ("00000" + Math.floor(Math.random() * Math.pow(16, 6)).toString(16)).slice(-6);
 
-        var color = Math.floor(Math.random() * 255).toString(16);
-        if (color.length === 1)
-        {
-            color.concat('0');
-        }
-        return '#' + color + color + color;
+        // var color = Math.floor(Math.random() * 255).toString(16);
+        // if (color.length === 1)
+        // {
+        //     color.concat('0');
+        // }
+        // return '#' + color + color + color;
     };
 
     const randomFun = (event) => {
