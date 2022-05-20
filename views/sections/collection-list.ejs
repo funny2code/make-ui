@@ -109,111 +109,113 @@
         id="Slider-1"
         role="list"
       >
-        <% section.blocks.forEach((block,index)=>{ %>
-         <% if(collection?.title){ %>
-          <li class="collection-list__item grid__item slider__slide">
-            <a <% if(block.settings.collection && block.settings.collection?.all_products_count > 0){ %> href="<%= block.settings.collection?.url %>"<% } %>
-              class="card animate-arrow link<% if(block.settings.collection?.image){ %> card--media<% } else { %><% if(section.settings.image_ratio !== 'adapt'){ %> card--stretch<% } %><% } %><% if(!section.settings.image_padding){ %> card--light-border<% } %>"
-            >
-              <div class="card--stretch py-<%=section.settings.card_bg_color%>">
-                <% if(block.settings.collection?.image){ %>
-                  <div>                    
-                    <div class="media<% if(section.blocks.length > 1){ %> media--<%= section.settings.image_ratio %><% } %> media--hover-effect overflow-hidden"
-                      <% if(section.settings.image_ratio === 'adapt' && section.blocks.length > 1){ %>style="padding-bottom: <%= 1 / block.settings.collection?.image.aspect_ratio * 100 %>%;"<% } %>>
+        <%# section.blocks.forEach((block,index)=>{ %>
+          <% collections?.forEach((collection,index)=>{ %>
+            <% if(collection?.title){ %>
+              <li class="collection-list__item grid__item slider__slide">
+                <a <% if(collection && collection?.all_products_count > 0){ %> href="<%= collection?.url %>"<% } %>
+                  class="card animate-arrow link<% if(collection?.image){ %> card--media<% } else { %><% if(section.settings.image_ratio !== 'adapt'){ %> card--stretch<% } %><% } %><% if(!section.settings.image_padding){ %> card--light-border<% } %>"
+                >
+                  <div class="card--stretch py-<%=section.settings.card_bg_color%>">
+                    <% if(collection?.image){ %>
+                      <div>                    
+                        <div class="media<% if(collections?.length > 1){ %> media--<%= section.settings.image_ratio %><% } %> media--hover-effect overflow-hidden"
+                          <% if(section.settings.image_ratio === 'adapt' && collections?.length > 1){ %>style="padding-bottom: <%= 1 / collection?.image.aspect_ratio * 100 %>%;"<% } %>>
 
-                      <img srcset="<% if(block.settings.collection?.image.width >= 165){ %><%= block.settings.collection?.image %> 165w,<% } %>
-                        <% if(block.settings.collection?.image.width >= 330){ %><%= block.settings.collection?.image %> 330w,<% } %>
-                        <% if(block.settings.collection?.image.width >= 535){ %><%= block.settings.collection?.image %> 535w,<% } %>
-                        <% if(block.settings.collection?.image.width >= 720){ %><%= block.settings.collection?.image %> 720w,<% } %>
-                        <% if(block.settings.collection?.image.width >= 940){ %><%= block.settings.collection?.image %> 940w,<% } %>
-                        <% if(block.settings.collection?.image.width >= 1440){ %><%= block.settings.collection?.image %> 1440w,<% } %>
-                        <% if(block.settings.collection?.image.width >= 1880){ %><%= block.settings.collection?.image %> 1880w<% } %>"
-                        src="<%= block.settings.collection?.image %>"
-                        sizes="(min-width: 1100px)<% if(section.blocks.length > 1){ %>535px<% } else { %>940px<% } %>, (min-width: 750px) <% if(section.blocks.length > 1){ %>calc((100vw - 10rem) / 2)<% } else { %>calc(100vw - 10rem)<% } %>, calc(100vw - 3rem)"
-                        alt="<%= block.settings.collection?.title %>"
-                        height="<%= block.settings.collection?.image.height %>"
-                        width="<%= block.settings.collection?.image.width %>"
-                        loading="lazy"
-                        class="motion-reduce"
-                      >
-                    </div>
-                  </div>
-                
-                <div class="card__info-container">
-                  <div class="card__info">                    
-                    <h3>
-                      <% if(block.settings.collection?.title){ %>
-                        <%- block.settings.collection?.title -%>
-                      <% } else { %>
-                        Collection Title
-                      <% } %>
-                    </h3>
-                    <% if(block.settings.collection?.description){ %>
-                      <p class="card__caption">
-                        <%- block.settings.collection?.description -%>
-                      </p>
-                    <% } %>
-                  </div>
-                  <div class="view-collection-container">
-                    <span class="view_collection py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>">View</span>
-                  </div>
-                </div>
-                <% } else { %>
-                <div class="card__info-container">
-                  <div class="card__info">  
-                    <h3 class="h1">
-                      <% if(block.settings.collection?.title){ %>
-                        <%- block.settings.collection?.title -%>
-                      <% } else { %>
-                        Collection Title
-                      <% } %>
-                    </h3>
-
-                    <% if(block.settings.collection?.description){ %>
-                      <p class="card__caption">
-                        <%- block.settings.collection?.description -%>
-                      </p>
-                    <% } %>
-                  </div>
-                  <div class="view-collection-container">
-                    <span class="view_collection py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>">View</span>
-                  </div>
-                </div>
-                <% } %>
-              </div>
-            </a>
-          </li>
-          <% } else { %>
-          <li class="a collection-list__item grid__item slider__slide">
-            <a  class="card animate-arrow link card--media card--stretch"
-            >
-              <div class="card--stretch py-<%=section.settings.card_bg_color%>">
-
-                  <div>
+                          <img srcset="<% if(collection?.image.width >= 165){ %><%= collection?.image.src %> 165w,<% } %>
+                            <% if(collection?.image.width >= 330){ %><%= collection?.image.src %> 330w,<% } %>
+                            <% if(collection?.image.width >= 535){ %><%= collection?.image.src %> 535w,<% } %>
+                            <% if(collection?.image.width >= 720){ %><%= collection?.image.src %> 720w,<% } %>
+                            <% if(collection?.image.width >= 940){ %><%= collection?.image.src %> 940w,<% } %>
+                            <% if(collection?.image.width >= 1440){ %><%= collection?.image.src %> 1440w,<% } %>
+                            <% if(collection?.image.width >= 1880){ %><%= collection?.image.src %> 1880w<% } %>"
+                            src="<%= collection?.image.src %>"
+                            sizes="(min-width: 1100px)<% if(section.blocks.length > 1){ %>535px<% } else { %>940px<% } %>, (min-width: 750px) <% if(collections?.length > 1){ %>calc((100vw - 10rem) / 2)<% } else { %>calc(100vw - 10rem)<% } %>, calc(100vw - 3rem)"
+                            alt="<%= collection?.title %>"
+                            height="<%= collection?.image.height %>"
+                            width="<%= collection?.image.width %>"
+                            loading="lazy"
+                            class="motion-reduce"
+                          >
+                        </div>
+                      </div>
                     
-                    <div class="overflow-hidden py-bg-c-light">
-                     <% var n_index = index % 6 + 1 %>             
-                     <%= 'collection-' + n_index %>             
+                    <div class="card__info-container">
+                      <div class="card__info">                    
+                        <h3>
+                          <% if(collection?.title){ %>
+                            <%- collection?.title -%>
+                          <% } else { %>
+                            Collection Title
+                          <% } %>
+                        </h3>
+                        <% if(collection?.description){ %>
+                          <p class="card__caption">
+                            <%- collection?.description -%>
+                          </p>
+                        <% } %>
+                      </div>
+                      <div class="view-collection-container">
+                        <span class="view_collection py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>">View</span>
+                      </div>
+                    </div>
+                    <% } else { %>
+                    <div class="card__info-container">
+                      <div class="card__info">  
+                        <h3 class="h1">
+                          <% if(collection?.title){ %>
+                            <%- collection?.title -%>
+                          <% } else { %>
+                            Collection Title
+                          <% } %>
+                        </h3>
+
+                        <% if(collection?.description){ %>
+                          <p class="card__caption">
+                            <%- collection?.description -%>
+                          </p>
+                        <% } %>
+                      </div>
+                      <div class="view-collection-container">
+                        <span class="view_collection py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>">View</span>
+                      </div>
+                    </div>
+                    <% } %>
+                  </div>
+                </a>
+              </li>
+            <% } else { %>
+              <li class="a collection-list__item grid__item slider__slide">
+                <a  class="card animate-arrow link card--media card--stretch"
+                >
+                  <div class="card--stretch py-<%=section.settings.card_bg_color%>">
+
+                      <div>
+                        
+                        <div class="overflow-hidden py-bg-c-light">
+                        <% var n_index = index % 6 + 1 %>             
+                        <%= 'collection-' + n_index %>             
+                        </div>
+                      </div>
+                    <div class="card__info-container">
+                      <div class="card__info">  
+                        <h3>                    
+                            Collection Title                    
+                        </h3>
+                        <p class="card__caption">
+                            Your colllection description
+                        </p>
+                      </div> 
+                      <div class="view-collection-container">
+                        <span class="view_collection py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>">View</span>
+                      </div>
                     </div>
                   </div>
-                <div class="card__info-container">
-                  <div class="card__info">  
-                    <h3>                    
-                        Collection Title                    
-                    </h3>
-                    <p class="card__caption">
-                        Your colllection description
-                    </p>
-                  </div> 
-                  <div class="view-collection-container">
-                    <span class="view_collection py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>">View</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </li>
-          <% } %>
-        <% }) %>
+                </a>
+              </li>
+            <% } %>
+          <% }) %>
+        <%# }) %>
       </ul>
 
       

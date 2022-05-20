@@ -86,7 +86,7 @@
             <% }) %>
           </ul>    
           
-          <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(section.settings.blog.articles_count < 4){ %>large-up-hide medium-hide<% } %><% if(section.settings.blog.articles_count < 3){ %> small-hide<% } %>">
+          <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(blogs?.articles_count < 4){ %>large-up-hide medium-hide<% } %><% if(blogs?.articles_count < 3){ %> small-hide<% } %>">
             <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="previous_slide"><% include('../snippets/icon-caret') %></button>
             <button type="button" class="slider-button slider-button--next" name="next" aria-label="next_slide"><% include('../snippets/icon-caret') %></button>
           </div>

@@ -235,8 +235,8 @@
                     <%- include('sections/image-banner', {settings: settings, section: item }) %>
                 <% } else if(item.name==='marquee' ){ %>
                     <%- include('sections/marquee', {settings: settings, section: item }) %>
-                <% } else if(item.name==='image with video'){ %>
-                    <%- include('sections/image-with-video', {settings: settings, section: item }) %>
+                <% } else if(item.name==='featured blog'){ %>
+                    <%- include('sections/featured-blog', {blogs: blog, settings: settings, section: item }) %>
                 <% } else if(item.name==='partners'){ %>
                     <%- include('sections/partners', {settings: settings, section: item }) %>
                 <% } else if(item.name==='collection see'){ %>
@@ -256,9 +256,9 @@
                 <% } else if(item.name==='collage'){ %>
                     <%- include('sections/collage', {settings: settings, section: item, product: product}) %>
                 <% } else if(item.name==='collection list'){ %>
-                    <%- include('sections/collection-list', {settings: settings, section:item, collection:collection}) %>
-                <% } else if(item.name==='accordion with product'){%>
-                    <%- include('sections/accordion-with-product', {settings: settings,section:item, product: product}) %>
+                    <%- include('sections/collection-list', {settings: settings, section:item, collections: collections}) %>
+                <% } else if(item.name==='contact form'){%>
+                    <%- include('sections/contact-form', {settings: settings,section:item, product: product}) %>
                 <% } else if(item.name==='multicolumn'){ %>
                     <%- include('sections/multicolumn', {settings: settings, section: item}) %>
                 <% } else if(item.name==='newsletter'){ %>

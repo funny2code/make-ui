@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/themes', themesRouter);
-app.use('/random', randomRouter);
+app.use('/remix', randomRouter);
 app.use('/users', userThemesRouter);
 app.use('/view', viewRouter);
 app.use('/view/users', viewUserRouter);

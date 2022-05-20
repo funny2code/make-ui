@@ -105,7 +105,6 @@
         if(section.name){
             theme.sections.push(section);
         }
-        console.log(theme, "---THEME SETTINGS");
     };
 
     // FETCH CONFIG FUNCTION
@@ -521,17 +520,15 @@
         .then(res => res.text())
         .then(data => {
             if(!data) return;
-            // let parser = new DOMParser();
-            // let html = parser.parseFromString(data, "text/html");
+            let parser = new DOMParser();
+            let html = parser.parseFromString(data, "text/html");
             // let iframeContent = iframe.contentDocument || iframe.contentWindow.document;
-            // iframeContent && html ? iframeContent.querySelector('html').innerHTML = html.querySelector('html').innerHTML : null;
             let myIframes = document.querySelectorAll('iframe.py__view-iframe');
-            myIframes.forEach(iframeItem =>{
-                let ifrm = iframeItem.contentWindow || iframeItem.contentDocument.document || iframeItem.contentDocument;
-                ifrm.document.open();
-                ifrm.document.write(data);
-                ifrm.document.close();
+            myIframes?.forEach(iframeItem =>{
+                let ifrm = iframeItem.contentDocument || iframeItem.contentWindow.document;
+                html ? ifrm.querySelector('html').innerHTML = html.querySelector('html').innerHTML : null;
             })
+            loading?.classList.remove('py__animate');
         })
         .catch(err => console.error(err));
     };
@@ -704,12 +701,15 @@
 
        if(!event) return;
        event.preventDefault();
+       loading?.classList.add('py__animate');
 
        let inputFileds = document.querySelectorAll('[name]');
        if(!inputFileds.length) return;
        inputFileds.forEach(filed => {
            let filedType = filed.getAttribute('type');
-           if(filedType === "color"){
+           let filedName = filed.getAttribute('name');
+           if(filedType === "color" && filedName.includes('bg')){
+
                let color = generateRandomColor();
                let closestWrap = filed.closest('.py__comp-color');
                let isColor = closestWrap.querySelector('.is__color');
@@ -717,6 +717,17 @@
                isColorLabel.style.backgroundColor = color;
                isColor.value = color;
                filed.value = color;
+
+               let textInputFiled = document.querySelector(`[name="${filedName.replace('_bg', '')}"]`);
+               if(!textInputFiled) return;
+               let textColor = getContrastYIQ(color);
+               let textClosestWrap = textInputFiled.closest('.py__comp-color');
+               let textIsColor = textClosestWrap.querySelector('.is__color');
+               let textIsColorLabel = textClosestWrap.querySelector('.py__label-for-color');
+               textIsColorLabel.style.backgroundColor = textColor;
+               textIsColor.value = textColor;
+               textInputFiled.value = textColor;
+               
            }
        });
        saveSettingsValues();
