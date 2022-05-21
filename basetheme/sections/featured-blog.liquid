@@ -30,7 +30,7 @@
     height: 5px;
     width: 5px;
     display:initial;
-    background:#666;
+    background:{{section.settings.scroll_bar_bg_color}};
     border-radius: 10px;    
   }
 
@@ -41,7 +41,7 @@
 
   /* Handle */
   .blog-carousel .slider::-webkit-scrollbar-thumb {
-    background: {{section.settings.title_color}}; 
+    background: {{section.settings.scroll_bar_color}};
     border-radius: 10px;
   } 
   .blog-carousel .slider{
@@ -141,6 +141,18 @@
         }
       ],
      "default": "bg-c-average"
+    },
+    {
+        "type": "color",
+        "id": "scroll_bar_bg_color",
+        "label": "Scroll Bar Background Color",
+        "default": "#777777"
+    },
+    {
+        "type": "color",
+        "id": "scroll_bar_color",
+        "label": "Scroll Bar Color",
+        "default": "#ffffff"
     },
     {
       "type": "text",

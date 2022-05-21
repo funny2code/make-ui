@@ -68,94 +68,6 @@
             },
             {
                 "type": "header",
-                "content": "Buttons"
-            },
-            {
-                "type": "paragraph",
-                "content": "Dark (default)"
-            },
-            {
-                "type": "color",
-                "id": "py_btn_bg_color_dark",
-                "label": "Background",
-                "default": "#70c989"
-            },
-            {
-                "type": "color",
-                "id": "py_btn_hov_bg_color_dark",
-                "label": "Hover Background",
-                "default": "#20272d"
-            },
-            {
-                "type": "color",
-                "id": "py_btn_color_dark",
-                "label": "Label",
-                "default": "#20272d"
-            },
-            {
-                "type": "color",
-                "id": "py_btn_hov_color_dark",
-                "label": "Hover Label",
-                "default": "#70c989"
-            },
-            {
-                "type": "paragraph",
-                "content": "Avarge"
-            },
-            {
-                "type": "color",
-                "id": "py_btn_bg_color_avarge",
-                "label": "Background",
-                "default": "#969892"
-            },
-            {
-                "type": "color",
-                "id": "py_btn_hov_bg_color_avarge",
-                "label": "Hover Background",
-                "default": "#979993"
-            },
-            {
-                "type": "color",
-                "id": "py_btn_color_avarge",
-                "label": "Label",
-                "default": "#f1f1f1"
-            },
-            {
-                "type": "color",
-                "id": "py_btn_hov_color_avarge",
-                "label": "Hover label",
-                "default": "#f4f4f4"
-            },
-            {
-                "type": "paragraph",
-                "content": "Light"
-            },
-            {
-                "type": "color",
-                "id": "py_btn_bg_color_light",
-                "label": "Background",
-                "default": "#ffffff"
-            },
-            {
-                "type": "color",
-                "id": "py_btn_hov_bg_color_light",
-                "label": "Hover Background",
-                "default": "#f5f5f5"
-            },
-            {
-                "type": "color",
-                "id": "py_btn_color_light",
-                "label": "Label",
-                "default": "#000000"
-            },
-            {
-                "type": "color",
-                "id": "py_btn_hov_color_light",
-                "label": "Hover Label",
-                "default": "#555555"
-            },
-            {
-                "type": "header",
                 "content": "Body"
             },
             {
@@ -780,6 +692,205 @@
                 "id": "py_br_x",
                 "label": "Horizontal",
                 "default": "1px"
+            }
+        ]
+    },
+    {
+        "name": "Button Style",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Small Button Style"
+            },
+            {
+                "type": "text",
+                "id": "py_sm_btn_x_pd",
+                "label": "Small Button Horizontal Padding",
+                "default": "1.4rem"
+            },
+            {
+                "type": "text",
+                "id": "py_sm_btn_y_pd",
+                "label": "Small Button Vertical Padding",
+                "default": "0.4rem"
+            },
+            {
+                "type": "range",
+                "id": "py_sm_btn_border_width",
+                "min": 0,
+                "max": 10,
+                "step": 1,
+                "default": 1,
+                "label": "Small Button Border Width"
+            },
+            {
+                "type": "range",
+                "id": "py_sm_btn_font_size",
+                "min": 8,
+                "max": 40,
+                "step": 1,
+                "default": 15,
+                "label": "Small Button Font Size"
+            },
+            {
+                "type": "range",
+                "id": "py_sm_btn_font_weight",
+                "min": 100,
+                "max": 900,
+                "step": 100,
+                "default": 500,
+                "label": "Small Button Font Weight"
+            },
+            {
+                "type": "header",
+                "content": "Medium Button Style"
+            },
+            {
+                "type": "text",
+                "id": "py_md_btn_x_pd",
+                "label": "Medium Button Horizontal Padding",
+                "default": "1.8rem"
+            },
+            {
+                "type": "text",
+                "id": "py_md_btn_y_pd",
+                "label": "Medium Button Vertical Padding",
+                "default": "0.8rem"
+            },
+            {
+                "type": "range",
+                "id": "py_md_btn_border_width",
+                "min": 0,
+                "max": 10,
+                "step": 1,
+                "default": 2,
+                "label": "Medium Button Border Width"
+            },
+            {
+                "type": "range",
+                "id": "py_md_btn_font_size",
+                "min": 10,
+                "max": 40,
+                "step": 1,
+                "default": 18,
+                "label": "Medium Button Font Size"
+            },
+            {
+                "type": "range",
+                "id": "py_md_btn_font_weight",
+                "min": 100,
+                "max": 900,
+                "step": 100,
+                "default": 500,
+                "label": "Medium Button Font Weight"
+            },
+            {
+                "type": "header",
+                "content": "Large Button Style"
+            },
+            {
+                "type": "text",
+                "id": "py_lg_btn_x_pd",
+                "label": "Large Button Horizontal Padding",
+                "default": "2.6rem"
+            },
+            {
+                "type": "text",
+                "id": "py_lg_btn_y_pd",
+                "label": "Large Button Vertical Padding",
+                "default": "1.4rem"
+            },
+            {
+                "type": "range",
+                "id": "py_lg_btn_border_width",
+                "min": 0,
+                "max": 10,
+                "step": 1,
+                "default": 3,
+                "label": "Large Button Border Width"
+            },
+            {
+                "type": "range",
+                "id": "py_lg_btn_font_size",
+                "min": 14,
+                "max": 40,
+                "step": 1,
+                "default": 23,
+                "label": "Large Button Font Size"
+            },
+            {
+                "type": "range",
+                "id": "py_lg_btn_font_weight",
+                "min": 100,
+                "max": 900,
+                "step": 100,
+                "default": 600,
+                "label": "Large Button Font Weight"
+            },
+            {
+                "type": "header",
+                "content": "Button Border Radius"
+            },
+            {
+                "type": "range",
+                "id": "py_btn_border_radius",
+                "min": 0,
+                "max": 60,
+                "step": 5,
+                "default": 10,
+                "label": "Button Border Radius"
+            },
+            {
+                "type": "header",
+                "content": "Button Color Style"
+            },
+            {
+                "type": "paragraph",
+                "content": "Light Button Color"
+            },
+            {
+                "type": "color",
+                "id": "py_btn_bg_color_light",
+                "label": "Light Button Background Color",
+                "default": "#ffffff"
+            },
+            {
+                "type": "color",
+                "id": "py_btn_color_light",
+                "label": "Light Button Color",
+                "default": "#000000"
+            },
+            {
+                "type": "paragraph",
+                "content": "Average Button Color"
+            },
+            {
+                "type": "color",
+                "id": "py_btn_bg_color_average",
+                "label": "Average Button Background Color",
+                "default": "#A05E49"
+            },
+            {
+                "type": "color",
+                "id": "py_btn_color_average",
+                "label": "Average Button Color",
+                "default": "#ffffff"
+            },
+            {
+                "type": "paragraph",
+                "content": "Dark Button Color"
+            },
+            {
+                "type": "color",
+                "id": "py_btn_bg_color_dark",
+                "label": "Dark Button Background Color",
+                "default": "#000000"
+            },
+            {
+                "type": "color",
+                "id": "py_btn_color_dark",
+                "label": "Dark Button Color",
+                "default": "#ffffff"
             }
         ]
     },

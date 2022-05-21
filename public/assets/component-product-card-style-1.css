@@ -167,7 +167,10 @@
   }
   
   .card-information__text {
-    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   
   .card-information__wrapper {
@@ -347,7 +350,7 @@ ul.variant-options>li{
   padding: 6px;
   border: 1px solid;
   min-width: 32px;
-  margin: 0px 6px;
+  margin: 3px 5px;
   border-radius: 5px;
   font-size: 14px;
   text-align:center;
@@ -376,7 +379,9 @@ ul.variant-options>li.selected{
   flex-wrap: wrap;
   align-items: center;
   margin-top:20px;
-  margin-bottom: 20px;  
+  margin-bottom: 20px; 
+  height:28px;
+  overflow:hidden;
 }
 .card-button-wrapper{
   display: flex;
@@ -450,4 +455,20 @@ ul.variant-options>li.selected{
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
+}
+@media(min-width:800px){
+  .py-card-horizontal .card-variant-wrapper,
+  .py-card-horizontal .card-color-wrapper,
+  .py-card-horizontal .card-quick-add-wrapper{
+    display:none;
+  }
+  .py-card-horizontal .card-wrapper{
+    display:flex;
+    flex-direction:row;
+    padding-bottom:0px;
+  }
+  .py-card-horizontal .card-wrapper .card--product,
+  .py-card-horizontal .card-wrapper .card-information{
+    width:50%;
+  }
 }

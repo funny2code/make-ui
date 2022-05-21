@@ -209,30 +209,19 @@ footer.py-c-light *{
 
 .footer-block__newsletter {
   text-align: center;
+  
 }
 
-.footer-block__newsletter .newsletter-form__button.button {
+.footer-block__newsletter .newsletter-form__button.button {  
+  width: 100%;  
   margin-top: 1.5rem;
-  width: 100%;
   margin-left: 0;
-  box-shadow: none;
-  background: #fff;
-  text-transform: uppercase;
-  border-radius: 2px;
-  font-weight: 500;
-  padding: 1rem;
 }
 
 @media screen and (min-width: 750px) {
   .footer-block__newsletter:not(:only-child) {
     text-align: left;
   }
-
-  .footer-block__newsletter .newsletter-form__button.button {
-    margin-top: 1.5rem;
-    margin-left: 0;
-  }
-
   .footer-block__newsletter:not(:only-child) .footer__newsletter {
     justify-content: flex-start;
     margin: 0;
@@ -461,18 +450,6 @@ footer details[open] summary ~ * {
   line-height: 1.375;
 }
 
-.footer-block__newsletter .field__input {
-  background: #fff;
-  border-color: #fff;
-  box-shadow: none;
-  padding: 1rem 2rem;
-  height: 60px;
-  min-height: 60px;
-  border-radius: 2px;
-}
-.footer-block__newsletter .field__label {
-  left: 2rem;
-}
 
 .footer-block__details-content li:first-child .link {
   padding-top: 3rem;

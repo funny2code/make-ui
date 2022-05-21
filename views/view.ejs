@@ -62,8 +62,6 @@
             --font-field-spacing: <%= settings.field_font_spacing %>;
             --font-field-transform: <%= settings.field_font_transform %>;
 
-
-
             --py-bg-color-dark: <%=settings.py_bg_color_dark %>;
             --py-bg-color-middle-dark: <%=settings.py_bg_color_middle_dark %>;
             --py-bg-color-avarge: <%=settings.py_bg_color_avarge %>;
@@ -73,22 +71,6 @@
             --py-color-dark: <%=settings.py_color_dark %>;
             --py-color-avarge: <%=settings.py_color_avarge %>;
             --py-color-light: <%=settings.py_color_light %>;
-
-            --py-btn-bg-color-dark: <%=settings.py_btn_bg_color_dark %>;
-            --py-btn-bg-color-avarge: <%=settings.py_btn_bg_color_avarge %>;
-            --py-btn-bg-color-light: <%=settings.py_btn_bg_color_light %>;
-
-            --py-btn-color-dark: <%=settings.py_btn_color_dark %>;
-            --py-btn-color-avarge: <%=settings.py_btn_color_avarge %>;
-            --py-btn-color-light: <%=settings.py_btn_color_light %>;
-
-            --py-btn-hov-bg-color-dark: <%=settings.py_btn_hov_bg_color_dark %>;
-            --py-btn-hov-bg-color-avarge: <%=settings.py_btn_hov_bg_color_avarge %>;
-            --py-btn-hov-bg-color-light: <%=settings.py_btn_hov_bg_color_light %>;
-
-            --py-btn-hov-color-dark: <%=settings.py_btn_hov_color_dark %>;
-            --py-btn-hov-color-avarge: <%=settings.py_btn_hov_color_avarge %>;
-            --py-btn-hov-color-light: <%=settings.py_btn_hov_color_light %>;
 
             --py-body-bg-color: <%=settings.py_bg_body_color %>;
             --py-body-color: <%=settings.py_body_color %>;
@@ -209,6 +191,34 @@
             --py-br-x: <%=settings.py_br_x %>;
             --py-br-y: <%=settings.py_br_y %>;
             --py-br: <%=settings.py_br %>;
+
+            --py-btn-bg-color-dark: <%= settings.py_btn_bg_color_dark %>;
+            --py-btn-bg-color-average: <%= settings.py_btn_bg_color_average %>;
+            --py-btn-bg-color-light: <%= settings.py_btn_bg_color_light %>;
+
+            --py-btn-color-dark: <%= settings.py_btn_color_dark %>;
+            --py-btn-color-average: <%= settings.py_btn_color_average %>;
+            --py-btn-color-light: <%= settings.py_btn_color_light %>;
+            
+            --py-btn-border-radius: <%=settings.py_btn_border_radius%>px;
+
+            --py-lg-btn-x-pd: <%=settings.py_lg_btn_x_pd%>;
+            --py-lg-btn-y-pd: <%=settings.py_lg_btn_y_pd%>;
+            --py-lg-btn-border-width: <%=settings.py_lg_btn_border_width%>px;
+            --py-lg-btn-font-size: <%=settings.py_lg_btn_font_size%>px;
+            --py-lg-btn-font-weight: <%=settings.py_lg_btn_font_weight%>;
+
+            --py-md-btn-x-pd: <%=settings.py_md_btn_x_pd%>;
+            --py-md-btn-y-pd: <%=settings.py_md_btn_y_pd%>;
+            --py-md-btn-border-width: <%=settings.py_md_btn_border_width%>px;
+            --py-md-btn-font-size: <%=settings.py_md_btn_font_size%>px;
+            --py-md-btn-font-weight: <%=settings.py_md_btn_font_weight%>;
+
+            --py-sm-btn-x-pd: <%=settings.py_sm_btn_x_pd%>;
+            --py-sm-btn-y-pd: <%=settings.py_sm_btn_y_pd%>;
+            --py-sm-btn-border-width: <%=settings.py_sm_btn_border_width%>px;
+            --py-sm-btn-font-size: <%=settings.py_sm_btn_font_size%>px;
+            --py-sm-btn-font-weight: <%=settings.py_sm_btn_font_weight%>;
         }
     </style>
     <% } %>
@@ -258,7 +268,7 @@
                 <% } else if(item.name==='collection list'){ %>
                     <%- include('sections/collection-list', {settings: settings, section:item, collections: collections}) %>
                 <% } else if(item.name==='contact form'){%>
-                    <%- include('sections/contact-form', {settings: settings,section:item, product: product}) %>
+                    <%- include('sections/contact-form', {page: false, form: false, settings: settings,section:item}) %>
                 <% } else if(item.name==='multicolumn'){ %>
                     <%- include('sections/multicolumn', {settings: settings, section: item}) %>
                 <% } else if(item.name==='newsletter'){ %>

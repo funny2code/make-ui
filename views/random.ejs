@@ -37,17 +37,19 @@
                         <% }) %>
                     </div>
                 <% } %>
-                <% if(section){ %>
-                    <div class="py__settings-content">
-                        <h2 class="py__settings-heading"><%= section.name %></h2>
-                        <% if(section.settings){ %>
-                            <%- include('make/settings', {settings: section.settings, global: "section"}) %>
-                        <% } %>
-                        <% if(section.blocks){ %>
-                            <h2 class="py__settings-heading">Blocks</h2>
-                            <%- include('make/blocks', {blocks: section.blocks, global: "block"}) %>
-                        <% } %>
-                    </div>
+                <% if(sections.length){ %>
+                    <% sections.forEach((section,index)=>{ %>
+                        <div class="py__settings-content">
+                            <h2 class="py__settings-heading"><%= section.name %></h2>
+                            <% if(section.settings){ %>
+                                <%- include('make/settings', {active: section.name, settings: section.settings, global: "section"}) %>
+                            <% } %>
+                            <% if(section.blocks){ %>
+                                <h2 class="py__settings-heading">Blocks</h2>
+                                <%- include('make/blocks', {blocks: section.blocks, global: "block"}) %>
+                            <% } %>
+                        </div>
+                    <% }) %>
                 <% } %>
             </form>
         </div>

@@ -61,8 +61,7 @@ slider-component {
 
 /* Scrollbar */
 
-.slider {
-  scrollbar-color: var(--color-foreground) var(--color-foreground-4);
+.slider {  
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -82,14 +81,12 @@ slider-component {
   display: initial;
 }
 
-.slider::-webkit-scrollbar-thumb {
-  background-color: var(--color-foreground);
+.slider::-webkit-scrollbar-thumb {  
   border-radius: 0.4rem;
   border: 0;
 }
 
-.slider::-webkit-scrollbar-track {
-  background: var(--color-foreground-4);
+.slider::-webkit-scrollbar-track {  
   border-radius: 0.4rem;
 }
 
@@ -143,8 +140,6 @@ slider-component .slider-buttons {
 }
 
 .slider-button {
-  color: var(--color-foreground-75);
-/*   border: 0.1rem solid var(--color-foreground-8); */
   border: 0;
   background-color: transparent;
   cursor: pointer;
@@ -152,9 +147,7 @@ slider-component .slider-buttons {
   height: 44px;
 }
 
-.slider-button:not([disabled]):hover {
-  color: var(--color-foreground);
-  border-color: var(--color-foreground);
+.slider-button:not([disabled]):hover {  
   z-index: 1;
 }
 
@@ -162,9 +155,6 @@ slider-component .slider-buttons {
   height: 1.0rem;
 }
 
-.slider-button[disabled] .icon {
-  color: var(--color-foreground-10);
-}
 
 .slider-button--next .icon {
   margin-right: -0.2rem;

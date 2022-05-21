@@ -91,7 +91,7 @@
         {%- if settings.button_font_size != blank -%}--font-button-size: {{ settings.button_font_size }};{%- endif -%}
         {%- if settings.button_font_line != blank -%}--font-button-line: {{ settings.button_font_line }};{%- endif -%}
         {%- if settings.button_font_spacing != blank -%}--font-button-spacing: {{ settings.button_font_spacing }};{%- endif -%}
-        --font-button-transform: {{ settings.button_font_transform }};
+        --font-button-transform: {{ settings.nav_font_transform }};
 
         --font-field-family: {%- if settings.field_font_custom != blank -%}'field-font'{%- else -%}{{ settings.field_font.family }}, {{ settings.field_font.fallback_families }}{%- endif -%};
         --font-field-style: {{ settings.field_font.style }};
@@ -110,22 +110,6 @@
         --py-color-dark: {{ settings.py_color_dark }};        
         --py-color-avarge: {{ settings.py_color_avarge }};        
         --py-color-light: {{ settings.py_color_light }};
-
-        --py-btn-bg-color-dark: {{ settings.py_btn_bg_color_dark }};
-        --py-btn-bg-color-avarge: {{ settings.py_btn_bg_color_avarge }};
-        --py-btn-bg-color-light: {{ settings.py_btn_bg_color_light }};
-
-        --py-btn-color-dark: {{ settings.py_btn_color_dark }};
-        --py-btn-color-avarge: {{ settings.py_btn_color_avarge }};
-        --py-btn-color-light: {{ settings.py_btn_color_light }};
-
-        --py-btn-hov-bg-color-dark: {{ settings.py_btn_hov_bg_color_dark }};
-        --py-btn-hov-bg-color-avarge: {{ settings.py_btn_hov_bg_color_avarge }};
-        --py-btn-hov-bg-color-light: {{ settings.py_btn_hov_bg_color_light }};
-
-        --py-btn-hov-color-dark: {{ settings.py_btn_hov_color_dark }};
-        --py-btn-hov-color-avarge: {{ settings.py_btn_hov_color_avarge }};
-        --py-btn-hov-color-light: {{ settings.py_btn_hov_color_light }};
 
         --py-body-bg-color: {{ settings.py_bg_body_color }};
         --py-body-color: {{ settings.py_body_color }};
@@ -246,5 +230,34 @@
         --py-br-x: {{ settings.py_br_x }};
         --py-br-y: {{ settings.py_br_y }};
         --py-br: {{ settings.py_br }};
+
+        --py-btn-bg-color-dark: {{ settings.py_btn_bg_color_dark }};
+        --py-btn-bg-color-average: {{ settings.py_btn_bg_color_average }};
+        --py-btn-bg-color-light: {{ settings.py_btn_bg_color_light }};
+
+        --py-btn-color-dark: {{ settings.py_btn_color_dark }};
+        --py-btn-color-average: {{ settings.py_btn_color_average }};
+        --py-btn-color-light: {{ settings.py_btn_color_light }};
+        
+        --py-btn-border-radius: {{settings.py_btn_border_radius}}px;
+
+        --py-lg-btn-x-pd: {{settings.py_lg_btn_x_pd}};
+        --py-lg-btn-y-pd: {{settings.py_lg_btn_y_pd}};
+        --py-lg-btn-border-width: {{settings.py_lg_btn_border_width}}px;
+        --py-lg-btn-font-size: {{settings.py_lg_btn_font_size}}px;
+        --py-lg-btn-font-weight: {{settings.py_lg_btn_font_weight}};
+
+        --py-md-btn-x-pd: {{settings.py_md_btn_x_pd}};
+        --py-md-btn-y-pd: {{settings.py_md_btn_y_pd}};
+        --py-md-btn-border-width: {{settings.py_md_btn_border_width}}px;
+        --py-md-btn-font-size: {{settings.py_md_btn_font_size}}px;
+        --py-md-btn-font-weight: {{settings.py_md_btn_font_weight}};
+
+        --py-sm-btn-x-pd: {{settings.py_sm_btn_x_pd}};
+        --py-sm-btn-y-pd: {{settings.py_sm_btn_y_pd}};
+        --py-sm-btn-border-width: {{settings.py_sm_btn_border_width}}px;
+        --py-sm-btn-font-size: {{settings.py_sm_btn_font_size}}px;
+        --py-sm-btn-font-weight: {{settings.py_sm_btn_font_weight}};
+
     }
 {%- endstyle -%}

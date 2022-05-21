@@ -25,15 +25,15 @@
   .featured-collection-1{
     background-color:<%=section.settings.section_bg_color%>;    
   }
-  .py-c-dark .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+  .featured-collection-1 .py-c-dark .card-wrapper *:not(.card-quick-add):not(.card-view-product){
     color: var(--py-color-dark);
-      }
-  .py-c-average .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+  }
+  .featured-collection-1 .py-c-average .card-wrapper *:not(.card-quick-add):not(.card-view-product){
     color: var(--py-color-avarge);
-      }
-  .py-c-light .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+  }
+  .featured-collection-1 .py-c-light .card-wrapper *:not(.card-quick-add):not(.card-view-product){
     color: var(--py-color-light);
-      }
+  }
   .card-wrapper{
     padding-bottom:15px;
     height:100%;
@@ -95,7 +95,7 @@
       <ul class="grid grid--2-col product-list-1 <% if(products_to_display === 4 || !section.settings.collection){ %> grid--2-col-tablet grid--4-col-desktop<% } else { %> grid--3-col-tablet<% } %><% if(products_to_display > 5){ %> grid--one-third-max grid--4-col-desktop grid--quarter-max<% } %><% if(collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> slider slider--tablet grid--peek<% } %><% if(section.settings.show_view_all === false || collection?.products.length < section.settings.products_to_show){ %> negative-margin<% } %><% if(section.settings.show_view_all && collection?.products.length > section.settings.products_to_show){ %> negative-margin--small<% } %>" role="list">
         <% collection?.products.forEach((product,index)=>{ %>
           <% if(index < section.settings.products_to_show){ %>
-          <li class="grid__item  py-<%=section.settings.card_color%> <% if(collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> slider__slide<% } %>"  style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
+            <li class="grid__item py-card-<%=section.settings.card_style%> py-<%=section.settings.card_color%> {% if section.settings.collection.all_products_count > 2 and section.settings.swipe_on_mobile and section.settings.products_to_show > 2 %} slider__slide{% endif %}"  style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
             <%- include('../snippets/product-card',
                 {product_card_product: product,
                 media_size: section.settings.image_ratio,

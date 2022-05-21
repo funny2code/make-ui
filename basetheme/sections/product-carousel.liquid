@@ -117,7 +117,7 @@
   <slider-component class="slider-mobile-gutter">
     <ul class="grid product-list-{{section.id}} grid--1-col grid--3-col-tablet grid--{{carousel_num}}-col-desktop {% if section.settings.collection.all_products_count > 2 and section.settings.products_limit > 2 %} slider slider--desktop {% endif %}{% if section.settings.show_view_all == false or section.settings.collection.products.size < section.settings.products_limit %} negative-margin{% endif %}{% if section.settings.show_view_all and section.settings.collection.products.size > section.settings.products_limit %} negative-margin--small{% endif %}" role="list">
       {%- for product in section.settings.collection.products limit: section.settings.products_limit -%}
-        <li class="grid__item py-{{section.settings.card_color}} {% if section.settings.collection.all_products_count > 2  and section.settings.products_limit > 2 %} slider__slide{% endif %}" style="padding-bottom:{{section.settings.item_space}}px;padding-left:{{section.settings.item_space}}px">
+        <li class="grid__item py-card-{{section.settings.card_style}} py-{{section.settings.card_color}} {% if section.settings.collection.all_products_count > 2  and section.settings.products_limit > 2 %} slider__slide{% endif %}" style="padding-bottom:{{section.settings.item_space}}px;padding-left:{{section.settings.item_space}}px">
           {% render 'product-card',
                 product_card_product: product,
                 media_size: section.settings.image_ratio,
@@ -168,7 +168,6 @@
 </div>
 
 <script src="{{ 'quickview.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
 
 {% schema %}
@@ -266,6 +265,23 @@
     {
       "type": "header",
       "content": "t:sections.product-recommendations.settings.header__2.content"
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "options": [
+        {
+          "value": "vertical",
+          "label": "Vertical"
+        },
+        {
+          "value": "horizontal",
+          "label": "horizontal"
+        }
+      ],
+      "default": "vertical",
+      "label": "Card Style",
+      "info": "Horizontal style will work on desktop only"
     },
     {
       "type": "select",

@@ -16,7 +16,7 @@ router.get('/:id', async (req, res, next) => {
 
   if(!id || !page) return next();
 
-  try{
+  try {
     const theme = await modelThemes.findById(id).exec();
     if(!theme) return next();
 
@@ -31,13 +31,12 @@ router.get('/:id', async (req, res, next) => {
             if(localData?.settings[el.settings[k].id]) el.settings[k].default = localData?.settings[el.settings[k].id]
           }
         }
-    })
-}
+      })
+    }
 
     const pageSections = theme.theme_pag.filter(item => { if(item.name === page) return item.items});
     const sections = []; 
     theme.theme_sec.filter(section => {pageSections[0].items.forEach(item => {if(item.name === section.name) return sections.push(section)})});
-    console.log(sections);
     if(localData?.sections?.length && sections){
       sections.forEach(section => {
         const findLocalSection = localData?.sections?.filter(localSection => localSection.name === section.name);
@@ -64,7 +63,7 @@ router.get('/:id', async (req, res, next) => {
     const pageNames = []; 
     theme.theme_pag.forEach(item => pageNames.push({name:item.name}));
 
-    // console.log(pageSections[0].items, "PAGE SECTIONS");
+    console.log(sections, "PAGE SECTIONS");
 
     res.render('random', {
       user: req?.session?.user || null,
@@ -75,7 +74,7 @@ router.get('/:id', async (req, res, next) => {
       fonts: fonts,
       localData: localData,
       settings: settings,
-      section: sections,
+      sections: sections,
       pageNames: pageNames
     });
 

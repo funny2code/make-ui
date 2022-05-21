@@ -34,7 +34,7 @@
     height: 5px;
     width: 5px;
     display:initial;
-    background:#666;
+    background:<%=section.settings.scroll_bar_bg_color%>;
     border-radius: 10px;    
   }
 
@@ -45,7 +45,7 @@
 
   /* Handle */
   .blog-carousel .slider::-webkit-scrollbar-thumb {
-    background: <%=section.settings.title_color%>; 
+    background: <%=section.settings.scroll_bar_color%>; 
     border-radius: 10px;
   } 
   .blog-carousel .slider{
@@ -87,8 +87,8 @@
           </ul>    
           
           <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(blogs?.articles_count < 4){ %>large-up-hide medium-hide<% } %><% if(blogs?.articles_count < 3){ %> small-hide<% } %>">
-            <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="previous_slide"><% include('../snippets/icon-caret') %></button>
-            <button type="button" class="slider-button slider-button--next" name="next" aria-label="next_slide"><% include('../snippets/icon-caret') %></button>
+            <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="previous_slide"><%- include('../snippets/icon-caret') %></button>
+            <button type="button" class="slider-button slider-button--next" name="next" aria-label="next_slide"><%- include('../snippets/icon-caret') %></button>
           </div>
          
         </slider-component>  

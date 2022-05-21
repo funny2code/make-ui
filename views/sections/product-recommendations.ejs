@@ -81,7 +81,7 @@
         <% if(count <= 4){ %>
           <% if(recommendation.tags !== 'rec_hide'){ %>
             <% count = count + 1 %>
-            <li class="grid__item py-<%=section.settings.card_color%>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
+            <li class="grid__item py-<%=section.settings.card_color%> py-card-<%=section.settings.card_style%>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
               <%- include('../snippets/product-card',{
                 show_secondary_image: true,
                 add_image_padding: false,

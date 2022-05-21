@@ -1,5 +1,18 @@
 <div class="footer-block--newsletter footer-block grid__item">
     {%- if section.settings.newsletter_enable -%}
+  <style>
+    .footer-block__newsletter .field__input{
+    background-color:{{section.settings.field_bg_color}};
+    border:{{section.settings.field_border_width}}px solid {{section.settings.field_border_color}};
+    border-radius:{{section.settings.field_border_radius}}px;
+    color:{{section.settings.field_color}};
+    font-size:{{section.settings.field_font_size}}px;
+  }
+  .footer-block__newsletter .field__input:focus{
+    color:{{section.settings.field_focus_color}};
+    border-color:{{section.settings.field_focus_color}};
+  }
+  </style>
     <div class="footer-block__newsletter">
         {%- if section.settings.newsletter_heading != blank -%}
         <h2 class="footer-block__heading">{{ section.settings.newsletter_heading | escape }}</h2>
@@ -8,6 +21,9 @@
         <input type="hidden" name="contact[tags]" value="newsletter">
         <div class="newsletter-form__field-wrapper">
         <div class="field">
+            <label class="field__label" for="NewsletterForm--{{ section.id }}">
+            {{ 'newsletter.label' | t }}
+            </label>
             <input
                     id="NewsletterForm--{{ section.id }}"
                     type="email"
@@ -28,15 +44,12 @@
                     placeholder="{{ 'newsletter.label' | t }}"
                     required
                     >
-            <label class="field__label" for="NewsletterForm--{{ section.id }}">
-            {{ 'newsletter.label' | t }}
-            </label>
         </div>
         {%- if form.errors -%}
         <small class="newsletter-form__message form__message" id="ContactFooter-error">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</small>
         {%- endif -%}
         </div>
-        <button type="submit" class="button button--secondary newsletter-form__button" name="commit" id="Subscribe">
+        <button type="submit" class="button button--secondary newsletter-form__button py-btn-{{section.settings.submit_btn_color}} py-btn-hover-{{section.settings.submit_btn_hover_color}} py-btn-{{section.settings.submit_btn_size}}" name="commit" id="Subscribe">
         {{ 'newsletter.button_label' | t }}
         </button>
         {%- if form.posted_successfully? -%}

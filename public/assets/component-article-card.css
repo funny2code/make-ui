@@ -187,25 +187,7 @@
     margin-bottom: 6rem;
     margin-top: 5rem;
   }
-  
-  .card--text-only .card__badge {
-    align-self: flex-end;
-    grid-row: 3;
-  }
-  
-  .card--search .card__badge > *,
-  .card--text-only .card__badge > * {
-    margin: 0 1.2rem 1.2rem;
-  }
-  
-  .card--search .card__badge,
-  .card--text-only .card__badge {
-    position: initial;
-  }
-  
-  .card--text-only .card__content + .card__badge {
-    margin-top: -5rem;
-  }
+ 
   
   .card--search .card__content {
     justify-self: flex-start;
@@ -221,11 +203,8 @@
     .card--text-only .card__content {
       margin-top: 7rem;
       margin-bottom: 7rem;
-    }
-  
-    .card--text-only .card__content + .card__badge {
-      margin-top: -7rem;
-    }
+    } 
+    
   }
   
   .card__text-spacing > * {
@@ -251,15 +230,8 @@
   
   .card-information__wrapper {
     font-size: 14px;
-    text-transform: uppercase;
-    text-align: center;
+    
     width: 100%;
-  }
-  
-  
-  .card-information__wrapper > *:not(.visually-hidden:first-child) + * {
-    margin-top: 2px;
-    justify-content: center;
   }
    
   .card-wrapper {
@@ -292,20 +264,6 @@
     display: flex;
     flex-wrap: wrap;
   }
-  
-  .card__badge {
-    bottom: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    left: 1rem;
-    position: absolute;
-  }
-  
-  .card__badge > * {
-    margin-right: 1rem;
-    margin-top: 0.5rem;
-  }
-  
   .overlay-card {
     position: absolute;
     top: 0;

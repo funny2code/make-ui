@@ -36,41 +36,58 @@
     // Save old settings values
     const saveSettingsValues = (id=false) => {
 
-        let data = document.querySelector('.py__settings-section-item');
-        let blockSettings = document.querySelectorAll('.py__settings-block-item');
-        let sectionName = data?.getAttribute('data-section-name');
-        let templateName = data?.getAttribute('data-template-name');
+        let dataSections = document.querySelectorAll('.py__settings-section-item');
+        if(!dataSections.length) return;
+        dataSections.forEach((data,index) => {
+            let section = {name: null, template_name: null, settings: {}, blocks: []};
+            let blockSettings = data.closest('.py__settings-content').querySelectorAll('.py__settings-block-item');
+            let sectionName = data?.getAttribute('data-section-name');
+            let templateName = data?.getAttribute('data-template-name');
 
-        let section = {name: null, template_name: null, settings: {}, blocks: []};
-        section.template_name = templateName;
+            section.template_name = templateName;
 
-        if(!sectionName){
-            data?.querySelectorAll('[name]').forEach(element => {
-                theme.settings[element.getAttribute('name').replace('settings_', '')] =  (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
-            });
-        }
+            if(!sectionName){
+                data?.querySelectorAll('[name]').forEach(element => {
+                    theme.settings[element.getAttribute('name').replace('settings_', '')] =  (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
+                });
+            }
 
-        if(theme?.sections?.length){
-            let checking = theme?.sections?.filter(sectionItem => sectionItem.name === sectionName);
-            if(checking.length){
-                theme?.sections?.forEach(sectionItem => {
-                    if(sectionItem.name === sectionName){
-                        data?.querySelectorAll('[name]').forEach(element => {
-                            sectionItem.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
-                        });
-                    }
+            if(theme?.sections?.length){
+                let checking = theme?.sections?.filter(sectionItem => sectionItem.name === sectionName);
+                if(checking.length){
+                    theme?.sections?.forEach(sectionItem => {
+                        if(sectionItem.name === sectionName){
+                            data?.querySelectorAll('[name]').forEach(element => {
+                                sectionItem.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
+                            });
+                        }
+                        if(blockSettings?.length){
+                            blockSettings.forEach(block=>{
+                                sectionItem?.blocks.forEach(localBlock => {
+                                    if(localBlock.type === block.getAttribute('data-type')){
+                                        block.querySelectorAll('[name]').forEach(element => {
+                                            localBlock.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
+                                        });
+                                    }
+                                })
+                            });
+                        }
+                    });
+                } else {
+                    section.name = sectionName;
+                    data?.querySelectorAll('[name]').forEach(element => {
+                        section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
+                    });
                     if(blockSettings?.length){
                         blockSettings.forEach(block=>{
-                            sectionItem?.blocks.forEach(localBlock => {
-                                if(localBlock.type === block.getAttribute('data-type')){
-                                    block.querySelectorAll('[name]').forEach(element => {
-                                        localBlock.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
-                                    });
-                                }
-                            })
+                            let blockItem = {type: block.getAttribute('data-type'),settings: {}};
+                            block?.querySelectorAll('[name]')?.forEach(element => {
+                                blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
+                            });
+                            section.blocks.push(blockItem);
                         });
-                    }
-                });
+                    };
+                }
             } else {
                 section.name = sectionName;
                 data?.querySelectorAll('[name]').forEach(element => {
@@ -86,25 +103,11 @@
                     });
                 };
             }
-        } else {
-            section.name = sectionName;
-            data?.querySelectorAll('[name]').forEach(element => {
-                section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
-            });
-            if(blockSettings?.length){
-                blockSettings.forEach(block=>{
-                    let blockItem = {type: block.getAttribute('data-type'),settings: {}};
-                    block?.querySelectorAll('[name]')?.forEach(element => {
-                        blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
-                    });
-                    section.blocks.push(blockItem);
-                });
-            };
-        }
 
-        if(section.name){
-            theme.sections.push(section);
-        }
+            if(section.name){
+                theme.sections.push(section);
+            }
+        })
     };
 
     // FETCH CONFIG FUNCTION
@@ -728,6 +731,11 @@
                textIsColor.value = textColor;
                textInputFiled.value = textColor;
                
+           } else if(filedType === "select"){
+                let options = filed.getElementsByTagName('option');
+                console.log(options);
+                let optionIndex = Math.floor(Math.random() * options.length);
+                filed.selectedIndex = optionIndex;
            }
        });
        saveSettingsValues();
@@ -802,7 +810,7 @@
         let container = event.target.closest('.py__settings-item');
         let isHaveGlobal = container.querySelector('.py__get-result-wrapper');
         saveSettingsValues();
-
+        console.log(isHaveGlobal);
         if(uniqName.includes('bg')){
             let textUniqName = uniqName.replace('bg_', '');
             let findInColorsJson = colorsNamesContrast[textUniqName];

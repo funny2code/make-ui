@@ -63,6 +63,7 @@ class DetailsModal extends HTMLElement {
 
     console.log(data.resources.results.products);
     let htmlItem = ``;
+    let view_btn_class = document.querySelector('.bc-search-result-wrapper').getAttribute('data_btn_class');
     data.resources.results.products.forEach(product => {
       for(i=0;i<hide_tags.length;i++){
         if(product.tags.includes(hide_tags[i])){
@@ -71,7 +72,7 @@ class DetailsModal extends HTMLElement {
           return;
         } 
       }      
-      htmlItem += `<div class="bc-cart__item">`;
+      htmlItem += `<div class="bc-cart__item"><div class="card-wrapper">`;
       htmlItem += `<div class="bc-cart__image-wrapper">
                     <a href="${product.url}">
                       <img class="bc-cart__image-img" src="${product.featured_image.url || "//cdn.shopify.com/shopifycloud/shopify/assets/no-image-100-c91dd4bdb56513f2cbf4fc15436ca35e9d4ecd014546c8d421b1aece861dfecf_55x70.gif"}" alt="${ product.featured_image.alt | "Product Image"}" width="155"/>
@@ -79,14 +80,20 @@ class DetailsModal extends HTMLElement {
                   </div>`;
       htmlItem += `<div class="bc-cart__info-wrapper">
                     <a href="${product.url}">
+                      <div class="caption-with-letter-spacing light bc-cart__vendor" style="display:none">${product.vendor}</div>
                       <h3 class="bc-cart__title">${product.title}</h3>
                       <div class="bc-cart__price-and-properties">
                         <div class="bc-cart__price-wrapper">
                           <span class="bc-cart__price">${Shopify.formatMoney(product.price)}</span>
                         </div>
                       </div>
+                      <div class="card-button-wrapper" style="display:none">
+                        <div class="card-view-wrapper">
+                          <span class="card-view-product ${view_btn_class}">View Product</span>
+                        </div>
+                      </div>
                     </a>`;
-      htmlItem += `</div></div>`;
+      htmlItem += `</div></div></div>`;
     }); 
     if(!result_count){
       htmlContent.classList.add('no-result'); 

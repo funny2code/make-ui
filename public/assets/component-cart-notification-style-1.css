@@ -93,7 +93,7 @@
   margin-top: 1.3rem;
 }
 .cart-notification-wrapper__shipping .cart-notification-product {
-  height: calc(100vh - 336px);
+  height: calc(100vh - 440px);
 }
 
 .bc-cart__item {
@@ -330,7 +330,7 @@
 }
 .bc-free-shipping-bar {
   position: relative;
-  height: 15px;
+  height: 10px;
   border-radius: 5px;
   background: #E9E9E9;
   overflow: hidden;

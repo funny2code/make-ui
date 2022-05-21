@@ -1,16 +1,4 @@
-.product-carousel .slider-button {    
-  width: 31px;
-  height: 31px;
-  border: 1px solid;
-  margin-left: 11px;
-  border-radius: 50px; 
-}
-.product-carousel .slider-button[disabled]{
-  border-color:rgba(0,0,0,.3);
-}
-.product-carousel  .slider-button .icon {
-  height: 0.67rem;
-}
+
 .product-carousel:not(.bc-br-bt) .media{
   border-radius:5px;
   background:white;
@@ -93,11 +81,4 @@
   margin: 0;
   padding: 30px 15px;
   border-bottom: 2px solid #000;
-}
-.bc-br-bt.product-carousel .slider-buttons {
-  top: -78px;
-  right: 15px;
-}
-.bc-br-bt.product-carousel .slider {
-  margin: 0;
 }

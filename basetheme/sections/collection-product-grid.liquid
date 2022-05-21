@@ -124,7 +124,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
               {% endif %}
             </style>
             {%- for product in collection.products -%}
-              <li class="grid__item py-{{section.settings.card_color}}" style="padding-bottom:{{section.settings.item_space}}px;padding-left:{{section.settings.item_space}}px">
+              <li class="grid__item py-card-{{section.settings.card_style}} py-{{section.settings.card_color}}" style="padding-bottom:{{section.settings.item_space}}px;padding-left:{{section.settings.item_space}}px">
                 {% render 'product-card',
                   product_card_product: product,
                   media_size: section.settings.image_ratio,
@@ -385,6 +385,23 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
     {
       "type": "header",
       "content": "t:sections.main-collection-product-grid.settings.header__3.content"
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "options": [
+        {
+          "value": "vertical",
+          "label": "Vertical"
+        },
+        {
+          "value": "horizontal",
+          "label": "horizontal"
+        }
+      ],
+      "default": "vertical",
+      "label": "Card Style",
+      "info": "Horizontal style will work on desktop only"
     },
     {
       "type": "select",

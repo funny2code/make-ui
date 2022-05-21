@@ -1043,7 +1043,7 @@
 .fixed-add-wraper{
   position: fixed;
   left: 50%;
-  padding: 20px;
+  padding: 10px 25px;
   bottom: 55px;
   transform: translateX(-50%);
   z-index: 50;
@@ -1064,6 +1064,9 @@
   flex-wrap: wrap;
   padding: 0 20px;
   margin-bottom: 10px;
+}
+.fixed-add-style-2.fixed-add-wraper .variant_select_container:empty{
+  display:none;
 }
 .fixed-add-wraper .select_wraper{
   margin:0 10px 10px;

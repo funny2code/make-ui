@@ -38,26 +38,72 @@
       <div class="bc-iwtp__products-wrapper">
         <% section.blocks.forEach((block, index) => { %>
           <% if(block.type == 'product' && collection){ %>
+            <style>
+              .product-item-<%=index%>.py-c-dark .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+                color: var(--py-color-dark);
+                  }
+              .product-item-<%=index%>.py-c-average .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+                color: var(--py-color-avarge);
+                  }
+              .product-item-<%=index%>.py-c-light .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+                color: var(--py-color-light);
+                  }
+              .product-item-<%=index%> .card-wrapper{
+                padding-bottom:15px;
+                height:100%;
+              } 
+              .product-item-<%=index%>  .py-center .price,
+              .product-item-<%=index%>  .py-center .card-color-wrapper,
+              .product-item-<%=index%>  .py-center ul.variant-options,
+              .product-item-<%=index%>  .py-center .card-button-wrapper{
+                justify-content: center;
+              }  
+  
+              <% if(block.settings.custom_font_style){ %>
+              .product-item-<%=index%>  .card-wrapper .card-information__text{
+                font-size: <%=block.settings.title_fontsize%>;
+                font-weight: <%=block.settings.title_fontweight%>;
+                font-stretch:<%=block.settings.title_fontstretch%>;
+                font-style:<%=block.settings.title_fontstyle%>;
+                line-height:<%=block.settings.title_lineheight%>;
+                letter-spacing:<%=block.settings.title_letterspacing%>
+              }
+              @media(max-width:749px){
+                .product-item-<%=index%>  .card-wrapper .card-information__text{
+                  font-size: <%=block.settings.title_fontsize_m%>
+                }
+              }
+              .product-item-<%=index%>  .card-wrapper .price *{
+                font-size: <%=block.settings.info_fontsize%>;
+                font-weight: <%=block.settings.info_fontweight%>;
+                font-stretch:<%=block.settings.info_fontstretch%>;
+                font-style:<%=block.settings.info_fontstyle%>;
+                line-height:<%=block.settings.info_lineheight%>;
+                letter-spacing:<%=block.settings.info_letterspacing%>
+              }
+              @media(max-width:749px){
+                .product-item-<%=index%>  .card-wrapper .price *{
+                  font-size: <%=block.settings.info_fontsize_m%>
+                }
+              }              
+              <% } %>
+            </style>
             <% var productH = collection.products[index] %>
-            <div <% if(index === 0 && settings.section_style == 'border'){ %>class="bc-br-bt"<% } %><% if(block.settings?.enable_anim){ %> data-aos="<%=block.settings?.anim%>"<% } %>>
-              <%- include('../snippets/product-card',
-                {
-                  show_secondary_image: true,
-                  add_image_padding: false,
-                  product_card_product: productH,
-                  media_size: block?.settings?.image_ratio,
-                  media_gallery:block?.settings?.image_gallery,
-                  tag_field:block?.settings?.tag_field,                                   
-                  show_vendor: block?.settings?.show_vendor,
-                  show_colors: block?.settings?.show_colors,
-                  show_view_product: block?.settings?.show_view_product,
-                  show_quick_add: block?.settings?.show_quick_add,
-                  show_variants_on_hover: block?.settings?.show_variants_on_hover,
-                  card_bg_color: block?.settings?.card_bg_color,
-                  card_radius: block?.settings?.card_radius,
-                  info_align: block?.settings?.info_align
-                })
-              %>
+            <div class="product-item-<%=index%> py-card-<%=block.settings.card_style%> py-<%=block.settings.card_color%> <% if(index && settings.section_style === 'border'){ %>bc-br-bt<% } %>" <% if(block.settings.enable_anim){ %> data-aos="<%=block.settings.anim%>"<% } %>>
+              <%- include('../snippets/product-card', {
+                  product_card_product: product,
+                  media_size: block.settings.image_ratio,
+                  media_gallery:block.settings.image_gallery,
+                  tag_field:block.settings.tag_field,                                   
+                  show_vendor: block.settings.show_vendor,
+                  show_colors: block.settings.show_colors,
+                  show_view_product: block.settings.show_view_product,
+                  show_quick_add: block.settings.show_quick_add,
+                  show_variants_on_hover: block.settings.show_variants_on_hover,
+                  card_bg_color: block.settings.card_bg_color,
+                  card_radius: block.settings.card_radius,
+                  info_align: block.settings.info_align
+                }) %>
             </div>
           <% } %>
         <% }) %>

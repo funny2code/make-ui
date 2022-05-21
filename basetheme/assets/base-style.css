@@ -4,7 +4,9 @@
 *::after {
   box-sizing: inherit;
 }
-
+svg{
+  fill:currentColor;
+}
 html {
   box-sizing: border-box;
   font-size: 62.5%;
@@ -815,21 +817,8 @@ button:not(.button){
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
-  min-width: 12rem;
-  min-height: 4.5rem;
-  padding: 0.9rem 3rem 1.1rem;
-  border-radius: 0;
-  border: 0;
-  font-family: var(--font-button-family);
-  background-color: var(--py-btn-bg-color-dark);
-  color: var(--py-btn-color-dark);
-  font-size: var(--font-button-size, 15px);
-  font-weight: var(--font-button-weight);
-  font-style: var(--font-button-weight);
-  letter-spacing: var(--font-button-spacing, normal);
-  text-transform: var(--font-button-transform);
-  transition: all var(--duration-short) ease;
+  box-sizing: border-box;  
+  transition: all 0.4s ease;
 }
 
 .button--tertiary {
@@ -843,13 +832,6 @@ button:not(.button){
   padding: 1.2rem 2.6rem;
 }
 
-/* Button - hover */
-.button:hover,
-.button:focus,
-.button:focus-visible {
-  background-color: var(--py-btn-hov-bg-color-dark);
-  color: var(--py-btn-hov-color-dark);
-}
 
 .button:disabled,
 .button[aria-disabled='true'],
@@ -932,7 +914,7 @@ button:not(.button){
   outline: none;
   box-sizing: border-box;
   width: 100%;
-  height: 4.5rem;
+  height: 3.8rem;
   border: 0;
   border-radius: 0;
   border-bottom: 2px solid var(--py-field-br-color);
@@ -995,8 +977,7 @@ button:not(.button){
 
 .field {
   position: relative;
-  width: 100%;
-  display: flex;
+  width: 100%;  
 }
 
 
@@ -1007,36 +988,13 @@ button:not(.button){
 .field__input{
   flex-grow: 1;
   text-align: left;
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 .field__label{
-  font-size: 1.6rem;
-  left: 1.5rem;
-  top: 0.85rem;
-  margin-bottom: 0;
-  pointer-events: none;
-  position: absolute;
-  transition: top var(--duration-short) ease,
-    font-size var(--duration-short) ease;
-  color: var(--py-field-br-color);
+  font-size: 1.6rem;  
   letter-spacing: 0.1rem;
   line-height: 1.5;
-}
-
-.field__input:focus ~ .field__label,
-.field__input:not(:placeholder-shown) ~ .field__label,
-.field__input:-webkit-autofill ~ .field__label{
-  font-size: 1rem;
-  top: 0.3em;
-  letter-spacing: 0.04rem;
-  color: var(--py-field-focus-color);
-}
-
-.field__input:focus,
-.field__input:not(:placeholder-shown),
-.field__input:-webkit-autofill{
-  padding: 2.2rem 1.5rem 0.8rem;
 }
 
 .field__input::-webkit-search-cancel-button{
@@ -1045,23 +1003,6 @@ button:not(.button){
 
 .field__input::placeholder{
   opacity: 0;
-}
-
-.field__button {
-  align-items: center;
-  background-color: transparent;
-  border: 0;
-  color: currentColor;
-  cursor: pointer;
-  display: flex;
-  height: 4.4rem;
-  justify-content: center;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 4.4rem;
 }
 
 .field__button > svg {
@@ -2354,36 +2295,67 @@ details[open] > .header__icon--menu .icon-hamburger {
 .py-br-c-light {
   border-color: var(--py-color-light);
 }
+/* ===== BUTTON STYLES ===== */
+.py-btn-small,
+.py-btn-medium,
+.py-btn-large{
+  border-radius:var(--py-btn-border-radius);
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;   
+  transition: all 0.4s ease;
+  border-style:solid;
+}
+.py-btn-small{
+  padding:var(--py-sm-btn-y-pd) var(--py-sm-btn-x-pd);
+  border-width:var(--py-sm-btn-border-width);
+  font-size: var(--py-sm-btn-font-size);
+  font-weight: var(--py-sm-btn-font-weight);
+}
+.py-btn-medium{
+  padding:var(--py-md-btn-y-pd) var(--py-md-btn-x-pd);
+  border-width:var(--py-md-btn-border-width);
+  font-size: var(--py-md-btn-font-size);
+  font-weight: var(--py-md-btn-font-weight);
+}
+.py-btn-large{
+  padding:var(--py-lg-btn-y-pd) var(--py-lg-btn-x-pd);
+  border-width:var(--py-lg-btn-border-width);
+  font-size: var(--py-lg-btn-font-size);
+  font-weight: var(--py-lg-btn-font-weight);
+}
 /* ===== BUTTON COLORS ===== */
 .py-btn-dark {
   background-color: var(--py-btn-bg-color-dark);
   color: var(--py-btn-color-dark);
-  border-color: var(--py-btn-bg-color-dark);
-}
-.py-btn-dark:hover {
-  background-color: var(--py-btn-hov-bg-color-dark);
-  color: var(--py-btn-hov-color-dark);
-  border-color: var(--py-btn-hov-bg-color-dark);
+  border-color: var(--py-btn-color-dark);
 }
 .py-btn-average {
-  background-color: var(--py-btn-bg-color-avarge);
-  color: var(--py-btn-color-avarge);
-  border-color: var(--py-btn-bg-color-avarge);
-}
-.py-btn-average:hover {
-  background-color: var(--py-btn-hov-bg-color-avarge);
-  color: var(--py-btn-hov-color-avarge);
-  border-color: var(--py-btn-hov-bg-color-avarge);
+  background-color: var(--py-btn-bg-color-average);
+  color: var(--py-btn-color-average);
+  border-color: var(--py-btn-color-average);
 }
 .py-btn-light {
   background-color: var(--py-btn-bg-color-light);
   color: var(--py-btn-color-light);
-  border-color: var(--py-btn-bg-color-light);
+  border-color: var(--py-btn-color-light);
 }
-.py-btn-light:hover {
-  background-color: var(--py-btn-hov-color-light);
-  color: var(--py-btn-hov-color-light);
-  border-color: var(--py-btn-hov-color-light);
+.py-btn-hover-dark:hover{
+  background-color: var(--py-btn-bg-color-dark);
+  color: var(--py-btn-color-dark);
+  border-color: var(--py-btn-color-dark);
+}
+.py-btn-hover-average:hover{
+  background-color: var(--py-btn-bg-color-average);
+  color: var(--py-btn-color-average);
+  border-color: var(--py-btn-color-average);
+}
+.py-btn-hover-light:hover{
+  background-color: var(--py-btn-bg-color-light);
+  color: var(--py-btn-color-light);
+  border-color: var(--py-btn-color-light);
 }
 /* ===== BORDER ===== */
 .py-br {

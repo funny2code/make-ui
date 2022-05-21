@@ -76,7 +76,7 @@
         {%- if count <= 4 -%}
           {%- unless recommendation.tags contains 'rec_hide' -%}
             {%- assign count = count | plus: 1 -%}
-            <li class="grid__item py-{{section.settings.card_color}}" style="padding-bottom:{{section.settings.item_space}}px;padding-left:{{section.settings.item_space}}px">
+            <li class="grid__item py-{{section.settings.card_color}} py-card-{{section.settings.card_style}}" style="padding-bottom:{{section.settings.item_space}}px;padding-left:{{section.settings.item_space}}px">
               {% render 'product-card',
                 product_card_product: recommendation,
                 media_size: section.settings.image_ratio,
@@ -203,6 +203,23 @@
     {
       "type": "header",
       "content": "t:sections.product-recommendations.settings.header__2.content"
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "options": [
+        {
+          "value": "vertical",
+          "label": "Vertical"
+        },
+        {
+          "value": "horizontal",
+          "label": "horizontal"
+        }
+      ],
+      "default": "vertical",
+      "label": "Card Style",
+      "info": "Horizontal style will work on desktop only"
     },
     {
       "type": "select",

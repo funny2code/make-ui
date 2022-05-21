@@ -174,20 +174,6 @@ div.login h3 {
   display: none;
 }
 
-.activate button[name="decline"],
-div.addresses li > button,
-div.addresses form button[type] {
-  background-color: transparent;
-  box-shadow: 0 0 0 0.1rem var(--color-base-outline-button-labels);
-  color: var(--color-base-outline-button-labels);
-}
-
-.activate button[name="decline"]:hover,
-div.addresses li > button:hover,
-div.addresses form button[type]:hover {
-  box-shadow: 0 0 0 0.2rem var(--color-base-outline-button-labels);
-}
-
 @media only screen and (min-width: 750px) {
   .activate button[name="decline"] {
     margin-top: inherit;

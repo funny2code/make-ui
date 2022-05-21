@@ -35,6 +35,10 @@
     font-weight:<%=section.settings.card_title_font_weight%>;
     color:<%=section.settings.info_color%>;
     margin-top:0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   @media(max-width:749px){
     .card__info-container h3{
@@ -57,8 +61,8 @@
     height: 5px;
     width: 5px;
     display:initial;
-    background:#666;
-    border-radius: 10px;    
+    background:<%=section.settings.scroll_bar_bg_color%>;
+    border-radius: 10px;
   }
 
   /* Track */
@@ -68,7 +72,7 @@
 
   /* Handle */
   .collection-list-wrapper .slider::-webkit-scrollbar-thumb {
-    background: <%=section.settings.title_color%>; 
+    background: <%=section.settings.scroll_bar_color%>;
     border-radius: 10px;
   } 
   .collection-list-wrapper .slider{

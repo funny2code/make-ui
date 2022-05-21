@@ -108,11 +108,11 @@
   %>
 
   <slider-component class="slider-mobile-gutter">
-    <ul class="grid product-list-1 grid--1-col grid--3-col-tablet grid--<%=carousel_num%>-col-desktop <% if(collection?.all_products_count > 2 && section.settings.products_limit > 2){ %> slider slider--desktop <% } %><% if(section.settings.show_view_all === false || collection?.products?.length < section.settings.products_limit){ %> negative-margin<% } %><% if(section.settings.show_view_all && collection?.products?.length > section.settings.products_limit){ %> negative-margin--small<% } %>" role="list">
+    <ul class="grid product-list-1 grid--1-col grid--3-col-tablet grid--<%=carousel_num%>-col-desktop <% if(collection?.products?.length > 2 && section.settings.products_limit > 2){ %> slider slider--desktop <% } %><% if(section.settings.show_view_all === false || collection?.products?.length < section.settings.products_limit){ %> negative-margin<% } %><% if(section.settings.show_view_all && collection?.products?.length > section.settings.products_limit){ %> negative-margin--small<% } %>" role="list">
       <% collection?.products.forEach((product,index)=>{ %>
         <% if(index<section.settings.products_limit){ %>
-        <li class="grid__item py-<%=section.settings.card_color%> <% if(collection?.all_products_count > 2  && section.settings.products_limit > 2){ %> slider__slide<% } %>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
-          <%- include('../snippets/product-card',
+          <li class="grid__item py-card-<%=section.settings.card_style%> py-<%=section.settings.card_color%> {% if section.settings.collection.all_products_count > 2  and section.settings.products_limit > 2 %} slider__slide{% endif %}" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
+            <%- include('../snippets/product-card',
                 {product_card_product: product,
                 media_size: section.settings.image_ratio,
                 media_gallery:section.settings.image_gallery,
@@ -130,7 +130,7 @@
         <% } %>
       <% }) %>
     </ul>    
-    <% if(collection?.all_products_count > 2 && section.settings.products_limit > 2){ %>
+    <% if(collection?.products?.length > 2 && section.settings.products_limit > 2){ %>
       <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(collection?.products_count < 4){ %>large-up-hide medium-hide<% } %><% if(collection?.products_count < 3){ %> small-hide<% } %>">
         <div class="slider-counter caption">
           <span class="slider-counter--current">1</span>
