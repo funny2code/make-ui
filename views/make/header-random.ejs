@@ -10,7 +10,7 @@
                 <div class="py__preview-select">
                     <select class="py__preview-pages-select">
                         <% pageNames.forEach(item => { %> 
-                            <option data-href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=item.name%>" <% if(page === item.name){ %>selected<% } %>>
+                            <option data-href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/remix/<%=id%>?page=<%=item.name%>" <% if(page === item.name){ %>selected<% } %>>
                                 <%=item.name%>
                             </option>
                         <% }) %>

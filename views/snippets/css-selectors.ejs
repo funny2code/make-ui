@@ -1,0 +1,197 @@
+<style>
+    :root {
+
+        --font-body-family: <%=settings.body_font_google ? settings.body_font_google: settings.body_font %>;
+        --font-body-size: <%= settings.body_font_size %>;
+        --font-body-line: <%= settings.body_font_line %>;
+        --font-body-spacing: <%= settings.body_font_spacing %>;
+    
+        --font-heading-size: <%= settings.heading_font_size %>;
+        --font-heading-line: <%= settings.heading_font_line %>;
+        --font-heading-spacing: <%= settings.heading_font_spacing %>;
+        --font-heading-transform: <%= settings.heading_font_transform %>;
+
+        --font-title-size: <%= settings.title_font_size %>;
+        --font-title-line: <%= settings.title_font_line %>;
+        --font-title-spacing: <%= settings.title_font_spacing %>;
+        --font-title-transform: <%= settings.title_font_transform %>;
+
+        --font-sub-title-size: <%= settings.sub_title_font_size %>;
+        --font-sub-title-line: <%= settings.sub_title_font_line %>;
+        --font-sub-title-spacing: <%= settings.sub_title_font_spacing %>;
+        --font-sub-title-transform: <%= settings.sub_title_font_transform %>;
+
+        --font-nav-size: <%= settings.nav_font_size %>;
+        --font-nav-line: <%= settings.nav_font_line %>;
+        --font-nav-spacing: <%= settings.nav_font_spacing %>;
+        --font-nav-transform: <%= settings.nav_font_transform %>;
+
+        --font-button-size: <%= settings.button_font_size %>;
+        --font-button-line: <%= settings.button_font_line %>;
+        --font-button-spacing: <%= settings.button_font_spacing %>;
+        --font-button-transform: <%= settings.button_font_transform %>;
+
+        --font-field-size: <%= settings.field_font_size %>;
+        --font-field-line: <%= settings.field_font_line %>;
+        --font-field-spacing: <%= settings.field_font_spacing %>;
+        --font-field-transform: <%= settings.field_font_transform %>;
+
+        --py-bg-color-dark: <%=settings.py_bg_color_dark %>;
+        --py-bg-color-middle-dark: <%=settings.py_bg_color_middle_dark %>;
+        --py-bg-color-avarge: <%=settings.py_bg_color_avarge %>;
+        --py-bg-color-middle-light: <%=settings.py_bg_color_middle_light %>;
+        --py-bg-color-light: <%=settings.py_bg_color_light %>;
+
+        --py-color-dark: <%=settings.py_color_dark %>;
+        --py-color-avarge: <%=settings.py_color_avarge %>;
+        --py-color-light: <%=settings.py_color_light %>;
+
+        --py-body-bg-color: <%=settings.py_bg_body_color %>;
+        --py-body-color: <%=settings.py_body_color %>;
+        --py-body-link-color: <%=settings.py_body_link_color %>;
+        --py-body-link-hov-color: <%=settings.py_body_link_hov_color %>;
+
+        --py-footer-bg-color: <%=settings.py_footer_bg_color %>;
+        --py-footer-color: <%=settings.py_footer_color %>;
+        --py-footer-link-color: <%=settings.py_footer_link_color %>;
+        --py-footer-link-hov-color: <%=settings.py_footer_link_hov_color %>;
+
+        --py-bag-bg-color: <%=settings.py_bag_bg_color %>;
+        --py-bag-color: <%=settings.py_bag_color %>;
+
+        --py-social-bg-color: <%=settings.py_social_bg_color %>;
+        --py-social-color: <%=settings.py_social_color %>;
+
+        --py-cart-bg-color: <%=settings.py_cart_bg_color %>;
+        --py-cart-color: <%=settings.py_cart_color %>;
+
+        --py-heading-color: <%=settings.py_heading_color %>;
+        --py-title-color: <%=settings.py_title_color %>;
+        --py-sub-title-color: <%=settings.py_sub_title_color %>;
+
+        --py-field-bg-color: <%=settings.py_field_bg_color %>;
+        --py-field-color: <%=settings.py_field_color %>;
+        --py-field-br-color: <%=settings.py_field_br_color %>;
+        --py-field-focus-color: <%=settings.py_field_focus_color %>;
+
+        --py-page-width: <%=settings.py_page_width %>;
+        --py-page-pd: <%=settings.py_page_pd %>;
+        --py-page-mg: <%=settings.py_page_mg %>;
+
+        --py-width-l: <%=settings.py_width_l %>;
+        --py-width-m: <%=settings.py_width_m %>;
+        --py-width-s: <%=settings.py_width_s %>;
+
+        --py-pd-x-xl: <%=settings.py_pd_x_xl %>;
+        --py-pd-x-l: <%=settings.py_pd_x_l %>;
+        --py-pd-x-m: <%=settings.py_pd_x_m %>;
+        --py-pd-x-s: <%=settings.py_pd_x_s %>;
+        --py-pd-x-xs: <%=settings.py_pd_x_xs %>;
+
+        --py-pd-y-xl: <%=settings.py_pd_y_xl %>;
+        --py-pd-y-l: <%=settings.py_pd_y_l %>;
+        --py-pd-y-m: <%=settings.py_pd_y_m %>;
+        --py-pd-y-s: <%=settings.py_pd_y_s %>;
+        --py-pd-y-xs: <%=settings.py_pd_y_xs %>;
+
+        --py-pd-x-tablet-xl: <%=settings.py_pd_x_tablet_xl %>;
+        --py-pd-x-tablet-l: <%=settings.py_pd_x_tablet_l %>;
+        --py-pd-x-tablet-m: <%=settings.py_pd_x_tablet_m %>;
+        --py-pd-x-tablet-s: <%=settings.py_pd_x_tablet_s %>;
+        --py-pd-x-tablet-xs: <%=settings.py_pd_x_tablet_xs %>;
+
+        --py-pd-y-tablet-xl: <%=settings.py_pd_y_tablet_xl %>;
+        --py-pd-y-tablet-l: <%=settings.py_pd_y_tablet_l %>;
+        --py-pd-y-tablet-m: <%=settings.py_pd_y_tablet_m %>;
+        --py-pd-y-tablet-s: <%=settings.py_pd_y_tablet_s %>;
+        --py-pd-y-tablet-xs: <%=settings.py_pd_y_tablet_xs %>;
+
+        --py-pd-x-mobile-xl: <%=settings.py_pd_x_mobile_xl %>;
+        --py-pd-x-mobile-l: <%=settings.py_pd_x_mobile_l %>;
+        --py-pd-x-mobile-m: <%=settings.py_pd_x_mobile_m %>;
+        --py-pd-x-mobile-s: <%=settings.py_pd_x_mobile_s %>;
+        --py-pd-x-mobile-xs: <%=settings.py_pd_x_mobile_xs %>;
+
+        --py-pd-y-mobile-xl: <%=settings.py_pd_y_mobile_xl %>;
+        --py-pd-y-mobile-l: <%=settings.py_pd_y_mobile_l %>;
+        --py-pd-y-mobile-m: <%=settings.py_pd_y_mobile_m %>;
+        --py-pd-y-mobile-s: <%=settings.py_pd_y_mobile_s %>;
+        --py-pd-y-mobile-xs: <%=settings.py_pd_y_mobile_xs %>;
+
+        --py-mg-x-xl: <%=settings.py_mg_x_xl %>;
+        --py-mg-x-l: <%=settings.py_mg_x_l %>;
+        --py-mg-x-m: <%=settings.py_mg_x_m %>;
+        --py-mg-x-s: <%=settings.py_mg_x_s %>;
+        --py-mg-x-xs: <%=settings.py_mg_x_xs %>;
+
+        --py-mg-y-xl: <%=settings.py_mg_y_xl %>;
+        --py-mg-y-l: <%=settings.py_mg_y_l %>;
+        --py-mg-y-m: <%=settings.py_mg_y_m %>;
+        --py-mg-y-s: <%=settings.py_mg_y_s %>;
+        --py-mg-y-xs: <%=settings.py_mg_y_xs %>;
+
+        --py-mg-x-tablet-xl: <%=settings.py_mg_x_tablet_xl %>;
+        --py-mg-x-tablet-l: <%=settings.py_mg_x_tablet_l %>;
+        --py-mg-x-tablet-m: <%=settings.py_mg_x_tablet_m %>;
+        --py-mg-x-tablet-s: <%=settings.py_mg_x_tablet_s %>;
+        --py-mg-x-tablet-xs: <%=settings.py_mg_x_tablet_xs %>;
+
+        --py-mg-y-tablet-xl: <%=settings.py_mg_y_tablet_xl %>;
+        --py-mg-y-tablet-l: <%=settings.py_mg_y_tablet_l %>;
+        --py-mg-y-tablet-m: <%=settings.py_mg_y_tablet_m %>;
+        --py-mg-y-tablet-s: <%=settings.py_mg_y_tablet_s %>;
+        --py-mg-y-tablet-xs: <%=settings.py_mg_y_tablet_xs %>;
+
+        --py-mg-x-mobile-xl: <%=settings.py_mg_x_mobile_xl %>;
+        --py-mg-x-mobile-l: <%=settings.py_mg_x_mobile_l %>;
+        --py-mg-x-mobile-m: <%=settings.py_mg_x_mobile_m %>;
+        --py-mg-x-mobile-s: <%=settings.py_mg_x_mobile_s %>;
+        --py-mg-x-mobile-xs: <%=settings.py_mg_x_mobile_xs %>;
+
+        --py-mg-y-mobile-xl: <%=settings.py_mg_y_mobile_xl %>;
+        --py-mg-y-mobile-l: <%=settings.py_mg_y_mobile_l %>;
+        --py-mg-y-mobile-m: <%=settings.py_mg_y_mobile_m %>;
+        --py-mg-y-mobile-s: <%=settings.py_mg_y_mobile_s %>;
+        --py-mg-y-mobile-xs: <%=settings.py_mg_y_mobile_xs %>;
+
+        --py-fs-xl: <%=settings.py_fs_xl %>;
+        --py-fs-l: <%=settings.py_fs_l %>;
+        --py-fs-m: <%=settings.py_fs_m %>;
+        --py-fs-s: <%=settings.py_fs_s %>;
+        --py-fs-xs: <%=settings.py_fs_xs %>;
+
+        --py-br-c: <%=settings.py_br_c %>;
+        --py-br-s: <%=settings.py_br_s %>;
+        --py-br-x: <%=settings.py_br_x %>;
+        --py-br-y: <%=settings.py_br_y %>;
+        --py-br: <%=settings.py_br %>;
+
+        --py-btn-bg-color-dark: <%= settings.py_btn_bg_color_dark %>;
+        --py-btn-bg-color-average: <%= settings.py_btn_bg_color_average %>;
+        --py-btn-bg-color-light: <%= settings.py_btn_bg_color_light %>;
+
+        --py-btn-color-dark: <%= settings.py_btn_color_dark %>;
+        --py-btn-color-average: <%= settings.py_btn_color_average %>;
+        --py-btn-color-light: <%= settings.py_btn_color_light %>;
+        
+        --py-btn-border-radius: <%=settings.py_btn_border_radius%>px;
+
+        --py-lg-btn-x-pd: <%=settings.py_lg_btn_x_pd%>;
+        --py-lg-btn-y-pd: <%=settings.py_lg_btn_y_pd%>;
+        --py-lg-btn-border-width: <%=settings.py_lg_btn_border_width%>px;
+        --py-lg-btn-font-size: <%=settings.py_lg_btn_font_size%>px;
+        --py-lg-btn-font-weight: <%=settings.py_lg_btn_font_weight%>;
+
+        --py-md-btn-x-pd: <%=settings.py_md_btn_x_pd%>;
+        --py-md-btn-y-pd: <%=settings.py_md_btn_y_pd%>;
+        --py-md-btn-border-width: <%=settings.py_md_btn_border_width%>px;
+        --py-md-btn-font-size: <%=settings.py_md_btn_font_size%>px;
+        --py-md-btn-font-weight: <%=settings.py_md_btn_font_weight%>;
+
+        --py-sm-btn-x-pd: <%=settings.py_sm_btn_x_pd%>;
+        --py-sm-btn-y-pd: <%=settings.py_sm_btn_y_pd%>;
+        --py-sm-btn-border-width: <%=settings.py_sm_btn_border_width%>px;
+        --py-sm-btn-font-size: <%=settings.py_sm_btn_font_size%>px;
+        --py-sm-btn-font-weight: <%=settings.py_sm_btn_font_weight%>;
+    }
+</style>

@@ -10,6 +10,7 @@
     var saveButton = null; 
     var downloadButton = null;
     var loading = null;
+    var shadeColor = null;
     var themeName = "ThemeMake";
 
     // Colors names Objects 
@@ -529,7 +530,7 @@
             let myIframes = document.querySelectorAll('iframe.py__view-iframe');
             myIframes?.forEach(iframeItem =>{
                 let ifrm = iframeItem.contentDocument || iframeItem.contentWindow.document;
-                html ? ifrm.querySelector('html').innerHTML = html.querySelector('html').innerHTML : null;
+                html ? ifrm.querySelector('body').innerHTML = html.querySelector('body').innerHTML : null;
             })
             loading?.classList.remove('py__animate');
         })
@@ -688,16 +689,28 @@
         for (var i = 0; i < 6; i++) {
           color += letters[Math.floor(Math.random() * 16)];
         }
+        shadeColor = color;
         return color;
-        
-        // return "#" + ("00000" + Math.floor(Math.random() * Math.pow(16, 6)).toString(16)).slice(-6);
+    };
 
-        // var color = Math.floor(Math.random() * 255).toString(16);
-        // if (color.length === 1)
-        // {
-        //     color.concat('0');
-        // }
-        // return '#' + color + color + color;
+    const generateShade = (color, percent) => {
+        let R = parseInt(color.substring(1,3),16);
+        let G = parseInt(color.substring(3,5),16);
+        let B = parseInt(color.substring(5,7),16);
+
+        R = parseInt(R * (100 + percent) / 100);
+        G = parseInt(G * (100 + percent) / 100);
+        B = parseInt(B * (100 + percent) / 100);
+
+        R = (R<255)?R:255;  
+        G = (G<255)?G:255;  
+        B = (B<255)?B:255;  
+
+        var RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
+        var GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
+        var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
+
+        return "#"+RR+GG+BB;
     };
 
     const randomFun = (event) => {
@@ -707,33 +720,46 @@
        loading?.classList.add('py__animate');
 
        let inputFileds = document.querySelectorAll('[name]');
+       let index = 1;
+       let percent = -90;
        if(!inputFileds.length) return;
        inputFileds.forEach(filed => {
            let filedType = filed.getAttribute('type');
            let filedName = filed.getAttribute('name');
-           if(filedType === "color" && filedName.includes('bg')){
+           if(filedType === "color"){
+                if(filedName.includes('bg')){
+                    let color = (index === 1) ? generateRandomColor() : generateShade(shadeColor, percent);
+                    let closestWrap = filed.closest('.py__comp-color');
+                    let isColor = closestWrap.querySelector('.is__color');
+                    let isColorLabel = closestWrap.querySelector('.py__label-for-color');
+                    isColorLabel.style.backgroundColor = color;
+                    isColor.value = color;
+                    filed.value = color;
+                    index++;
+                    percent = percent + 30;
 
-               let color = generateRandomColor();
-               let closestWrap = filed.closest('.py__comp-color');
-               let isColor = closestWrap.querySelector('.is__color');
-               let isColorLabel = closestWrap.querySelector('.py__label-for-color');
-               isColorLabel.style.backgroundColor = color;
-               isColor.value = color;
-               filed.value = color;
+                    let textInputFiled = document.querySelector(`[name="${filedName.replace('_bg', '')}"]`);
+                    if(!textInputFiled) return;
+                    let textColor = getContrastYIQ(color);
+                    let textClosestWrap = textInputFiled.closest('.py__comp-color');
+                    let textIsColor = textClosestWrap.querySelector('.is__color');
+                    let textIsColorLabel = textClosestWrap.querySelector('.py__label-for-color');
+                    textIsColorLabel.style.backgroundColor = textColor;
+                    textIsColor.value = textColor;
+                    textInputFiled.value = textColor;
+                } 
+            // else {
+            //    let color = getContrastYIQ(shadeColor)
+            //    let closestWrap = filed.closest('.py__comp-color');
+            //    let isColor = closestWrap.querySelector('.is__color');
+            //    let isColorLabel = closestWrap.querySelector('.py__label-for-color');
+            //    isColorLabel.style.backgroundColor = color;
+            //    isColor.value = color;
+            //    filed.value = color;
+            // }
 
-               let textInputFiled = document.querySelector(`[name="${filedName.replace('_bg', '')}"]`);
-               if(!textInputFiled) return;
-               let textColor = getContrastYIQ(color);
-               let textClosestWrap = textInputFiled.closest('.py__comp-color');
-               let textIsColor = textClosestWrap.querySelector('.is__color');
-               let textIsColorLabel = textClosestWrap.querySelector('.py__label-for-color');
-               textIsColorLabel.style.backgroundColor = textColor;
-               textIsColor.value = textColor;
-               textInputFiled.value = textColor;
-               
            } else if(filedType === "select"){
                 let options = filed.getElementsByTagName('option');
-                console.log(options);
                 let optionIndex = Math.floor(Math.random() * options.length);
                 filed.selectedIndex = optionIndex;
            }

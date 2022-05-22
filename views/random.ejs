@@ -30,7 +30,7 @@
                         <% settings.forEach(comp => { %>
                             <h2 class="py__settings-heading"><%= comp.name %></h2>
                             <% if(comp.settings){ %>
-                                <%- include('make/settings', {settings: comp.settings, global: "settings"}) %>
+                                <%- include('make/settings', {settings: comp.settings, global: "settings", remix: true}) %>
                             <% } else { %>
                                 <%- include('components/brand', {name: comp.theme_name}) %>
                             <% } %>
@@ -42,7 +42,7 @@
                         <div class="py__settings-content">
                             <h2 class="py__settings-heading"><%= section.name %></h2>
                             <% if(section.settings){ %>
-                                <%- include('make/settings', {active: section.name, settings: section.settings, global: "section"}) %>
+                                <%- include('make/settings', {active: section.name, settings: section.settings, global: "section", remix: true}) %>
                             <% } %>
                             <% if(section.blocks){ %>
                                 <h2 class="py__settings-heading">Blocks</h2>
