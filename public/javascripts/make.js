@@ -31,7 +31,7 @@
         var g = parseInt(hexcolor.substr(2,2),16);
         var b = parseInt(hexcolor.substr(4,2),16);
         var yiq = ((r*299)+(g*587)+(b*114))/1000;
-        return (yiq >= 128) ? '#000000' : '#ffffff';
+        return (yiq >= 186) ? '#000000' : '#ffffff';
     };
 
     // Save old settings values
@@ -728,32 +728,24 @@
            let filedType = filed.getAttribute('type');
            let filedName = filed.getAttribute('name');
            if(filedType === "color"){
-                if(filedName.includes('bg')){
-                    let color = (index === 1) ? generateRandomColor() : generateShade(shadeColor, percent);
-                    let closestWrap = filed.closest('.component-is-color');
-                    let isColorLabel = closestWrap.querySelector('.py__label-for-color');
-                    isColorLabel.style.backgroundColor = color;
-                    filed.value = color;
-                    index++;
-                    percent = percent + 30;
 
-                    let textInputFiled = document.querySelector(`[name="${filedName.replace('_bg', '')}"]`);
-                    if(!textInputFiled) return;
-                    let textColor = getContrastYIQ(color);
-                    let textClosestWrap = textInputFiled.closest('.component-is-color');
-                    let textIsColorLabel = textClosestWrap.querySelector('.py__label-for-color');
-                    textIsColorLabel.style.backgroundColor = textColor;
-                    textInputFiled.value = textColor;
-                } 
-            // else {
-            //    let color = getContrastYIQ(shadeColor)
-            //    let closestWrap = filed.closest('.py__comp-color');
-            //    let isColor = closestWrap.querySelector('.is__color');
-            //    let isColorLabel = closestWrap.querySelector('.py__label-for-color');
-            //    isColorLabel.style.backgroundColor = color;
-            //    isColor.value = color;
-            //    filed.value = color;
-            // }
+            if(filedName.includes('_bg')){
+                let color = (index === 1) ? generateRandomColor() : generateShade(shadeColor, percent);
+                let closestWrap = filed.closest('.component-is-color');
+                let isColorLabel = closestWrap.querySelector('.py__label-for-color');
+                isColorLabel.style.backgroundColor = color;
+                filed.value = color;
+                index++;
+                percent = percent + 30;
+
+                let textInputFiled = document.querySelector(`[name="${filedName.replace('_bg', '')}"]`);
+                if(!textInputFiled) return;
+                let textColor = getContrastYIQ(color);
+                let textClosestWrap = textInputFiled.closest('.component-is-color');
+                let textIsColorLabel = textClosestWrap.querySelector('.py__label-for-color');
+                textIsColorLabel.style.backgroundColor = textColor;
+                textInputFiled.value = textColor;
+            }
 
            } else if(filedType === "select"){
                 let options = filed.getElementsByTagName('option');
