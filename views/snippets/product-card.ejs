@@ -141,7 +141,7 @@
     <% product_card_product?.options?.forEach((option,index)=>{ %>
     <% var option_name = option?.name?.toLowerCase() %> 
     <% var option_index = index %> 
-    <% if(option_name !== 'color' || option_name !== 'colour'){ %>
+    <% if(option_name !== 'color' && option_name !== 'colour'){ %>
       <ul class="variant-options" option_index="<%=option_index%>">
         <% option.values.forEach((value,index)=>{ %>
         <li class="variant-option <% if(index === 0){ %>selected<% } %>" data-index="<%= index %>" data-option="<%= value %>">

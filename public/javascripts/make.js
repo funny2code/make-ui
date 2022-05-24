@@ -41,7 +41,8 @@
         if(!dataSections.length) return;
         dataSections.forEach((data,index) => {
             let section = {name: null, template_name: null, settings: {}, blocks: []};
-            let blockSettings = data.closest('.py__settings-content').querySelectorAll('.py__settings-block-item');
+            let sectionClosest = data.closest('.py__closest');
+            let blockSettings = sectionClosest ? sectionClosest.querySelectorAll('.py__settings-block-item') : null;
             let sectionName = data?.getAttribute('data-section-name');
             let templateName = data?.getAttribute('data-template-name');
 
@@ -729,11 +730,9 @@
            if(filedType === "color"){
                 if(filedName.includes('bg')){
                     let color = (index === 1) ? generateRandomColor() : generateShade(shadeColor, percent);
-                    let closestWrap = filed.closest('.py__comp-color');
-                    let isColor = closestWrap.querySelector('.is__color');
+                    let closestWrap = filed.closest('.component-is-color');
                     let isColorLabel = closestWrap.querySelector('.py__label-for-color');
                     isColorLabel.style.backgroundColor = color;
-                    isColor.value = color;
                     filed.value = color;
                     index++;
                     percent = percent + 30;
@@ -741,11 +740,9 @@
                     let textInputFiled = document.querySelector(`[name="${filedName.replace('_bg', '')}"]`);
                     if(!textInputFiled) return;
                     let textColor = getContrastYIQ(color);
-                    let textClosestWrap = textInputFiled.closest('.py__comp-color');
-                    let textIsColor = textClosestWrap.querySelector('.is__color');
+                    let textClosestWrap = textInputFiled.closest('.component-is-color');
                     let textIsColorLabel = textClosestWrap.querySelector('.py__label-for-color');
                     textIsColorLabel.style.backgroundColor = textColor;
-                    textIsColor.value = textColor;
                     textInputFiled.value = textColor;
                 } 
             // else {
@@ -776,11 +773,11 @@
         if(!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
-        let wrapper = event.target.closest('.py__comp-color');
-        let isColor = wrapper.querySelector('.is__color');
-        let forColor = wrapper.querySelector('.py__label-for-color');
-        isColor.value = value;
-        forColor.style.backgroundColor = value;
+        let wrapper = event.target.closest('.component-is-color');
+        let isColor = wrapper?.querySelector('.is__color');
+        let forColor = wrapper?.querySelector('.py__label-for-color');
+        if(isColor) isColor.value = value;
+        if(forColor) forColor.style.backgroundColor = value;
         saveSettingsValues();
 
         if(uniqName.includes('bg')){
@@ -789,11 +786,11 @@
             let textColorInput = findInColorsJson ? document.querySelector(`[name="${findInColorsJson}"]`) : document.querySelector(`[name="${textUniqName}"]`);
             if(textColorInput){ 
                 let newColor = getContrastYIQ(value);
-                let childWrapper = textColorInput.closest('.py__comp-color');
-                let childIsColor = childWrapper.querySelector('.is__color');
-                let childForColor = childWrapper.querySelector('.py__label-for-color');
-                childIsColor.value = newColor;
-                childForColor.style.backgroundColor = newColor;
+                let childWrapper = textColorInput.closest('.component-is-color');
+                let childIsColor = childWrapper?.querySelector('.is__color');
+                let childForColor = childWrapper?.querySelector('.py__label-for-color');
+                if(childIsColor) childIsColor.value = newColor;
+                if(childForColor) childForColor.style.backgroundColor = newColor;
                 textColorInput.value = newColor;
             }
         }
@@ -834,9 +831,8 @@
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
         let container = event.target.closest('.py__settings-item');
-        let isHaveGlobal = container.querySelector('.py__get-result-wrapper');
+        let isHaveGlobal = container?.querySelector('.py__get-result-wrapper');
         saveSettingsValues();
-        console.log(isHaveGlobal);
         if(uniqName.includes('bg')){
             let textUniqName = uniqName.replace('bg_', '');
             let findInColorsJson = colorsNamesContrast[textUniqName];

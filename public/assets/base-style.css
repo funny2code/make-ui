@@ -4,7 +4,7 @@
 *::after {
   box-sizing: inherit;
 }
-img {
+img:not(.not-this) {
   width: 100%;
   max-width: 100%;
 }

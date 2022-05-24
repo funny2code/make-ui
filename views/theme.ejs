@@ -87,7 +87,7 @@
                         </div>
                     <% } %>
                     <% if(section){ %>
-                        <div class="py__settings-content">
+                        <div class="py__settings-content py__closest">
                             <h2 class="py__settings-heading"><%= section.name %></h2>
                             <% if(section.settings){ %>
                                 <%- include('make/settings', {settings: section.settings, global: "section"}) %>

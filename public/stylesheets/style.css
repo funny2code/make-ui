@@ -769,6 +769,7 @@ select {
 }
 .py__preview-random-iframe iframe {
   border-radius: 8px;
+  height: calc(100vh - 290px);
 }
 .py__preview-select select {
   background: #FFFFFF;
@@ -1240,4 +1241,102 @@ select {
   100% {
     opacity: 0;
   }
+}
+
+
+/* RANDOM SETTINGS STYLES */
+.py__make-random-settings {
+  margin-top: 20px;
+  flex: unset;
+}
+.py__make-random-settings > form {
+  margin-top: 0;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  height: 101px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+.py__random-settings-wrap {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.py__random-item-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.py__random-item-name {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 14px;
+  color: #000000;
+}
+.py__random-item-content {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.py__random-comp {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.py__random_comp-color {
+  align-items: center;
+}
+.py__random_comp-color > label {
+  width: 47px;
+  height: 47px;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0px 4px 21px rgb(0 0 0 / 25%);
+  border-radius: 50%;
+  margin-bottom: 7px;
+}
+.py__random_comp-color > label > input {
+  opacity: 0;
+  visibility: hidden;
+}
+.py__random_comp-color > span {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #000000;
+}
+.py__random-sections-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-start;
+}
+.py__random-comp-select label {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 14px;
+  color: #000000;
+}
+.py__random-comp-select select {
+  border-radius: 4px;
+  font-size: 14px;
+  color: #374151;
+}
+.py__random-settings-button-wrap .py__button {
+  padding: 0 25px;
+  border-radius: 0;
+}
+.py__random-section-item,
+.py__random-section-content,
+.py__random-block-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
 }

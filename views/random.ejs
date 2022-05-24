@@ -23,35 +23,107 @@
                 </div>
             </div>
         </div>
-        <div class="py__make-random-settings">
+        <div class="py__make-settings py__make-random-settings">
             <form class="py__settings-form" method="post" action="/save/<%= (user && !isAdmin) ? 'users/' + user._id + '/themes/' + id : id %>" aria-multiline="true">
                 <% if(settings){ %> 
-                    <div class="py__settings-content py__settings-section-item">
-                        <% settings.forEach(comp => { %>
-                            <h2 class="py__settings-heading"><%= comp.name %></h2>
+                    <% settings.forEach(comp => { %>
+                        <% if(comp.name === 'Global Styles'){ %>
                             <% if(comp.settings){ %>
-                                <%- include('make/settings', {settings: comp.settings, global: "settings", remix: true}) %>
-                            <% } else { %>
-                                <%- include('components/brand', {name: comp.theme_name}) %>
+                                <div class="py__random-settings-wrap py__settings-section-item">
+                                <% comp.settings.forEach((item, index) => { %>
+                                    <% if(index > 9 && item.id){ %>
+                                        <input type="hidden" name="<%=item.id%>" value="<%=item.default%>"/>
+                                    <% } %>
+                                    <% if(index > 9) return; %>
+                                    <% if(item.type === 'header'){ %>
+                                        <div class="py__random-item-wrapper">
+                                            <div class="py__random-item-name">
+                                                <span><%= item.content %></span>
+                                            </div>
+                                            <div class="py__random-item-content">
+                                    <% } %>
+                                        <% if(item.type === "color"){ %>
+                                            <div class="py__random-comp py__random_comp-color component-is-color">
+                                                <label for="settings-<%=item.id%>" class="py__label-for-color" <% if(item.default){ %>style="background:<%=item.default%>;"<% } %>>
+                                                    <input type="color" id="settings-<%=item.id%>" name="<%=item.id%>" <% if(item.default){ %>value="<%=item.default%>"<% } %>/>
+                                                </label>
+                                                <span><%=item.label%></span>
+                                            </div>
+                                        <% } %>
+                                    <% if(index === 5 || index === 9){ %>
+                                            </div>
+                                        </div>
+                                    <% } %>
+                                <% }) %>
+                                </div>
                             <% } %>
-                        <% }) %>
-                    </div>
+                        <% } %>
+                    <% }) %>
                 <% } %>
                 <% if(sections.length){ %>
                     <% sections.forEach((section,index)=>{ %>
-                        <div class="py__settings-content">
-                            <h2 class="py__settings-heading"><%= section.name %></h2>
+                        <% if(section?.settings && section?.blocks?.length){ %>
+                            <% 
+                                var templateName = null;
+                                if(page === "Home Page"){ 
+                                    templateName = "index"
+                                } else if(page === "Collection Page"){ 
+                                    templateName = "collection"
+                                } else if(page === "Product Page"){ 
+                                    templateName = "product"
+                                } 
+                            %> 
+                        <div class="py__random-section-item py__closest">
                             <% if(section.settings){ %>
-                                <%- include('make/settings', {active: section.name, settings: section.settings, global: "section", remix: true}) %>
+                                <div class="py__random-section-content py__settings-section-item" data-section-name="<%=section.name%>" data-template-name="<%=templateName%>">
+                                    <% section.settings.forEach((item,index)=>{ %>
+                                        <% if(item.type === "select" && item?.id?.includes('style') || item?.id?.includes('position')){ %>
+                                            <div class="py__random-comp py__random-comp-select">
+                                                <label for="section-<%=item.id%>"><%=item.label%></label>
+                                                <select name="<%=item.id %>" id="section-<%=item.id%>"type="select">
+                                                    <% item.options.forEach(option => { %>
+                                                        <option value="<%= option.value %>" <% if(item.default === option.value){ %>selected<% } %>><%= option.label %></option>
+                                                    <% }) %>
+                                                </select>
+                                            </div>
+                                        <% } else if(item.id){ %>
+                                            <input type="hidden" name="<%=item.id%>" value="<%=item.default%>"/>
+                                        <% } %>
+                                    <% }) %>
+                                </div>
                             <% } %>
-                            <% if(section.blocks){ %>
-                                <h2 class="py__settings-heading">Blocks</h2>
-                                <%- include('make/blocks', {blocks: section.blocks, global: "block"}) %>
+                            <% if(section.blocks.length){ %>
+                                <% section.blocks.forEach((block,index)=>{ %>
+                                    <% if(block.settings){ %>
+                                        <div class="py__random-block-wrap py__settings-block-item" data-type="<%=block.type%>">
+                                            <% block.settings.forEach((item,index)=>{ %>
+                                                <% if(item.type === "select" && item?.id?.includes('style') || item?.id?.includes('position')){ %>
+                                                    <div class="py__random-comp py__random-comp-select">
+                                                        <label for="<%= "block_" + item.id %>"><%=item.label%></label>
+                                                        <select name="block_<%=item.id%>" type="select">
+                                                            <% item.options.forEach(option => { %>
+                                                                <option value="<%=option.value%>" <% if(item.default === option.value){ %>selected<% } %>><%=option.label%></option>
+                                                            <% }) %>
+                                                        </select>
+                                                    </div>
+                                                <% } else if(item.id){ %>
+                                                    <input type="hidden" name="block_<%=item.id%>" value="<%=item.default%>"/>
+                                                <% } %>
+                                            <% }) %>
+                                        </div>
+                                    <% } %>
+                                <% }) %>
                             <% } %>
                         </div>
+                        <% } %>
                     <% }) %>
                 <% } %>
             </form>
+            <div class="py__random-settings-button-wrap">
+                <a href="/signup" class="py__button py__button-black py__signup-button" data-id="<%=id%>">
+                    Save Customizations
+                </a>
+            </div>
         </div>
         <script src="https://js.stripe.com/v3/"></script>
         <script src="/javascripts/make.js"></script>
