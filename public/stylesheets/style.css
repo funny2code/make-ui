@@ -1340,3 +1340,15 @@ select {
   flex-wrap: wrap;
   gap: 40px;
 }
+
+
+/* MOBILE RESPONSIVE */
+@media only screen and (max-width:500px){
+  .py__preview-iframe-desktop,
+  .py__preview-iframe-tablet {
+    display: none;
+  }
+  .py__preview-iframe-mobile {
+    width: 100%;
+  }
+}
