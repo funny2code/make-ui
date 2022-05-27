@@ -48,16 +48,9 @@
     padding-bottom:20px;
   }
   .blog-carousel .slider-button{
-    background-color:{{section.settings.title_color}};
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    padding-top: 5px;
-  }
-  .blog-carousel .slider-button path{
-    fill: {{section.settings.title_color}};
-    filter: invert(1);
-  }
+    color:{{section.settings.info_color}};
+    border-radius: 50%;    
+  }  
   .blog-carousel .slider-buttons{
     bottom: auto;
     top: 45%;
@@ -83,8 +76,8 @@
           </ul>    
           
           <div class="slider-buttons slider-buttons-desktop no-js-hidden{% if section.settings.blog.articles_count < 4 %}large-up-hide medium-hide{% endif %}{% if section.settings.blog.articles_count < 3 %} small-hide{% endif %}">
-            <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}">{% render 'icon-caret' %}</button>
-            <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{% render 'icon-caret' %}</button>
+            <button type="button" class="slider-button slider-button--prev has-bg py-{{section.settings.card_bg_color}}" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}">{% render 'icon-caret' %}</button>
+            <button type="button" class="slider-button slider-button--next has-bg py-{{section.settings.card_bg_color}}" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{% render 'icon-caret' %}</button>
           </div>
          
         </slider-component>  

@@ -140,38 +140,41 @@ slider-component .slider-buttons {
 }
 
 .slider-button {
-  border: 0;
-  background-color: transparent;
+  border: 0;  
   cursor: pointer;
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
+.slider-button:not(.has-bg){
+  background-color:transparent;
+}
 .slider-button:not([disabled]):hover {  
   z-index: 1;
 }
 
-.slider-button .icon {
-  height: 1.0rem;
+.slider-button .icon {  
+  width:14px;
+  
 }
 
 
-.slider-button--next .icon {
-  margin-right: -0.2rem;
-  transform: rotate(-90deg) translateX(0.15rem);
+.slider-button--next .icon {  
+  transform: rotate(-90deg)
 }
 
-.slider-button--prev .icon {
-  margin-left: -0.2rem;
-  transform: rotate(90deg) translateX(-0.15rem);
+.slider-button--prev .icon {  
+  transform: rotate(90deg)
 }
 
 .slider-button--next:not([disabled]):hover .icon {
-  transform: rotate(-90deg) translateX(0.15rem) scale(1.07);
+  transform: rotate(-90deg) scale(1.07);
 }
 
 .slider-button--prev:not([disabled]):hover .icon {
-  transform: rotate(90deg) translateX(-0.15rem) scale(1.07);
+  transform: rotate(90deg) scale(1.07);
 }
 
 .slider-button:focus-visible {

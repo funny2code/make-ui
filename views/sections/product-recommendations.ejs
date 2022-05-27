@@ -8,7 +8,7 @@
 <product-recommendations class="product-recommendations collection" data-url="/recommendations/products?section_id=recommendations&product_id=<%= product?.id %>&limit=8">
   <% if(collection.products_count > 0){ %>
     <h2 class="product-recommendations__heading"><%= section.settings.heading %></h2>
-    <ul class="grid grid--2-col grid--3-col-tablet  product-list-1 <% if(collection.products_count > 3){ %> grid--4-col-desktop grid--quarter-max<% } %> bc-scroll-hide"  style="margin-left:-<%=section.settings.item_space%>px;" role="list">
+    <ul class="grid grid--1-col grid--3-col-tablet  product-list-1 <% if(collection.products_count > 3){ %> grid--4-col-desktop grid--quarter-max<% } %> bc-scroll-hide"  style="margin-left:-<%=section.settings.item_space%>px;" role="list">
       <style>
         product-recommendations{
           background-color:<%=section.settings.section_bg_color%>;

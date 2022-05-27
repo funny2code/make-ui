@@ -12,7 +12,7 @@
   <div class="page-width py-pd-x-m py-pd-y-m">
   {% if recommendations.performed and recommendations.products_count > 0 %}
     <h2 class="product-recommendations__heading">{{ section.settings.heading | escape }}</h2>
-    <ul class="grid grid--2-col grid--3-col-tablet  product-list-{{section.id}} {% if recommendations.products_count > 3 %} grid--4-col-desktop grid--quarter-max{% endif %} bc-scroll-hide"  style="margin-left:-{{section.settings.item_space}}px;" role="list">
+    <ul class="grid grid--1-col grid--3-col-tablet  product-list-{{section.id}} slider slider--desktop {% if recommendations.products_count > 3 %} grid--4-col-desktop grid--quarter-max{% endif %} bc-scroll-hide"  style="margin-left:-{{section.settings.item_space}}px;" role="list">
       <style>
         product-recommendations{
           background-color:{{section.settings.section_bg_color}};
@@ -324,7 +324,7 @@
     {
       "type": "checkbox",
       "id": "show_quick_add",
-      "default": true,
+      "default": false,
       "label": "Show Quick Add Button"
     },
     {

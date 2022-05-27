@@ -7,8 +7,7 @@
   display: block;
 }
 
-.cart-notification {
-  background-color: var(--py-cart-bg-color);
+.cart-notification {  
   position: fixed;
   transform: translate(-50%, 100%);
   visibility: hidden;
@@ -277,11 +276,6 @@
 .bc-cart__not-products a {
   text-decoration: underline;
   font-weight: 400;
-}
-
-.bc-cart__buttons-wrapper .button {
-  font-size: 16px;
-  border-radius: 4px;  
 }
 
 .bc-cart__subtotal-wrapper,

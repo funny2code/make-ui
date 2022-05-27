@@ -418,50 +418,33 @@
     position:fixed;
     width:100%;
   }
-  
-  #loopcheckout{
-    background-color:{{settings.ck_btn_bg}};
-    color:{{settings.ck_btn_color}};
-    min-height:36px;
-  }
-  #loopcheckout:hover{
-    background-color:{{settings.ck_btn_hover_bg}};
-    color:{{settings.ck_btn_hover_color}};
-  }
   cart-notification .bc-cart__item .bc-cart__title{
-    font-size:{{settings.item_title_font_size}};
+    font-size:{{settings.item_title_font_size}}px;
   }
   cart-notification .bc-cart__item .bc-cart__variant-title{
-    font-size:{{settings.item_title_font_size}};
+    font-size:{{settings.item_title_font_size}}px;
   }
   cart-notification .bc-cart__item .bc-cart__price-wrapper{
-    font-size:{{settings.item_price_font_size}};
+    font-size:{{settings.item_price_font_size}}px;
   }
   cart-notification .bc-cart__item .bc-cart__properties-wrapper{
-    font-size:{{settings.item_content_font_size}};
-  }
-  {% if settings.button_radius %}
-  cart-notification .bc-cart__buttons-wrapper .button{
-    border-radius: {{settings.button_radius}}px; 
-  }
-  {% endif %}
+    font-size:{{settings.item_content_font_size}}px;
+  }  
   cart-notification .bc-cart__buttons-wrapper .button{
     border:none;
-  }
-  {% if settings.item_bg %}
+  }  
   cart-notification .bc-cart__item{
     padding:10px;
-    background-color:{{settings.item_bg}};
-    {% if settings.item_radius %}
-    border-radius: {{settings.item_radius}}px; 
-    {% endif %}
+    background-color:{{settings.item_bg_color}};    
+    border-radius: {{settings.item_radius}}px;     
   }
-  {% endif %}  
-  {% if settings.item_radius %}
+  cart-notification .bc-cart__item *{
+    color:{{settings.item_color}};
+  }
   cart-notification .bc-cart__item .bc-cart__image-wrapper img{
     border-radius: {{settings.item_radius}}px;
   } 
-  {% endif %}
+  
   {% if settings.enable_dynamic_pay %}
   #loopcheckoutdynamic{
     margin-top: 15px;

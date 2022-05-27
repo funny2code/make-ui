@@ -7,8 +7,7 @@
   display: flex;
 }
 
-.cart-notification {
-  background-color: var(--py-cart-bg-color);
+.cart-notification {  
   position: fixed;
   transform: translateX(100%);
   visibility: hidden;
@@ -218,9 +217,7 @@
   font-weight: 400;
 }
 
-.bc-cart__buttons-wrapper .button {
-  font-size: 16px;
-  border-radius: 4px;
+.bc-cart__buttons-wrapper .button { 
   text-transform: uppercase;
 }
 

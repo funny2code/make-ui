@@ -684,13 +684,23 @@
 
 
     // RANDOM COLOR FUNCTION
+    let ColorsList = ["#C0C0C0","#808080","#A9A9A9","#000000","#ffffff","#696969"];
+    let remixColorCount = 0;
     const generateRandomColor = () => {
-        let letters = '0123456789ABCDEF';
+        // let letters = '0123456789ABCDEF';
+        // let color = '#';
+        // for (var i = 0; i < 6; i++) {
+        //   color += letters[Math.floor(Math.random() * 16)];
+        // }
+        // return color;
         let color = '#';
-        for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
+        for (let i = 0; i < 6; i++) {
+            color += Math.floor(Math.random() * 10);
         }
+        if(remixColorCount > 4 && remixColorCount < 9) color = ColorsList[Math.floor(Math.random()*ColorsList.length)];
+        if(remixColorCount > 12) remixColorCount = 0;
         shadeColor = color;
+        remixColorCount++;
         return color;
     };
 

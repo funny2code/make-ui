@@ -10,7 +10,7 @@
 
 <cart-notification>
   <div class="cart-notification-wrapper {% if freeShipping %}cart-notification-wrapper__shipping{% endif %}">
-    <div id="cart-notification" class="cart-notification" aria-modal="true" aria-label="{{ 'general.cart.item_added' | t }}" role="dialog" tabindex="-1">
+    <div id="cart-notification" class="cart-notification py-{{ settings.py_cart_bg_color }}" aria-modal="true" aria-label="{{ 'general.cart.item_added' | t }}" role="dialog" tabindex="-1">
       <div class="cart-notification__header">
         {%- if settings.cart_heading != blank -%}
           <h2 class="cart-notification__heading caption-large">{{ settings.cart_heading }}</h2>
@@ -40,10 +40,10 @@
         {% if checkoutbtn_position == "top" %}
         <div class="bc-cart__buttons-wrapper">
           <form action="{{ routes.cart_url }}" method="post" id="cart">
-            <button id="loopcheckout" class="button button--primary button--full-width" name="checkout" form="cart">{{ 'sections.cart.checkout' | t }}</button>
+            <button id="loopcheckout" class="button button--primary button--full-width  py-btn-{{settings.cart_btn_color}} py-btn-hover-{{settings.cart_btn_hover_color}} py-btn-{{settings.cart_btn_size}}" name="checkout" form="cart">{{ 'sections.cart.checkout' | t }}</button>
           </form>
           {% if enable_dynamic_pay %}
-          <button id="loopcheckoutdynamic" class="button button--primary button--full-width" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
+          <button id="loopcheckoutdynamic" class="button button--primary button--full-width  py-btn-{{settings.cart_btn_color}} py-btn-hover-{{settings.cart_btn_hover_color}} py-btn-{{settings.cart_btn_size}}" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
           {% endif %}
         </div>
         {% endif %}        
@@ -112,10 +112,10 @@
         {% if checkoutbtn_position == "bottom" %}
         <div class="bc-cart__buttons-wrapper" style="margin-top:25px;">
           <form action="{{ routes.cart_url }}" method="post" id="cart">
-            <button id="loopcheckout" class="button button--primary button--full-width" name="checkout" form="cart">{{ 'sections.cart.checkout' | t }}</button>
+            <button id="loopcheckout" class="button button--primary button--full-width  py-btn-{{settings.cart_btn_color}} py-btn-hover-{{settings.cart_btn_hover_color}} py-btn-{{settings.cart_btn_size}}" name="checkout" form="cart">{{ 'sections.cart.checkout' | t }}</button>
           </form>
           {% if enable_dynamic_pay %}
-          <button id="loopcheckoutdynamic" class="button button--primary button--full-width" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
+          <button id="loopcheckoutdynamic" class="button button--primary button--full-width  py-btn-{{settings.cart_btn_color}} py-btn-hover-{{settings.cart_btn_hover_color}} py-btn-{{settings.cart_btn_size}}" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
           {% endif %}
         </div>
         {% endif %}

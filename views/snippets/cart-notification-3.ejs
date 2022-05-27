@@ -12,7 +12,7 @@
 
 <cart-notification>
   <div class="cart-notification-wrapper <% if(freeShipping){ %>cart-notification-wrapper__shipping<% } %> <%=cart_layout%>">
-    <div id="cart-notification" class="cart-notification <%= active ? active: '' %>" aria-modal="true" aria-label="item added" role="dialog" tabindex="-1">
+    <div id="cart-notification" class="cart-notification py-<%= settings.py_cart_bg_color %> <%= active ? active: '' %>" aria-modal="true" aria-label="item added" role="dialog" tabindex="-1">
       <div class="cart-notification__header">
         <% if(settings.cart_heading){ %>
           <h2 class="cart-notification__heading caption-large"><%= settings.cart_heading %></h2>
@@ -57,7 +57,7 @@
         </div>
         <div class="bc-cart__buttons-wrapper">
           <form action="/cart" method="post" id="cart">
-            <button id="loopcheckout" class="button button--primary button--full-width" name="checkout" form="cart">Checkout</button>
+            <button id="loopcheckout" class="button button--primary button--full-width py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart">Checkout</button>
           </form>
         </div>           
       </div>
@@ -128,9 +128,9 @@
         </div>
       <div class="new-i-note cart-notification__links">
         <div class="bc-cart__buttons-wrapper">
-          <a href="/cart" id="view-cart" class="button button--primary button--full-width" >view (<span class="total-num"></span>)</a>
+          <a href="/cart" id="view-cart" class="button button--primary button--full-width py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" >view (<span class="total-num"></span>)</a>
           <form action="/cart" method="post" id="cart">
-            <button id="loopcheckout" class="button button--primary button--full-width" name="checkout" form="cart">Checkout</button>
+            <button id="loopcheckout" class="button button--primary button--full-width py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart">Checkout</button>
           </form>
         </div>    
       </div>

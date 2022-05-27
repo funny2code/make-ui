@@ -95,11 +95,11 @@
     }
     .bc-iwtp__products-wrapper {
         margin-top: 2rem;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
     }
     .bc-iwtp__products-wrapper .card-wrapper {
-        width: calc(50% - .5rem);
+        width: 100%;
         justify-content: space-between;
     }
     .bc-iwtp__products-wrapper .card-wrapper:not(:last-child) {

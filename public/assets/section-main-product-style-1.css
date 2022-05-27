@@ -1145,9 +1145,12 @@
   .media-style__carousel_w_thumb .slider-buttons-desktop .slider-button{
     border: 2px solid;
     border-radius: 50%;
-    height: 34px;
-    width: 34px;
-    padding-top: 4px;
+    min-height: 34px;
+    min-width: 34px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
   }  
   
   .media-style__carousel .slider-buttons-desktop .slider-counter,

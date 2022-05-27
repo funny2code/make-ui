@@ -72,7 +72,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
             {{ 'sections.collection_template.product_count' | t: product_count: collection.products_count, count: collection.all_products_count }}
           </p>
 
-          <ul id="main-collection-product-grid" data-id="{{ section.id }}" class="grid grid--2-col grid--3-col-tablet grid--4-col-desktop product-list-{{section.id}}" style="margin-left:-{{section.settings.item_space}}px;padding-top:{{section.settings.item_space}}px">
+          <ul id="main-collection-product-grid" data-id="{{ section.id }}" class="grid grid--1-col grid--3-col-tablet grid--4-col-desktop product-list-{{section.id}}" style="margin-left:-{{section.settings.item_space}}px;padding-top:{{section.settings.item_space}}px">
             <style>
               .py-c-dark .card-wrapper *:not(.card-quick-add):not(.card-view-product){
                 color: var(--py-color-dark);
