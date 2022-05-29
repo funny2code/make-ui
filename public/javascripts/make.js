@@ -700,11 +700,13 @@
         if(remixColorCount > 4 && remixColorCount < 9) color = ColorsList[Math.floor(Math.random()*ColorsList.length)];
         if(remixColorCount > 12) remixColorCount = 0;
         shadeColor = color;
+        console.log(shadeColor, color);
         remixColorCount++;
         return color;
     };
 
     const generateShade = (color, percent) => {
+        console.log(shadeColor);
         let R = parseInt(color.substring(1,3),16);
         let G = parseInt(color.substring(3,5),16);
         let B = parseInt(color.substring(5,7),16);
@@ -740,7 +742,7 @@
            if(filedType === "color"){
 
             if(filedName.includes('_bg')){
-                let color = (index === 1) ? generateRandomColor() : generateShade(shadeColor, percent);
+                let color = (index <= 4) ? generateRandomColor() : generateShade(shadeColor, percent);
                 let closestWrap = filed.closest('.component-is-color');
                 let isColorLabel = closestWrap.querySelector('.py__label-for-color');
                 isColorLabel.style.backgroundColor = color;
