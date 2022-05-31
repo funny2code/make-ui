@@ -1,36 +1,42 @@
 <style>
     :root {
 
-        --font-body-family: <%=settings.body_font_google ? settings.body_font_google: settings.body_font %>;
+        --font-body-family: <%=settings.body_font_custom ? settings.body_font_custom : settings.body_font %>;
         --font-body-size: <%= settings.body_font_size %>;
         --font-body-line: <%= settings.body_font_line %>;
         --font-body-spacing: <%= settings.body_font_spacing %>;
     
+        --font-heading-family: <%=settings.heading_font_custom ? settings.heading_font_custom : settings.heading_font %>;
         --font-heading-size: <%= settings.heading_font_size %>;
         --font-heading-line: <%= settings.heading_font_line %>;
         --font-heading-spacing: <%= settings.heading_font_spacing %>;
         --font-heading-transform: <%= settings.heading_font_transform %>;
 
+        --font-title-family: <%=settings.title_font_custom ? settings.title_font_custom : settings.title_font %>;
         --font-title-size: <%= settings.title_font_size %>;
         --font-title-line: <%= settings.title_font_line %>;
         --font-title-spacing: <%= settings.title_font_spacing %>;
         --font-title-transform: <%= settings.title_font_transform %>;
 
+        --font-sub-title-family: <%=settings.sub_title_font_custom ? settings.sub_title_font_custom : settings.sub_title_font %>;
         --font-sub-title-size: <%= settings.sub_title_font_size %>;
         --font-sub-title-line: <%= settings.sub_title_font_line %>;
         --font-sub-title-spacing: <%= settings.sub_title_font_spacing %>;
         --font-sub-title-transform: <%= settings.sub_title_font_transform %>;
 
+        --font-nav-family: <%=settings.nav_font_custom ? settings.nav_font_custom : settings.nav_font %>;
         --font-nav-size: <%= settings.nav_font_size %>;
         --font-nav-line: <%= settings.nav_font_line %>;
         --font-nav-spacing: <%= settings.nav_font_spacing %>;
         --font-nav-transform: <%= settings.nav_font_transform %>;
 
+        --font-button-family: <%=settings.button_font_custom ? settings.button_font_custom : settings.button_font %>;
         --font-button-size: <%= settings.button_font_size %>;
         --font-button-line: <%= settings.button_font_line %>;
         --font-button-spacing: <%= settings.button_font_spacing %>;
         --font-button-transform: <%= settings.button_font_transform %>;
 
+        --font-field-family: <%=settings.field_font_custom ? settings.field_font_custom : settings.field_font %>;
         --font-field-size: <%= settings.field_font_size %>;
         --font-field-line: <%= settings.field_font_line %>;
         --font-field-spacing: <%= settings.field_font_spacing %>;

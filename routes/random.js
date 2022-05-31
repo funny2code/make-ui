@@ -63,7 +63,7 @@ router.get('/:id', async (req, res, next) => {
     const pageNames = []; 
     theme.theme_pag.forEach(item => pageNames.push({name:item.name}));
 
-    console.log(sections, "PAGE SECTIONS");
+    console.log(fonts, "PAGE SECTIONS");
 
     res.render('random', {
       user: req?.session?.user || null,

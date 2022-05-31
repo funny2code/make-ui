@@ -410,31 +410,31 @@
     position:fixed;
     width:100%;
   }
- cart-notification .bc-cart__item .bc-cart__title{
-    font-size:{{settings.item_title_font_size}}px;
+  cart-notification .bc-cart__item .bc-cart__title{
+    font-size:<%=settings.item_title_font_size%>px;
   }
   cart-notification .bc-cart__item .bc-cart__variant-title{
-    font-size:{{settings.item_title_font_size}}px;
+    font-size:<%=settings.item_title_font_size%>px;
   }
   cart-notification .bc-cart__item .bc-cart__price-wrapper{
-    font-size:{{settings.item_price_font_size}}px;
+    font-size:<%=settings.item_price_font_size%>px;
   }
   cart-notification .bc-cart__item .bc-cart__properties-wrapper{
-    font-size:{{settings.item_content_font_size}}px;
+    font-size:<%=settings.item_content_font_size%>px;
   }  
   cart-notification .bc-cart__buttons-wrapper .button{
     border:none;
   }  
   cart-notification .bc-cart__item{
     padding:10px;
-    background-color:{{settings.item_bg_color}};    
-    border-radius: {{settings.item_radius}}px;     
+    background-color:<%=settings.item_bg_color%>;    
+    border-radius: <%=settings.item_radius%>px;     
   }
   cart-notification .bc-cart__item *{
-    color:{{settings.item_color}};
+    color:<%=settings.item_color%>;
   }
   cart-notification .bc-cart__item .bc-cart__image-wrapper img{
-    border-radius: {{settings.item_radius}}px;
+    border-radius: <%=settings.item_radius%>px;
   }
   <% if(settings.enable_dynamic_pay){ %>
   #loopcheckoutdynamic{

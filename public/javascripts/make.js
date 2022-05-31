@@ -11,6 +11,7 @@
     var downloadButton = null;
     var loading = null;
     var shadeColor = null;
+    var colorsApiArray = null;
     var themeName = "ThemeMake";
 
     // Colors names Objects 
@@ -684,46 +685,18 @@
 
 
     // RANDOM COLOR FUNCTION
-    let ColorsList = ["#C0C0C0","#808080","#A9A9A9","#000000","#ffffff","#696969"];
-    let remixColorCount = 0;
-    const generateRandomColor = () => {
-        // let letters = '0123456789ABCDEF';
-        // let color = '#';
-        // for (var i = 0; i < 6; i++) {
-        //   color += letters[Math.floor(Math.random() * 16)];
-        // }
-        // return color;
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += Math.floor(Math.random() * 10);
-        }
-        if(remixColorCount > 4 && remixColorCount < 9) color = ColorsList[Math.floor(Math.random()*ColorsList.length)];
-        if(remixColorCount > 12) remixColorCount = 0;
-        shadeColor = color;
-        console.log(shadeColor, color);
-        remixColorCount++;
-        return color;
+    let colorsObj = {
+        "py_bg_color_dark": "#000000",
+        "py_bg_color_middle_dark": "#777777",
+        "py_bg_color_avarge": "#CCCCCC"
     };
 
-    const generateShade = (color, percent) => {
-        console.log(shadeColor);
-        let R = parseInt(color.substring(1,3),16);
-        let G = parseInt(color.substring(3,5),16);
-        let B = parseInt(color.substring(5,7),16);
-
-        R = parseInt(R * (100 + percent) / 100);
-        G = parseInt(G * (100 + percent) / 100);
-        B = parseInt(B * (100 + percent) / 100);
-
-        R = (R<255)?R:255;  
-        G = (G<255)?G:255;  
-        B = (B<255)?B:255;  
-
-        var RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
-        var GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
-        var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
-
-        return "#"+RR+GG+BB;
+    // let remixColorCount = 0;
+    const generateRandomColor = () => {
+        let color1 = chroma.random();
+        let color2 = '#000000';
+        let colorsList = chroma.scale([color2, color1]).mode('lch').colors(5);
+        return colorsList;
     };
 
     const randomFun = (event) => {
@@ -733,8 +706,8 @@
        loading?.classList.add('py__animate');
 
        let inputFileds = document.querySelectorAll('[name]');
-       let index = 1;
-       let percent = -90;
+       let index = 0;
+       let colorsList = null;
        if(!inputFileds.length) return;
        inputFileds.forEach(filed => {
            let filedType = filed.getAttribute('type');
@@ -742,13 +715,15 @@
            if(filedType === "color"){
 
             if(filedName.includes('_bg')){
-                let color = (index <= 4) ? generateRandomColor() : generateShade(shadeColor, percent);
-                let closestWrap = filed.closest('.component-is-color');
+                if(index === 0){
+                    colorsList = generateRandomColor();
+                }
+                let color = colorsList[index];
+                 let closestWrap = filed.closest('.component-is-color');
                 let isColorLabel = closestWrap.querySelector('.py__label-for-color');
                 isColorLabel.style.backgroundColor = color;
                 filed.value = color;
                 index++;
-                percent = percent + 30;
 
                 let textInputFiled = document.querySelector(`[name="${filedName.replace('_bg', '')}"]`);
                 if(!textInputFiled) return;

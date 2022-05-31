@@ -1255,7 +1255,6 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  height: 101px;
   overflow-y: auto;
   margin-bottom: 20px;
 }

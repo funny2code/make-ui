@@ -2383,3 +2383,15 @@ details[open] > .header__icon--menu .icon-hamburger {
 .py-right{
   text-align:right;
 }
+
+@media(min-width:800px){
+  .header__inline-menu{
+    overflow:hidden;
+  }
+  .header__inline-menu .list-menu--inline{
+    flex-wrap:nowrap;
+  }
+  .list-menu__item{
+    white-space: nowrap;
+  }
+}

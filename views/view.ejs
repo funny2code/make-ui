@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
     <script src="/assets/global.js" defer="defer"></script>
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
-    <% if(settings.body_font_google){ %>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=<%= settings.body_font_google %>">
-    <% } %>
     <% if(settings.enable_global_anim){ %>
         <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style">
     <% } %>
@@ -27,6 +24,10 @@
     <link rel="stylesheet" href="/assets/component-header-style-1.css">
 </head>
     <body class="index">
+        <% let fontsNames = settings.heading_font_custom + '|' + settings.title_font_custom + '|' + settings.sub_title_font_custom + '|' + settings.body_font_custom + '|' + settings.button_font_custom + '|' + settings.nav_font_custom + '|' + settings.field_font_custom  %>
+        <% if(fontsNames){ %>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=<%= fontsNames %>">
+        <% } %>
         <% if(settings){ %>
             <%- include('snippets/css-selectors', {settings:settings}) %>
         <% } %>
