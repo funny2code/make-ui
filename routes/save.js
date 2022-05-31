@@ -106,7 +106,10 @@ router.post('/:id', async (req, res, next) => {
             });
         }
 
-        await new Pageres({delay: 2})
+        await new Pageres({
+                delay: 2,
+                launchOptions: {args: ['--no-sandbox', '--disable-setuid-sandbox']}
+            })
             .src(req.protocol + '://' + req.get('host') + '/view/' + id + '?page=Home%20Page', ['1440x900'], {crop: true, filename: 'screen-' + id})
             .src(req.protocol + '://' + req.get('host') + '/view/' + id + '?page=Home%20Page', ['414x736'], {crop: true, filename: 'm-screen-' + id})
             .dest(path.join(__dirname, '../public/screens/'))
