@@ -115,6 +115,7 @@ router.post('/:id', async (req, res, next) => {
         res.status(200).send({status: 200, message: 'success'});
 
     } catch (err) {
+        console.log(err);
         return res.sendStatus(500).send({status: 500, message: "error"});
     }
 
