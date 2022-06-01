@@ -685,10 +685,55 @@
 
 
     // RANDOM COLOR FUNCTION
-    let colorsObj = {
-        "py_bg_color_dark": "#000000",
-        "py_bg_color_middle_dark": "#777777",
-        "py_bg_color_avarge": "#CCCCCC"
+    let defaultSettings = {
+        "backgrounds": [
+            {
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#777777",
+                "py_bg_color_avarge": "#CCCCCC",
+                "py_bg_color_middle_light": "#731173",
+                "py_bg_color_light": "#411718"
+            },
+            {
+                "py_bg_color_dark": "#00ff00",
+                "py_bg_color_middle_dark": "#777777",
+                "py_bg_color_avarge": "#CCCCCC",
+                "py_bg_color_middle_light": "#731173",
+                "py_bg_color_light": "#411718"
+            }
+        ],
+        "colors": [
+            {
+                "py_color_dark": "#000000",
+                "py_color_avarge": "#777777",
+                "py_color_light": "#ffffff"
+            },
+            {
+                "py_color_dark": "#000000",
+                "py_color_avarge": "#777777",
+                "py_color_light": "#ffffff"
+            }
+        ],
+        "fonts": [
+            {
+                "heading_font_custom": "ABeeZee",
+                "title_font_custom": "Abril Fatface",
+                "sub_title_font_custom": "Bitter",
+                "body_font_custom": "Bree Serif",
+                "button_font_custom": "Akronim",
+                "nav_font_custom": "Chango",
+                "field_font_custom": "Droid Sans"
+            },
+            {
+                "heading_font_custom": "ABeeZee",
+                "title_font_custom": "Abril Fatface",
+                "sub_title_font_custom": "Bitter",
+                "body_font_custom": "Bree Serif",
+                "button_font_custom": "Akronim",
+                "nav_font_custom": "Chango",
+                "field_font_custom": "Droid Sans"
+            }
+        ]
     };
 
     // let remixColorCount = 0;
@@ -699,6 +744,8 @@
         return colorsList;
     };
 
+    let remixCount = 1;
+    let defaultSettingsCount = 0;
     const randomFun = (event) => {
 
        if(!event) return;
@@ -708,18 +755,30 @@
        let inputFileds = document.querySelectorAll('[name]');
        let index = 0;
        let colorsList = null;
+       let textColorsList = null;
+       let fontsList = null;
        if(!inputFileds.length) return;
        inputFileds.forEach(filed => {
            let filedType = filed.getAttribute('type');
            let filedName = filed.getAttribute('name');
            if(filedType === "color"){
-
+            console.log(defaultSettingsCount, remixCount);
             if(filedName.includes('_bg')){
                 if(index === 0){
-                    colorsList = generateRandomColor();
+                    if(defaultSettingsCount >= 1) defaultSettingsCount = 0; 
+                    if(remixCount > 5) remixCount = 0;
+                    if(remixCount < 4){
+                        colorsList = generateRandomColor();
+                    } else if(remixCount >= 4 && remixCount <= 5) {
+                        colorsList = defaultSettings.backgrounds[defaultSettingsCount];
+                        textColorsList = defaultSettings.colors[defaultSettingsCount];
+                        fontsList = defaultSettings.fonts[defaultSettingsCount];
+                        defaultSettingsCount++;
+                    }
                 }
-                let color = colorsList[index];
-                 let closestWrap = filed.closest('.component-is-color');
+                console.log(defaultSettings, defaultSettings.backgrounds, colorsList);
+                let color = (remixCount < 4) ? colorsList[index] : colorsList[filedName];
+                let closestWrap = filed.closest('.component-is-color');
                 let isColorLabel = closestWrap.querySelector('.py__label-for-color');
                 isColorLabel.style.backgroundColor = color;
                 filed.value = color;
@@ -727,7 +786,7 @@
 
                 let textInputFiled = document.querySelector(`[name="${filedName.replace('_bg', '')}"]`);
                 if(!textInputFiled) return;
-                let textColor = getContrastYIQ(color);
+                let textColor = (remixCount < 4) ? getContrastYIQ(color) : textColorsList[filedName.replace('_bg', '')];
                 let textClosestWrap = textInputFiled.closest('.component-is-color');
                 let textIsColorLabel = textClosestWrap.querySelector('.py__label-for-color');
                 textIsColorLabel.style.backgroundColor = textColor;
@@ -736,10 +795,20 @@
 
            } else if(filedType === "select"){
                 let options = filed.getElementsByTagName('option');
-                let optionIndex = Math.floor(Math.random() * options.length);
-                filed.selectedIndex = optionIndex;
+                if(remixCount < 4){
+                    let optionIndex = Math.floor(Math.random() * options.length);
+                    filed.selectedIndex = optionIndex;
+                } else {
+                    for (let i= 0; i<options.length; i++) {
+                        if (options[i].value === fontsList[filedName]) {
+                            options[i].selected= true;
+                            break;
+                        }
+                    } 
+                }
            }
        });
+       remixCount++;
        saveSettingsValues();
        viewIframe();
     };  
