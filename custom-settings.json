@@ -1,0 +1,50 @@
+{
+    "backgrounds": [
+        {
+            "py_bg_color_dark": "#000000",
+            "py_bg_color_middle_dark": "#777777",
+            "py_bg_color_avarge": "#CCCCCC",
+            "py_bg_color_middle_light": "#731173",
+            "py_bg_color_light": "#411718"
+        },
+        {
+            "py_bg_color_dark": "#00ff00",
+            "py_bg_color_middle_dark": "#777777",
+            "py_bg_color_avarge": "#CCCCCC",
+            "py_bg_color_middle_light": "#731173",
+            "py_bg_color_light": "#411718"
+        }
+    ],
+    "colors": [
+        {
+            "py_color_dark": "#000000",
+            "py_color_avarge": "#777777",
+            "py_color_light": "#ffffff"
+        },
+        {
+            "py_color_dark": "#000000",
+            "py_color_avarge": "#777777",
+            "py_color_light": "#ffffff"
+        }
+    ],
+    "fonts": [
+        {
+            "heading_font_custom": "ABeeZee",
+            "title_font_custom": "Abril Fatface",
+            "sub_title_font_custom": "Bitter",
+            "body_font_custom": "Bree Serif",
+            "button_font_custom": "Akronim",
+            "nav_font_custom": "Chango",
+            "field_font_custom": "Droid Sans"
+        },
+        {
+            "heading_font_custom": "ABeeZee",
+            "title_font_custom": "Abril Fatface",
+            "sub_title_font_custom": "Bitter",
+            "body_font_custom": "Bree Serif",
+            "button_font_custom": "Akronim",
+            "nav_font_custom": "Chango",
+            "field_font_custom": "Droid Sans"
+        }
+    ]
+}
