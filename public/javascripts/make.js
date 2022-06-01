@@ -1,6 +1,5 @@
 (function(){
 
-
     // GLOBAL VARIABLES
     var focuseValue = "";
     var theme = {
