@@ -9,8 +9,6 @@
     var saveButton = null; 
     var downloadButton = null;
     var loading = null;
-    var shadeColor = null;
-    var colorsApiArray = null;
     var themeName = "ThemeMake";
 
     // Colors names Objects 
@@ -688,56 +686,487 @@
         "backgrounds": [
             {
                 "py_bg_color_dark": "#000000",
-                "py_bg_color_middle_dark": "#777777",
-                "py_bg_color_avarge": "#CCCCCC",
-                "py_bg_color_middle_light": "#731173",
-                "py_bg_color_light": "#411718"
+                "py_bg_color_middle_dark": "#102b00",
+                "py_bg_color_avarge": "#2d4c17",
+                "py_bg_color_middle_light": "#506f38",
+                "py_bg_color_light": "#74945a"
             },
             {
-                "py_bg_color_dark": "#00ff00",
-                "py_bg_color_middle_dark": "#777777",
-                "py_bg_color_avarge": "#CCCCCC",
-                "py_bg_color_middle_light": "#731173",
-                "py_bg_color_light": "#411718"
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#2d006e",
+                "py_bg_color_avarge": "#50188e",
+                "py_bg_color_middle_light": "#7238b0",
+                "py_bg_color_light": "#9457d2"
+            },
+            {
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#341e00",
+                "py_bg_color_avarge": "#513a03",
+                "py_bg_color_middle_light": "#735822",
+                "py_bg_color_light": "#967841"
+            },
+            {
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#003663",
+                "py_bg_color_avarge": "#006192",
+                "py_bg_color_middle_light": "#008fc4",
+                "py_bg_color_light": "#41c0f8"
+            },
+            {
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#122800",
+                "py_bg_color_avarge": "#1d4600",
+                "py_bg_color_middle_light": "#3b6400",
+                "py_bg_color_light": "#5c8413"
+            },
+            {
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#3e008f",
+                "py_bg_color_avarge": "#6400b0",
+                "py_bg_color_middle_light": "#8800d2",
+                "py_bg_color_light": "#ac25f5"
+            },
+            {
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#001583",
+                "py_bg_color_avarge": "#0030a7",
+                "py_bg_color_middle_light": "#434ecc",
+                "py_bg_color_light": "#6e6ef2"
+            },
+            {
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#670000",
+                "py_bg_color_avarge": "#930500",
+                "py_bg_color_middle_light": "#c23b22",
+                "py_bg_color_light": "#f26545"
+            },
+            {
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#510087",
+                "py_bg_color_avarge": "#7900ac",
+                "py_bg_color_middle_light": "#a200d3",
+                "py_bg_color_light": "#cb3dfb"
+            },
+            {
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#004400",
+                "py_bg_color_avarge": "#007b00",
+                "py_bg_color_middle_light": "#00b600",
+                "py_bg_color_light": "#36f34d"
+            },
+            {
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#002f50",
+                "py_bg_color_avarge": "#005477",
+                "py_bg_color_middle_light": "#037ba1",
+                "py_bg_color_light": "#4ca5cd"
+            },
+            {
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#000085",
+                "py_bg_color_avarge": "#000095",
+                "py_bg_color_middle_light": "#0000a5",
+                "py_bg_color_light": "#1b11b6"
+            },
+            {
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#521700",
+                "py_bg_color_avarge": "#7d3d00",
+                "py_bg_color_middle_light": "#ae6502",
+                "py_bg_color_light": "#e19037"
+            },
+            {
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#00343b",
+                "py_bg_color_avarge": "#005c61",
+                "py_bg_color_middle_light": "#00868b",
+                "py_bg_color_light": "#1fb2b7"
+            },
+            {
+                "py_bg_color_dark": "#000000",
+                "py_bg_color_middle_dark": "#5d0000",
+                "py_bg_color_avarge": "#851900",
+                "py_bg_color_middle_light": "#b1411e",
+                "py_bg_color_light": "#dd6640"
             }
         ],
         "colors": [
             {
-                "py_color_dark": "#000000",
-                "py_color_avarge": "#777777",
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
                 "py_color_light": "#ffffff"
             },
             {
-                "py_color_dark": "#000000",
-                "py_color_avarge": "#777777",
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
+                "py_color_light": "#ffffff"
+            },
+            {
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
+                "py_color_light": "#ffffff"
+            },
+            {
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
+                "py_color_light": "#ffffff"
+            },
+            {
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
+                "py_color_light": "#ffffff"
+            },
+            {
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
+                "py_color_light": "#ffffff"
+            },
+            {
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
+                "py_color_light": "#ffffff"
+            },
+            {
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
+                "py_color_light": "#ffffff"
+            },
+            {
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
+                "py_color_light": "#ffffff"
+            },
+            {
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
+                "py_color_light": "#ffffff"
+            },
+            {
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
+                "py_color_light": "#ffffff"
+            },
+            {
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
+                "py_color_light": "#ffffff"
+            },
+            {
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
+                "py_color_light": "#ffffff"
+            },
+            {
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
+                "py_color_light": "#ffffff"
+            },
+            {
+                "py_color_dark": "#ffffff",
+                "py_color_avarge": "#ffffff",
                 "py_color_light": "#ffffff"
             }
         ],
         "fonts": [
             {
-                "heading_font_custom": "ABeeZee",
-                "title_font_custom": "Abril Fatface",
-                "sub_title_font_custom": "Bitter",
-                "body_font_custom": "Bree Serif",
-                "button_font_custom": "Akronim",
-                "nav_font_custom": "Chango",
-                "field_font_custom": "Droid Sans"
+                "heading_font_custom": "Patua One",
+                "title_font_custom": "Londrina Solid",
+                "sub_title_font_custom": "Kranky",
+                "body_font_custom": "Gorditas",
+                "button_font_custom": "Revalia",
+                "nav_font_custom": "Petrona",
+                "field_font_custom": "Englebert",
+                "header_position": "fixed",
+                "logo_position": "middle-left-center-nav",
+                "search_style": "search_page",
+                "title_fontstyle": "normal",
+                "info_fontstyle": "italic",
+                "block_img_col_position": "last",
+                "image_position": "left",
+                "block_card_style": "vertical",
+                "block_title_fontstyle": "italic",
+                "block_info_fontstyle": "italic"
             },
             {
-                "heading_font_custom": "ABeeZee",
-                "title_font_custom": "Abril Fatface",
+                "heading_font_custom": "Prosto One",
+                "title_font_custom": "Armata",
+                "sub_title_font_custom": "Rozha One",
+                "body_font_custom": "Lakki Reddy",
+                "button_font_custom": "Playfair Display SC",
+                "nav_font_custom": "Amarante",
+                "field_font_custom": "Oxygen Mono",
+                "header_position": "static",
+                "logo_position": "middle-left",
+                "search_style": "sidebar",
+                "title_fontstyle": "italic",
+                "info_fontstyle": "italic",
+                "block_img_col_position": "first",
+                "image_position": "left",
+                "block_card_style": "horizontal",
+                "block_title_fontstyle": "normal",
+                "block_info_fontstyle": "italic"
+            },
+            {
+                "heading_font_custom": "Palanquin Dark",
+                "title_font_custom": "Ramaraja",
+                "sub_title_font_custom": "Questrial",
+                "body_font_custom": "Fredoka One",
+                "button_font_custom": "Mountains of Christmas",
+                "nav_font_custom": "Fresca",
+                "field_font_custom": "Judson",
+                "header_position": "static",
+                "logo_position": "middle-center",
+                "search_style": "full_screen",
+                "title_fontstyle": "italic",
+                "info_fontstyle": "normal",
+                "block_img_col_position": "first",
+                "image_position": "right",
+                "block_card_style": "vertical",
+                "block_title_fontstyle": "italic",
+                "block_info_fontstyle": "italic"
+            },
+            {
+                "heading_font_custom": "Asap",
+                "title_font_custom": "Devonshire",
+                "sub_title_font_custom": "Antic",
+                "body_font_custom": "Rubik One",
+                "button_font_custom": "Seymour One",
+                "nav_font_custom": "IM Fell DW Pica SC",
+                "field_font_custom": "Rammetto One",
+                "header_position": "fixed",
+                "logo_position": "top-left",
+                "search_style": "search_page",
+                "title_fontstyle": "normal",
+                "info_fontstyle": "normal",
+                "block_img_col_position": "last",
+                "image_position": "left",
+                "block_card_style": "horizontal",
+                "block_title_fontstyle": "normal",
+                "block_info_fontstyle": "italic"
+            },
+            {
+                "heading_font_custom": "Exo",
+                "title_font_custom": "Kranky",
+                "sub_title_font_custom": "Tenali Ramakrishna",
+                "body_font_custom": "Expletus Sans",
+                "button_font_custom": "Patrick Hand",
+                "nav_font_custom": "Grand Hotel",
+                "field_font_custom": "Simonetta",
+                "header_position": "fixed",
+                "logo_position": "middle-center",
+                "search_style": "full_screen",
+                "title_fontstyle": "italic",
+                "info_fontstyle": "italic",
+                "block_img_col_position": "last",
+                "image_position": "right",
+                "block_card_style": "horizontal",
+                "block_title_fontstyle": "italic",
+                "block_info_fontstyle": "italic"
+            },
+            {
+                "heading_font_custom": "Modern Antiqua",
+                "title_font_custom": "Waiting for the Sunrise",
+                "sub_title_font_custom": "Quicksand",
+                "body_font_custom": "Actor",
+                "button_font_custom": "Passion One",
+                "nav_font_custom": "Moulpali",
+                "field_font_custom": "Glass Antiqua",
+                "header_position": "fixed",
+                "logo_position": "middle-left-center-nav",
+                "search_style": "sidebar",
+                "title_fontstyle": "italic",
+                "info_fontstyle": "italic",
+                "block_img_col_position": "last",
+                "image_position": "right",
+                "block_card_style": "horizontal",
+                "block_title_fontstyle": "italic",
+                "block_info_fontstyle": "normal"
+            },
+            {
+                "heading_font_custom": "Londrina Solid",
+                "title_font_custom": "Hanalei Fill",
+                "sub_title_font_custom": "IM Fell Great Primer SC",
+                "body_font_custom": "Vesper Libre",
+                "button_font_custom": "Maven Pro",
+                "nav_font_custom": "Metal",
+                "field_font_custom": "Nova Cut",
+                "header_position": "static",
+                "logo_position": "middle-left-center-nav",
+                "search_style": "sidebar",
+                "title_fontstyle": "normal",
+                "info_fontstyle": "italic",
+                "block_img_col_position": "first",
+                "image_position": "left",
+                "block_card_style": "horizontal",
+                "block_title_fontstyle": "italic",
+                "block_info_fontstyle": "italic"
+            },
+            {
+                "heading_font_custom": "Dorsa",
+                "title_font_custom": "Lovers Quarrel",
+                "sub_title_font_custom": "Sue Ellen Francisco",
+                "body_font_custom": "Noto Sans",
+                "button_font_custom": "Open Sans Condensed",
+                "nav_font_custom": "Fondamento",
+                "field_font_custom": "League Script",
+                "header_position": "static",
+                "logo_position": "middle-left",
+                "search_style": "full_screen",
+                "title_fontstyle": "normal",
+                "info_fontstyle": "normal",
+                "block_img_col_position": "first",
+                "image_position": "left",
+                "block_card_style": "vertical",
+                "block_title_fontstyle": "italic",
+                "block_info_fontstyle": "normal"
+            },
+            {
+                "heading_font_custom": "IM Fell DW Pica SC",
+                "title_font_custom": "Mountains of Christmas",
                 "sub_title_font_custom": "Bitter",
-                "body_font_custom": "Bree Serif",
-                "button_font_custom": "Akronim",
-                "nav_font_custom": "Chango",
-                "field_font_custom": "Droid Sans"
+                "body_font_custom": "Antic",
+                "button_font_custom": "Pacifico",
+                "nav_font_custom": "Purple Purse",
+                "field_font_custom": "Meddon",
+                "header_position": "static",
+                "logo_position": "middle-left",
+                "search_style": "full_screen",
+                "title_fontstyle": "italic",
+                "info_fontstyle": "italic",
+                "block_img_col_position": "last",
+                "image_position": "right",
+                "block_card_style": "vertical",
+                "block_title_fontstyle": "italic",
+                "block_info_fontstyle": "normal"
+            },
+            {
+                "heading_font_custom": "Luckiest Guy",
+                "title_font_custom": "Rum Raisin",
+                "sub_title_font_custom": "Unlock",
+                "body_font_custom": "Dhurjati",
+                "button_font_custom": "Monoton",
+                "nav_font_custom": "Petrona",
+                "field_font_custom": "Dhurjati",
+                "header_position": "static",
+                "logo_position": "top-left",
+                "search_style": "full_screen",
+                "title_fontstyle": "italic",
+                "info_fontstyle": "italic",
+                "block_img_col_position": "first",
+                "image_position": "right",
+                "block_card_style": "horizontal",
+                "block_title_fontstyle": "italic",
+                "block_info_fontstyle": "normal"
+            },
+            {
+                "heading_font_custom": "Courgette",
+                "title_font_custom": "Diplomata",
+                "sub_title_font_custom": "Federo",
+                "body_font_custom": "Quicksand",
+                "button_font_custom": "Butterfly Kids",
+                "nav_font_custom": "Ledger",
+                "field_font_custom": "Gentium Basic",
+                "header_position": "fixed",
+                "logo_position": "middle-left",
+                "search_style": "sidebar",
+                "title_fontstyle": "normal",
+                "info_fontstyle": "normal",
+                "block_img_col_position": "last",
+                "image_position": "left",
+                "block_card_style": "horizontal",
+                "block_title_fontstyle": "italic",
+                "block_info_fontstyle": "italic"
+            },
+            {
+                "heading_font_custom": "Pompiere",
+                "title_font_custom": "Nova Round",
+                "sub_title_font_custom": "Parisienne",
+                "body_font_custom": "Passero One",
+                "button_font_custom": "Prociono",
+                "nav_font_custom": "Keania One",
+                "field_font_custom": "Angkor",
+                "header_position": "static",
+                "logo_position": "top-left",
+                "search_style": "full_screen",
+                "title_fontstyle": "normal",
+                "info_fontstyle": "italic",
+                "block_img_col_position": "first",
+                "image_position": "left",
+                "block_card_style": "horizontal",
+                "block_title_fontstyle": "normal",
+                "block_info_fontstyle": "italic"
+            },
+            {
+                "heading_font_custom": "Fascinate",
+                "title_font_custom": "Fjord One",
+                "sub_title_font_custom": "Michroma",
+                "body_font_custom": "Gilda Display",
+                "button_font_custom": "Ruda",
+                "nav_font_custom": "Miss Fajardose",
+                "field_font_custom": "Exo 2",
+                "header_position": "static",
+                "logo_position": "middle-left-center-nav",
+                "search_style": "sidebar",
+                "title_fontstyle": "normal",
+                "info_fontstyle": "italic",
+                "block_img_col_position": "first",
+                "image_position": "left",
+                "block_card_style": "vertical",
+                "block_title_fontstyle": "normal",
+                "block_info_fontstyle": "normal"
+            },
+            {
+                "heading_font_custom": "Homemade Apple",
+                "title_font_custom": "Marvel",
+                "sub_title_font_custom": "Give You Glory",
+                "body_font_custom": "Skranji",
+                "button_font_custom": "Allerta",
+                "nav_font_custom": "Erica One",
+                "field_font_custom": "Lekton",
+                "header_position": "static",
+                "logo_position": "middle-left-center-nav",
+                "search_style": "sidebar",
+                "title_fontstyle": "normal",
+                "info_fontstyle": "normal",
+                "block_img_col_position": "first",
+                "image_position": "right",
+                "block_card_style": "horizontal",
+                "block_title_fontstyle": "normal",
+                "block_info_fontstyle": "normal"
+            },
+            {
+                "heading_font_custom": "Angkor",
+                "title_font_custom": "Kalam",
+                "sub_title_font_custom": "Uncial Antiqua",
+                "body_font_custom": "Nothing You Could Do",
+                "button_font_custom": "Patrick Hand",
+                "nav_font_custom": "Crete Round",
+                "field_font_custom": "Euphoria Script",
+                "header_position": "fixed",
+                "logo_position": "middle-left-center-nav",
+                "search_style": "search_page",
+                "title_fontstyle": "italic",
+                "info_fontstyle": "italic",
+                "block_img_col_position": "last",
+                "image_position": "left",
+                "block_card_style": "horizontal",
+                "block_title_fontstyle": "normal",
+                "block_info_fontstyle": "italic"
             }
         ]
     };
 
     // let remixColorCount = 0;
+    let oldColorOne = "#000000";
     const generateRandomColor = () => {
-        let color1 = chroma.random();
+        let color1 = chroma.random().hex();
+        if(chroma.deltaE(color1, oldColorOne) < 40){
+            color1 = chroma.random().hex();
+            if(chroma.deltaE(color1, oldColorOne) < 40){
+                color1 = chroma.random().hex();
+            }
+        }
+        oldColorOne = color1;
         let color2 = '#000000';
         let colorsList = chroma.scale([color2, color1]).mode('lch').colors(5);
         return colorsList;
@@ -757,26 +1186,31 @@
        let textColorsList = null;
        let fontsList = null;
        if(!inputFileds.length) return;
+    //    let myBgJson = {};
+    //    let myColorJson = {};
+    //    let myFontJson = {};
        inputFileds.forEach(filed => {
            let filedType = filed.getAttribute('type');
            let filedName = filed.getAttribute('name');
            if(filedType === "color"){
-            console.log(defaultSettingsCount, remixCount);
+            // console.log(defaultSettingsCount, remixCount);
             if(filedName.includes('_bg')){
                 if(index === 0){
-                    if(defaultSettingsCount >= 1) defaultSettingsCount = 0; 
-                    if(remixCount > 5) remixCount = 0;
-                    if(remixCount < 4){
+                    if(defaultSettingsCount >= 15) defaultSettingsCount = 0; 
+                    if(remixCount > 15) remixCount = 0;
+                    console.log((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30), remixCount);
+                    if((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)){
                         colorsList = generateRandomColor();
-                    } else if(remixCount >= 4 && remixCount <= 5) {
+                    } else {
                         colorsList = defaultSettings.backgrounds[defaultSettingsCount];
                         textColorsList = defaultSettings.colors[defaultSettingsCount];
                         fontsList = defaultSettings.fonts[defaultSettingsCount];
                         defaultSettingsCount++;
                     }
                 }
-                console.log(defaultSettings, defaultSettings.backgrounds, colorsList);
-                let color = (remixCount < 4) ? colorsList[index] : colorsList[filedName];
+                // console.log(defaultSettings, defaultSettings.backgrounds, colorsList);
+                let color = ((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)) ? colorsList[index] : colorsList[filedName];
+                // if(remixCount<16) myBgJson[filedName] = color;
                 let closestWrap = filed.closest('.component-is-color');
                 let isColorLabel = closestWrap.querySelector('.py__label-for-color');
                 isColorLabel.style.backgroundColor = color;
@@ -785,7 +1219,8 @@
 
                 let textInputFiled = document.querySelector(`[name="${filedName.replace('_bg', '')}"]`);
                 if(!textInputFiled) return;
-                let textColor = (remixCount < 4) ? getContrastYIQ(color) : textColorsList[filedName.replace('_bg', '')];
+                let textColor = ((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)) ? getContrastYIQ(color) : textColorsList[filedName.replace('_bg', '')];
+                // if(remixCount<16) myColorJson[filedName.replace('_bg', '')] = textColor;
                 let textClosestWrap = textInputFiled.closest('.component-is-color');
                 let textIsColorLabel = textClosestWrap.querySelector('.py__label-for-color');
                 textIsColorLabel.style.backgroundColor = textColor;
@@ -794,9 +1229,10 @@
 
            } else if(filedType === "select"){
                 let options = filed.getElementsByTagName('option');
-                if(remixCount < 4){
+                if((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)){
                     let optionIndex = Math.floor(Math.random() * options.length);
                     filed.selectedIndex = optionIndex;
+                    // myFontJson[filedName] = options[optionIndex].value;
                 } else {
                     for (let i= 0; i<options.length; i++) {
                         if (options[i].value === fontsList[filedName]) {
@@ -807,6 +1243,10 @@
                 }
            }
        });
+    //    defaultSettings.backgrounds.push(myBgJson);
+    //    defaultSettings.colors.push(myColorJson);
+    //    defaultSettings.fonts.push(myFontJson);
+    //    console.log(defaultSettings, "CHECK DAV JAN");
        remixCount++;
        saveSettingsValues();
        viewIframe();
