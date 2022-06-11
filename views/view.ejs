@@ -151,5 +151,11 @@
             AOS.init(data);
         </script>
         <% } %>
+        <script id="htmlToJson"></script>
+        <script>
+           let htmlToJson = document.getElementById('htmlToJson');
+           htmlToJson.innerHTML = JSON.stringify({"hello":"Davur"});
+        </script>
+
     </body>
 </html>

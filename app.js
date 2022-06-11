@@ -4,7 +4,7 @@ const session = require('express-session');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-// const cors = require('cors')
+const cors = require('cors')
 
 const indexRouter = require('./routes/index');
 const themesRouter = require('./routes/themes');
@@ -30,7 +30,7 @@ app.use(session({
     cookie: { maxAge: oneMonth },
     resave: false
 }));
-// app.use(cors({origin: '*'}));
+app.use(cors({origin: '*'}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -57,26 +57,6 @@ app.use('/logout', logOutRouter);
 app.use('/signup', signupRouter);
 app.use('/download', downloadRouter);
 app.use('/add', addThemeRouter);
-
-// Add headers
-app.use(function (req, res, next) {
-
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
-
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-  // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
-
-  // Pass to next layer of middleware
-  next();
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
