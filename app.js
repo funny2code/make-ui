@@ -4,6 +4,7 @@ const session = require('express-session');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors')
 
 const indexRouter = require('./routes/index');
 const themesRouter = require('./routes/themes');
@@ -29,6 +30,7 @@ app.use(session({
     cookie: { maxAge: oneMonth },
     resave: false
 }));
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
