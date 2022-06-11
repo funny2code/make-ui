@@ -30,7 +30,7 @@ app.use(session({
     cookie: { maxAge: oneMonth },
     resave: false
 }));
-app.use(cors({origin: true, optionsSuccessStatus: 200}));
+app.use(cors({origin: '*'}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
