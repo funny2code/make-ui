@@ -53,7 +53,7 @@
         <span class="visually-hidden visually-hidden--inline">regular price</span>
       </dt>
       <dd class="price__compare">
-        <s class="price-item price-item--regular" <%=settings?.discount%> dd="<%=target?.inventory_quantity%>" aa="<%=target?.selected_or_first_available_selling_plan_allocation%>">
+        <s class="price-item price-item--regular" dd="<%=target?.inventory_quantity%>" aa="<%=target?.selected_or_first_available_selling_plan_allocation%>">
           <% if(discount_disable){ %>
           <%= compare_at_price %>
           <% } else { %>
