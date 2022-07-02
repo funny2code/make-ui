@@ -1,7 +1,9 @@
 // Test with an element.
-let initElement = document.getElementsByTagName("body")[0];
-let json = mapDOM(initElement, true);
-console.log(json);
+setTimeout(()=>{
+    let initElement = document.getElementsByTagName("body")[0];
+    let json = mapDOM(initElement, true);
+    console.log(json);
+}, 3000);
 
 // Test with a string.
 // initElement = "<div><span>text</span>Text2</div>";
@@ -49,7 +51,7 @@ function mapDOM(element, json) {
     //Recursively loop through DOM elements and assign properties to object
     function treeHTML(element, object) {
         if(element.nodeName === "STYLE" || element.nodeName === "LINK" || element.nodeName === "SCRIPT") return;
-        if(checkElementHide(element)) return;
+        if(checkElementHide(element) || element.classList.contains("visually-hidden")) return;
         object["type"] = element.nodeName;
         object["css"] = dumpCSSText(element);
         if(element.nodeName === "svg") return object["content"] = element.outerHTML;
