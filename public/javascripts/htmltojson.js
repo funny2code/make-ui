@@ -3,7 +3,7 @@ setTimeout(()=>{
     let initElement = document.getElementsByTagName("body")[0];
     let json = mapDOM(initElement, true);
     console.log(json);
-}, 3000);
+}, 1000);
 
 // Test with a string.
 // initElement = "<div><span>text</span>Text2</div>";
