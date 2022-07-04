@@ -22,17 +22,25 @@
         }
 
         function dumpCSSText(element){
-        let s = {};
-        let o = getComputedStyle(element);
-        for(let i = 0; i < o.length; i++){
-            if(o[i] === "background-color" || o[i] === "width" || o[i] === "height" || o[i] === "color" || o[i] === "font-size" || o[i] === "background"){
-                s[o[i]] = o.getPropertyValue(o[i]);
-            }
-        }
-        let rect = element.getBoundingClientRect();
-        s.x = rect.left;
-        s.y = rect.top;
-        return s;
+            let s = {};
+            let o = getComputedStyle(element);
+            s.backgroundColor = o["backgroundColor"];
+            s.color = o["color"];
+            s.width = o["width"];
+            s.height = o["height"];
+            s.fontSize = o["fontSize"];
+            s.fontFamily = o["fontFamily"];
+            s.borderWidth = o["borderWidth"];
+            s.borderColor = o["borderColor"];
+            s.borderStyle = o["borderStyle"];
+            s.borderBottomLeftRadius = o["borderBottomLeftRadius"];
+            s.borderBottomRightRadius = o["borderBottomRightRadius"];
+            s.borderTopLeftRadius = o["borderTopLeftRadius"];
+            s.borderTopRightRadius = o["borderTopRightRadius"];
+            let rect = element.getBoundingClientRect();
+            s.x = rect.left;
+            s.y = rect.top;
+            return s;
         }
 
         function checkElementHide(element){
