@@ -37,6 +37,9 @@
             s.borderBottomRightRadius = o["borderBottomRightRadius"];
             s.borderTopLeftRadius = o["borderTopLeftRadius"];
             s.borderTopRightRadius = o["borderTopRightRadius"];
+            s.justifyContent = o["justifyContent"];
+            s.alignItems = o["alignItems"];
+            s.textAlign = o["textAlign"];
             let rect = element.getBoundingClientRect();
             s.x = rect.left;
             s.y = rect.top;
