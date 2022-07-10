@@ -8,12 +8,11 @@
     function mapDOM(element, json) {
         let treeObject = {};
         
-        // If string convert to document Node
         if (typeof element === "string") {
             if (window.DOMParser) {
                 parser = new DOMParser();
                 docNode = parser.parseFromString(element,"text/xml");
-            } else { // Microsoft strikes again
+            } else { 
                 docNode = new ActiveXObject("Microsoft.XMLDOM");
                 docNode.async = false;
                 docNode.loadXML(element); 
@@ -32,6 +31,8 @@
             s.fontFamily = o["fontFamily"];
             s.borderWidth = o["borderWidth"];
             s.borderColor = o["borderColor"];
+            s.textTransform = o["textTransform"];
+            s.transform = o["transform"];
             s.borderStyle = o["borderStyle"];
             s.borderBottomLeftRadius = o["borderBottomLeftRadius"];
             s.borderBottomRightRadius = o["borderBottomRightRadius"];
@@ -56,7 +57,8 @@
         //Recursively loop through DOM elements and assign properties to object
         function treeHTML(element, object) {
             if(element.nodeName === "STYLE" || element.nodeName === "LINK" || element.nodeName === "SCRIPT") return;
-            if(element && checkElementHide(element) || element.classList.contains("visually-hidden")) return;
+            console.log(element, typeof element, element.nodeType);
+            if(element && element.nodeType === 8 || checkElementHide(element) || element?.classList?.contains("visually-hidden")) return;
             object["type"] = element.nodeName;
             object["css"] = dumpCSSText(element);
             if(element.nodeName === "svg") return object["content"] = element.outerHTML;
