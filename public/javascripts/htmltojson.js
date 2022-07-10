@@ -57,7 +57,6 @@
         //Recursively loop through DOM elements and assign properties to object
         function treeHTML(element, object) {
             if(element.nodeName === "STYLE" || element.nodeName === "LINK" || element.nodeName === "SCRIPT") return;
-            console.log(element, typeof element, element.nodeType);
             if(element && element.nodeType === 8 || checkElementHide(element) || element?.classList?.contains("visually-hidden")) return;
             object["type"] = element.nodeName;
             object["css"] = dumpCSSText(element);
