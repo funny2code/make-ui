@@ -48,7 +48,7 @@
                         <% if(isAdmin){ %>
                             <iframe src="/view/<%=id%>?page=<%=page%><% if(activeType === 'section'){%>&section=<%=active%><% } else { %>&global=<%=active%><% } %>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
                         <% } else { %>
-                            <iframe src="/view/<%= user ? 'users/' + user._id + '/themes/' + id : id%>?page=<%=page%><% if(activeType === 'section'){%>&section=<%=active%><% } else { %>&global=<%=active%><% } %>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
+                            <iframe src="/view/<%= user ? 'users/' + user._id + '/themes/' + id : id%>?page=<%=page%><% if(activeType === 'section'){%>&section=<%=active%><% } else { %>&global=<%=active%><% } %>" class="py__view-iframe" scrolling="auto" data-page-name="<%=page%>" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
                         <% } %>
                     </div>
                 </div>

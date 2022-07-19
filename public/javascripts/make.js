@@ -221,6 +221,127 @@
         .catch(err => console.error(err));
     };
 
+    // SAVE FIGMA DATA
+    const saveFigma = async (event) => {
+        if(!event) return;
+        let userID = event.target.getAttribute('data-user-id');
+        let themeID = event.target.getAttribute('data-theme-id');
+        let iframe = document.querySelector('.py__view-iframe');
+        let pageName = iframe.getAttribute('data-page-name');
+        let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        
+        if(!userID || !themeID || !iframeDocument) return;
+        loading?.classList.add('py__animate');
+        let data = await mapDOM(iframeDocument.getElementsByTagName('body')[0], false);
+        if(data) data.name = pageName;
+        console.log(userID, themeID, data); 
+        let url = '/figma/' + userID + '/' + themeID; 
+        fetch(url, {
+            method:'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }, 
+            body:JSON.stringify(data)
+        })
+        .then(res => res.text())
+        .then(data => {
+            if(!data) return;
+            loading?.classList.remove('py__animate');
+        })
+        .catch(err => console.error(err));
+    }
+
+    // FIGMA HTML TO JSON
+    const  mapDOM = async (element, json) => {
+        let treeObject = {};
+        
+        if (typeof element === "string") {
+            if (window.DOMParser) {
+                parser = new DOMParser();
+                docNode = parser.parseFromString(element,"text/xml");
+            } else { 
+                docNode = new ActiveXObject("Microsoft.XMLDOM");
+                docNode.async = false;
+                docNode.loadXML(element); 
+            } 
+            element = docNode.firstChild;
+        }
+
+        const dumpCSSText = async (element) => {
+            let s = {};
+            let o = getComputedStyle(element);
+            s.backgroundColor = o["backgroundColor"];
+            s.color = o["color"];
+            s.width = o["width"];
+            s.height = o["height"];
+            s.fontSize = o["fontSize"];
+            s.fontFamily = o["fontFamily"];
+            s.borderWidth = o["borderWidth"];
+            s.borderColor = o["borderColor"];
+            s.textTransform = o["textTransform"];
+            s.transform = o["transform"];
+            s.borderStyle = o["borderStyle"];
+            s.borderBottomLeftRadius = o["borderBottomLeftRadius"];
+            s.borderBottomRightRadius = o["borderBottomRightRadius"];
+            s.borderTopLeftRadius = o["borderTopLeftRadius"];
+            s.borderTopRightRadius = o["borderTopRightRadius"];
+            s.justifyContent = o["justifyContent"];
+            s.alignItems = o["alignItems"];
+            s.textAlign = o["textAlign"];
+            let rect = element.getBoundingClientRect();
+            s.x = rect.left;
+            s.y = rect.top;
+            return s;
+        }
+
+        const checkElementHide = async (element) => {
+            let css = getComputedStyle(element);
+            let display = css.getPropertyValue("display");
+            let visibility = css.getPropertyValue("visibility");
+            return (display === "none" || visibility === "hidden") ? true : false;
+        }
+        
+        //Recursively loop through DOM elements and assign properties to object
+        const treeHTML = async (element, object) => {
+            if(element.nodeName === "STYLE" || element.nodeName === "LINK" || element.nodeName === "SCRIPT") return;
+            if(element && element.nodeType === 8 || await checkElementHide(element) || element?.classList?.contains("visually-hidden")) return;
+            object["type"] = element.nodeName;
+            object["css"] = await dumpCSSText(element);
+            if(element.nodeName === "svg") return object["content"] = element.outerHTML;
+            let nodeList = element.childNodes;
+            if (nodeList != null) {
+                if (nodeList.length) {
+                    object["content"] = [];
+                    for (let i = 0; i < nodeList.length; i++) {
+                        if (nodeList[i].nodeType == 3) {
+                            if(nodeList[i].nodeValue.replace(/[\r\n]/gm, '').trim() !== ''){
+                                object["content"].push(nodeList[i].nodeValue.trim());
+                            }
+                        } else {
+                            object["content"].push({});
+                            await treeHTML(nodeList[i], object["content"][object["content"].length -1]);
+                        }
+                    }
+                }
+            }
+            if (element.attributes != null) {
+                if (element.attributes.length) {
+                    object["attributes"] = {};
+                    for (var i = 0; i < element.attributes.length; i++) {
+                        (element.attributes[i].nodeName === "src") 
+                        ? object["attributes"][element.attributes[i].nodeName] = element.src
+                        : object["attributes"][element.attributes[i].nodeName] = element.attributes[i].nodeValue;
+                    }
+                }
+            }
+            
+        }
+        await treeHTML(element, treeObject);
+        
+        return (json) ? JSON.stringify(treeObject) : treeObject;
+    }
+
     // Get Register Popup Function
     const getRegister = (event) => {
         
@@ -1448,6 +1569,7 @@
         if(e && e.target.classList.contains('py__button-view')) return toggleIframePreview(e);
         if(e && e.target.classList.contains('py__get-section-button')) return getSettingsLists(e);
         if(e && e.target.classList.contains('py__save-button')) return save(e);
+        if(e && e.target.classList.contains('py__save-figma-button')) return saveFigma(e);
         if(e && e.target.classList.contains('py__download-button')) return download(e);
         if(e && e.target.classList.contains('py__button-random')) return randomFun(e);
     });

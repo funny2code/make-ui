@@ -8,6 +8,9 @@
         <div class="py__header-login">
             <% if(user){ %>
                 <% if(show){ %>
+                    <a class="py__button py__button-black py__save-figma-button" data-user-id="<%=user._id%>" data-theme-id="<%=id%>">
+                        Save for Figma
+                    </a>
                     <a class="py__button py__button-black py__save-button" aria-disabled="true">
                         Save Changes
                     </a>
