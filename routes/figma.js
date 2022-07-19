@@ -11,7 +11,8 @@ router.get('/:userId/:themeId', async (req, res, next) => {
   try {
 
     const data = await modelFigma.findOne({user_id: userId, theme_id: themeId}).exec();
-    if (!theme) return next();
+	console.log(data, "DATA");
+    if (!data) return next();
     res.status(200).json(data);
 
   } catch (err) {
