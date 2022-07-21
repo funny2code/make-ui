@@ -290,8 +290,8 @@
             s.alignItems = o["alignItems"];
             s.textAlign = o["textAlign"];
             let rect = element.getBoundingClientRect();
-            s.x = rect.left;
-            s.y = rect.top;
+            s.x = element.offsetLeft;
+            s.y = element.offsetTop;
             return s;
         }
 
@@ -304,7 +304,7 @@
         
         //Recursively loop through DOM elements and assign properties to object
         const treeHTML = async (element, object) => {
-            if(element.nodeName === "STYLE" || element.nodeName === "LINK" || element.nodeName === "SCRIPT") return;
+            if(element.nodeName === "STYLE" || element.nodeName === "LINK" || element.nodeName === "SCRIPT" || element.nodeName === "NOSCRIPT") return;
             if(element && element.nodeType === 8 || await checkElementHide(element) || element?.classList?.contains("visually-hidden")) return;
             object["type"] = element.nodeName;
             object["css"] = await dumpCSSText(element);
