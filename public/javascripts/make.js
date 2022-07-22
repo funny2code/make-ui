@@ -290,8 +290,8 @@
             s.alignItems = o["alignItems"];
             s.textAlign = o["textAlign"];
             let rect = element.getBoundingClientRect();
-            s.x = element.offsetLeft;
-            s.y = element.offsetTop;
+            s.x = rect.left;
+            s.y = rect.top;
             return s;
         }
 
