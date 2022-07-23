@@ -268,6 +268,14 @@
             element = docNode.firstChild;
         }
 
+        const convertToAngle = async (matrix) => {
+            let values = matrix.split('(')[1];
+            values = values.split(')')[0];
+            values = values.split(',');
+            let sin = values[1];
+            return Math.round(Math.asin(sin) * (180/Math.PI));
+        };
+
         const dumpCSSText = async (element) => {
             let s = {};
             let o = getComputedStyle(element);
@@ -280,7 +288,7 @@
             s.borderWidth = o["borderWidth"];
             s.borderColor = o["borderColor"];
             s.textTransform = o["textTransform"];
-            s.transform = o["transform"];
+            s.transform = o["transform"] !== "none" ? await convertToAngle(o["transform"]) : "none";
             s.borderStyle = o["borderStyle"];
             s.borderBottomLeftRadius = o["borderBottomLeftRadius"];
             s.borderBottomRightRadius = o["borderBottomRightRadius"];
@@ -289,6 +297,7 @@
             s.justifyContent = o["justifyContent"];
             s.alignItems = o["alignItems"];
             s.textAlign = o["textAlign"];
+            s.textDecoration = o["textDecorationLine"];
             let rect = element.getBoundingClientRect();
             s.x = rect.left;
             s.y = rect.top;
