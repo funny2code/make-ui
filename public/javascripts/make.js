@@ -222,10 +222,12 @@
     };
 
     // SAVE FIGMA DATA
+    let count = 1;
     const saveFigma = async (event) => {
-        if(!event) return;
-        let userID = event.target.getAttribute('data-user-id');
-        let themeID = event.target.getAttribute('data-theme-id');
+        if(!event && count === 1) return;
+        
+        let userID = count === 1 ? event.target.getAttribute('data-user-id') : document.querySelector('.py__save-figma-button').getAttribute('data-user-id');
+        let themeID = count === 1 ? event.target.getAttribute('data-theme-id') : document.querySelector('.py__save-figma-button').getAttribute('data-theme-id');;
         let iframe = document.querySelector('.py__view-iframe');
         let pageName = iframe.getAttribute('data-page-name');
         let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
@@ -233,8 +235,7 @@
         if(!userID || !themeID || !iframeDocument) return;
         loading?.classList.add('py__animate');
         let data = await mapDOM(iframeDocument.getElementsByTagName('body')[0], false);
-        if(data) data.name = pageName;
-        console.log(userID, themeID, data); 
+        if(data) data.name = count === 1 ? pageName + " Desktop" : count === 2 ? pageName + " Tablet" : pageName + " Mobile";
         let url = '/figma/' + userID + '/' + themeID; 
         fetch(url, {
             method:'POST',
@@ -247,7 +248,22 @@
         .then(res => res.text())
         .then(data => {
             if(!data) return;
-            loading?.classList.remove('py__animate');
+            if(count === 1){
+                let tablet = document.querySelector('.py__button-view[data-type="tablet"]');
+                tablet.click();
+                count++;
+                saveFigma();
+            } else if(count === 2){
+                let tablet = document.querySelector('.py__button-view[data-type="mobile"]');
+                tablet.click();
+                count++;
+                saveFigma();
+            } else if(count === 3){
+                let desktop = document.querySelector('.py__button-view[data-type="desktop"]');
+                desktop.click();
+                count = 1;
+                loading?.classList.remove('py__animate');
+            }
         })
         .catch(err => console.error(err));
     }
