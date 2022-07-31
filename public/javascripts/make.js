@@ -223,50 +223,92 @@
 
     // SAVE FIGMA DATA
     let count = 1;
-    const saveFigma = async (event) => {
-        if(!event && count === 1) return;
-        
-        let userID = count === 1 ? event.target.getAttribute('data-user-id') : document.querySelector('.py__save-figma-button').getAttribute('data-user-id');
-        let themeID = count === 1 ? event.target.getAttribute('data-theme-id') : document.querySelector('.py__save-figma-button').getAttribute('data-theme-id');;
-        let iframe = document.querySelector('.py__view-iframe');
-        let pageName = iframe.getAttribute('data-page-name');
-        let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-        
-        if(!userID || !themeID || !iframeDocument) return;
+    let figmaContent = [];
+    const saveFigma = async () => {
+        let userID = document.querySelector('.py__save-figma-button').getAttribute('data-user-id');
+        let themeID = document.querySelector('.py__save-figma-button').getAttribute('data-theme-id');
+        if(!userID || !themeID) return;
         loading?.classList.add('py__animate');
-        let data = await mapDOM(iframeDocument.getElementsByTagName('body')[0], false);
-        if(data) data.name = count === 1 ? pageName + " Desktop" : count === 2 ? pageName + " Tablet" : pageName + " Mobile";
+        let selectPages = document.querySelector('.py__preview-pages-select');
+        let selectPagesOptions = selectPages.querySelectorAll('option');
+        let setTime = 3000;
+        for (let option of selectPagesOptions) {
+            let href = option.getAttribute('data-href');
+            await changeViewPage(false, href);
+            await timeout(3000);
+            await savePageResForFigma();
+        }
+        // selectPagesOptions?.forEach(async (option,index) => {
+            
+        //     console.log("page is changed");
+        //     await timeout(setTime * index);
+        //     console.log("waiting");
+            
+        //     console.log("SAVED");
+        // });
         let url = '/figma/' + userID + '/' + themeID; 
-        fetch(url, {
+        let res = await fetch(url, {
             method:'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }, 
-            body:JSON.stringify(data)
-        })
-        .then(res => res.text())
-        .then(data => {
-            if(!data) return;
-            if(count === 1){
-                let tablet = document.querySelector('.py__button-view[data-type="tablet"]');
-                tablet.click();
-                count++;
-                saveFigma();
-            } else if(count === 2){
-                let tablet = document.querySelector('.py__button-view[data-type="mobile"]');
-                tablet.click();
-                count++;
-                saveFigma();
-            } else if(count === 3){
-                let desktop = document.querySelector('.py__button-view[data-type="desktop"]');
-                desktop.click();
-                count = 1;
-                loading?.classList.remove('py__animate');
-            }
-        })
-        .catch(err => console.error(err));
+            body:JSON.stringify(figmaContent)
+        });
+        let data = await res.text();
+        if(!data) return;
+        loading?.classList.remove('py__animate');
     }
+
+    const timeout = (ms) => {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    const savePageResForFigma = async () => {
+        let res = await saveDesktopForFigma();
+        return res;
+    };
+
+    const saveDesktopForFigma = async () => {
+        let iframe = document.querySelector('.py__view-iframe');
+        let pageName = iframe.getAttribute('data-page-name');
+        let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        if(!iframeDocument) return;
+        let data = await mapDOM(iframeDocument.getElementsByTagName('body')[0], false);
+        if(data) data.name = pageName + " Desktop";
+        figmaContent.push(data);
+        let tablet = document.querySelector('.py__button-view[data-type="tablet"]');
+        tablet.click();
+        let res = await saveTabletForFigma();
+        return res;
+    };
+
+    const saveTabletForFigma = async () => {
+        let iframe = document.querySelector('.py__view-iframe');
+        let pageName = iframe.getAttribute('data-page-name');
+        let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        if(!iframeDocument) return;
+        let data = await mapDOM(iframeDocument.getElementsByTagName('body')[0], false);
+        if(data) data.name = pageName + " Tablet";
+        figmaContent.push(data);
+        let mobile = document.querySelector('.py__button-view[data-type="mobile"]');
+        mobile.click();
+        let res = await saveMobileForFigma();
+        return res;
+    };
+
+    const saveMobileForFigma = async () => {
+        let iframe = document.querySelector('.py__view-iframe');
+        let pageName = iframe.getAttribute('data-page-name');
+        let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        if(!iframeDocument) return;
+        let data = await mapDOM(iframeDocument.getElementsByTagName('body')[0], false);
+        if(data) data.name = pageName + " Mobile";
+        figmaContent.push(data);
+        let desktop = document.querySelector('.py__button-view[data-type="desktop"]');
+        desktop.click();
+        return true;
+    };
 
     // FIGMA HTML TO JSON
     const  mapDOM = async (element, json) => {
@@ -740,33 +782,27 @@
     };
 
     // Change View Pages Function
-    const changeViewPage = (event) => {
-        if(!event) return;
-        let el = event.target;
-        let url = el.options[el.selectedIndex].getAttribute('data-href');
+    const changeViewPage = async (event=false, href=false) => {
+        let el = event ? event.target : null;
+        let url = event ? el.options[el.selectedIndex].getAttribute('data-href') : href;
         if(!url) return;
         window.history.replaceState({ }, '', url);
-        // document.querySelectorAll('.py__loading-wrap').forEach(item => item.classList.add('py__animate'));
-        fetch(url)
-        .then(res => res.text())
-        .then(data => {
-            if(!data) return;
-            let parser = new DOMParser();
-            let html = parser.parseFromString(data, "text/html");
-            let oldSettingsWrap = document.querySelector('.py__make-settings');
-            let newSettingsWrap = html.querySelector('.py__make-settings');
-            let oldIframeWrap = document.querySelectorAll('.py__preview-iframe');
-            let newIframeWrap = html.querySelector('.py__preview-iframe');
-            // let oldSidebarWrap = document.querySelector('.py__preview-iframe');
-            // let newSidebarWrap = html.querySelector('.py__preview-iframe');
-            oldSettingsWrap && newSettingsWrap ? oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML : null;
-            if(oldIframeWrap.length && newIframeWrap){
-                oldIframeWrap.forEach(oldItem => {  
-                    oldItem.innerHTML = newIframeWrap.innerHTML;
-                });
-            }
-            // oldSidebarWrap && newSidebarWrap ? oldSidebarWrap.innerHTML = newSidebarWrap.innerHTML : null;
-        }).catch(err => console.log(err));
+        let res = await fetch(url);
+        let data = await res.text();
+        if(!data) return;
+        let parser = new DOMParser();
+        let html = parser.parseFromString(data, "text/html");
+        let oldSettingsWrap = document.querySelector('.py__make-settings');
+        let newSettingsWrap = html.querySelector('.py__make-settings');
+        let oldIframeWrap = document.querySelectorAll('.py__preview-iframe');
+        let newIframeWrap = html.querySelector('.py__preview-iframe');
+        oldSettingsWrap && newSettingsWrap ? oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML : null;
+        if(oldIframeWrap.length && newIframeWrap){
+            oldIframeWrap.forEach(oldItem => {  
+                oldItem.innerHTML = newIframeWrap.innerHTML;
+            });
+        }
+        return true;
     };
 
     // Get Global settings or Section settings dynamic function
@@ -1344,7 +1380,6 @@
                 if(index === 0){
                     if(defaultSettingsCount >= 15) defaultSettingsCount = 0; 
                     if(remixCount > 15) remixCount = 0;
-                    console.log((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30), remixCount);
                     if((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)){
                         colorsList = generateRandomColor();
                     } else {

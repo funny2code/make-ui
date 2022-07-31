@@ -2,18 +2,29 @@ const express = require('express');
 const router = express.Router();
 const modelFigma = require('../models/figma');
 
-/* GET users listing. */
 router.get('/:userId/:themeId', async (req, res, next) => {
 
   const { userId, themeId } = req.params;
-  if (!userId || !themeId) return next();
+  const {select} = req.query;
+  if (!userId || !themeId || !select) return next();
 
   try {
 
-    const data = await modelFigma.findOne({user_id: userId, theme_id: themeId}).exec();
-	console.log(data, "DATA");
-    if (!data) return next();
-    res.status(200).json(data);
+    const pages = await modelFigma.findOne({user_id: userId, theme_id: themeId}).exec();
+    if (!pages) return next();
+    if(select !== "all"){
+      const slectedData = select?.split(',');
+      const newData = [];
+      slectedData?.forEach(selectItem => {
+        pages?.data?.forEach(item => {
+          let itemName = item?.name?.toLowerCase();
+          if(itemName.includes(selectItem)) newData.push(item);
+        })
+      });
+      res.status(200).json(newData);
+    } else {
+      res.status(200).json(pages?.data);
+    }
 
   } catch (err) {
     return next(err);
@@ -31,11 +42,7 @@ router.post('/:userId/:themeId', async (req, res, next) => {
   
         const findFigma = await modelFigma.findOne({user_id: userId, theme_id: themeId}).exec();
         if(findFigma){
-            let checkAlerdyAdded = findFigma?.data?.filter(item => item.name === data.name);
-            checkAlerdyAdded?.length ? 
-            findFigma?.data?.map(item => {if(item.name === data.name) item = data}) 
-            : findFigma?.data.push(data);
-            modelFigma.findByIdAndUpdate(findFigma._id, { data: findFigma?.data }, { new: true }).exec(err => {
+            modelFigma.findByIdAndUpdate(findFigma._id, { data: data }, { new: true }).exec(err => {
                 if (err) return res.status(500).send("error");
                 return res.status(200).send("updated Succsess!");
             });
