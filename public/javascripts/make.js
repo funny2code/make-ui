@@ -222,30 +222,28 @@
     };
 
     // SAVE FIGMA DATA
-    let count = 1;
     let figmaContent = [];
     const saveFigma = async () => {
         let userID = document.querySelector('.py__save-figma-button').getAttribute('data-user-id');
         let themeID = document.querySelector('.py__save-figma-button').getAttribute('data-theme-id');
         if(!userID || !themeID) return;
         loading?.classList.add('py__animate');
+
+        let currentUrl = location?.pathname + location?.search;
+        let brandhref = encodeURI(document.querySelector('.global-styles')?.getAttribute('href'));
+        currentUrl !== brandhref ? await changeViewPage(false, brandhref) : null;
+        currentUrl !== brandhref ? await timeout(4000) : null;
+        await saveBrandForFigma(); 
+
         let selectPages = document.querySelector('.py__preview-pages-select');
         let selectPagesOptions = selectPages.querySelectorAll('option');
-        let setTime = 3000;
         for (let option of selectPagesOptions) {
             let href = option.getAttribute('data-href');
             await changeViewPage(false, href);
             await timeout(3000);
             await savePageResForFigma();
         }
-        // selectPagesOptions?.forEach(async (option,index) => {
-            
-        //     console.log("page is changed");
-        //     await timeout(setTime * index);
-        //     console.log("waiting");
-            
-        //     console.log("SAVED");
-        // });
+        
         let url = '/figma/' + userID + '/' + themeID; 
         let res = await fetch(url, {
             method:'POST',
@@ -281,6 +279,16 @@
         tablet.click();
         let res = await saveTabletForFigma();
         return res;
+    };
+
+    const saveBrandForFigma = async () => {
+        let iframe = document.querySelector('.py__view-iframe');
+        let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        if(!iframeDocument) return;
+        let brandHtml = iframeDocument.getElementsByTagName('body')[0];
+        let data = await mapDOM(brandHtml, false);
+        if(data) data.name = "Brand";
+        figmaContent.push(data);
     };
 
     const saveTabletForFigma = async () => {

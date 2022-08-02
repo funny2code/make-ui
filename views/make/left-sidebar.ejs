@@ -21,7 +21,7 @@
                             <% }) %>
                         </ul>
                     <% } else { %>
-                        <a href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page%>&<%=item.type%>=<%=item.name%>" class="py__settings-select-options-item py__get-section-button <% if(item.name === active){ %>active<% } %>">
+                        <a href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page%>&<%=item.type%>=<%=item.name%>" class="py__settings-select-options-item py__get-section-button <%= item?.name?.toLowerCase().replaceAll(' ', '-') %> <% if(item.name === active){ %>active<% } %>">
                             <span><%- include('../icons', {type: item.icon}) %></span>
                             <span class="py__select-option-label"><%= item.title %></span>
                         </a>
