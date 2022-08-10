@@ -1156,8 +1156,12 @@ select {
   display: none;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   background: rgba(255, 255, 255, 0.7);
   z-index: 1000;
+}
+.py__notopacity {
+  background: rgb(255, 255, 255);
 }
 .py__loading-wrap.py__animate {
   display: flex;
@@ -1241,6 +1245,10 @@ select {
   100% {
     opacity: 0;
   }
+}
+.py__save-figma-message {
+  margin-top: 20px;
+  font-size: 16px;
 }
 
 

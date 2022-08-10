@@ -20,7 +20,6 @@
         "settings_py_cart_bg_color": "settings_py_cart_color",
         "settings_ck_btn_bg": "settings_ck_btn_color"
     };
-
     // Colors Contrast Fun 
     const getContrastYIQ = (hexcolor) => {
         if(!hexcolor) return;
@@ -146,7 +145,7 @@
     };
 
     // Save Function
-    const save = () => {
+    const save = async () => {
 
         let form = document.querySelector('form.py__settings-form');
         let url = form.getAttribute('action');
@@ -154,52 +153,8 @@
         if(!form || !url) return;
 
         loading?.classList.add('py__animate');
-        // let settings = {}, section = [], sectionName = '', templateName = '', sectionSettings = {};
-        // let blocks = []; 
-        // let blockItems = {
-        //     type: "",
-        //     settings: {}
-        // }; 
 
-        // let formData = new FormData(form);
-        // formData.forEach((value, key) => {
-        //     let newValue = value === "true" || value === "false" 
-        //     ? value === "true" 
-        //     ? true : false : /^\d+$/.test(value) 
-        //     ? parseInt(value) : value;
-        //     if(key === 'logo') return;
-        //     if(key.includes('settings_')){ 
-        //         settings[key.replace('settings_', '')] = newValue;
-        //     } else if(key.includes('block_')){
-        //         if(key.includes('block_type_')){
-        //             blockItems.type = newValue;
-        //             blocks.push(blockItems);
-        //             blockItems = {type:"",settings: {}};
-        //         } else {
-        //             blockItems.settings[key.replace('block_', '')] = newValue
-        //         }
-        //     } else { 
-        //         if(key === 'section_name'){ 
-        //             sectionName = newValue;
-        //         } else if(key === 'template_name'){
-        //             templateName = newValue;
-        //         } else { 
-        //             sectionSettings[key] = newValue;
-        //         }
-        //     }
-        // });
-        
-        // if(sectionName && Object.keys(sectionSettings).length){
-        //     section.push({ name: sectionName, template: templateName, settings: sectionSettings});
-        // }
-
-        // let data = {
-        //     settings: Object.keys(settings).length ? [settings] : null,
-        //     section: section.length ? section : null,
-        //     blocks: blocks?.length ? blocks : null,
-        // };
-
-        fetch(url, {
+        let res = await fetch(url, {
             method:'POST',
             headers: {
                 'Accept': 'application/json',
@@ -207,18 +162,15 @@
             }, 
             body:JSON.stringify(theme)
         })
-        .then(res => res.text())
-        .then(data => {
-            if(!data) return;
-            let dataParse = JSON.parse(data);
-            if(dataParse?.status === 200){
-                saveButton?.setAttribute('aria-disabled', 'true');
-                downloadButton?.setAttribute('aria-disabled', 'false');
-                saveSettingsValues();
-            } 
-            loading?.classList.remove('py__animate');
-        })
-        .catch(err => console.error(err));
+        let data = await res.text();
+        if(!data) return;
+        let dataParse = JSON.parse(data);
+        if(dataParse?.status === 200){
+            saveButton?.setAttribute('aria-disabled', 'true');
+            downloadButton?.setAttribute('aria-disabled', 'false');
+            saveSettingsValues();
+        } 
+        loading?.classList.remove('py__animate');
     };
 
     // SAVE FIGMA DATA
@@ -227,11 +179,12 @@
         let userID = document.querySelector('.py__save-figma-button').getAttribute('data-user-id');
         let themeID = document.querySelector('.py__save-figma-button').getAttribute('data-theme-id');
         if(!userID || !themeID) return;
-        loading?.classList.add('py__animate');
+        loading?.classList.add('py__animate','py__notopacity');
+        loading?.insertAdjacentHTML("beforeend", '<span class="py__save-figma-message">Please wait few minuts...</span>');
 
         let currentUrl = location?.pathname + location?.search;
         let brandhref = encodeURI(document.querySelector('.global-styles')?.getAttribute('href'));
-        currentUrl !== brandhref ? await changeViewPage(false, brandhref) : null;
+        currentUrl !== brandhref ? await changeViewPage(false, brandhref, false) : null;
         currentUrl !== brandhref ? await timeout(4000) : null;
         await saveBrandForFigma(); 
 
@@ -239,7 +192,7 @@
         let selectPagesOptions = selectPages.querySelectorAll('option');
         for (let option of selectPagesOptions) {
             let href = option.getAttribute('data-href');
-            await changeViewPage(false, href);
+            await changeViewPage(false, href, false);
             await timeout(3000);
             await savePageResForFigma();
         }
@@ -255,7 +208,8 @@
         });
         let data = await res.text();
         if(!data) return;
-        loading?.classList.remove('py__animate');
+        loading?.classList.remove('py__animate','py__notopacity');
+        loading?.querySelector('.py__save-figma-message')?.remove();
     }
 
     const timeout = (ms) => {
@@ -744,7 +698,7 @@
     };
 
     // Show Item From Global Settings Function (Color, padding, Margin and etc)
-    const getItemFromSettings = (event, another=false) => {
+    const getItemFromSettings = async (event, another=false) => {
         
         if(!event) return;
         if(!another) event.preventDefault();
@@ -774,27 +728,25 @@
         if(!url || !getItemId) return;
         let getUrl = url + "&item_id=" + getItemId.trim();
 
-        fetch(getUrl)
-        .then(res => res.text())
-        .then(data => {
-            if(!data) return;
-            let parser = new DOMParser();
-            let html = parser.parseFromString(data, "text/html");
-            let newSettingsItem = html.querySelector('.py__settings-item');
-            itemWrapToInner.innerHTML = newSettingsItem ? newSettingsItem.innerHTML : null;
-            if(!another) listenerBtn.textContent = hideTxt;
-            if(!another) itemWrapToInner.classList.add('open', 'isAdded');
-        })
-        .catch(err => console.log(err));
+        let res = await fetch(getUrl);
+        let data = await res.text();
+        if(!data) return;
+        let parser = new DOMParser();
+        let html = parser.parseFromString(data, "text/html");
+        let newSettingsItem = html.querySelector('.py__settings-item');
+        itemWrapToInner.innerHTML = newSettingsItem ? newSettingsItem.innerHTML : null;
+        if(!another) listenerBtn.textContent = hideTxt;
+        if(!another) itemWrapToInner.classList.add('open', 'isAdded');
 
     };
 
     // Change View Pages Function
-    const changeViewPage = async (event=false, href=false) => {
+    const changeViewPage = async (event=false, href=false, changeUrl=true) => {
+        loading?.classList.add('py__animate');
         let el = event ? event.target : null;
         let url = event ? el.options[el.selectedIndex].getAttribute('data-href') : href;
         if(!url) return;
-        window.history.replaceState({ }, '', url);
+        changeUrl ? window.history.replaceState({ }, '', url) : null;
         let res = await fetch(url);
         let data = await res.text();
         if(!data) return;
@@ -810,24 +762,27 @@
                 oldItem.innerHTML = newIframeWrap.innerHTML;
             });
         }
+        loading?.classList.remove('py__animate');
         return true;
     };
 
     // Get Global settings or Section settings dynamic function
-    const getSettingsLists = (event) => {
+    const getSettingsLists = async (event) => {
         if(!event) return;
         
         let el = event.target, url = null;
         if(event.type === 'change'){
+            loading?.classList.add('py__animate');
             url = el.options[el.selectedIndex].getAttribute('data-href');
         } else {
             event.preventDefault();
             if(el.classList.contains('active')) return;
+            loading?.classList.add('py__animate');
+            if(el.classList.contains('global-styles')) document.querySelector('.py__preview-pages-select').options[0].selected = 'selected';
             url = el.getAttribute('href');
         }
 
         if(!url) return;
-        let content = document.querySelector('.py__settings-content');
         
         window.history.replaceState({ }, '', url);
         let urlSearch = new URLSearchParams(url);
@@ -851,23 +806,22 @@
             iframe.setAttribute('src', iframeUrl);
         }
         
-        // if(content) content.querySelector('.py__loading-wrap').classList.add('py__animate');
 
         el.classList.add('active');
-        fetch(url)
-        .then(res => res.text())
-        .then(data => {
-            if(!data) return;
-            let parser = new DOMParser();
-            let html = parser.parseFromString(data, "text/html");
-            let oldSettingsWrap = document.querySelector('.py__make-settings');
-            let newSettingsWrap = html.querySelector('.py__make-settings');
-            let oldSidebar = document.querySelector('.py__settings-select-options');
-            let newSidebar = html.querySelector('.py__settings-select-options');
-            oldSettingsWrap && newSettingsWrap ? oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML : null;
-            oldSidebar && newSidebar ? oldSidebar.innerHTML = newSidebar.innerHTML : null;
-            saveSettingsValues();
-        }).catch(err => console.log(err));
+        let res = await fetch(url);
+        let data = await res.text();
+        
+        if(!data) return;
+        let parser = new DOMParser();
+        let html = parser.parseFromString(data, "text/html");
+        let oldSettingsWrap = document.querySelector('.py__make-settings');
+        let newSettingsWrap = html.querySelector('.py__make-settings');
+        let oldSidebar = document.querySelector('.py__settings-select-options');
+        let newSidebar = html.querySelector('.py__settings-select-options');
+        oldSettingsWrap && newSettingsWrap ? oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML : null;
+        oldSidebar && newSidebar ? oldSidebar.innerHTML = newSidebar.innerHTML : null;
+        saveSettingsValues();
+        loading?.classList.remove('py__animate');
     };
 
 
@@ -1376,14 +1330,11 @@
        let textColorsList = null;
        let fontsList = null;
        if(!inputFileds.length) return;
-    //    let myBgJson = {};
-    //    let myColorJson = {};
-    //    let myFontJson = {};
+
        inputFileds.forEach(filed => {
            let filedType = filed.getAttribute('type');
            let filedName = filed.getAttribute('name');
            if(filedType === "color"){
-            // console.log(defaultSettingsCount, remixCount);
             if(filedName.includes('_bg')){
                 if(index === 0){
                     if(defaultSettingsCount >= 15) defaultSettingsCount = 0; 
@@ -1397,9 +1348,7 @@
                         defaultSettingsCount++;
                     }
                 }
-                // console.log(defaultSettings, defaultSettings.backgrounds, colorsList);
                 let color = ((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)) ? colorsList[index] : colorsList[filedName];
-                // if(remixCount<16) myBgJson[filedName] = color;
                 let closestWrap = filed.closest('.component-is-color');
                 let isColorLabel = closestWrap.querySelector('.py__label-for-color');
                 isColorLabel.style.backgroundColor = color;
@@ -1409,7 +1358,6 @@
                 let textInputFiled = document.querySelector(`[name="${filedName.replace('_bg', '')}"]`);
                 if(!textInputFiled) return;
                 let textColor = ((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)) ? getContrastYIQ(color) : textColorsList[filedName.replace('_bg', '')];
-                // if(remixCount<16) myColorJson[filedName.replace('_bg', '')] = textColor;
                 let textClosestWrap = textInputFiled.closest('.component-is-color');
                 let textIsColorLabel = textClosestWrap.querySelector('.py__label-for-color');
                 textIsColorLabel.style.backgroundColor = textColor;
@@ -1421,7 +1369,6 @@
                 if((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)){
                     let optionIndex = Math.floor(Math.random() * options.length);
                     filed.selectedIndex = optionIndex;
-                    // myFontJson[filedName] = options[optionIndex].value;
                 } else {
                     for (let i= 0; i<options.length; i++) {
                         if (options[i].value === fontsList[filedName]) {
@@ -1432,10 +1379,7 @@
                 }
            }
        });
-    //    defaultSettings.backgrounds.push(myBgJson);
-    //    defaultSettings.colors.push(myColorJson);
-    //    defaultSettings.fonts.push(myFontJson);
-    //    console.log(defaultSettings, "CHECK DAV JAN");
+
        remixCount++;
        saveSettingsValues();
        viewIframe();

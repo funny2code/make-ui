@@ -108,6 +108,7 @@
 }
 
 .bc-cart__image-img {
+  width: 55px;
   object-fit: cover;
   object-position: center;
   vertical-align: bottom;
