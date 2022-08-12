@@ -47,7 +47,9 @@
 
             if(!sectionName){
                 data?.querySelectorAll('[name]').forEach(element => {
-                    theme.settings[element.getAttribute('name').replace('settings_', '')] =  (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
+                    theme.settings[element.getAttribute('name').replace('settings_', '')] = (element.value === "true" || element.value === "false") 
+                    ? (element.value === "true") ? true : false 
+                    : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                 });
             }
 
@@ -57,7 +59,8 @@
                     theme?.sections?.forEach(sectionItem => {
                         if(sectionItem.name === sectionName){
                             data?.querySelectorAll('[name]').forEach(element => {
-                                sectionItem.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
+                                sectionItem.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false 
+                                : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                             });
                         }
                         if(blockSettings?.length){
@@ -65,7 +68,8 @@
                                 sectionItem?.blocks.forEach(localBlock => {
                                     if(localBlock.type === block.getAttribute('data-type')){
                                         block.querySelectorAll('[name]').forEach(element => {
-                                            localBlock.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
+                                            localBlock.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
+                                            : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                                         });
                                     }
                                 })
@@ -75,13 +79,15 @@
                 } else {
                     section.name = sectionName;
                     data?.querySelectorAll('[name]').forEach(element => {
-                        section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
+                        section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
+                        : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                     });
                     if(blockSettings?.length){
                         blockSettings.forEach(block=>{
                             let blockItem = {type: block.getAttribute('data-type'),settings: {}};
                             block?.querySelectorAll('[name]')?.forEach(element => {
-                                blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
+                                blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false 
+                                : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                             });
                             section.blocks.push(blockItem);
                         });
@@ -90,13 +96,15 @@
             } else {
                 section.name = sectionName;
                 data?.querySelectorAll('[name]').forEach(element => {
-                    section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
+                    section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false 
+                    : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                 });
                 if(blockSettings?.length){
                     blockSettings.forEach(block=>{
                         let blockItem = {type: block.getAttribute('data-type'),settings: {}};
                         block?.querySelectorAll('[name]')?.forEach(element => {
-                            blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false : element.value;
+                            blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false 
+                            : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                         });
                         section.blocks.push(blockItem);
                     });
@@ -744,7 +752,10 @@
     const changeViewPage = async (event=false, href=false, changeUrl=true) => {
         loading?.classList.add('py__animate');
         let el = event ? event.target : null;
-        let url = event ? el.options[el.selectedIndex].getAttribute('data-href') : href;
+        let brandBtn = document.querySelector('.global-styles');
+        let url = event ? brandBtn?.classList?.contains('active') 
+        ? el.options[el.selectedIndex].getAttribute('data-href') + '&global=Global%20Styles' 
+        : el.options[el.selectedIndex].getAttribute('data-href') : href;
         if(!url) return;
         changeUrl ? window.history.replaceState({ }, '', url) : null;
         let res = await fetch(url);
@@ -770,16 +781,20 @@
     const getSettingsLists = async (event) => {
         if(!event) return;
         
+        loading?.classList.add('py__animate');
         let el = event.target, url = null;
         if(event.type === 'change'){
-            loading?.classList.add('py__animate');
             url = el.options[el.selectedIndex].getAttribute('data-href');
         } else {
             event.preventDefault();
-            if(el.classList.contains('active')) return;
-            loading?.classList.add('py__animate');
-            if(el.classList.contains('global-styles')) document.querySelector('.py__preview-pages-select').options[0].selected = 'selected';
-            url = el.getAttribute('href');
+            if(el.classList.contains('active') && el.classList.contains('global-styles')){
+                let currenturlSearchParam = new URLSearchParams(location.search);
+                currenturlSearchParam.delete('global');
+                let newUrl = location.origin + location.pathname + '?' + currenturlSearchParam.toString();
+                url = newUrl;
+            } else {
+                url = el.getAttribute('href');
+            }
         }
 
         if(!url) return;

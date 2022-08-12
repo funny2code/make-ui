@@ -2,11 +2,37 @@
     <% 
         var templateName = null;
         if(page === "Home Page"){ 
-            templateName = "index"
+            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
+            ? "config/settings_data" : "templates/index";
         } else if(page === "Collection Page"){ 
-            templateName = "collection"
+            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
+            ? "config/settings_data" : "templates/collection";
         } else if(page === "Product Page"){ 
-            templateName = "product"
+            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
+            ? "config/settings_data" : "templates/product";
+        } else if(page === "404 Page"){
+            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
+            ? "config/settings_data" : "templates/404";
+        } else if(page === "Article Page"){
+            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
+            ? "config/settings_data" : "templates/article";
+        } else if(page === "Blog Page"){
+            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
+            ? "config/settings_data" : "templates/blog";
+        } else if(page === "Cart Page"){
+            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
+            ? "config/settings_data" : "templates/cart";
+        } else if(page === "List Collections Page"){
+            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
+            ? "config/settings_data" : "templates/list-collections";
+        } else if(page === "Page"){
+            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
+            ? "config/settings_data" : "templates/page";
+        } else if(page === "Search Page"){
+            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
+            ? "config/settings_data" : "templates/search";
+        } else if(page === "Gift Card Page" || page === "Account Page" || page === "Account Activate Page" || page === "Account Addresses Page" || page === "Account Login Page" || page === "Account Register Page" || page === "Account Reset Password Page"){
+            templateName = "config/settings_data";
         } 
     %> 
     <div class="py__settings-wrapper <% if(global === "section"){ %>py__settings-section-item<% } %>" <% if(global === "section"){ %>data-section-name="<%=active%>"<% } %> data-template-name="<%=templateName%>">

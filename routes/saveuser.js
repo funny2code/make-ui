@@ -23,6 +23,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
 
         // Theme Global Settings Save Function  
         if (settings && theme.theme_set) {
+            let settingsDataFile = require(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/config/settings_data.json`));
             theme.theme_set.map(el => {
                 if (el.settings) {
                     el.settings.map(oldItem => {
@@ -30,6 +31,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                             if (oldItem.id === newItem[0] && newItem[1] !== "") {
                                 oldItem.default = oldItem?.type === "range" ? parseInt(newItem[1]) : newItem[1];
                             }
+                            if(settingsDataFile?.current[newItem[0]]) settingsDataFile.current[newItem[0]] = newItem[1];
                         })
                     })
                 } else {
@@ -40,6 +42,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                     })
                 }
             });
+            if(settingsDataFile) fs.writeFileSync(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/config/settings_data.json`), JSON.stringify(settingsDataFile, null, 2), 'utf-8')
             modelUsersThemes.findByIdAndUpdate(themeId, { theme_set: theme.theme_set }, { new: true }).exec(err => {
                 if (err) return res.status(500).send("error");
             });
@@ -49,7 +52,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
         if (sections?.length && theme.theme_sec) {
             theme.theme_sec.map(el => {
                 let findSection = sections.filter(item => item.name === el.name);
-                let productTemplate = findSection[0]?.template ? require(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/templates/${findSection[0]?.template}.json`)) : null;
+                let productTemplate = findSection[0]?.template_name && require(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/${findSection[0]?.template_name}.json`));
                 if (findSection?.length) {
                     if (el.settings && findSection[0]?.settings) {
                         el.settings.map(oldItem => {
@@ -60,8 +63,9 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                             })
                         })
                     }
-                    if (productTemplate?.sections) {
-                        Object.entries(productTemplate?.sections).forEach(templateSection => {
+                    if (productTemplate?.sections || productTemplate?.current) {
+                        Object.entries(productTemplate?.sections || productTemplate?.current?.sections).forEach(templateSection => {
+                            console.log(templateSection);
                             let templateSectionName = templateSection[1]?.type ? templateSection[1]?.type.replace(/-/g, ' ') : null;
                             if (templateSectionName && templateSectionName === findSection[0]?.name) {
                                 templateSection[1].settings = findSection[0].settings;
@@ -77,7 +81,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                                 })
                             }
                         });
-                        if (productTemplate) fs.writeFileSync(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/templates/${findSection[0]?.template}.json`), JSON.stringify(productTemplate, null, 2), 'utf-8');
+                        if (productTemplate) fs.writeFileSync(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/${findSection[0]?.template_name}.json`), JSON.stringify(productTemplate, null, 2), 'utf-8')
                     }
                     if (el?.blocks?.length && findSection[0]?.blocks?.length) {
                         el?.blocks.map(block => {
@@ -100,7 +104,6 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                 if(err) return res.status(500).send("error");
             });
         }
-        
         await new Pageres({
             delay: 2,
             launchOptions: {args: ['--no-sandbox', '--disable-setuid-sandbox']}
