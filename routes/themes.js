@@ -74,6 +74,7 @@ router.get('/:id', async (req, res, next) => {
       isAdmin: req?.session?.user?.isAdmin || null, 
       make: make, 
       id: theme._id,
+      srcId: theme._id,
       page: page,
       sidebar: theme.app_sid || null,
       fonts: fonts,

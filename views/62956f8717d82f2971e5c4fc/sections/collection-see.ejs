@@ -1,0 +1,45 @@
+<% if(section.settings.title || section.blocks.length){ %>
+<link rel="stylesheet" href="/<%=srcId%>/collection-see-style-1.css">
+
+<div class="collection-see bc-<%=settings.section_style%>-bt">
+  <div class="page-width page-width-<%=settings.section_style%>">
+    <% if(section.settings.title){ %>
+    <div class="collection-see-heading">
+      <h2 class="collection-see__title">
+        <%= section.settings.title %>
+      </h2>
+      <%# include('../snippets/style', {sufix: '.collection-see__title', id: section.id, style: section.settings}) %>
+    </div>
+    <% } %>
+    <ul class="collection-see-list bc-scroll-hide">
+      <% section.blocks.forEach((block, index) => { %>
+      <li class="collection-see-list__item">
+        <% if(block.settings?.image){ %>
+          <% if(block.settings?.button_link){ %>
+          <a href="<%= block.settings?.button_link %>" target="_blank">
+            <% } %>
+            <div class="collection-see_image__wrap">
+              <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: block.settings?.image}) %>
+              <% if(block.settings?.button_label){ %>
+                <div class="collection-see__btn"><%= block.settings?.button_label %></div>
+              <% } %>            
+            </div>
+            <% if(block.settings?.title){ %>
+              <h3 class="collection-see__name"><%= block.settings?.title %></h3>
+            <% } %>
+            <% if(block.settings?.button_link){ %>
+          </a>
+          <% } %>
+        <% } else { %>
+          <div class="collection-see_image__wrap">
+            <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'see-' + index + '.png'}) %>           
+            <div class="collection-see__btn">SHOP NOW</div>
+          </div>
+          <h3 class="collection-see__name">Title <%= index %></h3>
+        <% } %>
+      </li>
+      <% }) %>
+    </ul>
+  </div>
+</div>
+<% } %>

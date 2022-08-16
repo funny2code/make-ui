@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="/<%=srcId%>/component-image-with-text.css">
+
+<div class="image-with-text color-scheme-<%=section.settings.color_scheme %> bc-<%=settings.section_style%>-bt">
+  <div class="<% if(section.settings.full_width){ %>image-with-text--full-width<% } else { %>page-width<% } %> page-width-<%=settings.section_style%>">
+    <div class="image-with-text__grid color-<% section.settings.color_scheme %><% if(section.settings.layout === 'text_first'){ %> image-with-text__grid--reverse<% } %> grid grid--gapless grid--1-col grid--2-col-tablet">
+      <div class="grid__item">
+        <div class="image-with-text__media image-with-text__media--<%= section.settings.height %> <% if(section.settings.image){ %>media<% } else { %>image-with-text__media--placeholder placeholder<% } %>"
+          <% if(section.settings.height === 'adapt' && section.settings.image){ %> style="padding-bottom: <%= 1 / (section.settings.image.aspect_ratio * 100) %>%;"<% } %>
+        >
+          <% if(section.settings.image){ %>
+            <img srcset="<% if(section.settings.image.width >= 165){ %><%= section.settings.image %> 165w,<% } %>
+              <% if(section.settings.image.width >= 360){ %><%= section.settings.image %> 360w,<% } %>
+              <% if(section.settings.image.width >= 535){ %><%= section.settings.image %> 535w,<% } %>
+              <% if(section.settings.image.width >= 720){ %><%= section.settings.image %> 720w,<% } %>
+              <% if(section.settings.image.width >= 940){ %><%= section.settings.image %> 940w,<% } %>
+              <% if(section.settings.image.width >= 1070){ %><%= section.settings.image %> 1070w<% } %>"
+              src="<%= section.settings.image %>"
+              sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+              alt="<%= section.settings.image.alt %>"
+              loading="lazy"
+              width="<%= section.settings.image.width %>"
+              height="<%= section.settings.image.height %>" 
+            />
+          <% } else { %>
+            <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image:'image-with-text.png'}) %>
+          <% } %>
+        </div>
+      </div>
+      <div class="grid__item">
+        <div class="image-with-text__content image-with-text__content--<%= section.settings.height %>">
+          <% section.blocks.forEach((block, index) => { %>
+            <% if(block.type === 'heading'){ %>
+              <h2 class="image-with-text__heading h1">
+                <%= block.settings?.heading ? block.settings?.heading : "Image with text" %>
+              </h2>
+            <% } else if(block.type === 'text'){ %>
+              <div class="image-with-text__text rte"><%- block.settings?.text ? block.settings?.text : "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>" -%></div>
+            <% } else if(block.type === 'button'){ %>
+              <a <% if(block.settings?.button_label){ %>href="<%= block.settings?.button_link %>"<% } %> class="button<% if(block.settings?.button_style_secondary){ %> button--secondary<% } else { %> button--primary<% } %>"<% if(!block.settings?.button_link){ %> aria-disabled="true"<% } %>>
+                <%= block.settings?.button_label ? block.settings?.button_label : "Button label" %>
+              </a>
+            <% } %>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

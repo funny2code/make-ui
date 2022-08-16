@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="/<%=srcId%>/section-image-banner.css">
+
+<div id="Banner-<%=section.name%>" class="banner hero_banner bc-<%=settings.section_style%>-bt" <% if(section.settings.url){ %>data-href="<%= section.settings.url %>" style="cursor: pointer;"<% } %>>
+  <div class="media small-hide" style="padding-bottom: 53.4375%;">
+    <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/files/sunny-ng-X5uewTVHoCg-unsplash_1_375x.png?v=1646255214 375w,//cdn.shopify.com/s/files/1/0584/1993/7441/files/sunny-ng-X5uewTVHoCg-unsplash_1_750x.png?v=1646255214 750w,//cdn.shopify.com/s/files/1/0584/1993/7441/files/sunny-ng-X5uewTVHoCg-unsplash_1_1100x.png?v=1646255214 1100w,//cdn.shopify.com/s/files/1/0584/1993/7441/files/sunny-ng-X5uewTVHoCg-unsplash_1_1500x.png?v=1646255214 1500w,//cdn.shopify.com/s/files/1/0584/1993/7441/files/sunny-ng-X5uewTVHoCg-unsplash_1_1780x.png?v=1646255214 1780w," sizes="50vw" src="//cdn.shopify.com/s/files/1/0584/1993/7441/files/sunny-ng-X5uewTVHoCg-unsplash_1_750x.png?v=1646255214" loading="lazy" alt="" width="1920" height="1026.0" data-aos="zoom-out" class="aos-init aos-animate">
+  </div>
+  <div class="media large-up-hide medium-hide" style="padding-bottom: 163.25%;">
+    <img srcset="//cdn.shopify.com/s/files/1/0584/1993/7441/files/sunny-ng-X5uewTVHoCg-unsplash_1_2_165x.png?v=1646255421 165w," src="//cdn.shopify.com/s/files/1/0584/1993/7441/files/sunny-ng-X5uewTVHoCg-unsplash_1_2_535x.png?v=1646255421" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="" loading="lazy" width="320" height="820" class="">
+  </div>
+  <%# if(section.settings.image_2){ %>
+    <%# include('resimg', {image: section.settings.image_2, classwrapper: 'large-up-hide medium-hide'}) %>
+  <%# } %>
+  <% var bannerStyle = include('../snippets/style', {style: section.settings}) %>
+  <div class="banner__content banner__content-<%= section.id %> page-width" <% if(bannerStyle){ %>style="<%= bannerStyle.replace(/(\r\n|\n|\r)/gm, "") %>"<% } %>>
+    <div class="banner__box">
+      <% section.blocks.forEach(block => { %>
+        <% if(block.type === 'heading'){ %>
+          <% var headingStyle = include('../snippets/style', {style: block.settings}) %>
+          <h2 class="banner__heading h1 color-white" <% if(headingStyle){ %>style="<%= headingStyle.replace(/(\r\n|\n|\r)/gm, "") %>"<% } %>>
+            <%- block.settings?.heading -%>
+          </h2>
+        <% } else if(block.type === 'text'){ %>
+          <% var textStyle = include('../snippets/style', {style: block.settings}) %>
+          <div class="banner__text color-white" <% if(textStyle){ %>style="<%= textStyle.replace(/(\r\n|\n|\r)/gm, "") %>"<% } %>>
+            <%- block.settings?.text -%>
+          </div>
+        <% } else if(block.type === 'buttons'){ %>
+          <div class="banner__buttons<% if(block.settings?.button_label_1 && block.settings?.button_link_1 && block.settings?.button_label_2 && block.settings?.button_link_2){ %> banner__buttons--multiple<% } %>">
+            <% if(block.settings?.button_label_1){ %>
+              <% var buttonStyle = include('../snippets/style', {style: block.settings}) %>
+              <a id="bunner__button-1" href="<%= block.settings.button_link_1 %>" class="button py-btn-<%=block.settings.view_btn_color%> py-btn-hover-<%=block.settings.view_btn_hover_color%> py-btn-<%=block.settings.view_btn_size%>"<% if(!block.settings.button_link_1){ %> aria-disabled="true"<% } %>>
+                <%= block.settings?.button_label_1 %>
+              </a>
+              <style>
+                #bunner__button-1 {
+                  <%=block.settings.c_css%>
+                }
+              </style>
+            <% } %>
+          </div>
+        <% } %>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  if(document.getElementsByClassName('hero_banner').length>0){
+    var HSL = document.getElementsByClassName("hero_banner");
+    var i;
+
+    for (i = 0; i < HSL.length; i++) {
+      if(HSL[i].getAttribute('data-href')!=null)
+      HSL[i].addEventListener("click", function() {
+        window.location.href = this.getAttribute('data-href');
+      });
+    }
+  }
+</script>

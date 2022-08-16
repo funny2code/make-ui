@@ -38,6 +38,7 @@ router.post('/:userId/:themeId', async (req, res, next) => {
 
     const newUserTheme = new modelUsersThemes({
       user_id: userId,
+      extend_id: themeId,
       theme_set: theme?.theme_set,
       app_sid: theme?.app_sid,
       theme_pag: theme?.theme_pag,
@@ -46,7 +47,7 @@ router.post('/:userId/:themeId', async (req, res, next) => {
 
     newUserTheme.save(async (err, newtheme) => {
       if(err) return next();
-      const copyFolder = await fse.copy(path.join(__dirname, '../basetheme'), path.join(__dirname, `../users/user-${userId}/theme-${newtheme._id}`));
+      await fse.copy(path.join(__dirname, `../themes/${themeId}`), path.join(__dirname, `../users/user-${userId}/theme-${newtheme._id}`));
       if(screen){
         await new Pageres({
           delay: 2,

@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
-    <link rel="stylesheet" href="/assets/base-style.css">
+    <link rel="stylesheet" href="/<%=srcId%>/base-style.css">
     <link rel="stylesheet" href="/stylesheets/view.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
-    <script src="/assets/global.js" defer="defer"></script>
+    <script src="/<%=srcId%>/global.js" defer="defer"></script>
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
     <% if(settings.enable_global_anim){ %>
         <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style">
@@ -17,11 +17,11 @@
     <% if(component){ %>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <% } %>
-    <link rel="stylesheet" href="/assets/component-list-menu.css">
-    <link rel="stylesheet" href="/assets/component-search-style-1.css">
-    <link rel="stylesheet" href="/assets/component-menu-drawer.css">
-    <link rel="stylesheet" href="/assets/component-cart-notification-style-1.css">
-    <link rel="stylesheet" href="/assets/component-header-style-1.css">
+    <link rel="stylesheet" href="/<%=srcId%>/component-list-menu.css">
+    <link rel="stylesheet" href="/<%=srcId%>/component-search-style-1.css">
+    <link rel="stylesheet" href="/<%=srcId%>/component-menu-drawer.css">
+    <link rel="stylesheet" href="/<%=srcId%>/component-cart-notification-style-1.css">
+    <link rel="stylesheet" href="/<%=srcId%>/component-header-style-1.css">
 </head>
     <body class="index">
         <% let fontsNames = settings.heading_font_custom + '|' + settings.title_font_custom + '|' + settings.sub_title_font_custom + '|' + settings.body_font_custom + '|' + settings.button_font_custom + '|' + settings.nav_font_custom + '|' + settings.field_font_custom  %>
@@ -29,12 +29,12 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=<%= fontsNames %>">
         <% } %>
         <% if(settings){ %>
-            <%- include('snippets/css-selectors', {settings:settings}) %>
+            <%- include(srcId + '/snippets/css-selectors', {settings:settings}) %>
         <% } %>
 
         <% if(component){ %>
             <% if(component==='Cart' ){ %>
-                <%- include('snippets/cart-drawer', {settings: settings}) %>
+                <%- include(srcId + '/snippets/cart-drawer', {settings: settings}) %>
             <% } else if(component==='Global Styles' ){ %>
                 <%- include('make/brand', {settings: settings}) %>
             <% } else if(component==='Typography Settings' ){ %>
@@ -44,100 +44,30 @@
         <% sections %>
         <% if(sections && sections.length){ %>
             <% sections.forEach(item=> { %>
-                <% if(item.name==='header' ){ %>
-                    <%- include('sections/header', {menu: menu, settings: settings, section: item }) %>
-                <% } else if(item.name==='announcement bar' ){ %>
-                    <%- include('sections/announcement-bar', {settings: settings, section: item }) %>
-                <% } else if(item.name==='image banner' ){ %>
-                    <%- include('sections/image-banner', {settings: settings, section: item }) %>
-                <% } else if(item.name==='marquee' ){ %>
-                    <%- include('sections/marquee', {settings: settings, section: item }) %>
-                <% } else if(item.name==='featured blog'){ %>
-                    <%- include('sections/featured-blog', {blogs: blog, settings: settings, section: item }) %>
-                <% } else if(item.name==='partners'){ %>
-                    <%- include('sections/partners', {settings: settings, section: item }) %>
-                <% } else if(item.name==='collection see'){ %>
-                    <%- include('sections/collection-see', {settings: settings, section: item }) %>
-                <% } else if(item.name==='collection our'){ %>
-                    <%- include('sections/collection-our', {settings:settings,section:item}) %>
-                <% } else if(item.name==='featured collection'){ %>
-                    <%- include('sections/featured-collection', {collection: collection, settings:settings, section:item}) %>
-                <% } else if(item.name==='image with two products'){ %>
-                    <%- include('sections/image-with-two-products', {collection: collection, settings: settings, section: item }) %>
-                <% } else if(item.name==='image with text'){ %>
-                    <%- include('sections/image-with-text', {settings:settings,section:item}) %>
-                <% } else if(item.name==='rich text'){ %>
-                    <%- include('sections/rich-text', {settings:settings,section:item}) %>
-                <% } else if(item.name==='collection two column'){ %>
-                    <%- include('sections/collection-two-column', {settings:settings, section:item}) %>
-                <% } else if(item.name==='collage'){ %>
-                    <%- include('sections/collage', {settings: settings, section: item, product: product}) %>
-                <% } else if(item.name==='collection list'){ %>
-                    <%- include('sections/collection-list', {settings: settings, section:item, collections: collections}) %>
-                <% } else if(item.name==='contact form'){%>
-                    <%- include('sections/contact-form', {page: false, form: false, settings: settings,section:item}) %>
-                <% } else if(item.name==='multicolumn'){ %>
-                    <%- include('sections/multicolumn', {settings: settings, section: item}) %>
-                <% } else if(item.name==='newsletter'){ %>
-                    <%- include('sections/newsletter', {settings: settings, section: item}) %>
-                <% } else if(item.name==='product carousel'){ %>
-                    <%- include('sections/product-carousel', {settings: settings, section: item})%>
-                <% } else if(item.name==='slider with text'){ %>
-                    <%- include('sections/slider-with-text', {settings: settings, section: item})%>
-                <% } else if(item.name==='slider'){ %>
-                    <%- include('sections/slider', {settings: settings, section: item}) %>
-                <% } else if(item.name==='spacing'){%>
-                    <%- include('sections/spacing', {settings: settings, section: item}) %>
-                <% } else if(item.name==='product'){ %>
-                    <%- include('sections/product', {settings: settings, section: item}) %>
-                <% } else if(item.name==='collection product grid'){ %>
-                    <%- include('sections/collection-product-grid', {collection: collection, settings: settings, section: item}) %>
-                <% } else if(item.name==='collection banner'){ %>
-                    <%- include('sections/collection-banner', {collection: collection, settings: settings, section: item }) %>
-                <% } else if(item.name==='product recommendations'){ %>
-                    <%- include('sections/product-recommendations', {collection: collection, settings: settings, section: item}) %>
-                <% } else if(item.name==='404'){ %>
-                    <%- include('sections/404', {settings: settings, section: item}) %>
-                <% } else if(item.name==='article'){ %>
-                    <%- include('sections/article', {blog: blog, article: article, settings: settings, section: item}) %>
-                <% } else if(item.name==='blog'){ %>
-                    <%- include('sections/blog', {blog: blog, settings: settings, section: item}) %>    
-                <% } else if(item.name==='contact page'){ %>
-                    <%- include('sections/contact-page', {settings: settings, section: item}) %>
-                <% } else if(item.name==='customer account'){ %>
-                    <%- include('sections/customer-account', {customer: customer, paginate: false, settings: settings, section: item}) %>
-                <% } else if(item.name==='customers activate account'){ %>
-                    <%- include('sections/customers-activate-account', {form: false, settings: settings, section: item}) %>
-                <% } else if(item.name==='customers addresses'){ %>
-                    <%- include('sections/customers-addresses', {form: false, all_country_option_tags: false, customer: customer, paginate: false, settings: settings, section: item}) %>        
-                <% } else if(item.name==='customers login'){ %>
-                    <%- include('sections/customers-login', {form: false, settings: settings, section: item}) %> 
-                <% } else if(item.name==='customers register'){ %>
-                    <%- include('sections/customers-register', {form: false, settings: settings, section: item}) %>            
-                <% } else if(item.name==='customers reset password'){ %>
-                    <%- include('sections/customers-reset-password', {form: false, settings: settings, section: item}) %>                
-                <% } else if(item.name==='gift card'){ %>
-                    <%- include('sections/gift-card', {gift_card: gift, settings: settings, section: item}) %>                    
-                <% } else if(item.name==='list collections'){ %>
-                    <%- include('sections/list-collections', {collections: collections, settings: settings, section: item}) %>                        
-                <% } else if(item.name==='page'){ %>
-                    <%- include('sections/page', {settings: settings, section: item}) %>
-                <% } else if(item.name==='search'){ %>
-                    <%- include('sections/search', {search: false, settings: settings, section: item}) %>                            
-                <% } else if(item.name==='cart items'){ %>
-                    <%- include('sections/cart-items', {settings: settings, section: item}) %>                            
-                <% } else if(item.name==='cart footer'){ %>
-                    <%- include('sections/cart-footer', {settings: settings, section: item}) %>                            
-                <% } else if(item.name==='footer'){ %>
-                    <%- include('sections/footer', {settings: settings, section: item, localization: false }) %>
-                <% } %>
+                <%- include(srcId + '/sections/' + item.name.replaceAll(' ', '-'), {
+                    menu: menu, 
+                    blogs: blog,
+                    blog: blog,
+                    article: article,
+                    product: product,
+                    settings: settings, 
+                    section: item,
+                    localization: false,
+                    collection: collection,
+                    collections: collections,
+                    form: false,
+                    page: false,
+                    customer: customer, 
+                    paginate: false,
+                    all_country_option_tags: false,
+                }) %>
             <% }) %>
         <% } %>
 
     <script src="https://cdn.shopify.com/s/javascripts/currencies.js" defer="defer"></script>
-    <script src="/assets/slider.js" defer="defer"></script>
+    <script src="/<%=srcId%>/slider.js" defer="defer"></script>
     <script src="https://cdn.rawgit.com/blowsie/Pure-JavaScript-HTML5-Parser/master/htmlparser.js"></script>
-    <!-- <script src="/assets/variants.js" defer="defer"></script> -->
+    <!-- <script src="/<%=srcId%>/variants.js" defer="defer"></script> -->
     <% if(settings.enable_global_anim){ %>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script>

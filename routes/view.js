@@ -141,6 +141,7 @@ router.get('/:id', async (req, res, next) => {
     }
 
     res.render('view', {
+      srcId: id,
       menu: makeMenu,
       shop: shop,
       collection: collection,
@@ -219,9 +220,7 @@ router.post('/:id', async (req, res, next) => {
         }
       });
     } else if (global === 'Global Styles' || global === undefined) {
-      console.log("WORKSSSSSSSSSSSS");
       theme?.theme_pag.map(pageName => {
-        console.log(pageName.name === page, "PAGE NAME CHECKING");
         if(pageName.name === page){
           pageName?.items.map(item => {
             theme?.theme_sec.map(el => {
@@ -263,9 +262,8 @@ router.post('/:id', async (req, res, next) => {
       });
     }
 
-    console.log(defaultSections, "POSYTTTTTTTTTTTTTTTTTTTTT");
-
     res.render('view', {
+      srcId: id,
       menu: makeMenu,
       shop: shop,
       collections: collections,

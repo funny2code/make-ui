@@ -35,6 +35,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
       isAdmin: false,
       make: make,
       id: theme._id,
+      srcId: theme.extend_id || null, 
       page: page,
       sidebar: theme.app_sid || null,
       fonts: fonts,

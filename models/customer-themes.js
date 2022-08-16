@@ -7,6 +7,10 @@ const schema = new db.Schema(
             type: Schema.Types.ObjectId,
             required: true
         },
+        extend_id: {
+            type: Schema.Types.ObjectId,
+            required: true
+        },
         theme_set: {
             type: Array
         },
