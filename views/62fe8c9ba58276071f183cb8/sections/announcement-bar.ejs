@@ -1,0 +1,58 @@
+<style>
+  .announcement-bar{
+    background-color: <%=section.settings.py_announcement_bg_color%>;
+  }
+  .announcement-bar__message,.announcement-bar button.slider-button{
+    color:<%=section.settings.py_announcement_color%>;
+  }
+  marquee .announcement-bar__message{
+    margin: 0px 40px;
+  }
+  .announcement-bar__link{
+    color:<%=section.settings.py_announcement_link_color%>;
+  }
+  .announcement-bar__link:hover{
+    color:<%=section.settings.py_announcement_link_hov_color%>;
+  }
+  .announcement-bar slider-component{
+    max-width:540px;
+    margin:auto;
+  }
+  .announcement-bar slider-component ul{
+     margin:0px;
+  }
+  .announcement-bar .slider-buttons{
+    height:100%;
+  }
+</style>
+<link rel="stylesheet" href="/<%=srcId%>/component-slider.css" media="print" onload="this.media='all'">
+<% var d = section.settings %> 
+<div class="announcement-bar center py-<%=d.page_x_pd%> py-<%=d.page_y_pd%> py-<%=d.br%>" role="region" aria-label="announcement">
+ <slider-component class="slider-mobile-gutter">
+    <ul class="grid  grid--1-col  slider slider--desktop">
+    <% section?.blocks?.forEach((block,index)=>{ %>
+        <% if(block.type == 'announcement'){ %>
+            <% if(block.settings.text){ %>
+              <li class="grid-item slider__slide grid__item">
+              <% if(block.settings.link){ %>
+                <a href="<%= block.settings.link %>" class="announcement-bar__link link link--text">
+              <% } %>
+                  <span class="announcement-bar__message py-<%=d.fs%>">
+                    <%= block.settings.text %>
+                  </span>
+              <% if(block.settings.link){ %>
+                </a>
+              <% } %>
+              </li>
+            <% } %>
+      <% } %>
+    <% }) %>
+    </ul>
+   <% if(section.blocks.length){ %>
+      <div class="slider-buttons slider-buttons-desktop">
+        <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="previous_slide"><%- include('./snippets/icon-caret') %></button>
+        <button type="button" class="slider-button slider-button--next" name="next" aria-label="next_slide"><%- include('./snippets/icon-caret') %></button>
+      </div>
+    <% } %>
+</slider-component>
+</div>
