@@ -1,0 +1,147 @@
+<link rel="stylesheet" href="/<%=srcId%>/section-multicolumn.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-slider.css" media="print" onload="this.media='all'">
+<style>
+  .multicolumn-<%=section.id%> .multicolumn-card__info  .col_title{
+    color: <%=section.settings.col_info_color%>;
+    font-size:<%=section.settings.col_title_font_size%>px;
+    font-weight:<%=section.settings.col_title_font_weight%>
+  }
+  .multicolumn-<%=section.id%> .multicolumn-card__info .rte{
+    font-size:<%=section.settings.col_text_font_size%>px;
+    color: <%=section.settings.col_info_color%>;
+  }
+  @media(max-width:749px){
+    .multicolumn-<%=section.id%> .multicolumn-card__info  .col_title{
+      font-size:<%=section.settings.col_title_m_font_size%>px;                  
+    }    
+  }
+  .multicolumn-<%=section.id%> .col_style-overlay .multicolumn-card__info{
+    position:absolute;
+    bottom:var(--space-9);
+    width:100%;
+  }
+  .multicolumn-<%=section.id%> .col-overlay{
+    position:absolute;
+    width:100%;
+    height:100%;    
+    opacity:<%=section.settings.overlay_opacity%>;
+    top:0;
+    display:block;    
+  }
+  .multicolumn-<%=section.id%> .multicolumn-card__info .learn-more{
+    font-size:var(--space-12);
+    margin-top:var(--space-13); 
+  }
+  .multicolumn-<%=section.id%> .learn-more svg{
+    width:var(--space-12);margin-left:var(--space-5);transition: all 0.3s;
+  }
+  .multicolumn-<%=section.id%> .multicolumn-card:hover .learn-more svg{
+    margin-left:var(--space-10);
+  }
+  .multicolumn-<%=section.id%> .multicolumn-card:hover img{
+    transform:scale(1.18);
+  }
+</style>
+<div class="py-<%=section.settings.section_bg%>" style="padding:1px 0px;">
+<div class="multicolumn multicolumn-<%=section.id%> <% if(!section.settings.title){ %> no-heading<% } %>">
+  <div class="page-width">
+    <div class="title-wrapper-with-link title-wrapper--self-padded-mobile<% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %>">
+      <h2 class="title">
+        <%= section.settings.title %>
+      </h2>
+      <% if(section.settings.button_label && section.settings.swipe_on_mobile){ %>
+        <a href="<%= section.settings.button_link %>" class="button py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%> large-up-hide"><%= section.settings.button_label %></a>
+      <% } %>
+    </div>
+    <slider-component class="slider-mobile-gutter">
+      <ul class="multicolumn-list grid grid--1-col grid--2-col-tablet grid--<%=section.settings.column_number%>-col-desktop<% if(section.settings.swipe_on_mobile && section.blocks.length > 1){ %> slider slider--mobile grid--peek<% } %>"
+        id="Slider-<%= section.id %>"
+        role="list"
+      >
+        <%
+          var highest_ratio = 0
+          section.blocks?.forEach((block,index)=>{
+            if(block?.settings?.image?.aspect_ratio > highest_ratio){
+              highest_ratio = block?.settings?.image?.aspect_ratio
+            }
+          })
+        %>
+        <% section.blocks?.forEach((block,index)=>{ %>
+          <li class="multicolumn-list__item grid__item<% if(section.settings.swipe_on_mobile){ %> slider__slide<% } %><% if(section.settings.column_alignment === 'center'){ %> center<% } %>">
+            <% if(block?.settings?.btn_link){ %><a href="<%=block?.settings?.btn_link%>"><% } %>
+            <div class="multicolumn-card col_style-<%=section.settings.col_style%> py-<%=section.settings.col_bg_color%>">              
+                <% if(section.settings.image_ratio === 'adapt' || section.settings.image_ratio === 'circle'){ %>
+                  <% var spaced_image = true %>
+                <% } %>
+                <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--<%= section.settings.image_width %>-width<% if(section.settings.image_width !== 'full' || spaced_image){ %> multicolumn-card-spacing<% } %>">
+                  
+                  <div class="media media--transparent media--<%= section.settings.image_ratio %>"
+                    <% if(section.settings.image_ratio === 'adapt' &&  block?.settings?.image){ %>
+                      style="padding-bottom: <%= 1 / highest_ratio * 100 %>%;"
+                    <% } %>
+                    <% if(!block?.settings?.image){ %>style="padding-bottom:54%"<% } %>>
+                    <% if(block?.settings?.image){ %>
+                    <img
+                      srcset="<% if(block?.settings?.image?.width >= 275){ %><%= block?.settings?.image %> 275w,<% } %>
+                        <% if(block?.settings?.image?.width >= 550){ %><%= block?.settings?.image %> 550w,<% } %>
+                        <% if(block?.settings?.image?.width >= 710){ %><%= block?.settings?.image %> 710w,<% } %>
+                        <% if(block?.settings?.image?.width >= 1420){ %><%= block?.settings?.image %> 1420w,<% } %>"
+                      src="<%= block?.settings?.image %>"
+                      sizes="(min-width: 800px) <% if(section.blocks.length <= 2){ %>710px<% } else { %>550px<% } %>,
+                        (min-width: 750px) <% if(section.blocks.length === 1){ %>710px<% } else { %>550px<% } %>,
+                        calc(100vw - 30px)"
+                      alt="<%= block?.settings?.title %>"
+                      height="<%= block?.settings?.image?.height %>"
+                      width="<%= block?.settings?.image?.width %>"
+                      loading="lazy"
+                    >
+                    <% } else { %>
+                    <%= 'image' %>
+                    <% } %>
+                  </div>
+                  <div class="col-overlay py-<%=section.settings.col_overlay_color%>"></div>                  
+                </div>                            
+              <div class="multicolumn-card__info">
+                <% if(block?.settings?.title){ %>
+                  <h3 class="col_title"><%= block?.settings?.title %></h3>
+                <% } %>
+                <% if(block?.settings?.text){ %>
+                  <div class="rte"><%= block?.settings?.text %></div>
+                <% } %>
+                <% if(block?.settings?.btn_link){ %>
+                  <div class="rte learn-more">
+                    <%= block?.settings?.btn_label %>
+                    <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg" width="16px">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+                    </path></svg>
+                  </div>
+                <% } %>
+              </div>
+            </div><% if(block?.settings?.btn_link){ %></a><% } %>
+          </li>
+        <% }) %>
+      </ul>
+
+      <% if(section.settings.swipe_on_mobile){ %>
+        <div class="slider-buttons no-js-hidden medium-hide<% if(section.blocks.length < 2){ %> small-hide<% } %>">
+          <div class="slider-counter caption">
+            <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="visually-hidden">of</span>
+            <span class="slider-counter--total"><%= section.blocks.length %></span>
+          </div>
+          <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="previous_slide"><%- include('../snippets/icon-caret') %></button>
+          <button type="button" class="slider-button slider-button--next" name="next" aria-label="next_slide"><%- include('../snippets/icon-caret') %></button>
+        </div>
+      <% } %>
+    </slider-component>
+    <div class="center<% if(section.settings.swipe_on_mobile){ %> small-hide medium-hide<% } %>">
+      <% if(section.settings.button_label){ %>
+        <a class="button button--primary py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>"<% if(!section.settings.button_link){ %> aria-disabled="true" role="link"<% } else { %> href="<%= section.settings.button_link %>"<% } %>>
+          <%= section.settings.button_label %>
+        </a>
+      <% } %>
+    </div>
+  </div>
+</div>
+</div>

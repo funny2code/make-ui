@@ -32,7 +32,6 @@ router.post('/:id', async (req, res, next) => {
                     el.settings.map(oldItem => {
                         Object.entries(settings).forEach(newItem => {
                             if (oldItem.id === newItem[0] && newItem[1] !== "") {
-                                console.log("works");
                                 oldItem.default = oldItem?.type === "range" ? parseInt(newItem[1]) : newItem[1];
                             }
                         })
@@ -53,13 +52,13 @@ router.post('/:id', async (req, res, next) => {
         // Theme Section Settings Save Function
         if (sections?.length && theme.theme_sec) {
             theme.theme_sec.map(el => {
-                let findSection = sections.filter(item => item.name === el.name);
-                let productTemplate = findSection[0]?.template ? require(path.join(__dirname, `../baseTheme/templates/${section[0]?.template}.json`)) : null;
+                let findSection = sections.filter(item => item.file_name === el.file_name);
+                let productTemplate = findSection[0]?.template_name ? require(path.join(__dirname, `../themes/${id}/${sections[0]?.template_name}.json`)) : null;
                 if (findSection?.length) {
                     if (el.settings && findSection[0]?.settings) {
                         el.settings.map(oldItem => {
                             Object.entries(findSection[0]?.settings).forEach(newItem => {
-                                if (oldItem.id === newItem[0] && newItem[1] !== "") {
+                                if (oldItem.id === newItem[0] && newItem[1] !== undefined) {
                                     oldItem.default = oldItem?.type === "range" ? parseInt(newItem[1]) : newItem[1];
                                 }
                             })
@@ -82,7 +81,7 @@ router.post('/:id', async (req, res, next) => {
                                 })
                             }
                         });
-                        if (productTemplate) fs.writeFileSync(path.join(__dirname, `../baseTheme/templates/${findSection[0]?.template}.json`), JSON.stringify(productTemplate, null, 2), 'utf-8');
+                        if (productTemplate) fs.writeFileSync(path.join(__dirname, `../themes/${id}/${findSection[0]?.template_name}.json`), JSON.stringify(productTemplate, null, 2), 'utf-8');
                     }
                     if (el?.blocks?.length && findSection[0]?.blocks?.length) {
                         el?.blocks.map(block => {

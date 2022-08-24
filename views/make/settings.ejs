@@ -35,7 +35,7 @@
             templateName = "config/settings_data";
         } 
     %> 
-    <div class="py__settings-wrapper <% if(global === "section"){ %>py__settings-section-item<% } %>" <% if(global === "section"){ %>data-section-name="<%=active%>"<% } %> data-template-name="<%=templateName%>">
+    <div class="py__settings-wrapper <% if(global === "section"){ %>py__settings-section-item<% } %>" <% if(global === "section"){ %>data-file-name="<%=active%>"<% } %> data-template-name="<%=templateName%>">
         <% settings.forEach((item, index) => { %>
 
             <% if(global === "settings" && item.type === 'header' && index !== 0){ %>

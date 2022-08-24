@@ -57,7 +57,7 @@
                 <% if(pageSections && section){ %>
                     <select class="py__sections-dropdown-listener">
                         <% pageSections.forEach((item, index)=>{ %>
-                            <option value="<%=item.name%>" data-href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page%>&section=<%=item.name%>" <% if(item.name === active){ %>selected<% } %>>
+                            <option value="<%=item.handle%>" data-href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page%>&section=<%=item.handle%>" <% if(item.handle === active){ %>selected<% } %>>
                                 <%=item.name%>
                             </option>
                         <% }) %> 
@@ -68,7 +68,7 @@
                         <div class="py__settings-content">
                             <h2 class="py__settings-heading py__back-button-wrap"><%=page%> Sections</h2>
                             <% pageSections.forEach((item, index)=>{ %>
-                                <a href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page%>&section=<%=item.name%>" class="py__section-item-href py__get-section-button <% if(item.name === active){ %>active<% } %>">
+                                <a href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page%>&section=<%=item.handle%>" class="py__section-item-href py__get-section-button <% if(item.handle === active){ %>active<% } %>">
                                     <span class="py__section-item-href-name"><%= item.name %></span>
                                     <span><%- include('icons', {type:'arrow_right'}) %></span>
                                 </a>

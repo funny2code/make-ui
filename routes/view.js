@@ -1,16 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const storage = require('node-localstorage').LocalStorage;
-const makeMenu = require('../config/menu');
-const shop = require('../config/shop');
-const collection = require('../config/collection');
-const collections = require('../config/collections');
-const product = require('../config/product');
-const cart = require('../config/cart');
-const blog = require('../config/blogs');
-const article = require('../config/article');
-const customer = require('../config/customer');
-const gift = require('../config/gift');
 const modelThemes = require('../models/themes');
 const localStorage = new storage('./scratch');
 
@@ -24,6 +14,17 @@ router.get('/:id', async (req, res, next) => {
   const localData = storageData ? JSON.parse(storageData) : null;
 
   if (!id || !page) return next();
+
+  const shop = require(`../contents/${id}/shop`);
+  const makeMenu = require(`../contents/${id}/menu`);
+  const collection = require(`../contents/${id}/collection`);
+  const collections = require(`../contents/${id}/collections`);
+  const product = require(`../contents/${id}/product`);
+  const cart = require(`../contents/${id}/cart`);
+  const blog = require(`../contents/${id}/blogs`);
+  const article = require(`../contents/${id}/article`);
+  const customer = require(`../contents/${id}/customer`);
+  const gift = require(`../contents/${id}/gift`);
 
   try {
 
@@ -46,12 +47,12 @@ router.get('/:id', async (req, res, next) => {
 
     if (section) {
       theme.theme_sec && theme.theme_sec.map(item => {
-        if (item.name === section) {
-            const findLocalSection = localData?.sections?.length && localData?.sections?.filter(localItem => localItem.name === section);
+        if (item.file_name === section) {
+            const findLocalSection = localData?.sections?.length && localData?.sections?.filter(localItem => localItem.file_name === section);
             const sectionChildSettings = {};
             const blocks = [];
             if(findLocalSection?.length){
-              if(findLocalSection[0].name === section){
+              if(findLocalSection[0].file_name === section){
                 if (findLocalSection[0].settings) {
                   Object.entries(findLocalSection[0].settings).forEach(([key, value]) => {
                     sectionChildSettings[key] = value;
@@ -85,7 +86,7 @@ router.get('/:id', async (req, res, next) => {
                 })
               }
             }
-            sectionSettings.push({ name: item.name, settings: sectionChildSettings, blocks: blocks });
+            sectionSettings.push({ file_name: item.file_name, name: item.name, settings: sectionChildSettings, blocks: blocks });
         }
       });
     } else if (global === 'Global Styles' || global === undefined) {
@@ -93,7 +94,7 @@ router.get('/:id', async (req, res, next) => {
         if (pageItem.name === page) {
           pageItem.items.forEach(item => {
             theme.theme_sec && theme.theme_sec.map(el => {
-              if (item.name === el.name) {
+              if (item.handle === el.file_name) {
                 const sectionChildSettings = {};
                 const blocks = [];
                 const findLocalSection = localData?.sections?.length && localData?.sections?.filter(localItem => localItem.name === el.name);
@@ -132,7 +133,7 @@ router.get('/:id', async (req, res, next) => {
                     })
                   }
                 }
-                sectionSettings.push({ name: item.name, settings: sectionChildSettings, blocks: blocks });
+                sectionSettings.push({ file_name: el.file_name, name: item.name, settings: sectionChildSettings, blocks: blocks });
               }
             })
           })
@@ -177,6 +178,17 @@ router.post('/:id', async (req, res, next) => {
   if (!id || !page) return next();
   if (!settings && !sections?.length) return next();
 
+  const shop = require(`../contents/${id}/shop`);
+  const makeMenu = require(`../contents/${id}/menu`);
+  const collection = require(`../contents/${id}/collection`);
+  const collections = require(`../contents/${id}/collections`);
+  const product = require(`../contents/${id}/product`);
+  const cart = require(`../contents/${id}/cart`);
+  const blog = require(`../contents/${id}/blogs`);
+  const article = require(`../contents/${id}/article`);
+  const customer = require(`../contents/${id}/customer`);
+  const gift = require(`../contents/${id}/gift`);
+
   try {
 
     const theme = await modelThemes.findById(id).exec();
@@ -198,7 +210,7 @@ router.post('/:id', async (req, res, next) => {
 
     if (sectionHandle) {
       theme.theme_sec && theme.theme_sec.map(el => {
-        if (el.name === sectionHandle){
+        if (el.file_name === sectionHandle){
           let sectionChildSettings = {};
           let blocks = [];
           if (el.settings) {
@@ -216,7 +228,7 @@ router.post('/:id', async (req, res, next) => {
               }
             })
           }
-          defaultSections.push({ name: el.name, settings: sectionChildSettings, blocks: blocks });
+          defaultSections.push({ file_name: el.file_name, name: el.name, settings: sectionChildSettings, blocks: blocks });
         }
       });
     } else if (global === 'Global Styles' || global === undefined) {
@@ -224,8 +236,8 @@ router.post('/:id', async (req, res, next) => {
         if(pageName.name === page){
           pageName?.items.map(item => {
             theme?.theme_sec.map(el => {
-              console.log(item.name === el.name);
-              if (item.name === el.name) {
+              console.log(item.file_name === el.name);
+              if (item.file_name === el.file_name) {
                 let sectionChildSettings = {};
                 let blocks = [];
                 if (el.settings) {
@@ -243,7 +255,7 @@ router.post('/:id', async (req, res, next) => {
                     }
                   })
                 }
-                defaultSections.push({ name: item.name, settings: sectionChildSettings, blocks: blocks });
+                defaultSections.push({file_name: item.file_name, name: item.name, settings: sectionChildSettings, blocks: blocks });
               }
             });
           })
@@ -254,7 +266,7 @@ router.post('/:id', async (req, res, next) => {
     if (sections?.length) {
       defaultSections.forEach(item => {
         sections.forEach(section => {
-          if(item.name === section.name) {
+          if(item.file_name === section.file_name) {
             item.settings = section.settings;
             item.blocks = section.blocks;
           }

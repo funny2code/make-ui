@@ -467,14 +467,14 @@
 </svg>
 
 <sticky-header class="header-wrapper py-<%=section.settings.br%> header-position-<%=section.settings.header_position%> ">
-  <header class="header header--<%= section.settings.logo_position %> search-<%=section.settings.search_style%> page-width <% if(section.settings.menu){ %> header--has-menu<% } %> py-<%=section.settings.page_width%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%>">
-    <% if(section.settings.menu){ %>
+  <header class="header header--<%= section.settings.logo_position %> search-<%=section.settings.search_style%> page-width <% if(menu){ %> header--has-menu<% } %> py-<%=section.settings.page_width%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%>">
+    <% if(menu){ %>
       <header-drawer>
         <details class="menu-drawer-container">
           <summary class="header__icon header__icon--menu header__icon--summary link link--text focus-inset" aria-label="menu">
             <span>
-              <%- include('./snippets/icon-hamburger') %>
-              <%- include('./snippets/icon-close') %>
+              <%- include('../snippets/icon-hamburger') %>
+              <%- include('../snippets/icon-close') %>
             </span>
           </summary>
           <div id="menu-drawer" class="menu-drawer motion-reduce" tabindex="-1">
@@ -482,19 +482,19 @@
               <div class="menu-drawer__navigation-container">
                  <nav class="menu-drawer__navigation">
                   <ul class="menu-drawer__menu list-menu" role="list">
-                    <% section.settings.menu.links.forEach((link,index)=>{ %>
+                    <% menu?.links?.forEach((link,index)=>{ %>
                       <li>
                         <% if(link.links){ %>
                           <details>
                             <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset<% if(link.child_active){ %> menu-drawer__menu-item--active<% } %>">
                               <%= link.title %>
-                              <%- include('./snippets/icon-arrow') %>
-                              <%- include('./snippets/icon-caret') %>
+                              <%- include('../snippets/icon-arrow') %>
+                              <%- include('../snippets/icon-caret') %>
                             </summary>
                             <div id="link-<%= link.title  %>" class="menu-drawer__submenu motion-reduce " tabindex="-1">
                               <div class="menu-drawer__inner-submenu">
                                 <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
-                                  <%- include('./snippets/icon-arrow') %>
+                                  <%- include('../snippets/icon-arrow') %>
                                   <%= link.title %>
                                 </button>
                                 <% if(section.blocks.length){ %>
@@ -511,12 +511,12 @@
                                         <details>
                                             <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset mega_title">
                                             <%= link.title %>
-                                            <%- include('./snippets/icon-arrow') %>
-                                            <%- include('./snippets/icon-caret') %>
+                                            <%- include('../snippets/icon-arrow') %>
+                                            <%- include('../snippets/icon-caret') %>
                                             </summary>
                                             <div id="childlink-<%= link.title  %>" class="menu-drawer__submenu motion-reduce">
                                                 <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
-                                                    <%- include('./snippets/icon-arrow') %>
+                                                    <%- include('../snippets/icon-arrow') %>
                                                     <%= link.title %>
                                                 </button>
                                                 <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
@@ -530,12 +530,12 @@
                                                         <details>
                                                         <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
                                                             <%= childlink.title %>
-                                                            <%- include('./snippets/icon-arrow') %>
-                                                            <%- include('./snippets/icon-caret') %>
+                                                            <%- include('../snippets/icon-arrow') %>
+                                                            <%- include('../snippets/icon-caret') %>
                                                         </summary>
                                                         <div id="childlink-<%= childlink.title  %>" class="menu-drawer__submenu motion-reduce">
                                                             <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
-                                                            <%- include('./snippets/icon-arrow') %>
+                                                            <%- include('../snippets/icon-arrow') %>
                                                             <%= childlink.title %>
                                                             </button>
                                                             <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
@@ -572,12 +572,12 @@
                                     <details>
                                       <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
                                         <%= childlink.title %>
-                                        <%- include('./snippets/icon-arrow') %>
-                                        <%- include('./snippets/icon-caret') %>
+                                        <%- include('../snippets/icon-arrow') %>
+                                        <%- include('../snippets/icon-caret') %>
                                       </summary>
                                       <div id="childlink-<%= childlink.title  %>" class="menu-drawer__submenu motion-reduce">
                                         <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
-                                          <%- include('./snippets/icon-arrow') %>
+                                          <%- include('../snippets/icon-arrow') %>
                                           <%= childlink.title %>
                                         </button>
                                         <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
@@ -620,12 +620,12 @@
                                                     <details>
                                                     <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset mega_title">
                                                     <%= menu.title %>
-                                                    <%- include('./snippets/icon-arrow') %>
-                                                    <%- include('./snippets/icon-caret') %>
+                                                    <%- include('../snippets/icon-arrow') %>
+                                                    <%- include('../snippets/icon-caret') %>
                                                     </summary>
                                                     <div id="childlink-<%= menu.title  %>" class="menu-drawer__submenu motion-reduce">
                                                         <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
-                                                            <%- include('./snippets/icon-arrow') %>
+                                                            <%- include('../snippets/icon-arrow') %>
                                                             <%= menu.title %>
                                                         </button>
                                                         <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
@@ -661,9 +661,9 @@
                                             <% if(url){ %>
                                                 <a href="<%= url %>">
                                             <% } %>
-                                                <%- include('./snippets/resimg', {image: image}) %>
+                                                <%- include('../snippets/resimg', {image: image}) %>
                                                 <% if(title){ %>
-                                                <h3 class="bc-mega-menu-image__title"><%= title %><%- include('./snippets/icon-arrow') %></h3>
+                                                <h3 class="bc-mega-menu-image__title"><%= title %><%- include('../snippets/icon-arrow') %></h3>
                                                 <% } %>
                                             <% if(url){ %>
                                                 </a>
@@ -689,9 +689,9 @@
                   </ul>
                  </nav>
                 <div class="menu-drawer__utility-links">
-                  <% if(shop.customer_accounts_enabled){ %>
+                  <% if(shop?.customer_accounts_enabled){ %>
                     <a href="<% if(customer){ %><%= routes.account_url %><% } else { %><%= routes.account_login_url %><% } %>" class="menu-drawer__account link link--text focus-inset h5">
-                      <%- include('./snippets/icon-account') %>
+                      <%- include('../snippets/icon-account') %>
                       <%= customer ? 'customer.account_fallback' : 'customer.log_in'%>
                     </a>
                   <% } %>
@@ -699,7 +699,7 @@
                     <% if(settings.social_twitter_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_twitter_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('./snippets/icon-twitter') %>
+                          <%- include('../snippets/icon-twitter') %>
                           <span class="visually-hidden">twitter</span>
                         </a>
                       </li>
@@ -707,7 +707,7 @@
                     <% if(settings.social_facebook_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_facebook_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('./snippets/icon-facebook') %>
+                          <%- include('../snippets/icon-facebook') %>
                           <span class="visually-hidden">facebook</span>
                         </a>
                       </li>
@@ -715,7 +715,7 @@
                     <% if(settings.social_pinterest_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_pinterest_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('./snippets/icon-pinterest') %>
+                          <%- include('../snippets/icon-pinterest') %>
                           <span class="visually-hidden">pinterest</span>
                         </a>
                       </li>
@@ -723,7 +723,7 @@
                     <% if(settings.social_instagram_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_instagram_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('./snippets/icon-instagram') %>
+                          <%- include('../snippets/icon-instagram') %>
                           <span class="visually-hidden">instagram</span>
                         </a>
                       </li>
@@ -731,7 +731,7 @@
                     <% if(settings.social_tumblr_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_tumblr_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('./snippets/icon-tumblr') %>
+                          <%- include('../snippets/icon-tumblr') %>
                           <span class="visually-hidden">tumblr</span>
                         </a>
                       </li>
@@ -739,7 +739,7 @@
                     <% if(settings.social_snapchat_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_snapchat_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('./snippets/icon-snapchat') %>
+                          <%- include('../snippets/icon-snapchat') %>
                           <span class="visually-hidden">snapchat</span>
                         </a>
                       </li>
@@ -747,7 +747,7 @@
                     <% if(settings.social_youtube_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_youtube_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('./snippets/icon-youtube') %>
+                          <%- include('../snippets/icon-youtube') %>
                           <span class="visually-hidden">youtube</span>
                         </a>
                       </li>
@@ -755,7 +755,7 @@
                     <% if(settings.social_vimeo_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_vimeo_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('./snippets/icon-vimeo') %>
+                          <%- include('../snippets/icon-vimeo') %>
                           <span class="visually-hidden">vimeo</span>
                         </a>
                       </li>
@@ -778,7 +778,7 @@
                     class="header__heading-logo"
                     width="<%= section.settings.logo.width %>"
                     height="<%= section.settings.logo.height %>"
-                    alt="<%= section.settings.logo.alt || shop.name  %>"
+                    alt="<%= section.settings.logo.alt || shop?.name  %>"
                 >
              <% } else { %>
              <span>Logo</span>
@@ -786,17 +786,17 @@
           </a>                
      </h1>
               
-     <% if(section.settings.menu){ %>
+     <% if(menu){ %>
       <nav class="header__inline-menu">
         <ul class="list-menu list-menu--inline active" role="list" >
-          <% section.settings.menu.links?.forEach((link,index)=>{ %>
+          <% menu.links?.forEach((link,index)=>{ %>
             <li>
               <% if(link.links){ %>
                 <details-disclosure>
                   <details>
                     <summary data-href="<%= link.url %>" class="header__menu-item list-menu__item link focus-inset">
                       <span <% if(link.child_active){ %> class="header__active-menu-item"<% } %>><%= link.title %></span>
-                      <%- include('./snippets/icon-caret') %>
+                      <%- include('../snippets/icon-caret') %>
                     </summary>
                     <div class="header__submenu list-menu--disclosure caption-large motion-reduce" tabindex="-1">
                       <ul class="list-menu">
@@ -873,9 +873,9 @@
                                   <% if(url){ %>
                                     <a href="<%= url %>">
                                   <% } %>
-                                    <%- include('./snippets/resimg', {image: image}) %>
+                                    <%- include('../snippets/resimg', {image: image}) %>
                                     <% if(title){ %>
-                                    <h3 class="bc-mega-menu-image__title"><%= title %><%- include('./snippets/icon-arrow') %></h3>
+                                    <h3 class="bc-mega-menu-image__title"><%= title %><%- include('../snippets/icon-arrow') %></h3>
                                     <% } %>
                                   <% if(url){ %>
                                     </a>
@@ -952,9 +952,9 @@
         </div>
     <% } %>
     <div class="header__icons">
-      <% if(shop.customer_accounts_enabled){ %>
+      <% if(shop?.customer_accounts_enabled){ %>
         <a href="<% if(customer){ %><%= routes.account_url %><% } else { %><%= routes.account_login_url %><% } %>" class="header__icon header__icon--account link link--text focus-inset">
-          <%- include('./snippets/icon-account') %>
+          <%- include('../snippets/icon-account') %>
           <span class="visually-hidden">
             <%  customer ? 'customer.account_fallback' : 'customer.log_in' %>
           </span>
@@ -1022,11 +1022,11 @@
         </details>
       </details-modal>
       <% } %>
-      <% if(shop.enabled_currencies.length > 1){ %>
+      <% if(shop?.enabled_currencies?.length > 1){ %>
         <form class="currency-selector">
         <div class="currency-selector__input-wrapper select-group font--accent">
           <select name="currency" id="CurrencySelector" class="currency-selector__dropdown" aria-describedby="a11y-refresh-page-message" data-currency-selector>
-            <% shop.enabled_currencies?.forEach((currency,index)=>{ %>
+            <% shop?.enabled_currencies?.forEach((currency,index)=>{ %>
             <% if(currency.iso_code !== 'EUR'){ %>
             <option value="<%=currency.iso_code%>"<% if(currency === cart.currency){ %> selected="true"<% } %>><%=currency.iso_code%></option>
             <% } %>
@@ -1037,7 +1037,7 @@
       <% } %>
        
        <a href="<%= routes.cart_url %>" class="header__icon header__icon--cart link link--text focus-inset" id="cart-icon-bubble">
-        <%- include('./snippets/icon-cart') %>
+        <%- include('../snippets/icon-cart') %>
         <span class="visually-hidden">cart</span>
           <div class="cart-count-bubble">
             <span aria-hidden="true" id="cart-count"><%= cart.item_count %></span>
@@ -1046,7 +1046,7 @@
         
       </a>
       <% if(settings.cart_style === 'style-3'){ %>
-         <%- include('./snippets/cart-notification-3') %>
+         <%- include('../snippets/cart-notification-3') %>
       <% } %>       
 
     </div>
@@ -1056,17 +1056,17 @@
 </div>        
 <div id="shopify-section-cart-template" class="shopify-section">
   <% if(settings.cart_style === 'style-4'){ %>
-          <%- include('./snippets/cart-notification-4') %>      
+          <%- include('../snippets/cart-notification-4') %>      
         <% } else if(settings.cart_style === 'style-3'){ %>
           
         <% } else if(settings.cart_style === 'style-2'){ %>
-          <%- include('./snippets/cart-notification-2',{
+          <%- include('../snippets/cart-notification-2',{
               cart_layout: settings.cart_layout,
               enable_dynamic_pay: settings.enable_dynamic_pay
           })
           %>
         <% } else { %>
-          <%- include('./snippets/cart-notification', {
+          <%# include('../snippets/cart-notification', {
             checkoutbtn_position: settings.checkoutbtn_position,
             enable_dynamic_pay: settings.enable_dynamic_pay
           })
@@ -1168,18 +1168,18 @@
 </script>
 
 <% if(request.page_type === 'index'){ %>
-  <% var potential_action_target = shop.url + routes.search_url + "?q={search_term_string}" %>
+  <% var potential_action_target = shop?.url + routes.search_url + "?q={search_term_string}" %>
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
       "@type": "WebSite",
-      "name": <%= shop.name | json %>,
+      "name": <%= shop?.name | json %>,
       "potentialAction": {
         "@type": "SearchAction",
         "target": <%= potential_action_target | json %>,
         "query-input": "required name=search_term_string"
       },
-      "url": <%= shop.url + page.url | json %>
+      "url": <%= shop?.url + page.url | json %>
     }
   </script>
 <% } %>

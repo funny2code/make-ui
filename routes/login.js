@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const make = require('../config/make');
+const make = require('../contents/make');
 const modelUsers = require('../models/users');
 const bcrypt = require('bcrypt');
 const Stripe = require('stripe');

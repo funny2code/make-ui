@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const storage = require('node-localstorage').LocalStorage;
-const make = require('../config/make');
+const make = require('../contents/make');
 const modelThemes = require('../models/themes');
-const fonts = require('../config/fonts');
+const fonts = require('../contents/fonts');
 const localStorage = new storage('./scratch');
 
 /* GET Theme Settings and Sections. */
@@ -40,10 +40,10 @@ router.get('/:id', async (req, res, next) => {
       })
     }
   
-    const sections = section ? theme.theme_sec.filter(item => item.name === section) : null;
+    const sections = section ? theme.theme_sec.filter(item => item.file_name === section) : null;
     if(localData?.sections?.length && sections){
       sections.forEach(section => {
-        const findLocalSection = localData?.sections?.filter(localSection => localSection.name === section.name);
+        const findLocalSection = localData?.sections?.filter(localSection => localSection.file_name === section.file_name);
         if(findLocalSection?.length){
           if(section?.settings){
             for (var k in section.settings) {

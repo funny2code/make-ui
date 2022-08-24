@@ -1,15 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const makeMenu = require('../config/menu');
-const shop = require('../config/shop');
-const collection = require('../config/collection');
-const collections = require('../config/collections');
-const product = require('../config/product');
-const cart = require('../config/cart');
-const blog = require('../config/blogs');
-const article = require('../config/article');
-const customer = require('../config/customer');
-const gift = require('../config/gift');
 const modelUsersThemes = require('../models/customer-themes');
 
 
@@ -27,6 +17,17 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
 
         const theme = await modelUsersThemes.findById(themeId).exec();
         if (!theme) return next();
+
+        const shop = require(`../contents/${theme.extend_id}/shop`);
+        const makeMenu = require(`../contents/${theme.extend_id}/menu`);
+        const collection = require(`../contents/${theme.extend_id}/collection`);
+        const collections = require(`../contents/${theme.extend_id}/collections`);
+        const product = require(`../contents/${theme.extend_id}/product`);
+        const cart = require(`../contents/${theme.extend_id}/cart`);
+        const blog = require(`../contents/${theme.extend_id}/blogs`);
+        const article = require(`../contents/${theme.extend_id}/article`);
+        const customer = require(`../contents/${theme.extend_id}/customer`);
+        const gift = require(`../contents/${theme.extend_id}/gift`);
 
         const settings = {};
         const sectionSettings = [];

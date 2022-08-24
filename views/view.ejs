@@ -41,10 +41,9 @@
                 <%- include('make/fonts', {settings: settings}) %>
             <% } %>
         <% } %>
-        <% sections %>
         <% if(sections && sections.length){ %>
             <% sections.forEach(item=> { %>
-                <%- include(srcId + '/sections/' + item.name.replaceAll(' ', '-'), {
+                <%- include(srcId + '/sections/' + item.file_name, {
                     menu: menu, 
                     blogs: blog,
                     blog: blog,
@@ -60,6 +59,10 @@
                     customer: customer, 
                     paginate: false,
                     all_country_option_tags: false,
+                    routes: false,
+                    search: false,
+                    shop: false,
+                    request: false,
                 }) %>
             <% }) %>
         <% } %>

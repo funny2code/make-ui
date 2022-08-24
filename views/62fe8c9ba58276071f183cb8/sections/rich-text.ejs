@@ -1,0 +1,21 @@
+<div class="rich-text bc-<%=settings.section_style%>-bt py-<%=section.settings.page_x_pd%> py-<%=section.settings.page_y_pd%> " style="padding-bottom:5px; background: <%=section.settings.bg_color%>">
+  <div class="page-width page-width-<%=settings.section_style%> py-mg-y-l">
+    <div class="rich-text__content " style="text-align:<%=section.settings.align%>">
+        <% section.blocks?.forEach((block,index)=>{ %>
+        <% if(block.type === 'heading'){ %>
+            <h2 class="rich-text__heading h1 py-<%=block.settings.fs%> py-mg-y-s" style="color:<%=section.settings.content_color%>">
+                <%= block.settings.heading %>
+            </h2>
+            <% } else if(block.type === 'text'){ %>
+            <div class="rich-text__text rte py-<%=block.settings.fs%>"  style="color:<%=section.settings.content_color%>">
+              <%- block.settings.text -%>
+            </div>
+            <% } else if(block.type === 'button'){ %>
+            <% if(block.settings.button_label){ %>
+                <a href="<%= block.settings.button_link %>" class="button<% if(block.settings.button_style_secondary){ %> button--secondary<% } else { %> button--primary<% } %>"<% if(!block.settings.button_link){ %> aria-disabled="true"<% } %>><%= block.settings.button_label %></a>
+            <% } %>
+        <% } %>
+        <% }) %>
+    </div>      
+  </div>
+</div>

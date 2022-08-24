@@ -1,0 +1,116 @@
+<link rel="stylesheet" href="/<%=srcId%>/section-image-banner.css">
+
+<div id="Banner-<%= section.id %>" class="banner hero_banner bc-<%=settings.section_style%>-bt" <% if(section.settings.url){ %>data-href="<%= section.settings.url %>" style="cursor: pointer;"<% } %>>
+  
+      <% if(section.settings.image || section.settings.image_desk_2){ %>
+        <div class="media<% if(!section.settings.image){ %> placeholder<% } %><% if(section.settings.image_2){ %> small-hide<% } %> <% if(section.settings.image_desk_2){ %>image-banner__wrapper--double-image<% } %>" style="padding-bottom:<% if(section.settings.section_height === "auto"){ %> <%= 1 / section.settings.image.aspect_ratio * 100 %>%; <% } else { %><%=section.settings.section_height%>;<% } %>">
+          <img  class="first-one" srcset="<% if(section.settings.image.width >= 375){ %><%= section.settings.image %> 375w,<% } %>
+            <% if(section.settings.image.width >= 750){ %><%= section.settings.image %> 750w,<% } %>
+            <% if(section.settings.image.width >= 1100){ %><%= section.settings.image %> 1100w,<% } %>
+            <% if(section.settings.image.width >= 1500){ %><%= section.settings.image %> 1500w,<% } %>
+            <% if(section.settings.image.width >= 1780){ %><%= section.settings.image %> 1780w,<% } %>
+            <% if(section.settings.image.width >= 2000){ %><%= section.settings.image %> 2000w,<% } %>
+            <% if(section.settings.image.width >= 2800){ %><%= section.settings.image %> 2800w<% } %>"
+            sizes="<% if(section.settings.image_2 && section.settings.stack_images_on_mobile){ %>(min-width: 750px) 50vw, 100vw<% } else if(section.settings.image_2){ %>50vw<% } else { %>100vw<% } %>"
+            src="<%= section.settings.image %>"
+            <% if(section.settings.show_lazy){ %>loading="lazy"<% } %>
+            alt="<%= section.settings.image.alt %>"
+            width="<%= section.settings.image.width %>"
+            height="<%= section.settings.image.width / section.settings.image.aspect_ratio %>"
+            <% if(section.settings.enable_anim){ %> data-aos="<%=section.settings.anim%>"<% } %>
+          >
+          <% if(section.settings.image_desk_2){ %>
+          <img class="small-hide second-one" srcset="<% if(section.settings.image_desk_2.width >= 375){ %><%= section.settings.image_desk_2 %> 375w,<% } %>
+            <% if(section.settings.image_desk_2.width >= 750){ %><%= section.settings.image_desk_2 %> 750w,<% } %>
+            <% if(section.settings.image_desk_2.width >= 1100){ %><%= section.settings.image_desk_2 %> 1100w,<% } %>
+            <% if(section.settings.image_desk_2.width >= 1500){ %><%= section.settings.image_desk_2 %> 1500w,<% } %>
+            <% if(section.settings.image_desk_2.width >= 1780){ %><%= section.settings.image_desk_2 %> 1780w,<% } %>
+            <% if(section.settings.image_desk_2.width >= 2000){ %><%= section.settings.image_desk_2 %> 2000w,<% } %>
+            <% if(section.settings.image_desk_2.width >= 2800){ %><%= section.settings.image_desk_2 %> 2800w<% } %>"
+            sizes="<% if(section.settings.image_desk_2_2 && section.settings.stack_images_on_mobile){ %>(min-width: 750px) 50vw, 100vw<% } else if(section.settings.image_desk_2_2){ %>50vw<% } else { %>100vw<% } %>"
+            src="<%= section.settings.image_desk_2 %>"
+            <% if(section.settings.show_lazy){ %>loading="lazy"<% } %>
+            alt="<%= section.settings.image_desk_2.alt %>"
+            width="<%= section.settings.image_desk_2.width %>"
+            height="<%= section.settings.image_desk_2.width / section.settings.image_desk_2.aspect_ratio %>"
+            <% if(section.settings.enable_anim){ %> data-aos="<%=section.settings.anim%>"<% } %>
+          >
+          <% } %>
+        </div>
+      <% } else { %>
+        <div class="media small-hide image-banner__wrapper--double-image" style="padding-bottom:<% if(section.settings.section_height === "auto"){ %> <%= 1 / section.settings.image.aspect_ratio * 100 %>%; <% } else { %><%=section.settings.section_height%>;<% } %>">
+          <img  class="first-one" 
+            src="/<%=srcId%>/banner-1.webp"
+            <% if(section.settings.show_lazy){ %>loading="lazy"<% } %>
+            <% if(section.settings.enable_anim){ %> data-aos="<%=section.settings.anim%>"<% } %>
+          >
+          <img  class="small-hide second-one" 
+            src="/<%=srcId%>/banner-2.webp"
+            <% if(section.settings.show_lazy){ %>loading="lazy"<% } %>
+            <% if(section.settings.enable_anim){ %> data-aos="<%=section.settings.anim%>"<% } %>
+          >
+        </div>
+      <% } %>
+      <% if(section.settings.image_2){ %>
+        <%- include('../snippets/resimg', {image: section.settings.image_2, classwrapper: 'large-up-hide medium-hide'})  %>
+      <% } %>
+      <div class="banner__content banner__content-<%= section.id %> page-width">
+        <%- include('../snippets/style', {sufix: '.banner__content', id: section.id, style: section.settings}) %>
+        <div class="banner__box">
+          <% section.blocks?.forEach((block,index)=>{ %>
+            <% if(block.type === 'heading'){ %>
+                <h2 class="banner__heading h1 color-white" id="banner__heading-<%= block.id %>">
+                  <%= block.settings.heading %>
+                </h2>
+                <%- include('../snippets/style', {sufix: '#banner__heading', id: block.id, style: block.settings}) %>
+              <% } else if(block.type === 'text'){ %>
+                <div class="banner__text color-white" id="banner__text-<%= block.id %>">
+                  <%- block.settings.text -%>
+                </div>
+                <%- include('../snippets/style', {sufix: '#banner__text', id: block.id, style: block.settings}) %>
+              <% } else if(block.type === 'buttons'){ %>
+                <div class="banner__buttons<% if(block.settings.button_label_1 && block.settings.button_link_1 && block.settings.button_label_2 && block.settings.button_link_2){ %> banner__buttons--multiple<% } %>">
+                  <% if(block.settings.button_label_1){ %>
+                    <a id="bunner__button-<%= block.id %>" href="<%= block.settings.button_link_1 %>" class="button py-btn-<%=block.settings.view_btn_color%> py-btn-hover-<%=block.settings.view_btn_hover_color%> py-btn-<%=block.settings.view_btn_size%>"<% if(!block.settings.button_link_1){ %> aria-disabled="true"<% } %>>
+                      <%= block.settings.button_label_1 %>
+                    </a>
+                  <style>#bunner__button-<%= block.id %>{
+                    <%=block.settings.c_css%>
+                  }</style>
+                  <% } %>
+                </div>
+              <% } else if(block.type === 'learnmore'){ %>
+                <div class="banner__buttons">
+                  <% if(block.settings.button_label_1){ %>
+                    <a id="bunner__learn-<%= block.id %>" href="<%= block.settings.button_link_1 %>" class="learnmore-btn"<% if(!block.settings.button_link_1){ %> aria-disabled="true"<% } %>>
+                      <%= block.settings.button_label_1 %> 
+                      <svg viewBox="0 0 14 10" fill="none" aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow" xmlns="http://www.w3.org/2000/svg" >
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor">
+                      </path></svg>
+                    </a>
+                  <style>#bunner__learn-<%= block.id %>{
+                    color:<%= block.settings.m_color%>;
+                    font-size:var(--space-11);               
+                  }#bunner__learn-<%= block.id %> svg{width:var(--space-11);margin-left:var(--space-5);transition: all 0.3s;}#bunner__learn-<%= block.id %>:hover svg{margin-left:var(--space-8);}
+                    </style>
+                  <% } %>
+                </div>
+            <% } %>
+          <% }) %>
+        </div>
+      </div>
+     
+</div>
+<script>
+  if(document.getElementsByClassName('hero_banner').length>0){
+    var HSL = document.getElementsByClassName("hero_banner");
+    var i;
+
+    for (i = 0; i < HSL.length; i++) {
+      if(HSL[i].getAttribute('data-href')!=null)
+      HSL[i].addEventListener("click", function() {
+        window.location.href = this.getAttribute('data-href');
+      });
+    }
+  }
+</script>

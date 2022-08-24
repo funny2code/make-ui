@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="/<%=srcId%>/section-featured-blog.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/<%=srcId%>/component-article-card.css">
+
+<style>
+  .featured-blogs-2-<%=section.id%> .title--primary{
+    color: <%=section.settings.title_color%>;
+    font-size:<%=section.settings.title_font_size%>px;
+    font-weight:<%=section.settings.title_font_weight%>;
+  }
+  .featured-blogs-2-<%=section.id%> .title--second{
+    color: <%=section.settings.sub_title_color%>;
+    font-size:<%=section.settings.sub_title_font_size%>px;
+    font-weight:<%=section.settings.sub_title_font_weight%>
+  }
+  @media(min-width:890px){
+    .featured-blogs-wraper{
+      display: grid;
+      grid-template-columns: 6fr 4fr;
+    }
+    .feature-article{
+        padding-right: var(--space-12);
+        border-right: 1px solid <%=section.settings.title_color%>;
+        border-bottom: none;
+    }
+    .list-blog-articles{
+        padding-left: var(--space-12);
+    }
+  }
+  
+  .list-blog-articles .blog-articles__article{    
+    margin-bottom: <%=section.settings.item_space%>px;
+  }  
+  .media--horizontal{
+    padding-bottom:30%;
+  }
+  .featured-blogs-2-<%=section.id%> .article-card_excerpt,
+  .featured-blogs-2-<%=section.id%> .circle-divider{
+    color:<%=section.settings.info_color%>; 
+    font-size:<%=section.settings.info_font_size%>px; 
+    padding-bottom:var(--space-12);              
+  }
+  .circle-divider{
+    opacity:0.6;
+  }
+  .list-blog-articles .article-card_excerpt{
+    display:none;
+  }
+  .featured-blogs-2-<%=section.id%> .feature-article .article-card__title{
+    font-size:<%=section.settings.card_title_font_size%>px;
+    font-weight:<%=section.settings.card_title_font_weight%>;
+    margin-bottom:var(--space-8);
+    margin-top:var(--space-12);
+  }
+  @media(max-width:749px){
+    .featured-blogs-2-<%=section.id%> .feature-article .article-card__title{
+      font-size:<%=section.settings.card_title_m_font_size%>px;                  
+    }
+  }
+  .featured-blogs-2-<%=section.id%> .list-blog-articles .article-card__title{
+    font-size:<%=section.settings.list_title_font_size%>px;
+    font-weight:<%=section.settings.list_title_font_weight%>;
+    margin-bottom:var(--space-10);
+  }
+  @media(max-width:749px){
+    .featured-blogs-2-<%=section.id%> .list-blog-articles .article-card__title{
+      font-size:<%=section.settings.list_title_m_font_size%>px;                  
+    }
+  }
+</style>
+
+  <div class="featured-blogs-2 featured-blogs-2-<%=section.id%> py-<%=section.settings.bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%>  bc-<%=settings.section_style%>-bt">
+    <div class="page-width py-<%=section.settings.page_width%> py-<%=section.settings.page_y_mg%> py-<%=section.settings.page_y_mg%>">
+      <div class="featured-blogs-wraper">
+        <div class="feature-article">
+          <h1 class="title--primary"><%= section.settings.title %></h1>
+          <div class="blog-articles__article article py-<%=section.settings.card_bg_color%>">
+              <%- include('../snippets/article-card', {article: section?.settings?.blog?.articles[0], show_image: true}) %>
+          </div>
+        </div>
+        <div class="list-blog-articles">  
+          <h1 class="title--second"><%= section.settings.sub_title %></h1>      
+          <% section?.settings?.blog?.articles?.forEach((article,index)=>{ %>
+            <% if(index === 3){ %>
+              <% if(index > 1){ %>            
+              <div class="blog-articles__article article py-<%=section.settings.card_bg_color%>">
+                  <%- include('../snippets/article-card', {article: article, show_image: false}) %>
+              </div>            
+              <% } %> 
+            <% } %>    
+          <% }) %> 
+          <a href="" class="py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>" >View all articles</a>        
+        </div>
+      </div>
+    </div>
+  </div>

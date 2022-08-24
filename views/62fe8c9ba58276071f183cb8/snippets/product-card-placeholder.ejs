@@ -1,0 +1,19 @@
+<div class="card-wrapper">
+  <a class="full-width-link"><span class="visually-hidden">product title</span></a>
+  <div class="media media--transparent media--adapt media--hover-effect py-bg-c-light" style="padding-bottom: 66.7027027027027%;"> 
+  <% var n_index = index + 1 %>             
+  <%= 'product-' + n_index %>             
+   </div>
+  <div class="card-information">
+    <h5 class="card-information__text h5 center">product title</h5>
+    <div class="card-information__wrapper">
+      <span class="visually-hidden">vendor</span>
+      <div class="caption-with-letter-spacing light">vendor</div>
+      <%- include('../snippets/price', {
+        use_variant: false,
+        price_class: false,
+        show_badges: false,
+      }) %>
+    </div>
+  </div>
+</div>

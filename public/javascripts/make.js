@@ -37,15 +37,17 @@
         let dataSections = document.querySelectorAll('.py__settings-section-item');
         if(!dataSections.length) return;
         dataSections.forEach((data,index) => {
-            let section = {name: null, template_name: null, settings: {}, blocks: []};
+            let section = {name: null, file_name: null, template_name: null, settings: {}, blocks: []};
             let sectionClosest = data.closest('.py__closest');
             let blockSettings = sectionClosest ? sectionClosest.querySelectorAll('.py__settings-block-item') : null;
-            let sectionName = data?.getAttribute('data-section-name');
+            // let sectionName = data?.getAttribute('data-section-name');
+            let fileName = data?.getAttribute('data-file-name');
             let templateName = data?.getAttribute('data-template-name');
 
+            // section.file_name = fileName || null;
             section.template_name = templateName;
 
-            if(!sectionName){
+            if(!fileName){
                 data?.querySelectorAll('[name]').forEach(element => {
                     theme.settings[element.getAttribute('name').replace('settings_', '')] = (element.value === "true" || element.value === "false") 
                     ? (element.value === "true") ? true : false 
@@ -54,10 +56,10 @@
             }
 
             if(theme?.sections?.length){
-                let checking = theme?.sections?.filter(sectionItem => sectionItem.name === sectionName);
+                let checking = theme?.sections?.filter(sectionItem => sectionItem.file_name === fileName);
                 if(checking.length){
                     theme?.sections?.forEach(sectionItem => {
-                        if(sectionItem.name === sectionName){
+                        if(sectionItem.file_name === fileName){
                             data?.querySelectorAll('[name]').forEach(element => {
                                 sectionItem.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false 
                                 : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
@@ -77,7 +79,7 @@
                         }
                     });
                 } else {
-                    section.name = sectionName;
+                    section.file_name = fileName;
                     data?.querySelectorAll('[name]').forEach(element => {
                         section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
                         : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
@@ -94,7 +96,7 @@
                     };
                 }
             } else {
-                section.name = sectionName;
+                section.file_name = fileName;
                 data?.querySelectorAll('[name]').forEach(element => {
                     section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false 
                     : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
@@ -111,7 +113,7 @@
                 };
             }
 
-            if(section.name){
+            if(section.file_name){
                 theme.sections.push(section);
             }
         })

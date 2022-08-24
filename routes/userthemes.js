@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const make = require('../config/make');
+const make = require('../contents/make');
 const modelUsersThemes = require('../models/customer-themes');
-const fonts = require('../config/fonts');
+const fonts = require('../contents/fonts');
 
 /* GET users listing. */
 router.get('/:userId/themes/:themeId', async (req, res, next) => {

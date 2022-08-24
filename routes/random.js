@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const storage = require('node-localstorage').LocalStorage;
-const make = require('../config/make');
+const make = require('../contents/make');
 const modelThemes = require('../models/themes');
-const fonts = require('../config/fonts');
+const fonts = require('../contents/fonts');
 const localStorage = new storage('./scratch');
+
 
 /* GET Theme Settings and Sections. */
 router.get('/:id', async (req, res, next) => {
@@ -62,8 +63,6 @@ router.get('/:id', async (req, res, next) => {
     }
     const pageNames = []; 
     theme.theme_pag.forEach(item => pageNames.push({name:item.name}));
-
-    console.log(fonts, "PAGE SECTIONS");
 
     res.render('random', {
       user: req?.session?.user || null,
