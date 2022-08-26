@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const modelUsersThemes = require('../models/customer-themes');
+const shop = require('../contents/shop');
 
 
 /* GET theme settings and sections for Iframe View. */
@@ -18,7 +19,6 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
         const theme = await modelUsersThemes.findById(themeId).exec();
         if (!theme) return next();
 
-        const shop = require(`../contents/${theme.extend_id}/shop`);
         const makeMenu = require(`../contents/${theme.extend_id}/menu`);
         const collection = require(`../contents/${theme.extend_id}/collection`);
         const collections = require(`../contents/${theme.extend_id}/collections`);
@@ -42,7 +42,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
 
         if (section) {
             theme.theme_sec && theme.theme_sec.map(item => {
-                if (item.name === section) {
+                if (item.file_name === section) {
                     const sectionChildSettings = {};
                     const blocks = [];
                     if (item.settings) {
@@ -60,7 +60,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
                             }
                         })
                     }
-                    sectionSettings.push({ name: item.name, settings: sectionChildSettings, blocks: blocks });
+                    sectionSettings.push({file_name: item.file_name, name: item.name, settings: sectionChildSettings, blocks: blocks });
                 }
             });
         } else if (global === 'Global Styles' || global === undefined) {
@@ -68,7 +68,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
                 if(pageItem.name === page) {
                     pageItem.items.forEach(item => {
                         theme.theme_sec && theme.theme_sec.map(el => {
-                            if (item.name === el.name) {
+                            if (item.handle === el.file_name) {
                                 const sectionChildSettings = {};
                                 const blocks = [];
                                 if (el.settings) {
@@ -86,7 +86,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
                                         }
                                     })
                                 }
-                                sectionSettings.push({ name: item.name, settings: sectionChildSettings, blocks: blocks });
+                                sectionSettings.push({file_name: el.file_name, name: item.name, settings: sectionChildSettings, blocks: blocks });
                             }
                         })
                     })
@@ -94,7 +94,10 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
             })
         }
 
+        console.log(sectionSettings);
+
         res.render('view', {
+            srcId: theme.extend_id,
             menu: makeMenu,
             shop: shop,
             collection: collection,
@@ -133,6 +136,16 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
         const theme = await modelUsersThemes.findById(themeId).exec();
         if (!theme) return next();
 
+        const makeMenu = require(`../contents/${theme.extend_id}/menu`);
+        const collection = require(`../contents/${theme.extend_id}/collection`);
+        const collections = require(`../contents/${theme.extend_id}/collections`);
+        const product = require(`../contents/${theme.extend_id}/product`);
+        const cart = require(`../contents/${theme.extend_id}/cart`);
+        const blog = require(`../contents/${theme.extend_id}/blogs`);
+        const article = require(`../contents/${theme.extend_id}/article`);
+        const customer = require(`../contents/${theme.extend_id}/customer`);
+        const gift = require(`../contents/${theme.extend_id}/gift`);
+
         const defaultSettings = {};
         const defaultSections = [];
 
@@ -149,7 +162,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
 
         if (sectionHandle) {
             theme.theme_sec && theme.theme_sec.map(el => {
-                if (el.name === sectionHandle) {
+                if (el.file_name === sectionHandle) {
                     let sectionChildSettings = {};
                     let blocks = [];
                     if (el.settings) {
@@ -167,7 +180,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                             }
                         })
                     }
-                    defaultSections.push({ name: el.name, settings: sectionChildSettings, blocks: blocks });
+                    defaultSections.push({file_name: el.file_name, name: el.name, settings: sectionChildSettings, blocks: blocks });
                 }
             });
         } else if (global === 'Global Styles' || global === undefined) {
@@ -175,7 +188,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                 if (pageItem.name === page) {
                     pageItem?.items.map(item => {
                         theme?.theme_sec.map(el => {
-                            if (item.name === el.name) {
+                            if (item.handle === el.file_name) {
                                 let sectionChildSettings = {};
                                 let blocks = [];
                                 if (el.settings) {
@@ -193,7 +206,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                                         }
                                     })
                                 }
-                                defaultSections.push({ name: item.name, settings: sectionChildSettings, blocks: blocks });
+                                defaultSections.push({file_name: el.file_name, name: item.name, settings: sectionChildSettings, blocks: blocks });
                             }
                         });
                     })
@@ -204,7 +217,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
         if (sections?.length) {
             defaultSections.forEach(item => {
               sections.forEach(section => {
-                if(item.name === section.name) {
+                if(item.file_name === section.file_name) {
                   item.settings = section.settings;
                   item.blocks = section.blocks;
                 }
@@ -213,6 +226,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
         }
 
         res.render('view', {
+            srcId: theme.extend_id,
             menu: makeMenu,
             shop: shop,
             collection: collection,

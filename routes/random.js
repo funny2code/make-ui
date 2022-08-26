@@ -6,6 +6,11 @@ const modelThemes = require('../models/themes');
 const fonts = require('../contents/fonts');
 const localStorage = new storage('./scratch');
 
+const getRandomInt = (max) => {
+  return Math.floor(Math.random() * max);
+},
+
+
 
 /* GET Theme Settings and Sections. */
 router.get('/:id', async (req, res, next) => {
@@ -18,8 +23,23 @@ router.get('/:id', async (req, res, next) => {
   if(!id || !page) return next();
 
   try {
-    const theme = await modelThemes.findById(id).exec();
+    const theme = await modelThemes.find().exec();
+    console.log(theme);
     if(!theme) return next();
+
+    const getRandomElement = () => {
+      let elemets1=['header','nav', 'main', 'footer'];
+      let elemets2=['header','nav', 'main', 'footer'];
+    
+      var number1=getRandomInt(4);
+      
+      do {
+        var number2 = getRandomInt(4);
+      } while(number1 === number2);
+      return [elemets1[number1], elemets2[number2]];
+    };
+
+    const merge = getRandomElement();
 
     const settings = theme.theme_set;
 

@@ -11,9 +11,9 @@
                         <ul class="py__sub-options-ul">
                             <% var subMenuItems = item.type === 'page' ? pageNames : pageSections %>
                             <% subMenuItems.forEach(subOption => { %>
-                                <% var subMenuLinks = item.type === 'page' ? `page=${subOption.name}` : `page=${page}&section=${subOption.name}` %>
+                                <% var subMenuLinks = item.type === 'page' ? `page=${subOption.name}` : `page=${page}&section=${subOption.handle}` %>
                                 <li>
-                                    <a href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?<%=subMenuLinks%>" class="py__sub-options-item py__get-section-button <% if(item.type === 'page' && subOption.name === page || activeType === 'section' && subOption.name === active){ %>active<% } %>">
+                                    <a href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?<%=subMenuLinks%>" class="py__sub-options-item py__get-section-button <% if(item.type === 'page' && subOption.name === page || activeType === 'section' && subOption.handle === active){ %>active<% } %>">
                                         <span><%= subOption.name %></span>
                                         <span><%- include('../icons', {type:'arrow_right'}) %></span>
                                     </a>

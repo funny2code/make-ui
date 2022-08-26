@@ -51,7 +51,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
         
         if (sections?.length && theme.theme_sec) {
             theme.theme_sec.map(el => {
-                let findSection = sections.filter(item => item.name === el.name);
+                let findSection = sections.filter(item => item.file_name === el.file_name);
                 let productTemplate = findSection[0]?.template_name && require(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/${findSection[0]?.template_name}.json`));
                 if (findSection?.length) {
                     if (el.settings && findSection[0]?.settings) {
@@ -65,7 +65,6 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                     }
                     if (productTemplate?.sections || productTemplate?.current) {
                         Object.entries(productTemplate?.sections || productTemplate?.current?.sections).forEach(templateSection => {
-                            console.log(templateSection);
                             let templateSectionName = templateSection[1]?.type ? templateSection[1]?.type.replace(/-/g, ' ') : null;
                             if (templateSectionName && templateSectionName === findSection[0]?.name) {
                                 templateSection[1].settings = findSection[0].settings;

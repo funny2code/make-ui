@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const storage = require('node-localstorage').LocalStorage;
+const shop = require('../contents/shop');
 const modelThemes = require('../models/themes');
 const localStorage = new storage('./scratch');
 
@@ -15,7 +16,6 @@ router.get('/:id', async (req, res, next) => {
 
   if (!id || !page) return next();
 
-  const shop = require(`../contents/${id}/shop`);
   const makeMenu = require(`../contents/${id}/menu`);
   const collection = require(`../contents/${id}/collection`);
   const collections = require(`../contents/${id}/collections`);
@@ -171,6 +171,7 @@ router.post('/:id', async (req, res, next) => {
   const { id } = req.params;
   const {settings, sections} = req.body;
   const { page, global } = req.query;
+  
   const sectionHandle = req.query.section;
   
   localStorage.setItem('theme', JSON.stringify(req.body));
@@ -178,7 +179,6 @@ router.post('/:id', async (req, res, next) => {
   if (!id || !page) return next();
   if (!settings && !sections?.length) return next();
 
-  const shop = require(`../contents/${id}/shop`);
   const makeMenu = require(`../contents/${id}/menu`);
   const collection = require(`../contents/${id}/collection`);
   const collections = require(`../contents/${id}/collections`);
@@ -236,7 +236,6 @@ router.post('/:id', async (req, res, next) => {
         if(pageName.name === page){
           pageName?.items.map(item => {
             theme?.theme_sec.map(el => {
-              console.log(item.file_name === el.name);
               if (item.file_name === el.file_name) {
                 let sectionChildSettings = {};
                 let blocks = [];
@@ -255,7 +254,7 @@ router.post('/:id', async (req, res, next) => {
                     }
                   })
                 }
-                defaultSections.push({file_name: item.file_name, name: item.name, settings: sectionChildSettings, blocks: blocks });
+                defaultSections.push({file_name: el.file_name, name: item.name, settings: sectionChildSettings, blocks: blocks });
               }
             });
           })
