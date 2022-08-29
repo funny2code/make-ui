@@ -8,31 +8,23 @@ const localStorage = new storage('./scratch');
 
 
 
-/* GET Theme Settings and Sections. */
-router.get('/:id', async (req, res, next) => {
 
-  const {id} = req.params;
-  const {page, global, section} = req.query;
+/* GET Theme Settings and Sections. */
+router.get('/', async (req, res, next) => {
+
+  // const {id} = req.params;
+  const {page} = req.query;
   const storageData = localStorage.getItem('theme');
   const localData = storageData ? JSON.parse(storageData) : null;
 
-  if(!id || !page) return next();
+  if(!page) return next();
 
   try {
-    const theme = await modelThemes.findById(id).exec();
-    // console.log(theme[0].theme_sec.length,theme[1].theme_sec.length);
+
+    const theme = await modelThemes.findById(req?.session?.themeIDS[0]).exec();
     if(!theme) return next();
-    // const themeSec = [];
-    // theme[0].theme_sec.forEach((sec) => {
-    //   themeSec.push(sec);
-    // });
-    // theme[1].theme_sec.forEach((sec) => {
-    //   themeSec.push(sec);
-    // });
 
     const settings = theme.theme_set;
-
-    // console.log(settings);
 
     if(localData?.settings){
       settings?.forEach(el => {
@@ -61,7 +53,6 @@ router.get('/:id', async (req, res, next) => {
               const findLocalBlock = findLocalSection[0]?.blocks?.filter(localBlock => localBlock.type === block.type);
               if(findLocalBlock?.length){
                 for (var k in block.settings) {
-                  console.log(findLocalBlock[0]?.settings[block.settings[k].id], block.settings[k].default);
                   if(findLocalBlock[0]?.settings[block.settings[k].id]) block.settings[k].default = findLocalBlock[0]?.settings[block.settings[k].id];
                 }
               }
@@ -78,6 +69,7 @@ router.get('/:id', async (req, res, next) => {
       isAdmin: req?.session?.user?.isAdmin || null, 
       make: make, 
       id: theme._id,
+      themeIDS: req?.session?.themeIDS?.join(',') || null,
       page: page,
       fonts: fonts,
       localData: localData,

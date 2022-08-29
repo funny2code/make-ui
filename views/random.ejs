@@ -11,7 +11,7 @@
         <%- include('make/header-random', {id: id, show: true }) %>
         <div class="py__make">
             <div class="py__make-preview">
-                <div class="py__preview-random-content">
+                <div class="py__preview-random-content" <% if(themeIDS){ %>data-ids="<%=themeIDS%>"<% } %>>
                     <div class="py__preview-iframe py__preview-random-iframe py__preview-iframe-desktop">
                         <iframe src="/view/<%= user ? 'users/' + user._id + '/themes/' + id : id%>?page=<%=page%>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
                     </div>

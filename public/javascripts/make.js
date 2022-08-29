@@ -626,51 +626,27 @@
 
     // View Iframe Fun
     const viewIframe = () => {
-        // let form = document.querySelector('form.py__settings-form');
         let iframe = document.querySelector('iframe.py__view-iframe');
-        
-        // if(!iframe || !form) return;
-        let url = iframe?.getAttribute('src');
-        // let settings = {}; 
-        // let section = []; 
-        // let sectionName = document.querySelector('.py__settings-section-item').getAttribute('data-section-name');
-        // let sectionSettings = {}; 
-        // let blocks = []; 
-        // let blockItems = {
-        //     type: "",
-        //     settings: {}
-        // }; 
+        if(!iframe) return;
+        let url = null;
+        let randomContent = iframe.closest('.py__preview-random-content');
+        let ids = randomContent ? randomContent?.getAttribute('data-ids') : null;
 
-        // let formData = new FormData(form);
-        // formData.forEach((value, key) => {
-        //     let newValue = value === "true" || value === "false" 
-        //     ? value === "true" ? true : false : value;
-        //     if(key === 'logo') return;
-        //     if(key.includes('settings_')){ 
-        //         settings[key.replace('settings_', '')] = newValue;
-        //     } else if(key.includes('block_')){
-        //         if(key.includes('block_type_')){
-        //             blockItems.type = newValue;
-        //             blocks.push(blockItems);
-        //             blockItems = {type:"",settings: {}};
-        //         } else {
-        //             blockItems.settings[key.replace('block_', '')] = newValue
-        //         }
-        //     } else { 
-        //         sectionSettings[key] = newValue;
-        //     }
-        // });
-        
-
-        // if(sectionName && Object.keys(sectionSettings).length){
-        //     section.push({ name: sectionName, settings: sectionSettings});
-        // }
-
-        // let data = {
-        //     settings: Object.keys(settings).length ? [settings] : null,
-        //     section: section.length ? section : null,
-        //     blocks: blocks?.length ? blocks: null,
-        // };
+        if(ids) {
+            let arrayIds = ids?.split(',');
+            arrayIds?.forEach((id,i,array) => {
+                let index = i + 1;
+                if(iframe?.getAttribute('src').indexOf(id) !== -1 && index !== array.length){
+                    return url = '/view/' + array[index] + location.search;
+                } else if(iframe?.getAttribute('src').indexOf(id) !== -1 && index === array.length){
+                    return url = '/view/' + array[0] + location.search;
+                }
+            })
+            let iframes = document.querySelectorAll('iframe.py__view-iframe');
+            iframes?.forEach((item) => item?.setAttribute('src', url));
+        } else {
+            url = iframe?.getAttribute('src');
+        }
 
         fetch(url, {
             method:'POST',
@@ -685,13 +661,13 @@
             if(!data) return;
             let parser = new DOMParser();
             let html = parser.parseFromString(data, "text/html");
-            // let iframeContent = iframe.contentDocument || iframe.contentWindow.document;
             let myIframes = document.querySelectorAll('iframe.py__view-iframe');
-            myIframes?.forEach(iframeItem =>{
+            for(let i=0; i<=myIframes; i++){
+                let iframeItem = myIframes[i];
                 let ifrm = iframeItem.contentDocument || iframeItem.contentWindow.document;
                 html ? ifrm.querySelector('body').innerHTML = html.querySelector('body').innerHTML : null;
-            })
-            loading?.classList.remove('py__animate');
+            }
+            ids ? setTimeout(() => loading?.classList.remove('py__animate'), 3500) : loading?.classList.remove('py__animate');
         })
         .catch(err => console.error(err));
     };
