@@ -79,7 +79,7 @@
                     <% if(section.settings.image_ratio === 'adapt' &&  block?.settings?.image){ %>
                       style="padding-bottom: <%= 1 / highest_ratio * 100 %>%;"
                     <% } %>
-                    <% if(!block?.settings?.image){ %>style="padding-bottom:54%"<% } %>>
+                    <% if(!block?.settings?.image){ %>style="padding-bottom:100%"<% } %>>
                     <% if(block?.settings?.image){ %>
                     <img
                       srcset="<% if(block?.settings?.image?.width >= 275){ %><%= block?.settings?.image %> 275w,<% } %>
@@ -96,7 +96,13 @@
                       loading="lazy"
                     >
                     <% } else { %>
-                    <%= 'image' %>
+                      <img
+                        src="<%=`/${srcId}/multiple-${index}.webp`%>"
+                        sizes="(min-width: 800px) <% if(section.blocks.length <= 2){ %>710px<% } else { %>550px<% } %>,
+                          (min-width: 750px) <% if(section.blocks.length === 1){ %>710px<% } else { %>550px<% } %>,
+                          calc(100vw - 30px)"
+                        loading="lazy"
+                      >
                     <% } %>
                   </div>
                   <div class="col-overlay py-<%=section.settings.col_overlay_color%>"></div>                  
@@ -106,7 +112,7 @@
                   <h3 class="col_title"><%= block?.settings?.title %></h3>
                 <% } %>
                 <% if(block?.settings?.text){ %>
-                  <div class="rte"><%= block?.settings?.text %></div>
+                  <div class="rte"><%- block?.settings?.text -%></div>
                 <% } %>
                 <% if(block?.settings?.btn_link){ %>
                   <div class="rte learn-more">
@@ -136,9 +142,9 @@
       <% } %>
     </slider-component>
     <div class="center<% if(section.settings.swipe_on_mobile){ %> small-hide medium-hide<% } %>">
-      <% if(section.settings.button_label){ %>
+      <% if(section?.settings?.button_label){ %>
         <a class="button button--primary py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>"<% if(!section.settings.button_link){ %> aria-disabled="true" role="link"<% } else { %> href="<%= section.settings.button_link %>"<% } %>>
-          <%= section.settings.button_label %>
+          <%= section?.settings?.button_label %>
         </a>
       <% } %>
     </div>

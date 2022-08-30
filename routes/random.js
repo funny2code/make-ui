@@ -21,6 +21,14 @@ router.get('/', async (req, res, next) => {
 
   try {
 
+    if(!req?.session?.themeIDS){
+      const Themes = await modelThemes.find({}, '_id');
+      if(Themes?.length > 1){
+        req.session.themeIDS = [];
+        Themes?.forEach(theme => req.session.themeIDS.push(theme._id));
+      }
+    }
+
     const theme = await modelThemes.findById(req?.session?.themeIDS[0]).exec();
     if(!theme) return next();
 

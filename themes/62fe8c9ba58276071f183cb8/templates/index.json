@@ -6,8 +6,25 @@
         "16425389039f659f32-0": {
           "type": "heading",
           "settings": {
-            "heading": "Recycled yarns and textiles",
-            "fs": "fs-xl",
+            "heading": "Say hello to our latest arrivals",
+            "align": "center",
+            "color": "var(--py-color-light)",
+            "weight": "",
+            "size": "60px",
+            "padding": "",
+            "margin": "",
+            "width": "",
+            "height": "",
+            "c_css": "max-width:600px;\nmargin:auto;",
+            "m_align": "center",
+            "m_color": "var(--py-color-light)",
+            "m_weight": "",
+            "m_size": "40px",
+            "m_padding": "",
+            "m_margin": "",
+            "m_width": "",
+            "m_height": "",
+            "m_c_css": "",
             "type_heading": "heading"
           }
         },
@@ -70,8 +87,25 @@
         "1659988545488a1018-0": {
           "type": "heading",
           "settings": {
-            "heading": "Recycled yarns and textiles",
-            "fs": "fs-xl",
+            "heading": "Say hello to our latest arrivals",
+            "align": "center",
+            "color": "var(--py-color-light)",
+            "weight": "",
+            "size": "60px",
+            "padding": "",
+            "margin": "",
+            "width": "",
+            "height": "",
+            "c_css": "max-width:600px;\nmargin:auto;",
+            "m_align": "center",
+            "m_color": "var(--py-color-light)",
+            "m_weight": "",
+            "m_size": "40px",
+            "m_padding": "",
+            "m_margin": "",
+            "m_width": "",
+            "m_height": "",
+            "m_c_css": "",
             "type_heading": "heading"
           }
         },
@@ -155,8 +189,25 @@
         "1652851716950d2423-0": {
           "type": "heading",
           "settings": {
-            "heading": "Recycled yarns and textiles",
-            "fs": "fs-xl",
+            "heading": "Say hello to our latest arrivals",
+            "align": "center",
+            "color": "var(--py-color-light)",
+            "weight": "",
+            "size": "60px",
+            "padding": "",
+            "margin": "",
+            "width": "",
+            "height": "",
+            "c_css": "max-width:600px;\nmargin:auto;",
+            "m_align": "center",
+            "m_color": "var(--py-color-light)",
+            "m_weight": "",
+            "m_size": "40px",
+            "m_padding": "",
+            "m_margin": "",
+            "m_width": "",
+            "m_height": "",
+            "m_c_css": "",
             "type_heading": "heading"
           }
         },
@@ -171,10 +222,7 @@
         "1652851716950d2423-2": {
           "type": "button",
           "settings": {
-            "button_label": "Button label",
-            "view_btn_size": "medium",
-            "view_btn_color": "dark",
-            "view_btn_hover_color": "dark",
+            "button_label": "",
             "type_button": "button"
           }
         }
@@ -254,8 +302,25 @@
         "16601777075943e121-0": {
           "type": "heading",
           "settings": {
-            "heading": "Recycled yarns and textiles",
-            "fs": "fs-xl",
+            "heading": "Say hello to our latest arrivals",
+            "align": "center",
+            "color": "var(--py-color-light)",
+            "weight": "",
+            "size": "60px",
+            "padding": "",
+            "margin": "",
+            "width": "",
+            "height": "",
+            "c_css": "max-width:600px;\nmargin:auto;",
+            "m_align": "center",
+            "m_color": "var(--py-color-light)",
+            "m_weight": "",
+            "m_size": "40px",
+            "m_padding": "",
+            "m_margin": "",
+            "m_width": "",
+            "m_height": "",
+            "m_c_css": "",
             "type_heading": "heading"
           }
         },
@@ -351,12 +416,12 @@
           "settings": {
             "color_picker_type": "color",
             "general_picker_type": "sm_radius",
-            "option_bg_color": "var(--py-bg-color-avarge)",
+            "option_bg_color": "var(--py-bg-color-light)",
             "option_br_color": "var(--py-color-dark)",
-            "option_color": "var(--py-color-light)",
+            "option_color": "var(--py-color-dark)",
             "selected_option_bg_color": "var(--py-bg-color-dark)",
-            "selected_option_br_color": "var(--py-color-light)",
-            "selected_option_color": "var(--py-color-avarge)",
+            "selected_option_br_color": "var(--py-color-dark)",
+            "selected_option_color": "var(--py-color-light)",
             "option_fontsize": 18,
             "option_fontsize_m": 18,
             "option_fontweight": 400,
@@ -446,31 +511,28 @@
         "165180107452de171a-0": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/210715_UBB_Day2_06862-crop_608x768_3cafffed-942c-4035-a9c7-fcbc1416b46a.webp",
             "title": "Keep it casual",
             "text": "<p>Tops for everyday life</p>",
             "btn_label": "Learn More",
-            "btn_link": "#"
+            "type_column": "column"
           }
         },
         "165180107452de171a-1": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/210715_UBB_Day2_08945_608x928_cbe2c67d-0a0b-4c2f-ade0-8e4ae58f28a9.webp",
-            "title": "Looks we love",
-            "text": "<p>View our staff picks of the month</p>",
+            "title": "Keep it casual",
+            "text": "<p>Tops for everyday life</p>",
             "btn_label": "Learn More",
-            "btn_link": "#"
+            "type_column": "column"
           }
         },
         "72f28d44-c0c8-4874-b2ba-5d9ea525992a": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/210715_UBB_Day1_04375_608x928_94ca41d0-3660-4976-8b97-1b4c066e5b8c.webp",
-            "title": "Cozy & iconic",
-            "text": "<p>Oversized knits that still look chic</p>",
+            "title": "Keep it casual",
+            "text": "<p>Tops for everyday life</p>",
             "btn_label": "Learn More",
-            "btn_link": "#"
+            "type_column": "column"
           }
         }
       },

@@ -74,19 +74,18 @@
         <div class="feature-article">
           <h1 class="title--primary"><%= section.settings.title %></h1>
           <div class="blog-articles__article article py-<%=section.settings.card_bg_color%>">
-              <%- include('../snippets/article-card', {article: section?.settings?.blog?.articles[0], show_image: true}) %>
+              <%- include('../snippets/article-card', {article: blog?.articles[0], show_image: true}) %>
           </div>
         </div>
         <div class="list-blog-articles">  
           <h1 class="title--second"><%= section.settings.sub_title %></h1>      
-          <% section?.settings?.blog?.articles?.forEach((article,index)=>{ %>
-            <% if(index === 3){ %>
-              <% if(index > 1){ %>            
-              <div class="blog-articles__article article py-<%=section.settings.card_bg_color%>">
-                  <%- include('../snippets/article-card', {article: article, show_image: false}) %>
-              </div>            
-              <% } %> 
-            <% } %>    
+          <% blog?.articles?.forEach((article,index)=>{ %>
+            <% if(index > 3) return; %>
+            <% if(index > 0){ %>            
+            <div class="blog-articles__article article py-<%=section.settings.card_bg_color%>">
+                <%- include('../snippets/article-card', {article: article, show_image: false}) %>
+            </div>            
+            <% } %>  
           <% }) %> 
           <a href="" class="py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>" >View all articles</a>        
         </div>

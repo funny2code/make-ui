@@ -38,7 +38,7 @@
           <% } %>
         </div>
       <% } else { %>
-        <div class="media small-hide image-banner__wrapper--double-image" style="padding-bottom:<% if(section.settings.section_height === "auto"){ %> <%= 1 / section.settings.image.aspect_ratio * 100 %>%; <% } else { %><%=section.settings.section_height%>;<% } %>">
+        <div class="media image-banner__wrapper--double-image" style="padding-bottom:<% if(section.settings.section_height === "auto"){ %> <%= 1 / section.settings.image.aspect_ratio * 100 %>%; <% } else { %><%=section.settings.section_height%>;<% } %>">
           <img  class="first-one" 
             src="/<%=srcId%>/banner-1.webp"
             <% if(section.settings.show_lazy){ %>loading="lazy"<% } %>

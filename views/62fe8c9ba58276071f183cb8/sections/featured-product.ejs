@@ -410,9 +410,9 @@
           </style>
             <div class="variant-picker-container color-picker-<%=block?.settings?.color_picker_type%> general-picker-<%=block?.settings?.general_picker_type%>">
         
-            <% if(!product?.has_only_default_variant){ %>              
+            <% if(product?.variants?.length > 1){ %>              
                 <variant-radios class="no-js-hidden" data-section="<%= section.id %>" data-url="<%= product?.url %>">                  
-                    <% product?.options_with_values?.forEach((option,index)=>{ %>
+                    <% product?.options?.forEach((option,index)=>{ %>
                         <%
                           var optionName = option.name.toLowerCase()
                           var color = false
@@ -420,13 +420,13 @@
                             color = true
                           } %>
                         <fieldset class="js product-form__input" product-option = "<%=optionName%>">
-                          <legend class="form__label"><%= option.name %>: <span class="selected-value"><%=option.selected_value%></span></legend>
+                          <legend class="form__label"><%= option.name %>: <span class="selected-value"><%=option.values[0]%></span></legend>
                           <% option?.values?.forEach((value,index)=>{ %>
                             <input type="radio" id="<%= section.id %>-<%= option.name %>-<%= index %>"
                                   name="<%= option.name %>"
                                   value="<%= value %>"
                                   form="product-form-<%= section.id %>"
-                                  <% if(option.selected_value === value){ %>checked<% } %>
+                                  <% if(index===0){ %>checked<% } %>
                             >
                             
                             <label for="<%= section.id %>-<%= option.name %>-<%= index %>">
@@ -550,8 +550,8 @@
                   </quantity-input>
                 </div>
                 <div class="variant_select_container">
-                <% if(!product?.has_only_default_variant){ %>
-                    <% product?.options_with_values?.forEach((option,index)=>{ %>
+                <% if(product?.variants?.length > 1){ %>
+                    <% product?.options?.forEach((option,index)=>{ %>
                         <%
                           var optionName = option.name.toLowerCase()
                           var color = false

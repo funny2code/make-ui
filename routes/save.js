@@ -89,7 +89,7 @@ router.post('/:id', async (req, res, next) => {
                                 if (block.type === newBlock.type && block?.settings && newBlock?.settings) {
                                     block.settings.map(oldSetting => {
                                         Object.entries(newBlock.settings).map(newSetting => {
-                                            if (oldSetting.id === newSetting[0] && newSetting[1] !== "") {
+                                            if (oldSetting.id === newSetting[0] && newSetting[1] !== undefined) {
                                                 oldSetting.default = oldSetting?.type === "range" ? parseInt(newSetting[1]) : newSetting[1];
                                             }
                                         })

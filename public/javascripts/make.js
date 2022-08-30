@@ -657,17 +657,17 @@
             body:JSON.stringify(theme)
         })
         .then(res => res.text())
-        .then(data => {
+        .then(async (data) => {
             if(!data) return;
             let parser = new DOMParser();
             let html = parser.parseFromString(data, "text/html");
             let myIframes = document.querySelectorAll('iframe.py__view-iframe');
-            for(let i=0; i<=myIframes; i++){
-                let iframeItem = myIframes[i];
+            for(iframeItem of myIframes){
                 let ifrm = iframeItem.contentDocument || iframeItem.contentWindow.document;
                 html ? ifrm.querySelector('body').innerHTML = html.querySelector('body').innerHTML : null;
             }
-            ids ? setTimeout(() => loading?.classList.remove('py__animate'), 3500) : loading?.classList.remove('py__animate');
+            if(ids) return; 
+            loading?.classList.remove('py__animate');
         })
         .catch(err => console.error(err));
     };
@@ -1315,7 +1315,7 @@
 
        if(!event) return;
        event.preventDefault();
-       loading?.classList.add('py__animate');
+    //    loading?.classList.add('py__animate');
 
        let inputFileds = document.querySelectorAll('[name]');
        let index = 0;

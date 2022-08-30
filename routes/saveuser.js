@@ -28,7 +28,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                 if (el.settings) {
                     el.settings.map(oldItem => {
                         Object.entries(settings).forEach(newItem => {
-                            if (oldItem.id === newItem[0] && newItem[1] !== "") {
+                            if (oldItem.id === newItem[0] && newItem[1] !== undefined) {
                                 oldItem.default = oldItem?.type === "range" ? parseInt(newItem[1]) : newItem[1];
                             }
                             if(settingsDataFile?.current[newItem[0]]) settingsDataFile.current[newItem[0]] = newItem[1];
@@ -36,7 +36,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                     })
                 } else {
                     Object.entries(settings).forEach(newItem => {
-                        if (newItem[0] === "theme_name" && el.theme_name && newItem[1] !== "") {
+                        if (newItem[0] === "theme_name" && el.theme_name && newItem[1] !== undefined) {
                             el.theme_name = newItem[1];
                         }
                     })
@@ -57,7 +57,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                     if (el.settings && findSection[0]?.settings) {
                         el.settings.map(oldItem => {
                             Object.entries(findSection[0]?.settings).forEach(newItem => {
-                                if (oldItem.id === newItem[0] && newItem[1] !== "") {
+                                if (oldItem.id === newItem[0] && newItem[1] !== undefined) {
                                     oldItem.default = oldItem?.type === "range" ? parseInt(newItem[1]) : newItem[1];
                                 }
                             })
@@ -88,7 +88,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
                                 if (block.type === newBlock.type && block?.settings && newBlock?.settings) {
                                     block.settings.map(oldSetting => {
                                         Object.entries(newBlock.settings).map(newSetting => {
-                                            if (oldSetting.id === newSetting[0] && newSetting[1] !== "") {
+                                            if (oldSetting.id === newSetting[0] && newSetting[1] !== undefined) {
                                                 oldSetting.default = oldSetting?.type === "range" ? parseInt(newSetting[1]) : newSetting[1];
                                             }
                                         })
