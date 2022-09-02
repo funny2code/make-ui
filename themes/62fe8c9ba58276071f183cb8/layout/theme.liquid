@@ -108,9 +108,11 @@
           unavailable: `{{ 'products.product.unavailable' | t }}`,
         }
       </script>
-  
+    
+      {% render 'modal-quickview' %}
       <script src="https://cdn.shopify.com/s/javascripts/currencies.js" defer="defer"></script>
-      <script src="{{ 'slider.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'slider.js' | asset_url }}" defer="defer"></script>    
+      <script src="{{ 'quickview.js' | asset_url }}" defer="defer"></script>
       <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
       <script src="{{ 'product-card-style-1.js' | asset_url }}" defer="defer"></script> 
       <script src="{{ 'variants.js' | asset_url }}" defer="defer"></script>

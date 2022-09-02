@@ -90,12 +90,17 @@ slider-component {
   border-radius: 0.4rem;
 }
 
-slider-component .slider-buttons {
+slider-component .slider-buttons .slider-button--prev{
   position: absolute;
-  width: 100%;
+  top:30%;
   z-index: 2;
-  right: 0;
-  bottom: 0;
+  left:-10px;
+}
+slider-component .slider-buttons .slider-button--next{
+  position: absolute;
+  top:30%;
+  z-index: 2;
+  right:-10px;
 }
 
 .slider-buttons.slider-buttons--overlay {

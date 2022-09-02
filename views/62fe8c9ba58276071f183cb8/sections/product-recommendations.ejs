@@ -1,0 +1,130 @@
+<link rel="stylesheet" href="/<%=srcId%>/component-badge.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/<%=srcId%>/component-product-card-style-1.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/<%=srcId%>/component-price-style-1.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/<%=srcId%>/section-product-recommendations-style-1.css" media="print" onload="this.media='all'">
+
+<product-recommendations class="product-recommendations collection" data-url="<%= routes.product_recommendations_url %>?section_id=<%= section.id %>&product_id=<%= product.id %>&limit=8">
+  <div class="page-width py-pd-x-m py-pd-y-m">
+  <% if(collection && collection?.products_count > 0){ %>
+    <h2 class="product-recommendations__heading"><%= section.settings.heading %></h2>
+    <ul class="grid grid--1-col grid--3-col-tablet  product-list-<%=section.id%> slider slider--desktop <% if(collection?.products_count > 3){ %> grid--4-col-desktop grid--quarter-max<% } %> bc-scroll-hide"  style="margin-left:-<%=section.settings.item_space%>px;" role="list">
+      <style>
+        product-recommendations{
+          background-color:<%=section.settings.section_bg_color%>;
+        }
+        .product-recommendations__heading{
+          color:<%=section.settings.title_color%>;
+        }
+        .py-c-dark .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+          color: var(--py-color-dark);
+        }
+        .py-c-average .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+          color: var(--py-color-avarge);
+        }
+        .py-c-light .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+          color: var(--py-color-light);
+        }
+        .card-wrapper{
+          padding-bottom:15px;
+          height:100%;
+        }         
+        .bc-vertical-tag-inner{
+        }
+        .product-list-<%=section.id%> .py-center .price,
+        .product-list-<%=section.id%> .py-center .card-color-wrapper,
+        .product-list-<%=section.id%> .py-center ul.variant-options,
+        .product-list-<%=section.id%> .py-center .card-button-wrapper{
+          justify-content: center;
+        }        
+        <% if(section.settings.custom_font_style){ %>
+
+          .product-list-<%=section.id%> .card-wrapper .card-information__text{
+            font-size: <%=section.settings.title_fontsize%>;
+            font-weight: <%=section.settings.title_fontweight%>;
+            font-stretch:<%=section.settings.title_fontstretch%>;
+            font-style:<%=section.settings.title_fontstyle%>;
+            line-height:<%=section.settings.title_lineheight%>;
+            letter-spacing:<%=section.settings.title_letterspacing%>
+          }
+          @media(max-width:749px){
+            .product-list-<%=section.id%> .card-wrapper .card-information__text{
+                font-size: <%=section.settings.title_fontsize_m%>
+            }
+          }
+          .product-list-<%=section.id%> .card-wrapper .price *{
+            font-size: <%=section.settings.info_fontsize%>;
+            font-weight: <%=section.settings.info_fontweight%>;
+            font-stretch:<%=section.settings.info_fontstretch%>;
+            font-style:<%=section.settings.info_fontstyle%>;
+            line-height:<%=section.settings.info_lineheight%>;
+            letter-spacing:<%=section.settings.info_letterspacing%>
+          }
+          @media(max-width:749px){
+            .product-list-<%=section.id%> .card-wrapper .price *{
+                font-size: <%=section.settings.info_fontsize_m%>
+            }
+          }              
+        <% } %>
+      </style>
+      <% var count = 1 %>
+      <% collection?.products?.forEach((recommendation,index)=>{ %>
+        <% if(count <= 4){ %>
+          <% if(!recommendation.tags.includes('rec_hide')){ %>
+            <% count = count + 1 %>
+            <li class="grid__item py-<%=section.settings.card_color%> py-card-<%=section.settings.card_style%>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
+              <%- include('../snippets/product-card', {
+                product_card_product: recommendation,
+                inventory_quantity: false,
+                media_size: section.settings.image_ratio,
+                media_gallery:section.settings.image_gallery,
+                tag_field:section.settings.tag_field,                                   
+                show_vendor: section.settings.show_vendor,
+                show_colors: section.settings.show_colors,
+                show_view_product: section.settings.show_view_product,
+                show_quick_add: section.settings.show_quick_add,
+                show_variants_on_hover: section.settings.show_variants_on_hover,
+                card_bg_color: section.settings.card_bg_color,
+                card_radius: section.settings.card_radius,
+                info_align: section.settings.info_align })
+              %>
+            </li>
+          <% } %>
+        <% } %>
+      <% }) %>
+    </ul>
+  <% } %>
+  </div>
+</product-recommendations>
+
+
+<script>
+  class ProductRecommendations extends HTMLElement {
+    constructor() {
+      super();
+
+      const handleIntersection = (entries, observer) => {
+        if (!entries[0].isIntersecting) return;
+        observer.unobserve(this);
+
+        fetch(this.dataset.url)
+          .then(response => response.text())
+          .then(text => {
+            const html = document.createElement('div');
+            html.innerHTML = text;
+            const recommendations = html.querySelector('product-recommendations');
+            if (recommendations && collection?.innerHTML.trim().length) {
+              this.innerHTML = collection?.innerHTML;
+            }
+          })
+          .catch(e => {
+            console.error(e);
+          });
+      }
+
+      new IntersectionObserver(handleIntersection.bind(this), {rootMargin: '0px 0px 200px 0px'}).observe(this);
+    }
+  }
+
+  customElements.define('product-recommendations', ProductRecommendations);
+</script>
+

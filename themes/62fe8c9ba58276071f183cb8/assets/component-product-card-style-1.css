@@ -390,21 +390,20 @@ ul.variant-options>li.selected{
   margin-top:10px;
   margin-bottom: 10px;
 }
-.card-quick-add-wrapper{
+.quick-view-badge{
   position: absolute;
   opacity:0;
-  top:-55px;
+  bottom:-5px;
    width: calc(100% - 16px);
   left: 8px;
   transition: all 0.3s;
 }
-.card-wrapper:hover .card-quick-add-wrapper{  
-  top: -78px;
+.card-wrapper:hover .quick-view-badge{  
+  bottom: 5px;
   opacity:1;
   z-index:9;
 }
-.card-view-product,
-.card-quick-add{
+.card-view-product{
   padding: 6px 13px;  
   margin: 5px;
   cursor: pointer;
@@ -456,20 +455,18 @@ ul.variant-options>li.selected{
   border-left: 0.5rem solid black;
   
 }
-.card__inner.card-img-gallery:hover .img-wrapper-link,
-.card__inner slider-component{
-  height:0px;
-  overflow:hidden;
+.card__inner.card-img-gallery .second-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
 }
-.card__inner.card-img-gallery:hover slider-component{
-  height:auto
+.card__inner.card-img-gallery:hover .second-image{
+  opacity: 1;
 }
-.card__inner slider-component .slider-buttons{
-  bottom: auto;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-}
+
 @media(min-width:800px){
   .py-card-horizontal .card-variant-wrapper,
   .py-card-horizontal .card-color-wrapper,

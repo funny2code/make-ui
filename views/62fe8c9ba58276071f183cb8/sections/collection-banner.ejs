@@ -1,0 +1,140 @@
+<% var defaultBanner = true %>
+<% if(section.blocks.length > 0){ %>
+<link rel="stylesheet" href="/<%=srcId%>/component-collection-hero.css">
+<% section?.blocks?.forEach((block,index)=>{ %>
+<% if(block?.type === 'collection' && block?.settings?.coll === collection?.handle){ %>
+<% defaultBanner = false %>
+<div class="collection-hero <% if(collection?.image || block?.settings?.image){ %>collection-hero--with-image<% } %> py-<%=block?.settings?.page_y_pd%> py-<%=block?.settings?.page_x_pd%> py-<%=block?.settings?.page_y_mg%> py-<%=block?.settings?.page_width%>">
+<div class="collection-hero__inner collection-hero__inner-<%= block?.id %>">
+  <%- include('../snippets/style', {sufix: '.collection-hero__inner', id: block?.id, style: block?.settings}) %>
+  <div class="collection-hero__text-wrapper">
+
+    <% if(block?.settings?.show_collection_title){ %>
+    <h1 class="collection-hero__title">
+      <span class="visually-hidden">title: </span>
+      <%- collection?.title  -%>
+    </h1>
+    <% } %>
+
+    <% if(block?.settings?.show_collection_description){ %>
+      <div class="collection-hero__description rte"><%- collection?.description -%></div>
+    <% } %>
+    <% if(block?.settings?.countdown){ %>
+      <%- include('../snippets/component-countdown', {countdown: block?.settings?.countdown}) %>
+    <% } %>
+  </div>
+
+  <% if(collection?.image || block?.settings?.image){ %>
+    <div class="collection-hero__image-container">
+      <% if(block?.settings?.image){ %>
+        <div class="media <% if(block?.settings?.m_image){ %>small-hide<% } %>" style="padding-bottom: <%= 1 / block?.settings?.image.aspect_ratio * 100 %>%;">
+          <img srcset="<% if(block?.settings?.image.width >= 375){ %><%= block?.settings?.image %> 375w,<% } %>
+            <% if(block?.settings?.image.width >= 750){ %><%= block?.settings?.image %> 750w,<% } %>
+            <% if(block?.settings?.image.width >= 1100){ %><%= block?.settings?.image %> 1100w,<% } %>
+            <% if(block?.settings?.image.width >= 1500){ %><%= block?.settings?.image %> 1500w,<% } %>
+            <% if(block?.settings?.image.width >= 1780){ %><%= block?.settings?.image %> 1780w,<% } %>
+            <% if(block?.settings?.image.width >= 2000){ %><%= block?.settings?.image %> 2000w,<% } %>
+            <% if(block?.settings?.image.width >= 2800){ %><%= block?.settings?.image %> 2800w<% } %>"
+            sizes="100vw"
+            src="<%= block?.settings?.image %>"
+            alt="<%= block?.settings?.image.alt  %>"
+            width="<%= block?.settings?.image.width %>"
+            height="<%= block?.settings?.image.width / block?.settings?.image.aspect_ratio %>"
+          >
+        </div>
+      <% } %>
+      <% if(block?.settings?.m_image){ %>
+        <div class="media large-up-hide medium-hide" style="padding-bottom: <%= 1 / block?.settings?.m_image.aspect_ratio * 100 %>%;">
+          <img srcset="<% if(block?.settings?.m_image.width >= 165){ %><%= block?.settings?.m_image %> 165w,<% } %>
+            <% if(block?.settings?.m_image.width >= 360){ %><%= block?.settings?.m_image %> 360w,<% } %>
+            <% if(block?.settings?.m_image.width >= 535){ %><%= block?.settings?.m_image %> 535w,<% } %>
+            <% if(block?.settings?.m_image.width >= 720){ %><%= block?.settings?.m_image %> 720w,<% } %>
+            <% if(block?.settings?.m_image.width >= 940){ %><%= block?.settings?.m_image %> 940w,<% } %>
+            <% if(block?.settings?.m_image.width >= 1070){ %><%= block?.settings?.m_image %> 1070w<% } %>"
+            src="<%= block?.settings?.m_image %>"
+            sizes="(min-width: 1100px) 535px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
+            alt="<%= collection?.title  %>"
+            loading="lazy"
+            width="<%= block?.settings?.m_image.width %>"
+            height="<%= block?.settings?.m_image.height %>"
+          >
+        </div>
+      <% } %>
+      <% if(collection?.image && !block?.settings?.image){ %>
+        <div class="media" style="padding-bottom: <%= 1 / collection?.image.aspect_ratio * 100 %>%;">
+          <img srcset="<% if(collection?.image.width >= 165){ %><%= collection?.image %> 165w,<% } %>
+            <% if(collection?.image.width >= 360){ %><%= collection?.image %> 360w,<% } %>
+            <% if(collection?.image.width >= 535){ %><%= collection?.image %> 535w,<% } %>
+            <% if(collection?.image.width >= 720){ %><%= collection?.image %> 720w,<% } %>
+            <% if(collection?.image.width >= 940){ %><%= collection?.image %> 940w,<% } %>
+            <% if(collection?.image.width >= 1070){ %><%= collection?.image %> 1070w<% } %>"
+            src="<%= collection?.image %>"
+            sizes="(min-width: 1100px) 535px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
+            alt="<%= collection?.title  %>"
+            loading="lazy"
+            width="<%= collection?.image.width %>"
+            height="<%= collection?.image.height %>"
+          >
+        </div>
+      <% } %>
+    </div>
+  <% } %>
+</div>
+</div>
+<% } %>
+<% }) %>
+<% } %>
+
+<% if(defaultBanner){ %>
+<div class="collection-hero collection-hero--with-image py-<%=section?.settings?.page_y_pd%> py-<%=section?.settings?.page_x_pd%> py-<%=section?.settings?.page_y_mg%> py-<%=section?.settings?.page_width%>">
+  <div class="collection-hero__inner bc-collection-page-main">
+    <div class="collection-hero__text-wrapper">
+      <h1 class="collection-hero__title" style="color:<%= section.settings.color %>">
+        <span class="visually-hidden">title:</span>
+        <%- collection?.title  -%>
+      </h1>
+      <% if(collection?.description){ %>
+        <div class="collection-hero__description rte"><%- collection?.description -%></div>
+      <% } %>
+    </div>
+
+    <% if(collection?.image){ %>
+    <div class="collection-hero__image-container">
+        <div class="media" style="padding-bottom: <%= 1 / collection?.image.aspect_ratio * 100 %>%;">
+          <img srcset="<% if(collection?.image.width >= 165){ %><%= collection?.image.src %> 165w,<% } %>
+            <% if(collection?.image.width >= 360){ %><%= collection?.image.src %> 360w,<% } %>
+            <% if(collection?.image.width >= 535){ %><%= collection?.image.src %> 535w,<% } %>
+            <% if(collection?.image.width >= 720){ %><%= collection?.image.src %> 720w,<% } %>
+            <% if(collection?.image.width >= 940){ %><%= collection?.image.src %> 940w,<% } %>
+            <% if(collection?.image.width >= 1070){ %><%= collection?.image.src %> 1070w<% } %>"
+            src="<%= collection?.image.src %>"
+            sizes="(min-width: 1100px) 535px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
+            alt="<%= collection?.title %>"
+            loading="lazy"
+            width="<%= collection?.image.width %>"
+            height="<%= collection?.image.height %>"
+          >
+        </div>
+    </div>
+    <% } else { %>
+    <div class="collection-hero__image-container a">
+        <div class="media" style="padding-bottom: 30%;">
+          <img srcset="<% if(section.settings.image.width >= 165){ %><%= section.settings.image %> 165w,<% } %>
+            <% if(section.settings.image.width >= 360){ %><%= section.settings.image %> 360w,<% } %>
+            <% if(section.settings.image.width >= 535){ %><%= section.settings.image %> 535w,<% } %>
+            <% if(section.settings.image.width >= 720){ %><%= section.settings.image %> 720w,<% } %>
+            <% if(section.settings.image.width >= 940){ %><%= section.settings.image %> 940w,<% } %>
+            <% if(section.settings.image.width >= 1070){ %><%= section.settings.image %> 1070w<% } %>"
+            src="<%= section.settings.image %>"
+            sizes="(min-width: 1100px) 535px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
+            alt="<%= section.settings.title  %>"
+            loading="lazy"
+            width="<%= section.settings.image.width %>"
+            height="<%= section.settings.image.height %>"
+          >
+        </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+<% } %>

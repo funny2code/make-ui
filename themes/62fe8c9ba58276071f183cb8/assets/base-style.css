@@ -1793,22 +1793,13 @@ details[open] > .header__icon--menu .icon-hamburger {
   font-weight: 700;
 }
 .bc-selling-tag.bc-vertical-tag {
-  -webkit-transform: rotate(270deg);
-  -moz-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
-  transform: rotate(270deg);
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform-origin: center center;
   position: absolute;
-  top: 115px;
-    left: -100px;    
+  top: 5px;
+  left: 5px;
   min-width: 250px;
-    text-align: center;
-    display: flex;
-    justify-content: flex-end;
+  text-align: center;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .bc-slide-placeholde {

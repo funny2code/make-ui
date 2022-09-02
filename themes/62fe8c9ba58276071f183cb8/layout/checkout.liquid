@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
   <head>
+	{% include 'limespot' %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
@@ -12,6 +13,33 @@
 
     {{ checkout_stylesheets }}
     {{ checkout_scripts }}
+    {% include "loyaltylion" %}
+	<script>lion.configure({ checkout: true })</script>
+    <script src="https://www.googleoptimize.com/optimize.js?id=xxx"></script>
+ <script>
+window['_fs_host'] = 'fullstory.com';
+window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
+window['_fs_org'] = 'o-1CG0Q1-na1';
+window['_fs_namespace'] = 'FS';
+(function(m,n,e,t,l,o,g,y){
+    if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
+    g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];
+    o=n.createElement(t);o.async=1;o.crossOrigin='anonymous';o.src='https://'+_fs_script;
+    y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
+    g.identify=function(i,v,s){g(l,{uid:i},s);if(v)g(l,v,s)};g.setUserVars=function(v,s){g(l,v,s)};g.event=function(i,v,s){g('event',{n:i,p:v},s)};
+    g.anonymize=function(){g.identify(!!0)};
+    g.shutdown=function(){g("rec",!1)};g.restart=function(){g("rec",!0)};
+    g.log = function(a,b){g("log",[a,b])};
+    g.consent=function(a){g("consent",!arguments.length||a)};
+    g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
+    g.clearUserCookie=function(){};
+    g.setVars=function(n, p){g('setVars',[n,p]);};
+    g._w={};y='XMLHttpRequest';g._w[y]=m[y];y='fetch';g._w[y]=m[y];
+    if(m[y])m[y]=function(){return g._w[y].apply(this,arguments)};
+    g._v="1.3.0";
+})(window,document,window['_fs_namespace'],'script','user');
+</script>
+  
   </head>
   <body>
     {{ skip_to_content_link }}
@@ -43,72 +71,208 @@
             {{ content_for_logo }}
           </div>
           <div class="sidebar__content">
+            <limespot></limespot>
             {{ content_for_order_summary }}
           </div>
+          
+          <div class="checkout-info">
+            
+            <img class="co-causes" src="//cdn.shopify.com/s/files/1/0488/0597/files/Causes_Checkout_Page_RGB.jpg?v=1631381696">
+            
+            <div class="checkout-flex">
+              <img src="//cdn.shopify.com/s/files/1/0488/0597/files/Free-Returns-_-Exchanges_Icon_df0bf34f-c7d1-4653-a295-92ab7bcffb60.png?v=1631289323">
+              <p><strong>FREE RETURNS & EXCHANGES</strong><br/>We offer returns or exchanges on eligible products within 30 days of the ship date.<p>
+          </div>
+            
+            <div class="checkout-flex">
+              <img src="//cdn.shopify.com/s/files/1/0488/0597/files/Shipping_Icon_208801b1-0fa7-455f-bc0c-a26303d8c500.png?v=1631289324">
+              <p><strong>SHIPPING IS ON US</strong><br/>We ship your order within 3-6 business days.<p>
+          </div>
+            
+            <div class="checkout-flex">
+              <img src="//cdn.shopify.com/s/files/1/0488/0597/files/Payments_Icon_242a7fb1-aa0b-403a-a547-5cb0325e53b1.png?v=1631289324">
+              <p><strong>SECURE PAYMENTS</strong><br/>All payments made are secure and protected.<p>
+          </div>
+            
+          </div>
+          
         </aside>
       </div>
     </div>
+    
+    {%comment%}{% render 'post-checkout-email-checkbox' %}{%endcomment%}
+
+    {%- for line_item in checkout.line_items -%}
+    {%- if line_item.properties._pickup_options != blank -%}
+    <input type="hidden" id="pickuplocations" value="{{line_item.properties._pickup_options}}"/>
+    {%- endif -%}
+    {%- if line_item.properties._pickup == blank -%}
+    <input type="hidden" id="pickupisfalse"/>
+    {%- break -%}
+    {%- endif -%}
+    {%- endfor -%}
 
     {{ tracking_code }}
-     <script>
-      (function() {
-        setTimeout(function(){
-          console.log('aa');
-          if(typeof Checkout === 'object') {
-            if (typeof Checkout.$ === 'function') {
-              var $ = Checkout.$;
-              console.log('aa');
-              try {
-                // Change "pre: order" to "pre-order"
-                var $preOrderText = $('.product__description__property.order-summary__small-text:contains("pre: order")');
-                if ($preOrderText) {
-                  $preOrderText.text('pre-order');
-                }
-              } catch (e) {
-                console.error(e);
+    
+    
+     <script type="text/javascript">
+  window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+  heap.load("505652841");
+  var customerEmail = '{{ customer.email }}' || '{{ checkout.email }}';
+  var customerId = '{{ customer.id }}';
+  heap.identify(customerEmail);
+  heap.addUserProperties({'Name': '{{ customer.name }}','email': customerEmail,'CustomerID':'{{ customer.id }}','TotalSpent':'{{ customer.total_spent }}'});
+</script>
+   <script>
+      (function(){
+        const pickupFiledID = document.getElementById('checkout_id_delivery-pickup');
+        const pickupIsFalse = document.getElementById('pickupisfalse');
+        const pickupLoactions = document.querySelectorAll('#pickuplocations');
+        const properties = document.querySelectorAll('.product__description__property');
+        if(pickupIsFalse && pickupFiledID){
+          	const deliveryTitle = document.getElementById('section-delivery-title');
+        	const pickupContainer = pickupFiledID.closest('.content-box');
+          	const pickupShippingAddress = pickupFiledID.closest('[data-shipping-address]');
+          	if(pickupShippingAddress) pickupShippingAddress.style.paddingTop = '0px';
+          	if(pickupContainer) pickupContainer.remove();
+          	const deliveryContainer = deliveryTitle ? deliveryTitle.closest('.section__header') : null;
+          	if(deliveryContainer) deliveryContainer.remove();
+        }
+        if(properties && properties.length){
+          properties.forEach(prop => {
+            let propText = prop.innerText;
+            if(!propText) return;
+            let propTextArray = propText.split(':');
+            if(propTextArray && propTextArray.length && propTextArray[0]){
+              if(propTextArray[0] === "pre" || propTextArray[0] === "pre_order_expected_date" || propTextArray[0] === "pc" || propTextArray[0] === "pc_expected_date"){
+              	prop.remove();
+                const deliveryTitle = document.getElementById('section-delivery-title');
+                const pickupContainer = pickupFiledID?.closest('.content-box');
+                const pickupShippingAddress = pickupFiledID?.closest('[data-shipping-address]');
+                if(pickupShippingAddress) pickupShippingAddress.style.paddingTop = '0px';
+                if(pickupContainer) pickupContainer.remove();
+                const deliveryContainer = deliveryTitle ? deliveryTitle.closest('.section__header') : null;
+                if(deliveryContainer) deliveryContainer.remove();
+              } else if(propTextArray[0] === "pre_order_announcement" || propTextArray[0] === "pc_announcement" && propTextArray[1]){
+              	prop.innerText = propTextArray[1];
               }
             }
-          }
-        }, 1000);
-      })
-    </script>
-    <script>
-      // Bundle Product Scripts
-      (function(){
-        if (typeof Checkout === 'object' && typeof Checkout.$ === 'function') {
-          var $bundleLineItems = Checkout.$('tr.product').filter(function(){
-            return !!Checkout.$(this).find('.product__description__property:contains("parentBundleName")').length;
           });
-          // Hide prices
-          $bundleLineItems.find('.product__price').addClass('visually-hidden');
-          // Change "parentBundleName" property to "Ordered"
-          $bundleLineItems.each(function() {
-            var $property = Checkout.$(this).find('.product__description__property:contains("parentBundleName")');
-            var originalText = $property.text();
-            var replacedText = originalText.replace('parentBundleName', 'Ordered');
-            
-            $property.text(replacedText);
-          })
-          // Remove key of pre_order_announcement
-          Checkout.$('.product__description__property').each(function() {
-            var $this = Checkout.$(this);
-            var text = Checkout.$(this).text();
-            // Hide pre-order
-            // Hide pre_order_expected_date
-            if (text.indexOf('pre: ') > -1 || text.indexOf('pre_order_expected_date: ') > -1) {
-              Checkout.$(this).hide();
-            }
-            // Hide pre-order announcement key
-            if (text.indexOf('pre_order_announcement: ') > -1) {
-              var parts = text.split(' will ship out');
-              
-              if (parts[1]) var replacedText = ' will ship out ' + parts[1];
-              else var replacedText = text.replace('pre_order_announcement: ', '');
-              Checkout.$(this).text(replacedText);
-            }
-          })
         }
-      })()
+        if(pickupLoactions.length>0){
+          let pickupInput = document.getElementById('checkout_id_delivery-pickup');
+          pickupInput && pickupInput.addEventListener('change', function(event){
+            setTimeout(function(){
+              pickupLoactions.forEach(pickupLoaction=>{
+                let pickupOptionWrapper = document.querySelector('[data-pickup-tab-content]');
+                let locOptionsValue = pickupLoaction.value;
+                let pickupOtions = pickupOptionWrapper.querySelectorAll('.radio__label__primary');
+                let locOptions = locOptionsValue ? locOptionsValue.split(',') : null;
+                locOptions && locOptions.forEach(option => {
+                  let textAndQty = option.split(':');
+                  pickupOtions && pickupOtions.forEach(optionHtml => {
+                    let text = " "+optionHtml.querySelector('div:first-of-type').textContent;
+                    let LocOptionBox = optionHtml.closest('.content-box__row');
+                    if(textAndQty[0] === text && parseInt(textAndQty[1]) <= 0){
+                      LocOptionBox.remove();
+                    }                    
+                  })
+                });
+                locOptions && document.querySelector('[data-pickup-tab-content]').querySelector('.content-box:first-of-type').querySelector('input.input-radio').click();
+              })
+            }, 1000);
+          });
+        }
+      })();
     </script>
   </body>
 </html>
+
+<style>
+.checkout-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+  
+.checkout-flex img {
+  max-width: 25%;
+  padding-right: 20px;
+}
+  
+.checkout-flex p {
+  max-width: 75%;
+}
+  
+.co-causes {
+  padding-bottom: 15px;
+}
+  
+  
+  .dynamic-checkout {
+    display: none;
+}
+  
+  .alternative-payment-separator {
+    display: none;
+}
+    @media screen and (max-width: 750px) {
+  
+  .field {
+    width: 50%;
+}
+    }
+  
+  
+  header.banner {
+    display: none;
+}
+  
+  
+  .section.section--contact-information div .field {
+    width: 100%;
+}
+  
+  
+  .step[data-step="shipping_method"] div .section {
+    display: none;
+}
+  
+  .step[data-step="shipping_method"] div .section--shipping-method {
+    display: block;
+}	
+  
+  
+  .step[data-step="payment_method"] div .section {
+    display: none;
+}
+  
+  .step[data-step="payment_method"] div .section--payment-method {
+    display: block;
+}
+  
+@media screen and (min-width: 1000px) and (max-width: 1449px) {
+.order-summary__sections {
+  height: calc(100vh - 16em) !important;
+}
+}  
+  
+@media screen and (min-width: 1450px) {
+.order-summary__sections {
+  height: 40vh !important;
+}
+}
+  
+@media screen and (max-height: 600px) {
+.checkout-info {
+  display: none;
+}
+}
+  
+@media screen and (max-width: 999px) {
+.checkout-info {
+  display: none !important;
+}
+}
+
+</style>

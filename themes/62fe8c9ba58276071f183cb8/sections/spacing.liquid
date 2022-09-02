@@ -1,12 +1,12 @@
 <div
   class="spacing-section-desktop bc-{{settings.section_style}}-bt"
-  style="background-color: {{ section.settings.background-color }};height:{{ section.settings.spacing-value-desktop }}px"
+  style="background-color: {{ section.settings.background_color }};height:{{ section.settings.spacing_value_desktop }}px"
 >
 </div>
 
 <div
   class="spacing-section-mobile bc-{{settings.section_style}}-bt"
-  style="background-color: {{ section.settings.background-color }};height:{{ section.settings.spacing-value-mobile }}px"
+  style="background-color: {{ section.settings.background_color }};height:{{ section.settings.spacing_value_mobile }}px"
 >
 </div>
 
@@ -20,7 +20,7 @@
     },
     {
       "type": "select",
-      "id": "background-color",
+      "id": "background_color",
       "label": "Background color",      
       "options": [          
          {
@@ -51,22 +51,22 @@
      "default": "transparent"
     },
     {
-      "id": "spacing-value-desktop",
+      "id": "spacing_value_desktop",
       "label": "Spacing Value Desktop",
       "type": "range",
       "min": 5,
       "max": 100,
       "step": 1,
-      "default": 5
+      "default": 50
     },
     {
-      "id": "spacing-value-mobile",
+      "id": "spacing_value_mobile",
       "label": "Spacing Value Mobile",
       "type": "range",
       "min": 5,
       "max": 100,
       "step": 1,
-      "default": 5
+      "default": 30
     }
   ],
 

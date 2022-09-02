@@ -6,7 +6,7 @@
 <link rel="preload" href="{{ 'component-badge.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{{ 'component-rte.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{{ 'component-variants.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" >
 
 <noscript>{{ 'component-card-style-1.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-price-style-1.css' | asset_url | stylesheet_tag }}</noscript>
@@ -212,7 +212,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
           "value": "bg-c-light"
         }
       ],
-     "default": "bg-c-average"
+     "default": "bg-c-light"
     },
     {
       "type": "select",
@@ -420,14 +420,14 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
           "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
         }
       ],
-      "default": "square",
+      "default": "portrait",
       "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
     },
     {
       "type": "checkbox",
       "id": "image_gallery",
-      "default": false,
-      "label": "Enable Image Slider"
+      "default": true,
+      "label": "Show Second Image"
     },
     {
       "type": "select",
@@ -459,7 +459,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
             "value": "bg-c-light"
           }
         ],
-        "default": "bg-c-average"
+        "default": "bg-c-light"
     },
     {
       "type": "range",
@@ -467,7 +467,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
       "min": 0,
       "max": 20,
       "step": 1,
-      "default": 7,
+      "default": 0,
       "label": "Card Border Radius"
     },
     {
@@ -493,18 +493,6 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
     },
     {
       "type": "checkbox",
-      "id": "show_variants_on_hover",
-      "default": true,
-      "label": "Show Variants On Hover"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_view_product",
-      "default": true,
-      "label": "Show View Product Button"
-    },
-    {
-      "type": "checkbox",
       "id": "show_quick_add",
       "default": true,
       "label": "Show Quick Add Button"
@@ -523,7 +511,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
           "value": "center"
         }
       ],
-      "default": "center"
+      "default": "left"
     },
     {
       "type": "select",
@@ -743,7 +731,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
           "value": "style-3"
         }
       ],
-      "default": "style-1"
+      "default": "style-3"
     },
     {
       "type": "checkbox",
@@ -788,7 +776,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
             "value": "bg-c-light"
           }
         ],
-       "default": "bg-c-average"
+       "default": "bg-c-light"
     },
     {
         "type": "select",
@@ -836,7 +824,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
             "value": "bg-c-light"
           }
         ],
-       "default": "bg-c-average"
+       "default": "bg-c-light"
     },
     {
         "type": "select",

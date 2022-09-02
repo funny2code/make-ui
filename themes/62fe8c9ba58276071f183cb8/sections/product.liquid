@@ -1,10 +1,9 @@
 {% comment %}theme-check-disable TemplateLength{% endcomment %}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
-{{ 'section-main-product-style-1.css' | asset_url | stylesheet_tag }}
+
 {{ 'component-accordion-style-1.css' | asset_url | stylesheet_tag }}
 {{ 'component-badge.css' | asset_url | stylesheet_tag }}
-{{ 'component-price-style-1.css' | asset_url | stylesheet_tag }}
-{{ 'component-variants.css' | asset_url | stylesheet_tag }}
+
 {% comment %} {{ 'component-rte.css' | asset_url | stylesheet_tag }} {% endcomment %}
 
 {% assign sizeCharts = product.metafields.sizecharts  %}
@@ -54,13 +53,13 @@
 </style>
 
 
-<link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" >
 
 {%- assign first_3d_model = product.media | where: "media_type", "model" | first -%}
 {%- if first_3d_model -%}
   {{ 'component-product-model.css' | asset_url | stylesheet_tag }}
-  <link id="ModelViewerStyle" rel="stylesheet" href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css" media="print" onload="this.media='all'">
-  <link id="ModelViewerOverride" rel="stylesheet" href="{{ 'component-model-viewer-ui.css' | asset_url }}" media="print" onload="this.media='all'">
+  <link id="ModelViewerStyle" rel="stylesheet" href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css" >
+  <link id="ModelViewerOverride" rel="stylesheet" href="{{ 'component-model-viewer-ui.css' | asset_url }}" >
 {%- endif -%}
 {% if  section.settings.enable_breadcrumb_nav %}{%- include "breadcrumb" -%}{% endif %}
 <section class="main-product-section {% if section.settings.media_style != "top" and section.settings.media_style != "horizontal_grid" %}page-width{% endif %}" >
@@ -1136,9 +1135,9 @@
           "type": "range",
           "id": "title_fontsize",
           "min": 10,
-          "max": 40,
+          "max": 60,
           "step": 1,
-          "default": 24,
+          "default": 46,
           "label": "Font size Desktop"
         },
         {
@@ -1147,7 +1146,7 @@
           "min": 10,
           "max": 40,
           "step": 1,
-          "default": 18,
+          "default": 24,
           "label": "Font size Mobile"
         },
         {
@@ -1214,7 +1213,7 @@
           "min": 10,
           "max": 40,
           "step": 1,
-          "default": 24,
+          "default": 16,
           "label": "Font size Desktop"
         },
         {
@@ -1223,7 +1222,7 @@
           "min": 10,
           "max": 40,
           "step": 1,
-          "default": 20,
+          "default": 16,
           "label": "Font size Mobile"
         },
         {
@@ -1339,7 +1338,7 @@
               "label": "Full Radius"
             }
           ],
-          "default": "sm_radius",
+          "default": "no_radius",
           "label": "General Option Layout"
         },
         {
@@ -1372,7 +1371,7 @@
                 "value": "var(--py-bg-color-light)"
              }
            ],
-          "default": "var(--py-bg-color-avarge)"
+          "default": "var(--py-bg-color-light)"
         },
         {
           "type": "select",
@@ -1412,7 +1411,7 @@
                "value": "var(--py-color-light)"
              }
             ],
-          "default": "var(--py-color-light)"
+          "default": "var(--py-color-dark)"
         },
         {
           "type": "select",
@@ -2675,7 +2674,7 @@
     {
       "type": "checkbox",
       "id": "enable_breadcrumb_nav",
-      "default": true,
+      "default": false,
       "label": "Breadcrumb Navigation"
     },
     {
@@ -2715,7 +2714,7 @@
           "label": "Vertical w/thumbnails"
         }
       ],
-      "default": "carousel_w_thumb",
+      "default": "vertical_grid",
       "label": "Media Gallery Style"
     },
     {
@@ -2748,7 +2747,7 @@
       "min": 0,
       "max": 30,
       "step": 1,
-      "default": 10,
+      "default": 15,
       "label": "Media space"
     },
     {
@@ -2793,7 +2792,7 @@
             "value": "var(--py-bg-color-light)"
         }
       ],
-      "default": "var(--py-bg-color-dark)"
+      "default": "var(--py-bg-color-light)"
     },
     {
       "type": "select",
@@ -2813,7 +2812,7 @@
            "value": "var(--py-color-light)"
          }
         ],
-      "default": "var(--py-color-light)"
+      "default": "var(--py-color-dark)"
     },
     {
       "type": "select",

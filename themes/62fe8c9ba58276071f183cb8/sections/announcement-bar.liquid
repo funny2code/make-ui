@@ -22,10 +22,13 @@
      margin:0px;
   }
   .announcement-bar .slider-buttons{
-    height:100%;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    top: -65%;
   }
 </style>
-<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" >
 {%- assign d = section.settings -%} 
 <div class="announcement-bar center py-{{d.page_x_pd}} py-{{d.page_y_pd}} py-{{d.br}}" role="region" aria-label="{{ 'sections.header.announcement' | t }}">
  <slider-component class="slider-mobile-gutter">
@@ -92,7 +95,7 @@
             "value": "var(--py-bg-color-light)"
           }
         ],
-        "default": "var(--py-bg-color-dark)"
+        "default": "var(--py-bg-color-middle-dark)"
     },
     {
       "type": "select",
@@ -224,7 +227,7 @@
           "value": "pd-y-xs"
         }
       ],
-      "default": "pd-y-un"
+      "default": "pd-y-s"
     },
     {
       "type": "select",
@@ -256,7 +259,7 @@
           "value": "fs-s"
         }
       ],
-      "default": "fs-un"
+      "default": "fs-s"
     },
     {
       "type": "select",
@@ -280,7 +283,7 @@
           "value": "br-y"
         }
       ],
-      "default": "br-y"
+      "default": "br-none"
     }
   ],
   "blocks": [
@@ -304,6 +307,9 @@
   ],
   "default": {
     "blocks": [
+      {
+        "type": "announcement"
+      },
       {
         "type": "announcement"
       }

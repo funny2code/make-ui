@@ -9,16 +9,12 @@ document.querySelectorAll('.quick-view-badge a').forEach((item)=>{
     if(productItem.images.length>0){ 
       i = 0;     
       for (let image of productItem.images) {
-        media_list+= '<li class="product__media-item grid__item slider__slide" data-media-id="modal_quick_view-'+productItem.media[i].id+'"><div class="product__media media" style="padding-top: 90%;"><img src="'+image+'" alt=""></div></li>'
+        media_list+= '<li class="product__media-item grid__item slider__slide" data-media-id="modal_quick_view-'+productItem.media[i].id+'"><div class="product__media media" style="padding-top: 140%;"><img src="'+image+'" alt=""></div></li>'
         i++;
       }
       document.querySelector('.product-modal-quickview  ul.product__media-list').innerHTML = media_list;
     }
-    if(productItem.images.length==1){
-      document.querySelector("#ModalquickView slider-component .slider-buttons").classList.add('hidden');
-    }else{
-      document.querySelector("#ModalquickView slider-component .slider-buttons").classList.remove('hidden');
-    }
+    
     var price = this.closest(".card-wrapper").querySelector('#productPrice').innerHTML;
     document.querySelector('.product-modal-quickview  #productPrice').innerHTML = price;
     document.querySelector('.product-modal-quickview  .product__title').innerText = productItem.title;
@@ -37,7 +33,7 @@ document.querySelectorAll('.quick-view-badge a').forEach((item)=>{
       var variant_str = this.closest(".quick-view-badge").querySelector('.product_variant_object').textContent;
       var variant_meta_str = this.closest(".quick-view-badge").querySelector('.product_variants-meta').textContent;
       for(let option of productOptions){
-        option_html+= ' <fieldset class="js product-form__input"><legend class="form__label">Choose a '+option.name+'</legend>';
+        option_html+= ' <fieldset class="js product-form__input"><legend class="form__label">'+option.name+'</legend>';
         i=0;
         for(let value of option.values){
           var active='';
@@ -79,6 +75,9 @@ document.querySelectorAll('.quick-view-badge a').forEach((item)=>{
   });
 })
 
+document.querySelector('.product-modal-quickview .product-form__submit').addEventListener("click", function(){
+  document.querySelector('#ModalClose-quickView').click();
+})
 
 function variant_action(){
   document.querySelectorAll('.product-modal-quickview .variant_wrapper input').forEach((item)=>{

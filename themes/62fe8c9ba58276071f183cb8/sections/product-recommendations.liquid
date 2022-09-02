@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="{{ 'component-badge.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-product-card-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-price-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'section-product-recommendations-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-badge.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'component-product-card-style-1.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'component-price-style-1.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'section-product-recommendations-style-1.css' | asset_url }}" >
 
 <noscript>{{ 'component-badge.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-product-card-style-1.css' | asset_url | stylesheet_tag }}</noscript>
@@ -84,9 +84,9 @@
                 tag_field:section.settings.tag_field,                                   
                 show_vendor: section.settings.show_vendor,
                 show_colors: section.settings.show_colors,
-                show_view_product: section.settings.show_view_product,
+                show_view_product: false,
                 show_quick_add: section.settings.show_quick_add,
-                show_variants_on_hover: section.settings.show_variants_on_hover,
+                show_variants_on_hover: false,
                 card_bg_color: section.settings.card_bg_color,
                 card_radius: section.settings.card_radius,
                 info_align: section.settings.info_align
@@ -238,14 +238,14 @@
           "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
         }
       ],
-      "default": "square",
+      "default": "portrait",
       "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
     },
     {
       "type": "checkbox",
       "id": "image_gallery",
-      "default": false,
-      "label": "Enable Image Slider"
+      "default": true,
+      "label": "Show Second Image"
     },
     {
       "type": "select",
@@ -277,7 +277,7 @@
             "value": "bg-c-light"
           }
         ],
-        "default": "bg-c-average"
+        "default": "bg-c-light"
     },
     {
       "type": "range",
@@ -285,7 +285,7 @@
       "min": 0,
       "max": 20,
       "step": 1,
-      "default": 7,
+      "default": 0,
       "label": "Card Border Radius"
     },
     {
@@ -311,18 +311,6 @@
     },
     {
       "type": "checkbox",
-      "id": "show_variants_on_hover",
-      "default": true,
-      "label": "Show Variants On Hover"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_view_product",
-      "default": true,
-      "label": "Show View Product Button"
-    },
-    {
-      "type": "checkbox",
       "id": "show_quick_add",
       "default": false,
       "label": "Show Quick Add Button"
@@ -341,7 +329,7 @@
           "value": "center"
         }
       ],
-      "default": "center"
+      "default": "left"
     },
     {
       "type": "select",

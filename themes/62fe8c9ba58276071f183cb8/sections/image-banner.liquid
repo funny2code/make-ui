@@ -3,7 +3,7 @@
 <div id="Banner-{{ section.id }}" class="banner hero_banner bc-{{settings.section_style}}-bt" {% if section.settings.url != blank %}data-href="{{ section.settings.url }}" style="cursor: pointer;"{% endif %}>
   
       {%- if section.settings.image != blank -%}
-        <div class="media{% if section.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} small-hide{% endif %} {% if section.settings.image_desk_2 != blank %}image-banner__wrapper--double-image{% endif %}" style="padding-bottom:{% if section.settings.section_height == "auto"%} {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%; {% else %}{{section.settings.section_height}};{% endif %}">
+        <div class="media{% if section.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} small-hide{% endif %} {% if section.settings.image_desk_2 != blank %}image-banner__wrapper--double-image{% endif %}" style="padding-bottom:{% if section.settings.section_height == "auto" and section.settings.image_desk_2 == blank%} {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%; {% elsif section.settings.section_height == "auto" and section.settings.image_desk_2 != blank %} {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 50 }}%; {% else %}{{section.settings.section_height}};{% endif %}">
           <img  class="first-one" srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | img_url: '375x' }} 375w,{%- endif -%}
             {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | img_url: '750x' }} 750w,{%- endif -%}
             {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | img_url: '1100x' }} 1100w,{%- endif -%}
@@ -179,7 +179,7 @@
       "type": "checkbox",
       "id": "show_override",
       "label": "Show Override",
-      "default": false
+      "default": true
     },
     {
       "type": "select",
@@ -211,7 +211,7 @@
             "value": "var(--py-bg-color-light)"
           }
         ],
-        "default": "var(--py-bg-color-avarge)"
+        "default": "var(--py-bg-color-dark)"
     },
     {
       "type": "image_picker",
@@ -221,7 +221,8 @@
     {
       "type": "text",
       "id": "ov_opacity",
-      "label": "Opacity"
+      "label": "Opacity",
+      "default": "0.2"
     },
     {
       "type": "header",
@@ -409,7 +410,7 @@
       "type": "checkbox",
       "id": "enable_anim",
       "label": "Enable Animation",
-      "default": false
+      "default": true
     },
     {
       "type": "select",
@@ -838,7 +839,7 @@
               "value": "large"
             }
           ],
-          "default": "medium"
+          "default": "large"
         },
         {
           "type": "select",
@@ -858,7 +859,7 @@
               "value": "light"
             }
           ],
-          "default": "light"
+          "default": "dark"
         },
         {
           "type": "select",
@@ -878,7 +879,7 @@
               "value": "light"
             }
           ],
-          "default": "dark"
+          "default": "light"
         },
         {
           "type": "textarea",
