@@ -1,0 +1,127 @@
+    <% if(!settings.type_body_font?.system){ %>
+      <link rel="preload" as="font" href="<%= settings.type_body_font %>" type="font/woff2" crossorigin>
+    <% } %>
+    <% if(!settings?.type_header_font?.system){ %>
+      <link rel="preload" as="font" href="<%= settings.type_header_font%>" type="font/woff2" crossorigin>
+    <% } %>
+    <%- include('../snippets/css-selectors') %>
+    <%# 'base-style.css' | asset_url | stylesheet_tag %>
+    <link rel="stylesheet" href="/<%=srcId%>/template-giftcard.css">
+    
+    
+    <style>  
+      body{
+        background-color:<%=section.settings.page_bg_color%>;              
+      }
+      body *{
+        color:<%=section.settings.page_color%>;
+      }
+
+      .gift-code-area input{        
+        background-color:<%=section.settings.copy_code_bg_color%>;
+        color:<%=section.settings.copy_code_color%>; 
+      }
+      .gift-code-area{        
+        border-radius:<%=section.settings.copy_code_border_radius%>px;
+        background-color:<%=section.settings.copy_code_bg_color%>;        
+      }      
+      .gift-code-area .gift-card__copy-link{
+        border:<%=section.settings.copy_btn_border_width%>px solid <%=section.settings.copy_btn_br_color%>;
+        border-radius:<%=section.settings.copy_btn_border_radius%>px;
+        background-color:<%=section.settings.copy_btn_bg_color%>;
+        color:<%=section.settings.copy_btn_color%>; 
+        min-width: 130px;
+        min-height: 30px;
+      }
+      .gift-code-area .gift-card__copy-link:hover{
+        background-color:<%=section.settings.copy_btn_hover_bg_color%>;
+        color:<%=section.settings.copy_btn_hover_color%>;
+        border-color:<%=section.settings.copy_btn_hover_br_color%>;
+      } 
+
+      .gift-card__buttons .print_card,
+      .gift-card__buttons .continue_shopping{
+        border:<%=section.settings.print_btn_border_width%>px solid <%=section.settings.print_btn_br_color%>;
+        border-radius:<%=section.settings.print_btn_border_radius%>px;
+        background-color:<%=section.settings.print_btn_bg_color%>;
+        color:<%=section.settings.print_btn_color%>;        
+      }
+      .gift-card__buttons .print_card:hover,
+      .gift-card__buttons .continue_shopping:hover{
+        background-color:<%=section.settings.print_btn_hover_bg_color%>;
+        color:<%=section.settings.print_btn_hover_color%>;
+        border-color:<%=section.settings.print_btn_hover_br_color%>;
+      }
+
+    </style>
+    <header class="gift-card__title">
+      <span class="h2"><%= shop.name %></span>
+      <h1 class="gift-card__heading">subtext</h1>
+      <div class="gift-card__price">
+        <p><%= gift_card?.initial_value %></p>
+        <% if(gift_card?.enabled == false || gift_card?.expired){ %>
+          <p class="gift-card__label badge badge--<%= settings.sold_out_badge_color_scheme %>">expired</p>
+        <% } %>
+      </div>
+
+      <% var gift_card_balance = gift_card?.balance %>
+      <% if(gift_card?.balance !== gift_card?.initial_value){ %>
+        <p class="gift-card__label caption-large">remaining html</p>
+      <% } %>
+    </header>
+
+    <main class="gift-card">
+      <div class="gift-card__image-wrapper">
+        <% if(section.settings.gift_image){ %>
+        <img src="<%= section.settings.gift_image %>" alt="" class="gift-card__image" height="<%= 570 / 1.5 %>" width="570" loading="lazy">
+        <% } else { %>
+        <img src="<%# 'gift-card/card.svg' | shopify_asset_url %>" alt="" class="gift-card__image" height="<%= 570 / 1.5 %>" width="570" loading="lazy">
+        <% } %>
+      </div>
+      <div class="gift-card__qr-code" data-identifier="<%= gift_card?.qr_identifier %>"></div>
+      <div class="gift-card__information">
+        <div class="gift-code-area">
+          <input
+            type="text"
+            class="gift-card__number"
+            value="<%= gift_card?.code %>"
+            aria-label="gift_card_code"
+            readonly
+          >
+          <div class="gift-card__copy-code">
+            <button class="gift-card__copy-link">copy code</button>
+            <span class="gift-card__copy-success form__message" role="status"></span>
+            <template>
+              <%- include('../snippets/icon-success') %>copy code success
+            </template>
+          </div>
+        </div>
+        <% if(gift_card?.pass_url){ %>
+          <a href="<%= gift_card?.pass_url %>" class="gift_card__apple-wallet">
+            <img src="<%# 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url %>" width="120" height="40" alt="add_to_apple_wallet" loading="lazy">
+          </a>
+        <% } %>
+        <div class="gift-card__buttons no-print">
+          <button
+            class="print_card"
+            onclick="window.print();"
+          >
+            print_gift_card
+          </button>
+          <a
+            href="<%= shop.url %>"
+            class="continue_shopping"
+            target="_blank"
+            rel="noopener"
+            aria-describedby="a11y-new-window-message"
+          >
+            shop_link
+          </a>
+          
+        </div>
+      </div>
+    </main>
+
+    <div hidden>
+      <span id="a11y-new-window-message">new window</span>
+    </div>  
