@@ -11,6 +11,11 @@
     var loading = null;
     var themeName = "ThemeMake";
 
+    // SLEEP FUNCTION
+    const sleep = (ms) => {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     // Colors names Objects 
     const colorsNamesContrast = {
         "py_header_bg_color_1": "py_header_link_color_1",
@@ -625,51 +630,40 @@
     };
 
     // View Iframe Fun
-    const viewIframe = () => {
-        let iframe = document.querySelector('iframe.py__view-iframe');
-        if(!iframe) return;
+    const viewIframe = async () => {
+        let iframes = document.querySelectorAll('iframe.py__view-iframe');
+        if(!iframes?.length) return;
         let url = null;
-        let randomContent = iframe.closest('.py__preview-random-content');
+        let randomContent = iframes[0].closest('.py__preview-random-content');
         let ids = randomContent ? randomContent?.getAttribute('data-ids') : null;
 
         if(ids) {
             let arrayIds = ids?.split(',');
             arrayIds?.forEach((id,i,array) => {
                 let index = i + 1;
-                if(iframe?.getAttribute('src').indexOf(id) !== -1 && index !== array.length){
+                if(iframes[0]?.getAttribute('src').indexOf(id) !== -1 && index !== array.length){
                     return url = '/view/' + array[index] + location.search;
-                } else if(iframe?.getAttribute('src').indexOf(id) !== -1 && index === array.length){
+                } else if(iframes[0]?.getAttribute('src').indexOf(id) !== -1 && index === array.length){
                     return url = '/view/' + array[0] + location.search;
                 }
-            })
-            let iframes = document.querySelectorAll('iframe.py__view-iframe');
+            });
             iframes?.forEach((item) => item?.setAttribute('src', url));
         } else {
-            url = iframe?.getAttribute('src');
+            url = iframes[0]?.getAttribute('src');
         }
 
-        fetch(url, {
-            method:'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }, 
-            body:JSON.stringify(theme)
-        })
-        .then(res => res.text())
-        .then(async (data) => {
-            if(!data) return;
-            let parser = new DOMParser();
-            let html = parser.parseFromString(data, "text/html");
-            let myIframes = document.querySelectorAll('iframe.py__view-iframe');
-            for(iframeItem of myIframes){
-                let ifrm = iframeItem.contentDocument || iframeItem.contentWindow.document;
-                html ? ifrm.querySelector('body').innerHTML = html.querySelector('body').innerHTML : null;
-            }
-            if(ids) return; 
-            loading?.classList.remove('py__animate');
-        })
-        .catch(err => console.error(err));
+        let res = await fetch(url, {method:'POST',headers: {'Accept': 'application/json','Content-Type': 'application/json'}, body:JSON.stringify(theme)});
+        let data = await res.text();
+        if(!data) return loading?.classList.remove('py__animate');
+        let parser = new DOMParser();
+        let html = parser.parseFromString(data, "text/html");
+        for(let i=0; i<iframes.length; i++){
+            let iframeItem = iframes[i];
+            let ifrm = iframeItem.contentDocument || iframeItem.contentWindow.document;
+            await sleep(1000);
+            html ? ifrm.querySelector('body').innerHTML = html.querySelector('body').innerHTML : null;
+        }
+        loading?.classList.remove('py__animate');
     };
 
     // Ifeame Previews Function (Mobile, Desktop, Tablet)
@@ -1315,7 +1309,7 @@
 
        if(!event) return;
        event.preventDefault();
-    //    loading?.classList.add('py__animate');
+       loading?.classList.add('py__animate');
 
        let inputFileds = document.querySelectorAll('[name]');
        let index = 0;
