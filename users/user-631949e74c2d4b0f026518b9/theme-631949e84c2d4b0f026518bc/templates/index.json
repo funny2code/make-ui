@@ -1,0 +1,569 @@
+{
+  "sections": {
+    "164253890362d227ae": {
+      "type": "image-banner",
+      "blocks": {
+        "16425389039f659f32-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Recycled yarns and textiles",
+            "fs": "fs-xl"
+          }
+        },
+        "16425389039f659f32-2": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Button",
+            "button_link_1": "shopify://collections/all",
+            "view_btn_size": "large",
+            "view_btn_color": "dark",
+            "view_btn_hover_color": "light",
+            "c_css": "border-width:0px;"
+          }
+        }
+      },
+      "block_order": [
+        "16425389039f659f32-0",
+        "16425389039f659f32-2"
+      ],
+      "settings": {
+        "section_height": "auto",
+        "image": "shopify://shop_images/210715_UBB_Day1_01712.webp",
+        "image_desk_2": "shopify://shop_images/210715_UBB_Day1_04119.webp",
+        "show_lazy": true,
+        "url": "shopify://collections/all",
+        "show_override": true,
+        "ov_bg_color": "var(--py-bg-color-dark)",
+        "ov_opacity": "0.2",
+        "pv": "center",
+        "ph": "center",
+        "align": "center",
+        "padding": "",
+        "margin": "",
+        "width": "",
+        "height": "",
+        "c_css": "",
+        "m_pv": "center",
+        "m_ph": "center",
+        "m_align": "center",
+        "m_padding": "",
+        "m_margin": "",
+        "m_width": "",
+        "m_height": "",
+        "m_c_css": "",
+        "enable_anim": true,
+        "anim": "zoom-out"
+      }
+    },
+    "166017796623e271d9": {
+      "type": "spacing",
+      "settings": {
+        "background_color": "transparent",
+        "spacing_value_desktop": 30,
+        "spacing_value_mobile": 20
+      }
+    },
+    "16599885463e13fd28": {
+      "type": "rich-text",
+      "blocks": {
+        "1659988545488a1018-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Recycled yarns and textiles",
+            "fs": "fs-xl"
+          }
+        },
+        "1659988545488a1018-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Timeless pieces created with upcycled materials to keep you looking warm and oh, so stylish. Great for transitional weather and easy to care for. We know you’ll fall in love.</p>",
+            "fs": "fs-m"
+          }
+        }
+      },
+      "block_order": [
+        "1659988545488a1018-0",
+        "1659988545488a1018-1"
+      ],
+      "settings": {
+        "align": "center",
+        "bg_color": "var(--py-bg-color-light)",
+        "content_color": "var(--py-color-dark)",
+        "page_x_pd": "pd-x-s",
+        "page_y_pd": "pd-y-xl"
+      }
+    },
+    "16509167795e92e268": {
+      "type": "collection-list",
+      "blocks": {
+        "1650916779972e0d3d-0": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "1650916779972e0d3d-1": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "1650916779972e0d3d-2": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "1650916779972e0d3d-0",
+        "1650916779972e0d3d-1",
+        "1650916779972e0d3d-2"
+      ],
+      "settings": {
+        "title": "",
+        "bg_color": "bg-c-light",
+        "scroll_bar_bg_color": "#696969",
+        "scroll_bar_color": "#ffffff",
+        "title_color": "var(--py-color-light)",
+        "title_font_size": 28,
+        "title_font_weight": 600,
+        "page_width": "width-un",
+        "page_x_mg": "mg-x-un",
+        "page_y_mg": "mg-y-un",
+        "page_x_pd": "pd-x-m",
+        "page_y_pd": "pd-y-m",
+        "image_ratio": "portrait",
+        "item_space": 14,
+        "card_radius": 0,
+        "show_title": true,
+        "show_desc": false,
+        "card_bg_color": "bg-c-light",
+        "info_color": "var(--py-color-dark)",
+        "card_title_font_size": 20,
+        "card_title_font_weight": 500,
+        "card_title_m_font_size": 18,
+        "card_text_font_size": 15
+      }
+    },
+    "1652851716a9bcae46": {
+      "type": "image-with-text",
+      "blocks": {
+        "1652851716950d2423-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Recycled yarns and textiles",
+            "fs": "fs-xl"
+          }
+        },
+        "1652851716950d2423-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Timeless pieces created with upcycled materials to keep you looking warm and oh, so stylish. Great for transitional weather and easy to care for. We know you’ll fall in love.</p>",
+            "fs": "fs-m"
+          }
+        },
+        "1652851716950d2423-2": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "view_btn_size": "medium",
+            "view_btn_color": "dark",
+            "view_btn_hover_color": "dark"
+          }
+        }
+      },
+      "block_order": [
+        "1652851716950d2423-0",
+        "1652851716950d2423-1",
+        "1652851716950d2423-2"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/210715_UBB_Day2_05488-copy_800x928_c03a755b-4e1c-4d02-8a5e-b47b3cd646fe.webp",
+        "section_height": "auto",
+        "section_height_m": "400px",
+        "layout": "text_first",
+        "img_style": "offset",
+        "align": "left",
+        "bg_color": "var(--py-bg-color-avarge)",
+        "content_color": "var(--py-color-dark)"
+      }
+    },
+    "1651867483e4606eac": {
+      "type": "product-carousel",
+      "settings": {
+        "title": "This month's best sellers",
+        "collection": "base-brand",
+        "products_col_limit": 5,
+        "products_limit": 6,
+        "show_view_all": true,
+        "section_bg_color": "var(--py-bg-color-light)",
+        "title_color": "var(--py-color-dark)",
+        "scroll_bar_bg_color": "#e9e9e9",
+        "scroll_bar_color": "#494931",
+        "card_style": "vertical",
+        "image_ratio": "portrait",
+        "image_gallery": true,
+        "card_bg_color": "bg-c-light",
+        "card_radius": 0,
+        "item_space": 10,
+        "show_vendor": false,
+        "show_colors": true,
+        "show_quick_add": true,
+        "info_align": "left",
+        "card_color": "c-dark",
+        "view_btn_size": "small",
+        "view_btn_color": "light",
+        "view_btn_hover_color": "light",
+        "custom_font_style": true,
+        "title_fontsize": "17px",
+        "title_fontsize_m": "",
+        "title_fontweight": "",
+        "title_fontstretch": "",
+        "title_fontstyle": "normal",
+        "title_lineheight": "",
+        "title_letterspacing": "",
+        "info_fontsize": "",
+        "info_fontsize_m": "",
+        "info_fontweight": "",
+        "info_fontstretch": "",
+        "info_fontstyle": "normal",
+        "info_lineheight": "",
+        "info_letterspacing": ""
+      }
+    },
+    "1660177794253dd4a9": {
+      "type": "spacing",
+      "settings": {
+        "background_color": "transparent",
+        "spacing_value_desktop": 50,
+        "spacing_value_mobile": 30
+      }
+    },
+    "16601777073def5959": {
+      "type": "image-banner",
+      "blocks": {
+        "16601777075943e121-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Recycled yarns and textiles",
+            "fs": "fs-xl"
+          }
+        },
+        "16601777075943e121-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Timeless pieces created with upcycled materials to keep you looking warm and oh, so stylish. Great for transitional weather and easy to care for. We know you’ll fall in love.</p>",
+            "fs": "fs-m"
+          }
+        },
+        "5c1f0c9b-f7c2-4afa-a4e8-a1517848d520": {
+          "type": "learnmore",
+          "settings": {
+            "button_label_1": "Learn More",
+            "button_link_1": "#",
+            "m_color": "var(--py-color-light)"
+          }
+        }
+      },
+      "block_order": [
+        "16601777075943e121-0",
+        "16601777075943e121-1",
+        "5c1f0c9b-f7c2-4afa-a4e8-a1517848d520"
+      ],
+      "settings": {
+        "section_height": "400px",
+        "image": "shopify://shop_images/cotton_1200x800_3bc064ae-7a1b-4503-ace1-33b6ab91618e.jpg",
+        "show_lazy": true,
+        "url": "",
+        "show_override": true,
+        "ov_bg_color": "var(--py-bg-color-middle-dark)",
+        "ov_opacity": "0.6",
+        "pv": "center",
+        "ph": "center",
+        "align": "center",
+        "padding": "",
+        "margin": "",
+        "width": "",
+        "height": "",
+        "c_css": "",
+        "m_pv": "center",
+        "m_ph": "center",
+        "m_align": "center",
+        "m_padding": "",
+        "m_margin": "",
+        "m_width": "",
+        "m_height": "",
+        "m_c_css": "",
+        "enable_anim": false,
+        "anim": "zoom-out"
+      }
+    },
+    "16601855668f6492f1": {
+      "type": "spacing",
+      "settings": {
+        "background_color": "transparent",
+        "spacing_value_desktop": 50,
+        "spacing_value_mobile": 30
+      }
+    },
+    "1660239663b5eb9ab3": {
+      "type": "featured-product",
+      "blocks": {
+        "1660239663ed7e1269-0": {
+          "type": "title",
+          "settings": {
+            "title_fontsize": "24",
+            "title_fontsize_m": "18",
+            "title_fontweight": "600",
+            "title_fontstretch": "",
+            "title_fontstyle": "normal",
+            "title_lineheight": "",
+            "title_letterspacing": ""
+          }
+        },
+        "1660239663ed7e1269-1": {
+          "type": "price",
+          "settings": {
+            "price_fontsize": "24",
+            "price_fontsize_m": "20",
+            "price_fontweight": "400",
+            "price_fontstretch": "",
+            "price_fontstyle": "normal",
+            "price_lineheight": "",
+            "price_letterspacing": ""
+          }
+        },
+        "6c9bd4a5-cd76-46de-a146-7f9641cfe4f1": {
+          "type": "variant_picker",
+          "settings": {
+            "color_picker_type": "color",
+            "general_picker_type": "sm_radius",
+            "option_bg_color": "var(--py-bg-color-light)",
+            "option_br_color": "var(--py-color-dark)",
+            "option_color": "var(--py-color-dark)",
+            "selected_option_bg_color": "var(--py-bg-color-dark)",
+            "selected_option_br_color": "var(--py-color-dark)",
+            "selected_option_color": "var(--py-color-light)",
+            "option_fontsize": "18",
+            "option_fontsize_m": "18",
+            "option_fontweight": "400",
+            "option_fontstretch": "",
+            "option_fontstyle": "normal",
+            "option_lineheight": "",
+            "option_letterspacing": ""
+          }
+        },
+        "1660239663ed7e1269-3": {
+          "type": "buy_buttons",
+          "settings": {
+            "add_btn_size": "medium",
+            "bg_color": "var(--py-bg-color-dark)",
+            "color": "var(--py-color-light)",
+            "btn_hover_bg_color": "var(--py-bg-color-dark)",
+            "btn_hover_color": "var(--py-color-avarge)",
+            "br_color": "var(--py-color-light)",
+            "btn_border_width": "1",
+            "btn_border_radius": "1",
+            "btn_font_size": "18",
+            "btn": "",
+            "show_dynamic_checkout": true,
+            "fixed_add": false,
+            "fixed_style": "style-1",
+            "fixed_add_bg_color": "var(--py-bg-color-light)",
+            "fixed_add_info_color": "var(--py-color-dark)",
+            "fixed_add_radius": "7",
+            "fixed_add_btn_bg_color": "var(--py-bg-color-light)",
+            "fixed_add_btn_color": "var(--py-color-dark)",
+            "fixed_add_btn_hv_bg_color": "var(--py-bg-color-light)",
+            "fixed_add_btn_hv_color": "var(--py-color-dark)",
+            "fixed_add_btn_radius": "7",
+            "sold_out_bg_color": "var(--py-bg-color-light)",
+            "sold_out_info_color": "var(--py-color-dark)",
+            "sold_out_card_radius": "7",
+            "sold_out_border_color": "var(--py-color-dark)",
+            "sold_out_border_width": "1",
+            "sold_out_title_font_size": "18",
+            "sold_out_desc_font_size": "14",
+            "pre_order_bg_color": "var(--py-bg-color-light)",
+            "pre_order_info_color": "var(--py-color-dark)",
+            "pre_order_card_radius": "7",
+            "pre_order_border_color": "var(--py-color-dark)",
+            "pre_order_border_width": "1",
+            "pre_order_title_font_size": "18",
+            "pre_order_desc_font_size": "14",
+            "pick_up_bg_color": "var(--py-bg-color-light)",
+            "pick_up_info_color": "var(--py-color-dark)",
+            "pick_up_card_radius": "7",
+            "pick_up_border_color": "var(--py-color-dark)",
+            "pick_up_border_width": "1",
+            "pick_up_title_font_size": "18",
+            "pick_up_txt": "This item is available for pickup at these locations:",
+            "pick_up_desc_font_size": "14",
+            "pick_up_location_bg_color": "var(--py-bg-color-light)",
+            "pick_up_location_info_color": "var(--py-color-dark)",
+            "pick_up_location_radius": "8"
+          }
+        }
+      },
+      "block_order": [
+        "1660239663ed7e1269-0",
+        "1660239663ed7e1269-1",
+        "6c9bd4a5-cd76-46de-a146-7f9641cfe4f1",
+        "1660239663ed7e1269-3"
+      ],
+      "settings": {
+        "product": "zipped-jacket",
+        "enable_breadcrumb_nav": false,
+        "media_style": "carousel_w_thumb",
+        "media_style_m": "top",
+        "pd_media_space": 10,
+        "enable_sticky_info": true,
+        "enable_video_looping": false,
+        "section_bg_color": "var(--py-bg-color-light)",
+        "info_color": "var(--py-color-dark)",
+        "page_width": "width-un",
+        "info_section_padding": "pd-x-m"
+      }
+    },
+    "1651801075bda11aac": {
+      "type": "multicolumn",
+      "blocks": {
+        "165180107452de171a-0": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/210715_UBB_Day2_06862-crop_608x768_3cafffed-942c-4035-a9c7-fcbc1416b46a.webp",
+            "title": "Keep it casual",
+            "text": "<p>Tops for everyday life</p>",
+            "btn_label": "Learn More",
+            "btn_link": "#"
+          }
+        },
+        "165180107452de171a-1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/210715_UBB_Day2_08945_608x928_cbe2c67d-0a0b-4c2f-ade0-8e4ae58f28a9.webp",
+            "title": "Looks we love",
+            "text": "<p>View our staff picks of the month</p>",
+            "btn_label": "Learn More",
+            "btn_link": "#"
+          }
+        },
+        "72f28d44-c0c8-4874-b2ba-5d9ea525992a": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/210715_UBB_Day1_04375_608x928_94ca41d0-3660-4976-8b97-1b4c066e5b8c.webp",
+            "title": "Cozy & iconic",
+            "text": "<p>Oversized knits that still look chic</p>",
+            "btn_label": "Learn More",
+            "btn_link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "165180107452de171a-0",
+        "165180107452de171a-1",
+        "72f28d44-c0c8-4874-b2ba-5d9ea525992a"
+      ],
+      "settings": {
+        "title": "",
+        "section_bg": "bg-c-light",
+        "col_style": "overlay",
+        "col_overlay_color": "bg-c-dark",
+        "overlay_opacity": "0.3",
+        "column_number": 3,
+        "image_width": "full",
+        "image_ratio": "square",
+        "column_alignment": "left",
+        "col_bg_color": "bg-c-none",
+        "col_info_color": "var(--py-color-light)",
+        "col_title_font_size": 38,
+        "col_title_font_weight": 500,
+        "col_title_m_font_size": 22,
+        "col_text_font_size": 17,
+        "button_label": "",
+        "button_link": "",
+        "view_btn_size": "medium",
+        "view_btn_color": "light",
+        "view_btn_hover_color": "dark",
+        "swipe_on_mobile": false
+      }
+    },
+    "16603177175585ee17": {
+      "type": "featured-blogs-2",
+      "blocks": {
+        "166031771763448ee6-0": {
+          "type": "title",
+          "settings": {
+            "title_fontsize": "24",
+            "title_fontsize_m": "18",
+            "title_fontweight": "600",
+            "title_fontstretch": "",
+            "title_fontstyle": "normal",
+            "title_lineheight": "",
+            "title_letterspacing": ""
+          }
+        }
+      },
+      "block_order": [
+        "166031771763448ee6-0"
+      ],
+      "settings": {
+        "blog": "news",
+        "bg_color": "bg-c-light",
+        "title": "Our Journal",
+        "title_color": "var(--py-color-dark)",
+        "title_font_size": 48,
+        "title_font_weight": 500,
+        "sub_title": "Other reading",
+        "sub_title_color": "var(--py-color-dark)",
+        "sub_title_font_size": 30,
+        "sub_title_font_weight": 500,
+        "page_width": "width-un",
+        "page_x_mg": "mg-x-un",
+        "page_y_mg": "mg-y-un",
+        "page_x_pd": "pd-x-m",
+        "page_y_pd": "pd-y-m",
+        "image_ratio": "horizontal",
+        "item_space": 35,
+        "card_radius": 0,
+        "card_bg_color": "bg-c-light",
+        "view_btn_size": "medium",
+        "view_btn_color": "light",
+        "view_btn_hover_color": "dark",
+        "card_info_color": "var(--py-color-dark)",
+        "card_title_font_size": 26,
+        "card_title_font_weight": 500,
+        "card_title_m_font_size": 18,
+        "list_title_font_size": 22,
+        "list_title_font_weight": 500,
+        "list_title_m_font_size": 18,
+        "info_font_size": 18
+      }
+    },
+    "166034365370704230": {
+      "type": "spacing",
+      "settings": {
+        "background_color": "transparent",
+        "spacing_value_desktop": 60,
+        "spacing_value_mobile": 5
+      }
+    }
+  },
+  "order": [
+    "164253890362d227ae",
+    "166017796623e271d9",
+    "16599885463e13fd28",
+    "16509167795e92e268",
+    "1652851716a9bcae46",
+    "1651867483e4606eac",
+    "1660177794253dd4a9",
+    "16601777073def5959",
+    "16601855668f6492f1",
+    "1660239663b5eb9ab3",
+    "1651801075bda11aac",
+    "16603177175585ee17",
+    "166034365370704230"
+  ]
+}

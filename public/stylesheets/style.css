@@ -140,11 +140,11 @@ img {
   display: flex;
   align-items: center;
 }
-.py__button-random {
+.py__header-random-buttons .py__button {
   min-height: 35px;
   border-radius: 4px;
   align-items: center;
-  line-height: normal;
+  /* line-height: normal; */
   margin-left: 11px;
 }
 .py__button-random * {

@@ -11,11 +11,6 @@
     var loading = null;
     var themeName = "ThemeMake";
 
-    // SLEEP FUNCTION
-    const sleep = (ms) => {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     // Colors names Objects 
     const colorsNamesContrast = {
         "py_header_bg_color_1": "py_header_link_color_1",
@@ -632,35 +627,39 @@
     // View Iframe Fun
     const viewIframe = async () => {
         let iframes = document.querySelectorAll('iframe.py__view-iframe');
-        if(!iframes?.length) return;
         let url = null;
+        
+        if(!iframes?.length) return;
         let randomContent = iframes[0].closest('.py__preview-random-content');
-        let ids = randomContent ? randomContent?.getAttribute('data-ids') : null;
-
-        if(ids) {
+        let ids = randomContent?.getAttribute('data-ids');
+        if(ids){
+            let newId = null;
             let arrayIds = ids?.split(',');
+            let signupBtn = document.querySelector('.py__signup-button');
             arrayIds?.forEach((id,i,array) => {
                 let index = i + 1;
-                if(iframes[0]?.getAttribute('src').indexOf(id) !== -1 && index !== array.length){
+                if(iframes[0]?.getAttribute('data-theme-id') === id && index !== array.length){
+                    newId = array[index];
                     return url = '/view/' + array[index] + location.search;
-                } else if(iframes[0]?.getAttribute('src').indexOf(id) !== -1 && index === array.length){
+                } else if(iframes[0]?.getAttribute('data-theme-id') === id && index === array.length){
+                    newId = array[0];
                     return url = '/view/' + array[0] + location.search;
                 }
             });
-            iframes?.forEach((item) => item?.setAttribute('src', url));
+            iframes?.forEach((item) => item?.setAttribute('data-theme-id', newId));
+            signupBtn?.setAttribute('data-id', newId);
         } else {
             url = iframes[0]?.getAttribute('src');
         }
 
-        let res = await fetch(url, {method:'POST',headers: {'Accept': 'application/json','Content-Type': 'application/json'}, body:JSON.stringify(theme)});
+        let res = await fetch(url, {method:'POST',headers: {'Accept': 'application/json','Content-Type': 'application/json'},  body:JSON.stringify(theme)});
         let data = await res.text();
-        if(!data) return loading?.classList.remove('py__animate');
+        if(!data) loading?.classList.remove('py__animate');
         let parser = new DOMParser();
         let html = parser.parseFromString(data, "text/html");
         for(let i=0; i<iframes.length; i++){
             let iframeItem = iframes[i];
             let ifrm = iframeItem.contentDocument || iframeItem.contentWindow.document;
-            await sleep(1000);
             html ? ifrm.querySelector('body').innerHTML = html.querySelector('body').innerHTML : null;
         }
         loading?.classList.remove('py__animate');
@@ -1367,9 +1366,10 @@
            }
        });
 
-       remixCount++;
-       saveSettingsValues();
-       viewIframe();
+        remixCount++;
+        saveSettingsValues();
+        viewIframe();
+
     };  
 
     //---------------------------------------

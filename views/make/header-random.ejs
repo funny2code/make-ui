@@ -25,6 +25,32 @@
                 </span>
                 <span class="py__button-label">Remix Style</span>
             </a>
+            <% if(user){ %>
+                <% if(show){ %>
+                    <a class="py__button py__button-black py__save-figma-button" data-user-id="<%=user._id%>" data-theme-id="<%=id%>">
+                        Save for Figma
+                    </a>
+                    <a class="py__button py__button-black py__save-button" aria-disabled="true">
+                        Save Changes
+                    </a>
+                    <a href="/download" class="py__button py__button-white py__download-button" aria-disabled="false"
+                        <% if(user){ %>data-user-id="<%=user._id%>"<% } %> data-id="<%=id%>">
+                        Download Theme
+                    </a>
+                <% } %>
+                <a href="/logout" class="py__button py__button-white">
+                    Log Out
+                </a>
+            <% } else { %>
+                <a href="/login" class="py__button py__button-white py__login-button">
+                    Log In
+                </a>
+                <% if(show){ %>
+                <a href="/signup" class="py__button py__button-white py__signup-button" data-id="<%=id%>">
+                    Download Theme
+                </a>
+                <% } %>
+            <% } %>
         </div>
     </div>
 </header>

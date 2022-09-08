@@ -13,13 +13,13 @@
             <div class="py__make-preview">
                 <div class="py__preview-random-content" <% if(themeIDS){ %>data-ids="<%=themeIDS%>"<% } %>>
                     <div class="py__preview-iframe py__preview-random-iframe py__preview-iframe-desktop">
-                        <iframe src="/view/<%= user ? 'users/' + user._id + '/themes/' + id : id%>?page=<%=page%>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
+                        <iframe src="/view/<%= user ? 'users/' + user._id + '/themes/' + id : id%>?page=<%=page%>" data-theme-id="<%=id%>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
                     </div>
                     <div class="py__preview-iframe py__preview-random-iframe py__preview-iframe-tablet">
-                        <iframe src="/view/<%= user ? 'users/' + user._id + '/themes/' + id : id%>?page=<%=page%>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
+                        <iframe src="/view/<%= user ? 'users/' + user._id + '/themes/' + id : id%>?page=<%=page%>" data-theme-id="<%=id%>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
                     </div>
                     <div class="py__preview-iframe py__preview-random-iframe py__preview-iframe-mobile">
-                        <iframe src="/view/<%= user ? 'users/' + user._id + '/themes/' + id : id%>?page=<%=page%>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
+                        <iframe src="/view/<%= user ? 'users/' + user._id + '/themes/' + id : id%>?page=<%=page%>" data-theme-id="<%=id%>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
                     </div>
                 </div>
             </div>
@@ -83,19 +83,9 @@
                 <% if(sections.length){ %>
                     <% sections.forEach((section,index)=>{ %>
                         <% if(section?.settings && section?.blocks?.length){ %>
-                            <% 
-                                var templateName = null;
-                                if(page === "Home Page"){ 
-                                    templateName = "index"
-                                } else if(page === "Collection Page"){ 
-                                    templateName = "collection"
-                                } else if(page === "Product Page"){ 
-                                    templateName = "product"
-                                } 
-                            %> 
                         <div class="py__random-section-item py__closest">
                             <% if(section.settings){ %>
-                                <div class="py__random-section-content py__settings-section-item" data-section-name="<%=section.name%>" data-template-name="<%=templateName%>">
+                                <div class="py__random-section-content py__settings-section-item" data-file-name="<%=section.file_name%>" data-template-name="<%=section.template_name%>">
                                     <% section.settings.forEach((item,index)=>{ %>
                                         <% if(item.type === "select" && item?.id?.includes('style') || item?.id?.includes('position')){ %>
                                             <div class="py__random-comp py__random-comp-select">

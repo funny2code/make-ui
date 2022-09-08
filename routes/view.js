@@ -236,7 +236,7 @@ router.post('/:id', async (req, res, next) => {
         if(pageName.name === page){
           pageName?.items.map(item => {
             theme?.theme_sec.map(el => {
-              if (item.file_name === el.file_name) {
+              if (item.handle === el.file_name) {
                 let sectionChildSettings = {};
                 let blocks = [];
                 if (el.settings) {
