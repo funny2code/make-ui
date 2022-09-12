@@ -12,7 +12,7 @@ const localStorage = new storage('./scratch');
 /* GET Theme Settings and Sections. */
 router.get('/', async (req, res, next) => {
 
-  // const {id} = req.params;
+  // const {userId} = req.params;
   const {page} = req.query;
   const storageData = localStorage.getItem('theme');
   const localData = storageData ? JSON.parse(storageData) : null;

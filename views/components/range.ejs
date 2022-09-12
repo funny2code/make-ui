@@ -12,5 +12,6 @@
     </div>
     <div class="py__comp-range">
         <input type="range" name="<%= global !== "section" ? global + "_" + data.id : data.id %>" value="<%=data.default%>" min="<%= data.min %>" max="<%= data.max %>" step="<%= data.step %>">
+        <output class="py__comp-range-unit" data-unit="<%=data.unit%>"><%=data.default + data.unit%></output>
     </div>
 </div>

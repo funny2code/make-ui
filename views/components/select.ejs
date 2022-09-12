@@ -18,8 +18,8 @@
         </select>
     </div>
     <% let newLabel = data.label.toLowerCase().trim() %>
-    <% if(newLabel === 'background color' || newLabel === 'background'){ %>
-        <a href="/get/<%= id %>?global=Global%20Styles" class="py__get-button" data-hide="Hide <%= newLabel %> settings" data-show="Show <%= newLabel %> settings">
+    <% if(newLabel?.includes('color') || newLabel?.includes('background')){ %>
+        <a href="/get/<%=id%>?global=Global%20Styles" class="py__get-button" data-hide="Hide <%= newLabel %> settings" data-show="Show <%= newLabel %> settings">
             Show <%= newLabel %> settings
         </a>
         <div class="py__get-result-wrapper"></div>
