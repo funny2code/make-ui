@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "node ./bin/www",
-    "lint:ejs": "ejslint ./views/62fe8c9ba58276071f183cb8/sections/gift-card.ejs"
+    "lint:ejs": "ejslint ./views/62fe8c9ba58276071f183cb8/snippets/cart-notification-4.ejs"
   },
   "dependencies": {
     "archiver": "^5.3.0",

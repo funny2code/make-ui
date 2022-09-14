@@ -1228,6 +1228,8 @@
         oldColorOne = color1;
         let color2 = chroma(color1).darken(2.6);
         let colorsList = chroma.scale([color2, color1]).mode('lch').colors(5);
+        // colorsList.unshift('#000000');
+        // colorsList.push('#FFFFFF');
         console.log(colorsList);
         return colorsList;
     };

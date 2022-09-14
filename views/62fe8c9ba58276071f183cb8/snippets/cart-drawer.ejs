@@ -1,0 +1,85 @@
+<div id="shopify-section-cart-template" class="shopify-section">
+    <% if(settings.cart_style === 'style-4'){ %>
+        <%- include('./cart-notification-4', {routes: false, active: 'animate active'}) %> 
+    <% } else if(settings.cart_style === 'style-3'){ %>
+        <%- include('./cart-notification-3', {routes: false, cart_layout: settings.cart_layout, active: 'animate active'}) %>
+    <% } else if(settings.cart_style === 'style-2'){ %>
+        <%- include('./cart-notification-2', {routes: false, shipping_method: null, cart_layout: settings.cart_layout,enable_dynamic_pay: settings.enable_dynamic_pay, active: 'animate active'}) %>
+    <% } else if(settings.cart_style === 'style-1'){ %>
+        <%- include('./cart-notification', {routes: false, shipping_method: null, checkoutbtn_position: settings.checkoutbtn_position,enable_dynamic_pay: settings.enable_dynamic_pay, active: 'animate active'}) %>
+    <% } %>
+    <style>
+
+        :root {
+            --header-ck_btn_bg: <%= settings.ck_btn_bg %>;
+            --header-ck_btn_color: <%= settings.ck_btn_color %>;
+            --header-ck_btn_hover_bg: <%= settings.ck_btn_hover_bg %>;
+            --header-ck_btn_hover_color: <%= settings.ck_btn_hover_color %>;
+            --header-item_title_font_size: <%= settings.item_title_font_size %>;
+            --header-item_price_font_size: <%= settings.item_price_font_size %>;
+            --header-item_content_font_size: <%= settings.item_content_font_size %>;
+            --header-button_radius: <%= settings.button_radius %>;
+            --header-item_bg: <%= settings.item_bg %>;
+            --header-item_radius: <%= settings.item_radius %>;
+        }
+
+        #loopcheckout{
+            background-color: var(--header-ck_btn_bg);
+            color: var(--header-ck_btn_color);
+        }
+        #loopcheckout:hover{
+            background-color: var(--header-ck_btn_hover_bg);
+            color: var(--header-ck_btn_hover_color);
+        }
+        .bc-cart__item .bc-cart__title{
+            font-size: var(--header-item_title_font_size);
+        }
+        .bc-cart__item .bc-cart__variant-title{
+            font-size: var(--header-item_title_font_size);
+        }
+        .bc-cart__item .bc-cart__price-wrapper{
+            font-size:  var(--header-item_price_font_size);
+        }
+        .bc-cart__item .bc-cart__properties-wrapper{
+            font-size: var(--header-item_content_font_size);
+        }
+    </style>
+    <% if(settings.button_radius){ %>
+    <style>
+        .bc-cart__buttons-wrapper .button{
+        border-radius:  var(--header-button_radius)px;
+        }
+    </style>
+    <% } %>
+    <% if(settings.item_bg){ %>
+    <style>
+    .bc-cart__item{
+        padding:10px;
+        background-color: var(--header-item_bg);
+        border-radius: var(--header-item_radius)px;
+    }
+    </style>
+    <% } %>
+    <% if(settings.item_radius){ %>
+    <style>
+    .bc-cart__item .bc-cart__image-wrapper img{
+        border-radius:  var(--header-item_radius)px;
+    }
+    </style>
+    <% } %>
+    <% if(settings.enable_dynamic_pay){ %>
+    <style>
+    #loopcheckoutdynamic{
+        margin-top: 15px;
+        background: #5b32f6;
+    }
+    #loopcheckoutdynamic:hover{
+        box-shadow: 0 0 10px black;
+    }
+    #loopcheckoutdynamic img{
+        width: 74px;
+    }
+    </style>
+    <% } %>
+  </div>
+  

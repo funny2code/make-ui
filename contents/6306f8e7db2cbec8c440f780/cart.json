@@ -1,1 +1,116 @@
-{"token":"c6ec39af9475948380902acd5822ad8c","note":null,"attributes":{},"original_total_price":11000,"total_price":11000,"total_discount":0,"total_weight":90.7185,"item_count":2,"items":[{"id":39598614249514,"properties":{},"quantity":1,"variant_id":39598614249514,"key":"39598614249514:0102502054ff2bbe5a7e70dd5310d9cd","title":"The Essentials Bra \/ Spice - X SMALL","price":5500,"original_price":5500,"discounted_price":5500,"line_price":5500,"original_line_price":5500,"total_discount":0,"discounts":[],"sku":"EB-ATMXS","grams":45,"vendor":"437","taxable":true,"product_id":6668055511082,"product_has_only_default_variant":false,"gift_card":false,"final_price":5500,"final_line_price":5500,"url":"\/products\/the-essentials-bra-spice?variant=39598614249514","featured_image":{"aspect_ratio":0.75,"alt":"The Essentials Bra \/ Spice","height":1667,"url":"https:\/\/cdn.shopify.com\/s\/files\/1\/2112\/6981\/products\/SpiceBra.png?v=1642527938","width":1250},"image":"https:\/\/cdn.shopify.com\/s\/files\/1\/2112\/6981\/products\/SpiceBra.png?v=1642527938","handle":"the-essentials-bra-spice","requires_shipping":true,"product_type":"THE ESSENTIALS BRA","product_title":"The Essentials Bra \/ Spice","product_description":"*Please note, the dyeing process creates a different hand feel of fabric between\u00a0colors.\nPair with matching Essentials Legging\nFeatures\n\nScoop neckline with a racer back\nDouble layered with an elastic waist for added support\nSeamless edges\nFeatures a tonal 437 logo on back waist\n437 smooth\u2122 is a moisture wicking fabric, sustainably sourced and made using recycled Nylon\n","variant_title":"X SMALL","variant_options":["X SMALL"],"options_with_values":[{"name":"Size","value":"X SMALL"}],"line_level_discount_allocations":[],"line_level_total_discount":0},{"id":39598612807722,"properties":{},"quantity":1,"variant_id":39598612807722,"key":"39598612807722:2f56c60017ab1c4b0b77e3954e3d0034","title":"The Essentials Bra \/ Black - X SMALL","price":5500,"original_price":5500,"discounted_price":5500,"line_price":5500,"original_line_price":5500,"total_discount":0,"discounts":[],"sku":"EB-ATBXS","grams":45,"vendor":"437","taxable":true,"product_id":6668054921258,"product_has_only_default_variant":false,"gift_card":false,"final_price":5500,"final_line_price":5500,"url":"\/products\/the-essentials-bra-black?variant=39598612807722","featured_image":{"aspect_ratio":0.75,"alt":"The Essentials Bra \/ Black","height":1667,"url":"https:\/\/cdn.shopify.com\/s\/files\/1\/2112\/6981\/products\/Bra-ange.png?v=1642527809","width":1250},"image":"https:\/\/cdn.shopify.com\/s\/files\/1\/2112\/6981\/products\/Bra-ange.png?v=1642527809","handle":"the-essentials-bra-black","requires_shipping":true,"product_type":"THE ESSENTIALS BRA","product_title":"The Essentials Bra \/ Black","product_description":"*Please note, the dyeing process creates a different hand feel of fabric between\u00a0colors.\nPair with matching Essentials Legging\nFeatures\n\nScoop neckline with a racer back\nDouble layered with an elastic waist for added support\nSeamless edges\nFeatures a tonal 437 logo on back waist\n437 smooth\u2122 is a moisture wicking fabric, sustainably sourced and made using recycled Nylon\n","variant_title":"X SMALL","variant_options":["X SMALL"],"options_with_values":[{"name":"Size","value":"X SMALL"}],"line_level_discount_allocations":[],"line_level_total_discount":0}],"requires_shipping":true,"currency":"USD","items_subtotal_price":11000,"cart_level_discount_applications":[]}
+{
+    "token": "c6ec39af9475948380902acd5822ad8c",
+    "note": null,
+    "attributes": {},
+    "original_total_price": 11000,
+    "total_price": 11000,
+    "total_discount": 0,
+    "total_weight": 90.7185,
+    "item_count": 2,
+    "items": [
+        {
+            "id": 39598614249514,
+            "properties": {},
+            "quantity": 1,
+            "variant_id": 39598614249514,
+            "key": "39598614249514:0102502054ff2bbe5a7e70dd5310d9cd",
+            "title": "The Essentials Bra \/ Spice - X SMALL",
+            "price": 5500,
+            "original_price": 5500,
+            "discounted_price": 5500,
+            "line_price": 5500,
+            "original_line_price": 5500,
+            "total_discount": 0,
+            "discounts": [],
+            "sku": "EB-ATMXS",
+            "grams": 45,
+            "vendor": "437",
+            "taxable": true,
+            "product_id": 6668055511082,
+            "product_has_only_default_variant": false,
+            "gift_card": false,
+            "final_price": 5500,
+            "final_line_price": 5500,
+            "url": "\/products\/the-essentials-bra-spice?variant=39598614249514",
+            "featured_image": {
+                "aspect_ratio": 0.75,
+                "alt": "The Essentials Bra \/ Spice",
+                "height": 1667,
+                "url": "https:\/\/cdn.shopify.com\/s\/files\/1\/2112\/6981\/products\/SpiceBra.png?v=1642527938",
+                "width": 1250
+            },
+            "image": "https:\/\/cdn.shopify.com\/s\/files\/1\/2112\/6981\/products\/SpiceBra.png?v=1642527938",
+            "handle": "the-essentials-bra-spice",
+            "requires_shipping": true,
+            "product_type": "THE ESSENTIALS BRA",
+            "product_title": "The Essentials Bra \/ Spice",
+            "product_description": "*Please note, the dyeing process creates a different hand feel of fabric between\u00a0colors.\nPair with matching Essentials Legging\nFeatures\n\nScoop neckline with a racer back\nDouble layered with an elastic waist for added support\nSeamless edges\nFeatures a tonal 437 logo on back waist\n437 smooth\u2122 is a moisture wicking fabric, sustainably sourced and made using recycled Nylon\n",
+            "variant_title": "X SMALL",
+            "variant_options": [
+                "X SMALL"
+            ],
+            "options_with_values": [
+                {
+                    "name": "Size",
+                    "value": "X SMALL"
+                }
+            ],
+            "line_level_discount_allocations": [],
+            "line_level_total_discount": 0
+        },
+        {
+            "id": 39598612807722,
+            "properties": {},
+            "quantity": 1,
+            "variant_id": 39598612807722,
+            "key": "39598612807722:2f56c60017ab1c4b0b77e3954e3d0034",
+            "title": "The Essentials Bra \/ Black - X SMALL",
+            "price": 5500,
+            "original_price": 5500,
+            "discounted_price": 5500,
+            "line_price": 5500,
+            "original_line_price": 5500,
+            "total_discount": 0,
+            "discounts": [],
+            "sku": "EB-ATBXS",
+            "grams": 45,
+            "vendor": "437",
+            "taxable": true,
+            "product_id": 6668054921258,
+            "product_has_only_default_variant": false,
+            "gift_card": false,
+            "final_price": 5500,
+            "final_line_price": 5500,
+            "url": "\/products\/the-essentials-bra-black?variant=39598612807722",
+            "featured_image": {
+                "aspect_ratio": 0.75,
+                "alt": "The Essentials Bra \/ Black",
+                "height": 1667,
+                "url": "https:\/\/cdn.shopify.com\/s\/files\/1\/2112\/6981\/products\/Bra-ange.png?v=1642527809",
+                "width": 1250
+            },
+            "image": "https:\/\/cdn.shopify.com\/s\/files\/1\/2112\/6981\/products\/Bra-ange.png?v=1642527809",
+            "handle": "the-essentials-bra-black",
+            "requires_shipping": true,
+            "product_type": "THE ESSENTIALS BRA",
+            "product_title": "The Essentials Bra \/ Black",
+            "product_description": "*Please note, the dyeing process creates a different hand feel of fabric between\u00a0colors.\nPair with matching Essentials Legging\nFeatures\n\nScoop neckline with a racer back\nDouble layered with an elastic waist for added support\nSeamless edges\nFeatures a tonal 437 logo on back waist\n437 smooth\u2122 is a moisture wicking fabric, sustainably sourced and made using recycled Nylon\n",
+            "variant_title": "X SMALL",
+            "variant_options": [
+                "X SMALL"
+            ],
+            "options_with_values": [
+                {
+                    "name": "Size",
+                    "value": "X SMALL"
+                }
+            ],
+            "line_level_discount_allocations": [],
+            "line_level_total_discount": 0
+        }
+    ],
+    "requires_shipping": true,
+    "currency": "USD",
+    "items_subtotal_price": 11000,
+    "cart_level_discount_applications": []
+}
