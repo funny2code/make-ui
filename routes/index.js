@@ -4,8 +4,8 @@ const router = express.Router();
 const make = require('../contents/make');
 const modelThemes = require('../models/themes');
 const modelUsersThemes = require('../models/customer-themes');
-const themeJson = require('../themejson.json');
-const themeConfif = require('../themes/6306f8e7db2cbec8c440f780/locales/en.default.schema.json');
+// const themeJson = require('../themejson.json');
+// const themeConfif = require('../themes/6306f8e7db2cbec8c440f780/locales/en.default.schema.json');
 const fs = require('fs');
 
 
