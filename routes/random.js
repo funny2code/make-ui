@@ -46,10 +46,13 @@ router.get('/', async (req, res, next) => {
 
     const pageSections = theme.theme_pag.filter(item => { if(item.name === page) return item.items});
     const sections = []; 
-    theme.theme_sec.filter(section => {pageSections[0].items.forEach(item => {if(item.name === section.name) return sections.push(section)})});
+    theme.theme_sec.filter(section => {pageSections[0].items.forEach(item => {
+      console.log(item.handle === section.file_name);
+      if(item.handle === section.file_name) return sections.push(section)
+    })});
     if(localData?.sections?.length && sections){
       sections.forEach(section => {
-        const findLocalSection = localData?.sections?.filter(localSection => localSection.name === section.name);
+        const findLocalSection = localData?.sections?.filter(localSection => localSection.file_name === section.file_name);
         if(findLocalSection?.length){
           if(section?.settings){
             for (var k in section.settings) {

@@ -667,7 +667,10 @@
         let newSettingsWrap = html.querySelector('.py__make-settings');
         let oldIframeWrap = document.querySelectorAll('.py__preview-iframe');
         let newIframeWrap = html.querySelector('.py__preview-iframe');
+        let oldRemixSettings = document.querySelectorAll('.py__make-random-settings');
+        let newRemixSettings = html.querySelectorAll('.py__make-random-settings');
         oldSettingsWrap && newSettingsWrap ? oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML : null;
+        oldRemixSettings && newRemixSettings ? oldRemixSettings.innerHTML = newRemixSettings : null;
         if(oldIframeWrap.length && newIframeWrap){
             oldIframeWrap.forEach(oldItem => {  
                 oldItem.innerHTML = newIframeWrap.innerHTML;
