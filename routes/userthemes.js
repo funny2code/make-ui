@@ -25,7 +25,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
       : theme.theme_set.filter(item => item.name === 'theme_info' || item.name === global)
       : null;
 
-    const sections = section ? theme.theme_sec.filter(item => item.name === section) : null;
+    const sections = section ? theme.theme_sec.filter(item => item.file_name === section) : null;
     const pageSections = theme.theme_pag.filter(item => { if (item.name === page) return item.items });
     const pageNames = [];
     theme.theme_pag.forEach(item => pageNames.push({ name: item.name }));

@@ -1,4 +1,396 @@
-(function(){
+(function () {
+    const fonts = [
+        {
+            "heading": "Sora",
+            "body": "Inter"
+        },
+        {
+            "heading": "Syne",
+            "body": "Roboto"
+        },
+        {
+            "heading": "Ultra",
+            "body": "PT Serif"
+        },
+        {
+            "heading": "IBM Plex Sans Condensed",
+            "body": "IBM Plex Sans"
+        },
+        {
+            "heading": "Work Sans",
+            "body": "Merriweather"
+        },
+        {
+            "heading": "Oswald",
+            "body": "Source Sans Pro"
+        },
+        {
+            "heading": "Barlow Condensed",
+            "body": "Montserrat"
+        },
+        {
+            "heading": "Alegreya",
+            "body": "Alegreya"
+        },
+        {
+            "heading": "Karla",
+            "body": "Merriweather"
+        },
+        {
+            "heading": "Roboto Condensed",
+            "body": "Roboto"
+        },
+        {
+            "heading": "Nunito Sans",
+            "body": "Nunito Sans"
+        },
+        {
+            "heading": "Libre Baskerville ",
+            "body": "Libre Baskerville "
+        },
+        {
+            "heading": "Oswald",
+            "body": "Source Serif Pro"
+        },
+        {
+            "heading": "Nunito",
+            "body": "PT Sans"
+        },
+        {
+            "heading": "Montserrat",
+            "body": "Hind"
+        },
+        {
+            "heading": "Stint Ultra Expanded",
+            "body": "Pontano Sans"
+        },
+        {
+            "heading": "Karla",
+            "body": "Inconsolata"
+        },
+        {
+            "heading": "Playfair Display",
+            "body": "Lato"
+        },
+        {
+            "heading": "Libre Baskerville",
+            "body": "Source Sans Pro"
+        },
+        {
+            "heading": "Cormorant Garamond",
+            "body": "Proza Libre"
+        },
+        {
+            "heading": "Quattrocento",
+            "body": "Lora"
+        },
+        {
+            "heading": "Quattrocento",
+            "body": "Quattrocento Sans"
+        },
+        {
+            "heading": "Playfair Display",
+            "body": "Source Sans Pro"
+        },
+        {
+            "heading": "Yeseva One",
+            "body": "Josefin Sans"
+        },
+        {
+            "heading": "Quicksand",
+            "body": "Quicksand"
+        },
+        {
+            "heading": "Abril Fatface",
+            "body": "Poppins"
+        },
+        {
+            "heading": "Fjalla One",
+            "body": "Cantarell"
+        },
+        {
+            "heading": "Syne",
+            "body": "Inter"
+        },
+        {
+            "heading": "Source Sans Pro",
+            "body": "Source Serif Pro"
+        },
+        {
+            "heading": "Arvo",
+            "body": "Lato"
+        },
+        {
+            "heading": "Roboto",
+            "body": "Nunito"
+        },
+        {
+            "heading": "Cinzel",
+            "body": "Fauna One"
+        },
+        {
+            "heading": "Playfair Display",
+            "body": "Alice"
+        },
+        {
+            "heading": "Cormorant",
+            "body": "Open Sans"
+        },
+        {
+            "heading": "Oswald",
+            "body": "Lora"
+        },
+        {
+            "heading": "Yellowtail",
+            "body": "Lato"
+        },
+        {
+            "heading": "Archivo",
+            "body": "Tenor Sans"
+        },
+        {
+            "heading": "Open Sans",
+            "body": "Average Sans"
+        },
+        {
+            "heading": "Rufina",
+            "body": "Average Sans"
+        },
+        {
+            "heading": "Rufina",
+            "body": "Oxygen"
+        },
+        {
+            "heading": "Rubik",
+            "body": "Roboto Mono"
+        },
+        {
+            "heading": "Poiret One",
+            "body": "Montserrat"
+        },
+        {
+            "heading": "Oswald",
+            "body": "Quicksand"
+        },
+        {
+            "heading": "Merriweather",
+            "body": "Merriweather"
+        },
+        {
+            "heading": "Montserrat",
+            "body": "Open Sans"
+        },
+        {
+            "heading": "Roboto Slab",
+            "body": "Roboto"
+        },
+        {
+            "heading": "Anton",
+            "body": "Roboto"
+        },
+        {
+            "heading": "Montserrat",
+            "body": "Montserrat"
+        },
+        {
+            "heading": "Sintony",
+            "body": "Poppins"
+        },
+        {
+            "heading": "Fjalla One",
+            "body": "Inter"
+        },
+        {
+            "heading": "Teko",
+            "body": "Ubuntu"
+        },
+        {
+            "heading": "Josefin Slab",
+            "body": "Josefin Sans"
+        },
+        {
+            "heading": "Outfit",
+            "body": "Outfit"
+        },
+        {
+            "heading": "Philosopher",
+            "body": "Mulish"
+        },
+        {
+            "heading": "Cormorant",
+            "body": "Proza Libre"
+        },
+        {
+            "heading": "Mulish",
+            "body": "Space Mono"
+        },
+        {
+            "heading": "Alfa Slab One",
+            "body": "Gentium Book Basic"
+        },
+        {
+            "heading": "Quattrocento",
+            "body": "Fanwood Text"
+        },
+        {
+            "heading": "Playfair Display",
+            "body": "Quattrocento"
+        },
+        {
+            "heading": "Old Standard TT",
+            "body": "Mulish"
+        },
+        {
+            "heading": "Alegreya",
+            "body": "Source Sans Pro"
+        },
+        {
+            "heading": "Archivo Black",
+            "body": "Archivo"
+        },
+        {
+            "heading": "Cardo",
+            "body": "Hind"
+        },
+        {
+            "heading": "Josefin Sans",
+            "body": "Open Sans"
+        },
+        {
+            "heading": "Josefin Sans",
+            "body": "Inter"
+        },
+        {
+            "heading": "Lora",
+            "body": "Merriweather"
+        },
+        {
+            "heading": "Cabin",
+            "body": "Cabin"
+        },
+        {
+            "heading": "Kreon",
+            "body": "Ubuntu"
+        },
+        {
+            "heading": "Nunito",
+            "body": "Nunito Sans"
+        },
+        {
+            "heading": "Merriweather",
+            "body": "Source Sans Pro"
+        },
+        {
+            "heading": "Lora",
+            "body": "DM Sans"
+        },
+        {
+            "heading": "Archivo Black",
+            "body": "Inter"
+        },
+        {
+            "heading": "Bitter",
+            "body": "Raleway"
+        },
+        {
+            "heading": "Montserrat",
+            "body": "Source Sans Pro"
+        },
+        {
+            "heading": "Libre Baskerville",
+            "body": "Raleway"
+        },
+        {
+            "heading": "Bubblegum Sans",
+            "body": "Open Sans"
+        },
+        {
+            "heading": "Poiret One",
+            "body": "Lato"
+        },
+        {
+            "heading": "Roboto",
+            "body": "Roboto"
+        },
+        {
+            "heading": "Roboto Mono",
+            "body": "Roboto"
+        },
+        {
+            "heading": "EB Garamond",
+            "body": "Montserrat"
+        },
+        {
+            "heading": "Oswald",
+            "body": "Roboto"
+        },
+        {
+            "heading": "Inter",
+            "body": "Inter"
+        },
+        {
+            "heading": "Forum",
+            "body": "Work Sans"
+        },
+        {
+            "heading": "Tenor Sans",
+            "body": "Archivo Narrow"
+        },
+        {
+            "heading": "Playfair Display",
+            "body": "Raleway"
+        },
+        {
+            "heading": "Poppins",
+            "body": "Lora"
+        },
+        {
+            "heading": "Montserrat",
+            "body": "Lato"
+        },
+        {
+            "heading": "Six Caps",
+            "body": "Inter"
+        },
+        {
+            "heading": "Orelega One",
+            "body": "Montserrat"
+        },
+        {
+            "heading": "Della Respira",
+            "body": "Open Sans"
+        },
+        {
+            "heading": "Rozha One",
+            "body": "Questrial"
+        },
+        {
+            "heading": "Noto Serif",
+            "body": "Noto Sans"
+        },
+        {
+            "heading": "Playfair Display",
+            "body": "DM Sans"
+        },
+        {
+            "heading": "DM Serif Display",
+            "body": "Red Hat Display"
+        },
+        {
+            "heading": "Oswald",
+            "body": "Merriweather"
+        },
+        {
+            "heading": "Epilogue (Bold)",
+            "body": "Epilogue (Regular)"
+        },
+        {
+            "heading": "Expletus Sans",
+            "body": "Hind"
+        }
+    ];
+
+    let fontsCount = 0;
 
     // GLOBAL VARIABLES
     var focuseValue = "";
@@ -6,7 +398,7 @@
         settings: {},
         sections: [],
     };
-    var saveButton = null; 
+    var saveButton = null;
     var downloadButton = null;
     var loading = null;
     var themeName = "ThemeMake";
@@ -22,22 +414,22 @@
     };
     // Colors Contrast Fun 
     const getContrastYIQ = (hexcolor) => {
-        if(!hexcolor) return;
+        if (!hexcolor) return;
         hexcolor = hexcolor.replace("#", "");
-        var r = parseInt(hexcolor.substr(0,2),16);
-        var g = parseInt(hexcolor.substr(2,2),16);
-        var b = parseInt(hexcolor.substr(4,2),16);
-        var yiq = ((r*299)+(g*587)+(b*114))/1000;
+        var r = parseInt(hexcolor.substr(0, 2), 16);
+        var g = parseInt(hexcolor.substr(2, 2), 16);
+        var b = parseInt(hexcolor.substr(4, 2), 16);
+        var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
         return (yiq >= 186) ? '#000000' : '#ffffff';
     };
 
     // Save old settings values
-    const saveSettingsValues = (id=false) => {
+    const saveSettingsValues = (id = false) => {
 
         let dataSections = document.querySelectorAll('.py__settings-section-item');
-        if(!dataSections.length) return;
-        dataSections.forEach((data,index) => {
-            let section = {name: null, file_name: null, template_name: null, settings: {}, blocks: []};
+        if (!dataSections.length) return;
+        dataSections.forEach((data, index) => {
+            let section = { name: null, file_name: null, template_name: null, settings: {}, blocks: [] };
             let sectionClosest = data.closest('.py__closest');
             let blockSettings = sectionClosest ? sectionClosest.querySelectorAll('.py__settings-block-item') : null;
             // let sectionName = data?.getAttribute('data-section-name');
@@ -48,30 +440,30 @@
             section.template_name = templateName;
 
             // if(!fileName){
-                data?.querySelectorAll('[name]').forEach(element => {
-                    theme.settings[element.getAttribute('name').replace('settings_', '')] = (element.value === "true" || element.value === "false") 
-                    ? (element.value === "true") ? true : false 
+            data?.querySelectorAll('[name]').forEach(element => {
+                theme.settings[element.getAttribute('name').replace('settings_', '')] = (element.value === "true" || element.value === "false")
+                    ? (element.value === "true") ? true : false
                     : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
-                });
+            });
             // }
 
-            if(theme?.sections?.length){
+            if (theme?.sections?.length) {
                 let checking = theme?.sections?.filter(sectionItem => sectionItem.file_name === fileName);
-                if(checking.length){
+                if (checking.length) {
                     theme?.sections?.forEach(sectionItem => {
-                        if(sectionItem.file_name === fileName){
+                        if (sectionItem.file_name === fileName) {
                             data?.querySelectorAll('[name]').forEach(element => {
-                                sectionItem.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false 
-                                : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
+                                sectionItem.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
+                                    : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                             });
                         }
-                        if(blockSettings?.length){
-                            blockSettings.forEach(block=>{
+                        if (blockSettings?.length) {
+                            blockSettings.forEach(block => {
                                 sectionItem?.blocks.forEach(localBlock => {
-                                    if(localBlock.type === block.getAttribute('data-type')){
+                                    if (localBlock.type === block.getAttribute('data-type')) {
                                         block.querySelectorAll('[name]').forEach(element => {
                                             localBlock.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
-                                            : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
+                                                : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                                         });
                                     }
                                 })
@@ -82,14 +474,14 @@
                     section.file_name = fileName;
                     data?.querySelectorAll('[name]').forEach(element => {
                         section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
-                        : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
+                            : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                     });
-                    if(blockSettings?.length){
-                        blockSettings.forEach(block=>{
-                            let blockItem = {type: block.getAttribute('data-type'),settings: {}};
+                    if (blockSettings?.length) {
+                        blockSettings.forEach(block => {
+                            let blockItem = { type: block.getAttribute('data-type'), settings: {} };
                             block?.querySelectorAll('[name]')?.forEach(element => {
-                                blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false 
-                                : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
+                                blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
+                                    : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                             });
                             section.blocks.push(blockItem);
                         });
@@ -98,32 +490,32 @@
             } else {
                 section.file_name = fileName;
                 data?.querySelectorAll('[name]').forEach(element => {
-                    section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false 
-                    : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
+                    section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
+                        : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                 });
-                if(blockSettings?.length){
-                    blockSettings.forEach(block=>{
-                        let blockItem = {type: block.getAttribute('data-type'),settings: {}};
+                if (blockSettings?.length) {
+                    blockSettings.forEach(block => {
+                        let blockItem = { type: block.getAttribute('data-type'), settings: {} };
                         block?.querySelectorAll('[name]')?.forEach(element => {
-                            blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false 
-                            : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
+                            blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
+                                : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                         });
                         section.blocks.push(blockItem);
                     });
                 };
             }
 
-            if(section.file_name){
+            if (section.file_name) {
                 theme.sections.push(section);
             }
         })
     };
 
     // FETCH CONFIG FUNCTION
-    const fetchConfig = (method='POST', type = 'json') => {
+    const fetchConfig = (method = 'POST', type = 'json') => {
         return {
-          method: method,
-          headers: { 'Content-Type': 'application/json', 'Accept': `application/${type}` }
+            method: method,
+            headers: { 'Content-Type': 'application/json', 'Accept': `application/${type}` }
         };
     };
 
@@ -132,26 +524,26 @@
         let errorWraper = document.querySelector(el);
         errorWraper.textContent = message;
         errorWraper?.classList.add('active');
-        loading?.classList.remove('py__animate'); 
+        loading?.classList.remove('py__animate');
     };
 
     // Check settings values 
     // const checkSettings = (id, value) => {
-        // if(settingsValues[id] === value){
-        //     let isDisabled = true; 
-        //     settingsValuesBool[id] = false;
-        //     Object.entries(settingsValuesBool).forEach(([key, val]) => {
-        //         if(val) return isDisabled = false; 
-        //     });
-        //     if(isDisabled){
-        //         saveButton && saveButton.setAttribute('aria-disabled', 'true');
-        //         downloadButton && downloadButton.setAttribute('aria-disabled', 'false');
-        //     }
-        // } else {
-        //     saveButton && saveButton.setAttribute('aria-disabled', 'false');
-        //     downloadButton && downloadButton.setAttribute('aria-disabled', 'true');
-        //     settingsValuesBool[id] = true;
-        // }       
+    // if(settingsValues[id] === value){
+    //     let isDisabled = true; 
+    //     settingsValuesBool[id] = false;
+    //     Object.entries(settingsValuesBool).forEach(([key, val]) => {
+    //         if(val) return isDisabled = false; 
+    //     });
+    //     if(isDisabled){
+    //         saveButton && saveButton.setAttribute('aria-disabled', 'true');
+    //         downloadButton && downloadButton.setAttribute('aria-disabled', 'false');
+    //     }
+    // } else {
+    //     saveButton && saveButton.setAttribute('aria-disabled', 'false');
+    //     downloadButton && downloadButton.setAttribute('aria-disabled', 'true');
+    //     settingsValuesBool[id] = true;
+    // }       
     // };
 
     // Save Function
@@ -159,20 +551,20 @@
 
         let form = document.querySelector('form.py__settings-form');
         let url = form.getAttribute('action');
-        
-        if(!form || !url) return;
+
+        if (!form || !url) return;
 
         loading?.classList.add('py__animate');
 
-        let res = await fetch(url, {method:'POST',headers: {'Accept': 'application/json','Content-Type': 'application/json'},body:JSON.stringify(theme)})
+        let res = await fetch(url, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(theme) })
         let data = await res.text();
-        if(!data) return loading?.classList.remove('py__animate');
+        if (!data) return loading?.classList.remove('py__animate');
         let dataParse = JSON.parse(data);
-        if(dataParse?.status === 200){
+        if (dataParse?.status === 200) {
             saveButton?.setAttribute('aria-disabled', 'true');
             downloadButton?.setAttribute('aria-disabled', 'false');
             saveSettingsValues();
-        } 
+        }
         loading?.classList.remove('py__animate');
     };
 
@@ -181,15 +573,15 @@
     const saveFigma = async () => {
         let userID = document.querySelector('.py__save-figma-button').getAttribute('data-user-id');
         let themeID = document.querySelector('.py__save-figma-button').getAttribute('data-theme-id');
-        if(!userID || !themeID) return;
-        loading?.classList.add('py__animate','py__notopacity');
+        if (!userID || !themeID) return;
+        loading?.classList.add('py__animate', 'py__notopacity');
         loading?.insertAdjacentHTML("beforeend", '<span class="py__save-figma-message">Please wait few minuts...</span>');
 
         let currentUrl = location?.pathname + location?.search;
         let brandhref = encodeURI(document.querySelector('.global-styles')?.getAttribute('href'));
         currentUrl !== brandhref ? await changeViewPage(false, brandhref, false) : null;
         currentUrl !== brandhref ? await timeout(4000) : null;
-        await saveBrandForFigma(); 
+        await saveBrandForFigma();
 
         let selectPages = document.querySelector('.py__preview-pages-select');
         let selectPagesOptions = selectPages.querySelectorAll('option');
@@ -199,12 +591,12 @@
             await timeout(3000);
             await savePageResForFigma();
         }
-        
-        let url = '/figma/' + userID + '/' + themeID; 
-        let res = await fetch(url, {method:'POST',headers: {'Accept': 'application/json','Content-Type': 'application/json'},body:JSON.stringify(figmaContent)});
+
+        let url = '/figma/' + userID + '/' + themeID;
+        let res = await fetch(url, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(figmaContent) });
         let data = await res.text();
-        if(!data) return;
-        loading?.classList.remove('py__animate','py__notopacity');
+        if (!data) return;
+        loading?.classList.remove('py__animate', 'py__notopacity');
         loading?.querySelector('.py__save-figma-message')?.remove();
     };
 
@@ -221,9 +613,9 @@
         let iframe = document.querySelector('.py__view-iframe');
         let pageName = iframe.getAttribute('data-page-name');
         let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-        if(!iframeDocument) return;
+        if (!iframeDocument) return;
         let data = await mapDOM(iframeDocument.getElementsByTagName('body')[0], false);
-        if(data) data.name = pageName + " Desktop";
+        if (data) data.name = pageName + " Desktop";
         figmaContent.push(data);
         let tablet = document.querySelector('.py__button-view[data-type="tablet"]');
         tablet.click();
@@ -234,10 +626,10 @@
     const saveBrandForFigma = async () => {
         let iframe = document.querySelector('.py__view-iframe');
         let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-        if(!iframeDocument) return;
+        if (!iframeDocument) return;
         let brandHtml = iframeDocument.getElementsByTagName('body')[0];
         let data = await mapDOM(brandHtml, false);
-        if(data) data.name = "Brand";
+        if (data) data.name = "Brand";
         figmaContent.push(data);
     };
 
@@ -245,9 +637,9 @@
         let iframe = document.querySelector('.py__view-iframe');
         let pageName = iframe.getAttribute('data-page-name');
         let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-        if(!iframeDocument) return;
+        if (!iframeDocument) return;
         let data = await mapDOM(iframeDocument.getElementsByTagName('body')[0], false);
-        if(data) data.name = pageName + " Tablet";
+        if (data) data.name = pageName + " Tablet";
         figmaContent.push(data);
         let mobile = document.querySelector('.py__button-view[data-type="mobile"]');
         mobile.click();
@@ -259,9 +651,9 @@
         let iframe = document.querySelector('.py__view-iframe');
         let pageName = iframe.getAttribute('data-page-name');
         let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-        if(!iframeDocument) return;
+        if (!iframeDocument) return;
         let data = await mapDOM(iframeDocument.getElementsByTagName('body')[0], false);
-        if(data) data.name = pageName + " Mobile";
+        if (data) data.name = pageName + " Mobile";
         figmaContent.push(data);
         let desktop = document.querySelector('.py__button-view[data-type="desktop"]');
         desktop.click();
@@ -269,18 +661,18 @@
     };
 
     // FIGMA HTML TO JSON
-    const  mapDOM = async (element, json) => {
+    const mapDOM = async (element, json) => {
         let treeObject = {};
-        
+
         if (typeof element === "string") {
             if (window.DOMParser) {
                 parser = new DOMParser();
-                docNode = parser.parseFromString(element,"text/xml");
-            } else { 
+                docNode = parser.parseFromString(element, "text/xml");
+            } else {
                 docNode = new ActiveXObject("Microsoft.XMLDOM");
                 docNode.async = false;
-                docNode.loadXML(element); 
-            } 
+                docNode.loadXML(element);
+            }
             element = docNode.firstChild;
         }
 
@@ -289,7 +681,7 @@
             values = values.split(')')[0];
             values = values.split(',');
             let sin = values[1];
-            return Math.round(Math.asin(sin) * (180/Math.PI));
+            return Math.round(Math.asin(sin) * (180 / Math.PI));
         };
 
         const dumpCSSText = async (element) => {
@@ -326,26 +718,26 @@
             let visibility = css.getPropertyValue("visibility");
             return (display === "none" || visibility === "hidden") ? true : false;
         }
-        
+
         //Recursively loop through DOM elements and assign properties to object
         const treeHTML = async (element, object) => {
-            if(element.nodeName === "STYLE" || element.nodeName === "LINK" || element.nodeName === "SCRIPT" || element.nodeName === "NOSCRIPT") return;
-            if(element && element.nodeType === 8 || await checkElementHide(element) || element?.classList?.contains("visually-hidden")) return;
+            if (element.nodeName === "STYLE" || element.nodeName === "LINK" || element.nodeName === "SCRIPT" || element.nodeName === "NOSCRIPT") return;
+            if (element && element.nodeType === 8 || await checkElementHide(element) || element?.classList?.contains("visually-hidden")) return;
             object["type"] = element.nodeName;
             object["css"] = await dumpCSSText(element);
-            if(element.nodeName === "svg") return object["content"] = element.outerHTML;
+            if (element.nodeName === "svg") return object["content"] = element.outerHTML;
             let nodeList = element.childNodes;
             if (nodeList != null) {
                 if (nodeList.length) {
                     object["content"] = [];
                     for (let i = 0; i < nodeList.length; i++) {
                         if (nodeList[i].nodeType == 3) {
-                            if(nodeList[i].nodeValue.replace(/[\r\n]/gm, '').trim() !== ''){
+                            if (nodeList[i].nodeValue.replace(/[\r\n]/gm, '').trim() !== '') {
                                 object["content"].push(nodeList[i].nodeValue.trim());
                             }
                         } else {
                             object["content"].push({});
-                            await treeHTML(nodeList[i], object["content"][object["content"].length -1]);
+                            await treeHTML(nodeList[i], object["content"][object["content"].length - 1]);
                         }
                     }
                 }
@@ -354,30 +746,30 @@
                 if (element.attributes.length) {
                     object["attributes"] = {};
                     for (var i = 0; i < element.attributes.length; i++) {
-                        (element.attributes[i].nodeName === "src") 
-                        ? object["attributes"][element.attributes[i].nodeName] = element.src
-                        : object["attributes"][element.attributes[i].nodeName] = element.attributes[i].nodeValue;
+                        (element.attributes[i].nodeName === "src")
+                            ? object["attributes"][element.attributes[i].nodeName] = element.src
+                            : object["attributes"][element.attributes[i].nodeName] = element.attributes[i].nodeValue;
                     }
                 }
             }
-            
+
         }
         await treeHTML(element, treeObject);
-        
+
         return (json) ? JSON.stringify(treeObject) : treeObject;
     }
 
     // Get Register Popup Function
     const getRegister = async (event) => {
-        
-        if(!event) return;
+
+        if (!event) return;
         event.preventDefault();
         loading?.classList.add('py__animate');
-    
 
-        let res = await fetch('/signup', {method:'GET',headers: {'Accept': 'application/json','Content-Type': 'application/json'}});
+
+        let res = await fetch('/signup', { method: 'GET', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' } });
         let data = await res.text();
-        if(!data) return loading?.classList.remove('py__animate');
+        if (!data) return loading?.classList.remove('py__animate');
         let body = document.querySelector('body');
         body.insertAdjacentHTML('afterend', data);
         loading?.classList.remove('py__animate');
@@ -385,15 +777,15 @@
 
     // Get Login Popup Function
     const getLogin = async (event) => {
-        
-        if(!event) return;
+
+        if (!event) return;
         event.preventDefault();
         loading?.classList.add('py__animate');
-    
 
-        let res = await fetch('/login', {method:'GET',headers: {'Accept': 'application/json','Content-Type': 'application/json'}});
+
+        let res = await fetch('/login', { method: 'GET', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' } });
         let data = await res.text();
-        if(!data) return loading?.classList.remove('py__animate');
+        if (!data) return loading?.classList.remove('py__animate');
         let body = document.querySelector('body');
         body.insertAdjacentHTML('afterend', data);
         loading?.classList.remove('py__animate');
@@ -401,73 +793,73 @@
 
     // Get Add Theme Popup Function
     const getAddTheme = async (event) => {
-        
-        if(!event) return;
+
+        if (!event) return;
         event.preventDefault();
         let el = event.target;
         let url = el.getAttribute('href');
-        if(!url) return;
+        if (!url) return;
 
-        let res = await fetch(url, {method:'GET',headers: {'Accept': 'application/json','Content-Type': 'application/json'}});
+        let res = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' } });
         let data = await res.text();
-        if(!data) return;
+        if (!data) return;
         let body = document.querySelector('body');
         body.insertAdjacentHTML('afterend', data);
     };
 
     // SignUp Function
     const signup = async (event) => {
-        
-        if(!event) return;
+
+        if (!event) return;
         event.preventDefault();
         let form = event.target;
         let url = event.target.getAttribute('action');
-        let themeId = document.querySelector('.py__signup-button')?.getAttribute('data-id'); 
+        let themeId = document.querySelector('.py__signup-button')?.getAttribute('data-id');
         let body = null;
-        if(!url || !themeId) return;
+        if (!url || !themeId) return;
         loading?.classList.add('py__animate');
-        
+
         let formData = new FormData(form);
         let ObjectFormData = Object.fromEntries(formData.entries());
         body = JSON.stringify(ObjectFormData);
-        
+
         // Signup Ajax POST 
-        let signupFun = await fetch(url, {...fetchConfig(), body});
+        let signupFun = await fetch(url, { ...fetchConfig(), body });
         let signupFunRes = await signupFun.text();
         let signupFunParse = JSON.parse(signupFunRes);
 
         // Signup Ajax Response
-        if(signupFunParse.status !== "active" && signupFunParse.status !== "requires_confirmation") return errorHandle('.py__signup-error-wrap', signupFunParse.message);
-        if(signupFunParse.status === "requires_confirmation"){
+        if (signupFunParse.status !== "active" && signupFunParse.status !== "requires_confirmation") return errorHandle('.py__signup-error-wrap', signupFunParse.message);
+        if (signupFunParse.status === "requires_confirmation") {
             let stripe = Stripe('pk_test_hnMkmoqkvZxUjOrnEkPIVd80');
             let stripeResponse = await stripe.confirmCardPayment(signupFunParse?.client_secret);
-            if(stripeResponse?.error || !stripeResponse?.paymentIntent) return;
+            if (stripeResponse?.error || !stripeResponse?.paymentIntent) return;
         }
 
         // Add Theme Ajax POST;
         let addThemeUrl = `/add/${signupFunParse.id}/${themeId}`;
-        body = JSON.stringify({themename: themeName});
-        let addThemeFun = await fetch(addThemeUrl, {...fetchConfig(), body});
+        body = JSON.stringify({ themename: themeName });
+        let addThemeFun = await fetch(addThemeUrl, { ...fetchConfig(), body });
         let addThemeResponse = await addThemeFun.text();
         let addThemeParse = JSON.parse(addThemeResponse);
-        if(addThemeParse.status !== 200) return errorHandle('.py__signup-error-wrap', addThemeParse.message);
+        if (addThemeParse.status !== 200) return errorHandle('.py__signup-error-wrap', addThemeParse.message);
 
         // Save Theme Settings Ajax POST
         let saveUrl = `/save/users/${signupFunParse.id}/themes/${addThemeParse.theme_id}`;
         body = JSON.stringify(theme);
-        let saveFun = await fetch(saveUrl, {...fetchConfig(), body});
+        let saveFun = await fetch(saveUrl, { ...fetchConfig(), body });
         let saveFunResponse = await saveFun.text();
         let saveFunParse = JSON.parse(saveFunResponse);
-        if(saveFunParse.status !== 200) return errorHandle('.py__signup-error-wrap', saveFunParse.message);
-        
+        if (saveFunParse.status !== 200) return errorHandle('.py__signup-error-wrap', saveFunParse.message);
+
 
         // DOWNLOAD Fun Ajax POST
         let downloadUrl = '/download';
-        body = JSON.stringify({userId: signupFunParse.id, themeId: addThemeParse.theme_id});
-        let downloadFun = await fetch(downloadUrl, {...fetchConfig(), body});
+        body = JSON.stringify({ userId: signupFunParse.id, themeId: addThemeParse.theme_id });
+        let downloadFun = await fetch(downloadUrl, { ...fetchConfig(), body });
         let downloadFunResponse = await downloadFun.blob();
-        if(!downloadFunResponse) return errorHandle('.py__signup-error-wrap', 'Error! please try again few minutes late.');
-        
+        if (!downloadFunResponse) return errorHandle('.py__signup-error-wrap', 'Error! please try again few minutes late.');
+
         let downloadObjectUrl = window.URL.createObjectURL(downloadFunResponse);
         let createElement = document.createElement('a');
         createElement.style.display = 'none';
@@ -483,42 +875,42 @@
 
     // Login Function
     const login = async (event) => {
-        
-        if(!event) return;
+
+        if (!event) return;
         event.preventDefault();
         let form = event.target;
         let url = event.target.getAttribute('action');
-        if(!url) return;
+        if (!url) return;
         let formData = new FormData(form);
         let ObjectFormData = Object.fromEntries(formData.entries());
         loading?.classList.add('py__animate');
 
-        let res = await fetch(url, {method:'post',headers: {'Accept': 'application/json','Content-Type': 'application/json'},body: JSON.stringify(ObjectFormData)});
+        let res = await fetch(url, { method: 'post', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(ObjectFormData) });
         let data = await res.text();
-        if(!data) return;
+        if (!data) return;
         let parseData = JSON.parse(data);
-        if(parseData.status !== 200) return errorHandle('.py__login-error-wrap', parseData.message);
+        if (parseData.status !== 200) return errorHandle('.py__login-error-wrap', parseData.message);
         loading?.classList.remove('py__animate');
         return location.href = location.origin;
     };
 
     // ADD Theme Function
     const addTheme = async (event) => {
-        
-        if(!event) return;
+
+        if (!event) return;
         event.preventDefault();
         let form = event.target;
         let url = event.target.getAttribute('action');
-        if(!url) return;
+        if (!url) return;
         let formData = new FormData(form);
         let ObjectFormData = Object.fromEntries(formData.entries());
         loading?.classList.add('py__animate');
 
-        let res = await fetch(url, {method:'post',headers: {'Accept': 'application/json','Content-Type': 'application/json'},body: JSON.stringify(ObjectFormData)});
+        let res = await fetch(url, { method: 'post', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(ObjectFormData) });
         let data = await res.text();
-        if(!data) return;
+        if (!data) return;
         let parseData = JSON.parse(data);
-        if(parseData.status !== 200) return errorHandle('.py__addtheme-error-wrap', parseData.message);
+        if (parseData.status !== 200) return errorHandle('.py__addtheme-error-wrap', parseData.message);
         loading?.classList.remove('py__animate');
         return location.href = location.origin;
     };
@@ -526,21 +918,21 @@
     // Download function
     const download = async (event) => {
 
-        if(!event) return;
+        if (!event) return;
         event.preventDefault();
 
         let btn = event.target;
         let url = btn.getAttribute('href');
         let themeId = btn.getAttribute('data-id');
         let userId = btn.getAttribute('data-user-id');
-        let data = userId ? {userId: userId, themeId: themeId} : {themeId: themeId};
-        
-        if(!url || !themeId) return;
+        let data = userId ? { userId: userId, themeId: themeId } : { themeId: themeId };
+
+        if (!url || !themeId) return;
         loading?.classList.add('py__animate');
-        
-        let res = await fetch(url, {method:'POST',headers: {'Accept': 'application/json','Content-Type': 'application/json'},body:JSON.stringify(data)});
+
+        let res = await fetch(url, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
         let resData = await res.blob();
-        if(!resData) return loading?.classList.remove('py__animate');
+        if (!resData) return loading?.classList.remove('py__animate');
         let objectUrl = window.URL.createObjectURL(resData);
         let a = document.createElement('a');
         a.style.display = 'none';
@@ -557,20 +949,20 @@
     const viewIframe = async () => {
         let iframes = document.querySelectorAll('iframe.py__view-iframe');
         let url = null;
-        
-        if(!iframes?.length) return;
+
+        if (!iframes?.length) return;
         let randomContent = iframes[0].closest('.py__preview-random-content');
         let ids = randomContent?.getAttribute('data-ids');
-        if(ids){
+        if (ids) {
             let newId = null;
             let arrayIds = ids?.split(',');
             let signupBtn = document.querySelector('.py__signup-button');
-            arrayIds?.forEach((id,i,array) => {
+            arrayIds?.forEach((id, i, array) => {
                 let index = i + 1;
-                if(iframes[0]?.getAttribute('data-theme-id') === id && index !== array.length){
+                if (iframes[0]?.getAttribute('data-theme-id') === id && index !== array.length) {
                     newId = array[index];
                     return url = '/view/' + array[index] + location.search;
-                } else if(iframes[0]?.getAttribute('data-theme-id') === id && index === array.length){
+                } else if (iframes[0]?.getAttribute('data-theme-id') === id && index === array.length) {
                     newId = array[0];
                     return url = '/view/' + array[0] + location.search;
                 }
@@ -581,12 +973,12 @@
             url = iframes[0]?.getAttribute('src');
         }
 
-        let res = await fetch(url, {method:'POST',headers: {'Accept': 'application/json','Content-Type': 'application/json'},  body:JSON.stringify(theme)});
+        let res = await fetch(url, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(theme) });
         let data = await res.text();
-        if(!data) loading?.classList.remove('py__animate');
+        if (!data) loading?.classList.remove('py__animate');
         let parser = new DOMParser();
         let html = parser.parseFromString(data, "text/html");
-        for(let i=0; i<iframes.length; i++){
+        for (let i = 0; i < iframes.length; i++) {
             let iframeItem = iframes[i];
             let ifrm = iframeItem.contentDocument || iframeItem.contentWindow.document;
             html ? ifrm.querySelector('body').innerHTML = html.querySelector('body').innerHTML : null;
@@ -596,7 +988,7 @@
 
     // Ifeame Previews Function (Mobile, Desktop, Tablet)
     const toggleIframePreview = (event) => {
-        if(!event) return;
+        if (!event) return;
         let el = event.target;
         let size = el.getAttribute('data-view');
         let iframe = document.querySelector('.py__view-iframe');
@@ -606,61 +998,61 @@
     };
 
     // Show Item From Global Settings Function (Color, padding, Margin and etc)
-    const getItemFromSettings = async (event, another=false) => {
-        
-        if(!event) return;
-        if(!another) event.preventDefault();
+    const getItemFromSettings = async (event, another = false) => {
+
+        if (!event) return;
+        if (!another) event.preventDefault();
 
         let container = event.target.closest('.py__settings-item');
         let listenerBtn = another ? container.querySelector('.py__get-button') : event.target;
         let url = listenerBtn.getAttribute('href');
         let showTxt = listenerBtn.getAttribute('data-show');
-        let hideTxt = listenerBtn.getAttribute('data-hide'); 
+        let hideTxt = listenerBtn.getAttribute('data-hide');
         let itemWrapToInner = container.querySelector('.py__get-result-wrapper');
         let getItem = container.querySelector('select');
         let getItemId = getItem && getItem.options[getItem.selectedIndex].innerHTML;
         let getItemIdClass = getItemId.toLowerCase().trim();
 
-        if(getItemIdClass === 'none'|| getItemIdClass === 'unset') return; 
+        if (getItemIdClass === 'none' || getItemIdClass === 'unset') return;
 
-        if(itemWrapToInner.classList.contains('open') && !another){
+        if (itemWrapToInner.classList.contains('open') && !another) {
             itemWrapToInner.classList.remove('open');
             return listenerBtn.textContent = showTxt;
         }
 
-        if(!itemWrapToInner.classList.contains('open') && itemWrapToInner.classList.contains('isAdded') && !another){
+        if (!itemWrapToInner.classList.contains('open') && itemWrapToInner.classList.contains('isAdded') && !another) {
             itemWrapToInner.classList.add('open');
             return listenerBtn.textContent = hideTxt;
         }
 
-        if(!url || !getItemId) return;
+        if (!url || !getItemId) return;
         let getUrl = url + "&item_id=" + getItemId.trim();
 
         let res = await fetch(getUrl);
         let data = await res.text();
-        if(!data) return;
+        if (!data) return;
         let parser = new DOMParser();
         let html = parser.parseFromString(data, "text/html");
         let newSettingsItem = html.querySelector('.py__settings-item');
         itemWrapToInner.innerHTML = newSettingsItem ? newSettingsItem.innerHTML : null;
-        if(!another) listenerBtn.textContent = hideTxt;
-        if(!another) itemWrapToInner.classList.add('open', 'isAdded');
+        if (!another) listenerBtn.textContent = hideTxt;
+        if (!another) itemWrapToInner.classList.add('open', 'isAdded');
 
     };
 
     // Change View Pages Function
-    const changeViewPage = async (event=false, href=false, changeUrl=true) => {
+    const changeViewPage = async (event = false, href = false, changeUrl = true) => {
         loading?.classList.add('py__animate');
         let el = event ? event.target : null;
         let brandBtn = document.querySelector('.global-styles');
-        let url = event ? brandBtn?.classList?.contains('active') 
-        ? el.options[el.selectedIndex].getAttribute('data-href') + '&global=Global%20Styles' 
-        : el.options[el.selectedIndex].getAttribute('data-href') : href;
-        if(!url) return;
-        changeUrl ? window.history.replaceState({ }, '', url) : null;
+        let url = event ? brandBtn?.classList?.contains('active')
+            ? el.options[el.selectedIndex].getAttribute('data-href') + '&global=Global%20Styles'
+            : el.options[el.selectedIndex].getAttribute('data-href') : href;
+        if (!url) return;
+        changeUrl ? window.history.replaceState({}, '', url) : null;
         let res = await fetch(url);
         let data = await res.text();
-        if(!data) return loading?.classList.remove('py__animate');
+        if (!data) return loading?.classList.remove('py__animate');
         let parser = new DOMParser();
         let html = parser.parseFromString(data, "text/html");
         let oldSettingsWrap = document.querySelector('.py__make-settings');
@@ -671,8 +1063,8 @@
         let newRemixSettings = html.querySelectorAll('.py__make-random-settings');
         oldSettingsWrap && newSettingsWrap ? oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML : null;
         oldRemixSettings && newRemixSettings ? oldRemixSettings.innerHTML = newRemixSettings : null;
-        if(oldIframeWrap.length && newIframeWrap){
-            oldIframeWrap.forEach(oldItem => {  
+        if (oldIframeWrap.length && newIframeWrap) {
+            oldIframeWrap.forEach(oldItem => {
                 oldItem.innerHTML = newIframeWrap.innerHTML;
             });
         }
@@ -682,15 +1074,15 @@
 
     // Get Global settings or Section settings dynamic function
     const getSettingsLists = async (event) => {
-        if(!event) return;
-        
+        if (!event) return;
+
         loading?.classList.add('py__animate');
         let el = event.target, url = null;
-        if(event.type === 'change'){
+        if (event.type === 'change') {
             url = el.options[el.selectedIndex].getAttribute('data-href');
         } else {
             event.preventDefault();
-            if(el.classList.contains('active') && el.classList.contains('global-styles')){
+            if (el.classList.contains('active') && el.classList.contains('global-styles')) {
                 let currenturlSearchParam = new URLSearchParams(location.search);
                 currenturlSearchParam.delete('global');
                 let newUrl = location.origin + location.pathname + '?' + currenturlSearchParam.toString();
@@ -700,36 +1092,36 @@
             }
         }
 
-        if(!url) return;
-        
-        window.history.replaceState({ }, '', url);
+        if (!url) return;
+
+        window.history.replaceState({}, '', url);
         let urlSearch = new URLSearchParams(url);
         let sectionName = urlSearch.get('section');
         let iframe = document.querySelector('.py__view-iframe');
-        
-        if(sectionName){
+
+        if (sectionName) {
             let urlParams = new URL(location.href);
             let iframeSearchParams = new URLSearchParams(urlParams.search);
-            iframeSearchParams.set('section', sectionName); 
-            let iframeUrl =  urlParams.pathname.indexOf('/users/') !== -1 
-            ? '/view' + urlParams.pathname + '?' + iframeSearchParams.toString()
-            : urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString(); 
+            iframeSearchParams.set('section', sectionName);
+            let iframeUrl = urlParams.pathname.indexOf('/users/') !== -1
+                ? '/view' + urlParams.pathname + '?' + iframeSearchParams.toString()
+                : urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString();
             iframe.setAttribute('src', iframeUrl);
         } else {
             let urlParams = new URL(location.href);
             let iframeSearchParams = new URLSearchParams(urlParams.search);
-            let iframeUrl = urlParams.pathname.indexOf('/users/') !== -1 
-            ? '/view' + urlParams.pathname + '?' + iframeSearchParams.toString()
-            : urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString();
+            let iframeUrl = urlParams.pathname.indexOf('/users/') !== -1
+                ? '/view' + urlParams.pathname + '?' + iframeSearchParams.toString()
+                : urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString();
             iframe.setAttribute('src', iframeUrl);
         }
-        
+
 
         el.classList.add('active');
         let res = await fetch(url);
         let data = await res.text();
-        
-        if(!data) return loading?.classList.remove('py__animate');
+
+        if (!data) return loading?.classList.remove('py__animate');
         let parser = new DOMParser();
         let html = parser.parseFromString(data, "text/html");
         let oldSettingsWrap = document.querySelector('.py__make-settings');
@@ -1219,122 +1611,153 @@
     // };
 
     // let remixColorCount = 0;
-    let oldColorOne = "#000000";
-    const generateRandomColor = () => {
-        let color1 = chroma.random().hex();
-        if(chroma.deltaE(color1, oldColorOne) < 40){
-            color1 = chroma.random().hex();
-            if(chroma.deltaE(color1, oldColorOne) < 40){
-                color1 = chroma.random().hex();
-            }
-        }
-        oldColorOne = color1;
-        let color2 = chroma(color1).darken(2.6);
-        let colorsList = chroma.scale([color2, color1]).mode('lch').colors(5);
-        // colorsList.unshift('#000000');
-        // colorsList.push('#FFFFFF');
-        console.log(colorsList);
-        return colorsList;
-    };
+    // let oldColorOne = "#000000";
+    // const generateRandomColor = async () => {
+    //     let mode = document.querySelector('.py__random-colors-mode')?.value || "quad";
+    //     let color1 = chroma.random().hex();
+    //     // if(chroma.deltaE(color1, oldColorOne) < 40){
+    //     //     color1 = chroma.random().hex();
+    //     //     if(chroma.deltaE(color1, oldColorOne) < 40){
+    //     //         color1 = chroma.random().hex();
+    //     //     }
+    //     // }
+    //     // oldColorOne = color1;
+    //     // let color2 = chroma(color1).darken(1);
+    //     // let colorsList = chroma.scale([color2, color1]).mode('lch').colors(3);
+    //     let getColorList = await fetch(`https://www.thecolorapi.com/scheme?hex=${color1?.replace('#', '')}&mode=${mode}&count=5`);
+    //     let res = await getColorList.json();
+    //     // let colorsList = chroma.brewer.OrRd;
+    //     // colorsList.unshift('#000000');
+    //     // colorsList.push('#FFFFFF');
+    //     // console.log(colorsList);
+    //     return res.colors;
+    // };
 
     // let remixCount = 1;
     // let defaultSettingsCount = 0;
-    const randomFun = (event) => {
+    const randomFun = async (event) => {
 
-       if(!event) return;
-       event.preventDefault();
-       loading?.classList.add('py__animate');
+        if (!event) return;
+        event.preventDefault();
+        loading?.classList.add('py__animate');
 
-       let inputFileds = document.querySelectorAll('[name]');
-       let index = 0;
-       let colorsList = null;
-    //    let textColorsList = null;
-    //    let fontsList = null;
-       if(!inputFileds.length) return;
+        let inputFileds = document.querySelectorAll('[name]');
+        let mode = document.querySelector('.py__random-colors-mode')?.value || "quad";
+        let colorChroma = chroma.random().hex();
+        let getColorList = await fetch(`https://www.thecolorapi.com/scheme?hex=${colorChroma?.replace('#', '')}&mode=${mode}&count=5`);
+        let res = await getColorList.json();
+        let colorsList = res.colors;
+        let index = 0;
+        //    let colorsList = null;
+        //    let textColorsList = null;
+        //    let fontsList = null;
+        if (!inputFileds.length) return;
 
-       inputFileds.forEach(filed => {
-           let filedType = filed.getAttribute('type');
-           let filedName = filed.getAttribute('name');
-           if(filedType === "color"){
-            if(filedName.includes('_bg')){
-                if(index === 0){
-                    // if(defaultSettingsCount >= 15) defaultSettingsCount = 0; 
-                    // if(remixCount > 15) remixCount = 0;
-                    // if((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)){
-                        colorsList = generateRandomColor();
-                    // } else {
-                    //     colorsList = defaultSettings.backgrounds[defaultSettingsCount];
-                    //     textColorsList = defaultSettings.colors[defaultSettingsCount];
-                    //     fontsList = defaultSettings.fonts[defaultSettingsCount];
-                    //     defaultSettingsCount++;
+        for(let i = 0; i < inputFileds.length; i++) {
+            let filed = inputFileds[i];
+            let filedType = filed.getAttribute('type');
+            let filedName = filed.getAttribute('name');
+            if (filedType === "color") {
+                if (filedName.includes('_bg')) {
+                    // if (index === 0) {
+                        // if(defaultSettingsCount >= 15) defaultSettingsCount = 0; 
+                        // if(remixCount > 15) remixCount = 0;
+                        // if((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)){
+                        // console.log(index, "CHECK");
+                        // colorsList = await generateRandomColor();
+                        
+                        // } else {
+                        //     colorsList = defaultSettings.backgrounds[defaultSettingsCount];
+                        //     textColorsList = defaultSettings.colors[defaultSettingsCount];
+                        //     fontsList = defaultSettings.fonts[defaultSettingsCount];
+                        //     defaultSettingsCount++;
+                        // }
                     // }
+                    // let color = ((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)) ? colorsList[index] : colorsList[filedName];
+                    let colorObj = colorsList[index];
+                    let color = filedName?.includes('color_dark') 
+                    ? '#000000' : filedName?.includes('color_light') 
+                    ? '#FFFFFF' : colorObj?.hex?.value;
+                    let closestWrap = filed.closest('.component-is-color');
+                    let isColorLabel = closestWrap.querySelector('.py__label-for-color');
+                    isColorLabel.style.backgroundColor = color;
+                    index++;
+                    filed.value = color;
+                    let filedNameText = filedName.replace('_bg', '');
+                    let textInputFiled = document.querySelector(`[name="${filedNameText}"]`);
+                    if (textInputFiled){
+                        // let textColor = ((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)) ? getContrastYIQ(color) : textColorsList[filedName.replace('_bg', '')];
+                        let textColor = filedNameText?.includes('dark') 
+                        ? '#000000' : filedNameText?.includes('light') 
+                        ? '#FFFFFF' : colorObj?.contrast?.value;
+                        // let textColor = color?.contrast?.value;
+                        let textClosestWrap = textInputFiled.closest('.component-is-color');
+                        let textIsColorLabel = textClosestWrap.querySelector('.py__label-for-color');
+                        textIsColorLabel.style.backgroundColor = textColor;
+                        textInputFiled.value = textColor;
+                    }
                 }
-                // let color = ((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)) ? colorsList[index] : colorsList[filedName];
-                let color =  colorsList[index];
-                let closestWrap = filed.closest('.component-is-color');
-                let isColorLabel = closestWrap.querySelector('.py__label-for-color');
-                isColorLabel.style.backgroundColor = color;
-                filed.value = color;
-                index++;
 
-                let textInputFiled = document.querySelector(`[name="${filedName.replace('_bg', '')}"]`);
-                if(!textInputFiled) return;
-                // let textColor = ((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)) ? getContrastYIQ(color) : textColorsList[filedName.replace('_bg', '')];
-                let textColor = getContrastYIQ(color);
-                let textClosestWrap = textInputFiled.closest('.component-is-color');
-                let textIsColorLabel = textClosestWrap.querySelector('.py__label-for-color');
-                textIsColorLabel.style.backgroundColor = textColor;
-                textInputFiled.value = textColor;
-            }
-
-           } else if(filedType === "select"){
+            } else if (filedType === "select") {
                 let options = filed.getElementsByTagName('option');
-                // if((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)){
+                let fontObj = fonts[fontsCount];
+                if (filed.getAttribute('name')?.includes('font')) {
+                    let selectedOption = filed.getAttribute('name')?.includes('body')
+                        ? filed.querySelector(`option[value="${fontObj.body}"`)?.index
+                        : filed.querySelector(`option[value="${fontObj.heading}"`)?.index;
+                    filed.selectedIndex = selectedOption;
+                } else if(filed.getAttribute('name')?.includes('bg')){
                     let optionIndex = Math.floor(Math.random() * options.length);
                     filed.selectedIndex = optionIndex;
-                // } else {
-                //     for (let i= 0; i<options.length; i++) {
-                //         if (options[i].value === fontsList[filedName]) {
-                //             options[i].selected= true;
-                //             break;
-                //         }
-                //     } 
-                // }
-           }
-       });
+                    let bgCValue = filed.value;
+                    let textFiledName = filed.getAttribute('name').replace('bg', '');
+                    let textFiled = document.querySelector(`[name="${textFiledName}"]`);
+                    if(textFiled){
+                        let textSelectedIndex = bgCValue?.includes('light') || bgCValue?.includes('middle-light') || bgCValue?.includes('transparent') || bgCValue?.includes('none')  
+                        ? textFiled.querySelector(`option[value="dark"]`)?.index 
+                        : bgCValue?.includes('average') ? textFiled.querySelector(`option[value="average"]`)?.index || textFiled.querySelector(`option[value="avarge"]`)?.index 
+                        : textFiled.querySelector(`option[value="light"]`)?.index;
+                        textFiled.selectedIndex = textSelectedIndex;
+                    }
+                } else if(!filed.getAttribute('name')?.includes('color')){
+                    let optionIndex = Math.floor(Math.random() * options.length);
+                    filed.selectedIndex = optionIndex;
+                }
+            }
+        };
 
-        // remixCount++;
+        fontsCount >= fonts.length ? fontsCount = 0 : fontsCount++;
         saveSettingsValues();
         viewIframe();
 
-    };  
+    };
 
     //---------------------------------------
     // COMPONENTS FUN
     //---------------------------------------
     // Color Component Function
     const colorComp = (event) => {
-        if(!event) return;
+        if (!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
         let wrapper = event.target.closest('.component-is-color');
         let isColor = wrapper?.querySelector('.is__color');
         let forColor = wrapper?.querySelector('.py__label-for-color');
-        if(isColor) isColor.value = value;
-        if(forColor) forColor.style.backgroundColor = value;
+        if (isColor) isColor.value = value;
+        if (forColor) forColor.style.backgroundColor = value;
         saveSettingsValues();
 
-        if(uniqName.includes('bg')){
+        if (uniqName.includes('bg')) {
             let textUniqName = uniqName.replace('bg_', '');
             let findInColorsJson = colorsNamesContrast[uniqName];
             let textColorInput = findInColorsJson ? document.querySelector(`[name="${findInColorsJson}"]`) : document.querySelector(`[name="${textUniqName}"]`);
-            if(textColorInput){ 
+            if (textColorInput) {
                 let newColor = getContrastYIQ(value);
                 let childWrapper = textColorInput.closest('.component-is-color');
                 let childIsColor = childWrapper?.querySelector('.is__color');
                 let childForColor = childWrapper?.querySelector('.py__label-for-color');
-                if(childIsColor) childIsColor.value = newColor;
-                if(childForColor) childForColor.style.backgroundColor = newColor;
+                if (childIsColor) childIsColor.value = newColor;
+                if (childForColor) childForColor.style.backgroundColor = newColor;
                 textColorInput.value = newColor;
             }
         }
@@ -1343,17 +1766,17 @@
     };
     // Text Component Function
     const textComp = (event) => {
-        if(!event) return;
+        if (!event) return;
         let el = event.target;
         let uniqName = el?.getAttribute('name');
         let value = el?.value;
         saveSettingsValues();
         (value !== focuseValue) ? viewIframe() : null;
-        if(uniqName === 'settings_theme_name' && value !== focuseValue) themeName = value;
+        if (uniqName === 'settings_theme_name' && value !== focuseValue) themeName = value;
         saveButton?.setAttribute('aria-disabled', false);
     };
     const colorTextComp = (event) => {
-        if(!event) return;
+        if (!event) return;
         let el = event.target;
         let value = el?.value;
         let closest = el.closest('.component-is-color');
@@ -1366,7 +1789,7 @@
     };
     // Textarea Component Function
     const textareaComp = (event) => {
-        if(!event) return;
+        if (!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
         saveSettingsValues();
@@ -1375,7 +1798,7 @@
     };
     // Richtext Component Function
     const richtextComp = (event) => {
-        if(!event) return;
+        if (!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
         saveSettingsValues();
@@ -1384,29 +1807,29 @@
     };
     // Select Component Function
     const selectComp = (event) => {
-        if(!event) return;
+        if (!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
         let container = event.target.closest('.py__settings-item');
         let isHaveGlobal = container?.querySelector('.py__get-result-wrapper');
         saveSettingsValues();
-        if(uniqName.includes('bg')){
+        if (uniqName.includes('bg')) {
             let textUniqName = uniqName.replace('bg_', '');
             let findInColorsJson = colorsNamesContrast[textUniqName];
             let textColorInput = findInColorsJson ? document.querySelector(`[name="${findInColorsJson}"]`) : document.querySelector(`[name="${textUniqName}"]`);
-            if(textColorInput){ 
+            if (textColorInput) {
                 let newVal = value.includes('dark') ? 'light' : 'dark';
                 textColorInput.selectedIndex = [...textColorInput.options].findIndex(option => option.value.includes(newVal));
             }
         }
 
         viewIframe();
-        if(isHaveGlobal) getItemFromSettings(event, true);
+        if (isHaveGlobal) getItemFromSettings(event, true);
         saveButton?.setAttribute('aria-disabled', false);
     };
     // Checkbox Component Function
     const checkboxComp = (event) => {
-        if(!event) return;
+        if (!event) return;
         let uniqName = event.target.getAttribute('name');
         let content = event.target.closest('.py__comp-checkbox');
         let hiddenFiled = content.querySelector('input[type="hidden"]');
@@ -1418,7 +1841,7 @@
     };
     // Range Component Function
     const rangeComp = (event) => {
-        if(!event) return;
+        if (!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
         saveSettingsValues();
@@ -1430,10 +1853,10 @@
     // EVENTS LISTENERS
     //---------------------------------------
     // Input fileds change fun (color, select and etc)
-    document.addEventListener('change', (e)=>{
-        if(e && e.target.getAttribute('name')){
+    document.addEventListener('change', (e) => {
+        if (e && e.target.getAttribute('name')) {
             let type = e.target.getAttribute('type');
-            switch(type){
+            switch (type) {
                 case 'color':
                     colorComp(e);
                     break;
@@ -1447,17 +1870,17 @@
                     break;
             }
         }
-        if(e && e.target.classList.contains('is__checkbox')) return checkboxComp(e);
-        if(e && e.target.classList.contains('py__preview-pages-select')) return changeViewPage(e);
-        if(e && e.target.classList.contains('py__sections-dropdown-listener')) return getSettingsLists(e);
+        if (e && e.target.classList.contains('is__checkbox')) return checkboxComp(e);
+        if (e && e.target.classList.contains('py__preview-pages-select')) return changeViewPage(e);
+        if (e && e.target.classList.contains('py__sections-dropdown-listener')) return getSettingsLists(e);
     });
 
     // Input fileds Focus fun (text, textarea and etc)
-    document.addEventListener('focus', (e)=>{
-        if(e && e.target.getAttribute('name')){
+    document.addEventListener('focus', (e) => {
+        if (e && e.target.getAttribute('name')) {
             let type = e.target.getAttribute('type');
-            switch(type){
-                case 'text':                   
+            switch (type) {
+                case 'text':
                     focuseValue = e.target.value;
                     break;
                 case 'textarea':
@@ -1473,10 +1896,10 @@
     }, true);
 
     // Input fileds Blur fun (text, textarea and etc)
-    document.addEventListener('blur', (e)=>{
-        if(e && e.target.getAttribute('name')){
+    document.addEventListener('blur', (e) => {
+        if (e && e.target.getAttribute('name')) {
             let type = e.target.getAttribute('type');
-            switch(type){
+            switch (type) {
                 case 'text':
                     textComp(e);
                     break;
@@ -1489,40 +1912,40 @@
                 default:
                     break;
             }
-        } else if(e && e.target.classList.contains('is__color')){
+        } else if (e && e.target.classList.contains('is__color')) {
             return colorTextComp(e);
         }
     }, true);
 
 
     // Form Submit fun
-    document.addEventListener('submit', (e)=>{
-        if(e && e.target.classList.contains('py__signup-form')) return signup(e);
-        if(e && e.target.classList.contains('py__login-form')) return login(e);
-        if(e && e.target.classList.contains('py__addtheme-form')) return addTheme(e);
+    document.addEventListener('submit', (e) => {
+        if (e && e.target.classList.contains('py__signup-form')) return signup(e);
+        if (e && e.target.classList.contains('py__login-form')) return login(e);
+        if (e && e.target.classList.contains('py__addtheme-form')) return addTheme(e);
     });
-    
+
 
     // Sidebar Select Settings Open Close Fun
-    document.addEventListener('click', (e)=>{
-        if(e && e.target.classList.contains('py__settings-item-name')){
-            e.target.closest('.py__settings-item-wrapper').classList.contains('active') 
-            ? e.target.closest('.py__settings-item-wrapper').classList.remove('active')
-            : e.target.closest('.py__settings-item-wrapper').classList.add('active');
+    document.addEventListener('click', (e) => {
+        if (e && e.target.classList.contains('py__settings-item-name')) {
+            e.target.closest('.py__settings-item-wrapper').classList.contains('active')
+                ? e.target.closest('.py__settings-item-wrapper').classList.remove('active')
+                : e.target.closest('.py__settings-item-wrapper').classList.add('active');
         }
-        if(e && e.target.classList.contains('py__signup-button')) return getRegister(e);
-        if(e && e.target.classList.contains('py__login-button')) return getLogin(e);
-        if(e && e.target.classList.contains('py__button-add-theme')) return getAddTheme(e);
-        if(e && e.target.classList.contains('py__signup')) return e.target.remove();
-        if(e && e.target.classList.contains('py__login')) return e.target.remove();
-        if(e && e.target.classList.contains('py__addtheme')) return e.target.remove();
-        if(e && e.target.classList.contains('py__get-button')) return getItemFromSettings(e);
-        if(e && e.target.classList.contains('py__button-view')) return toggleIframePreview(e);
-        if(e && e.target.classList.contains('py__get-section-button')) return getSettingsLists(e);
-        if(e && e.target.classList.contains('py__save-button')) return save(e);
-        if(e && e.target.classList.contains('py__save-figma-button')) return saveFigma(e);
-        if(e && e.target.classList.contains('py__download-button')) return download(e);
-        if(e && e.target.classList.contains('py__button-random')) return randomFun(e);
+        if (e && e.target.classList.contains('py__signup-button')) return getRegister(e);
+        if (e && e.target.classList.contains('py__login-button')) return getLogin(e);
+        if (e && e.target.classList.contains('py__button-add-theme')) return getAddTheme(e);
+        if (e && e.target.classList.contains('py__signup')) return e.target.remove();
+        if (e && e.target.classList.contains('py__login')) return e.target.remove();
+        if (e && e.target.classList.contains('py__addtheme')) return e.target.remove();
+        if (e && e.target.classList.contains('py__get-button')) return getItemFromSettings(e);
+        if (e && e.target.classList.contains('py__button-view')) return toggleIframePreview(e);
+        if (e && e.target.classList.contains('py__get-section-button')) return getSettingsLists(e);
+        if (e && e.target.classList.contains('py__save-button')) return save(e);
+        if (e && e.target.classList.contains('py__save-figma-button')) return saveFigma(e);
+        if (e && e.target.classList.contains('py__download-button')) return download(e);
+        if (e && e.target.classList.contains('py__button-random')) return randomFun(e);
     });
 
     // Before Unload
@@ -1534,7 +1957,7 @@
     });
 
     // When Page Content is Loaded
-    document.addEventListener('DOMContentLoaded', ()=> {
+    document.addEventListener('DOMContentLoaded', () => {
         saveSettingsValues();
         loading = document.querySelector('.py__loading-wrap');
         saveButton = document.querySelector('.py__save-button');

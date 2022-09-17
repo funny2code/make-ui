@@ -25,6 +25,18 @@
                 </span>
                 <span class="py__button-label">Remix Style</span>
             </a>
+            <div class="py__preview-select">
+                <select class="py__random-colors-mode"> 
+                    <option value="monochrome" selected>Monochrome</option>
+                    <option value="monochrome-dark">Monochrome Dark</option>
+                    <option value="monochrome-light">Monochrome Light</option>
+                    <option value="analogic">Analogic</option>
+                    <option value="complement">Complement</option>
+                    <option value="analogic-complement">Analogic Complement</option>
+                    <option value="triad">Triad</option>
+                    <option value="quad">Quad</option>
+                </select>
+            </div>
             <% if(user){ %>
                 <a href="/add/<%=user._id%>" data-theme-id="<%=id%>" class="py__button py__button-black py__add-theme-button">
                     Add Theme

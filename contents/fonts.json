@@ -20,6 +20,60 @@
       }
      },
      {
+        "kind": "webfonts#webfont",
+        "family": "Sora",
+        "category": "sans-serif",
+        "variants": [
+         "regular",
+         "italic"
+        ],
+        "subsets": [
+         "latin"
+        ],
+        "version": "v4",
+        "lastModified": "2015-04-06",
+        "files": {
+         "regular": "http://fonts.gstatic.com/s/sora/v3//mE5BOuZKGln_Ex0uYKpIaw.ttf",
+         "italic": "http://fonts.gstatic.com/s/sora/v3/kpplLynmYgP0YtlJA3atRw.ttf"
+        }
+       },
+       {
+        "kind": "webfonts#webfont",
+        "family": "Syne",
+        "category": "sans-serif",
+        "variants": [
+         "regular",
+         "italic"
+        ],
+        "subsets": [
+         "latin"
+        ],
+        "version": "v4",
+        "lastModified": "2015-04-06",
+        "files": {
+         "regular": "http://fonts.gstatic.com/s/syne/v3//mE5BOuZKGln_Ex0uYKpIaw.ttf",
+         "italic": "http://fonts.gstatic.com/s/syne/v3/kpplLynmYgP0YtlJA3atRw.ttf"
+        }
+       },
+       {
+        "kind": "webfonts#webfont",
+        "family": "Inter",
+        "category": "sans-serif",
+        "variants": [
+         "regular",
+         "italic"
+        ],
+        "subsets": [
+         "latin"
+        ],
+        "version": "v4",
+        "lastModified": "2015-04-06",
+        "files": {
+         "regular": "http://fonts.gstatic.com/s/inter/v3//mE5BOuZKGln_Ex0uYKpIaw.ttf",
+         "italic": "http://fonts.gstatic.com/s/inter/v3/kpplLynmYgP0YtlJA3atRw.ttf"
+        }
+       },
+     {
       "kind": "webfonts#webfont",
       "family": "Abel",
       "category": "sans-serif",

@@ -1,0 +1,87 @@
+{{ 'section-main-product-style-1.css' | asset_url | stylesheet_tag }}
+{{ 'component-price-style-1.css' | asset_url | stylesheet_tag }}
+{{ 'component-variants.css' | asset_url | stylesheet_tag }}
+<link rel="preload" href="{{ 'component-modal-quickview.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<modal-opener class="product-popup-modal__opener no-js-hidden hidden" data-modal="#ModalquickView">
+  <button id="ModalquickView-trigger" class="product-popup-modal__button link bc-size-chart-button" type="button" aria-haspopup="dialog">VIEW</button>
+</modal-opener>
+<modal-dialog class="modal fade product-popup-modal" id="ModalquickView">
+  <div class="modal-dialog modal-lg"  tabindex="-1" role="dialog" aria-label="myModalLabel" aria-hidden="true">
+    <div class="modal-content ">
+      <div class="modal-header py-pd-y-xs ">
+        <h2 class="product-quickshop__heading py-fs-l py-mg-y-m py-center">Choose options</h2>
+        <button id="ModalClose-quickView" type="button" class="product-popup-modal__toggle" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+            <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+          </path></svg>
+        </button>
+      </div>
+      <div class="modal-body py-pd-y-l py-pd-x-m">
+        <div class="product-modal-quickview ">
+          <div class="product">
+            <div class="grid__item product__media-wrapper">
+              <div class="media_area">
+              <slider-component class="slider-mobile-gutter">        
+                <ul class="product__media-list grid grid--peek list-unstyled slider slider--desktop" role="list">
+                  <li class="product__media-item grid__item slider__slide">
+                    <div class="product__media media" style="padding-top: 90%;">
+                    </div>
+                  </li>
+                </ul>
+                <div class="slider-buttons slider-buttons-desktop hidden">
+                  <div class="slider-counter caption hidden">
+                    <span class="slider-counter--current">1</span>
+                    <span aria-hidden="true"> / </span>
+                    <span class="visually-hidden">of</span>
+                    <span class="slider-counter--total">1</span>
+                  </div>
+                  <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="Slide left" disabled="true"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                    </path></svg>
+                  </button>         
+                  <button type="button" class="slider-button slider-button--next" name="next" aria-label="Slide right"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                    </path></svg>
+                  </button>
+                </div>
+              </slider-component>
+              </div>
+              <div class="top_info_area">
+                <h2 class="product__title py-fs-s">t</h2>
+                <div class="review-widget">Review Widget</div>                
+                <div class="btn-wrapper">
+                  <a href="#" class="viewfullinfo">View Full Details</a>
+                </div>
+                <div class="no-js-hidden bc-product-price-wrapper" id="price-modal_quick_view">     
+                  <div id="productPrice" class=" price price--large price--on-sale ">
+                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="product_info py-pd-y-l">
+              <div class="product__info-container">
+                <div class="no-js-hidden variant_wrapper" data-url=""> 
+                  
+                </div>
+                <product-form class="product-form">
+                  <div id="preorderbunner"></div>
+                  <form action="/cart/add" id="modal_quick_view" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="form_type" value="product">
+                    <input type="hidden" name="utf8" value="✓">
+                    <input type="hidden" class="input_variant" name="id" value="">
+                    <div id="bc-order-id"></div>
+                    <div class="btn-area">
+                        <div class="product-form__buttons">
+                          <button type="submit" name="add" class="product-form__submit button button--full-width button--primary py-btn-light py-btn-hover-dark py-btn-large"><span class="product-form__submit-label">Add to cart</span></button>
+                        </div>
+                    </div>                    
+                  </form>
+                </product-form> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</modal-dialog>
