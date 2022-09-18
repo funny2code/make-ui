@@ -31,7 +31,7 @@
                   </button>
                 </noscript>
 
-                <button type="submit" class="cart__checkout-button button py-btn-{{block.settings.btn_color}} py-btn-hover-{{block.settings.btn_hover_color}} py-btn-{{block.settings.btn_size}}" name="checkout"{% if cart == empty %} disabled{% endif %} form="cart">
+                <button type="submit" class="cart__checkout-button button py-btn-{{block.settings.btn_color}} py-btn-hover-{{block.settings.btn_color_hover}} py-btn-{{block.settings.btn_size}}" name="checkout"{% if cart == empty %} disabled{% endif %} form="cart">
                   {{ 'sections.cart.checkout' | t }}
                 </button>
                 {% if section.settings.enable_dynamic_pay %}
@@ -180,7 +180,7 @@
         },
         {
           "type": "select",
-          "id": "btn_hover_color",
+          "id": "btn_color_hover",
           "label": "Button Hover Color style",
           "options": [
             {

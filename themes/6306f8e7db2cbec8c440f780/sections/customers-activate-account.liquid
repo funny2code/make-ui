@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" >
 
 <noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
@@ -15,7 +15,7 @@
   }
   
   .page-container .customer .field input{
-    border:{{section.settings.field_border_width}}px solid {{section.settings.field_br_color}};
+    border:{{section.settings.field_border_width}}px solid {{section.settings.field_color_br}};
     border-radius:{{section.settings.field_border_radius}}px;
     background-color:{{section.settings.field_bg_color}};
     color:{{section.settings.field_color}};
@@ -23,7 +23,7 @@
     width:100%;
   }
   .page-container .customer .activate_btn{
-    border:{{section.settings.activate_btn_border_width}}px solid {{section.settings.activate_btn_br_color}};
+    border:{{section.settings.activate_btn_border_width}}px solid {{section.settings.activate_btn_color_br}};
     border-radius:{{section.settings.activate_btn_border_radius}}px;
     background-color:{{section.settings.activate_btn_bg_color}};
     color:{{section.settings.activate_btn_color}};    
@@ -31,11 +31,11 @@
   .page-container .customer .activate_btn:hover{
     background-color:{{section.settings.activate_btn_hover_bg_color}};
     color:{{section.settings.activate_btn_hover_color}};
-    border-color:{{section.settings.activate_btn_hover_br_color}};
+    border-color:{{section.settings.activate_btn_hover_color_br}};
   } 
   
   .page-container .customer .decline_btn{
-    border:{{section.settings.decline_btn_border_width}}px solid {{section.settings.decline_btn_br_color}};
+    border:{{section.settings.decline_btn_border_width}}px solid {{section.settings.decline_btn_color_br}};
     border-radius:{{section.settings.decline_btn_border_radius}}px;
     background-color:{{section.settings.decline_btn_bg_color}};
     color:{{section.settings.decline_btn_color}};
@@ -43,7 +43,7 @@
   .page-container .customer .decline_btn:hover{
     background-color:{{section.settings.decline_btn_hover_bg_color}};
     color:{{section.settings.decline_btn_hover_color}};
-    border-color:{{section.settings.decline_btn_hover_br_color}};
+    border-color:{{section.settings.decline_btn_hover_color_br}};
   }
   
 </style>
@@ -298,7 +298,7 @@
     },
     {
         "type": "select",
-        "id": "activate_btn_br_color",
+        "id": "activate_btn_color_br",
         "label": "Activate Button Border Color",
         "options": [ 
             {
@@ -370,7 +370,7 @@
     },
     {
         "type": "select",
-        "id": "activate_btn_hover_br_color",
+        "id": "activate_btn_hover_color_br",
         "label": "Activate Button Hover Border Color",
         "options": [ 
             {
@@ -464,7 +464,7 @@
     },
     {
         "type": "select",
-        "id": "decline_btn_br_color",
+        "id": "decline_btn_color_br",
         "label": "Decline Button Border Color",
         "options": [ 
             {
@@ -536,7 +536,7 @@
     },
     {
         "type": "select",
-        "id": "decline_btn_hover_br_color",
+        "id": "decline_btn_hover_color_br",
         "label": "Decline Button Hover Border Color",
         "options": [ 
             {
@@ -630,7 +630,7 @@
     },
     {
         "type": "select",
-        "id": "field_br_color",
+        "id": "field_color_br",
         "label": "Field Border Color",
         "options": [ 
             {

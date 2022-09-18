@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'section-featured-blog.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'section-featured-blog.css' | asset_url }}" >
 {{ 'component-article-card.css' | asset_url | stylesheet_tag }}
 
 <style>
   .blog-carousel .title--primary{
-    color: {{section.settings.title_color}};
+    color: {{section.settings.py_section_color}};
     font-size:{{section.settings.title_font_size}}px;
     font-weight:{{section.settings.title_font_weight}}
   }
@@ -48,7 +48,7 @@
     padding-bottom:20px;
   }
   .blog-carousel .slider-button{
-    color:{{section.settings.info_color}};
+    color:{{section.settings.py_section_color}};
     border-radius: 50%;    
   }  
   .blog-carousel .slider-buttons{
@@ -60,7 +60,7 @@
   
 </style>
 
-  <div class="main-blog blog-carousel py-{{section.settings.bg_color}} py-{{section.settings.page_y_pd}} py-{{section.settings.page_x_pd}}  bc-{{settings.section_style}}-bt">
+  <div class="main-blog blog-carousel py-{{section.settings.py_section_bg_color}} py-{{section.settings.page_y_pd}} py-{{section.settings.page_x_pd}}  bc-{{settings.section_style}}-bt">
     <div class="page-width py-{{section.settings.page_width}} py-{{section.settings.page_y_mg}} py-{{section.settings.page_y_mg}}">
       <h1 class="title--primary">{{ section.settings.title | escape }}</h1>
       <div class="blog-articles">
@@ -105,7 +105,7 @@
     },
     {
       "type": "select",
-      "id": "bg_color",
+      "id": "py_section_bg_color",
       "label": "Section Background ",
       "options": [          
         {
@@ -155,7 +155,7 @@
     },
     {
         "type": "select",
-        "id": "title_color",
+        "id": "py_section_color",
         "label": "Title Color",
         "options": [ 
             {
@@ -454,7 +454,7 @@
         },
         {
             "type": "select",
-            "id": "title_color",
+            "id": "card_color_title",
             "label": "Title Color",
             "options": [ 
                 {
@@ -528,7 +528,7 @@
         },
         {
           "type": "select",
-          "id": "view_btn_color",
+          "id": "card_color_view_btn",
           "label": "View Button Color style",
           "options": [
             {
@@ -548,7 +548,7 @@
         },
         {
           "type": "select",
-          "id": "view_btn_hover_color",
+          "id": "card_color_view_btn_hover",
           "label": "View Button Hover Color style",
           "options": [
             {

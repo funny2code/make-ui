@@ -16,7 +16,7 @@
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'disclosure.css' | asset_url | stylesheet_tag }}</noscript>
 
-<footer class="footer py-{{ section.settings.bg_color }} py-{{ section.settings.color }}">
+<footer class="footer py-{{ section.settings.py_section_bg_color }} py-{{ section.settings.py_section_color }}">
   {%- if section.blocks.size > 0 or section.settings.newsletter_enable or section.settings.show_social -%}
     <div class="footer__content-top page-width bc-{{settings.section_style}}-bt">
       {%- if section.blocks.size > 0 -%}
@@ -282,7 +282,7 @@
   "settings": [
     {
       "type": "select",
-      "id": "bg_color",
+      "id": "py_section_bg_color",
       "label": "Background",
       "options": [
         {
@@ -314,7 +314,7 @@
     },
     {
       "type": "select",
-      "id": "color",
+      "id": "py_section_color",
       "label": "Color",
       "options": [
         {
@@ -399,7 +399,7 @@
     },
     {
       "type": "select",
-      "id": "field_border_color",
+      "id": "field_color_br",
       "label": "Field Border Color",
       "options": [ 
          {
@@ -439,7 +439,7 @@
     },
     {
       "type": "select",
-      "id": "field_focus_color",
+      "id": "field_color_focus",
       "label": "Field Focused Color",
       "options": [ 
          {
@@ -488,7 +488,7 @@
     },
     {
       "type": "select",
-      "id": "submit_btn_color",
+      "id": "py_section_color_submit_btn",
       "label": "Submit Button Color style",
       "options": [
         {
@@ -508,7 +508,7 @@
     },
     {
       "type": "select",
-      "id": "submit_btn_hover_color",
+      "id": "py_section_color_submit_btn_hover",
       "label": "Submit Button Hover Color style",
       "options": [
         {

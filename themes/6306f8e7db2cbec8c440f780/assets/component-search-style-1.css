@@ -122,6 +122,9 @@ form.search  .field__button {
     top: 0;
     width: 4.4rem;
 }
+.template-search__search form .field__label{
+  display:none
+}
 @media(max-width:767px){
   .bc-search-result-wrapper .bc-cart__item{
     width: calc(33.33%);    

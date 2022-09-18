@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" >
 
 <noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
@@ -13,7 +13,7 @@
     color:{{section.settings.page_color}};
   }
   .page-container .customer .field input {
-    border:{{section.settings.field_border_width}}px solid {{section.settings.field_br_color}};
+    border:{{section.settings.field_border_width}}px solid {{section.settings.field_color_br}};
     border-radius:{{section.settings.field_border_radius}}px;
     background-color:{{section.settings.field_bg_color}};
     color:{{section.settings.field_color}};
@@ -142,7 +142,7 @@
           {{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.
         </span>
       {%- endif -%}
-      <button class="register_btn button py-btn-{{section.settings.register_btn_color}} py-btn-hover-{{section.settings.register_btn_hover_color}} py-btn-{{section.settings.register_btn_size}}">
+      <button class="register_btn button py-btn-{{section.settings.page_color_register_btn}} py-btn-hover-{{section.settings.page_color_register_btn_hover}} py-btn-{{section.settings.register_btn_size}}">
         {{ 'customer.register.submit' | t }}
       </button>
     {%- endform -%}
@@ -281,7 +281,7 @@
     },
     {
         "type": "select",
-        "id": "field_br_color",
+        "id": "field_color_br",
         "label": "Field Border Color",
         "options": [ 
             {
@@ -325,7 +325,7 @@
     },
     {
       "type": "select",
-      "id": "register_btn_color",
+      "id": "page_color_register_btn",
       "label": "Register Button Color style",
       "options": [
         {
@@ -345,7 +345,7 @@
     },
     {
       "type": "select",
-      "id": "register_btn_hover_color",
+      "id": "page_color_register_btn_hover",
       "label": "Register Button Hover Color style",
       "options": [
         {

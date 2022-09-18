@@ -5,11 +5,14 @@
   .announcement-bar__message{
     color:{{section.settings.py_announcement_color}};
   }
+  marquee .announcement-bar__message{
+    margin: 0px 40px;
+  }
   .announcement-bar__link{
-    color:{{section.settings.py_announcement_link_color}};
+    color:{{section.settings.py_announcement_color_link}};
   }
   .announcement-bar__link:hover{
-    color:{{section.settings.py_announcement_link_hov_color}};
+    color:{{section.settings.py_announcement_color_link_hov}};
   }
 </style>
 {%- assign d = section.settings -%}
@@ -17,6 +20,7 @@
   {%- case block.type -%}
     {%- when 'announcement' -%}
       <div class="announcement-bar center py-{{d.page_x_pd}} py-{{d.page_y_pd}} py-{{d.br}}" role="region" aria-label="{{ 'sections.header.announcement' | t }}">
+     
         {%- if block.settings.text != blank -%}
           {%- if block.settings.link != blank -%}
             <a href="{{ block.settings.link }}" class="announcement-bar__link link link--text">
@@ -28,6 +32,7 @@
             </a>
           {%- endif -%}
         {%- endif -%}
+      
       </div>
   {%- endcase -%}
 {%- endfor -%}
@@ -36,7 +41,7 @@
 {
   "name": "t:sections.announcement-bar.name",
   "max_blocks": 12,
-  "settings": [    
+  "settings": [
     {
       "type": "select",
       "id": "py_announcement_bg_color",
@@ -91,7 +96,7 @@
     },
     {
       "type": "select",
-      "id": "py_announcement_link_color",
+      "id": "py_announcement_color_link",
       "label": "Link Color",
       "options": [
           {
@@ -111,7 +116,7 @@
     },
     {
       "type": "select",
-      "id": "py_announcement_link_hov_color",
+      "id": "py_announcement_color_link_hov",
       "label": "Link Hover Color",
       "options": [
           {

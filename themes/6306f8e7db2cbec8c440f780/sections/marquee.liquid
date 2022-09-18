@@ -1,5 +1,5 @@
 {%- assign d = section.settings -%}
-<div class="bc-marquee-wrapper py-{{d.br}} py-{{d.bg_color}} py-{{d.page_x_mg}} py-{{d.page_y_mg}}">
+<div class="bc-marquee-wrapper py-{{d.br}} py-{{d.py_section_bg_color}} py-{{d.page_x_mg}} py-{{d.page_y_mg}}">
   <div class="page-width page-{{d.page_width}} py-{{d.page_x_pd}} py-{{d.page_y_pd}}">
     {%- if d.marquee != blank -%}
     <marquee class="bc-marquee-wrapper__marquee" 
@@ -11,7 +11,7 @@
         onmouseout="this.start();"
         {% endif %}
     >
-        <span class="py-{{d.font_size}} py-{{d.color}}">{{section.settings.marquee}}<span>
+        <span class="py-{{d.font_size}} py-{{d.py_section_color}}">{{section.settings.marquee}}<span>
     </marquee>
     {%- endif -%}
   </div>
@@ -93,7 +93,7 @@
     },
     {
       "type": "select",
-      "id": "bg_color",
+      "id": "py_section_bg_color",
       "label": "Background Color",
       "options": [
         {
@@ -121,7 +121,7 @@
     },
     {
       "type": "select",
-      "id": "color",
+      "id": "py_section_color",
       "label": "Color",
       "options": [        
         {

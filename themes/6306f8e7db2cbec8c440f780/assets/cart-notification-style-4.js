@@ -332,7 +332,7 @@ class CartNotification extends HTMLElement {
 */  
   getImage(url, image){
     return `<a href="${url}">
-        <img class="bc-cart__image-img" src="${image.url || "//cdn.shopify.com/shopifycloud/shopify/assets/no-image-100-c91dd4bdb56513f2cbf4fc15436ca35e9d4ecd014546c8d421b1aece861dfecf_55x70.gif"}" alt="${image.alt | "Product Image"}" width="55" height="70"/>
+        <img class="bc-cart__image-img width-7" src="${image.url || "//cdn.shopify.com/shopifycloud/shopify/assets/no-image-100-c91dd4bdb56513f2cbf4fc15436ca35e9d4ecd014546c8d421b1aece861dfecf_55x70.gif"}" alt="${image.alt | "Product Image"}" width="55" height="70"/>
       </a>`;
   }
 

@@ -4,16 +4,47 @@ const router = express.Router();
 const make = require('../contents/make');
 const modelThemes = require('../models/themes');
 const modelUsersThemes = require('../models/customer-themes');
-// const themeJson = require('../themejson.json');
+// const themeJsonDB = require('../dawn-theme.json');
+// const themeSectionsFolder = require('../themes/6306f8e7db2cbec8c440f780/sections');
+// const themeJson = require('../dawn-theme.json');
 // const themeConfif = require('../themes/6306f8e7db2cbec8c440f780/locales/en.default.schema.json');
-const fs = require('fs');
+// const fs = require('fs');
 
 
 /* GET All Themes and User Themes. */
 router.get('/', async (req, res, next) => {
 
+
+  // Automaticly add shopify theme sections Schema Settings to app DB Code generator
+  // themeJsonDB.theme_sec = [];
+  // try {
+  //   let sectionDirectory = await fs.readdirSync(path.join(__dirname, '../themes/6306f8e7db2cbec8c440f780/sections'));
+  //   for(let file of sectionDirectory){
+  //     let fileContent = await fs.readFileSync(path.join(__dirname, `../themes/6306f8e7db2cbec8c440f780/sections/${file}`), 'utf-8');
+  //     if(fileContent){
+  //       let splitFileContent = fileContent.replace('{% endschema %}', '').split('{% schema %}');
+  //       if(splitFileContent.length > 1){
+  //         let parseDBSection = JSON.parse(splitFileContent[1]);
+  //         parseDBSection.file_name = file?.replace('.liquid', '');
+  //         parseDBSection.template_name = file?.includes('customer') || file?.includes('header') || file?.includes('footer') || file?.includes('announcement') || file?.includes('customer') || file?.includes('gift') 
+  //         ? "config/settings_data" : "templates/index";
+  //         themeJsonDB.theme_sec.push(parseDBSection);
+  //       }
+  //     }
+  //   }
+  //   let res = await fs.writeFileSync(path.join(__dirname, '../dawn-theme.json'), JSON.stringify(themeJsonDB, null, 2), 'utf-8');
+  //   console.log(res);
+
+  //   return next();
+  // } catch (err) {
+  //   return next(err);
+  // }
+  
+
+  // Automaticly add shopify theme languaje translate function
   // themeJson?.theme_sec?.forEach(item => {
-  //   let sectionName = item?.name?.toLowerCase()?.replaceAll(' ', '-');
+  //   let sectionName = item?.file_name;
+  //   item.name = themeConfif.sections[sectionName]?.name;
   //   item?.settings?.forEach(setItem => {
   //     if(themeConfif.sections[sectionName]?.settings){
   //       if(themeConfif.sections[sectionName]?.settings[setItem?.id] && setItem?.type === "select"){
@@ -30,7 +61,6 @@ router.get('/', async (req, res, next) => {
   //       }
   //     }  
   //   });
-  //   console.log(item?.settings);
   //   item?.blocks?.forEach(block => {
   //     let blockName = block?.type?.toLowerCase()?.replaceAll(' ', '-');
   //     if(themeConfif.sections[sectionName]?.blocks){
@@ -57,7 +87,8 @@ router.get('/', async (req, res, next) => {
   //     }  
   //   });
   // });
-  // fs.writeFileSync(path.join(__dirname, `../themejson.json`), JSON.stringify(themeJson, null, 2), 'utf-8');
+  // fs.writeFileSync(path.join(__dirname, '../dawn-theme.json'), JSON.stringify(themeJson, null, 2), 'utf-8');
+  // return next();
 
   try {
     const Themes = await modelThemes.find({}, '_id, theme_set');

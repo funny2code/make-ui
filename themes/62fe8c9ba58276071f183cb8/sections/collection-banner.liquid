@@ -89,7 +89,7 @@
 <div class="collection-hero collection-hero--with-image py-{{block.settings.page_y_pd}} py-{{block.settings.page_x_pd}} py-{{block.settings.page_y_mg}} py-{{block.settings.page_width}}">
   <div class="collection-hero__inner bc-collection-page-main">
     <div class="collection-hero__text-wrapper">
-      <h1 class="collection-hero__title" style="color:{{ section.settings.color }}">
+      <h1 class="collection-hero__title" style="color:{{ section.settings.content_color }}">
         <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}:</span>
         {{- collection.title | escape -}}
       </h1>
@@ -150,7 +150,7 @@
     },
     {
       "type": "select",
-      "id": "color",
+      "id": "content_color",
       "label": "Default Title Color",
       "options": [ 
           {
@@ -221,7 +221,7 @@
         },
         {
           "type": "select",
-          "id": "ov_bg_color",
+          "id": "content_bg_color",
           "label": "Background",
           "options": [          
               {
@@ -253,7 +253,7 @@
         },
         {
           "type": "select",
-          "id": "color",
+          "id": "content_color_txt",
           "label": "Texts Color",
           "options": [ 
               {

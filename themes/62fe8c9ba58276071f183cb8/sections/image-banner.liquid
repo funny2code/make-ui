@@ -63,7 +63,7 @@
               {%- when 'buttons' -%}
                 <div class="banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_link_1 != blank and block.settings.button_label_2 != blank and block.settings.button_link_2 != blank %} banner__buttons--multiple{% endif %}">
                   {%- if block.settings.button_label_1 != blank -%}
-                    <a id="bunner__button-{{ block.id }}" href="{{ block.settings.button_link_1 }}" class="button py-btn-{{block.settings.view_btn_color}} py-btn-hover-{{block.settings.view_btn_hover_color}} py-btn-{{block.settings.view_btn_size}}"{% if block.settings.button_link_1 == blank %} aria-disabled="true"{% endif %}>
+                    <a id="bunner__button-{{ block.id }}" href="{{ block.settings.button_link_1 }}" class="button py-btn-{{block.settings.content_color_view_btn}} py-btn-hover-{{block.settings.content_color_view_btn_hover}} py-btn-{{block.settings.view_btn_size}}"{% if block.settings.button_link_1 == blank %} aria-disabled="true"{% endif %}>
                       {{ block.settings.button_label_1 }}
                     </a>
                   <style>#bunner__button-{{ block.id }}{
@@ -81,7 +81,7 @@
                       </path></svg>
                     </a>
                   <style>#bunner__learn-{{ block.id }}{
-                    color:{{ block.settings.m_color}};
+                    color:{{ block.settings.content_color_m}};
                     font-size:var(--space-11);               
                   }#bunner__learn-{{ block.id }} svg{width:var(--space-11);margin-left:var(--space-5);transition: all 0.3s;}#bunner__learn-{{ block.id }}:hover svg{margin-left:var(--space-8);}
                     </style>
@@ -183,7 +183,7 @@
     },
     {
       "type": "select",
-      "id": "ov_bg_color",
+      "id": "content_bg_color",
       "label": "Background",
       "options": [          
           {
@@ -499,7 +499,7 @@
         },
         {
           "type": "select",
-          "id": "color",
+          "id": "content_color",
           "label": "Text Color",
           "options": [ 
               {
@@ -578,7 +578,7 @@
         },
         {
           "type": "select",
-          "id": "m_color",
+          "id": "content_color_m",
           "label": "Text Color",
           "options": [ 
               {
@@ -670,7 +670,7 @@
         },
         {
           "type": "select",
-          "id": "color",
+          "id": "content_color",
           "label": "Text Color",
           "options": [ 
               {
@@ -749,7 +749,7 @@
         },
         {
           "type": "select",
-          "id": "m_color",
+          "id": "content_color_m",
           "label": "Text Color",
           "options": [ 
               {
@@ -843,7 +843,7 @@
         },
         {
           "type": "select",
-          "id": "view_btn_color",
+          "id": "content_color_view_btn",
           "label": "View Button Color style",
           "options": [
             {
@@ -863,7 +863,7 @@
         },
         {
           "type": "select",
-          "id": "view_btn_hover_color",
+          "id": "content_color_view_btn_hover",
           "label": "View Button Hover Color style",
           "options": [
             {
@@ -907,7 +907,7 @@
         },
         {
           "type": "select",
-          "id": "m_color",
+          "id": "content_color_m",
           "label": "Text Color",
           "options": [ 
               {

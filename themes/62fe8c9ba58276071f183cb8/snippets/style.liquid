@@ -1,13 +1,13 @@
-{%- if style.size != blank or style.color != blank or style.weight != blank or style.border != blank or style.bg != blank or style.pv != blank or style.ph != blank or style.align != blank or style.padding != blank or style.margin != blank or style.width != blank or style.height != blank or style.b_width != blank or style.c_css != blank or style.show_override or style.ov_bg_color != blank or style.ov_bg_image != blank or style.ov_opacity != blank
-or style.m_size != blank or style.m_color != blank or style.m_weight != blank or style.m_border != blank or style.m_bg != blank or style.m_pv != blank or style.m_ph != blank or style.m_align != blank or style.m_padding != blank or style.m_margin != blank or style.m_width != blank or style.m_height != blank or style.m_b_width != blank or style.m_c_css != blank -%}
+{%- if style.size != blank or style.content_color != blank or style.weight != blank or style.border != blank or style.bg != blank or style.pv != blank or style.ph != blank or style.align != blank or style.padding != blank or style.margin != blank or style.width != blank or style.height != blank or style.b_width != blank or style.c_css != blank or style.show_override or style.content_bg_color != blank or style.ov_bg_image != blank or style.ov_opacity != blank
+or style.m_size != blank or style.content_color_m != blank or style.m_weight != blank or style.m_border != blank or style.m_bg != blank or style.m_pv != blank or style.m_ph != blank or style.m_align != blank or style.m_padding != blank or style.m_margin != blank or style.m_width != blank or style.m_height != blank or style.m_b_width != blank or style.m_c_css != blank -%}
 <style type="text/css">
-{%- if style.size != blank or style.color != blank or style.weight != blank or style.border != blank or style.bg != blank or style.pv != blank or style.ph != blank or style.align != blank or style.padding != blank or style.margin != blank or style.width != blank or style.height != blank or style.b_width != blank or style.c_css != blank -%}
+{%- if style.size != blank or style.content_color != blank or style.weight != blank or style.border != blank or style.bg != blank or style.pv != blank or style.ph != blank or style.align != blank or style.padding != blank or style.margin != blank or style.width != blank or style.height != blank or style.b_width != blank or style.c_css != blank -%}
 {{ sufix }}-{{ id }} {
     {%- if style.size != blank -%}
     font-size: {{ style.size }};
     {%- endif -%}
-    {%- if style.color != blank -%}
-    color: {{ style.color }};
+    {%- if style.content_color != blank -%}
+    color: {{ style.content_color }};
     {%- endif -%}
     {%- if style.weight != blank -%}
     font-weight: {{ style.weight }};
@@ -49,7 +49,7 @@ or style.m_size != blank or style.m_color != blank or style.m_weight != blank or
 }
 {%- endif -%}
 {%- if style.show_override -%}
-{%- if style.ov_bg_color != blank or style.ov_bg_image != blank or style.ov_opacity != blank -%}
+{%- if style.content_bg_color != blank or style.ov_bg_image != blank or style.ov_opacity != blank -%}
 {{ sufix }}-{{ id }}::after {
     content: "";
     position: absolute;
@@ -57,8 +57,8 @@ or style.m_size != blank or style.m_color != blank or style.m_weight != blank or
     top: 0;
     width: 100%;
     height: 100%;
-    {%- if style.ov_bg_color != blank -%}
-    background-color: {{ style.ov_bg_color }};
+    {%- if style.content_bg_color != blank -%}
+    background-color: {{ style.content_bg_color }};
     {%- endif -%}
     {%- if style.ov_bg_image != blank -%}
     background-image: url("{{ style.ov_bg_image | img_url: 'original' }}");
@@ -69,14 +69,14 @@ or style.m_size != blank or style.m_color != blank or style.m_weight != blank or
 }
 {%- endif -%}
 {%- endif -%}
-{%- if style.m_size != blank or style.m_color != blank or style.m_weight != blank or style.m_border != blank or style.m_bg != blank or style.m_pv != blank or style.m_ph != blank or style.m_align != blank or style.m_padding != blank or style.m_margin != blank or style.m_width != blank or style.m_height != blank or style.m_b_width != blank or style.m_c_css != blank -%}
+{%- if style.m_size != blank or style.content_color_m != blank or style.m_weight != blank or style.m_border != blank or style.m_bg != blank or style.m_pv != blank or style.m_ph != blank or style.m_align != blank or style.m_padding != blank or style.m_margin != blank or style.m_width != blank or style.m_height != blank or style.m_b_width != blank or style.m_c_css != blank -%}
 @media screen and (max-width: 749px){
     {{ sufix }}-{{ id }} {
         {%- if style.m_size != blank -%}
         font-size: {{ style.m_size }};
         {%- endif -%}
-        {%- if style.m_color != blank -%}
-        color: {{ style.m_color }};
+        {%- if style.content_color_m != blank -%}
+        color: {{ style.content_color_m }};
         {%- endif -%}
         {%- if style.m_weight != blank -%}
         font-weight: {{ style.m_weight }};

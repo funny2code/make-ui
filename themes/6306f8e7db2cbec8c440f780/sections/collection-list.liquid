@@ -1,5 +1,5 @@
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
-<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" >
 
 <noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
 
@@ -7,7 +7,7 @@
 
 <style>
   .collection-list-wrapper  .collection-list-title{
-    color: {{section.settings.title_color}};
+    color: {{section.settings.py_section_color}};
     font-size:{{section.settings.title_font_size}}px;
     font-weight:{{section.settings.title_font_weight}}
   }
@@ -36,7 +36,7 @@
   .collection-list-wrapper .card__info-container h3{
     font-size:{{section.settings.card_title_font_size}}px;
     font-weight:{{section.settings.card_title_font_weight}};
-    color:{{section.settings.info_color}};
+    color:{{section.settings.card_color}};
     margin-top:0;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -57,7 +57,7 @@
   }
   .collection-list-wrapper .card__caption{
     font-size:{{section.settings.card_text_font_size}}px;
-    color:{{section.settings.info_color}};
+    color:{{section.settings.card_color}};
   }
   /* width */
   .collection-list-wrapper .slider::-webkit-scrollbar {
@@ -83,7 +83,7 @@
   }
   .collection-list-wrapper .slider-button{    
     border-radius: 50%;   
-    color:{{section.settings.info_color}};
+    color:{{section.settings.card_color}};
   }
   
   .collection-list-wrapper .slider-buttons{
@@ -95,7 +95,7 @@
   
 </style>
 
-<div class="collection-list-wrapper py-{{section.settings.bg_color}} py-{{section.settings.page_y_pd}} py-{{section.settings.page_x_pd}} bc-{{settings.section_style}}-bt">
+<div class="collection-list-wrapper py-{{section.settings.py_section_bg_color}} py-{{section.settings.page_y_pd}} py-{{section.settings.page_x_pd}} bc-{{settings.section_style}}-bt">
   <div class="page-width py-{{section.settings.page_width}} py-{{section.settings.page_y_mg}} py-{{section.settings.page_y_mg}}">
     <div class="title-wrapper-with-link{% if section.settings.swipe_on_mobile == true %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %}{% if section.settings.title == blank %} title-wrapper-with-link--no-heading{% endif %}">
       <h2 class="collection-list-title">{{ section.settings.title | escape }}</h2>
@@ -156,7 +156,7 @@
                     {%- endif -%}
                   </div>
                   <div class="view-collection-container">
-                    <span class="view_collection py-btn-{{section.settings.view_btn_color}} py-btn-hover-{{section.settings.view_btn_hover_color}} py-btn-{{section.settings.view_btn_size}}">View</span>
+                    <span class="view_collection py-btn-{{section.settings.card_color_view_btn}} py-btn-hover-{{section.settings.card_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}}">View</span>
                   </div>
                 </div>
                 {%- else -%}
@@ -177,7 +177,7 @@
                     {%- endif -%}
                   </div>
                   <div class="view-collection-container">
-                    <span class="view_collection py-btn-{{section.settings.view_btn_color}} py-btn-hover-{{section.settings.view_btn_hover_color}} py-btn-{{section.settings.view_btn_size}}">View</span>
+                    <span class="view_collection py-btn-{{section.settings.card_color_view_btn}} py-btn-hover-{{section.settings.card_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}}">View</span>
                   </div>
                 </div>
                 {%- endif -%}
@@ -207,7 +207,7 @@
                       </p>
                   </div> 
                   <div class="view-collection-container">
-                    <span class="view_collection py-btn-{{section.settings.view_btn_color}} py-btn-hover-{{section.settings.view_btn_hover_color}} py-btn-{{section.settings.view_btn_size}}">View</span>
+                    <span class="view_collection py-btn-{{section.settings.card_color_view_btn}} py-btn-hover-{{section.settings.card_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}}">View</span>
                   </div>
                 </div>
               </div>
@@ -218,7 +218,7 @@
       </ul>
 
       
-      <div class="slider-buttons slider-buttons-desktop no-js-hidden{% if section.blocks.size < 4 %} large-hide{% endif %}{% if section.blocks.size < 2 %} small-hide{% endif %}">
+      <div class="slider-buttons slider-buttons-desktop no-js-hidden{% if section.blocks.size < 4 %} large-up-hide{% endif %}{% if section.blocks.size < 2 %} small-hide{% endif %}">
         <button type="button" class="slider-button slider-button--prev has-bg py-{{section.settings.card_bg_color}}" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}">{% render 'icon-caret' %}</button>
         <button type="button" class="slider-button slider-button--next has-bg py-{{section.settings.card_bg_color}}" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{% render 'icon-caret' %}</button>
       </div>
@@ -240,7 +240,7 @@
     },
     {
       "type": "select",
-      "id": "bg_color",
+      "id": "py_section_bg_color",
       "label": "Section Background ",
       "options": [          
         {
@@ -284,7 +284,7 @@
     },
     {
         "type": "select",
-        "id": "title_color",
+        "id": "py_section_color",
         "label": "Section Title Color",
         "options": [ 
             {
@@ -564,7 +564,7 @@
     },
     {
         "type": "select",
-        "id": "info_color",
+        "id": "card_color",
         "label": "Info Color",
         "options": [ 
             {
@@ -640,7 +640,7 @@
     },
     {
       "type": "select",
-      "id": "view_btn_color",
+      "id": "card_color_view_btn",
       "label": "View Button Color style",
       "options": [
         {
@@ -660,7 +660,7 @@
     },
     {
       "type": "select",
-      "id": "view_btn_hover_color",
+      "id": "card_color_view_btn_hover",
       "label": "View Button Hover Color style",
       "options": [
         {

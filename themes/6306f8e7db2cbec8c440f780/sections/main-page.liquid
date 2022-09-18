@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" >
 
 <noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
@@ -28,7 +28,7 @@
           <style>
             .main-page-title{
               font-size:{{block.settings.title_font_size}}px;
-              color:{{block.settings.title_color}};
+              color:{{block.settings.page_color_title}};
               text-align:{{block.settings.title_align}};
             }            
           </style>
@@ -39,7 +39,7 @@
            <style>              
               .page-content{
                 font-size:{{block.settings.content_font_size}}px;
-                color:{{block.settings.content_color}};
+                color:{{block.settings.page_color_content}};
                 text-align:{{block.settings.content_align}};
               }
           </style>
@@ -147,7 +147,7 @@
         },
         {
           "type": "select",
-          "id": "title_color",
+          "id": "page_color_title",
           "label": "Title Color",
           "options": [ 
              {
@@ -203,7 +203,7 @@
         },
         {
           "type": "select",
-          "id": "content_color",
+          "id": "page_color_content",
           "label": "Content Color",
           "options": [ 
              {

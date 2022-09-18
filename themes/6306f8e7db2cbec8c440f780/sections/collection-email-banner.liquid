@@ -16,7 +16,7 @@
           </div>
         </div>
       {%- if block.settings.show_title -%}
-      <h1 class="bc-collection-email__title bc-collection-email__title-{{ block.id }}">
+      <h1 style="color:inherit" class="bc-collection-email__title bc-collection-email__title-{{ block.id }}">
         {{ collection.title }}
       </h1>
       {%- render 'bcstyle', css: block.settings, self: 't', class: '.bc-collection-email__title', id: block.id -%}
@@ -237,7 +237,7 @@
         },
         {
           "type": "select",
-          "id": "t_color",
+          "id": "w_color",
           "label": "Content Color",
           "options": [ 
               {
@@ -423,7 +423,7 @@
         },
         {
           "type": "select",
-          "id": "t_m_color",
+          "id": "w_m_color",
           "label": "Content Color",
           "options": [ 
               {

@@ -25,7 +25,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
 
 
 
-<div class="bc-collection-page-main filter-{{section.settings.filter_style}} py-{{section.settings.bg_color}} py-{{section.settings.page_y_pd}} py-{{section.settings.page_x_pd}} py-{{section.settings.page_y_mg}}">
+<div class="bc-collection-page-main filter-{{section.settings.filter_style}} py-{{section.settings.py_section_bg_color}} py-{{section.settings.page_y_pd}} py-{{section.settings.page_x_pd}} py-{{section.settings.page_y_mg}}">
   
   {%- if section.settings.filter_style == 'style-1' -%}
     {%- render 'collection-filters-style-1' -%}
@@ -184,7 +184,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
     },
     {
       "type": "select",
-      "id": "bg_color",
+      "id": "py_section_bg_color",
       "label": "Section Background ",
       "options": [          
         {
@@ -559,7 +559,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
     },
     {
       "type": "select",
-      "id": "view_btn_color",
+      "id": "card_color_view_btn",
       "label": "View Button Color style",
       "options": [
         {
@@ -579,7 +579,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
     },
     {
       "type": "select",
-      "id": "view_btn_hover_color",
+      "id": "card_color_view_btn_hover",
       "label": "View Button Hover Color style",
       "options": [
         {

@@ -89,7 +89,8 @@
                             <% if(section.settings){ %>
                                 <div class="py__random-section-content py__settings-section-item" data-file-name="<%=section.file_name%>" data-template-name="<%=section.template_name%>">
                                     <% section.settings.forEach((item,index)=>{ %>
-                                        <% if(item.type === "select" && item?.id?.includes('style') || item.type === "select" && item?.id?.includes('position') || item.type === "select" && item?.id?.includes('color')){ %>
+                                        <!-- || item.type === "select" && item?.id?.includes('color') -->
+                                        <% if(item.type === "select" && item?.id?.includes('style') || item.type === "select" && item?.id?.includes('position')){ %>
                                             <div class="py__random-comp py__random-comp-select">
                                                 <label for="section-<%=item.id%>"><%=item.label%></label>
                                                 <select name="<%=item.id %>" id="section-<%=item.id%>"type="select">
@@ -109,8 +110,8 @@
                                     <% if(block.settings){ %>
                                         <div class="py__random-block-wrap py__settings-block-item" data-type="<%=block.type%>">
                                             <% block.settings.forEach((item,index)=>{ %>
-                                                <!-- && item?.id?.includes('style') || item?.id?.includes('position') -->
-                                                <% if(item.type === "select" && item?.id?.includes('style') || item.type === "select" && item?.id?.includes('position') || item.type === "select" && item?.id?.includes('color')){ %>
+                                                <!-- || item.type === "select" && item?.id?.includes('color') -->
+                                                <% if(item.type === "select" && item?.id?.includes('style') || item.type === "select" && item?.id?.includes('position')){ %>
                                                     <div class="py__random-comp py__random-comp-select">
                                                         <label for="<%= "block_" + item.id %>"><%=item.label%></label>
                                                         <select name="block_<%=item.id%>" type="select">

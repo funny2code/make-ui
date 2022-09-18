@@ -12,7 +12,7 @@
 
 <style>
   .header-wrapper{
-    border-color:{{section.settings.py_header_border_color}};
+    border-color:{{section.settings.py_header_color_border}};
     z-index: 99;
   }
   .header-wrapper,.header__submenu,
@@ -27,7 +27,7 @@
   .menu-drawer__close-button:focus,
   .menu-drawer__menu-item:hover,
   .menu-drawer__close-button:hover {
-    color:{{section.settings.py_header_link_hov_color_1}};
+    color:{{section.settings.py_header_color_link_hov_1}};
     background-color: var(--color-foreground-4);
   }
   .header__heading *,
@@ -36,18 +36,18 @@
   .header-wrapper a,
   .header-wrapper .list-menu__item,
   .header-wrapper .link--text{
-    color:{{section.settings.py_header_link_color_1}};
+    color:{{section.settings.py_header_color_link_1}};
   }
   .header__heading *:hover,
   .top-left-nav-item:hover,
   .header__icon>*:hover *,
   .header-wrapper a:hover,
   .header-wrapper .list-menu__item:hover{
-    color:{{section.settings.py_header_link_hov_color_1}};
+    color:{{section.settings.py_header_color_link_hov_1}};
   }
   .header--top-left .header__inline-menu .list-menu__item,
   .header--top-left-with-nav .header__inline-menu .list-menu__item{
-    color:{{section.settings.py_header_link_color_2}};
+    color:{{section.settings.py_header_color_link_2}};
   }
   .header--top-left .header__inline-menu .list-menu__item:hover,
   .header--top-left-with-nav .header__inline-menu .list-menu__item:hover{
@@ -63,13 +63,13 @@
   .header__search .bc-search-result-wrapper *,
   .header__search .field *,
   .search-modal__close-button *{
-    color:{{section.settings.py_search_title_font_color}};
+    color:{{section.settings.py_search_color_title}};
   }
   form.search .search__input.field__input{
     border-radius: {{section.settings.py_search_field_br_radius}};
     background-color: {{section.settings.py_search_field_bg_color}};    
     border: {{section.settings.py_search_field_br_width}} solid;
-    border-color: {{section.settings.py_search_field_br_color}};
+    border-color: {{section.settings.py_search_field_color_br}};
     padding-top:13px !important;
     padding-bottom:13px !important;
     
@@ -90,7 +90,7 @@
     background-color: {{section.settings.py_search_field_focus_bg_color}};     
   }
   .bc-search__input-title{
-    color:{{section.settings.py_search_title_font_color}};
+    color:{{section.settings.py_search_color_title}};
     font-size:{{section.settings.py_search_title_font_size}};
     padding:20px 0px;
   }  
@@ -396,7 +396,7 @@
     }
     .top-left-nav-item.active{
       background:{{section.settings.py_header_bg_color_2}};
-      color:{{section.settings.py_header_link_color_2}};
+      color:{{section.settings.py_header_color_link_2}};
     }
   }
   @media (max-width:799px){
@@ -936,7 +936,7 @@
               <div class="search-modal modal__content" role="dialog" aria-modal="true" aria-label="{{ 'general.search.search' | t }}">
                 <div class="search-modal__content" tabindex="-1">             
 
-                  <div class="bc-search-result-wrapper" data_btn_class="py-btn-{{section.settings.view_btn_color}} py-btn-hover-{{section.settings.view_btn_hover_color}} py-btn-{{section.settings.view_btn_size}}">
+                  <div class="bc-search-result-wrapper" data_btn_class="py-btn-{{section.settings.card_color_view_btn}} py-btn-hover-{{section.settings.card_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}}">
                     <div class="bc-cart__not-products">Sorry no results found</div>
                     <div class="bc-search-result-inner-wrapper"></div>
                     {%- if section.settings.search_menu != blank -%}
@@ -1013,7 +1013,7 @@
                     </svg>
                   </button>
                 </div>                
-                <div class="bc-search-result-wrapper" data_btn_class="py-btn-{{section.settings.view_btn_color}} py-btn-hover-{{section.settings.view_btn_hover_color}} py-btn-{{section.settings.view_btn_size}}">
+                <div class="bc-search-result-wrapper" data_btn_class="py-btn-{{section.settings.card_color_view_btn}} py-btn-hover-{{section.settings.card_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}}">
                   <div class="bc-cart__not-products">Sorry no results found</div>
                   <div class="bc-search-result-inner-wrapper"></div>
                   {%- if section.settings.search_menu != blank -%}
@@ -1431,7 +1431,7 @@
     },
     {
       "type": "select",
-      "id": "py_search_field_br_color",
+      "id": "py_search_field_color_br",
       "label": "Search Field Border Color",
       "options": [
           {
@@ -1543,7 +1543,7 @@
     },
     {
       "type": "select",
-      "id": "py_search_title_font_color",
+      "id": "py_search_color_title",
       "label": "Search Title Color",
       "options": [
           {
@@ -1709,7 +1709,7 @@
     },
     {
       "type": "select",
-      "id": "view_btn_color",
+      "id": "card_color_view_btn",
       "label": "View Button Color style",
       "options": [
         {
@@ -1729,7 +1729,7 @@
     },
     {
       "type": "select",
-      "id": "view_btn_hover_color",
+      "id": "card_color_view_btn_hover",
       "label": "View Button Hover Color style",
       "options": [
         {
@@ -1949,7 +1949,7 @@
     },
     {
       "type": "select",
-      "id": "py_header_link_color_1",
+      "id": "py_header_color_link_1",
       "label": "Main Link Color",
       "options": [
           {
@@ -1969,7 +1969,7 @@
     },
     {
       "type": "select",
-      "id": "py_header_link_hov_color_1",
+      "id": "py_header_color_link_hov_1",
       "label": "Main Link Hover Color",
       "options": [
           {
@@ -1989,7 +1989,7 @@
     },
     {
       "type": "select",
-      "id": "py_header_link_color_2",
+      "id": "py_header_color_link_2",
       "label": "Bottom Link Color",
       "options": [
           {
@@ -2029,7 +2029,7 @@
     },
     {
       "type": "select",
-      "id": "py_header_border_color",
+      "id": "py_header_color_border",
       "label": "Header Border Color",
       "options": [
           {

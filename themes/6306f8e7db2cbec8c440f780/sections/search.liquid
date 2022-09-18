@@ -1,10 +1,10 @@
 {{ 'template-collection-style-1.css' | asset_url | stylesheet_tag }}
 
-<link rel="stylesheet" href="{{ 'component-badge.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-product-card-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-price-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-search-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-variants.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-badge.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'component-product-card-style-1.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'component-price-style-1.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'component-search-style-1.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'component-variants.css' | asset_url }}" >
 
 <noscript>{{ 'component-badge.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-product-card-style-1.css' | asset_url | stylesheet_tag }}</noscript>
@@ -430,7 +430,7 @@
     },
     {
       "type": "select",
-      "id": "view_btn_color",
+      "id": "card_color_view_btn",
       "label": "View Button Color style",
       "options": [
         {
@@ -450,7 +450,7 @@
     },
     {
       "type": "select",
-      "id": "view_btn_hover_color",
+      "id": "card_color_view_btn_hover",
       "label": "View Button Hover Color style",
       "options": [
         {

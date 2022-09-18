@@ -3,13 +3,13 @@
 <noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
 <style>
   .multicolumn-{{section.id}} .multicolumn-card__info  .col_title{
-    color: {{section.settings.col_info_color}};
+    color: {{section.settings.col_color}};
     font-size:{{section.settings.col_title_font_size}}px;
     font-weight:{{section.settings.col_title_font_weight}}
   }
   .multicolumn-{{section.id}} .multicolumn-card__info .rte{
     font-size:{{section.settings.col_text_font_size}}px;
-    color: {{section.settings.col_info_color}};
+    color: {{section.settings.col_color}};
   }
   @media(max-width:749px){
     .multicolumn-{{section.id}} .multicolumn-card__info  .col_title{
@@ -51,7 +51,7 @@
         {{ section.settings.title | escape }}
       </h2>
       {%- if section.settings.button_label != blank and section.settings.swipe_on_mobile -%}
-        <a href="{{ section.settings.button_link }}" class="button py-btn-{{section.settings.view_btn_color}} py-btn-hover-{{section.settings.view_btn_hover_color}} py-btn-{{section.settings.view_btn_size}} large-up-hide">{{ section.settings.button_label | escape }}</a>
+        <a href="{{ section.settings.button_link }}" class="button py-btn-{{section.settings.col_color_view_btn}} py-btn-hover-{{section.settings.col_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}} large-up-hide">{{ section.settings.button_label | escape }}</a>
       {%- endif -%}
     </div>
     <slider-component class="slider-mobile-gutter">
@@ -138,7 +138,7 @@
     </slider-component>
     <div class="center{% if section.settings.swipe_on_mobile %} small-hide medium-hide{% endif %}">
       {%- if section.settings.button_label != blank -%}
-        <a class="button button--primary py-btn-{{section.settings.view_btn_color}} py-btn-hover-{{section.settings.view_btn_hover_color}} py-btn-{{section.settings.view_btn_size}}"{% if section.settings.button_link == blank %} aria-disabled="true" role="link"{% else %} href="{{ section.settings.button_link }}"{% endif %}>
+        <a class="button button--primary py-btn-{{section.settings.col_color_view_btn}} py-btn-hover-{{section.settings.col_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}}"{% if section.settings.button_link == blank %} aria-disabled="true" role="link"{% else %} href="{{ section.settings.button_link }}"{% endif %}>
           {{ section.settings.button_label | escape }}
         </a>
       {%- endif-%}
@@ -350,7 +350,7 @@
     },
     {
         "type": "select",
-        "id": "col_info_color",
+        "id": "col_color",
         "label": "Column Info Color",
         "options": [ 
             {
@@ -437,7 +437,7 @@
     },
     {
       "type": "select",
-      "id": "view_btn_color",
+      "id": "col_color_view_btn",
       "label": "View Button Color style",
       "options": [
         {
@@ -457,7 +457,7 @@
     },
     {
       "type": "select",
-      "id": "view_btn_hover_color",
+      "id": "col_color_view_btn_hover",
       "label": "View Button Hover Color style",
       "options": [
         {

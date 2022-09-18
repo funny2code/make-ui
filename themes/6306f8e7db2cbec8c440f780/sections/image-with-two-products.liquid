@@ -26,7 +26,7 @@
           </div>
         {%- endif -%}
         {%- if section.settings.title != blank or section.settings.text != blank -%}
-        <div class="bc-iwtp__info {{ section.settings.align }}" {% if section.settings.color != blank %}style="color:{{ section.settings.color }}"{% endif %}>
+        <div class="bc-iwtp__info {{ section.settings.align }}" {% if section.settings.section_color != blank %}style="color:{{ section.settings.section_color }}"{% endif %}>
           {%- if section.settings.title != blank -%}
             <h2 class="bc-iwtp__info-title bc-iwtp__info-title-{{ section.id }}">{{ section.settings.title }}</h2>
             {%- render 'style', sufix: '.bc-iwtp__info-title', id: section.id, style: section.settings -%}
@@ -154,7 +154,7 @@
     },
     {
       "type": "select",
-      "id": "color",
+      "id": "section_color",
       "label": "Content Color",
       "options": [ 
          {
@@ -491,7 +491,7 @@
         },
         {
           "type": "select",
-          "id": "view_btn_color",
+          "id": "card_color_view_btn",
           "label": "View Button Color style",
           "options": [
             {
@@ -511,7 +511,7 @@
         },
         {
           "type": "select",
-          "id": "view_btn_hover_color",
+          "id": "card_color_view_btn_hover",
           "label": "View Button Hover Color style",
           "options": [
             {

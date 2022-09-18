@@ -196,7 +196,7 @@
       <div class="card-button-wrapper">
         {% if show_quick_add %}
         <div class="card-quick-add-wrapper">
-          <a class="card-quick-add py-btn-{{section.settings.view_btn_color}} py-btn-hover-{{section.settings.view_btn_hover_color}} py-btn-{{section.settings.view_btn_size}} {% if product_card_product.selected_or_first_available_variant.available == false %}disabled{% endif %}">            
+          <a class="card-quick-add py-btn-{{section.settings.card_color_view_btn}} py-btn-hover-{{section.settings.card_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}} {% if product_card_product.selected_or_first_available_variant.available == false %}disabled{% endif %}">            
             {%- if product_card_product.selected_or_first_available_variant.available -%}
               Quick Add
               {%- else -%}
@@ -207,7 +207,7 @@
         {% endif %}
         {% if show_view_product %}
         <div class="card-view-wrapper">
-          <a href="{{ product_card_product.url | default: '#' }}" class="card-view-product py-btn-{{section.settings.view_btn_color}} py-btn-hover-{{section.settings.view_btn_hover_color}} py-btn-{{section.settings.view_btn_size}}">View Product</a>
+          <a href="{{ product_card_product.url | default: '#' }}" class="card-view-product py-btn-{{section.settings.card_color_view_btn}} py-btn-hover-{{section.settings.card_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}}">View Product</a>
         </div>
         {% endif %}
       </div>

@@ -68,11 +68,12 @@
       </a>
       
       {% section 'product-color-uploads' %}
-      {% section 'announcement-bar' %}
-      
-      
-      {% section 'header' %} 
-      
+      {% if settings.header_style == "style_1" %}
+        {% section 'announcement-bar' %}
+        {% section 'header' %} 
+      {% else %}
+        {% section 'header-2' %}
+      {% endif %}
   
       <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
         {{ content_for_layout }}

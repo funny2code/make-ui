@@ -389,6 +389,68 @@
             "body": "Hind"
         }
     ];
+    const imageBanner = [
+        {
+            "image": "/6306f8e7db2cbec8c440f780/image-banner-img-1.webp",
+            "blocks": {
+                "heading" : {
+                    "block_heading": "Classic Headphones"
+                },
+                "text": {
+                    "block_text": "Simple, slim fit and super comfy headphones."
+                },
+                "buttons": {
+                    "block_button_label_1": "Shop All"
+                }
+            }
+        },
+        {
+            "section_height": "600px",
+            "image": "/62fe8c9ba58276071f183cb8/image-banner-img-left-1.webp",
+            "image_desk_2": "/62fe8c9ba58276071f183cb8/image-banner-img-right-1.webp",
+            "blocks": {
+                "heading" : {
+                    "block_heading": "Industrial design meets fashion."
+                },
+                "text": {
+                    "block_text": "Atypical leather goods"
+                },
+                "buttons": {
+                    "block_button_label_1": "Shop Now"
+                }
+            }
+        },
+        {
+            "image": "/6306f8e7db2cbec8c440f780/image-banner-img-2.webp",
+            "blocks": {
+                "heading" : {
+                    "block_heading": "Summer vibes."
+                },
+                "text": {
+                    "block_text": ""
+                },
+                "buttons": {
+                    "block_button_label_1": "Shop Tops"
+                }
+            }
+        },
+        {
+            "section_height": "700px",
+            "image": "/62fe8c9ba58276071f183cb8/image-banner-img-left-2.webp",
+            "image_desk_2": "/62fe8c9ba58276071f183cb8/image-banner-img-right-2.jpg",
+            "blocks": {
+                "heading" : {
+                    "block_heading": "Adventure-Inspired"
+                },
+                "text": {
+                    "block_text": "Sustainable Outdoor Supplies"
+                },
+                "buttons": {
+                    "block_button_label_1": "SHOP EVERYTHING"
+                }
+            }
+        }
+    ];
 
     let fontsCount = 0;
 
@@ -438,7 +500,7 @@
 
             // section.file_name = fileName || null;
             section.template_name = templateName;
-
+           
             // if(!fileName){
             data?.querySelectorAll('[name]').forEach(element => {
                 theme.settings[element.getAttribute('name').replace('settings_', '')] = (element.value === "true" || element.value === "false")
@@ -452,7 +514,9 @@
                 if (checking.length) {
                     theme?.sections?.forEach(sectionItem => {
                         if (sectionItem.file_name === fileName) {
+                            console.log(fileName);
                             data?.querySelectorAll('[name]').forEach(element => {
+                                console.log(element.getAttribute('name'), "-", element.value);
                                 sectionItem.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
                                     : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                             });
@@ -1633,7 +1697,7 @@
     //     return res.colors;
     // };
 
-    // let remixCount = 1;
+    let remixCount = 0;
     // let defaultSettingsCount = 0;
     const randomFun = async (event) => {
 
@@ -1726,6 +1790,35 @@
             }
         };
 
+        let imageBannerSection = document.querySelector('[data-file-name="image-banner"]');
+        let imageBannerContent = imageBannerSection && imageBannerSection?.closest('.py__closest');
+        let imageBannerBlocks = imageBannerContent && imageBannerContent.querySelectorAll('.py__settings-block-item');
+        if(imageBannerSection && imageBanner[remixCount]){
+            let fileds =  imageBannerSection.querySelectorAll('[name]');
+                if(fileds?.length){ 
+                for(let i=0; i<fileds.length; i++){
+                    let filed = fileds[i];
+                    let filedName = filed.getAttribute('name');
+                    if(imageBanner[remixCount][filedName]) filed.value = imageBanner[remixCount][filedName];    
+                }
+            }
+        } 
+        if(imageBannerBlocks?.length){
+            for(let i=0; i<imageBannerBlocks.length; i++){
+                let block = imageBannerBlocks[i];
+                let blockType = block.getAttribute('data-type');
+                let findAllFileds = block.querySelectorAll('[name]');
+                if(findAllFileds?.length){ 
+                    for(let j=0; j<findAllFileds.length; j++){
+                        let filed = findAllFileds[j];
+                        let filedName = filed.getAttribute('name');
+                        if(imageBanner[remixCount]?.blocks && imageBanner[remixCount]?.blocks[blockType] && imageBanner[remixCount]?.blocks[blockType][filedName]) filed.value = imageBanner[remixCount]?.blocks[blockType][filedName];    
+                    };
+                }
+            }
+        }
+
+        remixCount++;
         fontsCount >= fonts.length ? fontsCount = 0 : fontsCount++;
         saveSettingsValues();
         viewIframe();

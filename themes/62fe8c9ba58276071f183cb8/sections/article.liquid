@@ -11,7 +11,7 @@
   }
   }
 </style>
-<div class="py-{{section.settings.bg_color}}">
+<div class="py-{{section.settings.py_section_bg_color}}">
 <article class=" py-{{section.settings.page_y_pd}} article-template {% if section.settings.layout == 'horizontal' %} py-{{section.settings.page_width}}{% endif %}" itemscope itemtype="http://schema.org/BlogPosting">
 <div class="main-content-container py-{{section.settings.layout}}">
   {%- for block in section.blocks -%}
@@ -74,17 +74,17 @@
         <style>
           .article-template__title{
             font-size:{{block.settings.title_font_size}}px;
-            color:{{block.settings.title_color}};
+            color:{{block.settings.py_section_color_title}};
             text-align:{{block.settings.title_align}};
           }
           .blog-date{
             font-size:{{block.settings.date_font_size}}px;
-            color:{{block.settings.date_color}};
+            color:{{block.settings.py_section_color_date}};
             text-align:{{block.settings.date_align}};
           }
           .blog-author{
             font-size:{{block.settings.author_font_size}}px;
-            color:{{block.settings.author_color}};
+            color:{{block.settings.py_section_color_author}};
             text-align:{{block.settings.author_align}};
           }          
         </style>
@@ -104,7 +104,7 @@
            <style>              
               .article-template__content{
                 font-size:{{block.settings.content_font_size}}px;
-                color:{{block.settings.content_color}};
+                color:{{block.settings.py_section_color_content}};
                 text-align:{{block.settings.content_align}};
               }
           </style>
@@ -314,7 +314,7 @@
     },
     {
       "type": "select",
-      "id": "bg_color",
+      "id": "py_section_bg_color",
       "label": "Section Background ",
       "options": [          
         {
@@ -474,7 +474,7 @@
         },
         {
           "type": "select",
-          "id": "title_color",
+          "id": "py_section_color_title",
           "label": "Title Color",
           "options": [ 
              {
@@ -529,7 +529,7 @@
         },
         {
           "type": "select",
-          "id": "date_color",
+          "id": "py_section_color_date",
           "label": "Date Color",
           "options": [ 
              {
@@ -584,7 +584,7 @@
         },
         {
           "type": "select",
-          "id": "author_color",
+          "id": "py_section_color_author",
           "label": "Author Color",
           "options": [ 
              {
@@ -640,7 +640,7 @@
         },
         {
           "type": "select",
-          "id": "content_color",
+          "id": "py_section_color_content",
           "label": "Content Color",
           "options": [ 
              {

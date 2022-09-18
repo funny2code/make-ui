@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-price-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-badge.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-product-card-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'template-collection-style-1.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'component-price-style-1.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'component-badge.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'component-product-card-style-1.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'template-collection-style-1.css' | asset_url }}" >
 
 <noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-price-style-1.css' | asset_url | stylesheet_tag }}</noscript>
@@ -25,7 +25,7 @@
   }
   .featured-collection-{{section.id}} .title,
   .featured-collection-{{section.id}} .slider-button{
-    color:{{section.settings.title_color}};
+    color:{{section.settings.section_color_title}};
   }
   .featured-collection-{{section.id}}{
     background-color:{{section.settings.section_bg_color}};    
@@ -223,7 +223,7 @@
     },
     {
         "type": "select",
-        "id": "title_color",
+        "id": "section_color_title",
         "label": "Title Color",
         "options": [ 
             {
@@ -430,7 +430,7 @@
     },
     {
       "type": "select",
-      "id": "view_btn_color",
+      "id": "card_color_view_btn",
       "label": "View Button Color style",
       "options": [
         {
@@ -450,7 +450,7 @@
     },
     {
       "type": "select",
-      "id": "view_btn_hover_color",
+      "id": "card_color_view_btn_hover",
       "label": "View Button Hover Color style",
       "options": [
         {

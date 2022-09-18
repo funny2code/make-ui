@@ -2,7 +2,7 @@
 {{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
 <style>
   .title--primary{
-    color: {{section.settings.general_color}};
+    color: {{section.settings.py_section_color}};
   }
   .blog-articles{
     grid-gap :{{section.settings.item_space}}px;
@@ -36,7 +36,7 @@
 
 {%- paginate blog.articles by 18 -%}
 
-  <div class="main-blog py-{{section.settings.bg_color}} py-{{section.settings.page_y_pd}} py-{{section.settings.page_x_pd}}">
+  <div class="main-blog py-{{section.settings.py_section_bg_color}} py-{{section.settings.page_y_pd}} py-{{section.settings.page_x_pd}}">
     <div class="page-width py-{{section.settings.page_width}} py-{{section.settings.page_y_mg}} py-{{section.settings.page_y_mg}}">
       <h1 class="title--primary">{{ blog.title | escape }}<br/>
         <a target="_blank" class="rss-feed font--accent" style="font-size: 12px;display: inherit;font-weight: 400;" href="{{ shop.url }}{{ blog.url }}.atom">RSS</a>
@@ -75,7 +75,7 @@
     },
     {
       "type": "select",
-      "id": "bg_color",
+      "id": "py_section_bg_color",
       "label": "Section Background ",
       "options": [          
         {
@@ -107,7 +107,7 @@
     },
     {
         "type": "select",
-        "id": "general_color",
+        "id": "py_section_color",
         "label": "General Text Color",
         "options": [ 
             {
@@ -404,7 +404,7 @@
         },
         {
             "type": "select",
-            "id": "title_color",
+            "id": "card_color_title",
             "label": "Title Color",
             "options": [ 
                 {
@@ -478,7 +478,7 @@
         },
         {
           "type": "select",
-          "id": "view_btn_color",
+          "id": "card_color_view_btn",
           "label": "View Button Color style",
           "options": [
             {
@@ -498,7 +498,7 @@
         },
         {
           "type": "select",
-          "id": "view_btn_hover_color",
+          "id": "card_color_view_btn_hover",
           "label": "View Button Hover Color style",
           "options": [
             {

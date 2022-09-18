@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" >
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" >
 {{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
 <noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
@@ -23,14 +23,14 @@
   }
   .contact-form-container .field__input{
     background-color:{{section.settings.field_bg_color}};
-    border:{{section.settings.field_border_width}}px solid {{section.settings.field_border_color}};
+    border:{{section.settings.field_border_width}}px solid {{section.settings.field_color_br}};
     border-radius:{{section.settings.field_border_radius}}px;
     color:{{section.settings.field_color}};
     font-size:{{section.settings.field_font_size}}px;
   }
   .contact-form-container .field__input:focus{
-    color:{{section.settings.field_focus_color}};
-    border-color:{{section.settings.field_focus_color}};
+    color:{{section.settings.field_color_focus}};
+    border-color:{{section.settings.field_color_focus}};
   }
 </style>
 <div class="page-container">
@@ -42,7 +42,7 @@
           <style>
             .main-page-title{
               font-size:{{block.settings.title_font_size}}px;
-              color:{{block.settings.title_color}};
+              color:{{block.settings.page_color_title}};
               text-align:{{block.settings.title_align}};
             }            
           </style>
@@ -53,7 +53,7 @@
            <style>              
               .page-content{
                 font-size:{{block.settings.content_font_size}}px;
-                color:{{block.settings.content_color}};
+                color:{{block.settings.page_color_content}};
                 text-align:{{block.settings.content_align}};
               }
           </style>
@@ -140,7 +140,7 @@
         
       </div>
       <div class="contact__button">
-        <button type="submit" class="button py-btn-{{section.settings.submit_btn_color}} py-btn-hover-{{section.settings.submit_btn_hover_color}} py-btn-{{section.settings.submit_btn_size}}">
+        <button type="submit" class="button py-btn-{{section.settings.page_color_submit_btn}} py-btn-hover-{{section.settings.page_color_submit_btn_hover}} py-btn-{{section.settings.submit_btn_size}}">
           {{ 'templates.contact.form.send' | t }}
         </button>
       </div>
@@ -266,7 +266,7 @@
     },
     {
       "type": "select",
-      "id": "field_border_color",
+      "id": "field_color_br",
       "label": "Field Border Color",
       "options": [ 
          {
@@ -306,7 +306,7 @@
     },
     {
       "type": "select",
-      "id": "field_focus_color",
+      "id": "field_color_focus",
       "label": "Field Focused Color",
       "options": [ 
          {
@@ -355,7 +355,7 @@
     },
     {
       "type": "select",
-      "id": "submit_btn_color",
+      "id": "page_color_submit_btn",
       "label": "Submit Button Color style",
       "options": [
         {
@@ -375,7 +375,7 @@
     },
     {
       "type": "select",
-      "id": "submit_btn_hover_color",
+      "id": "page_color_submit_btn_hover",
       "label": "Submit Button Hover Color style",
       "options": [
         {
@@ -417,7 +417,7 @@
         },
         {
           "type": "select",
-          "id": "title_color",
+          "id": "page_color_title",
           "label": "Title Color",
           "options": [ 
              {
@@ -473,7 +473,7 @@
         },
         {
           "type": "select",
-          "id": "content_color",
+          "id": "page_color_content",
           "label": "Content Color",
           "options": [ 
              {

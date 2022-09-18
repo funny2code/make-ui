@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" >
 <link rel="preload" href="{{ 'component-product-card-style-1.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{{ 'component-price-style-1.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="stylesheet" href="{{ 'component-badge.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-badge.css' | asset_url }}" >
 <link rel="preload" href="{{ 'component-rte.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{{ 'component-variants.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="{{ 'component-modal-quickview.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -20,7 +20,7 @@
   
   .product-carousel-{{section.id}} .title,
   .product-carousel-{{section.id}} .slider-button{
-    color:{{section.settings.title_color}};
+    color:{{section.settings.section_color}};
   }
   .product-carousel-{{section.id}}{
     background-color:{{section.settings.section_bg_color}};    
@@ -244,7 +244,7 @@
     },
     {
         "type": "select",
-        "id": "title_color",
+        "id": "section_color",
         "label": "Title Color",
         "options": [ 
             {
@@ -451,7 +451,7 @@
     },
     {
       "type": "select",
-      "id": "view_btn_color",
+      "id": "card_color_view_btn",
       "label": "View Button Color style",
       "options": [
         {
@@ -471,7 +471,7 @@
     },
     {
       "type": "select",
-      "id": "view_btn_hover_color",
+      "id": "card_color_view_btn_hover",
       "label": "View Button Hover Color style",
       "options": [
         {

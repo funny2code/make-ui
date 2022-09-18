@@ -102,6 +102,9 @@
     margin-bottom: 0;
     border-bottom: 0;
   }
+.template-search__search form .field__label{
+  display:none
+}
 @media(max-width:767px){
   .bc-search-result-wrapper .bc-cart__item{
     width: calc(33.33% - 1rem);

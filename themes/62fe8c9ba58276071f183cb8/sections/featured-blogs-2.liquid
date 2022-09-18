@@ -3,12 +3,12 @@
 
 <style>
   .featured-blogs-2-{{section.id}} .title--primary{
-    color: {{section.settings.title_color}};
+    color: {{section.settings.py_section_color}};
     font-size:{{section.settings.title_font_size}}px;
     font-weight:{{section.settings.title_font_weight}};
   }
   .featured-blogs-2-{{section.id}} .title--second{
-    color: {{section.settings.sub_title_color}};
+    color: {{section.settings.py_section_color_sub_title}};
     font-size:{{section.settings.sub_title_font_size}}px;
     font-weight:{{section.settings.sub_title_font_weight}}
   }
@@ -19,7 +19,7 @@
     }
     .feature-article{
         padding-right: var(--space-12);
-        border-right: 1px solid {{section.settings.title_color}};
+        border-right: 1px solid {{section.settings.py_section_color}};
         border-bottom: none;
     }
     .list-blog-articles{
@@ -35,7 +35,7 @@
   }
   .featured-blogs-2-{{section.id}} .article-card_excerpt,
   .featured-blogs-2-{{section.id}} .circle-divider{
-    color:{{section.settings.info_color}}; 
+    color:{{section.settings.py_section_color_info}}; 
     font-size:{{section.settings.info_font_size}}px; 
     padding-bottom:var(--space-12);              
   }
@@ -68,12 +68,12 @@
   }
 </style>
 
-  <div class="featured-blogs-2 featured-blogs-2-{{section.id}} py-{{section.settings.bg_color}} py-{{section.settings.page_y_pd}} py-{{section.settings.page_x_pd}}  bc-{{settings.section_style}}-bt">
+  <div class="featured-blogs-2 featured-blogs-2-{{section.id}} py-{{section.settings.py_section_bg_color}} py-{{section.settings.page_y_pd}} py-{{section.settings.page_x_pd}}  bc-{{settings.section_style}}-bt">
     <div class="page-width py-{{section.settings.page_width}} py-{{section.settings.page_y_mg}} py-{{section.settings.page_y_mg}}">
       <div class="featured-blogs-wraper">
         <div class="feature-article">
           <h1 class="title--primary">{{ section.settings.title | escape }}</h1>
-          <div class="blog-articles__article article py-{{section.settings.card_bg_color}}">
+          <div class="blog-articles__article article ">
               {%- render 'article-card', article: section.settings.blog.articles[0], show_image: true -%}
           </div>
         </div>
@@ -81,12 +81,12 @@
           <h1 class="title--second">{{ section.settings.sub_title | escape }}</h1>      
           {%- for article in section.settings.blog.articles limit: 4-%}
               {% if forloop.index > 1 %}            
-              <div class="blog-articles__article article py-{{section.settings.card_bg_color}}">
+              <div class="blog-articles__article article ">
                   {%- render 'article-card', article: article, show_image: false -%}
               </div>            
               {% endif %}     
           {%- endfor -%} 
-          <a href="" class="py-btn-{{section.settings.view_btn_color}} py-btn-hover-{{section.settings.view_btn_hover_color}} py-btn-{{section.settings.view_btn_size}}" >View all articles</a>        
+          <a href="" class="py-btn-{{section.settings.py_section_color_view_btn}} py-btn-hover-{{section.settings.py_section_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}}" >View all articles</a>        
         </div>
       </div>
     </div>
@@ -105,7 +105,7 @@
     },
     {
       "type": "select",
-      "id": "bg_color",
+      "id": "py_section_bg_color",
       "label": "Section Background ",
       "options": [          
         {
@@ -143,7 +143,7 @@
     },
     {
         "type": "select",
-        "id": "title_color",
+        "id": "py_section_color",
         "label": "Title Color",
         "options": [ 
             {
@@ -187,7 +187,7 @@
     },
     {
         "type": "select",
-        "id": "sub_title_color",
+        "id": "py_section_color_sub_title",
         "label": "Sub titleColor",
         "options": [ 
             {
@@ -438,38 +438,6 @@
       "label": "Card Border Radius"
     },
     {
-      "type": "select",
-      "id": "card_bg_color",
-      "label": "Card Background",
-      "options": [          
-        {
-          "label": "Transparent",
-          "value": "bg-c-none"
-        },        
-        {
-          "label": "Dark",
-          "value": "bg-c-dark"
-        },
-        {
-          "label": "Middle Dark",
-          "value": "bg-c-middle-dark"
-        },
-        {
-          "label": "Average",
-          "value": "bg-c-average"
-        },
-        {
-          "label": "Middle Light",
-          "value": "bg-c-middle-light"
-        },
-        {
-          "label": "Light",
-          "value": "bg-c-light"
-        }
-      ],
-     "default": "bg-c-average"
-    },
-    {
         "type": "select",
         "id": "view_btn_size",
         "label": "View Button Size",
@@ -491,7 +459,7 @@
     },
     {
         "type": "select",
-        "id": "view_btn_color",
+        "id": "py_section_color_view_btn",
         "label": "View Button Color style",
         "options": [
         {
@@ -511,7 +479,7 @@
     },
     {
         "type": "select",
-        "id": "view_btn_hover_color",
+        "id": "py_section_color_view_btn_hover",
         "label": "View Button Hover Color style",
         "options": [
         {
@@ -531,7 +499,7 @@
     },
     {
         "type": "select",
-        "id": "card_info_color",
+        "id": "py_section_color_info",
         "label": "Info Color",
         "options": [ 
             {

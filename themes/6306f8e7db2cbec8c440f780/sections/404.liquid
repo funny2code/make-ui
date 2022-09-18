@@ -1,13 +1,13 @@
 <style type="text/css">
   .content-title{    
-    color:{{section.settings.content_color}};
+    color:{{section.settings.py_section_color}};
   }
   .content-description{    
-    color:{{section.settings.content_color}};
+    color:{{section.settings.py_section_color}};
   }
 </style>
 
-<div class="template-404 py-pd-y-xs py-{{section.settings.bg_color}}">  
+<div class="template-404 py-pd-y-xs py-{{section.settings.py_section_bg_color}}">  
   {%- for block in section.blocks -%}
     {%- case block.type -%}
         {%- when 'title'-%}
@@ -95,7 +95,7 @@
     },
     {
       "type": "select",
-      "id": "bg_color",
+      "id": "py_section_bg_color",
       "label": "Section Background ",
       "options": [
         {
@@ -127,7 +127,7 @@
     },
     {
       "type": "select",
-      "id": "content_color",
+      "id": "py_section_color",
       "label": "Content Color",
       "options": [
           {

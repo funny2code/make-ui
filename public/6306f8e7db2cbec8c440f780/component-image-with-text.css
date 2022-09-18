@@ -30,13 +30,16 @@
   margin-bottom: 0;
 }
 
-.image-with-text__grid {
-  overflow: hidden;
+.img_style-padding .img-wrap{
+  padding: var(--space-18);
 }
-
 @media screen and (min-width: 750px) {
   .image-with-text__grid--reverse {
     flex-direction: row-reverse;
+  }
+  .img_style-offset .image-with-text__media{
+    top: var(--space-18);
+    left: calc(var(--space-18) * -1);
   }
 }
 
@@ -136,6 +139,7 @@
 
 .image-with-text__heading {
   margin-bottom: 0;
+  width:100%;
 }
 
 .image-with-text__text p {

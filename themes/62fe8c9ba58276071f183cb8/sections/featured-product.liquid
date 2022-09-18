@@ -17,10 +17,10 @@
   .product__info-container .price,
   .product__info-container .form__label,
   .product__info-container .product__description{
-    color: {{section.settings.info_color}};
+    color: {{section.settings.section_color}};
   }  
   .product__info-container .bc-selling-tag .bc-vertical-tag-inner {
-      background-color: {{section.settings.info_color}};;    
+      background-color: {{section.settings.section_color}};;    
       color: {{section.settings.section_bg_color}};
   }
   .main-product-section,.product__info-wrapper{
@@ -31,7 +31,7 @@
      padding: 20px 0px;
   }
   .breadcrumb-nav *{
-    color: {{section.settings.info_color}};
+    color: {{section.settings.section_color}};
   }
   .bc-colors__icon[data-color="{{ colortitle }}"] {
     background-color: {{ colorvalue }};
@@ -348,13 +348,13 @@
               background:{{block.settings.option_bg_color}};
               color:{{block.settings.option_color}};
               border:1px solid;
-              border-color:{{block.settings.option_br_color}} !important;
+              border-color:{{block.settings.option_color_br}} !important;
               font-size: {{block.settings.option_fontsize}}px;
             }
             .product-form__input input[type='radio']:checked + label {
               background:{{block.settings.selected_option_bg_color}};
               color:{{block.settings.selected_option_color}};
-              border-color:{{block.settings.selected_option_br_color}} !important;
+              border-color:{{block.settings.selected_option_color_br}} !important;
               cursor: default;
             } 
             .general-picker-sm_radius .product-form__input input[type='radio'] + label{
@@ -511,7 +511,7 @@
               background-color:{{block.settings.fixed_add_bg_color}};
             }
             .fixed-add-wraper *{
-              color:{{block.settings.fixed_add_info_color}} !important;
+              color:{{block.settings.fixed_add_color}} !important;
             }
             .fixed-add-wraper button.product-form__submit{
               border-radius:{{block.settings.fixed_add_btn_radius}}px;
@@ -650,7 +650,7 @@
               button.product-form__submit{
                 border-radius:{{block.settings.btn_border_radius}}px;
                 border:{{block.settings.btn_border_width}}px solid {{block.settings.br_color}};
-                background-color:{{block.settings.bg_color}};
+                background-color:{{block.settings.py_section_bg_color}};
                 color:{{block.settings.color}};
                 font-size:{{block.settings.btn_font_size}}px;
               }
@@ -673,7 +673,7 @@
               }
               .pickup-card-wrapper{
                 border-radius:{{block.settings.pick_up_card_radius}}px;
-                border:{{block.settings.pick_up_border_width}}px solid {{block.settings.pick_up_border_color}};
+                border:{{block.settings.pick_up_border_width}}px solid {{block.settings.pick_up_color_br}};
                 background-color:{{block.settings.pick_up_bg_color}};
               }
               .pickup-location-item{
@@ -683,59 +683,59 @@
                 margin-bottom: var(--py-mg-x-s);
               }
               .pickup-location-item *{
-                color:{{block.settings.pick_up_location_info_color}}
+                color:{{block.settings.pick_up_location_color}}
               }
               .pickup-card-title{
                 font-size:{{block.settings.pick_up_title_font_size}}px;
-                color:{{block.settings.pick_up_info_color}};
+                color:{{block.settings.pick_up_color}};
               }
               .pickup-card-description{
                 font-size:{{block.settings.pick_up_desc_font_size}}px;
-                color:{{block.settings.pick_up_info_color}};
+                color:{{block.settings.pick_up_color}};
               }
               pickup-availability-drawer{
                 background: {{block.settings.pick_up_bg_color}};                
               }
               pickup-availability-drawer *{
-                color:{{block.settings.pick_up_info_color}};
+                color:{{block.settings.pick_up_color}};
               }
               #preorderbunner .bc-order-wrapper{
                 border-radius:{{block.settings.pre_order_card_radius}}px;
-                border:{{block.settings.pre_order_border_width}}px solid {{block.settings.pre_order_border_color}};
+                border:{{block.settings.pre_order_border_width}}px solid {{block.settings.pre_order_color_br}};
                 background-color:{{block.settings.pre_order_bg_color}};
               }
               #preorderbunner .bc-order-wrapper .title{
-                color:{{block.settings.pre_order_info_color}};
+                color:{{block.settings.pre_order_color}};
                 font-size:{{block.settings.pre_order_title_font_size}}px;
               }
               #preorderbunner .bc-order-wrapper .message,.bc-order-wrapper .product-popup-modal__button{
-                color:{{block.settings.pre_order_info_color}};
+                color:{{block.settings.pre_order_color}};
                 font-size:font-size:{{block.settings.pre_order_desc_font_size}}px;
               }
               #PopupModal-preorder .product-popup-modal__content{
                 background-color:{{block.settings.pre_order_bg_color}};
               }
               #PopupModal-preorder .product-popup-modal__content *{
-                color:{{block.settings.pre_order_info_color}};
+                color:{{block.settings.pre_order_color}};
               }
               #preorderbunner .bc-order-wrapper.sold-out-card{
                 border-radius:{{block.settings.sold_out_card_radius}}px;
-                border:{{block.settings.sold_out_border_width}}px solid {{block.settings.sold_out_border_color}};
+                border:{{block.settings.sold_out_border_width}}px solid {{block.settings.sold_out_color_br}};
                 background-color:{{block.settings.sold_out_bg_color}};
               }
               #preorderbunner .bc-order-wrapper.sold-out-card .title{
-                color:{{block.settings.sold_out_info_color}};
+                color:{{block.settings.sold_out_color}};
                 font-size:{{block.settings.sold_out_title_font_size}}px;
               }
               #preorderbunner .bc-order-wrapper.sold-out-card .message,.bc-order-wrapper.sold-out-card .product-popup-modal__button{
-                color:{{block.settings.sold_out_info_color}};
+                color:{{block.settings.sold_out_color}};
                 font-size:font-size:{{block.settings.sold_out_desc_font_size}}px;
               }
               #PopupModal-preorder .product-popup-modal__content{
                 background-color:{{block.settings.sold_out_bg_color}};
               }
               #PopupModal-preorder .product-popup-modal__content *{
-                color:{{block.settings.sold_out_info_color}};
+                color:{{block.settings.sold_out_color}};
               }
             </style> 
             {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities | where: 'pick_up_enabled', true -%}
@@ -791,13 +791,13 @@
             {%- assign headingLow = block.settings.heading | downcase | strip -%}
             <style>
               .accordion_{{headingLow | replace: ' ', '-'}}{
-                background-color:{{block.settings.bg_color}};
-                color:{{ block.settings.color }};
-                border-color:{{ block.settings.border_color }};
+                background-color:{{block.settings.py_content_bg_color}};
+                color:{{ block.settings.py_content_color }};
+                border-color:{{ block.settings.py_content_color_br }};
               }
               .accordion_{{headingLow | replace: ' ', '-'}} *{
-                color:{{ block.settings.color }};
-                fill:{{ block.settings.color }};
+                color:{{ block.settings.py_content_color }};
+                fill:{{ block.settings.py_content_color }};
               }
             </style>
             <div class="product__accordion accordion accordion_{{headingLow | replace: ' ', '-'}}">
@@ -1243,7 +1243,7 @@
     },
     {
       "type": "select",
-      "id": "info_color",
+      "id": "section_color",
       "label": "Content Color",
       "options": [ 
          {
@@ -1611,7 +1611,7 @@
         },
         {
           "type": "select",
-          "id": "option_br_color",
+          "id": "option_color_br",
           "label": "Option Border Color",
           "options": [ 
              {
@@ -1683,7 +1683,7 @@
         },
         {
           "type": "select",
-          "id": "selected_option_br_color",
+          "id": "selected_option_color_br",
           "label": "Selected Option Border Color",
           "options": [ 
              {
@@ -1814,7 +1814,7 @@
         },
         {
           "type": "select",
-          "id": "bg_color",
+          "id": "btn_bg_color",
           "label": "Button Background Color",
           "options": [          
              {
@@ -1846,7 +1846,7 @@
         },
         {
           "type": "select",
-          "id": "color",
+          "id": "btn_color",
           "label": "Button Color",
           "options": [ 
              {
@@ -1918,7 +1918,7 @@
         },
         {
           "type": "select",
-          "id": "br_color",
+          "id": "btn_color_br",
           "label": "Button Border Color",
           "options": [ 
              {
@@ -2035,7 +2035,7 @@
         },
         {
           "type": "select",
-          "id": "fixed_add_info_color",
+          "id": "fixed_add_color",
           "label": "Fixed Add to Cart Text Color",
           "options": [
             {
@@ -2213,7 +2213,7 @@
         },
         {
           "type": "select",
-          "id": "sold_out_info_color",
+          "id": "sold_out_color",
           "label": "Sold Out Info Color",
           "options": [
             {
@@ -2242,7 +2242,7 @@
         },
         {
           "type": "select",
-          "id": "sold_out_border_color",
+          "id": "sold_out_color_br",
           "label": "Sold Out Border Color",
           "options": [
             {
@@ -2325,7 +2325,7 @@
         },
         {
           "type": "select",
-          "id": "pre_order_info_color",
+          "id": "pre_order_color",
           "label": "Pre Order Info Color",
           "options": [
             {
@@ -2354,7 +2354,7 @@
         },
         {
           "type": "select",
-          "id": "pre_order_border_color",
+          "id": "pre_order_color_br",
           "label": "Pre Order Border Color",
           "options": [
             {
@@ -2437,7 +2437,7 @@
         },
         {
           "type": "select",
-          "id": "pick_up_info_color",
+          "id": "pick_up_color",
           "label": "Pick Up Card Info Color",
           "options": [
             {
@@ -2466,7 +2466,7 @@
         },
         {
           "type": "select",
-          "id": "pick_up_border_color",
+          "id": "pick_up_color_br",
           "label": "Pick Up Card Border Color",
           "options": [
             {
@@ -2551,7 +2551,7 @@
         },
         {
           "type": "select",
-          "id": "pick_up_location_info_color",
+          "id": "pick_up_location_color",
           "label": "Pick Up Location Info Color",
           "options": [
             {
@@ -2672,7 +2672,7 @@
       "settings": [
         {
           "type": "select",
-          "id": "bg_color",
+          "id": "py_content_bg_color",
           "label": "Background Color",
           "options": [          
              {
@@ -2704,7 +2704,7 @@
         },
         {
           "type": "select",
-          "id": "color",
+          "id": "py_content_color",
           "label": "Content Color",
           "options": [ 
              {
@@ -2724,7 +2724,7 @@
         },
         {
           "type": "select",
-          "id": "border_color",
+          "id": "py_content_color_br",
           "label": "Border Color",
           "options": [ 
              {
