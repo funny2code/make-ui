@@ -13,7 +13,7 @@ const modelUsersThemes = require('../models/customer-themes');
 /* GET All Themes and User Themes. */
 router.get('/', async (req, res, next) => {
 
-  console.log('IP: ' + JSON.stringify(req.ip));
+  console.log('IP: ' + JSON.stringify(req.socket.remoteAddress));
   // Automaticly add shopify theme sections Schema Settings to app DB Code generator
   // themeJsonDB.theme_sec = [];
   // try {
