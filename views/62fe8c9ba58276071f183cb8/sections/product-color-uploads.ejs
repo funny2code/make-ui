@@ -1,0 +1,14 @@
+<style id="stylesheet-product-colors">
+  <% section.blocks?.forEach((block,index) => { %>
+  <% var color =  block.settings.color %>
+  <% var name =  block.settings.name.toLowerCase() %>
+  .pd-colors__icon[data-color="<%= name %>"] {
+    background-color: <%= color %>;
+    <% if(block.settings.use_image && block.settings.swatch_image){ %>
+      background-color: transparent;
+      background-image: url('<%= block.settings.swatch_image %>');
+      background-size: cover;
+    <% } %>
+  }
+<% }) %>
+</style>

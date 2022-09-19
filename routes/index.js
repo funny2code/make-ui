@@ -10,11 +10,10 @@ const modelUsersThemes = require('../models/customer-themes');
 // const themeConfif = require('../themes/6306f8e7db2cbec8c440f780/locales/en.default.schema.json');
 // const fs = require('fs');
 
-
 /* GET All Themes and User Themes. */
 router.get('/', async (req, res, next) => {
 
-
+  console.log('IP: ' + JSON.stringify(req.ip));
   // Automaticly add shopify theme sections Schema Settings to app DB Code generator
   // themeJsonDB.theme_sec = [];
   // try {
