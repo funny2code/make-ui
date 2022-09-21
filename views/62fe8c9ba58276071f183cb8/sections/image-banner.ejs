@@ -51,9 +51,9 @@
           >
         </div>
       <% } %>
-      <% if(section.settings.image_2){ %>
-        <%- include('../snippets/resimg', {image: section.settings.image_2, classwrapper: 'large-up-hide medium-hide'})  %>
-      <% } %>
+      <%# if(section.settings.image_2){ %>
+        <%# include('../snippets/resimg', {image: section.settings.image_2, classwrapper: 'large-up-hide medium-hide'})  %>
+      <%# } %>
       <div class="banner__content banner__content-<%= section.id %> page-width">
         <%- include('../snippets/style', {sufix: '.banner__content', id: section.id, style: section.settings}) %>
         <div class="banner__box">
@@ -71,7 +71,7 @@
               <% } else if(block.type === 'buttons'){ %>
                 <div class="banner__buttons<% if(block.settings.button_label_1 && block.settings.button_link_1 && block.settings.button_label_2 && block.settings.button_link_2){ %> banner__buttons--multiple<% } %>">
                   <% if(block.settings.button_label_1){ %>
-                    <a id="bunner__button-<%= block.id %>" href="<%= block.settings.button_link_1 %>" class="button py-btn-<%=block.settings.view_btn_color%> py-btn-hover-<%=block.settings.view_btn_hover_color%> py-btn-<%=block.settings.view_btn_size%>"<% if(!block.settings.button_link_1){ %> aria-disabled="true"<% } %>>
+                    <a id="bunner__button-<%= block.id %>" href="<%= block.settings.button_link_1 %>" class="button py-btn-<%=block.settings.view_btn_color%> py-btn-hover-<%=block.settings.view_btn_hover_color%> py-btn-<%=block.settings.view_btn_size%>">
                       <%= block.settings.button_label_1 %>
                     </a>
                   <style>#bunner__button-<%= block.id %>{

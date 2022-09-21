@@ -45,8 +45,8 @@
             "body": "Nunito Sans"
         },
         {
-            "heading": "Libre Baskerville ",
-            "body": "Libre Baskerville "
+            "heading": "Libre Baskerville",
+            "body": "Libre Baskerville"
         },
         {
             "heading": "Oswald",
@@ -392,15 +392,42 @@
     const imageBanner = [
         {
             "image": "/6306f8e7db2cbec8c440f780/image-banner-img-1.webp",
+            "image_2": "/6306f8e7db2cbec8c440f780/image-banner-img-1.webp",
+            "show_override": false,
+            "ov_bg_color": "var(--py-color-black)",
+            "ov_bg_image": "",
+            "ov_opacity": "0.5",
+            "align": "center",
+            "m_align": "center",
+            "enable_anim": "",
+            "anim": "",
             "blocks": {
                 "heading" : {
-                    "block_heading": "Classic Headphones"
+                    "block_heading": "Classic Headphones",
+                    "block_color": "var(--py-color-light)",
+                    "block_weight": "",
+                    "block_size": "60px",
+                    "block_c_css": "",
+                    "block_m_align": "",
+                    "block_m_weight": "",
+                    "block_m_size": "40px",
+                    "block_m_c_css": ""
                 },
                 "text": {
-                    "block_text": "Simple, slim fit and super comfy headphones."
+                    "block_text": "Simple, slim fit and super comfy headphones.",
+                    "block_color": "var(--py-color-light)",
+                    "block_weight": "",
+                    "block_size": "22px",
+                    "block_c_css": "",
+                    "block_m_align": "",
+                    "block_m_weight": "",
+                    "block_m_size": "18px",
+                    "block_m_c_css": ""
                 },
                 "buttons": {
-                    "block_button_label_1": "Shop All"
+                    "block_button_label_1": "Shop All",
+                    "block_view_btn_size": "large",
+                    "block_view_btn_color": "dark"
                 }
             }
         },
@@ -408,29 +435,83 @@
             "section_height": "600px",
             "image": "/62fe8c9ba58276071f183cb8/image-banner-img-left-1.webp",
             "image_desk_2": "/62fe8c9ba58276071f183cb8/image-banner-img-right-1.webp",
+            "image_2": "",
+            "show_override": false,
+            "ov_bg_color": "var(--py-color-black)",
+            "ov_bg_image": "",
+            "ov_opacity": "0.5",
+            "align": "center",
+            "m_align": "center",
+            "enable_anim": "",
+            "anim": "",
             "blocks": {
                 "heading" : {
-                    "block_heading": "Industrial design meets fashion."
+                    "block_heading": "Industrial design meets fashion.",
+                    "block_color": "var(--py-color-light)",
+                    "block_weight": "",
+                    "block_size": "60px",
+                    "block_c_css": "",
+                    "block_m_align": "",
+                    "block_m_weight": "",
+                    "block_m_size": "40px",
+                    "block_m_c_css": ""
                 },
                 "text": {
-                    "block_text": "Atypical leather goods"
+                    "block_text": "Atypical leather goods",
+                    "block_color": "var(--py-color-light)",
+                    "block_weight": "",
+                    "block_size": "22px",
+                    "block_c_css": "",
+                    "block_m_align": "",
+                    "block_m_weight": "",
+                    "block_m_size": "18px",
+                    "block_m_c_css": ""
                 },
                 "buttons": {
-                    "block_button_label_1": "Shop Now"
+                    "block_button_label_1": "Shop Now",
+                    "block_view_btn_size": "large",
+                    "block_view_btn_color": "dark"
                 }
             }
         },
         {
             "image": "/6306f8e7db2cbec8c440f780/image-banner-img-2.webp",
+            "image_2": "/6306f8e7db2cbec8c440f780/image-banner-img-2.webp",
+            "show_override": false,
+            "ov_bg_color": "var(--py-color-black)",
+            "ov_bg_image": "",
+            "ov_opacity": "0.5",
+            "align": "center",
+            "m_align": "center",
+            "enable_anim": "",
+            "anim": "",
             "blocks": {
                 "heading" : {
-                    "block_heading": "Summer vibes."
+                    "block_heading": "Summer vibes.",
+                    "block_color": "var(--py-color-light)",
+                    "block_weight": "",
+                    "block_size": "60px",
+                    "block_c_css": "",
+                    "block_m_align": "",
+                    "block_m_weight": "",
+                    "block_m_size": "40px",
+                    "block_m_c_css": ""
                 },
                 "text": {
-                    "block_text": ""
+                    "block_text": "",
+                    "block_color": "var(--py-color-light)",
+                    "block_weight": "",
+                    "block_size": "22px",
+                    "block_c_css": "",
+                    "block_m_align": "",
+                    "block_m_weight": "",
+                    "block_m_size": "18px",
+                    "block_m_c_css": ""
                 },
                 "buttons": {
-                    "block_button_label_1": "Shop Tops"
+                    "block_button_label_1": "Shop Tops",
+                    "block_view_btn_size": "large",
+                    "block_view_btn_color": "dark"
                 }
             }
         },
@@ -438,15 +519,42 @@
             "section_height": "700px",
             "image": "/62fe8c9ba58276071f183cb8/image-banner-img-left-2.webp",
             "image_desk_2": "/62fe8c9ba58276071f183cb8/image-banner-img-right-2.jpg",
+            "image_2": "",
+            "show_override": true,
+            "ov_bg_color": "var(--py-color-black)",
+            "ov_bg_image": "",
+            "ov_opacity": "0.5",
+            "align": "center",
+            "m_align": "center",
+            "enable_anim": "",
+            "anim": "",
             "blocks": {
                 "heading" : {
-                    "block_heading": "Adventure-Inspired"
+                    "block_heading": "Adventure-Inspired",
+                    "block_color": "var(--py-color-light)",
+                    "block_weight": "",
+                    "block_size": "60px",
+                    "block_c_css": "",
+                    "block_m_align": "",
+                    "block_m_weight": "",
+                    "block_m_size": "40px",
+                    "block_m_c_css": ""
                 },
                 "text": {
-                    "block_text": "Sustainable Outdoor Supplies"
+                    "block_text": "Sustainable Outdoor Supplies",
+                    "block_color": "var(--py-color-light)",
+                    "block_weight": "",
+                    "block_size": "22px",
+                    "block_c_css": "",
+                    "block_m_align": "",
+                    "block_m_weight": "",
+                    "block_m_size": "18px",
+                    "block_m_c_css": ""
                 },
                 "buttons": {
-                    "block_button_label_1": "SHOP EVERYTHING"
+                    "block_button_label_1": "SHOP EVERYTHING",
+                    "block_view_btn_size": "large",
+                    "block_view_btn_color": "dark"
                 }
             }
         }
@@ -514,24 +622,23 @@
                 if (checking.length) {
                     theme?.sections?.forEach(sectionItem => {
                         if (sectionItem.file_name === fileName) {
-                            console.log(fileName);
                             data?.querySelectorAll('[name]').forEach(element => {
-                                console.log(element.getAttribute('name'), "-", element.value);
                                 sectionItem.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
                                     : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                             });
-                        }
-                        if (blockSettings?.length) {
-                            blockSettings.forEach(block => {
-                                sectionItem?.blocks.forEach(localBlock => {
-                                    if (localBlock.type === block.getAttribute('data-type')) {
-                                        block.querySelectorAll('[name]').forEach(element => {
-                                            localBlock.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
-                                                : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
-                                        });
-                                    }
-                                })
-                            });
+                            if (blockSettings?.length) {
+                                blockSettings.forEach(block => {
+                                    sectionItem?.blocks?.forEach(localBlock => {
+                                        if (localBlock.type === block.getAttribute('data-type')) {
+                                            block.querySelectorAll('[name]').forEach(element => {
+                                                console.log(element.getAttribute('name'), "=", element.value);
+                                                localBlock.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
+                                                    : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
+                                            });
+                                        }
+                                    })
+                                });
+                            }
                         }
                     });
                 } else {
@@ -544,6 +651,7 @@
                         blockSettings.forEach(block => {
                             let blockItem = { type: block.getAttribute('data-type'), settings: {} };
                             block?.querySelectorAll('[name]')?.forEach(element => {
+                                console.log(element.getAttribute('name'), "=", element.value, "-----BLOCK");
                                 blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
                                     : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
                             });
@@ -573,6 +681,7 @@
                 theme.sections.push(section);
             }
         })
+        console.log(theme, "THEME");
     };
 
     // FETCH CONFIG FUNCTION
@@ -1045,7 +1154,9 @@
         for (let i = 0; i < iframes.length; i++) {
             let iframeItem = iframes[i];
             let ifrm = iframeItem.contentDocument || iframeItem.contentWindow.document;
-            html ? ifrm.querySelector('body').innerHTML = html.querySelector('body').innerHTML : null;
+            console.log(ifrm, html);
+            html ? ids ? ifrm.querySelector('html').innerHTML = html.querySelector('html').innerHTML 
+            : ifrm.querySelector('body').innerHTML = html.querySelector('body').innerHTML : null;
         }
         loading?.classList.remove('py__animate');
     };
@@ -1799,7 +1910,7 @@
                 for(let i=0; i<fileds.length; i++){
                     let filed = fileds[i];
                     let filedName = filed.getAttribute('name');
-                    if(imageBanner[remixCount][filedName]) filed.value = imageBanner[remixCount][filedName];    
+                    if(typeof imageBanner[remixCount][filedName] !== "undefined") filed.value = imageBanner[remixCount][filedName];    
                 }
             }
         } 
@@ -1812,13 +1923,15 @@
                     for(let j=0; j<findAllFileds.length; j++){
                         let filed = findAllFileds[j];
                         let filedName = filed.getAttribute('name');
-                        if(imageBanner[remixCount]?.blocks && imageBanner[remixCount]?.blocks[blockType] && imageBanner[remixCount]?.blocks[blockType][filedName]) filed.value = imageBanner[remixCount]?.blocks[blockType][filedName];    
+                        // console.log(typeof imageBanner[remixCount]?.blocks[blockType][filedName], typeof imageBanner[remixCount]?.blocks[blockType][filedName] === "undefined");
+                        if(imageBanner[remixCount]?.blocks && imageBanner[remixCount]?.blocks[blockType] && typeof imageBanner[remixCount]?.blocks[blockType][filedName] !== "undefined") filed.value = imageBanner[remixCount]?.blocks[blockType][filedName];    
                     };
                 }
             }
         }
 
         remixCount++;
+        if(remixCount >= imageBanner?.length) remixCount = 0; 
         fontsCount >= fonts.length ? fontsCount = 0 : fontsCount++;
         saveSettingsValues();
         viewIframe();

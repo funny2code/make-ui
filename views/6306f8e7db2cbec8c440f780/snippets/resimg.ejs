@@ -1,12 +1,12 @@
 <% if(image){ %>
 <div class="<%= classwrapper %>">
-    <img srcset="/<%=srcId%>/<%= image %> 165w,
-    /<%=srcId%>/<%= image %> 360w,
-    /<%=srcId%>/<%= image %> 535w,
-    /<%=srcId%>/<%= image %> 720w,
-    /<%=srcId%>/<%= image %> 940w,
-    /<%=srcId%>/<%= image %> 1070w"
-        src="/<%=srcId%>/<%= image %>"
+    <img srcset="<%= image.includes('/') ? image : `/${srcId}/${image}` %> 165w,
+        <%= image.includes('/') ? image : `/${srcId}/${image}` %> 360w,
+        <%= image.includes('/') ? image : `/${srcId}/${image}` %> 535w,
+        <%= image.includes('/') ? image : `/${srcId}/${image}` %> 720w,
+        <%= image.includes('/') ? image : `/${srcId}/${image}` %> 940w,
+        <%= image.includes('/') ? image : `/${srcId}/${image}` %> 1070w"
+        src="<%= image.includes('/') ? image : `/${srcId}/${image}` %>"
         sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
         class="<%= classimg %>"
     />

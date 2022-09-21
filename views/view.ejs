@@ -24,9 +24,16 @@
     <link rel="stylesheet" href="/<%=srcId%>/component-header-style-1.css">
 </head>
     <body class="index">
-        <% let fontsNames = settings.heading_font_custom + '|' + settings.title_font_custom + '|' + settings.sub_title_font_custom + '|' + settings.body_font_custom + '|' + settings.button_font_custom + '|' + settings.nav_font_custom + '|' + settings.field_font_custom  %>
+        <% let fontsNames = ''; %>
+        <% if(settings.heading_font_custom && !fontsNames?.includes(settings.heading_font_custom)){  fontsNames += settings.heading_font_custom + '|'; } %>
+        <% if(settings.title_font_custom && !fontsNames?.includes(settings.title_font_custom)){  fontsNames += settings.title_font_custom + '|'; } %>
+        <% if(settings.sub_title_font_custom && !fontsNames?.includes(settings.sub_title_font_custom)){  fontsNames += settings.sub_title_font_custom + '|'; } %>
+        <% if(settings.body_font_custom && !fontsNames?.includes(settings.body_font_custom)){  fontsNames += settings.body_font_custom + '|'; } %>
+        <% if(settings.button_font_custom && !fontsNames?.includes(settings.button_font_custom)){  fontsNames += settings.button_font_custom + '|'; } %>
+        <% if(settings.nav_font_custom && !fontsNames?.includes(settings.nav_font_custom)){  fontsNames += settings.nav_font_custom + '|'; } %>
+        <% if(settings.field_font_custom && !fontsNames?.includes(settings.field_font_custom)){  fontsNames += settings.field_font_custom + '|'; } %>
         <% if(fontsNames){ %>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=<%= fontsNames %>">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=<%= fontsNames?.replace(/\|$/, "") %>">
         <% } %>
         <% if(settings){ %>
             <%- include(srcId + '/snippets/css-selectors', {settings:settings}) %>

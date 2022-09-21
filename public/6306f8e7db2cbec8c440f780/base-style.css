@@ -4,6 +4,10 @@
 *::after {
   box-sizing: inherit;
 }
+img {
+  max-width: 100%;
+  width: 100%;
+}
 svg{
   fill:currentColor;
 }
