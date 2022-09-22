@@ -1,0 +1,165 @@
+<link rel="stylesheet" href="/<%=srcId%>/component-slider.css" >
+<link rel="preload" href="/<%=srcId%>/component-product-card-style-1.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/<%=srcId%>/component-price-style-1.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="/<%=srcId%>/component-badge.css" >
+<link rel="preload" href="/<%=srcId%>/component-rte.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/<%=srcId%>/component-variants.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/<%=srcId%>/component-modal-quickview.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<%- include('../snippets/modal-quickview') %>
+
+<style type="text/css">
+  
+  .product-carousel-<%=section.id%> .title,
+  .product-carousel-<%=section.id%> .slider-button{
+    color:<%=section.settings.section_color%>;
+  }
+  .product-carousel-<%=section.id%>{
+    background-color:<%=section.settings.section_bg_color%>;    
+  }
+  .product-carousel-<%=section.id%> slider-component{
+    background-color:<%= section.settings.slide_bg_color %>;
+    padding-top: <%=section.settings.item_space%>px;
+  }
+  .product-carousel-<%=section.id%> .quick-add-cart-wrapper{
+    border-color:<%= section.settings.slide_bg_color %>;
+  }
+  .py-c-dark .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+    color: var(--py-color-dark);
+      }
+  .py-c-average .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+    color: var(--py-color-avarge);
+      }
+  .py-c-light .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+    color: var(--py-color-light);
+      }
+  .card-wrapper{
+    padding-bottom:15px;
+    height:100%;
+  } 
+  .product-list-<%=section.id%> .py-center .price,
+  .product-list-<%=section.id%> .py-center .card-color-wrapper,
+  .product-list-<%=section.id%> .py-center ul.variant-options,
+  .product-list-<%=section.id%> .py-center .card-button-wrapper{
+    justify-content: center;
+  }  
+  <% if(section.settings.custom_font_style){ %>
+
+  .product-list-<%=section.id%> .card-wrapper .card-information__text{
+    font-size: <%=section.settings.title_fontsize%>;
+    font-weight: <%=section.settings.title_fontweight%>;
+    font-stretch:<%=section.settings.title_fontstretch%>;
+    font-style:<%=section.settings.title_fontstyle%>;
+    line-height:<%=section.settings.title_lineheight%>;
+    letter-spacing:<%=section.settings.title_letterspacing%>
+  }
+  @media(max-width:749px){
+    .product-list-<%=section.id%> .card-wrapper .card-information__text{
+      font-size: <%=section.settings.title_fontsize_m%>
+    }
+  }
+  .product-list-<%=section.id%> .card-wrapper .price *{
+    font-size: <%=section.settings.info_fontsize%>;
+    font-weight: <%=section.settings.info_fontweight%>;
+    font-stretch:<%=section.settings.info_fontstretch%>;
+    font-style:<%=section.settings.info_fontstyle%>;
+    line-height:<%=section.settings.info_lineheight%>;
+    letter-spacing:<%=section.settings.info_letterspacing%>
+  }
+  @media(max-width:749px){
+    .product-list-<%=section.id%> .card-wrapper .price *{
+      font-size: <%=section.settings.info_fontsize_m%>
+    }
+  }              
+  <% } %>
+  
+  .product-carousel .slider-button {    
+    width: auto;
+    height: auto;
+    border: 1px solid;
+    margin-left: 11px;
+    border-radius: 50px; 
+  }
+  .product-carousel .slider-button[disabled]{
+    opacity:0;
+  }
+  .product-carousel  .slider-button .icon {
+    height: 8rem;
+    width:auto;
+  }
+  
+</style>
+
+<div class="collection collection-slide product-carousel  product-carousel-<%=section.id%> <% if(section.settings.section_width === "full"){ %>image-with-text--full-width<% } else { %>page-width  py-<%=section.settings.section_width%><% } %> bc-<%=settings.section_style%>-bt py-pd-y-m">
+  <div class="<% if(section.settings.show_view_all ){ %>title-wrapper-with-link<% } %><% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %><% if(collection?.all_products_count > 2  && section.settings.products_limit > 2){ %> title-wrapper--self-padded-tablet-down<% } %>">
+    <h3 class="title<% if(!section.settings.title){ %> title--no-heading<% } %> py-<%= section.settings.title_alignment %>" style="font-size:<%= section.settings.title_font_size %>px"><%= section.settings.title %></h3>
+  </div>
+
+  <%
+    var products_to_display = collection?.all_products_count
+    var carousel_num = section.settings.products_col_limit
+
+    if(collection?.all_products_count > section.settings.products_limit){
+      products_to_display = section.settings.products_limit
+    }    
+  %>
+
+  <slider-component class="slider-mobile-gutter">
+    <ul class="grid product-list-<%=section.id%> grid--1-col grid--3-col-tablet py-mg-y-n grid--<%=carousel_num%>-col-desktop <% if(collection?.all_products_count > 2 && section.settings.products_limit > 2){ %> slider slider--desktop <% } %><% if(section.settings.show_view_all === false || collection?.products.length < section.settings.products_limit){ %> negative-margin<% } %><% if(section.settings.show_view_all && collection?.products.length > section.settings.products_limit){ %> negative-margin--small<% } %>" role="list">
+      <% if(collection?.all_products_count > 0){ %>
+        <li class="grid__item py-<%=section.settings.card_bg_color%>  <% if(collection?.all_products_count > 2  && section.settings.products_limit > 2){ %> slider__slide<% } %>" style="margin-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px;width:3%;">
+        </li>
+      <% } %>
+      <% if(collection?.products?.length > 0){ %>
+        <% collection?.products?.forEach((product,index)=>{ %>
+          <% if(index < section.settings.products_limit){ %>
+          <li class="grid__item py-<%=section.settings.card_color%> <% if(collection?.all_products_count > 2  && section.settings.products_limit > 2){ %> slider__slide<% } %>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
+            <%- include('../snippets/product-card', {
+                  product_card_product: product,
+                  inventory_quantity: false,
+                  media_size: section.settings.image_ratio,
+                  show_secondary_image:section.settings.show_secondary_image,
+                  tag_field:section.settings.tag_field,                                   
+                  show_vendor: section.settings.show_vendor,                
+                  card_bg_color: section.settings.card_bg_color,
+                  card_radius: section.settings.card_radius,
+                  info_align: section.settings.info_align
+            }) %>
+          </li>
+          <% } %>
+        <% }) %>
+      <% } else { %>
+        <% for(let i=1; i<=5; i++){ %>
+          <li class="grid__item">
+            <%- include('../snippets/product-card-placeholder') %>
+          </li>
+        <% } %>
+      <% } %>      
+    </ul>    
+    <% if(collection?.all_products_count > 2 && section.settings.products_limit > 2){ %>
+      <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(collection?.all_products_count < 4){ %>large-up-hide medium-hide<% } %><% if(collection?.all_products_count < 3){ %> small-hide<% } %>">
+        <div class="slider-counter caption">
+          <span class="slider-counter--current">1</span>
+          <span aria-hidden="true"> / </span>
+          <span class="visually-hidden"><%=accessibility.of%></span>
+          <span class="slider-counter--total"><%= products_to_display %></span>
+        </div>
+        <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="<%=accessibility.previous_slide%>"><%- include('../snippets/icon-caret') %></button>
+        <button type="button" class="slider-button slider-button--next" name="next" aria-label="<%=accessibility.next_slide%>"><%- include('../snippets/icon-caret') %></button>
+      </div>
+    <% } %>
+  </slider-component>  
+
+  <% if(section.settings.show_view_all && collection?.all_products_count > section.settings.m_products_limit){ %>
+    <div class="center small-hide medium-hide">
+      <a href="<%= collection?.url %>"
+        class="button"
+        aria-label="<%=sections.featured_collection.view_all_label %>"
+      >
+        <%=sections.featured_collection.view_all%>
+      </a>
+    </div>
+  <% } %>
+</div>
+
+<script src="/<%=srcId%>/quickview.js" defer="defer"></script>

@@ -474,6 +474,7 @@
                 }
             }
         },
+        {},
         {
             "image": "/6306f8e7db2cbec8c440f780/image-banner-img-2.webp",
             "image_2": "/6306f8e7db2cbec8c440f780/image-banner-img-2.webp",
@@ -557,7 +558,8 @@
                     "block_view_btn_color": "dark"
                 }
             }
-        }
+        },
+        {}
     ];
 
     let fontsCount = 0;

@@ -120,10 +120,9 @@ router.get('/', async (req, res, next) => {
 
   // Automaticly change liquid to ejs format Function
   // try {
-  //   let sectionDirectory = await fs.readdirSync(path.join(__dirname, '../themes/632a6f7db34039b04f77d3b1/sections'));
+  //   let sectionDirectory = await fs.readdirSync(path.join(__dirname, '../themes/632a6f7db34039b04f77d3b1/snippets'));
   //   for(let file of sectionDirectory){
-  //     let fileContent = await fs.readFileSync(path.join(__dirname, `../themes/632a6f7db34039b04f77d3b1/sections/${file}`), 'utf-8');
-  //     console.log(fileContent, "BEFORE");
+  //     let fileContent = await fs.readFileSync(path.join(__dirname, `../themes/632a6f7db34039b04f77d3b1/snippets/${file}`), 'utf-8');
   //     if(fileContent){
   //       fileContent = fileContent.replaceAll("{%-", "<%");
   //       fileContent = fileContent.replaceAll("{%", "<%");
@@ -138,9 +137,14 @@ router.get('/', async (req, res, next) => {
   //       fileContent = fileContent.replaceAll("% when ", "% } else if(block.type === ");
   //       fileContent = fileContent.replaceAll("% if ", "% if(");
   //       fileContent = fileContent.replaceAll("% else %", "% } else { %");
+  //       fileContent = fileContent.replaceAll("% else%", "% } else { %");
+  //       fileContent = fileContent.replaceAll("%else%", "% } else { %");
+  //       fileContent = fileContent.replaceAll("%else %", "% } else { %");
   //       fileContent = fileContent.replaceAll("| divided_by:", "/");
+  //       fileContent = fileContent.replaceAll("| plus:", "+");
+  //       fileContent = fileContent.replaceAll("| minus:", "-");
   //       fileContent = fileContent.replaceAll("| times:", "*");
-  //       fileContent = fileContent.replaceAll("% endif %", "% } %");
+  //       fileContent = fileContent.replaceAll("endif", "}");
   //       fileContent = fileContent.replaceAll("<%= '", "<%=");
   //       fileContent = fileContent.replaceAll("' | t =%>", "%>");
   //       fileContent = fileContent.replaceAll(" %>", "){ %>");
@@ -148,14 +152,61 @@ router.get('/', async (req, res, next) => {
   //       fileContent = fileContent.replaceAll("% })){ %", "% }) %");
   //       fileContent = fileContent.replaceAll("% }){ %", "% } %");
   //       fileContent = fileContent.replaceAll("% } else {){ %", "% } else { %");
+  //       fileContent = fileContent.replaceAll("=>{){ %", "=>{ %");
   //       fileContent = fileContent.replaceAll("<%=' '%>", "");
   //       fileContent = fileContent.replaceAll("'%>", "'){ %>");
   //       fileContent = fileContent.replaceAll("block.settings.", "block?.settings?.");
+  //       fileContent = fileContent.replaceAll(" == ", " === ");
+  //       fileContent = fileContent.replaceAll("| img_url: '150x'", "");
+  //       fileContent = fileContent.replaceAll("| img_url: '350x'", "");
+  //       fileContent = fileContent.replaceAll("| img_url: '700x'", "");
+  //       fileContent = fileContent.replaceAll("| img_url: '749x'", "");
+  //       fileContent = fileContent.replaceAll("| img_url: '1498x'", "");
+  //       fileContent = fileContent.replaceAll("| img_url: '1100x'", "");
+  //       fileContent = fileContent.replaceAll("| img_url: '2200x'", "");
+  //       fileContent = fileContent.replaceAll(" != ", " !== ");
+  //       fileContent = fileContent.replaceAll(" and ", " && ");
+  //       fileContent = fileContent.replaceAll(" or ", " || ");
+  //       fileContent = fileContent.replaceAll(" | escape", "");
+  //       fileContent = fileContent.replaceAll(" | date: ", " new Date() ");
+  //       // fileContent = fileContent.replaceAll("% render '", "%- include('../snippets/");
+  //       fileContent = fileContent.replaceAll("% render '", "%- include('./");
+  //       fileContent = fileContent.replaceAll("assign", "var");
+  //       fileContent = fileContent.replaceAll(" | append: ", " + ");
+  //       fileContent = fileContent.replaceAll("% paginate ", "%# paginate ");
+  //       fileContent = fileContent.replaceAll("% endpaginate", "%# endpaginate");
+  //       fileContent = fileContent.replaceAll("% liquid", "%");
+  //       fileContent = fileContent.replaceAll(" contains ", ".includes(");
+  //       fileContent = fileContent.replaceAll("% elsif ", "% } else if(");
+  //       fileContent = fileContent.replaceAll("| t %", "%");
+  //       fileContent = fileContent.replaceAll("% endform){ %", "/form");
+  //       fileContent = fileContent.replaceAll("<% javascript){ %>", "<script>");
+  //       fileContent = fileContent.replaceAll("<% endjavascript){ %>", "</script>");
+  //       fileContent = fileContent.replaceAll("<% style){ %>", "<style>");
+  //       fileContent = fileContent.replaceAll("<% endstyle){ %>", "</style>");
+  //       fileContent = fileContent.replaceAll(" !== blank", "");
+  //       fileContent = fileContent.replaceAll(" | money", "");
+  //       fileContent = fileContent.replaceAll(".size", ".length");
+  //       fileContent = fileContent.replaceAll(" | split: ", "?.split(");
+  //       fileContent = fileContent.replaceAll(" | last", "?.pop()");
+  //       fileContent = fileContent.replaceAll(" | slice: ", "?.slice(");
+  //       fileContent = fileContent.replaceAll(" | strip", "?.trim()");
+  //       fileContent = fileContent.replaceAll(" | downcase", ".toLowerCase()");
+  //       fileContent = fileContent.replaceAll(" | capitalize", "");
+  //       fileContent = fileContent.replaceAll("| default:", "||");
+  //       fileContent = fileContent.replaceAll("| ceil", "Math.ceil()");
+  //       fileContent = fileContent.replaceAll("| asset_url", "<%=srcId%>");
+  //       fileContent = fileContent.replaceAll("sections.", "sectionst.");
+  //       fileContent = fileContent.replaceAll("% unless ", "% if(!");
+  //       fileContent = fileContent.replaceAll("% endunless){ %", "% } %");
+  //       fileContent = fileContent.replaceAll("% break){ %", "% return %");
+  //       fileContent = fileContent.replaceAll("forloop.index", "index");
+  //       fileContent = fileContent.replaceAll(" | uppercase", "?.toUpperCase()");
+  //       fileContent = fileContent.replaceAll(" | json", "");
   //     }
-  //     console.log(fileContent, "AFTER");
+  //     await fs.writeFileSync(path.join(__dirname, `../views/632a6f7db34039b04f77d3b1/snippets/${file.replace('.liquid', '.ejs')}`), fileContent, 'utf-8');
   //   }
-  //   // let res = await fs.writeFileSync(path.join(__dirname, '../base-kotn.json'), JSON.stringify(themeJsonDB, null, 2), 'utf-8');
-  //   // console.log(res);
+  //   console.log("DONEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 
   //   return next();
   // } catch (err) {

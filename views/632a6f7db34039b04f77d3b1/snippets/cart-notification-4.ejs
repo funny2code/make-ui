@@ -1,0 +1,111 @@
+<% if(settings.prod_insurance){ %>
+  <% var insuranceID = all_products[settings.prod_insurance].first_available_variant.id){ %>
+<% } %>
+
+<% if(settings.f_s_show && settings.f_s_price){ %>
+<% var freeShipping = true){ %>
+<% } else { %>
+<% var freeShipping = false){ %>
+<% } %>
+
+<cart-notification>
+  <div class="cart-notification-wrapper <% if(freeShipping){ %>cart-notification-wrapper__shipping<% } %>">
+    <div id="cart-notification" class="cart-notification py-<%= settings.py_cart_bg_color %>" aria-modal="true" aria-label="<%=general.cart.item_added%>" role="dialog" tabindex="-1">
+      <div class="cart-notification__header">
+        <% if(settings.cart_heading){ %>
+          <h2 class="cart-notification__heading caption-large"><%= settings.cart_heading %></h2>
+        <% } %>
+        <button type="button" class="modal__close-button" aria-label="<%=accessibility.close%>">
+          <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
+            <use href="#icon-close">
+          </svg>
+        </button>
+        <% if(freeShipping){ %>
+          <div class="bc-free-shipping-wrapper" data-price="<%= settings.f_s_price %>" data-currency="<%= settings.f_s_currency %>">
+            <% if(settings.f_s_text){ %>
+              <div class="bc-free-shipping-wrapper__text active">
+                <%= settings.f_s_text %>
+              </div>
+            <% } %>
+            <% if(settings.f_s_succsess){ %>
+              <div class="bc-free-shipping-wrapper__success-text">
+                <%= settings.f_s_succsess %>
+              </div>
+            <% } %>
+            <div class="bc-free-shipping-bar">
+              <div class="bc-free-shipping-bar__progress" <% if(settings.f_s_bg_color){ %>style="background-color:<%= settings.f_s_bg_color %>"<% } %>></div>
+            </div>
+          </div>
+        <% } %>        
+      </div>
+      <div id="cart-notification-product" class="cart-notification-product">
+      </div>
+      <div class="cart-notification__footer">
+        <div class="cart-accordion-wrapper">
+          <% if(settings.upsell_product){ %>
+            <% var upsell_product = all_products[settings.upsell_product]){ %>
+             <div class="cart-accordion-item open">
+                <div class="accordion-title">Pair With</div>
+                <div class="accordion-content">
+                  <div class="cart-upd">
+                    <div class="cart-upd-img"><img src="<%= upsell_product.featured_image | img_url: 'master' %>"/></div>
+                    <div class="cart-upd-info">
+                      <p class="upd-title"><%= upsell_product.title %></p>
+                      <%- include('./price', product: upsell_product){ %>
+                      <product-form class="product-form">
+                        <form action="../cart/add" method="POST"> 
+                          <input type="hidden" name="id" value="<%= upsell_product.variants[0].id %>"/>
+                          <button type="submit" class="upd-add-btn"><span class="txt">Add </span>+</button>
+                        </form>
+                      </product-form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% } %>
+          <div class="cart-accordion-item">
+            <div class="accordion-title">Add order Notes</div>
+            <div class="accordion-content">
+              <label for="note">Leave a note about your order</label>
+              <textarea id="note" name="note" class="cart__field cart__field--textarea" form="cart"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="bc-cart__subtotal-wrapper" id="cart-subtotal">
+          <% if(cart.items_subtotal_price > cart.total_price){ %>
+            <div class="bc-cart__subtotal-label">SUBTOTAL</div>
+            <div class="bc-cart__subtotal-value">
+              <%= cart.items_subtotal_price %>
+            </div>
+          <% } %>
+        </div>
+        <div class="bc-cart__total-wrapper">
+          <div class="bc-cart__total-label">Total</div>
+          <div class="bc-cart__total-value" id="cart-total">
+            <% if(cart.cart_level_discount_application.length > 0){ %>
+              <ul>
+                <% for discount_application in cart.cart_level_discount_applications){ %>
+                  <li>
+                    <%= discount_application.title %> (-<%= discount_application.total_allocated_amount %>)
+                  </li>
+                <% }) %>
+              </ul>
+            <% } %>
+            <span><%= cart.total_price %></span>
+          </div>
+        </div>
+        <div class="tax-notify"><i>Shipping, taxes, && discount codes are calculated at checkout</i></div>
+        <div class="bc-cart__buttons-wrapper">
+          <form action="<%= routes.cart_url %>" method="post" id="cart">
+            <button id="loopcheckout" class="button button--primary button--full-width py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sections.cart.checkout%></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</cart-notification>
+<% style){ %>
+  .cart-notification {
+     display: none;
+  }
+<% endstyle){ %>

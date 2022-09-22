@@ -1,0 +1,109 @@
+<% if(settings.prod_insurance){ %>
+  <% var insuranceID = all_products[settings.prod_insurance].first_available_variant.id){ %>
+<% } %>
+
+<% if(settings.f_s_show && settings.f_s_price){ %>
+<% var freeShipping = true){ %>
+<% } else { %>
+<% var freeShipping = false){ %>
+<% } %>
+
+<cart-notification>
+  <div class="cart-notification-wrapper <% if(freeShipping){ %>cart-notification-wrapper__shipping<% } %> <%=cart_layout%>">
+    <div id="cart-notification" class="cart-notification py-<%= settings.py_cart_bg_color %>" aria-modal="true" aria-label="<%=general.cart.item_added%>" role="dialog" tabindex="-1">
+      <div class="cart-notification__header">
+        <% if(settings.cart_heading){ %>
+          <h2 class="cart-notification__heading caption-large"><%= settings.cart_heading %></h2>
+        <% } %>
+        <div class="new-i-note cart-notification__heading"><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/Vector.png?v=1641871323"> <%=general.cart.item_added%></div>
+        <button type="button" class="modal__close-button" aria-label="<%=accessibility.close%>">
+          <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
+            <use href="#icon-close">
+          </svg>
+        </button>
+        <% if(freeShipping){ %>
+          <div class="bc-free-shipping-wrapper" data-price="<%= settings.f_s_price %>" data-currency="<%= settings.f_s_currency %>">
+            <% if(settings.f_s_text){ %>
+              <div class="bc-free-shipping-wrapper__text active">
+                <%= settings.f_s_text %>
+              </div>
+            <% } %>
+            <% if(settings.f_s_succsess){ %>
+              <div class="bc-free-shipping-wrapper__success-text">
+                <%= settings.f_s_succsess %>
+              </div>
+            <% } %>
+            <div class="bc-free-shipping-bar">
+              <div class="bc-free-shipping-bar__progress" <% if(settings.f_s_bg_color){ %>style="background-color:<%= settings.f_s_bg_color %>"<% } %>></div>
+            </div>
+          </div>
+        <% } %>
+        <div class="bc-cart__total-wrapper">
+          <div class="bc-cart__total-label">Estimated Total</div>
+          <div class="bc-cart__total-value" id="cart-total">
+            <% if(cart.cart_level_discount_application.length > 0){ %>
+              <ul>
+                <% for discount_application in cart.cart_level_discount_applications){ %>
+                  <li>
+                    <%= discount_application.title %> (-<%= discount_application.total_allocated_amount %>)
+                  </li>
+                <% }) %>
+              </ul>
+            <% } %>
+            <span><%= cart.total_price %></span>
+          </div>
+        </div>
+        <div class="bc-cart__buttons-wrapper">
+          <form action="<%= routes.cart_url %>" method="post" id="cart">
+            <button id="loopcheckout" class="button button--primary button--full-width  py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sections.cart.checkout%></button>
+          </form>
+        </div>           
+      </div>
+      <div id="cart-notification-product" class="cart-notification-product">
+      </div>
+      
+      <div class="cart-notification__links">        
+        
+        <% if(settings.show_packaging && settings.packaging && settings.packaging_note){ %>
+          <label for="less-packaging" class="bc-checkbox">
+            <input type="checkbox" data-type="packaging" id="less-packaging" value="<%= settings.packaging_note %>" <% if(cart.attributes.lessPackaging === 'true'){ %>checked<% } %>>
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+              <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
+            </svg>
+            <svg class="icon icon-checkmark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 9" fill="none" width="10px" height="10px">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.35.643a.5.5 0 01.006.707l-6.77 6.886a.5.5 0 01-.719-.006L.638 4.845a.5.5 0 11.724-.69l2.872 3.011 6.41-6.517a.5.5 0 01.707-.006h-.001z" fill="currentColor"></path>
+            </svg>
+            <%= settings.packaging %>
+          </label>
+        <% } %>
+        <% if(settings.show_insurance && settings.insurance && settings.prod_insurance){ %>
+          <label for="shipping-insurance" class="bc-checkbox">
+            <input type="checkbox" id="shipping-insurance" data-type="insurance" value="<%= insuranceID %>" data-auto="<% if(settings.insurance_auto){ %>true<% } else { %>false<% } %>"/>
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+              <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
+            </svg>
+            <svg class="icon icon-checkmark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 9" fill="none" width="10px" height="10px">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.35.643a.5.5 0 01.006.707l-6.77 6.886a.5.5 0 01-.719-.006L.638 4.845a.5.5 0 11.724-.69l2.872 3.011 6.41-6.517a.5.5 0 01.707-.006h-.001z" fill="currentColor"></path>
+            </svg>
+            <%=settings.insurance%>
+          </label>
+        <% } %>
+        <a href="/cart" class="link button-label">View Cart Page</a>        
+        
+        </div>
+      <div class="new-i-note cart-notification__links">
+        <div class="bc-cart__buttons-wrapper">
+          <a href="/cart" id="view-cart" class="button button--primary button--full-width  py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" ><%=general.cart.view%> (<span class="total-num"></span>)</a>
+          <form action="<%= routes.cart_url %>" method="post" id="cart">
+            <button id="loopcheckout" class="button button--primary button--full-width  py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sections.cart.checkout%></button>
+          </form>
+        </div>    
+      </div>
+    </div>
+  </div>
+</cart-notification>
+<% style){ %>
+  .cart-notification {
+     display: none;
+  }
+<% endstyle){ %>

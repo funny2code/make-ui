@@ -34,13 +34,13 @@
           "type": "color",
           "id": "py_bg_color_avarge",
           "label": "Avarge",
-          "default": "#A05E49"
+          "default": "#d3cec5"
         },
         {
           "type": "color",
           "id": "py_bg_color_middle_light",
           "label": "Middle Light",
-          "default": "#DADADA"
+          "default": "#edece8"
         },
         {
           "type": "color",
@@ -56,13 +56,25 @@
           "type": "color",
           "id": "py_color_dark",
           "label": "Dark",
-          "default": "#000000"
+          "default": "#030302"
+        },
+        {
+          "type": "color",
+          "id": "py_color_middle_dark",
+          "label": "Middle Dark",
+          "default": "#444444"
         },
         {
           "type": "color",
           "id": "py_color_avarge",
           "label": "Avarge",
           "default": "#AB3611"
+        },
+        {
+          "type": "color",
+          "id": "py_color_middle_light",
+          "label": "Middle Light",
+          "default": "#EDECE8"
         },
         {
           "type": "color",
@@ -78,7 +90,7 @@
           "type": "color",
           "id": "py_bg_body_color",
           "label": "Background",
-          "default": "#F4F4F4"
+          "default": "#ffffff"
         },
         {
           "type": "color",
@@ -96,7 +108,7 @@
           "type": "color",
           "id": "py_body_link_hov_color",
           "label": "Hover Link",
-          "default": "#A05E49"
+          "default": "#a05e49"
         },
         {
           "type": "header",
@@ -188,7 +200,7 @@
           "type": "color",
           "id": "py_footer_bg_color",
           "label": "Background",
-          "default": "#F4F4F4"
+          "default": "#f1eeee"
         },
         {
           "type": "color",
@@ -206,7 +218,7 @@
           "type": "color",
           "id": "py_footer_link_hov_color",
           "label": "Hover Link",
-          "default": "#A05E49"
+          "default": "#a05e49"
         },
         {
           "type": "header",
@@ -216,7 +228,7 @@
           "type": "color",
           "id": "py_br_c",
           "label": "Color",
-          "default": "#DADADA"
+          "default": "#dadada"
         },
         {
           "type": "header",
@@ -359,28 +371,52 @@
         {
           "type": "range",
           "id": "py_sm_btn_border_width",
-          "min": 0,
-          "max": 10,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "10"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Small Button Border Width"
         },
         {
           "type": "range",
           "id": "py_sm_btn_font_size",
-          "min": 8,
-          "max": 24,
-          "step": 1,
-          "default": 13,
+          "min": {
+            "$numberInt": "8"
+          },
+          "max": {
+            "$numberInt": "24"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "13"
+          },
           "label": "Small Button Font Size"
         },
         {
           "type": "range",
           "id": "py_sm_btn_font_weight",
-          "min": 100,
-          "max": 900,
-          "step": 100,
-          "default": 500,
+          "min": {
+            "$numberInt": "100"
+          },
+          "max": {
+            "$numberInt": "900"
+          },
+          "step": {
+            "$numberInt": "100"
+          },
+          "default": {
+            "$numberInt": "500"
+          },
           "label": "Small Button Font Weight"
         },
         {
@@ -402,28 +438,52 @@
         {
           "type": "range",
           "id": "py_md_btn_border_width",
-          "min": 0,
-          "max": 10,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "10"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Medium Button Border Width"
         },
         {
           "type": "range",
           "id": "py_md_btn_font_size",
-          "min": 10,
-          "max": 40,
-          "step": 1,
-          "default": 17,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "17"
+          },
           "label": "Medium Button Font Size"
         },
         {
           "type": "range",
           "id": "py_md_btn_font_weight",
-          "min": 100,
-          "max": 900,
-          "step": 100,
-          "default": 500,
+          "min": {
+            "$numberInt": "100"
+          },
+          "max": {
+            "$numberInt": "900"
+          },
+          "step": {
+            "$numberInt": "100"
+          },
+          "default": {
+            "$numberInt": "500"
+          },
           "label": "Medium Button Font Weight"
         },
         {
@@ -445,28 +505,52 @@
         {
           "type": "range",
           "id": "py_lg_btn_border_width",
-          "min": 0,
-          "max": 10,
-          "step": 1,
-          "default": 2,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "10"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "2"
+          },
           "label": "Large Button Border Width"
         },
         {
           "type": "range",
           "id": "py_lg_btn_font_size",
-          "min": 14,
-          "max": 40,
-          "step": 1,
-          "default": 22,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "22"
+          },
           "label": "Large Button Font Size"
         },
         {
           "type": "range",
           "id": "py_lg_btn_font_weight",
-          "min": 100,
-          "max": 900,
-          "step": 100,
-          "default": 600,
+          "min": {
+            "$numberInt": "100"
+          },
+          "max": {
+            "$numberInt": "900"
+          },
+          "step": {
+            "$numberInt": "100"
+          },
+          "default": {
+            "$numberInt": "600"
+          },
           "label": "Large Button Font Weight"
         },
         {
@@ -476,10 +560,18 @@
         {
           "type": "range",
           "id": "py_btn_border_radius",
-          "min": 0,
-          "max": 60,
-          "step": 5,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "5"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Button Border Radius"
         },
         {
@@ -510,7 +602,7 @@
           "type": "color",
           "id": "py_btn_bg_color_average",
           "label": "Average Button Background Color",
-          "default": "#A05E49"
+          "default": "#a05e49"
         },
         {
           "type": "color",
@@ -1019,7 +1111,9 @@
           "type": "text",
           "id": "title_font_size",
           "label": "Font Size",
-          "default": "22px"
+          "default": {
+            "$numberInt": "38"
+          }
         },
         {
           "type": "text",
@@ -1284,7 +1378,9 @@
           "type": "text",
           "id": "field_font_size",
           "label": "Font Size",
-          "default": "16px"
+          "default": {
+            "$numberInt": "16"
+          }
         }
       ]
     },
@@ -1855,37 +1951,69 @@
         {
           "type": "range",
           "id": "item_radius",
-          "min": 0,
-          "max": 25,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "25"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Item Border Radius"
         },
         {
           "type": "range",
           "id": "item_title_font_size",
-          "min": 9,
-          "max": 15,
-          "step": 1,
-          "default": 12,
+          "min": {
+            "$numberInt": "9"
+          },
+          "max": {
+            "$numberInt": "15"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "12"
+          },
           "label": "Item Title Font Size"
         },
         {
           "type": "range",
           "id": "item_content_font_size",
-          "min": 7,
-          "max": 13,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "7"
+          },
+          "max": {
+            "$numberInt": "13"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Item Content Font Size"
         },
         {
           "type": "range",
           "id": "item_price_font_size",
-          "min": 8,
-          "max": 14,
-          "step": 1,
-          "default": 12,
+          "min": {
+            "$numberInt": "8"
+          },
+          "max": {
+            "$numberInt": "14"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "12"
+          },
           "label": "Item Price Font Size"
         },
         {
@@ -2234,22 +2362,6 @@
           "handle": "header"
         },
         {
-          "name": "image banner",
-          "handle": "image-banner"
-        },
-        {
-          "name": "Spacing",
-          "handle": "spacing"
-        },
-        {
-          "name": "Rich text",
-          "handle": "rich-text"
-        },
-        {
-          "name": "collection list",
-          "handle": "collection-list"
-        },
-        {
           "name": "image with text",
           "handle": "image-with-text"
         },
@@ -2258,32 +2370,8 @@
           "handle": "product-carousel"
         },
         {
-          "name": "Spacing",
-          "handle": "spacing"
-        },
-        {
-          "name": "Image Banner",
-          "handle": "image-banner"
-        },
-        {
-          "name": "Spacing",
-          "handle": "spacing"
-        },
-        {
-          "name": "Featured Product",
-          "handle": "featured-product"
-        },
-        {
           "name": "Multicolumn",
           "handle": "multicolumn"
-        },
-        {
-          "name": "Featured Blogs 2",
-          "handle": "featured-blogs-2"
-        },
-        {
-          "name": "Spacing",
-          "handle": "spacing"
         },
         {
           "name": "footer",
@@ -2722,7 +2810,9 @@
         {
           "type": "title",
           "name": "Title",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -2733,19 +2823,35 @@
             {
               "type": "range",
               "id": "title_font_size",
-              "min": 10,
-              "max": 34,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "34"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Title Font size"
             },
             {
               "type": "range",
               "id": "title_font_weight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 600,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "600"
+              },
               "label": "Title Font weight"
             }
           ]
@@ -2753,7 +2859,9 @@
         {
           "type": "description",
           "name": "Description",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -2764,19 +2872,35 @@
             {
               "type": "range",
               "id": "desc_font_size",
-              "min": 10,
-              "max": 34,
-              "step": 1,
-              "default": 16,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "34"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "16"
+              },
               "label": "Description Font size"
             },
             {
               "type": "range",
               "id": "desc_font_weight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 400,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "400"
+              },
               "label": "Description Font weight"
             }
           ]
@@ -2784,7 +2908,9 @@
         {
           "type": "image",
           "name": "Image",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "image_picker",
@@ -2805,7 +2931,9 @@
     },
     {
       "name": "Announcement bar",
-      "max_blocks": 12,
+      "max_blocks": {
+        "$numberInt": "12"
+      },
       "settings": [
         {
           "type": "select",
@@ -2837,7 +2965,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-dark)"
+          "default": "var(--py-bg-color-middle-light)"
         },
         {
           "type": "select",
@@ -2857,7 +2985,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-light)"
+          "default": "var(--py-color-dark)"
         },
         {
           "type": "select",
@@ -2877,7 +3005,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-light)"
+          "default": "var(--py-color-dark)"
         },
         {
           "type": "select",
@@ -2897,7 +3025,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-dark)"
         },
         {
           "type": "select",
@@ -2969,7 +3097,7 @@
               "value": "pd-y-xs"
             }
           ],
-          "default": "pd-y-un"
+          "default": "pd-y-s"
         },
         {
           "type": "select",
@@ -3001,7 +3129,7 @@
               "value": "fs-s"
             }
           ],
-          "default": "fs-un"
+          "default": "fs-xs"
         },
         {
           "type": "select",
@@ -3025,7 +3153,7 @@
               "value": "br-y"
             }
           ],
-          "default": "br-y"
+          "default": "br-none"
         }
       ],
       "blocks": [
@@ -3036,7 +3164,7 @@
             {
               "type": "text",
               "id": "text",
-              "default": "Welcome to our store",
+              "default": "Free shipping on orders $75+",
               "label": "Text"
             },
             {
@@ -3197,7 +3325,9 @@
         {
           "type": "featured_image",
           "name": "t:sections.main-article.blocks.featured_image.name",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "select",
@@ -3262,10 +3392,18 @@
             {
               "type": "range",
               "id": "img_border_radius",
-              "min": 0,
-              "max": 40,
-              "step": 1,
-              "default": 5,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "5"
+              },
               "label": "Image Border Radius"
             }
           ]
@@ -3273,15 +3411,25 @@
         {
           "type": "title",
           "name": "t:sections.main-article.blocks.title.name",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "range",
               "id": "title_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Title Font Size"
             },
             {
@@ -3333,10 +3481,18 @@
             {
               "type": "range",
               "id": "date_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Date Font Size"
             },
             {
@@ -3388,10 +3544,18 @@
             {
               "type": "range",
               "id": "author_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Author Font Size"
             },
             {
@@ -3439,15 +3603,25 @@
         {
           "type": "content",
           "name": "t:sections.main-article.blocks.content.name",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "range",
               "id": "content_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Content Font Size"
             },
             {
@@ -3495,7 +3669,9 @@
         {
           "type": "social_sharing",
           "name": "t:sections.main-article.blocks.social_sharing.name",
-          "limit": 1
+          "limit": {
+            "$numberInt": "1"
+          }
         }
       ],
       "file_name": "article",
@@ -3762,19 +3938,35 @@
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Space"
         },
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Card Border Radius"
         },
         {
@@ -3830,7 +4022,9 @@
         {
           "type": "title",
           "name": "t:sections.main-blog.blocks.title.name",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "checkbox",
@@ -3867,28 +4061,52 @@
             {
               "type": "range",
               "id": "title_font_size",
-              "min": 14,
-              "max": 40,
-              "step": 1,
-              "default": 22,
+              "min": {
+                "$numberInt": "14"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "22"
+              },
               "label": "Title Font Size"
             },
             {
               "type": "range",
               "id": "title_font_weight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 500,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "500"
+              },
               "label": "Title Font Weight"
             },
             {
               "type": "range",
               "id": "title_m_font_size",
-              "min": 14,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "14"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Title Mobile Font Size"
             }
           ]
@@ -3896,7 +4114,9 @@
         {
           "type": "link",
           "name": "t:sections.main-blog.blocks.link.name",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "select",
@@ -3990,12 +4210,16 @@
         {
           "type": "subtotal",
           "name": "t:sections.main-cart-footer.blocks.subtotal.name",
-          "limit": 1
+          "limit": {
+            "$numberInt": "1"
+          }
         },
         {
           "type": "buttons",
           "name": "t:sections.main-cart-footer.blocks.buttons.name",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "select",
@@ -4938,7 +5162,9 @@
     {
       "name": "Collection list",
       "tag": "section",
-      "max_blocks": 12,
+      "max_blocks": {
+        "$numberInt": "12"
+      },
       "settings": [
         {
           "type": "text",
@@ -5013,19 +5239,35 @@
         {
           "type": "range",
           "id": "title_font_size",
-          "min": 14,
-          "max": 40,
-          "step": 1,
-          "default": 22,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "22"
+          },
           "label": "Section Title Font Size"
         },
         {
           "type": "range",
           "id": "title_font_weight",
-          "min": 100,
-          "max": 900,
-          "step": 100,
-          "default": 500,
+          "min": {
+            "$numberInt": "100"
+          },
+          "max": {
+            "$numberInt": "900"
+          },
+          "step": {
+            "$numberInt": "100"
+          },
+          "default": {
+            "$numberInt": "500"
+          },
           "label": "Section Title Font Weight"
         },
         {
@@ -5224,19 +5466,35 @@
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Space"
         },
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Card Border Radius"
         },
         {
@@ -5294,37 +5552,69 @@
         {
           "type": "range",
           "id": "card_title_font_size",
-          "min": 14,
-          "max": 40,
-          "step": 1,
-          "default": 22,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "22"
+          },
           "label": "Collection Title Font Size"
         },
         {
           "type": "range",
           "id": "card_title_font_weight",
-          "min": 100,
-          "max": 900,
-          "step": 100,
-          "default": 500,
+          "min": {
+            "$numberInt": "100"
+          },
+          "max": {
+            "$numberInt": "900"
+          },
+          "step": {
+            "$numberInt": "100"
+          },
+          "default": {
+            "$numberInt": "500"
+          },
           "label": "Collection Title Font Weight"
         },
         {
           "type": "range",
           "id": "card_title_m_font_size",
-          "min": 14,
-          "max": 40,
-          "step": 1,
-          "default": 18,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "18"
+          },
           "label": "Collection Title Mobile Font Size"
         },
         {
           "type": "range",
           "id": "card_text_font_size",
-          "min": 14,
-          "max": 40,
-          "step": 1,
-          "default": 15,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "15"
+          },
           "label": "Collection Description Font Size"
         },
         {
@@ -5693,10 +5983,18 @@
         {
           "type": "range",
           "id": "products_per_page",
-          "min": 8,
-          "max": 48,
-          "step": 4,
-          "default": 16,
+          "min": {
+            "$numberInt": "8"
+          },
+          "max": {
+            "$numberInt": "48"
+          },
+          "step": {
+            "$numberInt": "4"
+          },
+          "default": {
+            "$numberInt": "16"
+          },
           "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
         },
         {
@@ -5968,19 +6266,35 @@
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 0,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "0"
+          },
           "label": "Card Border Radius"
         },
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 0,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "0"
+          },
           "label": "Card Padding"
         },
         {
@@ -6474,19 +6788,35 @@
         {
           "type": "range",
           "id": "field_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Field Border Width"
         },
         {
           "type": "range",
           "id": "field_border_radius",
-          "min": 0,
-          "max": 50,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "50"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Field Border Radius"
         },
         {
@@ -6552,10 +6882,18 @@
         {
           "type": "range",
           "id": "field_font_size",
-          "min": 10,
-          "max": 40,
-          "step": 1,
-          "default": 18,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "18"
+          },
           "label": "Field Font Size"
         },
         {
@@ -6623,7 +6961,9 @@
         {
           "type": "title",
           "name": "Page Title",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -6634,10 +6974,18 @@
             {
               "type": "range",
               "id": "title_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Title Font Size"
             },
             {
@@ -6685,15 +7033,25 @@
         {
           "type": "content",
           "name": "Page Content",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "range",
               "id": "content_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Content Font Size"
             },
             {
@@ -7173,19 +7531,35 @@
         {
           "type": "range",
           "id": "card_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Border Radius"
         },
         {
           "type": "range",
           "id": "card_pay_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 30,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "30"
+          },
           "label": "Card Tags Border Radius"
         },
         {
@@ -7386,19 +7760,35 @@
         {
           "type": "range",
           "id": "activate_btn_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Activate  Button Border Width"
         },
         {
           "type": "range",
           "id": "activate_btn_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Activate  Button Border Radius"
         },
         {
@@ -7552,19 +7942,35 @@
         {
           "type": "range",
           "id": "decline_btn_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Decline Button Border Width"
         },
         {
           "type": "range",
           "id": "decline_btn_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Decline Button Border Radius"
         },
         {
@@ -7718,19 +8124,35 @@
         {
           "type": "range",
           "id": "field_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Field Border Width"
         },
         {
           "type": "range",
           "id": "field_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Field Border Radius"
         },
         {
@@ -8067,19 +8489,35 @@
         {
           "type": "range",
           "id": "field_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Field Border Width"
         },
         {
           "type": "range",
           "id": "field_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Field Border Radius"
         },
         {
@@ -8284,19 +8722,35 @@
         {
           "type": "range",
           "id": "field_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Field Border Width"
         },
         {
           "type": "range",
           "id": "field_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Field Border Radius"
         },
         {
@@ -8501,19 +8955,35 @@
         {
           "type": "range",
           "id": "field_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Field Border Width"
         },
         {
           "type": "range",
           "id": "field_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Field Border Radius"
         },
         {
@@ -8718,19 +9188,35 @@
         {
           "type": "range",
           "id": "field_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Field Border Width"
         },
         {
           "type": "range",
           "id": "field_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Field Border Radius"
         },
         {
@@ -8910,19 +9396,35 @@
         {
           "type": "range",
           "id": "title_font_size",
-          "min": 14,
-          "max": 40,
-          "step": 1,
-          "default": 22,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "22"
+          },
           "label": "Title Font Size"
         },
         {
           "type": "range",
           "id": "title_font_weight",
-          "min": 100,
-          "max": 900,
-          "step": 100,
-          "default": 500,
+          "min": {
+            "$numberInt": "100"
+          },
+          "max": {
+            "$numberInt": "900"
+          },
+          "step": {
+            "$numberInt": "100"
+          },
+          "default": {
+            "$numberInt": "500"
+          },
           "label": "Title Font Weight"
         },
         {
@@ -9120,19 +9622,35 @@
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Space"
         },
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Card Border Radius"
         },
         {
@@ -9172,7 +9690,9 @@
         {
           "type": "title",
           "name": "Title",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "checkbox",
@@ -9209,28 +9729,52 @@
             {
               "type": "range",
               "id": "title_font_size",
-              "min": 14,
-              "max": 40,
-              "step": 1,
-              "default": 22,
+              "min": {
+                "$numberInt": "14"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "22"
+              },
               "label": "Title Font Size"
             },
             {
               "type": "range",
               "id": "title_font_weight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 500,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "500"
+              },
               "label": "Title Font Weight"
             },
             {
               "type": "range",
               "id": "title_m_font_size",
-              "min": 14,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "14"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Title Mobile Font Size"
             }
           ]
@@ -9238,7 +9782,9 @@
         {
           "type": "link",
           "name": "Link",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "select",
@@ -9340,10 +9886,18 @@
         {
           "type": "range",
           "id": "products_to_show",
-          "min": 2,
-          "max": 12,
-          "step": 2,
-          "default": 4,
+          "min": {
+            "$numberInt": "2"
+          },
+          "max": {
+            "$numberInt": "12"
+          },
+          "step": {
+            "$numberInt": "2"
+          },
+          "default": {
+            "$numberInt": "4"
+          },
           "label": "Maximum products to show"
         },
         {
@@ -9492,19 +10046,35 @@
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Card Border Radius"
         },
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Padding"
         },
         {
@@ -9768,7 +10338,7 @@
             {
               "type": "text",
               "id": "heading",
-              "default": "Quick links",
+              "default": "About us",
               "label": "Heading",
               "info": "A heading is required to display the menu."
             },
@@ -9788,13 +10358,13 @@
             {
               "type": "text",
               "id": "heading",
-              "default": "Heading",
+              "default": "",
               "label": "Heading"
             },
             {
               "type": "richtext",
               "id": "subtext",
-              "default": "<p>Share store details, promotions, or brand content with your customers.</p>",
+              "default": "",
               "label": "Subtext"
             }
           ]
@@ -9823,7 +10393,7 @@
               "value": "width-s"
             }
           ],
-          "default": "width-l"
+          "default": "width-m"
         },
         {
           "type": "select",
@@ -9880,46 +10450,86 @@
         {
           "type": "range",
           "id": "footer_heading_font_size",
-          "min": 10,
-          "max": 60,
-          "step": 1,
-          "default": 38,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "38"
+          },
           "label": "Footer Heading Font Size"
         },
         {
           "type": "range",
           "id": "footer_heading_font_size_m",
-          "min": 10,
-          "max": 60,
-          "step": 1,
-          "default": 32,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "32"
+          },
           "label": "Footer Heading Mobile Font Size"
         },
         {
           "type": "range",
           "id": "footer_subtitle_font_size",
-          "min": 10,
-          "max": 60,
-          "step": 1,
-          "default": 20,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "20"
+          },
           "label": "Footer Sub Title Font Size"
         },
         {
           "type": "range",
           "id": "footer_subtitle_font_size_m",
-          "min": 10,
-          "max": 60,
-          "step": 1,
-          "default": 18,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "18"
+          },
           "label": "Footer Sub Title Mobile Font Size"
         },
         {
           "type": "range",
           "id": "footer_info_font_size",
-          "min": 10,
-          "max": 60,
-          "step": 1,
-          "default": 18,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "18"
+          },
           "label": "Footer Text Font Size"
         },
         {
@@ -9968,19 +10578,35 @@
         {
           "type": "range",
           "id": "field_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Field Border Width"
         },
         {
           "type": "range",
           "id": "field_border_radius",
-          "min": 0,
-          "max": 50,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "50"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "0"
+          },
           "label": "Field Border Radius"
         },
         {
@@ -10046,10 +10672,18 @@
         {
           "type": "range",
           "id": "field_font_size",
-          "min": 10,
-          "max": 40,
-          "step": 1,
-          "default": 16,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "16"
+          },
           "label": "Field Font Size"
         },
         {
@@ -10115,14 +10749,14 @@
         {
           "type": "text",
           "id": "newsletter_heading",
-          "default": "Sign up to our emails",
+          "default": "A world of timeless designs that honour the people who make them and the places they’re made.",
           "label": "Heading"
         },
         {
           "type": "textarea",
           "id": "newslatter_subtitle",
           "label": "Newsletter Sub Title",
-          "default": "Sign up to our newsletter and you’ll be the first to know about news and promotions"
+          "default": "Let's stay in touch. Enjoy early access to releases and 10% off your first purchase."
         },
         {
           "type": "header",
@@ -10297,10 +10931,18 @@
         {
           "type": "range",
           "id": "copy_code_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 15,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "15"
+          },
           "label": "Copy Code  Area Border Radius"
         },
         {
@@ -10378,19 +11020,35 @@
         {
           "type": "range",
           "id": "copy_btn_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Copy Code  Button Border Width"
         },
         {
           "type": "range",
           "id": "copy_btn_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Copy Code  Button Border Radius"
         },
         {
@@ -10544,19 +11202,35 @@
         {
           "type": "range",
           "id": "print_btn_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Print Button Border Width"
         },
         {
           "type": "range",
           "id": "print_btn_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Print Button Border Radius"
         },
         {
@@ -10645,10 +11319,18 @@
         {
           "type": "range",
           "id": "logo_width",
-          "min": 50,
-          "max": 250,
-          "step": 10,
-          "default": 100,
+          "min": {
+            "$numberInt": "50"
+          },
+          "max": {
+            "$numberInt": "250"
+          },
+          "step": {
+            "$numberInt": "10"
+          },
+          "default": {
+            "$numberInt": "100"
+          },
           "unit": "t:sections.header.settings.logo_width.unit",
           "label": "t:sections.header.settings.logo_width.label"
         },
@@ -10889,10 +11571,18 @@
         {
           "type": "range",
           "id": "logo_width",
-          "min": 50,
-          "max": 250,
-          "step": 10,
-          "default": 100,
+          "min": {
+            "$numberInt": "50"
+          },
+          "max": {
+            "$numberInt": "250"
+          },
+          "step": {
+            "$numberInt": "10"
+          },
+          "default": {
+            "$numberInt": "140"
+          },
           "unit": "px",
           "label": "Custom logo width"
         },
@@ -10933,7 +11623,7 @@
               "label": "Top Left"
             }
           ],
-          "default": "middle-left",
+          "default": "middle-center",
           "label": "Logo position on large screen"
         },
         {
@@ -10970,7 +11660,8 @@
           "type": "text",
           "id": "search_hide_tags",
           "label": "Tags for hide on Search",
-          "info": "Please contain tags that you want to hide from search result. Use '|' to seperate tags. example: hide1|hide2|hide3"
+          "info": "Please contain tags that you want to hide from search result. Use '|' to seperate tags. example: hide1|hide2|hide3",
+          "default": ""
         },
         {
           "type": "select",
@@ -11080,19 +11771,22 @@
           "type": "text",
           "id": "py_search_field_br_width",
           "label": "Search Field Border Width",
-          "info": "Enter correct value. Example: 1px"
+          "info": "Enter correct value. Example: 1px",
+          "default": ""
         },
         {
           "type": "text",
           "id": "py_search_field_br_radius",
           "label": "Search Field Border Radius",
-          "info": "Enter correct value. Example: 5px"
+          "info": "Enter correct value. Example: 5px",
+          "default": ""
         },
         {
           "type": "text",
           "id": "py_search_field_font_size",
           "label": "Search Field Font Size",
-          "info": "Enter correct value. Example: 18px"
+          "info": "Enter correct value. Example: 18px",
+          "default": ""
         },
         {
           "type": "select",
@@ -11162,7 +11856,8 @@
           "type": "text",
           "id": "py_search_title_font_size",
           "label": "Search Title Font Size",
-          "info": "Enter correct value. Example: 24px"
+          "info": "Enter correct value. Example: 24px",
+          "default": ""
         },
         {
           "type": "select",
@@ -11243,19 +11938,35 @@
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Card Border Radius"
         },
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Padding"
         },
         {
@@ -11384,23 +12095,27 @@
           "type": "text",
           "id": "title_fontsize",
           "label": "Font size Desktop",
-          "info": "Ex: 20px "
+          "info": "Ex: 20px ",
+          "default": ""
         },
         {
           "type": "text",
           "id": "title_fontsize_m",
-          "label": "Font size Mobile"
+          "label": "Font size Mobile",
+          "default": ""
         },
         {
           "type": "text",
           "id": "title_fontweight",
-          "label": "Font-weight"
+          "label": "Font-weight",
+          "default": ""
         },
         {
           "type": "text",
           "id": "title_fontstretch",
           "label": "Font-stretch",
-          "info": "Ex: 40%"
+          "info": "Ex: 40%",
+          "default": ""
         },
         {
           "type": "select",
@@ -11421,13 +12136,15 @@
         {
           "type": "text",
           "id": "title_lineheight",
-          "label": "Lineheight"
+          "label": "Lineheight",
+          "default": ""
         },
         {
           "type": "text",
           "id": "title_letterspacing",
           "label": "Letter-spacing",
-          "info": "Ex: 0.5px"
+          "info": "Ex: 0.5px",
+          "default": ""
         },
         {
           "type": "header",
@@ -11437,23 +12154,27 @@
           "type": "text",
           "id": "info_fontsize",
           "label": "Font size Desktop",
-          "info": "Ex: 20px "
+          "info": "Ex: 20px ",
+          "default": ""
         },
         {
           "type": "text",
           "id": "info_fontsize_m",
-          "label": "Font size Mobile"
+          "label": "Font size Mobile",
+          "default": ""
         },
         {
           "type": "text",
           "id": "info_fontweight",
-          "label": "Font-weight"
+          "label": "Font-weight",
+          "default": ""
         },
         {
           "type": "text",
           "id": "info_fontstretch",
           "label": "Font-stretch",
-          "info": "Ex: 40%"
+          "info": "Ex: 40%",
+          "default": ""
         },
         {
           "type": "select",
@@ -11474,13 +12195,15 @@
         {
           "type": "text",
           "id": "info_lineheight",
-          "label": "Lineheight"
+          "label": "Lineheight",
+          "default": ""
         },
         {
           "type": "text",
           "id": "info_letterspacing",
           "label": "Letter-spacing",
-          "info": "Ex: 0.5px"
+          "info": "Ex: 0.5px",
+          "default": ""
         },
         {
           "type": "header",
@@ -11516,7 +12239,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-dark)"
+          "default": "var(--py-bg-color-light)"
         },
         {
           "type": "select",
@@ -11588,7 +12311,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-light)"
+          "default": "var(--py-color-dark)"
         },
         {
           "type": "select",
@@ -11608,7 +12331,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-dark)"
         },
         {
           "type": "select",
@@ -11628,7 +12351,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-dark)"
         },
         {
           "type": "select",
@@ -11656,7 +12379,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-dark)"
         },
         {
           "type": "select",
@@ -11780,7 +12503,7 @@
               "value": "pd-y-xs"
             }
           ],
-          "default": "pd-y-m"
+          "default": "pd-y-xs"
         },
         {
           "type": "select",
@@ -11804,7 +12527,7 @@
               "value": "br-y"
             }
           ],
-          "default": "br-none"
+          "default": "br-y"
         }
       ],
       "blocks": [
@@ -11815,7 +12538,8 @@
             {
               "type": "text",
               "id": "name",
-              "label": "Name (Menu) for adding Mega Menu"
+              "label": "Name (Menu) for adding Mega Menu",
+              "default": ""
             },
             {
               "type": "link_list",
@@ -11865,7 +12589,8 @@
             {
               "type": "text",
               "id": "title_1",
-              "label": "Title"
+              "label": "Title",
+              "default": ""
             },
             {
               "type": "url",
@@ -11884,7 +12609,8 @@
             {
               "type": "text",
               "id": "title_2",
-              "label": "Title"
+              "label": "Title",
+              "default": ""
             },
             {
               "type": "url",
@@ -11903,7 +12629,8 @@
             {
               "type": "text",
               "id": "title_3",
-              "label": "Title"
+              "label": "Title",
+              "default": ""
             },
             {
               "type": "url",
@@ -11922,7 +12649,8 @@
             {
               "type": "text",
               "id": "title_4",
-              "label": "Title"
+              "label": "Title",
+              "default": ""
             },
             {
               "type": "url",
@@ -12254,7 +12982,9 @@
         {
           "type": "heading",
           "name": "Heading",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -12425,7 +13155,9 @@
         {
           "type": "text",
           "name": "Text",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "richtext",
@@ -12596,7 +13328,9 @@
         {
           "type": "buttons",
           "name": "Buttons",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -12735,7 +13469,7 @@
               "value": "auto"
             }
           ],
-          "default": "auto"
+          "default": "700px"
         },
         {
           "type": "select",
@@ -12774,7 +13508,7 @@
               "label": "Text first"
             }
           ],
-          "default": "text_first",
+          "default": "image_first",
           "label": "Desktop layout",
           "info": "Image first is the default mobile layout."
         },
@@ -12795,7 +13529,7 @@
               "label": "Offset"
             }
           ],
-          "default": "offset",
+          "default": "normal",
           "label": "Style"
         },
         {
@@ -12815,7 +13549,7 @@
               "label": "Right"
             }
           ],
-          "default": "left",
+          "default": "center",
           "label": "Text Aligment"
         },
         {
@@ -12847,7 +13581,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-avarge)",
+          "default": "var(--py-bg-color-light)",
           "label": "Section background color"
         },
         {
@@ -12928,19 +13662,21 @@
               "value": "mg-y-xs"
             }
           ],
-          "default": "mg-y-m"
+          "default": "mg-y-n"
         }
       ],
       "blocks": [
         {
           "type": "heading",
           "name": "Heading",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
               "id": "heading",
-              "default": "Image with text",
+              "default": "Meet Your Match",
               "label": "Heading"
             },
             {
@@ -12996,12 +13732,14 @@
         {
           "type": "text",
           "name": "Text",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "richtext",
               "id": "text",
-              "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+              "default": "<p>Your coziest layer, your easiest outfit—matching sets are here.</p>",
               "label": "Description"
             },
             {
@@ -13034,7 +13772,7 @@
                   "value": "fs-s"
                 }
               ],
-              "default": "fs-m"
+              "default": "fs-s"
             },
             {
               "type": "select",
@@ -13070,7 +13808,7 @@
                   "value": "mg-y-xs"
                 }
               ],
-              "default": "mg-y-m"
+              "default": "mg-y-xl"
             }
           ]
         },
@@ -13081,7 +13819,7 @@
             {
               "type": "text",
               "id": "button_label",
-              "default": "Button label",
+              "default": "Shop Men's New Arrivals",
               "label": "Button label",
               "info": "Leave the label blank to hide the button."
             },
@@ -13360,7 +14098,9 @@
         {
           "type": "product",
           "name": "Product",
-          "limit": 2,
+          "limit": {
+            "$numberInt": "2"
+          },
           "settings": [
             {
               "type": "product",
@@ -13449,19 +14189,35 @@
             {
               "type": "range",
               "id": "card_radius",
-              "min": 0,
-              "max": 20,
-              "step": 1,
-              "default": 7,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "20"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "7"
+              },
               "label": "Card Border Radius"
             },
             {
               "type": "range",
               "id": "item_space",
-              "min": 0,
-              "max": 40,
-              "step": 1,
-              "default": 10,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "10"
+              },
               "label": "Card Padding"
             },
             {
@@ -13984,15 +14740,25 @@
         {
           "type": "title",
           "name": "Page Title",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "range",
               "id": "title_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Title Font Size"
             },
             {
@@ -14040,15 +14806,25 @@
         {
           "type": "content",
           "name": "Page Content",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "range",
               "id": "content_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Content Font Size"
             },
             {
@@ -14165,11 +14941,19 @@
           "type": "range",
           "id": "speed",
           "label": "Speed",
-          "min": 6,
-          "max": 50,
-          "step": 4,
+          "min": {
+            "$numberInt": "6"
+          },
+          "max": {
+            "$numberInt": "50"
+          },
+          "step": {
+            "$numberInt": "4"
+          },
           "unit": " px",
-          "default": 22
+          "default": {
+            "$numberInt": "22"
+          }
         },
         {
           "type": "header",
@@ -14467,16 +15251,24 @@
         {
           "type": "text",
           "id": "title",
-          "default": "Multicolumn",
+          "default": "",
           "label": "Heading"
         },
         {
           "type": "range",
           "id": "title_font_size",
-          "min": 14,
-          "max": 60,
-          "step": 1,
-          "default": 38,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "38"
+          },
           "label": "Section Title Font Size"
         },
         {
@@ -14517,7 +15309,7 @@
               "value": "width-s"
             }
           ],
-          "default": "width-l"
+          "default": "width-un"
         },
         {
           "type": "select",
@@ -14602,25 +15394,41 @@
         {
           "type": "text",
           "id": "overlay_opacity",
-          "default": "0.3",
+          "default": "0.1",
           "label": "Column overlay opacity"
         },
         {
           "type": "range",
           "id": "column_number",
-          "min": 1,
-          "max": 5,
-          "step": 1,
-          "default": 3,
+          "min": {
+            "$numberInt": "1"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Column Number Per Row"
         },
         {
           "type": "range",
           "id": "column_gap",
-          "min": 0,
-          "max": 50,
-          "step": 1,
-          "default": 20,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "50"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "0"
+          },
           "label": "Column Gap"
         },
         {
@@ -14680,7 +15488,7 @@
               "label": "Center"
             }
           ],
-          "default": "left",
+          "default": "center",
           "label": "Column alignment"
         },
         {
@@ -14713,7 +15521,7 @@
               "value": "bg-c-light"
             }
           ],
-          "default": "bg-c-none"
+          "default": "bg-c-light"
         },
         {
           "type": "select",
@@ -14733,48 +15541,81 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-dark)"
+          "default": "var(--py-color-light)"
         },
         {
           "type": "range",
           "id": "col_title_font_size",
-          "min": 14,
-          "max": 60,
-          "step": 1,
-          "default": 38,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "38"
+          },
           "label": "Column Title Font Size"
         },
         {
           "type": "range",
           "id": "col_title_font_weight",
-          "min": 100,
-          "max": 900,
-          "step": 100,
-          "default": 500,
+          "min": {
+            "$numberInt": "100"
+          },
+          "max": {
+            "$numberInt": "900"
+          },
+          "step": {
+            "$numberInt": "100"
+          },
+          "default": {
+            "$numberInt": "500"
+          },
           "label": "Column Title Font Weight"
         },
         {
           "type": "range",
           "id": "col_title_m_font_size",
-          "min": 12,
-          "max": 40,
-          "step": 1,
-          "default": 22,
+          "min": {
+            "$numberInt": "12"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "22"
+          },
           "label": "Column Title Mobile Font Size"
         },
         {
           "type": "range",
           "id": "col_text_font_size",
-          "min": 11,
-          "max": 40,
-          "step": 1,
-          "default": 17,
+          "min": {
+            "$numberInt": "11"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "17"
+          },
           "label": "Column Description Font Size"
         },
         {
           "type": "text",
           "id": "button_label",
-          "label": "Button label"
+          "label": "Button label",
+          "default": ""
         },
         {
           "type": "url",
@@ -14861,19 +15702,19 @@
             {
               "type": "text",
               "id": "title",
-              "default": "Column",
+              "default": "Shop Home",
               "label": "Heading"
             },
             {
               "type": "richtext",
               "id": "text",
-              "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+              "default": "",
               "label": "Description"
             },
             {
               "type": "text",
               "id": "btn_label",
-              "default": "Learn More",
+              "default": "",
               "label": "Button label"
             },
             {
@@ -14966,7 +15807,9 @@
         {
           "type": "heading",
           "name": "Heading",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -14979,7 +15822,9 @@
         {
           "type": "paragraph",
           "name": "Subheading",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "richtext",
@@ -14992,7 +15837,9 @@
         {
           "type": "email_form",
           "name": "Email form",
-          "limit": 1
+          "limit": {
+            "$numberInt": "1"
+          }
         }
       ],
       "presets": [
@@ -15071,10 +15918,18 @@
         {
           "type": "range",
           "id": "logo_max_width",
-          "min": 50,
-          "max": 250,
-          "step": 10,
-          "default": 100,
+          "min": {
+            "$numberInt": "50"
+          },
+          "max": {
+            "$numberInt": "250"
+          },
+          "step": {
+            "$numberInt": "10"
+          },
+          "default": {
+            "$numberInt": "100"
+          },
           "unit": "t:sections.main-password-header.settings.logo_max_width.unit",
           "label": "t:sections.main-password-header.settings.logo_max_width.label"
         },
@@ -15211,10 +16066,18 @@
         {
           "type": "range",
           "id": "pw_field_br_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Password Field Border Width"
         },
         {
@@ -15410,7 +16273,9 @@
         {
           "type": "countdown",
           "name": "Count Down",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -15492,7 +16357,9 @@
         {
           "type": "email_form",
           "name": "Email Form",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "header",
@@ -15691,10 +16558,18 @@
             {
               "type": "range",
               "id": "e_field_br_width",
-              "min": 0,
-              "max": 5,
-              "step": 1,
-              "default": 1,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "5"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "1"
+              },
               "label": "Email Field Border Width"
             },
             {
@@ -15718,10 +16593,18 @@
             {
               "type": "range",
               "id": "e_btn_br_width",
-              "min": 0,
-              "max": 5,
-              "step": 1,
-              "default": 1,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "5"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "1"
+              },
               "label": "Email Field Border Width"
             },
             {
@@ -15735,7 +16618,9 @@
         {
           "type": "html",
           "name": "Custom HTML",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "html",
@@ -15754,7 +16639,7 @@
         {
           "type": "text",
           "id": "title",
-          "default": "Featured collection",
+          "default": "New arrivals",
           "label": "t:sections.featured-collection.settings.title.label"
         },
         {
@@ -15784,10 +16669,18 @@
         {
           "type": "range",
           "id": "title_font_size",
-          "min": 14,
-          "max": 60,
-          "step": 1,
-          "default": 38,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "38"
+          },
           "label": "Section Title Font Size"
         },
         {
@@ -15803,7 +16696,7 @@
               "label": "Center"
             }
           ],
-          "default": "left",
+          "default": "center",
           "label": "Section title align"
         },
         {
@@ -15814,25 +16707,41 @@
         {
           "type": "range",
           "id": "products_col_limit",
-          "min": 2,
-          "max": 5,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "2"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "4"
+          },
           "label": "Column Namber"
         },
         {
           "type": "range",
           "id": "products_limit",
-          "min": 5,
-          "max": 15,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "5"
+          },
+          "max": {
+            "$numberInt": "15"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Max Products Shown"
         },
         {
           "type": "checkbox",
           "id": "show_view_all",
-          "default": true,
+          "default": false,
           "label": "t:sections.featured-collection.settings.show_view_all.label"
         },
         {
@@ -15940,7 +16849,7 @@
               "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
             }
           ],
-          "default": "square",
+          "default": "portrait",
           "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
         },
         {
@@ -15979,24 +16888,40 @@
               "value": "bg-c-light"
             }
           ],
-          "default": "bg-c-average"
+          "default": "bg-c-light"
         },
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 0,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "0"
+          },
           "label": "Card Border Radius"
         },
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Card Padding"
         },
         {
@@ -16063,7 +16988,7 @@
               "value": "large"
             }
           ],
-          "default": "medium"
+          "default": "small"
         },
         {
           "type": "select",
@@ -16119,23 +17044,27 @@
           "type": "text",
           "id": "title_fontsize",
           "label": "Font size Desktop",
-          "info": "Ex: 20px "
+          "info": "Ex: 20px ",
+          "default": ""
         },
         {
           "type": "text",
           "id": "title_fontsize_m",
-          "label": "Font size Mobile"
+          "label": "Font size Mobile",
+          "default": ""
         },
         {
           "type": "text",
           "id": "title_fontweight",
-          "label": "Font-weight"
+          "label": "Font-weight",
+          "default": ""
         },
         {
           "type": "text",
           "id": "title_fontstretch",
           "label": "Font-stretch",
-          "info": "Ex: 40%"
+          "info": "Ex: 40%",
+          "default": ""
         },
         {
           "type": "select",
@@ -16156,13 +17085,15 @@
         {
           "type": "text",
           "id": "title_lineheight",
-          "label": "Lineheight"
+          "label": "Lineheight",
+          "default": ""
         },
         {
           "type": "text",
           "id": "title_letterspacing",
           "label": "Letter-spacing",
-          "info": "Ex: 0.5px"
+          "info": "Ex: 0.5px",
+          "default": ""
         },
         {
           "type": "header",
@@ -16172,23 +17103,27 @@
           "type": "text",
           "id": "info_fontsize",
           "label": "Font size Desktop",
-          "info": "Ex: 20px "
+          "info": "Ex: 20px ",
+          "default": ""
         },
         {
           "type": "text",
           "id": "info_fontsize_m",
-          "label": "Font size Mobile"
+          "label": "Font size Mobile",
+          "default": ""
         },
         {
           "type": "text",
           "id": "info_fontweight",
-          "label": "Font-weight"
+          "label": "Font-weight",
+          "default": ""
         },
         {
           "type": "text",
           "id": "info_fontstretch",
           "label": "Font-stretch",
-          "info": "Ex: 40%"
+          "info": "Ex: 40%",
+          "default": ""
         },
         {
           "type": "select",
@@ -16209,13 +17144,15 @@
         {
           "type": "text",
           "id": "info_lineheight",
-          "label": "Lineheight"
+          "label": "Lineheight",
+          "default": ""
         },
         {
           "type": "text",
           "id": "info_letterspacing",
           "label": "Letter-spacing",
-          "info": "Ex: 0.5px"
+          "info": "Ex: 0.5px",
+          "default": ""
         }
       ],
       "presets": [
@@ -16414,19 +17351,35 @@
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Card Border Radius"
         },
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Padding"
         },
         {
@@ -16722,7 +17675,9 @@
         {
           "type": "title",
           "name": "t:sections.main-product.blocks.title.name",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "header",
@@ -16731,28 +17686,52 @@
             {
               "type": "range",
               "id": "title_fontsize",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Font size Desktop"
             },
             {
               "type": "range",
               "id": "title_fontsize_m",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Font size Mobile"
             },
             {
               "type": "range",
               "id": "title_fontweight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 600,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "600"
+              },
               "label": "Font-weight"
             },
             {
@@ -16793,12 +17772,16 @@
         {
           "type": "type",
           "name": "Type",
-          "limit": 1
+          "limit": {
+            "$numberInt": "1"
+          }
         },
         {
           "type": "price",
           "name": "t:sections.main-product.blocks.price.name",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "header",
@@ -16807,28 +17790,52 @@
             {
               "type": "range",
               "id": "price_fontsize",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Font size Desktop"
             },
             {
               "type": "range",
               "id": "price_fontsize_m",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 20,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "20"
+              },
               "label": "Font size Mobile"
             },
             {
               "type": "range",
               "id": "price_fontweight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 400,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "400"
+              },
               "label": "Font-weight"
             },
             {
@@ -16869,7 +17876,9 @@
         {
           "type": "quantity_selector",
           "name": "t:sections.main-product.blocks.quantity_selector.name",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "select",
@@ -16896,7 +17905,9 @@
         {
           "type": "variant_picker",
           "name": "t:sections.main-product.blocks.variant_picker.name",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "select",
@@ -17089,28 +18100,52 @@
             {
               "type": "range",
               "id": "option_fontsize",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Font size Desktop"
             },
             {
               "type": "range",
               "id": "option_fontsize_m",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Font size Mobile"
             },
             {
               "type": "range",
               "id": "option_fontweight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 400,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "400"
+              },
               "label": "Font-weight"
             },
             {
@@ -17151,7 +18186,9 @@
         {
           "type": "buy_buttons",
           "name": "Add to Cart",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "select",
@@ -17300,28 +18337,52 @@
             {
               "type": "range",
               "id": "btn_border_width",
-              "min": 0,
-              "max": 5,
-              "step": 1,
-              "default": 1,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "5"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "1"
+              },
               "label": "Button Border Width"
             },
             {
               "type": "range",
               "id": "btn_border_radius",
-              "min": 0,
-              "max": 40,
-              "step": 1,
-              "default": 1,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "1"
+              },
               "label": "Button Border Radius"
             },
             {
               "type": "range",
               "id": "btn_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Button Font Size"
             },
             {
@@ -17417,10 +18478,18 @@
             {
               "type": "range",
               "id": "fixed_add_radius",
-              "min": 0,
-              "max": 20,
-              "step": 1,
-              "default": 7,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "20"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "7"
+              },
               "label": "Fixed Add to Cart Border Radius"
             },
             {
@@ -17530,10 +18599,18 @@
             {
               "type": "range",
               "id": "fixed_add_btn_radius",
-              "min": 0,
-              "max": 20,
-              "step": 1,
-              "default": 7,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "20"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "7"
+              },
               "label": "Fixed Add to Cart Button Border Radius"
             },
             {
@@ -17595,10 +18672,18 @@
             {
               "type": "range",
               "id": "sold_out_card_radius",
-              "min": 0,
-              "max": 20,
-              "step": 1,
-              "default": 7,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "20"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "7"
+              },
               "label": "Sold Out Border Radius"
             },
             {
@@ -17624,28 +18709,52 @@
             {
               "type": "range",
               "id": "sold_out_border_width",
-              "min": 0,
-              "max": 5,
-              "step": 1,
-              "default": 1,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "5"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "1"
+              },
               "label": "Sold Out Border Width"
             },
             {
               "type": "range",
               "id": "sold_out_title_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Sold Out Title Font Size"
             },
             {
               "type": "range",
               "id": "sold_out_desc_font_size",
-              "min": 8,
-              "max": 32,
-              "step": 1,
-              "default": 14,
+              "min": {
+                "$numberInt": "8"
+              },
+              "max": {
+                "$numberInt": "32"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "14"
+              },
               "label": "Sold Out Description Font Size"
             },
             {
@@ -17707,10 +18816,18 @@
             {
               "type": "range",
               "id": "pre_order_card_radius",
-              "min": 0,
-              "max": 20,
-              "step": 1,
-              "default": 7,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "20"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "7"
+              },
               "label": "Pre Order Border Radius"
             },
             {
@@ -17736,28 +18853,52 @@
             {
               "type": "range",
               "id": "pre_order_border_width",
-              "min": 0,
-              "max": 5,
-              "step": 1,
-              "default": 1,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "5"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "1"
+              },
               "label": "Pre Order Border Width"
             },
             {
               "type": "range",
               "id": "pre_order_title_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Pre Order Title Font Size"
             },
             {
               "type": "range",
               "id": "pre_order_desc_font_size",
-              "min": 8,
-              "max": 32,
-              "step": 1,
-              "default": 14,
+              "min": {
+                "$numberInt": "8"
+              },
+              "max": {
+                "$numberInt": "32"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "14"
+              },
               "label": "Pre Order Description Font Size"
             },
             {
@@ -17819,10 +18960,18 @@
             {
               "type": "range",
               "id": "pick_up_card_radius",
-              "min": 0,
-              "max": 20,
-              "step": 1,
-              "default": 7,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "20"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "7"
+              },
               "label": "Pick Up Card Border Radius"
             },
             {
@@ -17848,19 +18997,35 @@
             {
               "type": "range",
               "id": "pick_up_border_width",
-              "min": 0,
-              "max": 5,
-              "step": 1,
-              "default": 1,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "5"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "1"
+              },
               "label": "Pick Up Card Border Width"
             },
             {
               "type": "range",
               "id": "pick_up_title_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Pick Up Title Font Size"
             },
             {
@@ -17872,10 +19037,18 @@
             {
               "type": "range",
               "id": "pick_up_desc_font_size",
-              "min": 8,
-              "max": 32,
-              "step": 1,
-              "default": 14,
+              "min": {
+                "$numberInt": "8"
+              },
+              "max": {
+                "$numberInt": "32"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "14"
+              },
               "label": "Pick Up Description Font Size"
             },
             {
@@ -17933,10 +19106,18 @@
             {
               "type": "range",
               "id": "pick_up_location_radius",
-              "min": 0,
-              "max": 20,
-              "step": 1,
-              "default": 8,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "20"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "8"
+              },
               "label": "Pick Up Location Border Radius"
             }
           ]
@@ -17944,7 +19125,9 @@
         {
           "type": "description",
           "name": "t:sections.main-product.blocks.description.name",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "header",
@@ -17953,28 +19136,52 @@
             {
               "type": "range",
               "id": "info_fontsize",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 17,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "17"
+              },
               "label": "Font size Desktop"
             },
             {
               "type": "range",
               "id": "info_fontsize_m",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 15,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "15"
+              },
               "label": "Font size Mobile"
             },
             {
               "type": "range",
               "id": "info_fontweight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 400,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "400"
+              },
               "label": "Font-weight"
             },
             {
@@ -18015,7 +19222,9 @@
         {
           "type": "share",
           "name": "t:sections.main-product.blocks.share.name",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "paragraph",
@@ -18246,7 +19455,9 @@
         {
           "type": "goes",
           "name": "goes",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -18341,10 +19552,18 @@
         {
           "type": "range",
           "id": "pd_media_space",
-          "min": 0,
-          "max": 30,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "30"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Media space"
         },
         {
@@ -18560,19 +19779,35 @@
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Card Border Radius"
         },
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Padding"
         },
         {
@@ -18910,12 +20145,20 @@
         {
           "type": "range",
           "id": "change_slides_speed",
-          "min": 3,
-          "max": 9,
-          "step": 2,
+          "min": {
+            "$numberInt": "3"
+          },
+          "max": {
+            "$numberInt": "9"
+          },
+          "step": {
+            "$numberInt": "2"
+          },
           "unit": "s",
           "label": "Change speed",
-          "default": 5
+          "default": {
+            "$numberInt": "5"
+          }
         },
         {
           "type": "header",
@@ -18943,7 +20186,9 @@
         {
           "type": "slide",
           "name": "Slider",
-          "limit": 5,
+          "limit": {
+            "$numberInt": "5"
+          },
           "settings": [
             {
               "type": "image_picker",
@@ -19074,12 +20319,20 @@
             {
               "type": "range",
               "id": "image_overlay_opacity",
-              "min": 0,
-              "max": 100,
-              "step": 10,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "100"
+              },
+              "step": {
+                "$numberInt": "10"
+              },
               "unit": "%",
               "label": "Image overlay opacity",
-              "default": 0
+              "default": {
+                "$numberInt": "0"
+              }
             },
             {
               "type": "select",
@@ -19198,19 +20451,35 @@
           "id": "spacing_value_desktop",
           "label": "Spacing Value Desktop",
           "type": "range",
-          "min": 5,
-          "max": 100,
-          "step": 1,
-          "default": 5
+          "min": {
+            "$numberInt": "5"
+          },
+          "max": {
+            "$numberInt": "100"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          }
         },
         {
           "id": "spacing_value_mobile",
           "label": "Spacing Value Mobile",
           "type": "range",
-          "min": 5,
-          "max": 100,
-          "step": 1,
-          "default": 5
+          "min": {
+            "$numberInt": "5"
+          },
+          "max": {
+            "$numberInt": "100"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          }
         }
       ],
       "presets": [
@@ -19245,7 +20514,9 @@
         {
           "type": "title",
           "name": "t:sections.main-blog.blocks.title.name",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "checkbox",
@@ -19264,12 +20535,16 @@
         {
           "type": "summary",
           "name": "t:sections.main-blog.blocks.summary.name",
-          "limit": 1
+          "limit": {
+            "$numberInt": "1"
+          }
         },
         {
           "type": "link",
           "name": "t:sections.main-blog.blocks.link.name",
-          "limit": 1
+          "limit": {
+            "$numberInt": "1"
+          }
         }
       ],
       "file_name": "video-blog",

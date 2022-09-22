@@ -1,0 +1,45 @@
+<% comment){ %>
+Documentation - http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation
+<% endcomment){ %>
+
+<% unless template === 'index'){ %>
+<div class="breadcrumb-nav">
+  <div class="page-width">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <% if(template.includes('product'){ %>
+      <% if(collection){ %>            
+      <% if(collection.handle){ %>
+      <% capture url){ %>/collections/<%= collection.handle %><% endcapture){ %>
+      <li><%= collection.title | link_to: url %></li>
+      <% } %>
+      <% } %>
+
+      <li><span><%= product.title %></span></li>
+
+      <% } else if(template.includes('collection' && collection.handle){ %>
+      <% if(current_tags){ %>
+      <% capture url){ %>/collections/<%= collection.handle %><% endcapture){ %>
+      <li><%= collection.title | link_to: url %></li>
+      <% } else { %>
+      <li><%= collection.title | capitalize %></li>
+      <% } %>
+
+      <% } else if(template === 'article'){ %>
+      <li><a href="<%= blog.url %>"><%= blog.title %></a></li>
+      <li><%= article.title %></li>
+      <% } else if(template.includes('customers' && template !== "customers/account"){ %>
+      <% var account = 'customer.account.title_main' | t){ %>
+      <li><%= account | capitalize | link_to: "/account" %></li>
+      <li><%= page_title %></li>
+
+      <% } else if(template.includes('page'){ %>
+      <li><%= page.title %></li>
+
+      <% } else { %>
+      <li><%= page_title %></li>
+      <% } %>
+    </ul>
+  </div>
+</div>
+<% endunless){ %>

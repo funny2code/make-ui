@@ -20,6 +20,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
         if (!theme) return next();
 
         const makeMenu = require(`../contents/${theme.extend_id}/menu`);
+        const makeFooterMenu = require(`../contents/${theme.extend_id}/footermenu`);
         const collection = require(`../contents/${theme.extend_id}/collection`);
         const collections = require(`../contents/${theme.extend_id}/collections`);
         const product = require(`../contents/${theme.extend_id}/product`);
@@ -28,6 +29,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
         const article = require(`../contents/${theme.extend_id}/article`);
         const customer = require(`../contents/${theme.extend_id}/customer`);
         const gift = require(`../contents/${theme.extend_id}/gift`);
+        const themeGeneralTexts = require(`../themes/${theme.extend_id}/locales/en.default.json`);
 
         const settings = {};
         const sectionSettings = [];
@@ -99,6 +101,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
         res.render('view', {
             srcId: theme.extend_id,
             menu: makeMenu,
+            footermenu: makeFooterMenu,
             shop: shop,
             collection: collection,
             collections: collections,
@@ -110,7 +113,18 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
             gift: gift,
             component: global,
             settings: settings,
-            sections: sectionSettings
+            sections: sectionSettings,
+            general: themeGeneralTexts?.general,
+            date_formats: themeGeneralTexts?.date_formats,
+            newsletter: themeGeneralTexts?.newsletter,
+            accessibility: themeGeneralTexts?.accessibility,
+            onboarding: themeGeneralTexts?.onboarding,
+            products: themeGeneralTexts?.products,
+            templates: themeGeneralTexts?.templates,
+            sectionst: themeGeneralTexts?.sections,
+            localization: themeGeneralTexts?.localization,
+            customert: themeGeneralTexts?.customer,
+            gift_cards: themeGeneralTexts?.gift_cards
         });
 
     } catch (err) {
@@ -137,6 +151,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
         if (!theme) return next();
 
         const makeMenu = require(`../contents/${theme.extend_id}/menu`);
+        const makeFooterMenu = require(`../contents/${theme.extend_id}/footermenu`);
         const collection = require(`../contents/${theme.extend_id}/collection`);
         const collections = require(`../contents/${theme.extend_id}/collections`);
         const product = require(`../contents/${theme.extend_id}/product`);
@@ -145,6 +160,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
         const article = require(`../contents/${theme.extend_id}/article`);
         const customer = require(`../contents/${theme.extend_id}/customer`);
         const gift = require(`../contents/${theme.extend_id}/gift`);
+        const themeGeneralTexts = require(`../themes/${theme.extend_id}/locales/en.default.json`);
 
         const defaultSettings = {};
         const defaultSections = [];
@@ -228,6 +244,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
         res.render('view', {
             srcId: theme.extend_id,
             menu: makeMenu,
+            footermenu: makeFooterMenu,
             shop: shop,
             collection: collection,
             collections: collections,
@@ -239,7 +256,18 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
             gift: gift,
             component: global,
             settings: defaultSettings,
-            sections: defaultSections
+            sections: defaultSections,
+            general: themeGeneralTexts?.general,
+            date_formats: themeGeneralTexts?.date_formats,
+            newsletter: themeGeneralTexts?.newsletter,
+            accessibility: themeGeneralTexts?.accessibility,
+            onboarding: themeGeneralTexts?.onboarding,
+            products: themeGeneralTexts?.products,
+            templates: themeGeneralTexts?.templates,
+            sectionst: themeGeneralTexts?.sections,
+            localization: themeGeneralTexts?.localization,
+            customert: themeGeneralTexts?.customer,
+            gift_cards: themeGeneralTexts?.gift_cards
         });
 
     } catch (err) {

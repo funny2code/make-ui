@@ -17,6 +17,7 @@ router.get('/:id', async (req, res, next) => {
   if (!id || !page) return next();
 
   const makeMenu = require(`../contents/${id}/menu`);
+  const makeFooterMenu = require(`../contents/${id}/footermenu`);
   const collection = require(`../contents/${id}/collection`);
   const collections = require(`../contents/${id}/collections`);
   const product = require(`../contents/${id}/product`);
@@ -25,6 +26,7 @@ router.get('/:id', async (req, res, next) => {
   const article = require(`../contents/${id}/article`);
   const customer = require(`../contents/${id}/customer`);
   const gift = require(`../contents/${id}/gift`);
+  const themeGeneralTexts = require(`../themes/${id}/locales/en.default.json`);
 
   try {
 
@@ -144,6 +146,7 @@ router.get('/:id', async (req, res, next) => {
     res.render('view', {
       srcId: id,
       menu: makeMenu,
+      footermenu: makeFooterMenu,
       shop: shop,
       collection: collection,
       collections: collections,
@@ -155,7 +158,18 @@ router.get('/:id', async (req, res, next) => {
       gift: gift,
       component: global,
       settings: settings,
-      sections: sectionSettings
+      sections: sectionSettings,
+      general: themeGeneralTexts?.general,
+      date_formats: themeGeneralTexts?.date_formats,
+      newsletter: themeGeneralTexts?.newsletter,
+      accessibility: themeGeneralTexts?.accessibility,
+      onboarding: themeGeneralTexts?.onboarding,
+      products: themeGeneralTexts?.products,
+      templates: themeGeneralTexts?.templates,
+      sectionst: themeGeneralTexts?.sections,
+      localization: themeGeneralTexts?.localization,
+      customert: themeGeneralTexts?.customer,
+      gift_cards: themeGeneralTexts?.gift_cards
     });
 
   } catch (err) {
@@ -180,6 +194,7 @@ router.post('/:id', async (req, res, next) => {
   if (!settings && !sections?.length) return next();
 
   const makeMenu = require(`../contents/${id}/menu`);
+  const makeFooterMenu = require(`../contents/${id}/footermenu`);
   const collection = require(`../contents/${id}/collection`);
   const collections = require(`../contents/${id}/collections`);
   const product = require(`../contents/${id}/product`);
@@ -188,6 +203,7 @@ router.post('/:id', async (req, res, next) => {
   const article = require(`../contents/${id}/article`);
   const customer = require(`../contents/${id}/customer`);
   const gift = require(`../contents/${id}/gift`);
+  const themeGeneralTexts = require(`../themes/${id}/locales/en.default.json`);
 
   try {
 
@@ -276,6 +292,7 @@ router.post('/:id', async (req, res, next) => {
     res.render('view', {
       srcId: id,
       menu: makeMenu,
+      footermenu: makeFooterMenu,
       shop: shop,
       collections: collections,
       collection: collection,
@@ -287,7 +304,18 @@ router.post('/:id', async (req, res, next) => {
       gift: gift,
       component: global,
       settings: defaultSettings,
-      sections: defaultSections
+      sections: defaultSections,
+      general: themeGeneralTexts?.general,
+      date_formats: themeGeneralTexts?.date_formats,
+      newsletter: themeGeneralTexts?.newsletter,
+      accessibility: themeGeneralTexts?.accessibility,
+      onboarding: themeGeneralTexts?.onboarding,
+      products: themeGeneralTexts?.products,
+      templates: themeGeneralTexts?.templates,
+      sectionst: themeGeneralTexts?.sections,
+      localization: themeGeneralTexts?.localization,
+      customert: themeGeneralTexts?.customer,
+      gift_cards: themeGeneralTexts?.gift_cards
     });
 
   } catch (err) {
