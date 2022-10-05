@@ -78,10 +78,10 @@
                 <%= form.errors.messages[field] %>
               <% } else { %>
                 <a href="#<%= field %>">
-                  <%= form.errors.translated_fields[field] | capitalize %>
+                  <%= form.errors.translated_fields[field] %>
                   <%= form.errors.messages[field] %>
                 </a>
-              <% endif%>
+              <% }%>
             </li>
           <% }) %>
         </ul>
@@ -108,7 +108,7 @@
             <svg aria-hidden="true" focusable="false" role="presentation">
               <use href="#icon-error" />
             </svg>
-            <%= form.errors.translated_fields['password'] | capitalize %> <%= form.errors.messages['password'] %>
+            <%= form.errors.translated_fields['password'] %> <%= form.errors.messages['password'] %>
           </small>
         <% } %>
       </div>
@@ -134,7 +134,7 @@
             <svg aria-hidden="true" focusable="false" role="presentation">
               <use href="#icon-error" />
             </svg>
-            <%= form.errors.translated_fields['password_confirmation'] | capitalize %> <%= form.errors.messages['password_confirmation'] %>
+            <%= form.errors.translated_fields['password_confirmation'] %> <%= form.errors.messages['password_confirmation'] %>
           </small>
         <% } %>
       </div>
@@ -190,19 +190,31 @@
         "type": "select",
         "id": "page_color",
         "label": "Page Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -262,19 +274,31 @@
         "type": "select",
         "id": "activate_btn_color",
         "label": "Activate Button Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -300,19 +324,31 @@
         "type": "select",
         "id": "activate_btn_color_br",
         "label": "Activate Button Border Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -352,19 +388,31 @@
         "type": "select",
         "id": "activate_btn_hover_color",
         "label": "Activate Button Hover Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -372,19 +420,31 @@
         "type": "select",
         "id": "activate_btn_hover_color_br",
         "label": "Activate Button Hover Border Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -428,19 +488,31 @@
         "type": "select",
         "id": "decline_btn_color",
         "label": "Decline Button Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -466,19 +538,31 @@
         "type": "select",
         "id": "decline_btn_color_br",
         "label": "Decline Button Border Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -518,19 +602,31 @@
         "type": "select",
         "id": "decline_btn_hover_color",
         "label": "Decline Button Hover Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -538,19 +634,31 @@
         "type": "select",
         "id": "decline_btn_hover_color_br",
         "label": "Decline Button Hover Border Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -594,19 +702,31 @@
         "type": "select",
         "id": "field_color",
         "label": "Field Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -632,19 +752,31 @@
         "type": "select",
         "id": "field_color_br",
         "label": "Field Border Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     }

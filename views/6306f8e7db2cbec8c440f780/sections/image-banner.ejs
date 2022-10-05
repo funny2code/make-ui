@@ -1,60 +1,59 @@
 <link rel="stylesheet" href="/<%=srcId%>/section-image-banner.css">
-<div id="Banner-<%= 1 %>" class="banner hero_banner bc-<%=settings.section_style%>-bt" <% if(section.settings.url){ %>data-href="<%= section.settings.url %>" style="cursor: pointer;"<% } %>>
+
+<div id="Banner-<%= sectionid %>" class="banner hero_banner bc-<%=settings.section_style%>-bt" <% if(section.settings.url){ %>data-href="<%= section.settings.url %>" style="cursor: pointer;"<% } %>>
   
       <% if(section.settings.image){ %>
-        <div class="media<% if(!section.settings.image){ %> placeholder<% } %><% if(section.settings.image_2){ %> small-hide<% } %>" style="padding-bottom: <%= 1 / section?.settings?.image?.aspect_ratio ? section?.settings?.image?.aspect_ratio * 100 : 100 %>%;">
-          <img srcset="<% if(section?.settings?.image?.width >= 375){ %><%= section.settings.image %> 375w,<% } %>
-            <% if(section?.settings?.image?.width >= 750){ %><%= section.settings.image %> 750w,<% } %>
-            <% if(section?.settings?.image?.width >= 1100){ %><%= section.settings.image %> 1100w,<% } %>
-            <% if(section?.settings?.image?.width >= 1500){ %><%= section.settings.image %> 1500w,<% } %>
-            <% if(section?.settings?.image?.width >= 1780){ %><%= section.settings.image %> 1780w,<% } %>
-            <% if(section?.settings?.image?.width >= 2000){ %><%= section.settings.image %> 2000w,<% } %>
-            <% if(section?.settings?.image?.width >= 2800){ %><%= section.settings.image %> 2800w<% } %>"
+        <div class="media<% if(!section.settings.image){ %> placeholder<% } %><% if(section.settings.image_2){ %> small-hide<% } %>" style="padding-bottom: <%= 1 / section.settings.image.aspect_ratio ? section.settings.image.aspect_ratio : 0.3 * 100 %>%;">
+          <img srcset="<% if(section.settings.image.width >= 375){ %><%= section.settings.image %> 375w,<% } %>
+            <% if(section.settings.image.width >= 750){ %><%= section.settings.image %> 750w,<% } %>
+            <% if(section.settings.image.width >= 1100){ %><%= section.settings.image %> 1100w,<% } %>
+            <% if(section.settings.image.width >= 1500){ %><%= section.settings.image %> 1500w,<% } %>
+            <% if(section.settings.image.width >= 1780){ %><%= section.settings.image %> 1780w,<% } %>
+            <% if(section.settings.image.width >= 2000){ %><%= section.settings.image %> 2000w,<% } %>
+            <% if(section.settings.image.width >= 2800){ %><%= section.settings.image %> 2800w<% } %>"
             sizes="<% if(section.settings.image_2 && section.settings.stack_images_on_mobile){ %>(min-width: 750px) 50vw, 100vw<% } else if(section.settings.image_2){ %>50vw<% } else { %>100vw<% } %>"
             src="<%= section.settings.image %>"
             <% if(section.settings.show_lazy){ %>loading="lazy"<% } %>
-            alt="<%= section?.settings?.image?.alt %>"
-            width="<%= section?.settings?.image?.width %>"
-            height="<%= section?.settings?.image?.width / section?.settings?.image?.aspect_ratio %>"
+            alt="<%= section.settings.image.alt %>"
+            width="<%= section.settings.image.width %>"
+            height="<%= section.settings.image.width / section.settings.image.aspect_ratio %>"
             <% if(section.settings.enable_anim){ %> data-aos="<%=section.settings.anim%>"<% } %>
           >
         </div>
-      <% } else { %>
-        <div class="media <% if(section.settings.image_2){ %> small-hide<% } %>" style="padding-bottom: <%= 1 / section?.settings?.image?.aspect_ratio ? section?.settings?.image?.aspect_ratio * 100 : 100 %>%;">
-          <img src="/<%= srcId %>/image-banner.jpg"
-            <% if(section.settings.show_lazy){ %>loading="lazy"<% } %>
-            alt="<%= section?.settings?.image?.alt %>"
-            width="<%= section?.settings?.image?.width %>"
-            height="<%= section?.settings?.image?.width / section?.settings?.image?.aspect_ratio %>"
-            <% if(section.settings.enable_anim){ %> data-aos="<%=section.settings.anim%>"<% } %>
-          >
+      <% } else if(!section.settings.image_2){ %>
+        <div class="media placeholder py-bg-c-light" style="padding-bottom: 53.4375%;opacity: 0.1;">
         </div>
       <% } %>
       <% if(section.settings.image_2){ %>
-        <%- include('../snippets/resimg', {image: section.settings.image_2, classimg: false, classwrapper: 'large-up-hide medium-hide'})  %>
+        <%- include('../snippets/resimg', {
+          image: section.settings.image_2,
+          classimg: false,
+          classwrapper: 'large-up-hide medium-hide'
+        }) %>
       <% } %>
-      <div class="banner__content banner__content-<%= 1 %> page-width">
-        <%- include('../snippets/style', {sufix: '.banner__content', id: 1, style: section.settings}) %>
+      <div class="banner__content banner__content-<%= sectionid %> page-width">
+        <%- include('../snippets/style', {sufix: '.banner__content', id: sectionid, style: section.settings}) %>
         <div class="banner__box">
-          <% section.blocks?.forEach((block,index)=>{ %>
+          <% section?.block_order?.forEach((orderItem, index) => { %>
+            <% let block = section?.blocks[orderItem] %>
             <% if(block.type === 'heading'){ %>
-                <h2 class="banner__heading h1 color-white" id="banner__heading-<%= index %>">
-                  <%= block.settings.heading %>
+                <h2 class="banner__heading h1 color-white" id="banner__heading-<%= orderItem %>">
+                  <%- block?.settings?.heading -%>
                 </h2>
-                <%- include('../snippets/style', {sufix: '#banner__heading', id: index, style: block.settings}) %>
-              <% } else if(block.type ==='text'){ %>
-                <div class="banner__text color-white" id="banner__text-<%= index %>">
-                  <%- block.settings.text -%>
+                <%- include('../snippets/style', {sufix: '#banner__heading', id: orderItem, style: block.settings}) %>
+              <% } else if(block.type === 'text'){ %>
+                <div class="banner__text color-white" id="banner__text-<%= orderItem %>">
+                  <%- block?.settings?.text -%>
                 </div>
-                <%- include('../snippets/style', {sufix: '#banner__text', id: index, style: block.settings}) %>
-              <% } else if(block.type ==='buttons'){ %>
-                <div class="banner__buttons<% if(block.settings.button_label_1 && block.settings.button_link_1 && block.settings.button_label_2 && block.settings.button_link_2){ %> banner__buttons--multiple<% } %>">
-                  <% if(block.settings.button_label_1){ %>
-                    <a id="bunner__button-<%= index %>" href="<%= block.settings.button_link_1 %>" class="button py-btn-<%=block.settings.content_color_view_btn%> py-btn-hover-<%=block.settings.content_color_view_btn_hover%> py-btn-<%=block.settings.view_btn_size%>">
-                      <%= block.settings.button_label_1 %>
+                <%- include('../snippets/style', {sufix: '#banner__text', id: orderItem, style: block.settings}) %>
+              <% } else if(block.type === 'buttons'){ %>
+                <div class="banner__buttons<% if(block?.settings?.button_label_1 && block?.settings?.button_link_1 && block?.settings?.button_label_2 && block?.settings?.button_link_2){ %> banner__buttons--multiple<% } %>">
+                  <% if(block?.settings?.button_label_1){ %>
+                    <a id="bunner__button-<%= orderItem %>" href="<%= block?.settings?.button_link_1 %>" class="button py-c-<%=block?.settings?.content_color_view_btn%> py-hv-c-<%=block?.settings?.content_color_view_btn_hover%> py-bg-c-<%=block?.settings?.content_bg_color_view_btn%> py-hv-bg-c-<%=block?.settings?.content_bg_color_view_btn_hover%> py-btn-<%=block?.settings?.view_btn_size%>"<% if(!block?.settings?.button_link_1){ %> aria-disabled="true"<% } %>>
+                      <%= block?.settings?.button_label_1 %>
                     </a>
-                  <style>#bunner__button-<%= index %>{
-                    <%=block.settings.c_css%>
+                  <style>#bunner__button-<%= orderItem %>{
+                    <%=block?.settings?.c_css%>
                   }</style>
                   <% } %>
                 </div>
@@ -64,3 +63,16 @@
       </div>
      
 </div>
+<script>
+  if(document.getElementsByClassName('hero_banner').length>0){
+    var HSL = document.getElementsByClassName("hero_banner");
+    var i;
+
+    for (i = 0; i < HSL.length; i++) {
+      if(HSL[i].getAttribute('data-href')!=null)
+      HSL[i].addEventListener("click", function() {
+        window.location.href = this.getAttribute('data-href');
+      });
+    }
+  }
+</script>

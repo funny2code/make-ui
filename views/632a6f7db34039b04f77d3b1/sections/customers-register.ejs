@@ -52,7 +52,7 @@
                 <%= form.errors.messages[field] %>
               <% } else { %>
                 <a href="#RegisterForm-<%= field %>">
-                  <%= form.errors.translated_fields[field] | capitalize %>
+                  <%= form.errors.translated_fields[field] %>
                   <%= form.errors.messages[field] %>
                 </a>
               <% } %>
@@ -114,7 +114,7 @@
           <svg aria-hidden="true" focusable="false" role="presentation">
             <use href="#icon-error" />
           </svg>
-          <%= form.errors.translated_fields['email'] | capitalize %> <%= form.errors.messages['email'] %>.
+          <%= form.errors.translated_fields['email'] %> <%= form.errors.messages['email'] %>.
         </span>
       <% } %>
       <div class="field">     
@@ -139,10 +139,10 @@
           <svg aria-hidden="true" focusable="false" role="presentation">
             <use href="#icon-error" />
           </svg>
-          <%= form.errors.translated_fields['password'] | capitalize %> <%= form.errors.messages['password'] %>.
+          <%= form.errors.translated_fields['password'] %> <%= form.errors.messages['password'] %>.
         </span>
       <% } %>
-      <button class="register_btn button py-btn-<%=section.settings.page_color_register_btn%> py-btn-hover-<%=section.settings.page_color_register_btn_hover%> py-btn-<%=section.settings.register_btn_size%>">
+      <button class="register_btn button py-c-<%=section.settings.page_color_register_btn%> py-hv-c-<%=section.settings.page_color_register_btn_hover%> py-bg-c-<%=section.settings.page_bg_color_register_btn%> py-hv-bg-c-<%=section.settings.page_bg_color_register_btn_hover%> py-btn-<%=section.settings.register_btn_size%>">
         <%=customer.register.submit%>
       </button>
     </form>
@@ -189,19 +189,31 @@
         "type": "select",
         "id": "page_color",
         "label": "Page Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -245,19 +257,31 @@
         "type": "select",
         "id": "field_color",
         "label": "Field Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -283,19 +307,31 @@
         "type": "select",
         "id": "field_color_br",
         "label": "Field Border Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     }    ,
@@ -326,15 +362,23 @@
     {
       "type": "select",
       "id": "page_color_register_btn",
-      "label": "Register Button Color style",
+      "label": "Register Button Color",
       "options": [
         {
-          "label": "Dark",
-          "value": "dark"
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
         },
         {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -345,16 +389,24 @@
     },
     {
       "type": "select",
-      "id": "page_color_register_btn_hover",
-      "label": "Register Button Hover Color style",
+      "id": "page_bg_color_register_btn",
+      "label": "Register Button Background Color",
       "options": [
         {
-          "label": "Dark",
-          "value": "dark"
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
         },
         {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -362,6 +414,62 @@
         }
       ],
       "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "page_color_register_btn_hover",
+      "label": "Register Button Hover Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "page_bg_color_register_btn_hover",
+      "label": "Register Button Hover Background Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
     }
   ]
 }

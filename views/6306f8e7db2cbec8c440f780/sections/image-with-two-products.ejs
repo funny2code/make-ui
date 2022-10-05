@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/<%=srcId%>/main-image-with-two-products.css">
-<link rel="stylesheet" href="/<%=srcId%>/component-product-card-style-1.css">
-<link rel="stylesheet" href="/<%=srcId%>/component-price-style-1.css">
-<link rel="stylesheet" href="/<%=srcId%>/component-variants.css">
+<link rel="preload" href="/<%=srcId%>/component-product-card-style-1.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/<%=srcId%>/component-price-style-1.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/<%=srcId%>/component-variants.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 <div class="bc-iwtp bc-<%=settings.section_style%>-bt">
   <div class="page-width page-width-<%=settings.section_style%>">
@@ -10,23 +10,32 @@
         <% if(section.settings.enable_anim){ %> data-aos="<%=section.settings.anim%>"<% } %>>
         <% if(section.settings.image){ %>
           <div <% if(section.settings.m_image){ %>class="small-hide"<% } %> class="bc-<%= settings.section_style %>-bt">
-            <%- include('../snippets/resimg', {image: section.settings.image}) %>
+            <%- include('../snippets/resimg', {
+              classimg: '',
+              classwrapper: '',
+              image: section.settings.image
+            }) %>
           </div>
         <% } else { %>
-          <div <% if(section.settings.m_image){ %>class="small-hide"<% } %> class="bc-<%= settings.section_style %>-bt">
-            <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image: 'image-with-two-products.jpg'}) %>
+          <div <% if(section.settings.m_image){ %>class="small-hide"<% } %> class="bc-<%= settings.section_style %>-bt py-bg-c-light">
           </div>
         <% } %>
         <% if(section.settings.m_image){ %>
           <div class="medium-hide large-up-hide">
-            <%- include('../snippets/resimg', {image: section.settings.m_image}) %>
+            <%- include('../snippets/resimg', {
+              image: section.settings.m_image
+            }) %>
           </div>
         <% } %>
         <% if(section.settings.title || section.settings.text){ %>
-        <div class="bc-iwtp__info <%= section.settings.align %>" <% if(section.settings.color){ %>style="color:<%= section.settings.color %>"<% } %>>
+        <div class="bc-iwtp__info <%= section.settings.align %>" <% if(section.settings.section_color){ %>style="color:<%= section.settings.section_color %>"<% } %>>
           <% if(section.settings.title){ %>
-            <h2 class="bc-iwtp__info-title"><%= section.settings.title %></h2>
-            <%# include('../snippets/style', {sufix: '.bc-iwtp__info-title', id: section.id, style: section.settings}) %>
+            <h2 class="bc-iwtp__info-title bc-iwtp__info-title-<%= sectionid %>"><%- section.settings.title -%></h2>
+            <%- include('../snippets/style', {
+              sufix: '.bc-iwtp__info-title', 
+              id: sectionid, 
+              style: section.settings
+            }) %>
           <% } %>
           <% if(section.settings.text){ %>
             <div class="bc-iwtp__info-text"><%- section.settings.text -%></div>
@@ -34,77 +43,83 @@
         </div>
         <% } %>
       </div>
-      <% if(section.blocks.length){ %>
+      <% if(section?.block_order?.length > 0){ %>
       <div class="bc-iwtp__products-wrapper">
-        <% section.blocks.forEach((block, index) => { %>
-          <% if(block.type == 'product' && collection){ %>
+        <% section?.block_order?.forEach((orderItem, index) => { %>
+          <% let block = section?.blocks[orderItem] %>
+          <% if(block.type === 'product' && block?.settings?.product){ %>
             <style>
-              .product-item-<%=index%>.py-c-dark .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+              .product-item-<%=orderItem%>.py-c-dark .card-wrapper *:not(.card-quick-add):not(.card-view-product){
                 color: var(--py-color-dark);
                   }
-              .product-item-<%=index%>.py-c-average .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+              .product-item-<%=orderItem%>.py-c-average .card-wrapper *:not(.card-quick-add):not(.card-view-product){
                 color: var(--py-color-avarge);
                   }
-              .product-item-<%=index%>.py-c-light .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+              .product-item-<%=orderItem%>.py-c-light .card-wrapper *:not(.card-quick-add):not(.card-view-product){
                 color: var(--py-color-light);
                   }
-              .product-item-<%=index%> .card-wrapper{
+              .product-item-<%=orderItem%> .card-wrapper{
                 padding-bottom:15px;
                 height:100%;
               } 
-              .product-item-<%=index%>  .py-center .price,
-              .product-item-<%=index%>  .py-center .card-color-wrapper,
-              .product-item-<%=index%>  .py-center ul.variant-options,
-              .product-item-<%=index%>  .py-center .card-button-wrapper{
+              .product-item-<%=orderItem%>  .py-center .price,
+              .product-item-<%=orderItem%>  .py-center .card-color-wrapper,
+              .product-item-<%=orderItem%>  .py-center ul.variant-options,
+              .product-item-<%=orderItem%>  .py-center .card-button-wrapper{
                 justify-content: center;
               }  
   
-              <% if(block.settings.custom_font_style){ %>
-              .product-item-<%=index%>  .card-wrapper .card-information__text{
-                font-size: <%=block.settings.title_fontsize%>;
-                font-weight: <%=block.settings.title_fontweight%>;
-                font-stretch:<%=block.settings.title_fontstretch%>;
-                font-style:<%=block.settings.title_fontstyle%>;
-                line-height:<%=block.settings.title_lineheight%>;
-                letter-spacing:<%=block.settings.title_letterspacing%>
+              <% if(block?.settings?.custom_font_style){ %>
+              .product-item-<%=orderItem%>  .card-wrapper .card-information__text{
+                font-size: <%=block?.settings?.title_fontsize%>;
+                font-weight: <%=block?.settings?.title_fontweight%>;
+                font-stretch:<%=block?.settings?.title_fontstretch%>;
+                font-style:<%=block?.settings?.title_fontstyle%>;
+                line-height:<%=block?.settings?.title_lineheight%>;
+                letter-spacing:<%=block?.settings?.title_letterspacing%>
               }
               @media(max-width:749px){
-                .product-item-<%=index%>  .card-wrapper .card-information__text{
-                  font-size: <%=block.settings.title_fontsize_m%>
+                .product-item-<%=orderItem%>  .card-wrapper .card-information__text{
+                  font-size: <%=block?.settings?.title_fontsize_m%>
                 }
               }
-              .product-item-<%=index%>  .card-wrapper .price *{
-                font-size: <%=block.settings.info_fontsize%>;
-                font-weight: <%=block.settings.info_fontweight%>;
-                font-stretch:<%=block.settings.info_fontstretch%>;
-                font-style:<%=block.settings.info_fontstyle%>;
-                line-height:<%=block.settings.info_lineheight%>;
-                letter-spacing:<%=block.settings.info_letterspacing%>
+              .product-item-<%=orderItem%>  .card-wrapper .price *{
+                font-size: <%=block?.settings?.info_fontsize%>;
+                font-weight: <%=block?.settings?.info_fontweight%>;
+                font-stretch:<%=block?.settings?.info_fontstretch%>;
+                font-style:<%=block?.settings?.info_fontstyle%>;
+                line-height:<%=block?.settings?.info_lineheight%>;
+                letter-spacing:<%=block?.settings?.info_letterspacing%>
               }
               @media(max-width:749px){
-                .product-item-<%=index%>  .card-wrapper .price *{
-                  font-size: <%=block.settings.info_fontsize_m%>
+                .product-item-<%=orderItem%>  .card-wrapper .price *{
+                  font-size: <%=block?.settings?.info_fontsize_m%>
                 }
               }              
               <% } %>
             </style>
-            <% var productH = collection.products[index] %>
-            <div class="product-item-<%=index%> py-card-<%=block.settings.card_style%> py-<%=block.settings.card_color%> <% if(index && settings.section_style === 'border'){ %>bc-br-bt<% } %>" <% if(block.settings.enable_anim){ %> data-aos="<%=block.settings.anim%>"<% } %>>
+            <% var productH = collection?.products?.filter((product, index)=>product.handle === block?.settings?.product); %>
+            <div class="product-item-<%=orderItem%> py-card-<%=block?.settings?.card_style%> py-<%=block?.settings?.card_color%> <% if(index===0 && settings.section_style === 'border'){ %>bc-br-bt<% } %>" <% if(block?.settings?.enable_anim){ %> data-aos="<%=block?.settings?.anim%>"<% } %>>
               <%- include('../snippets/product-card', {
-                  product_card_product: product,
-                  media_size: block.settings.image_ratio,
-                  media_gallery:block.settings.image_gallery,
-                  tag_field:block.settings.tag_field,                                   
-                  show_vendor: block.settings.show_vendor,
-                  show_colors: block.settings.show_colors,
-                  show_view_product: block.settings.show_view_product,
-                  show_quick_add: block.settings.show_quick_add,
-                  show_variants_on_hover: block.settings.show_variants_on_hover,
-                  card_bg_color: block.settings.card_bg_color,
-                  card_radius: block.settings.card_radius,
-                  info_align: block.settings.info_align
-                }) %>
+                  product_card_product: productH?.length ? productH[0] : null,
+                  media_size: block?.settings?.image_ratio,
+                  media_gallery:block?.settings?.image_gallery,
+                  inventory_quantity: false,
+                  tag_field:block?.settings?.tag_field,                                   
+                  show_vendor: block?.settings?.show_vendor,
+                  show_colors: block?.settings?.show_colors,
+                  show_view_product: block?.settings?.show_view_product,
+                  show_quick_add: block?.settings?.show_quick_add,
+                  show_variants_on_hover: block?.settings?.show_variants_on_hover,
+                  card_bg_color: block?.settings?.card_bg_color,
+                  card_radius: block?.settings?.card_radius,
+                  info_align: block?.settings?.info_align
+              }) %>
             </div>
+          <% } else { %>
+          <div <% if(index===0 && settings.section_style === 'border'){ %>class="bc-br-bt"<% } %><% if(block?.settings?.enable_anim){ %> data-aos="<%=block?.settings?.anim%>"<% } %>>
+             <%- include('../snippets/product-card-placeholder', {index: index}) %>
+          </div>
           <% } %>
         <% }) %>
       </div>

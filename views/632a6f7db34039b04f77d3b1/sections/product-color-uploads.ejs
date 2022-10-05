@@ -1,5 +1,5 @@
 <style id="stylesheet-product-colors">
-  <% section.blocks?.forEach((block,index)=>{ %>
+  <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
   <% var color =  block?.settings?.color){ %>
   <% var name =  block?.settings?.name.toLowerCase()){ %>
   .pd-colors__icon[data-color="<%= name %>"] {

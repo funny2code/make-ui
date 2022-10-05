@@ -1,89 +1,147 @@
 const express = require('express');
 const router = express.Router();
-const storage = require('node-localstorage').LocalStorage;
-const make = require('../contents/make');
+const path = require('path');
+const fs = require('fs').promises;
 const modelThemes = require('../models/themes');
+const make = require('../contents/make');
 const fonts = require('../contents/fonts');
-const localStorage = new storage('./scratch');
 
 /* GET Theme Settings and Sections. */
 router.get('/:id', async (req, res, next) => {
 
   const {id} = req.params;
-  const {page, global, section} = req.query;
-  const storageData = localStorage.getItem('theme');
-  const localData = storageData ? JSON.parse(storageData) : null;
+  const page_handle = req.query.page;
+  const settings_handle = req.query.settings;
+  const section_handle = req.query.section;
+  const section_id = req.query.section_id;
 
-  if(!id || !page) return next();
+  if(!id || !page_handle) return next();
 
-  const activeType = global ? 'global' : 'section';
-  const active = global ? global : section;
+  const activeType = settings_handle || section_handle ? settings_handle ? 'settings' : 'section' : null;
+  const active = settings_handle ? settings_handle : section_handle;
 
   try{
     const theme = await modelThemes.findById(id).exec();
     if(!theme) return next();
 
-    const settings = global ? global !== 'Global Styles' 
-    ? theme.theme_set.filter(item => item.name === global)
-    : theme.theme_set.filter(item => item.name === 'theme_info' || item.name === global)
+    const settingsSchema = settings_handle ? (settings_handle !== 'global-styles') 
+    ? theme.settings_schema.filter(item => item.name?.replace(' ', '-')?.toLowerCase() === settings_handle)
+    : theme.settings_schema.filter(item => item.name?.replace(' ', '-')?.toLowerCase() === 'theme_info' || item.name?.replace(' ', '-')?.toLowerCase() === settings_handle)
     : null;
-
-    // console.log(settings);
-
-    if(localData?.settings){
-      settings?.forEach(el => {
-        if(el?.settings){
-          for (var k in el.settings) {
-            if(localData?.settings[el.settings[k].id]) el.settings[k].default = localData?.settings[el.settings[k].id]
-          }
-        }
-      })
-    }
-  
-    const sections = section ? theme.theme_sec.filter(item => item.file_name === section) : null;
-    if(localData?.sections?.length && sections){
-      sections.forEach(section => {
-        const findLocalSection = localData?.sections?.filter(localSection => localSection.file_name === section.file_name);
-        if(findLocalSection?.length){
-          if(section?.settings){
-            for (var k in section.settings) {
-              if(findLocalSection[0]?.settings[section.settings[k].id]) section.settings[k].default = findLocalSection[0]?.settings[section.settings[k].id];
-            }
-          }
-          if(section?.blocks?.length){
-            section.blocks?.forEach(block => {
-              const findLocalBlock = findLocalSection[0]?.blocks?.filter(localBlock => localBlock.type === block.type);
-              if(findLocalBlock?.length){
-                for (var k in block.settings) {
-                  console.log(findLocalBlock[0]?.settings[block.settings[k].id], block.settings[k].default);
-                  if(findLocalBlock[0]?.settings[block.settings[k].id]) block.settings[k].default = findLocalBlock[0]?.settings[block.settings[k].id];
-                }
-              }
-            });
-          }
-        }
-      })
-    }
-    const pageSections = theme.theme_pag.filter(item => { if(item.name === page) return item.items});
-    const pageNames = []; 
-    theme.theme_pag.forEach(item => pageNames.push({name:item.name}));
-
+    const settingsFile = await fs.readFile(path.join(__dirname, `../themes/${id}/config/settings_data.json`), 'utf-8');
+    if(!settingsFile) return next();
+    const settings = JSON.parse(settingsFile);
+    const getPage = theme?.pages?.filter(page => page.handle === page_handle);
+    if(!getPage?.length) return next();
+    const sectionsFile = await fs.readFile(path.join(__dirname, `../themes/${id}/${getPage[0]?.template_name}.json`), 'utf-8');
+    if(!sectionsFile) return next();
+    const parseSections = JSON.parse(sectionsFile);
+    const sectionSchema = section_handle ? theme?.sections_schema?.filter(section => section.file_name === section_handle) : null;
+    const section = (section_handle && section_id) 
+    ? parseSections?.sections[section_id] : section_handle 
+    ? settings?.current?.sections[section_handle] : null;
 
     res.render('theme', {
       user: req?.session?.user || null,
-      isAdmin: req?.session?.user?.isAdmin || null, 
-      make: make, 
+      isAdmin: req?.session?.user?.isAdmin || null,
+      settingsSchema: settingsSchema,
+      settings: settings?.current || null, 
+      sectionsSchema: theme?.sections_schema || null,
+      sections: parseSections,
+      sectionSchema: sectionSchema,
+      section: section,
+      make: make,
       id: theme._id,
-      srcId: theme._id,
-      page: page,
-      sidebar: theme.app_sid || null,
+      page_handle: page_handle,
       fonts: fonts,
-      localData: localData,
-      settings: settings,
-      section: sections ? sections[0] : null,
-      pageNames: pageNames,
-      pageSections: pageSections[0].items,
+      pages: theme?.pages || null,
       active: active,
+      section_id: section_id || null,
+      activeType: activeType
+    });
+
+  } catch (err){
+    return next(err);
+  }
+
+});
+
+/* POST Theme Settings and Sections. */
+router.post('/:id', async (req, res, next) => {
+
+  const {id} = req.params;
+  const {settings_data, templates} = req.body;
+  const page_handle = req.query.page;
+  const settings_handle = req.query.settings;
+  const section_handle = req.query.section;
+  const section_id = req.query.section_id;
+
+  if(!id || !page_handle) return next();
+
+  const activeType = settings_handle || section_handle ? settings_handle ? 'settings' : 'section' : null;
+  const active = settings_handle ? settings_handle : section_handle;
+
+  try{
+    const theme = await modelThemes.findById(id).exec();
+    if(!theme) return next();
+
+    const settingsSchema = settings_handle ? (settings_handle !== 'global-styles') 
+    ? theme.settings_schema.filter(item => item.name?.replace(' ', '-')?.toLowerCase() === settings_handle)
+    : theme.settings_schema.filter(item => item.name?.replace(' ', '-')?.toLowerCase() === 'theme_info' || item.name?.replace(' ', '-')?.toLowerCase() === settings_handle)
+    : null;
+
+    const settingsFile = await fs.readFile(path.join(__dirname, `../themes/${id}/config/settings_data.json`), 'utf-8');
+    if(!settingsFile) return next();
+    const settings = JSON.parse(settingsFile);
+
+    if(settings_data?.current && Object.keys(settings_data?.current).length > 1){
+      Object.entries(settings_data?.current).forEach(([key, val]) => {
+        if(key && typeof val !== 'object'){
+          settings.current[key] = val;
+        }
+      });
+    }
+
+    if(settings_data?.current?.sections && Object.keys(settings_data?.current?.sections).length > 0){
+      Object.entries(settings_data?.current?.sections).forEach(([key, val]) => {
+          settings.current.sections[key] = val; 
+      });
+    }
+
+    const getPage = theme?.pages?.filter(page => page.handle === page_handle);
+    if(!getPage?.length) return next();
+    const sectionsFile = await fs.readFile(path.join(__dirname, `../themes/${id}/${getPage[0]?.template_name}.json`), 'utf-8');
+    if(!sectionsFile) return next();
+    const parseSections = JSON.parse(sectionsFile);
+    
+    if(Object.keys(templates).length > 0 && templates[page_handle] && templates[page_handle].sections && Object.keys(templates[page_handle].sections).length > 0){
+      Object.entries(templates[page_handle].sections).forEach(([key, val]) => {
+          parseSections.sections[key] = val; 
+      });
+    }
+
+
+    const sectionSchema = section_handle ? theme?.sections_schema?.filter(section => section.file_name === section_handle) : null;
+    const section = (section_handle && section_id) 
+    ? parseSections?.sections[section_id] : section_handle 
+    ? settings?.current?.sections[section_handle] : null;
+
+    res.render('theme', {
+      user: req?.session?.user || null,
+      isAdmin: req?.session?.user?.isAdmin || null,
+      settingsSchema: settingsSchema,
+      settings: settings?.current || null, 
+      sectionsSchema: theme?.sections_schema || null,
+      sections: parseSections,
+      sectionSchema: sectionSchema,
+      section: section,
+      make: make,
+      id: theme._id,
+      page_handle: page_handle,
+      fonts: fonts,
+      pages: theme?.pages || null,
+      active: active,
+      section_id: section_id || null,
       activeType: activeType
     });
 

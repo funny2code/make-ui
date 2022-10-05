@@ -94,7 +94,6 @@ router.post('/', async (req, res, next) => {
     }
 
   } catch (err){
-    console.log(err);
     return err.type === 'StripeCardError' 
     ? res.status(err.raw.statusCode).send({status: err.raw.statusCode, message: err.raw.message}) 
     : res.status(500).send({status: 500, message: "SORRY! Plese try again few minuts late."});

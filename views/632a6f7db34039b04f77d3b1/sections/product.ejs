@@ -113,16 +113,16 @@
             </li>
           <% } %>
           <% for media in product.media){ %>
-            <% unless media.id === product.selected_or_first_available_variant.featured_media.id){ %>
-              <li class="product__media-item grid__item slider__slide <% if(forloop.index === 1%>active<% } %> <% if(media.media_type !== 'image'){ %> product__media-item--full<% } %>" data-media-id="<%= section.id %>-<%= media.id %>" data-index="<%=forloop.index%>">
-                <%- include('../snippets/product-thumbnail', media: media, position: forloop.index, loop: section.settings.enable_video_looping, modal_id: section.id){ %>
+            <% if(!media.id === product.selected_or_first_available_variant.featured_media.id){ %>
+              <li class="product__media-item grid__item slider__slide <% if(index === 1%>active<% } %> <% if(media.media_type !== 'image'){ %> product__media-item--full<% } %>" data-media-id="<%= section.id %>-<%= media.id %>" data-index="<%=index%>">
+                <%- include('../snippets/product-thumbnail', media: media, position: index, loop: section.settings.enable_video_looping, modal_id: section.id){ %>
               </li>
-            <% endunless){ %>
+            <% } %>
           <% }) %>
           <% if(product.media.length === 0){ %>
           <%for i in (1..4)){ %>
             <li class="product__media-item grid__item slider__slide  py-bg-c-light">
-              <%=product-'.append(i  | placeholder_svg_tag: 'placeholder-svg' %>
+              <%=product-' + i  | placeholder_svg_tag: 'placeholder-svg' %>
             </li>          
           <% }) %>
           <% } %>
@@ -157,16 +157,16 @@
               </li>
             <% } %>
             <% for media in product.media){ %>
-              <% unless media.id === product.selected_or_first_available_variant.featured_media.id){ %>
-                <li class="product__media-item grid__item slider__slide <% if(forloop.index === 1%>active<% } %> <% if(media.media_type !== 'image'){ %> product__media-item--full<% } %>" data-media-id="<%= section.id %>-<%= media.id %>" data-index="<%=forloop.index%>">
-                  <%- include('../snippets/product-thumbnail', media: media, position: forloop.index, loop: section.settings.enable_video_looping, modal_id: section.id){ %>
+              <% if(!media.id === product.selected_or_first_available_variant.featured_media.id){ %>
+                <li class="product__media-item grid__item slider__slide <% if(index === 1%>active<% } %> <% if(media.media_type !== 'image'){ %> product__media-item--full<% } %>" data-media-id="<%= section.id %>-<%= media.id %>" data-index="<%=index%>">
+                  <%- include('../snippets/product-thumbnail', media: media, position: index, loop: section.settings.enable_video_looping, modal_id: section.id){ %>
                 </li>
-              <% endunless){ %>
+              <% } %>
             <% }) %>
             <% if(product.media.length === 0){ %>
             <%for i in (1..4)){ %>
               <li class="product__media-item grid__item slider__slide  py-bg-c-light">
-                <%=product-'.append(i  | placeholder_svg_tag: 'placeholder-svg' %>
+                <%=product-' + i  | placeholder_svg_tag: 'placeholder-svg' %>
               </li>          
             <% }) %>
             <% } %>
@@ -246,11 +246,11 @@
     </div>
     <div class="product__info-wrapper  py-<%=section.settings.page_width%> py-<%=section.settings.info_section_padding%> <% if(section.settings.media_style === "top" || section.settings.media_style === "horizontal_grid" ){ %> full-width <% } %>">
       <div id="ProductInfo-<%= section.id %>" class="product__info-container<% if(section.settings.enable_sticky_info){ %> product__info-container--sticky<% } %>">
-        <% var product_form_id = 'product-form-'.append(section.id){ %>
+        <% var product_form_id = 'product-form-' + section.id){ %>
         <div class="product-badge" style='width:100%;'><%- include('../snippets/component-badge', meta: product.metafields.selling, vertical: false){ %></div>
         <div class="product_info_left_col">  
         
-        <% section.blocks?.forEach((block,index)=>{ %>
+        <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
           <% if(block.type){ %>
           <% } else if(block.type === '@app'){ %>
             <% render block){ %>
@@ -417,7 +417,7 @@
         	  <%- include('../snippets/component-colors', product: product, show_heading: true){ %>            
             <% endcomment){ %>
         
-            <% unless product.has_only_default_variant){ %>              
+            <% if(!product.has_only_default_variant){ %>              
                 <variant-radios class="no-js-hidden" data-section="<%= section.id %>" data-url="<%= product.url %>">                  
                     <% for option in product.options_with_values){ %>
                         <%
@@ -425,30 +425,30 @@
                           var color = false
                           if optionName.includes('color' || optionName.includes('colour'
                         var color = true
-                          endif){ %>
+                          }){ %>
                         <fieldset class="js product-form__input" product-option = "<%=optionName%>">
                           <legend class="form__label"><%= option.name %>: <span class="selected-value"><%=option.selected_value%></span></legend>
                           <% for value in option.values){ %>
-                            <input type="radio" id="<%= section.id %>-<%= option.name %>-<%= forloop.index0 %>"
+                            <input type="radio" id="<%= section.id %>-<%= option.name %>-<%= index0 %>"
                                   name="<%= option.name %>"
                                   value="<%= value %>"
                                   form="product-form-<%= section.id %>"
                                   <% if(option.selected_value === value){ %>checked<% } %>
                             >
                             
-                            <label for="<%= section.id %>-<%= option.name %>-<%= forloop.index0 %>">
-                              <% unless color){ %>                                
+                            <label for="<%= section.id %>-<%= option.name %>-<%= index0 %>">
+                              <% if(!color){ %>                                
                               <% if(value === "ONESIZE"){ %>OS<% } else { %><% var valueSize = value | size){ %><% if(valueSize < 5 ){ %><%= value %><% } else { %><% var variantNameObject = value?.split(' '){ %><% for variantName in variantNameObject){ %><% var forVariantName = variantName | size){ %><% if(forVariantName < 4){ %><%= variantName %><% } else { %><%= variantName?.slice(0 %><% } %><% }) %><% } %><% } %>
                               <% } else { %>
                                 <span class="pd-colors__icon" data-color="<%= value.toLowerCase() %>"></span><%= value %>
-                              <% endunless){ %>  
+                              <% } %>  
                           </label>
                           <% }) %>
                         </fieldset>
                     <% }) %>                  
                   <div id="preorderbunner"></div>
                   <script type="application/json">
-                    <%= product.variants | json %>
+                    <%= product.variants %>
                   </script>
                   <script id="product-variants-metafields" type="application/json">
                   [
@@ -460,7 +460,7 @@
                                   <% if(forloop.first){ %>
                                       {
                                   <% } %>
-                                          "<%=item[0]%>" : "<%= item[1] %>"<% unless forloop.last){ %>,<% endunless){ %>
+                                          "<%=item[0]%>" : "<%= item[1] %>"<% if(!forloop.last){ %>,<% } %>
                                   <% if(forloop.last){ %>
                                       }
                                   <% } %>
@@ -468,12 +468,12 @@
                             <% } else { %>
                             	""
                             <% } %>
-                          }<% unless forloop.last){ %>,<% endunless){ %>
+                          }<% if(!forloop.last){ %>,<% } %>
                     <% }) %>
                   ]
                   </script>
                 </variant-radios>              
-            <% endunless){ %>
+            <% } %>
             </div>
         <% if(sizeCharts.cm_content || sizeCharts.inches_content){ %>
         <modal-opener class="product-popup-modal__opener no-js-hidden " data-modal="#PopupModal-sizecharts">
@@ -557,14 +557,14 @@
                   </quantity-input>
                 </div>
                 <div class="variant_select_container">
-                <% unless product.has_only_default_variant){ %>
+                <% if(!product.has_only_default_variant){ %>
                     <% for option in product.options_with_values){ %>
                         <%
                           var optionName = option.name.toLowerCase()
                           var color = false
                           if optionName.includes('color' || optionName.includes('colour'
                         var color = true
-                          endif){ %>
+                          }){ %>
                         <div class="select_wraper">
                         <label class="form__label"><%= option.name %>: </label>  
                         <select class="js product-form__input" product-option = "<%=optionName%>">                          
@@ -578,7 +578,7 @@
                         </select>
                         </div>
                     <% }) %>                            
-                <% endunless){ %>
+                <% } %>
                 </div>
                 <div class="product-form__buttons">
                   <button type="submit" name="add" class="product-form__submit button button--full-width button--primary py-btn-<%=block?.settings?.add_btn_size%>"> 
@@ -783,7 +783,7 @@
         <% }) %>
         </div>
         <div class="product_info_right_col">
-        <% section.blocks?.forEach((block,index)=>{ %>
+        <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
           <% if(block.type){ %>         
           <% } else if(block.type === 'collapsible_tab'){ %>
             <% var headingLow = block?.settings?.heading.toLowerCase()?.trim()){ %>
@@ -840,7 +840,7 @@
                     <input type="text"
                           class="field__input"
                           id="url"
-                          value="<%= shop.url.append(product.url %>"
+                          value="<%= shop.url + product.url %>"
                           placeholder="<%=general.share.share_url%>"
                           onclick="this.select();"
                           readonly
@@ -1064,7 +1064,7 @@
 
 <% if(first_3d_model){ %>
   <script type="application/json" id="ProductJSON-<%= product.id %>">
-    <%= product.media | where: 'media_type', 'model' | json %>
+    <%= product.media | where: 'media_type', 'model' %>
   </script>
 
   <script src="<%=product-model.js' <%=srcId%> %>" defer></script>
@@ -1104,7 +1104,7 @@
 
 <% schema){ %>
 {
-  "name": "t:sections.main-product.name",
+  "name": "t:sectionst.main-product.name",
   "tag": "section",
   "class": "js-product-section-main",
   "blocks": [
@@ -1113,13 +1113,13 @@
     },
     {
       "type": "text",
-      "name": "t:sections.main-product.blocks.text.name",
+      "name": "t:sectionst.main-product.blocks.text.name",
       "settings": [
         {
           "type": "text",
           "id": "text",
           "default": "Text block",
-          "label": "t:sections.main-product.blocks.text.settings.text.label"
+          "label": "t:sectionst.main-product.blocks.text.settings.text.label"
         },
         {
           "type": "select",
@@ -1127,25 +1127,25 @@
           "options": [
             {
               "value": "body",
-              "label": "t:sections.main-product.blocks.text.settings.text_style.options__1.label"
+              "label": "t:sectionst.main-product.blocks.text.settings.text_style.options__1.label"
             },
             {
               "value": "subtitle",
-              "label": "t:sections.main-product.blocks.text.settings.text_style.options__2.label"
+              "label": "t:sectionst.main-product.blocks.text.settings.text_style.options__2.label"
             },
             {
               "value": "uppercase",
-              "label": "t:sections.main-product.blocks.text.settings.text_style.options__3.label"
+              "label": "t:sectionst.main-product.blocks.text.settings.text_style.options__3.label"
             }
           ],
           "default": "body",
-          "label": "t:sections.main-product.blocks.text.settings.text_style.label"
+          "label": "t:sectionst.main-product.blocks.text.settings.text_style.label"
         }
       ]
     },
     {
       "type": "title",
-      "name": "t:sections.main-product.blocks.title.name",
+      "name": "t:sectionst.main-product.blocks.title.name",
       "limit": 1,
       "settings": [
         {
@@ -1221,7 +1221,7 @@
     },
     {
       "type": "price",
-      "name": "t:sections.main-product.blocks.price.name",
+      "name": "t:sectionst.main-product.blocks.price.name",
       "limit": 1,
       "settings":[
         {
@@ -1292,7 +1292,7 @@
     },
     {
       "type": "quantity_selector",
-      "name": "t:sections.main-product.blocks.quantity_selector.name",
+      "name": "t:sectionst.main-product.blocks.quantity_selector.name",
       "limit": 1,
       "settings": [
         {
@@ -1305,8 +1305,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -1319,7 +1327,7 @@
     },
     {
       "type": "variant_picker",
-      "name": "t:sections.main-product.blocks.variant_picker.name",
+      "name": "t:sectionst.main-product.blocks.variant_picker.name",
       "limit": 1,
       "settings": [
         {
@@ -1404,8 +1412,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -1424,8 +1440,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -1476,8 +1500,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -1496,8 +1528,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -1639,8 +1679,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -1691,8 +1739,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -1711,8 +1767,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -1757,8 +1821,8 @@
           "type": "checkbox",
           "id": "show_dynamic_checkout",
           "default": true,
-          "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
-          "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
+          "label": "t:sectionst.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
+          "info": "t:sectionst.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
         },
         {
           "type": "header",
@@ -1828,8 +1892,16 @@
               "value": "var(--py-color-dark)"
             },
             {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
               "label": "Average",
               "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
             },
             {
               "label": "Light",
@@ -1889,8 +1961,16 @@
               "value": "var(--py-color-dark)"
             },
             {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
               "label": "Average",
               "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
             },
             {
               "label": "Light",
@@ -1941,8 +2021,16 @@
               "value": "var(--py-color-dark)"
             },
             {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
               "label": "Average",
               "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
             },
             {
               "label": "Light",
@@ -2006,8 +2094,16 @@
               "value": "var(--py-color-dark)"
             },
             {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
               "label": "Average",
               "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
             },
             {
               "label": "Light",
@@ -2035,8 +2131,16 @@
               "value": "var(--py-color-dark)"
             },
             {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
               "label": "Average",
               "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
             },
             {
               "label": "Light",
@@ -2118,8 +2222,16 @@
               "value": "var(--py-color-dark)"
             },
             {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
               "label": "Average",
               "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
             },
             {
               "label": "Light",
@@ -2147,8 +2259,16 @@
               "value": "var(--py-color-dark)"
             },
             {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
               "label": "Average",
               "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
             },
             {
               "label": "Light",
@@ -2230,8 +2350,16 @@
               "value": "var(--py-color-dark)"
             },
             {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
               "label": "Average",
               "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
             },
             {
               "label": "Light",
@@ -2259,8 +2387,16 @@
               "value": "var(--py-color-dark)"
             },
             {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
               "label": "Average",
               "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
             },
             {
               "label": "Light",
@@ -2344,8 +2480,16 @@
               "value": "var(--py-color-dark)"
             },
             {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
               "label": "Average",
               "value": "var(--py-color-avarge)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
             },
             {
               "label": "Light",
@@ -2367,7 +2511,7 @@
     },
     {
       "type": "description",
-      "name": "t:sections.main-product.blocks.description.name",
+      "name": "t:sectionst.main-product.blocks.description.name",
       "limit": 1,
       "settings": [
         {
@@ -2438,22 +2582,22 @@
     },
     {
       "type": "share",
-      "name": "t:sections.main-product.blocks.share.name",
+      "name": "t:sectionst.main-product.blocks.share.name",
       "limit": 1,
       "settings": [
         {
           "type": "paragraph",
-          "content": "t:sections.main-product.blocks.share.settings.featured_image_info.content"
+          "content": "t:sectionst.main-product.blocks.share.settings.featured_image_info.content"
         },
         {
           "type": "paragraph",
-          "content": "t:sections.main-product.blocks.share.settings.title_info.content"
+          "content": "t:sectionst.main-product.blocks.share.settings.title_info.content"
         }
       ]
     },
     {
       "type": "collapsible_tab",
-      "name": "t:sections.main-product.blocks.collapsible_tab.name",
+      "name": "t:sectionst.main-product.blocks.collapsible_tab.name",
       "settings": [
         {
           "type": "select",
@@ -2497,8 +2641,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -2517,8 +2669,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -2531,18 +2691,18 @@
           "type": "text",
           "id": "heading",
           "default": "Collapsible tab",
-          "info": "t:sections.main-product.blocks.collapsible_tab.settings.heading.info",
-          "label": "t:sections.main-product.blocks.collapsible_tab.settings.heading.label"
+          "info": "t:sectionst.main-product.blocks.collapsible_tab.settings.heading.info",
+          "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.heading.label"
         },
         {
           "type": "richtext",
           "id": "content",
-          "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
+          "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.content.label"
         },
         {
           "type": "page",
           "id": "page",
-          "label": "t:sections.main-product.blocks.collapsible_tab.settings.page.label"
+          "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.page.label"
         },
         {
           "type": "select",
@@ -2550,120 +2710,120 @@
           "options": [
             {
               "value": "none",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__1.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__1.label"
             },
             {
               "value": "box",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__2.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__2.label"
             },
             {
               "value": "chat_bubble",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__3.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__3.label"
             },
             {
               "value": "check_mark",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__4.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__4.label"
             },
             {
               "value": "dryer",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__5.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__5.label"
             },
             {
               "value": "eye",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__6.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__6.label"
             },
             {
               "value": "heart",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__7.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__7.label"
             },
             {
               "value": "iron",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__8.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__8.label"
             },
             {
               "value": "leaf",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__9.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__9.label"
             },
             {
               "value": "leather",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__10.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__10.label"
             },
             {
               "value": "lock",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__11.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__11.label"
             },
             {
               "value": "map_pin",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__12.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__12.label"
             },
             {
               "value": "pants",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__13.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__13.label"
             },
             {
               "value": "plane",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__14.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__14.label"
             },
             {
               "value": "price_tag",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__15.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__15.label"
             },
             {
               "value": "question_mark",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__16.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__16.label"
             },
             {
               "value": "return",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__17.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__17.label"
             },
             {
               "value": "ruler",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__18.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__18.label"
             },
             {
               "value": "shirt",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__19.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__19.label"
             },
             {
               "value": "shoe",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__20.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__20.label"
             },
             {
               "value": "silhouette",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__21.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__21.label"
             },
             {
               "value": "star",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__22.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__22.label"
             },
             {
               "value": "truck",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__23.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__23.label"
             },
             {
               "value": "washing",
-              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__24.label"
+              "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.options__24.label"
             }
           ],
           "default": "check_mark",
-          "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.label"
+          "label": "t:sectionst.main-product.blocks.collapsible_tab.settings.icon.label"
         }
       ]
     },
     {
       "type": "popup",
-      "name": "t:sections.main-product.blocks.popup.name",
+      "name": "t:sectionst.main-product.blocks.popup.name",
       "settings": [
         {
           "type": "text",
           "id": "link_label",
           "default": "Pop-up link text",
-          "label": "t:sections.main-product.blocks.popup.settings.link_label.label"
+          "label": "t:sectionst.main-product.blocks.popup.settings.link_label.label"
         },
         {
           "id": "page",
           "type": "page",
-          "label": "t:sections.main-product.blocks.popup.settings.page.label"
+          "label": "t:sectionst.main-product.blocks.popup.settings.page.label"
         }
       ]
     },
@@ -2689,8 +2849,8 @@
   "settings": [
     {
       "type": "header",
-      "content": "t:sections.main-product.settings.header.content",
-      "info": "t:sections.main-product.settings.header.info"
+      "content": "t:sectionst.main-product.settings.header.content",
+      "info": "t:sectionst.main-product.settings.header.info"
     },
     {
       "type": "checkbox",
@@ -2775,13 +2935,13 @@
       "type": "checkbox",
       "id": "enable_sticky_info",
       "default": true,
-      "label": "t:sections.main-product.settings.enable_sticky_info.label"
+      "label": "t:sectionst.main-product.settings.enable_sticky_info.label"
     },
     {
       "type": "checkbox",
       "id": "enable_video_looping",
       "default": false,
-      "label": "t:sections.main-product.settings.enable_video_looping.label"
+      "label": "t:sectionst.main-product.settings.enable_video_looping.label"
     },
     {
       "type": "select",
@@ -2819,19 +2979,31 @@
       "type": "select",
       "id": "section_color",
       "label": "Content Color",
-      "options": [ 
-         {
-           "label": "Dark",
-           "value": "var(--py-color-dark)"
-         },
-         {
-           "label": "Average",
-           "value": "var(--py-color-avarge)"
-         },
-         {
-           "label": "Light",
-           "value": "var(--py-color-light)"
-         }
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
         ],
       "default": "var(--py-color-dark)"
     },

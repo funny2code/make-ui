@@ -4,7 +4,7 @@
     <li class="list-social__item">
       <a
         class="list-social__link link link--text"
-        href="//www.facebook.com/sharer.php?u=<%= shop.url.append(share_permalink %>"
+        href="//www.facebook.com/sharer.php?u=<%= shop.url + share_permalink %>"
         target="_blank"
       >
         <%- include('./icon-facebook'){ %>
@@ -18,7 +18,7 @@
     <li class="list-social__item">
       <a
         class="list-social__link link link--text"
-        href="//twitter.com/share?text=<%= share_title | url_param_escape %>&amp;url=<%= shop.url.append(share_permalink %>"
+        href="//twitter.com/share?text=<%= share_title | url_param_escape %>&amp;url=<%= shop.url + share_permalink %>"
         target="_blank"
       >
         <%- include('./icon-twitter'){ %>
@@ -32,7 +32,7 @@
     <li class="list-social__item">
       <a
         class="list-social__link link link--text"
-        href="//pinterest.com/pin/create/button/?url=<%= shop.url.append(share_permalink %>}&amp;media=<%= share_image | img_url: '1024x1024' %>&amp;description=<%= share_title | url_param_escape %>"
+        href="//pinterest.com/pin/create/button/?url=<%= shop.url + share_permalink %>}&amp;media=<%= share_image | img_url: '1024x1024' %>&amp;description=<%= share_title | url_param_escape %>"
         target="_blank"
       >
         <%- include('./icon-pinterest'){ %>

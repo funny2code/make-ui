@@ -14,7 +14,7 @@
 <div class="py-<%=section.settings.py_section_bg_color%>">
 <article class=" py-<%=section.settings.page_y_pd%> article-template <% if(section.settings.layout === 'horizontal'){ %> py-<%=section.settings.page_width%><% } %>" itemscope itemtype="http://schema.org/BlogPosting">
 <div class="main-content-container py-<%=section.settings.layout%>">
-  <% section.blocks?.forEach((block,index)=>{ %>
+  <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
     <% if(block.type){ %>
       <% } else if(block.type === 'featured_image'){ %>
         <% if(article.image){ %>
@@ -27,7 +27,7 @@
             visibility: hidden;
           }
           .article-template__hero-container .media{
-            background-image:url(<%= article.image  %>);
+            background-image:url(<%= article.image | img_url: '350x' %>);
             background-repeat:repeat;
           }
           .py-width-full.article-template__hero-container{
@@ -50,14 +50,14 @@
               itemprop="image"
               <% if(block?.settings?.image_height === 'default' && article.image){ %> style="padding-bottom: <%= 1 / article.image.aspect_ratio * 100 %>%;"<% } %>
             >
-              <img srcset="<% if(article.image.width >= 350){ %><%= article.image  %> 350w,<% } %>
-                  <% if(article.image.width >= 700){ %><%= article.image  %> 700w,<% } %>
-                  <% if(article.image.width >= 749){ %><%= article.image  %> 749w,<% } %>
-                  <% if(article.image.width >= 1498){ %><%= article.image  %> 1498w,<% } %>
-                  <% if(article.image.width >= 1100){ %><%= article.image  %> 1100w,<% } %>
-                  <% if(article.image.width >= 2200){ %><%= article.image  %> 2200w,<% } %>"
+              <img srcset="<% if(article.image.width >= 350){ %><%= article.image | img_url: '350x' %> 350w,<% } %>
+                  <% if(article.image.width >= 700){ %><%= article.image | img_url: '700x' %> 700w,<% } %>
+                  <% if(article.image.width >= 749){ %><%= article.image | img_url: '749x' %> 749w,<% } %>
+                  <% if(article.image.width >= 1498){ %><%= article.image | img_url: '1498x' %> 1498w,<% } %>
+                  <% if(article.image.width >= 1100){ %><%= article.image | img_url: '1100x' %> 1100w,<% } %>
+                  <% if(article.image.width >= 2200){ %><%= article.image | img_url: '2200x' %> 2200w,<% } %>"
                 sizes="(min-width: 1200px) 1100px, (min-width: 750px) calc(100vw - 10rem), 100vw"
-                src="<%= article.image  %>"
+                src="<%= article.image | img_url: '1100x' %>"
                 loading="lazy"
                 width="<%= article.image.width %>"
                 height="<%= article.image.height %>"
@@ -68,7 +68,7 @@
      <% } %>
   <% }) %>
   <div class="article-template__content-container <% if(section.settings.layout === 'vertical'){ %> py-<%=section.settings.page_width%><% } %>">
-  <% section.blocks?.forEach((block,index)=>{ %>
+  <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
     <% if(block.type){ %>
         <% } else if(block.type === 'title'){ %>
         <style>
@@ -124,7 +124,7 @@
     <div class="article-template__comment-wrapper background-secondary">
       <div id="comments" class="page-width">
         <% if(article.comments_count > 0){ %>
-          <% var anchorId = '#Comments-'.append(article.id){ %>
+          <% var anchorId = '#Comments-' + article.id){ %>
 
           <h2 id="Comments-<%= article.id %>"><%=blogs.article.comments' | t: count: article.comments_count %></h2>
           <%# paginate article.comments by 5){ %>
@@ -155,7 +155,7 @@
             var post_message = 'blogs.article.success'
             if blog.moderated? && comment.status === 'unapproved'
               var post_message = 'blogs.article.success_moderated'
-            endif
+            }
          ){ %>
           <h2><%=blogs.article.comment_form_title%></h2>
           <% if(form.errors){ %>
@@ -269,7 +269,7 @@
 
 <% schema){ %>
 {
-  "name": "t:sections.main-article.name",
+  "name": "t:sectionst.main-article.name",
   "tag": "section",
   "settings": [    
     {
@@ -384,7 +384,7 @@
   "blocks": [
     {
       "type": "featured_image",
-      "name": "t:sections.main-article.blocks.featured_image.name",
+      "name": "t:sectionst.main-article.blocks.featured_image.name",
       "limit": 1,
       "settings": [
         {
@@ -460,7 +460,7 @@
     },
     {
       "type": "title",
-      "name": "t:sections.main-article.blocks.title.name",
+      "name": "t:sectionst.main-article.blocks.title.name",
       "limit": 1,
       "settings": [
         {
@@ -482,8 +482,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -516,7 +524,7 @@
           "type": "checkbox",
           "id": "blog_show_date",
           "default": true,
-          "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
+          "label": "t:sectionst.main-article.blocks.title.settings.blog_show_date.label"
         },
         {
           "type": "range",
@@ -537,8 +545,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -571,7 +587,7 @@
           "type": "checkbox",
           "id": "blog_show_author",
           "default": false,
-          "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+          "label": "t:sectionst.main-article.blocks.title.settings.blog_show_author.label"
         },
         {
           "type": "range",
@@ -592,8 +608,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -626,7 +650,7 @@
     },
     {
       "type": "content",
-      "name": "t:sections.main-article.blocks.content.name",
+      "name": "t:sectionst.main-article.blocks.content.name",
       "limit": 1,
       "settings": [
         {
@@ -648,8 +672,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -682,7 +714,7 @@
     },
     {
       "type": "social_sharing",
-      "name": "t:sections.main-article.blocks.social_sharing.name",
+      "name": "t:sectionst.main-article.blocks.social_sharing.name",
       "limit": 1
     }
   ]

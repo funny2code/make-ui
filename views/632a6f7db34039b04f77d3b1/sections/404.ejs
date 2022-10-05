@@ -8,7 +8,7 @@
 </style>
 
 <div class="template-404 py-pd-y-xs py-<%=section.settings.py_section_bg_color%>">  
-  <% section.blocks?.forEach((block,index)=>{ %>
+  <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
     <% if(block.type){ %>
         <% } else if(block.type === 'title'){ %>
           <div class="page-width">
@@ -27,14 +27,14 @@
             <div class="media"
               itemprop="image"
               style="padding-bottom: <%= 1 / block?.settings?.image.aspect_ratio * 100 %>%;">
-              <img srcset="<% if(block?.settings?.image.width >= 350){ %><%= block?.settings?.image  %> 350w,<% } %>
-                  <% if(block?.settings?.image.width >= 700){ %><%= block?.settings?.image  %> 700w,<% } %>
-                  <% if(block?.settings?.image.width >= 749){ %><%= block?.settings?.image  %> 749w,<% } %>
-                  <% if(block?.settings?.image.width >= 1498){ %><%= block?.settings?.image  %> 1498w,<% } %>
-                  <% if(block?.settings?.image.width >= 1100){ %><%= block?.settings?.image  %> 1100w,<% } %>
-                  <% if(block?.settings?.image.width >= 2200){ %><%= block?.settings?.image  %> 2200w,<% } %>"
+              <img srcset="<% if(block?.settings?.image.width >= 350){ %><%= block?.settings?.image | img_url: '350x' %> 350w,<% } %>
+                  <% if(block?.settings?.image.width >= 700){ %><%= block?.settings?.image | img_url: '700x' %> 700w,<% } %>
+                  <% if(block?.settings?.image.width >= 749){ %><%= block?.settings?.image | img_url: '749x' %> 749w,<% } %>
+                  <% if(block?.settings?.image.width >= 1498){ %><%= block?.settings?.image | img_url: '1498x' %> 1498w,<% } %>
+                  <% if(block?.settings?.image.width >= 1100){ %><%= block?.settings?.image | img_url: '1100x' %> 1100w,<% } %>
+                  <% if(block?.settings?.image.width >= 2200){ %><%= block?.settings?.image | img_url: '2200x' %> 2200w,<% } %>"
                 sizes="(min-width: 1200px) 1100px, (min-width: 750px) calc(100vw - 10rem), 100vw"
-                src="<%= block?.settings?.image  %>"
+                src="<%= block?.settings?.image | img_url: '1100x' %>"
                 loading="lazy">
             </div>
           </div>
@@ -129,14 +129,26 @@
       "type": "select",
       "id": "py_section_color",
       "label": "Content Color",
-      "options": [
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
           {
             "label": "Dark",
             "value": "var(--py-color-dark)"
           },
           {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
           },
           {
             "label": "Light",

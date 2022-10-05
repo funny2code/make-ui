@@ -31,7 +31,7 @@
                   </button>
                 </noscript>
 
-                <button type="submit" class="cart__checkout-button button py-btn-{{block.settings.btn_color}} py-btn-hover-{{block.settings.btn_color_hover}} py-btn-{{block.settings.btn_size}}" name="checkout"{% if cart == empty %} disabled{% endif %} form="cart">
+                <button type="submit" class="cart__checkout-button button py-c-{{block.settings.btn_color}} py-hv-c-{{block.settings.btn_color_hover}} py-bg-c-{{block.settings.btn_bg_color}} py-hv-bg-c-{{block.settings.btn_bg_color_hover}} py-btn-{{block.settings.btn_size}}" name="checkout"{% if cart == empty %} disabled{% endif %} form="cart">
                   {{ 'sections.cart.checkout' | t }}
                 </button>
                 {% if section.settings.enable_dynamic_pay %}
@@ -161,15 +161,23 @@
         {
           "type": "select",
           "id": "btn_color",
-          "label": "Button Color style",
+          "label": "Button Color",
           "options": [
             {
               "label": "Dark",
               "value": "dark"
             },
             {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
               "label": "Average",
               "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
             },
             {
               "label": "Light",
@@ -180,16 +188,24 @@
         },
         {
           "type": "select",
-          "id": "btn_color_hover",
-          "label": "Button Hover Color style",
+          "id": "btn_bg_color",
+          "label": "Button Background Color",
           "options": [
             {
               "label": "Dark",
               "value": "dark"
             },
             {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
               "label": "Average",
               "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
             },
             {
               "label": "Light",
@@ -197,6 +213,62 @@
             }
           ],
           "default": "dark"
+        },
+        {
+          "type": "select",
+          "id": "btn_color_hover",
+          "label": "Button Hover Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "dark"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
+              "label": "Average",
+              "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
+            },
+            {
+              "label": "Light",
+              "value": "light"
+            }
+          ],
+          "default": "dark"
+        },
+        {
+          "type": "select",
+          "id": "btn_bg_color_hover",
+          "label": "Button Hover Background Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "dark"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
+              "label": "Average",
+              "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
+            },
+            {
+              "label": "Light",
+              "value": "light"
+            }
+          ],
+          "default": "light"
         }
       ]
     }

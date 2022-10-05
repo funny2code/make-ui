@@ -1,120 +1,177 @@
 [
-    {
-      "id": 273928093857,
-      "handle": "frontpage",
-      "title": "Home page",
-      "updated_at": "2022-05-19T20:15:39+04:00",
-      "body_html": "",
-      "published_at": "2021-07-21T17:59:56+04:00",
-      "sort_order": "best-selling",
-      "template_suffix": "",
-      "products_count": 11,
-      "collection_type": "custom",
-      "published_scope": "web",
-      "admin_graphql_api_id": "gid:\/\/shopify\/Collection\/273928093857",
-      "image": {
-        "created_at": "2021-09-12T16:52:05+04:00",
-        "alt": "",
-        "width": 1273,
-        "height": 1920,
-        "aspect_ratio": 0.90,
-        "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0584\/1993\/7441\/collections\/D1Espresso.jpg?v=1632482002"
+  {
+    "id": 262031442008,
+    "handle": "new-york-mets",
+    "title": "New York Mets",
+    "updated_at": "2022-08-23T19:16:01-04:00",
+    "body_html": "",
+    "published_at": "2021-07-07T16:53:02-04:00",
+    "sort_order": "manual",
+    "template_suffix": "by-region",
+    "products_count": 9,
+    "disjunctive": false,
+    "collection_type": "smart",
+    "rules": [
+      {
+        "column": "tag",
+        "relation": "equals",
+        "condition": "New York Mets"
       }
-    },
-    {
-      "id": 277705883809,
-      "handle": "color-the-bandeau-skirt",
-      "title": "COLOR THE BANDEAU SKIRT",
-      "updated_at": "2021-12-13T17:55:37+04:00",
-      "body_html": "",
-      "published_at": "2021-09-01T16:46:07+04:00",
-      "sort_order": "best-selling",
-      "template_suffix": "password",
-      "products_count": 0,
-      "disjunctive": false,
-      "collection_type": "smart",
-      "rules": [
-        {
-          "column": "type",
-          "relation": "equals",
-          "condition": "The Bandeau Skirt"
-        }
-      ],
-      "published_scope": "web",
-      "admin_graphql_api_id": "gid:\/\/shopify\/Collection\/277705883809",
-      "image": {
-        "created_at": "2021-09-24T15:13:45+04:00",
-        "alt": null,
-        "width": 1273,
-        "height": 1920,
-        "aspect_ratio": 0.90,
-        "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0584\/1993\/7441\/collections\/8.png?v=1632482026"
-      }
-    },
-    {
-      "id": 281983221921,
-      "handle": "base-brand",
-      "title": "Base Brand",
-      "updated_at": "2022-05-19T20:15:39+04:00",
-      "body_html": "",
-      "published_at": "2021-12-08T14:19:19+04:00",
-      "sort_order": "best-selling",
-      "template_suffix": "",
-      "products_count": 25,
-      "disjunctive": false,
-      "collection_type": "smart",
-      "rules": [
-        {
-          "column": "variant_price",
-          "relation": "greater_than",
-          "condition": "1"
-        }
-      ],
-      "published_scope": "web",
-      "admin_graphql_api_id": "gid:\/\/shopify\/Collection\/281983221921"
-    },
-    {
-      "id": 282394591393,
-      "handle": "dev",
-      "title": "dev",
-      "updated_at": "2022-04-02T02:25:34+04:00",
-      "body_html": "",
-      "published_at": "2021-12-25T10:29:32+04:00",
-      "sort_order": "best-selling",
-      "template_suffix": "",
-      "products_count": 3,
-      "disjunctive": false,
-      "collection_type": "smart",
-      "rules": [
-        {
-          "column": "type",
-          "relation": "equals",
-          "condition": "Dev"
-        }
-      ],
-      "published_scope": "web",
-      "admin_graphql_api_id": "gid:\/\/shopify\/Collection\/282394591393"
-    },
-    {
-      "id": 282710409377,
-      "handle": "bundle-set",
-      "title": "Bundle Set",
-      "updated_at": "2022-01-06T19:15:31+04:00",
-      "body_html": "With all of our styles, you’ll get a range of rises and coverage - and you may be surprised what you fall for! Choose all in one hue or build a custom assortment from our core and limited-edition colors.",
-      "published_at": "2022-01-06T18:26:53+04:00",
-      "sort_order": "best-selling",
-      "template_suffix": "bundle",
-      "products_count": 5,
-      "collection_type": "custom",
-      "published_scope": "web",
-      "admin_graphql_api_id": "gid:\/\/shopify\/Collection\/282710409377",
-      "image": {
-        "created_at": "2022-01-06T18:29:10+04:00",
-        "alt": null,
-        "width": 1500,
-        "height": 2250,
-        "aspect_ratio": 0.90,
-        "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0584\/1993\/7441\/collections\/pexels-jill-wellington-3264665.jpg?v=1641479351"
-      }
+    ],
+    "published_scope": "global",
+    "admin_graphql_api_id": "gid:\/\/shopify\/Collection\/262031442008",
+    "image": {
+      "created_at": "2022-05-02T14:57:44-04:00",
+      "alt": null,
+      "aspect_ratio": 0.8,
+      "width": 3024,
+      "height": 3024,
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/collections\/IMG_6909.jpg?v=1651517864"
     }
+  },
+  {
+    "id": 264555823192,
+    "handle": "women-crewnecks",
+    "title": "Women Crewnecks",
+    "updated_at": "2022-08-23T19:16:01-04:00",
+    "body_html": "",
+    "published_at": "2022-05-25T12:16:46-04:00",
+    "sort_order": "manual",
+    "template_suffix": "by-category",
+    "products_count": 914,
+    "disjunctive": false,
+    "collection_type": "smart",
+    "rules": [
+      {
+        "column": "type",
+        "relation": "equals",
+        "condition": "Crewnecks"
+      },
+      {
+        "column": "title",
+        "relation": "not_contains",
+        "condition": "Kids Crewneck"
+      }
+    ],
+    "published_scope": "global",
+    "admin_graphql_api_id": "gid:\/\/shopify\/Collection\/264555823192",
+    "image": {
+      "created_at": "2022-05-25T12:28:19-04:00",
+      "alt": null,
+      "aspect_ratio": 0.8,
+      "width": 3024,
+      "height": 3024,
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/collections\/IMG_3033.jpg?v=1653496099"
+    }
+  },
+  {
+    "id": 89778782296,
+    "handle": "fan",
+    "title": "Fan Shop",
+    "updated_at": "2022-08-23T19:26:15-04:00",
+    "body_html": "",
+    "published_at": "2019-01-17T13:41:22-05:00",
+    "sort_order": "manual",
+    "template_suffix": "by-region",
+    "products_count": 2738,
+    "disjunctive": true,
+    "collection_type": "smart",
+    "rules": [
+      {
+        "column": "tag",
+        "relation": "equals",
+        "condition": "Blue Jays"
+      },
+      {
+        "column": "tag",
+        "relation": "equals",
+        "condition": "NBA"
+      },
+      {
+        "column": "tag",
+        "relation": "equals",
+        "condition": "Canada Basketball"
+      },
+      {
+        "column": "tag",
+        "relation": "equals",
+        "condition": "Hockey Canada"
+      },
+      {
+        "column": "tag",
+        "relation": "equals",
+        "condition": "NHL"
+      },
+      {
+        "column": "tag",
+        "relation": "equals",
+        "condition": "Toronto FC"
+      },
+      {
+        "column": "tag",
+        "relation": "equals",
+        "condition": "MLS"
+      },
+      {
+        "column": "tag",
+        "relation": "equals",
+        "condition": "MLB"
+      },
+      {
+        "column": "tag",
+        "relation": "equals",
+        "condition": "NFL"
+      }
+    ],
+    "published_scope": "global",
+    "admin_graphql_api_id": "gid:\/\/shopify\/Collection\/89778782296",
+    "image": {
+      "created_at": "2021-06-13T22:49:49-04:00",
+      "alt": null,
+      "aspect_ratio": 0.8,
+      "width": 800,
+      "height": 800,
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/collections\/Fan.png?v=1651261099"
+    }
+  },
+  {
+    "id": 393269196,
+    "handle": "men-hoodies",
+    "title": "Men Hoodies",
+    "updated_at": "2022-08-23T19:10:45-04:00",
+    "body_html": "",
+    "published_at": "2016-11-21T15:57:00-05:00",
+    "sort_order": "manual",
+    "template_suffix": "by-category",
+    "products_count": 593,
+    "disjunctive": false,
+    "collection_type": "smart",
+    "rules": [
+      {
+        "column": "type",
+        "relation": "equals",
+        "condition": "Hoodies"
+      },
+      {
+        "column": "tag",
+        "relation": "equals",
+        "condition": "Unisex"
+      },
+      {
+        "column": "title",
+        "relation": "not_contains",
+        "condition": "Cropped Hoodie"
+      }
+    ],
+    "published_scope": "global",
+    "admin_graphql_api_id": "gid:\/\/shopify\/Collection\/393269196",
+    "image": {
+      "created_at": "2022-05-02T12:04:21-04:00",
+      "alt": null,
+      "aspect_ratio": 0.8,
+      "width": 3456,
+      "height": 4472,
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/collections\/0108_09_16_2020.jpg?v=1653499503"
+    }
+  }
 ]

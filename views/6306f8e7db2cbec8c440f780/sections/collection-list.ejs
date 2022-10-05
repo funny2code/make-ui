@@ -1,10 +1,11 @@
+
 <link rel="stylesheet" href="/<%=srcId%>/section-collection-list.css">
 <link rel="stylesheet" href="/<%=srcId%>/component-slider.css">
 <link rel="stylesheet" href="/<%=srcId%>/component-product-card-style-1.css">
 
 <style>
   .collection-list-wrapper  .collection-list-title{
-    color: <%=section.settings.title_color%>;
+    color: <%=section.settings.py_section_color%>;
     font-size:<%=section.settings.title_font_size%>px;
     font-weight:<%=section.settings.title_font_weight%>
   }
@@ -33,7 +34,7 @@
   .collection-list-wrapper .card__info-container h3{
     font-size:<%=section.settings.card_title_font_size%>px;
     font-weight:<%=section.settings.card_title_font_weight%>;
-    color:<%=section.settings.info_color%>;
+    color:<%=section.settings.card_color%>;
     margin-top:0;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -54,7 +55,7 @@
   }
   .collection-list-wrapper .card__caption{
     font-size:<%=section.settings.card_text_font_size%>px;
-    color:<%=section.settings.info_color%>;
+    color:<%=section.settings.card_color%>;
   }
   /* width */
   .collection-list-wrapper .slider::-webkit-scrollbar {
@@ -62,7 +63,7 @@
     width: 5px;
     display:initial;
     background:<%=section.settings.scroll_bar_bg_color%>;
-    border-radius: 10px;
+    border-radius: 10px;    
   }
 
   /* Track */
@@ -80,9 +81,9 @@
   }
   .collection-list-wrapper .slider-button{    
     border-radius: 50%;   
-    color:<%=section.settings.info_color%>;
+    color:<%=section.settings.card_color%>;
   }
-
+  
   .collection-list-wrapper .slider-buttons{
     bottom: auto;
     top: 45%;
@@ -92,134 +93,130 @@
   
 </style>
 
-<div class="collection-list-wrapper py-<%=section.settings.bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%> bc-<%=settings.section_style%>-bt">
+<div class="collection-list-wrapper py-<%=section.settings.py_section_bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%> bc-<%=settings.section_style%>-bt">
   <div class="page-width py-<%=section.settings.page_width%> py-<%=section.settings.page_y_mg%> py-<%=section.settings.page_y_mg%>">
-    <div class="title-wrapper-with-link<% if(section.settings.swipe_on_mobile){ %> title-wrapper--self-padded-tablet-down<% } else { %> title-wrapper--self-padded-mobile<% } %><% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %>">
+    <div class="title-wrapper-with-link<% if(section.settings.swipe_on_mobile === true){ %> title-wrapper--self-padded-tablet-down<% } else { %> title-wrapper--self-padded-mobile<% } %><% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %>">
       <h2 class="collection-list-title"><%= section.settings.title %></h2>
 
       <% if(section.settings.show_view_all && section.settings.swipe_on_mobile){ %>
-        <a href="#" class="link underlined-link large-up-hide">View all</a>
+        <a href="<%= routes.collections_url %>" class="link underlined-link large-up-hide"><%=sectionst.collection_list.view_all%></a>
       <% } %>
     </div>
 
     <slider-component class="slider-mobile-gutter">
-      <ul class="collection-list grid grid--1-col<% if(section.blocks.length < 3){ %> grid--2-col-desktop<% } else { %> grid--3-col-desktop<% } %> grid--2-col-tablet  slider slider--desktop negative-margi negative-margin--small"
-        id="Slider-1"
+      <ul class="collection-list grid grid--1-col<% if(section?.block_order?.length < 3){ %> grid--2-col-desktop<% } else { %> grid--3-col-desktop<% } %> grid--2-col-tablet  slider slider--desktop negative-margi negative-margin--small"
+        id="Slider-<%= section.id %>"
         role="list"
       >
-        <%# section.blocks.forEach((block,index)=>{ %>
-          <% collections?.forEach((collection,index)=>{ %>
-            <% if(collection?.title){ %>
-              <li class="collection-list__item grid__item slider__slide">
-                <a <% if(collection && collection?.all_products_count > 0){ %> href="<%= collection?.url %>"<% } %>
-                  class="card animate-arrow link<% if(collection?.image){ %> card--media<% } else { %><% if(section.settings.image_ratio !== 'adapt'){ %> card--stretch<% } %><% } %><% if(!section.settings.image_padding){ %> card--light-border<% } %>"
-                >
-                  <div class="card--stretch py-<%=section.settings.card_bg_color%>">
-                    <% if(collection?.image){ %>
-                      <div>                    
-                        <div class="media<% if(collections?.length > 1){ %> media--<%= section.settings.image_ratio %><% } %> media--hover-effect overflow-hidden"
-                          <% if(section.settings.image_ratio === 'adapt' && collections?.length > 1){ %>style="padding-bottom: <%= 1 / collection?.image.aspect_ratio * 100 %>%;"<% } %>>
+        <% section?.block_order?.forEach((orderItem, index) => { %>
+          <% let block = section?.blocks[orderItem] %>
+          <% let getColl = block.settings.collection ? collections.filter(coll => coll?.handle === block.settings.collection) : null %>
+          <% let coll = getColl?.length ? getColl[0] : null %>
+         <% if(coll?.title){ %>
+          <li class="collection-list__item grid__item slider__slide">
+            <a <% if(coll && coll?.all_products_count > 0){ %> href="<%= coll?.url %>"<% } %>
+              class="card animate-arrow link<% if(coll?.image){ %> card--media<% } else { %><% if(section.settings.image_ratio !== 'adapt'){ %> card--stretch<% } %><% } %><% if(!section.settings.image_padding){ %> card--light-border<% } %>"
+            >
+              <div class="card--stretch py-<%=section.settings.card_bg_color%>">
+                <% if(coll?.image){ %>
+                  <div>                    
+                    <div class="media<% if(section?.block_order?.length > 1){ %> media--<%= section.settings.image_ratio %><% } %> media--hover-effect overflow-hidden"
+                      <% if(section.settings.image_ratio === 'adapt' && section?.block_order?.length > 1){ %>style="padding-bottom: <%= 1 / coll?.image.aspect_ratio * 100 %>%;"<% } %>>
 
-                          <img srcset="<% if(collection?.image.width >= 165){ %><%= collection?.image.src %> 165w,<% } %>
-                            <% if(collection?.image.width >= 330){ %><%= collection?.image.src %> 330w,<% } %>
-                            <% if(collection?.image.width >= 535){ %><%= collection?.image.src %> 535w,<% } %>
-                            <% if(collection?.image.width >= 720){ %><%= collection?.image.src %> 720w,<% } %>
-                            <% if(collection?.image.width >= 940){ %><%= collection?.image.src %> 940w,<% } %>
-                            <% if(collection?.image.width >= 1440){ %><%= collection?.image.src %> 1440w,<% } %>
-                            <% if(collection?.image.width >= 1880){ %><%= collection?.image.src %> 1880w<% } %>"
-                            src="<%= collection?.image.src %>"
-                            sizes="(min-width: 1100px)<% if(section.blocks.length > 1){ %>535px<% } else { %>940px<% } %>, (min-width: 750px) <% if(collections?.length > 1){ %>calc((100vw - 10rem) / 2)<% } else { %>calc(100vw - 10rem)<% } %>, calc(100vw - 3rem)"
-                            alt="<%= collection?.title %>"
-                            height="<%= collection?.image.height %>"
-                            width="<%= collection?.image.width %>"
-                            loading="lazy"
-                            class="motion-reduce"
-                          >
-                        </div>
-                      </div>
-                    
-                    <div class="card__info-container">
-                      <div class="card__info">                    
-                        <h3>
-                          <% if(collection?.title){ %>
-                            <%- collection?.title -%>
-                          <% } else { %>
-                            Collection Title
-                          <% } %>
-                        </h3>
-                        <% if(collection?.description){ %>
-                          <p class="card__caption">
-                            <%- collection?.description -%>
-                          </p>
-                        <% } %>
-                      </div>
-                      <div class="view-collection-container">
-                        <span class="view_collection py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>">View</span>
-                      </div>
+                      <img srcset="<% if(coll?.image.width >= 165){ %><%= coll?.image?.src %> 165w,<% } %>
+                        <% if(coll?.image.width >= 330){ %><%= coll?.image?.src %> 330w,<% } %>
+                        <% if(coll?.image.width >= 535){ %><%= coll?.image?.src %> 535w,<% } %>
+                        <% if(coll?.image.width >= 720){ %><%= coll?.image?.src %> 720w,<% } %>
+                        <% if(coll?.image.width >= 940){ %><%= coll?.image?.src %> 940w,<% } %>
+                        <% if(coll?.image.width >= 1440){ %><%= coll?.image?.src %> 1440w,<% } %>
+                        <% if(coll?.image.width >= 1880){ %><%= coll?.image?.src %> 1880w<% } %>"
+                        src="<%= coll?.image?.src %>"
+                        sizes="(min-width: 1100px)<% if(section?.block_order?.length > 1){ %>535px<% } else { %>940px<% } %>, (min-width: 750px) <% if(section?.block_order?.length > 1){ %>calc((100vw - 10rem) / 2)<% } else { %>calc(100vw - 10rem)<% } %>, calc(100vw - 3rem)"
+                        alt="<%= coll?.title %>"
+                        height="<%= coll?.image.height %>"
+                        width="<%= coll?.image.width %>"
+                        loading="lazy"
+                        class="motion-reduce"
+                      >
                     </div>
-                    <% } else { %>
-                    <div class="card__info-container">
-                      <div class="card__info">  
-                        <h3 class="h1">
-                          <% if(collection?.title){ %>
-                            <%- collection?.title -%>
-                          <% } else { %>
-                            Collection Title
-                          <% } %>
-                        </h3>
-
-                        <% if(collection?.description){ %>
-                          <p class="card__caption">
-                            <%- collection?.description -%>
-                          </p>
-                        <% } %>
-                      </div>
-                      <div class="view-collection-container">
-                        <span class="view_collection py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>">View</span>
-                      </div>
-                    </div>
+                  </div>
+                
+                <div class="card__info-container">
+                  <div class="card__info">                    
+                    <h3>
+                      <% if(coll?.title){ %>
+                        <%- coll?.title -%>
+                      <% } else { %>
+                        <%=onboarding.collection_title%>
+                      <% } %>
+                    </h3>
+                    <% if(coll?.description){ %>
+                      <p class="card__caption">
+                        <%- coll?.description?.trim().substring(0, 12) -%>
+                      </p>
                     <% } %>
                   </div>
-                </a>
-              </li>
-            <% } else { %>
-              <li class="a collection-list__item grid__item slider__slide">
-                <a  class="card animate-arrow link card--media card--stretch"
-                >
-                  <div class="card--stretch py-<%=section.settings.card_bg_color%>">
+                  <div class="view-collection-container">
+                    <span class="view_collection py-c-<%=section.settings.card_color_view_btn%> py-bg-c-<%=section.settings.card_bg_color_view_btn%> py-hv-c-<%=section.settings.card_color_view_btn_hover%> py-hv-bg-c-<%=section.settings.card_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">View</span>
+                  </div>
+                </div>
+                <% } else { %>
+                <div class="card__info-container">
+                  <div class="card__info">  
+                    <h3 class="h1">
+                      <% if(coll?.title){ %>
+                        <%- coll?.title -%>
+                      <% } else { %>
+                        <%=onboarding.collection_title%>
+                      <% } %>
+                    </h3>
 
-                      <div>
-                        
-                        <div class="overflow-hidden py-bg-c-light">
-                        <% var n_index = index % 6 + 1 %>             
-                        <%= 'collection-' + n_index %>             
-                        </div>
-                      </div>
-                    <div class="card__info-container">
-                      <div class="card__info">  
-                        <h3>                    
-                            Collection Title                    
-                        </h3>
-                        <p class="card__caption">
-                            Your colllection description
-                        </p>
-                      </div> 
-                      <div class="view-collection-container">
-                        <span class="view_collection py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>">View</span>
-                      </div>
+                    <% if(coll?.description){ %>
+                      <p class="card__caption">
+                        <%- coll?.description?.trim().substring(0,12) -%>
+                      </p>
+                    <% } %>
+                  </div>
+                  <div class="view-collection-container">
+                    <span class="view_collection py-c-<%=section.settings.card_color_view_btn%> py-bg-c-<%=section.settings.card_bg_color_view_btn%> py-hv-c-<%=section.settings.card_color_view_btn_hover%> py-hv-bg-c-<%=section.settings.card_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">View</span>
+                  </div>
+                </div>
+                <% } %>
+              </div>
+            </a>
+          </li>
+          <% } else { %>
+          <li class="a collection-list__item grid__item slider__slide">
+            <a  class="card animate-arrow link card--media card--stretch">
+              <div class="card--stretch py-<%=section.settings.card_bg_color%>">
+                  <div>
+                    <div class="overflow-hidden py-bg-c-light">           
                     </div>
                   </div>
-                </a>
-              </li>
-            <% } %>
-          <% }) %>
-        <%# }) %>
+                <div class="card__info-container">
+                  <div class="card__info">  
+                    <h3>                    
+                        <%=onboarding.collection_title%>                    
+                    </h3>
+                    <p class="card__caption">
+                        Your colllection description
+                      </p>
+                  </div> 
+                  <div class="view-collection-container">
+                    <span class="view_collection py-c-<%=section.settings.card_color_view_btn%> py-bg-c-<%=section.settings.card_bg_color_view_btn%> py-hv-c-<%=section.settings.card_color_view_btn_hover%> py-hv-bg-c-<%=section.settings.card_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">View</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <% } %>
+        <% }) %>
       </ul>
 
       
-      <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(section.blocks.length < 4){ %> large-hide<% } %><% if(section.blocks.length < 2){ %> small-hide<% } %>">
-        <button type="button" class="slider-button slider-button--prev has-bg py-<%=section.settings.card_bg_color%>" name="previous" aria-label="previous_slide"><%- include('../snippets/icon-caret') %></button>
-        <button type="button" class="slider-button slider-button--next has-bg py-<%=section.settings.card_bg_color%>" name="next" aria-label="next_slide"><%- include('../snippets/icon-caret') %></button>
+      <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(section?.block_order?.length < 4){ %> large-up-hide<% } %><% if(section?.block_order?.length < 2){ %> small-hide<% } %>">
+        <button type="button" class="slider-button slider-button--prev has-bg py-<%=section.settings.card_bg_color%>" name="previous" aria-label="<%=accessibility.previous_slide%>"><%- include('../snippets/icon-caret') %></button>
+        <button type="button" class="slider-button slider-button--next has-bg py-<%=section.settings.card_bg_color%>" name="next" aria-label="<%=accessibility.next_slide%>"><%- include('../snippets/icon-caret') %></button>
       </div>
       
     </slider-component>  

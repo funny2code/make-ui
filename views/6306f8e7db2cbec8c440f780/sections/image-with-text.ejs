@@ -1,12 +1,32 @@
 <link rel="stylesheet" href="/<%=srcId%>/component-image-with-text.css">
-
-<div class="image-with-text color-scheme-<%=section.settings.color_scheme %> bc-<%=settings.section_style%>-bt">
+<style>
+.image-with-text-<%=section.id%> .image-with-text__grid{
+    background:<%=section.settings.py_section_bg_color%>
+}
+<% if(section.settings.image){ %>
+.image-with-text-<%=section.id%> .image-with-text__media{
+    <% if(section.settings.section_height === 'auto'){ %> 
+    padding-bottom: <%= 1 / section.settings.image.aspect_ratio * 100 %>%;
+    <% } else { %>
+    padding-bottom: <%=section.settings.section_height%>
+    <% } %>
+}
+@meida(max-width:749px){
+   .image-with-text-<%=section.id%> .image-with-text__media{
+        <% if(section.settings.section_height_m === 'auto'){ %> 
+        padding-bottom: <%= 1 / section.settings.image.aspect_ratio * 100 %>%;
+        <% } else { %>
+        padding-bottom: <%=section.settings.section_height_m%>
+        <% } %>
+    } 
+}
+<% } %>
+</style>
+<div class="image-with-text image-with-text-<%=section.id%> bc-<%=settings.section_style%>-bt">
   <div class="<% if(section.settings.full_width){ %>image-with-text--full-width<% } else { %>page-width<% } %> page-width-<%=settings.section_style%>">
-    <div class="image-with-text__grid color-<% section.settings.color_scheme %><% if(section.settings.layout === 'text_first'){ %> image-with-text__grid--reverse<% } %> grid grid--gapless grid--1-col grid--2-col-tablet">
-      <div class="grid__item">
-        <div class="image-with-text__media image-with-text__media--<%= section.settings.height %> <% if(section.settings.image){ %>media<% } else { %>image-with-text__media--placeholder placeholder<% } %>"
-          <% if(section.settings.height === 'adapt' && section.settings.image){ %> style="padding-bottom: <%= 1 / (section.settings.image.aspect_ratio * 100) %>%;"<% } %>
-        >
+    <div class="image-with-text__grid img_style-<%=section.settings.img_style%>  <% if(section.settings.layout === 'text_first'){ %> image-with-text__grid--reverse<% } %> grid grid--gapless grid--1-col grid--2-col-tablet">
+      <div class="grid__item img-wrap">
+        <div class="image-with-text__media <% if(section.settings.image){ %>media<% } else { %>image-with-text__media--placeholder placeholder<% } %>">
           <% if(section.settings.image){ %>
             <img srcset="<% if(section.settings.image.width >= 165){ %><%= section.settings.image %> 165w,<% } %>
               <% if(section.settings.image.width >= 360){ %><%= section.settings.image %> 360w,<% } %>
@@ -22,23 +42,23 @@
               height="<%= section.settings.image.height %>" 
             />
           <% } else { %>
-            <%- include('../snippets/resimg', {classwrapper: '', classimg: '', image:'image-with-text.png'}) %>
           <% } %>
         </div>
       </div>
       <div class="grid__item">
-        <div class="image-with-text__content image-with-text__content--<%= section.settings.height %>">
-          <% section.blocks.forEach((block, index) => { %>
+        <div class="image-with-text__content " style="text-align:<%=section.settings.align%>">
+          <% section?.block_order?.forEach((orderItem, index) => { %>
+            <% let block = section?.blocks[orderItem] %>
             <% if(block.type === 'heading'){ %>
-              <h2 class="image-with-text__heading h1">
-                <%= block.settings?.heading ? block.settings?.heading : "Image with text" %>
-              </h2>
-            <% } else if(block.type === 'text'){ %>
-              <div class="image-with-text__text rte"><%- block.settings?.text ? block.settings?.text : "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>" -%></div>
-            <% } else if(block.type === 'button'){ %>
-              <a <% if(block.settings?.button_label){ %>href="<%= block.settings?.button_link %>"<% } %> class="button<% if(block.settings?.button_style_secondary){ %> button--secondary<% } else { %> button--primary<% } %>"<% if(!block.settings?.button_link){ %> aria-disabled="true"<% } %>>
-                <%= block.settings?.button_label ? block.settings?.button_label : "Button label" %>
-              </a>
+                <h2 class="image-with-text__heading h1 py-<%=block?.settings?.fs%> py-mg-y-s" style="color:<%=section.settings.py_section_color%>">
+                  <%- block?.settings?.heading -%>
+                </h2>
+              <% } else if(block.type === 'text'){ %>
+                <div class="image-with-text__text rte py-<%=block?.settings?.fs%>"  style="color:<%=section.settings.py_section_color%>"><%- block?.settings?.text -%></div>
+              <% } else if(block.type === 'button'){ %>
+                <% if(block?.settings?.button_label){ %>
+                  <a href="<%= block?.settings?.button_link %>" class="button py-btn-no-br py-c-<%=block?.settings?.py_section_color_view_btn%> py-hv-c-<%=block?.settings?.py_section_color_view_btn_hover%> py-bg-c-<%=block?.settings?.py_section_bg_color_view_btn%> py-hv-bg-c-<%=block?.settings?.py_section_bg_color_view_btn_hover%> py-btn-<%=block?.settings?.view_btn_size%>"<% if(!block?.settings?.button_link){ %> aria-disabled="true"<% } %>><%= block?.settings?.button_label %></a>
+                <% } %>
             <% } %>
           <% }) %>
         </div>

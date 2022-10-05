@@ -36,7 +36,7 @@
     <% } %>
 
     <div class="article-card__info">
-      <% section.blocks?.forEach((block,index)=>{ %>
+      <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
         <% if(block.type){ %>
           <% } else if(block.type === 'title'){ %>
             <header class="article-card__header">
@@ -83,7 +83,7 @@
               }
             </style>
             
-              <span class="link article-card__link py-btn-<%=block?.settings?.card_color_view_btn%> py-btn-hover-<%=block?.settings?.card_color_view_btn_hover%> py-btn-<%=block?.settings?.view_btn_size%>" aria-label="<%=blogs.article.read_more_title' | t: title: article.title %>">
+              <span class="link article-card__link py-c-<%=block?.settings?.card_color_view_btn%> py-bg-c-<%=block?.settings?.card_bg_color_view_btn%> py-hv-c-<%=block?.settings?.card_color_view_btn_hover%> py-hv-bg-c-<%=block?.settings?.card_bg_color_view_btn_hover%> py-btn-<%=block?.settings?.view_btn_size%>" aria-label="<%=blogs.article.read_more_title' | t: title: article.title %>">
                 <%=blogs.article.read_more%>
               </span>
 

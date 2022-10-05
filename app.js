@@ -9,6 +9,7 @@ const cors = require('cors')
 const indexRouter = require('./routes/index');
 const themesRouter = require('./routes/themes');
 const randomRouter = require('./routes/random');
+const randomViewRouter = require('./routes/randomview');
 const userThemesRouter = require('./routes/userthemes');
 const viewRouter = require('./routes/view');
 const viewUserRouter = require('./routes/viewuser');
@@ -45,7 +46,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/themes', themesRouter);
 app.use('/remix', randomRouter);
-app.use('/remix', async (req,res) => { res.redirect('/remix?page=Home%20Page') })
+app.use('/remix', async (req,res) => { res.redirect('/remix?page=Home%20Page') });
+app.use('/remixview', randomViewRouter);
 app.use('/users', userThemesRouter);
 app.use('/view', viewRouter);
 app.use('/view/users', viewUserRouter);

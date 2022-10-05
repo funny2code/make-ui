@@ -1,10 +1,16 @@
-<link rel="stylesheet" href="/<%=srcId%>/template-collection-style-1.css">
+<%=template-collection-style-1.css' <%=srcId%> | stylesheet_tag %>
 
-<link rel="stylesheet" href="/<%=srcId%>/component-badge.css" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="/<%=srcId%>/component-product-card-style-1.css" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="/<%=srcId%>/component-price-style-1.css" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="/<%=srcId%>/component-search-style-1.css" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="/<%=srcId%>/component-variants.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="<%=component-badge.css' <%=srcId%> %>" >
+<link rel="stylesheet" href="<%=component-product-card-style-1.css' <%=srcId%> %>" >
+<link rel="stylesheet" href="<%=component-price-style-1.css' <%=srcId%> %>" >
+<link rel="stylesheet" href="<%=component-search-style-1.css' <%=srcId%> %>" >
+<link rel="stylesheet" href="<%=component-variants.css' <%=srcId%> %>" >
+
+<noscript><%=component-badge.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-product-card-style-1.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-price-style-1.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-search-style-1.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-variants.css' <%=srcId%> | stylesheet_tag %></noscript>
 
 <style>
   .template-search__search {
@@ -83,12 +89,12 @@
   <% } %>
 </style>
 
-<div class="template-search <% if(!search?.performed && search?.results?.length > 0){ %> template-search--empty<% } %>">
+<div class="template-search <% if(!search.performed && search.results.length > 0){ %> template-search--empty<% } %>">
   <div class="page-width center">
-    <% if(search?.performed){ %>
-      <h1 class="h2">title</h1>
+    <% if(search.performed){ %>
+      <h1 class="h2"><%=templates.search.title%></h1>
     <% } else { %>
-      <h1 class="h2">search</h1>
+      <h1 class="h2"><%=general.search.search%></h1>
     <% } %>
     <div class="template-search__search">
       <form action="<%= routes.search_url %>" method="get" role="search" class="search">
@@ -98,15 +104,15 @@
             id="Search-In-Template"
             type="search"
             name="q"
-            value="<%= search?.terms %>"
-            <% if(search?.performed){ %>autofocus<% } %>
-            placeholder="search" autocomplete="off"
+            value="<%= search.terms %>"
+            <% if(search.performed){ %>autofocus<% } %>
+            placeholder="<%=general.search.search%>" autocomplete="off"
           >
-          <label class="field__label" for="Search-In-Template" aria-hidden="true">search</label>
+          <label class="field__label" for="Search-In-Template" aria-hidden="true"><%=general.search.search%></label>
           <input type="hidden" name="type" value="product,page,article">
           <input type="hidden" name="options[fields]" value="title,product_type,variants.title">
           <input name="options[prefix]" type="hidden" value="last">
-          <button type="submit" class="search__button field__button focus-inset" aria-label="search">
+          <button type="submit" class="search__button field__button focus-inset" aria-label="<%=general.search.search%>">
             <svg class="icon icon-search">
               <use xlink:href="#icon-search">
             </svg>
@@ -114,25 +120,26 @@
         </div>
       </form>
     </div>
-    <% if(search?.performed){ %>
+    <% if(search.performed){ %>
       <p role="status" >
-        <% if(search?.results_count === 0){ %>
-          no results
+        <% if(search.results_count === 0){ %>
+          <%=templates.search.no_results' | t: terms: search.terms %>
         <% } else { %>
-        <span><span class="result_number"></span> results found for “<%=search?.terms %>”</span>        
+        <span><span class="result_number"></span> results found for “<%=  search.terms %>”</span>        
         <% } %>
       </p>
     <% } %>
   </div>
-  <% if(search?.performed && search?.results?.length > 0){ %>
-    <%# paginate search?.results by 100 %>
+  <% if(search.performed && search.results.length > 0){ %>
+    <%# paginate search.results by 100){ %>
       <div class="template-search__results page-width">
         <ul class="grid grid--4-col-desktop product-list-<%=section.id%> grid--3-col-tablet grid--2-col grid--one-third-max grid--quarter-max negative-margin" role="list">
-          <% search?.results?.forEach((item,index)=>{ %>
-            <% if(item.object_type === 'product'){ %>                
-                <li aria-tags="<%=item.tags%>" class="search-result-items py-card-<%=section.settings.card_style%> grid__item py-<%=section.settings.card_color%> <% if(item.object_type !== 'product'){ %> grid__item--small<% } %>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
-                    <% var product_settings = section.settings.product_show_vendor ? 'vendor,title,price' : 'title,price' %>
-                    <%- include('../snippets/product-card', {
+          <% for item in search.results){ %>
+            <% if(item.object_type){ %>
+              <% } else if(block.type === 'product'){ %>                
+                <li aria-tags="<%=item.tags%>" class="search-result-items py-card-<%=section.settings.card_style%> grid__item py-<%=section.settings.card_color%> <% if(!item.object_type === 'product'){ %> grid__item--small<% } %>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
+                    <% capture product_settings){ %><% if(section.settings.product_show_vendor){ %>vendor,<% } %>title,price<% endcapture){ %>
+                    <%- include('../snippets/product-card',
                         product_card_product: item,
                         media_size: section.settings.image_ratio,
                         media_gallery:section.settings.image_gallery,
@@ -145,21 +152,21 @@
                         card_bg_color: section.settings.card_bg_color,
                         card_radius: section.settings.card_radius,
                         info_align: section.settings.info_align
-                    }) %>
+                   ){ %>
                     
-                    <% } else if(item?.object_type === 'article'){ %>
+                    <% } else if(block.type === 'article'){ %>
                       <a href="<%= item.url %>" class="card-wrapper">
                         <div class="card card--search card--soft<% if(!item.image){ %> card--text-only<% } %>">
                           <div class="card__inner">
                             <% if(item.image){ %>
                               <div class="media media--cropped">
                                 <img
-                                  srcset="<% if(item.image.src.width >= 165){ %><%= item.image.src %> 165w,<% } %>
-                                      <% if(item.image.src.width >= 360){ %><%= item.image.src %> 268w,<% } %>
-                                      <% if(item.image.src.width >= 533){ %><%= item.image.src %> 357w,<% } %>
-                                      <% if(item.image.src.width >= 720){ %><%= item.image.src %> 536w,<% } %>
-                                      <% if(item.image.src.width >= 940){ %><%= item.image.src %> 714w<% } %>"
-                                  src="<%= item.image.src %>"
+                                  srcset="<% if(item.image.src.width >= 165){ %><%= item.image.src | img_url: '165x' %> 165w,<% } %>
+                                      <% if(item.image.src.width >= 360){ %><%= item.image.src | img_url: '360x' %> 268w,<% } %>
+                                      <% if(item.image.src.width >= 533){ %><%= item.image.src | img_url: '533x' %> 357w,<% } %>
+                                      <% if(item.image.src.width >= 720){ %><%= item.image.src | img_url: '720x' %> 536w,<% } %>
+                                      <% if(item.image.src.width >= 940){ %><%= item.image.src | img_url: '940x' %> 714w<% } %>"
+                                  src="<%= item.image.src | img_url: '533x' %>"
                                   loading="lazy"
                                   sizes="(min-width: 1200px) 268px, (min-width: 800px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                                   width="<%= item.image.src.width %>"
@@ -169,10 +176,10 @@
                               </div>
                             <% } %>
                             <div class="card__content">
-                              <h2 class="card__heading h3"><%= item.title %></h2>
+                              <h2 class="card__heading h3"><%= item.title | truncate: 50 %></h2>
                               <div class="card-article-info caption-with-letter-spacing h5">
                                 <% if(section.settings.article_show_date){ %>
-                                  <span class="circle-divider"><%= item.published_at %></span>
+                                  <span class="circle-divider"><%= item.published_at | time_tag: format: 'month_year' %></span>
                                 <% } %>
                                 <% if(section.settings.article_show_author){ %>
                                   <span><%= item.author %></span>
@@ -180,18 +187,18 @@
                               </div>
                             </div>
                             <div class="card__badge">
-                              <span class="badge color-background-1">blog</span>
+                              <span class="badge color-background-1"><%=blogs.article.blog%></span>
                             </div>
                           </div>
                         </div>
                       </a>
-                    <% } else if(item?.object_type === 'page'){ %>
+                    <% } else if(block.type === 'page'){ %>
                       <a href="<%= item.url %>" class="card-wrapper">
                         <div class="card card--search card--soft card--text-only">
                           <div class="card__inner">
-                            <div class="card__content"><h2 class="card__heading h3"><%= item.title %></h2></div>
+                            <div class="card__content"><h2 class="card__heading h3"><%= item.title | truncate: 50 %></h2></div>
                             <div class="card__badge">
-                              <span class="badge color-background-1">page</span>
+                              <span class="badge color-background-1"><%=templates.search.page%></span>
                             </div>
                           </div>
                         </div>
@@ -201,11 +208,11 @@
             <% } %>
           <% }) %>
         </ul>
-        <%# if(paginate.pages > 1){ %>
-          <%# include('../snippets/pagination', paginate: paginate, class: 'pagination-wrapper-small' %>
-        <%# } %>
+        <% if(paginate.pages > 1){ %>
+          <%- include('../snippets/pagination', paginate: paginate, class: 'pagination-wrapper-small'){ %>
+        <% } %>
       </div>
-    <%# endpaginate %>
+    <%# endpaginate){ %>
   <% } %>
 </div>
 <script>
@@ -229,3 +236,450 @@
     display:none;
   }
 </style>
+<% schema){ %>
+{
+  "name": "t:sectionst.main-search.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "PRODUCT CARD"
+    },
+    {
+      "type": "select",
+      "id": "card_style",
+      "options": [
+        {
+          "value": "vertical",
+          "label": "Vertical"
+        },
+        {
+          "value": "horizontal",
+          "label": "horizontal"
+        }
+      ],
+      "default": "vertical",
+      "label": "Card Style",
+      "info": "Horizontal style will work on desktop only"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "square",
+      "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_gallery",
+      "default": false,
+      "label": "Enable Image Slider"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "bg-c-none"
+          },        
+          {
+            "label": "Dark",
+            "value": "bg-c-dark"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "bg-c-middle-dark"
+          },
+          {
+            "label": "Average",
+            "value": "bg-c-average"
+          },
+          {
+            "label": "Middle Light",
+            "value": "bg-c-middle-light"
+          },
+          {
+            "label": "Light",
+            "value": "bg-c-light"
+          }
+        ],
+        "default": "bg-c-average"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 7,
+      "label": "Card Border Radius"
+    },
+    {
+      "type": "range",
+      "id": "item_space",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 10,
+      "label": "Card Padding"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sectionst.main-collection-product-grid.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_colors",
+      "default": true,
+      "label": "Show Colors"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_variants_on_hover",
+      "default": true,
+      "label": "Show Variants On Hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_product",
+      "default": true,
+      "label": "Show View Product Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_add",
+      "default": true,
+      "label": "Show Quick Add Button"
+    },
+    {
+      "type": "select",
+      "id": "info_align",
+      "label": "Card Info Alignment",
+      "options": [     
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "card_color",
+      "label": "Card Info Color",
+      "options": [
+        {
+          "label": "None",
+          "value": "none"
+        },
+        {
+          "label": "Dark",
+          "value": "c-dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "c-middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "c-average"
+        },
+        {
+          "label": "Light",
+          "value": "c-middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "c-light"
+        }
+      ],
+      "default": "c-dark"
+    },
+    {
+      "type": "header",
+      "content": "Card Button Style"
+    },
+    {
+      "type": "select",
+      "id": "view_btn_size",
+      "label": "View Button Size",
+      "options": [
+        {
+          "label": "Small",
+          "value": "small"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Large",
+          "value": "large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "card_color_view_btn",
+      "label": "View Button Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color_view_btn",
+      "label": "View Button Background Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_color_view_btn_hover",
+      "label": "View Button Hover Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color_view_btn_hover",
+      "label": "View Button Hover Background Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "header",
+      "content": "Card Product Title Font Style"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_font_style",
+      "default": false,
+      "label": "Use Custom Style"
+    },
+    {
+      "type": "text",
+      "id": "title_fontsize",
+      "label": "Font size Desktop",
+      "info": "Ex: 20px "
+    },
+    {
+      "type": "text",
+      "id": "title_fontsize_m",
+      "label": "Font size Mobile"
+    },
+    {
+      "type": "text",
+      "id": "title_fontweight",
+      "label": "Font-weight"      
+    },
+    {
+      "type": "text",
+      "id": "title_fontstretch",
+      "label": "Font-stretch",
+      "info": "Ex: 40%"
+    },
+    {
+      "type": "select",
+      "id": "title_fontstyle",
+      "options": [
+        {
+          "value": "normal",
+          "label": "normal"
+        },
+        {
+          "value": "italic",
+          "label": "italic"
+        }
+      ],
+      "default": "normal",
+      "label": "Font-style"
+    },
+    {
+      "type": "text",
+      "id": "title_lineheight",
+      "label": "Lineheight"      
+    },
+    {
+      "type": "text",
+      "id": "title_letterspacing",
+      "label": "Letter-spacing",
+      "info":"Ex: 0.5px"
+    },
+    {
+      "type": "header",
+      "content": "Card Product info Font Style"
+    },
+    {
+      "type": "text",
+      "id": "info_fontsize",
+      "label": "Font size Desktop",
+      "info": "Ex: 20px "
+    },
+    {
+      "type": "text",
+      "id": "info_fontsize_m",
+      "label": "Font size Mobile"
+    },
+    {
+      "type": "text",
+      "id": "info_fontweight",
+      "label": "Font-weight"      
+    },
+    {
+      "type": "text",
+      "id": "info_fontstretch",
+      "label": "Font-stretch",
+      "info": "Ex: 40%"
+    },
+    {
+      "type": "select",
+      "id": "info_fontstyle",
+      "options": [
+        {
+          "value": "normal",
+          "label": "normal"
+        },
+        {
+          "value": "italic",
+          "label": "italic"
+        }
+      ],
+      "default": "normal",
+      "label": "Font-style"
+    },
+    {
+      "type": "text",
+      "id": "info_lineheight",
+      "label": "Lineheight"      
+    },
+    {
+      "type": "text",
+      "id": "info_letterspacing",
+      "label": "Letter-spacing",
+      "info":"Ex: 0.5px"     
+    },
+    {
+      "type": "header",
+      "content": "t:sectionst.main-search.settings.header__2.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "article_show_date",
+      "default": true,
+      "label": "t:sectionst.main-search.settings.article_show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "article_show_author",
+      "default": false,
+      "label": "t:sectionst.main-search.settings.article_show_author.label"
+    }
+  ]
+}
+<% endschema){ %>

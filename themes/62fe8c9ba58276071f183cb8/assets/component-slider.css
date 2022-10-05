@@ -51,6 +51,7 @@ slider-component {
   scroll-behavior: smooth;
   scroll-padding-left: 0;
   -webkit-overflow-scrolling: touch;
+  z-index: 0;
 }
 
 .slider.slider--desktop .slider__slide {

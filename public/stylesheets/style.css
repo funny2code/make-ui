@@ -282,11 +282,14 @@ img {
 }
 .py__settings-form {
   margin-top: 10px;
-  height: calc(100vh - 143px);
-  overflow-y: auto;
 }
-.py__settings-form.py__settings-form-mgtop {
-  margin-top: 48px;
+.py__settings-static-content {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #999999;
+}
+.py__settings-static-bottom-content {
+  padding-top: 10px;
+  border-top: 1px solid #999999;
 }
 .py__settings-select {
   position: relative;
@@ -427,10 +430,16 @@ img {
 }
 .py__settings-content {
   position: relative;
-  max-height: 100%;
   overflow: auto;
   display: flex;
   flex-direction: column;
+  max-height: calc(100vh - 145px);
+}
+.py__settings-content.py__sections-list {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow-y: auto;
+  max-height: calc(100vh - 308px);
 }
 .py__section-item-href {
   display: flex;
@@ -445,6 +454,27 @@ img {
   padding: 10px 16px;
   border: 1px solid #C4C4C4;
   margin-bottom: 5px;
+}
+.py__add-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 16px;
+  color: #FFFFFF;
+  background-color: #111111;
+  font-family: Inter;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+}
+.py__add-item svg {
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+  fill: #FFFFFF;
+}
+.py__add-item:hover {
+  background-color: #000000;
 }
 .py__section-item-href:hover {
   background: #000000;

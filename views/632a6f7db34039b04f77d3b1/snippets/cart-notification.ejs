@@ -1,11 +1,11 @@
 <% if(settings.prod_insurance){ %>
-  <% var insuranceID = all_products[settings.prod_insurance].first_available_variant.id %>
+  <% var insuranceID = all_products[settings.prod_insurance].first_available_variant.id){ %>
 <% } %>
 
 <% if(settings.f_s_show && settings.f_s_price){ %>
-<% var freeShipping = true %>
+<% var freeShipping = true){ %>
 <% } else { %>
-<% var freeShipping = false %>
+<% var freeShipping = false){ %>
 <% } %>
 
 <cart-notification>
@@ -40,10 +40,10 @@
         <% if(checkoutbtn_position === "top"){ %>
         <div class="bc-cart__buttons-wrapper">
           <form action="<%= routes.cart_url %>" method="post" id="cart">
-            <button id="loopcheckout" class="button button--primary button--full-width  py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sectionst.cart.checkout%></button>
+            <button id="loopcheckout" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sectionst.cart.checkout%></button>
           </form>
           <% if(enable_dynamic_pay){ %>
-          <button id="loopcheckoutdynamic" class="button button--primary button--full-width  py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
+          <button id="loopcheckoutdynamic" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
           <% } %>
         </div>
         <% } %>        
@@ -97,9 +97,9 @@
         <div class="bc-cart__total-wrapper">
           <div class="bc-cart__total-label">Estimated Total</div>
           <div class="bc-cart__total-value" id="cart-total">
-            <% if(cart?.cart_level_discount_application?.length > 0){ %>
+            <% if(cart.cart_level_discount_application.length > 0){ %>
               <ul>
-                <% cart?.cart_level_discount_applications?.forEach((discount_application,index)=>{ %>
+                <% for discount_application in cart.cart_level_discount_applications){ %>
                   <li>
                     <%= discount_application.title %> (-<%= discount_application.total_allocated_amount %>)
                   </li>
@@ -112,10 +112,10 @@
         <% if(checkoutbtn_position === "bottom"){ %>
         <div class="bc-cart__buttons-wrapper" style="margin-top:25px;">
           <form action="<%= routes.cart_url %>" method="post" id="cart">
-            <button id="loopcheckout" class="button button--primary button--full-width  py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sectionst.cart.checkout%></button>
+            <button id="loopcheckout" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sectionst.cart.checkout%></button>
           </form>
           <% if(enable_dynamic_pay){ %>
-          <button id="loopcheckoutdynamic" class="button button--primary button--full-width  py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
+          <button id="loopcheckoutdynamic" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
           <% } %>
         </div>
         <% } %>

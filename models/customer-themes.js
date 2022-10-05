@@ -11,16 +11,13 @@ const schema = new db.Schema(
             type: Schema.Types.ObjectId,
             required: true
         },
-        theme_set: {
+        settings_schema: {
             type: Array
         },
-        app_sid: {
+        pages: {
             type: Array
         },
-        theme_pag: {
-            type: Array
-        },
-        theme_sec: {
+        sections_schema: {
             type: Array
         }
     },

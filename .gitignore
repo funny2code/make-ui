@@ -1,6 +1,6 @@
 .env
 node_modules
-helpers.ejs
+helpers.js
 sections.json
 package-lock.json
 settings.json

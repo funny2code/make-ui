@@ -81,7 +81,7 @@
   
     <div data-address>
       <button
-        class="add_address_btn button py-btn-{{section.settings.page_color_add_btn}} py-btn-hover-{{section.settings.page_color_add_btn_hover}} py-btn-{{section.settings.add_btn_size}}"      
+        class="add_address_btn button py-c-{{section.settings.page_color_add_btn}} py-hv-c-{{section.settings.page_color_add_btn_hover}} py-bg-c-{{section.settings.page_bg_color_add_btn}} py-hv-bg-c-{{section.settings.page_bg_color_add_btn_hover}} py-btn-{{section.settings.add_btn_size}}"      
         type="button"
         aria-expanded="false"
         aria-controls="AddAddress"
@@ -153,7 +153,7 @@
             <label for="address_default_address_new">{{ 'customer.addresses.set_default' | t }}</label>
           </div>
           <div>
-            <button class="submit_address button py-btn-{{section.settings.panel_color_submit_btn}} py-btn-hover-{{section.settings.panel_color_submit_btn_hover}} py-btn-{{section.settings.submit_btn_size}}">{{ 'customer.addresses.add' | t }}</button>
+            <button class="submit_address button py-c-{{section.settings.panel_color_submit_btn}} py-hv-c-{{section.settings.panel_color_submit_btn_hover}} py-bg-c-{{section.settings.panel_bg_color_submit_btn}} py-hv-bg-c-{{section.settings.panel_bg_color_submit_btn_hover}} py-btn-{{section.settings.submit_btn_size}}">{{ 'customer.addresses.add' | t }}</button>
             <button class="cancel_submit" type="reset">
               <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
                 <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"></path>
@@ -173,7 +173,7 @@
           {%- endif -%}
           {{ address | format_address }}
           <button
-            class="edit_address_btn button py-btn-{{section.settings.page_color_edit_btn}} py-btn-hover-{{section.settings.page_color_edit_btn_hover}} py-btn-{{section.settings.edit_btn_size}}"
+            class="edit_address_btn button py-c-{{section.settings.page_color_edit_btn}} py-hv-c-{{section.settings.page_color_edit_btn_hover}} py-bg-c-{{section.settings.page_bg_color_edit_btn}} py-hv-bg-c-{{section.settings.page_bg_color_edit_btn_hover}} py-btn-{{section.settings.edit_btn_size}}"
             type="button"
             id="EditFormButton_{{ address.id }}"
             aria-label="{{ 'customer.addresses.edit_address' | t }} {{ forloop.index }}"
@@ -184,7 +184,7 @@
             {{ 'customer.addresses.edit' | t }}
           </button>
           <button
-            class="delete_address_btn button py-btn-{{section.settings.page_color_edit_btn}} py-btn-hover-{{section.settings.page_color_edit_btn_hover}} py-btn-{{section.settings.edit_btn_size}}"
+            class="delete_address_btn button py-c-{{section.settings.page_color_edit_btn}} py-hv-c-{{section.settings.page_color_edit_btn_hover}} py-bg-c-{{section.settings.page_bg_color_edit_btn}} py-hv-bg-c-{{section.settings.page_bg_color_edit_btn_hover}} py-btn-{{section.settings.edit_btn_size}}"
             type="button"
             aria-label="{{ 'customer.addresses.delete' | t }} {{ forloop.index }}"
             data-target="{{ address.url }}"
@@ -265,7 +265,7 @@
                 </label>
               </div>
               <div>
-                <button class="submit_address button py-btn-{{section.settings.panel_color_submit_btn}} py-btn-hover-{{section.settings.panel_color_submit_btn_hover}} py-btn-{{section.settings.submit_btn_size}}">{{ 'customer.addresses.update' | t }}</button>
+                <button class="submit_address button py-c-{{section.settings.panel_color_submit_btn}} py-hv-c-{{section.settings.panel_color_submit_btn_hover}} py-bg-c-{{section.settings.panel_bg_color_submit_btn}} py-hv-bg-c-{{section.settings.panel_bg_color_submit_btn_hover}} py-btn-{{section.settings.submit_btn_size}}">{{ 'customer.addresses.update' | t }}</button>
                 <button class="cancel_submit" type="reset">
                   <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
                     <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"></path>
@@ -372,19 +372,31 @@
         "type": "select",
         "id": "page_color",
         "label": "Page Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -431,15 +443,23 @@
     {
       "type": "select",
       "id": "page_color_add_btn",
-      "label": "Add Address Button Color style",
+      "label": "Add Address Button Color",
       "options": [
         {
-          "label": "Dark",
-          "value": "dark"
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
         },
         {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -450,16 +470,24 @@
     },
     {
       "type": "select",
-      "id": "page_color_add_btn_hover",
-      "label": "Add Address Button Hover Color style",
+      "id": "page_bg_color_add_btn",
+      "label": "Add Address Button Background Color",
       "options": [
         {
-          "label": "Dark",
-          "value": "dark"
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
         },
         {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -467,6 +495,62 @@
         }
       ],
       "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "page_color_add_btn_hover",
+      "label": "Add Address Button Hover Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "page_bg_color_add_btn_hover",
+      "label": "Add Address Button Hover Background Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
     },
     {
       "type": "header",
@@ -495,15 +579,23 @@
     {
       "type": "select",
       "id": "page_color_edit_btn",
-      "label": "Edit Button Color style",
+      "label": "Edit Button Color",
       "options": [
         {
-          "label": "Dark",
-          "value": "dark"
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
         },
         {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -514,16 +606,24 @@
     },
     {
       "type": "select",
-      "id": "page_color_edit_btn_hover",
-      "label": "Edit Button Hover Color style",
+      "id": "page_bg_color_edit_btn",
+      "label": "Edit Button Background Color",
       "options": [
         {
-          "label": "Dark",
-          "value": "dark"
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
         },
         {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -531,6 +631,62 @@
         }
       ],
       "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "page_color_edit_btn_hover",
+      "label": "Edit Button Hover Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "page_bg_color_edit_btn_hover",
+      "label": "Edit Button Hover Background Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
     },
     {
       "type": "header",
@@ -572,19 +728,31 @@
         "type": "select",
         "id": "panel_color",
         "label": "Edit Panel Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -624,19 +792,31 @@
         "type": "select",
         "id": "field_color",
         "label": "Field Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -662,19 +842,31 @@
         "type": "select",
         "id": "field_color_br",
         "label": "Field Border Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -705,15 +897,23 @@
     {
       "type": "select",
       "id": "panel_color_submit_btn",
-      "label": "Submit Button Color style",
+      "label": "Submit Button Color",
       "options": [
         {
-          "label": "Dark",
-          "value": "dark"
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
         },
         {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -724,16 +924,24 @@
     },
     {
       "type": "select",
-      "id": "panel_color_submit_btn_hover",
-      "label": "Submit Button Hover Color style",
+      "id": "panel_bg_color_submit_btn",
+      "label": "Submit Button Background Color",
       "options": [
         {
-          "label": "Dark",
-          "value": "dark"
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
         },
         {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -741,6 +949,62 @@
         }
       ],
       "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "panel_color_submit_btn_hover",
+      "label": "Submit Button Hover Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "panel_bg_color_submit_btn_hover",
+      "label": "Submit Button Hover Background Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
     }
   ]
 }

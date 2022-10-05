@@ -635,3 +635,8 @@ ul#mobile_menu {
     border-bottom: none;
   }
 }
+.header__icon{
+  height: 2.2rem;
+  padding:0px 10px;
+  width: auto;
+}

@@ -59,13 +59,13 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
           </div>
 
           <p class="collection-product-count light">
-            <%=sections.collection_template.product_count' | t: product_count: collection.products_count, count: collection.all_products_count %>
+            <%=sectionst.collection_template.product_count' | t: product_count: collection.products_count, count: collection.all_products_count %>
           </p>
 
           <div class="title-wrapper center">
             <h2 class="title title--primary">
-              <%=sections.collection_template.empty%><br>
-              <%=sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "underlined-link link" %>
+              <%=sectionst.collection_template.empty%><br>
+              <%=sectionst.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "underlined-link link" %>
             </h2>
           </div>
         </div>
@@ -80,7 +80,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
           </div>
 
           <p class="collection-product-count light">
-            <%=sections.collection_template.product_count' | t: product_count: collection.products_count, count: collection.all_products_count %>
+            <%=sectionst.collection_template.product_count' | t: product_count: collection.products_count, count: collection.all_products_count %>
           </p>
 
           <ul id="main-collection-product-grid" data-id="<%= section.id %>" class="grid grid--1-col grid--3-col-tablet grid--4-col-desktop product-list-<%=section.id%>" style="margin-left:-<%=section.settings.item_space%>px;padding-top:<%=section.settings.item_space%>px">
@@ -160,7 +160,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
 </div>
 <% schema){ %>
 {
-  "name": "t:sections.main-collection-product-grid.name",
+  "name": "t:sectionst.main-collection-product-grid.name",
   "class": "collection-grid-section",
   "settings": [
     {
@@ -176,7 +176,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
       "max": 48,
       "step": 4,
       "default": 16,
-      "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+      "label": "t:sectionst.main-collection-product-grid.settings.products_per_page.label"
     },
     {
       "type": "header",
@@ -384,7 +384,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
     },
     {
       "type": "header",
-      "content": "t:sections.main-collection-product-grid.settings.header__3.content"
+      "content": "t:sectionst.main-collection-product-grid.settings.header__3.content"
     },
     {
       "type": "select",
@@ -392,19 +392,19 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
       "options": [
         {
           "value": "adapt",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__1.label"
         },
         {
           "value": "portrait",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__2.label"
         },
         {
           "value": "square",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__3.label"
         }
       ],
       "default": "square",
-      "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
+      "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.label"
     },
     {
       "type": "checkbox",
@@ -466,7 +466,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
       "type": "checkbox",
       "id": "show_vendor",
       "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
+      "label": "t:sectionst.main-collection-product-grid.settings.show_vendor.label"
     },
     {
       "type": "select",
@@ -488,14 +488,26 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
       "type": "select",
       "id": "card_color",
       "label": "Card Info Color",
-      "options": [     
+      "options": [
+        {
+          "label": "None",
+          "value": "none"
+        },
         {
           "label": "Dark",
           "value": "c-dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "c-middle-dark"
+        },
+        {
           "label": "Average",
           "value": "c-average"
+        },
+        {
+          "label": "Light",
+          "value": "c-middle-light"
         },
         {
           "label": "Light",
@@ -531,15 +543,23 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
     {
       "type": "select",
       "id": "card_color_view_btn",
-      "label": "View Button Color style",
+      "label": "View Button Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -550,16 +570,24 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
     },
     {
       "type": "select",
-      "id": "card_color_view_btn_hover",
-      "label": "View Button Hover Color style",
+      "id": "card_bg_color_view_btn",
+      "label": "View Button Background Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -567,6 +595,62 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
         }
       ],
       "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_color_view_btn_hover",
+      "label": "View Button Hover Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color_view_btn_hover",
+      "label": "View Button Hover Background Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
     },
     {
       "type": "header",
@@ -682,7 +766,7 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
     },
     {
       "type": "header",
-      "content": "t:sections.main-collection-product-grid.settings.header__1.content"
+      "content": "t:sectionst.main-collection-product-grid.settings.header__1.content"
     },
     {
       "type": "select",
@@ -708,14 +792,14 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
       "type": "checkbox",
       "id": "enable_filtering",
       "default": true,
-      "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
-      "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+      "label": "t:sectionst.main-collection-product-grid.settings.enable_filtering.label",
+      "info": "t:sectionst.main-collection-product-grid.settings.enable_filtering.info"
     },
     {
       "type": "checkbox",
       "id": "enable_sorting",
       "default": true,
-      "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
+      "label": "t:sectionst.main-collection-product-grid.settings.enable_sorting.label"
     },
     {
         "type": "select",

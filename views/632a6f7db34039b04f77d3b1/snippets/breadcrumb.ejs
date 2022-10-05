@@ -2,7 +2,7 @@
 Documentation - http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation
 <% endcomment){ %>
 
-<% unless template === 'index'){ %>
+<% if(!template === 'index'){ %>
 <div class="breadcrumb-nav">
   <div class="page-width">
     <ul>
@@ -22,7 +22,7 @@ Documentation - http://docs.shopify.com/support/your-website/navigation/creating
       <% capture url){ %>/collections/<%= collection.handle %><% endcapture){ %>
       <li><%= collection.title | link_to: url %></li>
       <% } else { %>
-      <li><%= collection.title | capitalize %></li>
+      <li><%= collection.title %></li>
       <% } %>
 
       <% } else if(template === 'article'){ %>
@@ -30,7 +30,7 @@ Documentation - http://docs.shopify.com/support/your-website/navigation/creating
       <li><%= article.title %></li>
       <% } else if(template.includes('customers' && template !== "customers/account"){ %>
       <% var account = 'customer.account.title_main' | t){ %>
-      <li><%= account | capitalize | link_to: "/account" %></li>
+      <li><%= account | link_to: "/account" %></li>
       <li><%= page_title %></li>
 
       <% } else if(template.includes('page'){ %>
@@ -42,4 +42,4 @@ Documentation - http://docs.shopify.com/support/your-website/navigation/creating
     </ul>
   </div>
 </div>
-<% endunless){ %>
+<% } %>

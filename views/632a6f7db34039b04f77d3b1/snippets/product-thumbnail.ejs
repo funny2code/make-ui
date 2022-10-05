@@ -10,7 +10,7 @@
     Usage:
     <%- include('./product-thumbnail',
       media: media,
-      position: forloop.index,
+      position: index,
       loop: section.settings.enable_video_looping,
       modal_id: section.id
    ){ %>
@@ -25,7 +25,7 @@
           srcset="<% if(media.preview_image.width >= 288){ %><%= media.preview_image | img_url: '288x' %> 288w,<% } %>
                   <% if(media.preview_image.width >= 576){ %><%= media.preview_image | img_url: '576x' %> 576w,<% } %>
                   <% if(media.preview_image.width >= 550){ %><%= media.preview_image | img_url: '550x' %> 550w,<% } %>
-                  <% if(media.preview_image.width >= 1100){ %><%= media.preview_image  %> 1100w<% } %>"
+                  <% if(media.preview_image.width >= 1100){ %><%= media.preview_image | img_url: '1100x' %> 1100w<% } %>"
           src="<%= media | img_url: '288x288' %>"
           sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
           width="288"
@@ -40,7 +40,7 @@
         srcset="<% if(media.preview_image.width >= 288){ %><%= media.preview_image | img_url: '288x' %> 288w,<% } %>
                 <% if(media.preview_image.width >= 576){ %><%= media.preview_image | img_url: '576x' %> 576w,<% } %>
                 <% if(media.preview_image.width >= 550){ %><%= media.preview_image | img_url: '550x' %> 550w,<% } %>
-                <% if(media.preview_image.width >= 1100){ %><%= media.preview_image  %> 1100w<% } %>"
+                <% if(media.preview_image.width >= 1100){ %><%= media.preview_image | img_url: '1100x' %> 1100w<% } %>"
         src="<%= media | img_url: '288x288' %>"
         sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
         width="288"
@@ -70,7 +70,7 @@
       srcset="<% if(media.preview_image.width >= 288){ %><%= media.preview_image | img_url: '288x' %> 288w,<% } %>
               <% if(media.preview_image.width >= 576){ %><%= media.preview_image | img_url: '576x' %> 576w,<% } %>
               <% if(media.preview_image.width >= 550){ %><%= media.preview_image | img_url: '550x' %> 550w,<% } %>
-              <% if(media.preview_image.width >= 1100){ %><%= media.preview_image  %> 1100w<% } %>"
+              <% if(media.preview_image.width >= 1100){ %><%= media.preview_image | img_url: '1100x' %> 1100w<% } %>"
       src="<%= media | img_url: '288x' %>"
       sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
       width="288"
@@ -109,7 +109,7 @@
       srcset="<% if(media.preview_image.width >= 288){ %><%= media.preview_image | img_url: '288x' %> 288w,<% } %>
               <% if(media.preview_image.width >= 576){ %><%= media.preview_image | img_url: '576x' %> 576w,<% } %>
               <% if(media.preview_image.width >= 550){ %><%= media.preview_image | img_url: '550x' %> 550w,<% } %>
-              <% if(media.preview_image.width >= 1100){ %><%= media.preview_image  %> 1100w<% } %>"
+              <% if(media.preview_image.width >= 1100){ %><%= media.preview_image | img_url: '1100x' %> 1100w<% } %>"
       src="<%= media | img_url: '288x' %>"
       sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
       width="288"
@@ -121,12 +121,12 @@
     <%
       case media.media_type
       when 'external_video'
-        var video_class = 'js-'.append(media.host
+        var video_class = 'js-' + media.host
         if media.host === 'youtube'
           echo media | external_video_url: autoplay: true, loop: loop, playlist: media.external_id | external_video_tag: class: video_class, loading: "lazy"
         else
           echo media | external_video_url: autoplay: true, loop: loop | external_video_tag: class: video_class, loading: "lazy"
-        endif
+        }
       when 'video'
         echo media | media_tag: image_size: "2048x", autoplay: true, loop: loop, controls: true, preload: "none", autoplay: true
       when 'model'

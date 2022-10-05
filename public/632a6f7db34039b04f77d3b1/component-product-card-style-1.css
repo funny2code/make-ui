@@ -430,3 +430,32 @@ ul.size-options>li.disable{
 .card__inner:hover .second-image{
   opacity: 1;
 }
+.card__inner .bc-selling-tag{
+  position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.bc-selling-tag .bc-vertical-tag-inner{
+  display: inline-block;
+  padding: 10px;
+  font-size: 10px;
+  text-transform: uppercase;  
+}
+.bc-selling-tag.bc-vertical-tag {
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform-origin: center center;
+  position: absolute;
+  top: 115px;
+    left: -100px;    
+  min-width: 250px;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+}

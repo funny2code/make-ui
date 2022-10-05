@@ -101,7 +101,7 @@
       <h2 class="collection-list-title"><%= section.settings.title %></h2>
 
       <% if(section.settings.show_view_all && section.settings.swipe_on_mobile){ %>
-        <a href="<%= routes.collections_url %>" class="link underlined-link large-up-hide"><%=sections.collection_list.view_all%></a>
+        <a href="<%= routes.collections_url %>" class="link underlined-link large-up-hide"><%=sectionst.collection_list.view_all%></a>
       <% } %>
     </div>
 
@@ -110,11 +110,11 @@
         id="Slider-<%= section.id %>"
         role="list"
       >
-        <% section.blocks?.forEach((block,index)=>{ %>
+        <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
          <% if(block?.settings?.collection.title){ %>
           <li class="collection-list__item grid__item slider__slide">
             <a <% if(block?.settings?.collection && block?.settings?.collection.all_products_count > 0){ %> href="<%= block?.settings?.collection.url %>"<% } %>
-              class="card animate-arrow link<% if(block?.settings?.collection.image){ %> card--media<% } else { %><% if(section.settings.image_ratio !== 'adapt'){ %> card--stretch<% } %><% } %><% unless section.settings.image_padding){ %> card--light-border<% endunless){ %>"
+              class="card animate-arrow link<% if(block?.settings?.collection.image){ %> card--media<% } else { %><% if(section.settings.image_ratio !== 'adapt'){ %> card--stretch<% } %><% } %><% if(!section.settings.image_padding){ %> card--light-border<% } %>"
             >
               <div class="card--stretch py-<%=section.settings.card_bg_color%>">
                 <% if(block?.settings?.collection.image){ %>
@@ -156,7 +156,7 @@
                     <% } %>
                   </div>
                   <div class="view-collection-container">
-                    <span class="view_collection py-btn-<%=section.settings.card_color_view_btn%> py-btn-hover-<%=section.settings.card_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">View</span>
+                    <span class="view_collection py-c-<%=section.settings.card_color_view_btn%> py-bg-c-<%=section.settings.card_bg_color_view_btn%> py-hv-c-<%=section.settings.card_color_view_btn_hover%> py-hv-bg-c-<%=section.settings.card_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">View</span>
                   </div>
                 </div>
                 <% } else { %>
@@ -177,7 +177,7 @@
                     <% } %>
                   </div>
                   <div class="view-collection-container">
-                    <span class="view_collection py-btn-<%=section.settings.card_color_view_btn%> py-btn-hover-<%=section.settings.card_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">View</span>
+                    <span class="view_collection py-c-<%=section.settings.card_color_view_btn%> py-bg-c-<%=section.settings.card_bg_color_view_btn%> py-hv-c-<%=section.settings.card_color_view_btn_hover%> py-hv-bg-c-<%=section.settings.card_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">View</span>
                   </div>
                 </div>
                 <% } %>
@@ -193,8 +193,8 @@
                   <div>
                     
                     <div class="overflow-hidden py-bg-c-light">
-                     <% var n_index = forloop.index | modulo:6 + 1){ %>             
-                    <%=collection-'.append(n_index  | placeholder_svg_tag: 'placeholder-svg' %>             
+                     <% var n_index = index | modulo:6 + 1){ %>             
+                    <%=collection-' + n_index  | placeholder_svg_tag: 'placeholder-svg' %>             
                     </div>
                   </div>
                 <div class="card__info-container">
@@ -207,7 +207,7 @@
                       </p>
                   </div> 
                   <div class="view-collection-container">
-                    <span class="view_collection py-btn-<%=section.settings.card_color_view_btn%> py-btn-hover-<%=section.settings.card_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">View</span>
+                    <span class="view_collection py-c-<%=section.settings.card_color_view_btn%> py-bg-c-<%=section.settings.card_bg_color_view_btn%> py-hv-c-<%=section.settings.card_color_view_btn_hover%> py-hv-bg-c-<%=section.settings.card_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">View</span>
                   </div>
                 </div>
               </div>
@@ -228,7 +228,7 @@
 </div>
 <% schema){ %>
 {
-  "name": "t:sections.collection-list.name",
+  "name": "t:sectionst.collection-list.name",
   "tag": "section",
   "max_blocks": 12,
   "settings": [
@@ -236,7 +236,7 @@
       "type": "text",
       "id": "title",
       "default": "Collections",
-      "label": "t:sections.collection-list.settings.title.label"
+      "label": "t:sectionst.collection-list.settings.title.label"
     },
     {
       "type": "select",
@@ -286,19 +286,31 @@
         "type": "select",
         "id": "py_section_color",
         "label": "Section Title Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -498,19 +510,19 @@
       "options": [
         {
           "value": "adapt",
-          "label": "t:sections.featured-collection.settings.image_ratio.options__1.label"
+          "label": "t:sectionst.featured-collection.settings.image_ratio.options__1.label"
         },
         {
           "value": "portrait",
-          "label": "t:sections.featured-collection.settings.image_ratio.options__2.label"
+          "label": "t:sectionst.featured-collection.settings.image_ratio.options__2.label"
         },
         {
           "value": "square",
-          "label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
+          "label": "t:sectionst.featured-collection.settings.image_ratio.options__3.label"
         }
       ],
       "default": "adapt",
-      "label": "t:sections.featured-collection.settings.image_ratio.label"
+      "label": "t:sectionst.featured-collection.settings.image_ratio.label"
     },
     {
       "type": "range",
@@ -566,19 +578,31 @@
         "type": "select",
         "id": "card_color",
         "label": "Info Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -641,15 +665,23 @@
     {
       "type": "select",
       "id": "card_color_view_btn",
-      "label": "View Button Color style",
+      "label": "View Button Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -660,16 +692,24 @@
     },
     {
       "type": "select",
-      "id": "card_color_view_btn_hover",
-      "label": "View Button Hover Color style",
+      "id": "card_bg_color_view_btn",
+      "label": "View Button Background Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -677,24 +717,80 @@
         }
       ],
       "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_color_view_btn_hover",
+      "label": "View Button Hover Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color_view_btn_hover",
+      "label": "View Button Hover Background Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
     }
   ],
   "blocks": [
     {
       "type": "featured_collection",
-      "name": "t:sections.collection-list.blocks.featured_collection.name",
+      "name": "t:sectionst.collection-list.blocks.featured_collection.name",
       "settings": [
         {
           "type": "collection",
           "id": "collection",
-          "label": "t:sections.collection-list.blocks.featured_collection.settings.collection.label"
+          "label": "t:sectionst.collection-list.blocks.featured_collection.settings.collection.label"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "t:sections.collection-list.presets.name",
+      "name": "t:sectionst.collection-list.presets.name",
       "blocks": [
         {
           "type": "featured_collection"

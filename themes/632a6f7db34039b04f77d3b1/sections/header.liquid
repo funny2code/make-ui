@@ -940,7 +940,7 @@
               <div class="search-modal modal__content" role="dialog" aria-modal="true" aria-label="{{ 'general.search.search' | t }}">
                 <div class="search-modal__content" tabindex="-1">             
 
-                  <div class="bc-search-result-wrapper" data_btn_class="py-btn-{{section.settings.card_color_view_btn}} py-btn-hover-{{section.settings.card_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}}">
+                  <div class="bc-search-result-wrapper" data_btn_class="py-c-{{section.settings.card_color_view_btn}} py-bg-c-{{section.settings.card_bg_color_view_btn}} py-hv-c-{{section.settings.card_color_view_btn_hover}} py-hv-bg-c-{{section.settings.card_bg_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}}">
                     <div class="bc-cart__not-products">Sorry no results found</div>
                     <div class="bc-search-result-inner-wrapper"></div>
                     {%- if section.settings.search_menu != blank -%}
@@ -1004,7 +1004,7 @@
                     </svg>
                   </button>
                 </div>                
-                <div class="bc-search-result-wrapper" data_btn_class="py-btn-{{section.settings.card_color_view_btn}} py-btn-hover-{{section.settings.card_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}}">
+                <div class="bc-search-result-wrapper" data_btn_class="py-c-{{section.settings.card_color_view_btn}} py-bg-c-{{section.settings.card_bg_color_view_btn}} py-hv-c-{{section.settings.card_color_view_btn_hover}} py-hv-bg-c-{{section.settings.card_bg_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}}">
                   <div class="bc-cart__not-products">Sorry no results found</div>
                   <div class="bc-search-result-inner-wrapper"></div>
                   {%- if section.settings.search_menu != blank -%}
@@ -1412,14 +1412,26 @@
       "type": "select",
       "id": "py_search_field_color",
       "label": "Search Field Text Color",
-      "options": [
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
           {
             "label": "Dark",
             "value": "var(--py-color-dark)"
           },
           {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
           },
           {
             "label": "Light",
@@ -1432,14 +1444,26 @@
       "type": "select",
       "id": "py_search_field_color_br",
       "label": "Search Field Border Color",
-      "options": [
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
           {
             "label": "Dark",
             "value": "var(--py-color-dark)"
           },
           {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
           },
           {
             "label": "Light",
@@ -1502,14 +1526,26 @@
       "type": "select",
       "id": "py_search_field_focus_color",
       "label": "Search Field Focus Text Color",
-      "options": [
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
           {
             "label": "Dark",
             "value": "var(--py-color-dark)"
           },
           {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
           },
           {
             "label": "Light",
@@ -1540,14 +1576,26 @@
       "type": "select",
       "id": "py_search_color_title",
       "label": "Search Title Color",
-      "options": [
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
           {
             "label": "Dark",
             "value": "var(--py-color-dark)"
           },
           {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
           },
           {
             "label": "Light",
@@ -1666,16 +1714,24 @@
         {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-          },
-          {
-            "label": "Average",
-            "value": "var(--py-color-avarge)"
-          },
-          {
-            "label": "Light",
-            "value": "var(--py-color-light)"
-          }
-        ],
+        },
+        {
+          "label": "Middle Dark",
+          "value": "var(--py-color-middle-dark)"
+        },
+        {
+          "label": "Average",
+          "value": "var(--py-color-avarge)"
+        },
+        {
+          "label": "Middle Light",
+          "value": "var(--py-color-middle-light)"
+        },
+        {
+          "label": "Light",
+          "value": "var(--py-color-light)"
+        }
+      ],
         "default": "var(--py-color-light)"
     },
     {
@@ -1705,15 +1761,23 @@
     {
       "type": "select",
       "id": "card_color_view_btn",
-      "label": "View Button Color style",
+      "label": "View Button Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -1724,16 +1788,24 @@
     },
     {
       "type": "select",
-      "id": "card_color_view_btn_hover",
-      "label": "View Button Hover Color style",
+      "id": "card_bg_color_view_btn",
+      "label": "View Button Background Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -1741,6 +1813,62 @@
         }
       ],
       "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_color_view_btn_hover",
+      "label": "View Button Hover Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color_view_btn_hover",
+      "label": "View Button Hover Background Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
     },
     {
       "type": "header",
@@ -1926,14 +2054,26 @@
       "type": "select",
       "id": "py_header_color",
       "label": "Mega Menu Text Color",
-      "options": [
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
           {
             "label": "Dark",
             "value": "var(--py-color-dark)"
           },
           {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
           },
           {
             "label": "Light",
@@ -1946,34 +2086,58 @@
       "type": "select",
       "id": "py_header_color_link_1",
       "label": "Main Link Color",
-      "options": [
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
           {
             "label": "Dark",
             "value": "var(--py-color-dark)"
           },
           {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
           },
           {
             "label": "Light",
             "value": "var(--py-color-light)"
           }
         ],
-        "default": "var(--py-color-light)"
+        "default": "var(--py-color-dark)"
     },
     {
       "type": "select",
       "id": "py_header_color_link_hov_1",
       "label": "Main Link Hover Color",
-      "options": [
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
           {
             "label": "Dark",
             "value": "var(--py-color-dark)"
           },
           {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
           },
           {
             "label": "Light",
@@ -1986,14 +2150,26 @@
       "type": "select",
       "id": "py_header_color_link_2",
       "label": "Bottom Link Color",
-      "options": [
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
           {
             "label": "Dark",
             "value": "var(--py-color-dark)"
           },
           {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
           },
           {
             "label": "Light",

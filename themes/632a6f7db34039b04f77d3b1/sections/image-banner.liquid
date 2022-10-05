@@ -46,7 +46,7 @@
               {%- when 'buttons' -%}
                 <div class="banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_link_1 != blank and block.settings.button_label_2 != blank and block.settings.button_link_2 != blank %} banner__buttons--multiple{% endif %}">
                   {%- if block.settings.button_label_1 != blank -%}
-                    <a id="bunner__button-{{ block.id }}" href="{{ block.settings.button_link_1 }}" class="button py-btn-{{block.settings.content_color_view_btn}} py-btn-hover-{{block.settings.content_color_view_btn_hover}} py-btn-{{block.settings.view_btn_size}}"{% if block.settings.button_link_1 == blank %} aria-disabled="true"{% endif %}>
+                    <a id="bunner__button-{{ block.id }}" href="{{ block.settings.button_link_1 }}" class="button py-c-{{block.settings.content_color_view_btn}} py-hv-c-{{block.settings.content_color_view_btn_hover}} py-bg-c-{{block.settings.content_bg_color_view_btn}} py-hv-bg-c-{{block.settings.content_bg_color_view_btn_hover}} py-btn-{{block.settings.view_btn_size}}"{% if block.settings.button_link_1 == blank %} aria-disabled="true"{% endif %}>
                       {{ block.settings.button_label_1 }}
                     </a>
                   <style>#bunner__button-{{ block.id }}{
@@ -435,8 +435,16 @@
                 "value": "var(--py-color-dark)"
               },
               {
+                "label": "Middle Dark",
+                "value": "var(--py-color-middle-dark)"
+              },
+              {
                 "label": "Average",
                 "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Middle Light",
+                "value": "var(--py-color-middle-light)"
               },
               {
                 "label": "Light",
@@ -514,8 +522,16 @@
                 "value": "var(--py-color-dark)"
               },
               {
+                "label": "Middle Dark",
+                "value": "var(--py-color-middle-dark)"
+              },
+              {
                 "label": "Average",
                 "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Middle Light",
+                "value": "var(--py-color-middle-light)"
               },
               {
                 "label": "Light",
@@ -606,8 +622,16 @@
                 "value": "var(--py-color-dark)"
               },
               {
+                "label": "Middle Dark",
+                "value": "var(--py-color-middle-dark)"
+              },
+              {
                 "label": "Average",
                 "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Middle Light",
+                "value": "var(--py-color-middle-light)"
               },
               {
                 "label": "Light",
@@ -685,8 +709,16 @@
                 "value": "var(--py-color-dark)"
               },
               {
+                "label": "Middle Dark",
+                "value": "var(--py-color-middle-dark)"
+              },
+              {
                 "label": "Average",
                 "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Middle Light",
+                "value": "var(--py-color-middle-light)"
               },
               {
                 "label": "Light",
@@ -772,15 +804,23 @@
         {
           "type": "select",
           "id": "content_color_view_btn",
-          "label": "View Button Color style",
+          "label": "View Button Color",
           "options": [
             {
-              "label": "Dark",
-              "value": "dark"
+               "label": "Dark",
+               "value": "dark"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "middle-dark"
             },
             {
               "label": "Average",
               "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
             },
             {
               "label": "Light",
@@ -791,16 +831,24 @@
         },
         {
           "type": "select",
-          "id": "content_color_view_btn_hover",
-          "label": "View Button Hover Color style",
+          "id": "content_bg_color_view_btn",
+          "label": "View Button Background Color",
           "options": [
             {
-              "label": "Dark",
-              "value": "dark"
+               "label": "Dark",
+               "value": "dark"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "middle-dark"
             },
             {
               "label": "Average",
               "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
             },
             {
               "label": "Light",
@@ -808,6 +856,62 @@
             }
           ],
           "default": "dark"
+        },
+        {
+          "type": "select",
+          "id": "content_color_view_btn_hover",
+          "label": "View Button Hover Color",
+          "options": [
+            {
+               "label": "Dark",
+               "value": "dark"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
+              "label": "Average",
+              "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
+            },
+            {
+              "label": "Light",
+              "value": "light"
+            }
+          ],
+          "default": "dark"
+        },
+        {
+          "type": "select",
+          "id": "content_bg_color_view_btn_hover",
+          "label": "View Button Hover Background Color",
+          "options": [
+            {
+               "label": "Dark",
+               "value": "dark"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
+              "label": "Average",
+              "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
+            },
+            {
+              "label": "Light",
+              "value": "light"
+            }
+          ],
+          "default": "light"
         },
         {
           "type": "textarea",

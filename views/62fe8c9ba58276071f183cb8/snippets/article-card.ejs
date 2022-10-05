@@ -1,21 +1,33 @@
-<article class="article-card<% if(!article?.image || show_image === false){ %> article-card--no-image<% } %>" aria-labelledby="Article-<%= article?.id %>">
-  <a href="<%= article?.url %>" class="article-content motion-reduce">
-    <% if(show_image === true && article?.image){ %>
+<% comment){ %>
+    Renders an article card for a given blog with settings to either show the image || not.
+
+    Accepts:
+    - blog: {Object} Blog object
+    - article: {Object} Article object
+    - show_image: {String} The setting either show the article image || not. If it's not included it will show the image by default
+
+    Usage:
+    <%- include('./article-card' blog: blog, article: article, show_image: section.settings.show_image){ %>
+<% endcomment){ %>
+
+<article class="article-card<% if(article.image === blank || show_image === false){ %> article-card--no-image<% } %>" aria-labelledby="Article-<%= article.id %>">
+  <a href="<%= article.url %>" class="article-content motion-reduce">
+    <% if(show_image === true && article.image){ %>
       <div class="article-card__image-wrapper">
         <div class="article-card__image media media--<%= section.settings.image_ratio %>" 
-             <% if(section.settings.image_ratio === 'adapt'){ %> style="padding-bottom: <%= 1 / article?.image.aspect_ratio * 100 %>%;"<% } %>>
+             <% if(section.settings.image_ratio === 'adapt'){ %> style="padding-bottom: <%= 1 / article.image.aspect_ratio * 100 %>%;"<% } %>>
           <img srcset="
-            <% if(article?.image.width >= 165){ %><%= article?.image.src %> 165w,<% } %>
-            <% if(article?.image.width >= 360){ %><%= article?.image.src %> 360w,<% } %>
-            <% if(article?.image.width >= 533){ %><%= article?.image.src %> 533w,<% } %>
-            <% if(article?.image.width >= 720){ %><%= article?.image.src %> 720w,<% } %>
-            <% if(article?.image.width >= 940){ %><%= article?.image.src %> 940w,<% } %>
-            <% if(article?.image.width >= 1066){ %><%= article?.image.src %> 1066w,<% } %>"
-            src="<%= article?.image.src %>"
+            <% if(article.image.src.width >= 165){ %><%= article.image.src | img_url: '165x' %> 165w,<% } %>
+            <% if(article.image.src.width >= 360){ %><%= article.image.src | img_url: '360x' %> 360w,<% } %>
+            <% if(article.image.src.width >= 533){ %><%= article.image.src | img_url: '533x' %> 533w,<% } %>
+            <% if(article.image.src.width >= 720){ %><%= article.image.src | img_url: '720x' %> 720w,<% } %>
+            <% if(article.image.src.width >= 940){ %><%= article.image.src | img_url: '940x' %> 940w,<% } %>
+            <% if(article.image.src.width >= 1066){ %><%= article.image.src | img_url: '1066x' %> 1066w,<% } %>"
+            src="<%= article.image.src | img_url: '533x' %>"
             sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
-            alt="<%= article?.image.alt %>"
-            width="<%= article?.image.width %>"
-            height="<%= article?.image.height %>"
+            alt="<%= article.image.src.alt %>"
+            width="<%= article.image.width %>"
+            height="<%= article.image.height %>"
             loading="lazy"
             class="motion-reduce"
           >
@@ -24,39 +36,40 @@
     <% } %>
 
     <div class="article-card__info">
-      <% section.blocks?.forEach((block,index)=>{ %>
-        <% if(block.type === 'title'){ %>
+      <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
+        <% if(block.type){ %>
+          <% } else if(block.type === 'title'){ %>
             <header class="article-card__header">
               <style>              
               .article-card__header *{
-                color:<%=block.settings.title_color%>;                 
+                color:<%=block?.settings?.card_color_title%>;                 
               }
               .article-card__title{
-                font-size:<%=block.settings.title_font_size%>px;
-                font-weight:<%=block.settings.title_font_weight%>;
+                font-size:<%=block?.settings?.title_font_size%>px;
+                font-weight:<%=block?.settings?.title_font_weight%>;
               }
               @media(max-width:749px){
                 .article-card__title{
-                  font-size:<%=block.settings.title_m_font_size%>px;                  
+                  font-size:<%=block?.settings?.title_m_font_size%>px;                  
                 }
               }
             </style>
             
-              <h2 class="article-card__title" id="Article-<%= article?.id %>">
-                <%= article?.title %>
+              <h2 class="article-card__title" id="Article-<%= article.id %>">
+                <%= article.title %>
               </h2>
-              <% if(block.settings.show_excerpt){ %>
+              <% if(block?.settings?.show_excerpt){ %>
                 <div class="article-card_excerpt">
-                  <%= article?.content %>
+                  <%= article.content %>
                 </div>
               <% } %>
-              <% if(block.settings.show_date){ %>
+              <% if(block?.settings?.show_date){ %>
                 <span class="circle-divider caption-with-letter-spacing">
-                  <%- article?.published_at -%>
+                  <%=- article.published_at new Date() "%b %d, %y" -%>
                 </span>
               <% } %>
-              <% if(block.settings.show_author){ %>
-                <span class="caption-with-letter-spacing"><%= article?.author %></span>
+              <% if(block?.settings?.show_author){ %>
+                <span class="caption-with-letter-spacing"><%= article.author -%></span>
               <% } %>
             </header>
 
@@ -75,12 +88,12 @@
               }
             </style>
             
-              <span class="link article-card__link py-btn-<%=block.settings.view_btn_color%> py-btn-hover-<%=block.settings.view_btn_hover_color%> py-btn-<%=block.settings.view_btn_size%>" aria-label="read_more_title">
-                Read More
+              <span class="link article-card__link py-c-<%=block?.settings?.card_color_view_btn%> py-bg-c-<%=block?.settings?.card_bg_color_view_btn%> py-hv-c-<%=block?.settings?.card_color_view_btn_hover%> py-hv-bg-c-<%=block?.settings?.card_bg_color_view_btn_hover%>" aria-label="<%=blogs.article.read_more_title' | t: title: article.title %>">
+                <%=blogs.article.read_more%>
               </span>
 
-              <% if(article?.comments_count > 0 && blog.comments_enabled){ %>
-                <span>comments</span>
+              <% if(article.comments_count > 0 && blog.comments_enabled?){ %>
+                <span><%=blogs.article.comments' | t: count: article.comments_count %></span>
               <% } %>
             </div>
         <% } %>

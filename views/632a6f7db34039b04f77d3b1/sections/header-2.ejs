@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="<%=component-list-menu.css' <%=srcId%> %>" >
 <link rel="stylesheet" href="<%=component-menu-drawer.css' <%=srcId%> %>" >
-<link rel="stylesheet" href="<%=component-cart-notification-'.append(settings.cart_style.append('.css' <%=srcId%> %>" >
+<link rel="stylesheet" href="<%=component-cart-notification-' + settings.cart_style + '.css' <%=srcId%> %>" >
 <link rel="stylesheet" href="<%=component-header-style-2.css' <%=srcId%> %>" >
 
 
 <noscript><%=component-list-menu.css' <%=srcId%> | stylesheet_tag %></noscript>
 <noscript><%=component-menu-drawer.css' <%=srcId%> | stylesheet_tag %></noscript>
-<noscript><%=component-cart-notification-'.append(settings.cart_style.append('.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-cart-notification-' + settings.cart_style + '.css' <%=srcId%> | stylesheet_tag %></noscript>
 
 <style>
   .bc-new-header-style.bc-account-and-cart-wrapper svg.icon__account,
@@ -43,7 +43,7 @@
   <% capture logo){ %>
     <a class="header__logo-link" href="<%= routes.root_url %>">
       <% if(section.settings.logo){ %>
-        <% capture logo_size){ %><%= section.settings.logo_max_width | at_least: section.settings.mobile_logo_max_width * 2.append('x' %><% endcapture){ %>
+        <% capture logo_size){ %><%= section.settings.logo_max_width | at_least: section.settings.mobile_logo_max_width * 2 + 'x' %><% endcapture){ %>
         <span class="visually-hidden"><%= shop.name %></span>
         <img class="header__logo-image" width="<%= section.settings.logo.width %>" height="<%= section.settings.logo.height %>" src="<%= section.settings.logo | img_url: logo_size %>" alt="<%= section.settings.logo.alt %>">
 
@@ -269,7 +269,7 @@
                               <span class="visually-hidden"><%=templates.cart.cart%></span>
                                 <div class="cart-count-bubble">
                                   <span aria-hidden="true" id="cart-count"><%= cart.item_count %></span>
-                                  <span class="visually-hidden"><%=sections.header.cart_count' | t: count: cart.item_count %></span>
+                                  <span class="visually-hidden"><%=sectionst.header.cart_count' | t: count: cart.item_count %></span>
                                 </div>
                               
                             </a>
@@ -299,7 +299,7 @@
             checkoutbtn_position: settings.checkoutbtn_position,
             enable_dynamic_pay: settings.enable_dynamic_pay,
          ){ %>
-        <% endif%>
+        <% }%>
           </div>  </div>      
 
 <script src="<%=dom-slider.js' <%=srcId%> %>"></script>              
@@ -494,38 +494,38 @@
   {
     "@context": "http://schema.org",
     "@type": "Organization",
-    "name": <%= shop.name | json %>,
+    "name": <%= shop.name %>,
     <% if(section.settings.logo){ %>
-      <% var image_size = section.settings.logo.width.append('x'){ %>
-      "logo": <%= section.settings.logo | img_url: image_size | prepend: "https:" | json %>,
+      <% var image_size = section.settings.logo.width + 'x'){ %>
+      "logo": <%= section.settings.logo | img_url: image_size | prepend: "https:" %>,
     <% } %>
     "sameAs": [
-      <%= settings.social_twitter_link | json %>,
-      <%= settings.social_facebook_link | json %>,
-      <%= settings.social_pinterest_link | json %>,
-      <%= settings.social_instagram_link | json %>,
-      <%= settings.social_tumblr_link | json %>,
-      <%= settings.social_snapchat_link | json %>,
-      <%= settings.social_youtube_link | json %>,
-      <%= settings.social_vimeo_link | json %>
+      <%= settings.social_twitter_link %>,
+      <%= settings.social_facebook_link %>,
+      <%= settings.social_pinterest_link %>,
+      <%= settings.social_instagram_link %>,
+      <%= settings.social_tumblr_link %>,
+      <%= settings.social_snapchat_link %>,
+      <%= settings.social_youtube_link %>,
+      <%= settings.social_vimeo_link %>
     ],
-    "url": <%= shop.url.append(page.url | json %>
+    "url": <%= shop.url + page.url %>
   }
 </script>
 
 <% if(request.page_type === 'index'){ %>
-  <% var potential_action_target = shop.url.append(routes.search_url.append("?q={search_term_string}"){ %>
+  <% var potential_action_target = shop.url + routes.search_url + "?q={search_term_string}"){ %>
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
       "@type": "WebSite",
-      "name": <%= shop.name | json %>,
+      "name": <%= shop.name %>,
       "potentialAction": {
         "@type": "SearchAction",
-        "target": <%= potential_action_target | json %>,
+        "target": <%= potential_action_target %>,
         "query-input": "required name=search_term_string"
       },
-      "url": <%= shop.url.append(page.url | json %>
+      "url": <%= shop.url + page.url %>
     }
   </script>
 <% } %>
@@ -560,12 +560,12 @@
 
 <% schema){ %>
 {
-  "name": "t:sections.header.name",
+  "name": "t:sectionst.header.name",
   "settings": [
     {
       "type": "image_picker",
       "id": "logo",
-      "label": "t:sections.header.settings.logo.label"
+      "label": "t:sectionst.header.settings.logo.label"
     },
     {
       "type": "range",
@@ -574,8 +574,8 @@
       "max": 250,
       "step": 10,
       "default": 100,
-      "unit": "t:sections.header.settings.logo_width.unit",
-      "label": "t:sections.header.settings.logo_width.label"
+      "unit": "t:sectionst.header.settings.logo_width.unit",
+      "label": "t:sectionst.header.settings.logo_width.label"
     },
     {
       "type": "select",
@@ -603,7 +603,7 @@
       "type": "link_list",
       "id": "menu",
       "default": "main-menu",
-      "label": "t:sections.header.settings.menu.label"
+      "label": "t:sectionst.header.settings.menu.label"
     },
     {
       "type": "header",
@@ -687,14 +687,26 @@
       "type": "select",
       "id": "py_header_color",
       "label": "Header Text Color",
-      "options": [
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
           {
             "label": "Dark",
             "value": "var(--py-color-dark)"
           },
           {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
           },
           {
             "label": "Light",

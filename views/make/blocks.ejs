@@ -1,35 +1,38 @@
-<% if(blocks){ %>
+<% if(orders){ %>
     <div class="py__settings-wrapper">
-        <% blocks.forEach(block => { %>
+        <% orders.forEach((orderItem) => { %>
+            <% let block = blocks[orderItem] %>
+            <% let schemaBlockItem = schemaBlocks?.filter(blockItem => blockItem.type === block.type) %>
             <% if(block.type && block.type !== '@app'){ %>
-                <div class="py__settings-item-wrapper  py__settings-block-item" data-type="<%=block.type%>">
+                <div class="py__settings-item-wrapper  py__settings-block-item" data-block-type="<%=block.type%>" data-block-id="<%=orderItem%>">
                     <div class="py__settings-item-name">
-                        <span><%= block.name %></span>
+                        <span><%= schemaBlockItem[0]?.name %></span>
                         <span class="py__settings-item-icon"><%- include('../icons', {type: 'arrow_bottom'}) %></span>
                     </div>
                     <div class="py__settings-item-content">
-                        <% block?.settings?.forEach(item => { %>
+                        <% schemaBlockItem[0]?.settings?.forEach(item => { %>
                             <% if(item.type === 'color'){ %>
-                                <%- include('../components/color', {global: global, data: item, typeIs: block.type.trim().toLowerCase() }) %>
+                                <%- include('../components/color', {global: global, data: item, value: block.settings[item?.id], typeIs: block.type.trim().toLowerCase() }) %>
                             <% } else if(item.type === 'text' && item.label !== 'Google Font'){ %>
-                                <%- include('../components/text', {global: global, data: item}) %>
+                                <%- include('../components/text', {global: global, data: item, value: block.settings[item?.id]}) %>
                             <% } else if(item.type === 'select'){ %>
-                                <%- include('../components/select', {global: global, data: item}) %>
+                                <%- include('../components/select', {global: global, data: item, value: block.settings[item?.id]}) %>
                             <% } else if(item.type === 'checkbox'){ %>
-                                <%- include('../components/checkbox', {global: global, data: item}) %>
+                                <%- include('../components/checkbox', {global: global, data: item, value: block.settings[item?.id]}) %>
                             <% } else if(item.type === 'range'){ %>
-                                <%- include('../components/range', {global: global, data: item}) %>
+                                <%- include('../components/range', {global: global, data: item, value: block.settings[item?.id]}) %>
                             <% } else if(item.type === 'text' && item.label === 'Google Font' && fonts){ %>
-                                <%- include('../components/font', {global: global, data: item, fonts: fonts}) %>
+                                <%- include('../components/font', {global: global, data: item, fonts: fonts, value: block.settings[item?.id]}) %>
                             <% } else if(item.type === 'textarea'){ %>
-                                <%- include('../components/textarea', {global: global, data: item}) %>
+                                <%- include('../components/textarea', {global: global, data: item, value: block.settings[item?.id]}) %>
                             <% } else if(item.type === 'richtext'){ %>
-                                <%- include('../components/richtext', {global: global, data: item}) %> 
+                                <%- include('../components/richtext', {global: global, data: item, value: block.settings[item?.id]}) %> 
                             <% } else if(item.type === 'paragraph'){ %>
                                 <%- include('../components/paragraph', {data: item}) %>
+                            <% } else if(item.type !== 'header' && item.type !== 'paragraph'){ %>
+                                <input type="hidden" name="<%= global !== "section" ? global + "_" + item.id : item.id %>" value="<%=block.settings[item?.id]%>">
                             <% } %>
                         <% }) %>
-                        <input type="hidden" name="block_type_<%= block.type %>" value="<%= block.type %>">
                     </div>
                 </div>
             <% } %>

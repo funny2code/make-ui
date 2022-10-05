@@ -127,7 +127,7 @@
     </slider-component>
     <div class="center{% if section.settings.swipe_on_mobile %} small-hide medium-hide{% endif %}">
       {%- if section.settings.button_label != blank -%}
-        <a class="button button--primary py-btn-{{section.settings.col_color_view_btn}} py-btn-hover-{{section.settings.col_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}}"{% if section.settings.button_link == blank %} aria-disabled="true" role="link"{% else %} href="{{ section.settings.button_link }}"{% endif %}>
+        <a class="button button--primary py-c-{{section.settings.col_color_view_btn}} py-hv-c-{{section.settings.col_color_view_btn_hover}} py-bg-c-{{section.settings.col_color_bg_color_view_btn}} py-hv-bg-c-{{section.settings.col_color_bg_color_view_btn_hover}} py-btn-{{section.settings.view_btn_size}}"{% if section.settings.button_link == blank %} aria-disabled="true" role="link"{% else %} href="{{ section.settings.button_link }}"{% endif %}>
           {{ section.settings.button_label | escape }}
         </a>
       {%- endif-%}
@@ -399,19 +399,31 @@
         "type": "select",
         "id": "col_color",
         "label": "Column Info Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -484,15 +496,23 @@
     {
       "type": "select",
       "id": "col_color_view_btn",
-      "label": "View Button Color style",
+      "label": "View Button Color",
       "options": [
         {
-          "label": "Dark",
-          "value": "dark"
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
         },
         {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -503,16 +523,24 @@
     },
     {
       "type": "select",
-      "id": "col_color_view_btn_hover",
-      "label": "View Button Hover Color style",
+      "id": "col_color_bg_color_view_btn",
+      "label": "View Button Background Color",
       "options": [
         {
-          "label": "Dark",
-          "value": "dark"
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
         },
         {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -520,6 +548,62 @@
         }
       ],
       "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "col_color_view_btn_hover",
+      "label": "View Button Hover Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "col_color_bg_color_view_btn_hover",
+      "label": "View Button Hover Background Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
     },
     {
       "type": "checkbox",

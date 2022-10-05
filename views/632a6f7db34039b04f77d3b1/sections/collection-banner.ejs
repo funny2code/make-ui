@@ -1,7 +1,7 @@
 <% var defaultBanner = true){ %>
 <% if(section.blocks.length > 0){ %>
 <%=component-collection-hero.css' <%=srcId%> | stylesheet_tag %>
-<% section.blocks?.forEach((block,index)=>{ %>
+<% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
 <% if(block.type === 'collection' && block?.settings?.coll === collection.handle){ %>
 <% var defaultBanner = false){ %>
 <div class="collection-hero <% if(collection.image || block?.settings?.image){ %>collection-hero--with-image<% } %> py-<%=block?.settings?.page_y_pd%> py-<%=block?.settings?.page_x_pd%> py-<%=block?.settings?.page_y_mg%> py-<%=block?.settings?.page_width%>">
@@ -11,7 +11,7 @@
 
     <% if(block?.settings?.show_collection_title){ %>
     <h1 class="collection-hero__title">
-      <span class="visually-hidden"><%=sections.collection_template.title%>: </span>
+      <span class="visually-hidden"><%=sectionst.collection_template.title%>: </span>
       <%=- collection.title -%>
     </h1>
     <% } %>
@@ -30,7 +30,7 @@
         <div class="media <% if(block?.settings?.m_image){ %>small-hide<% } %>" style="padding-bottom: <%= 1 / block?.settings?.image.aspect_ratio * 100 %>%;">
           <img srcset="<% if(block?.settings?.image.width >= 375){ %><%= block?.settings?.image | img_url: '375x' %> 375w,<% } %>
             <% if(block?.settings?.image.width >= 750){ %><%= block?.settings?.image | img_url: '750x' %> 750w,<% } %>
-            <% if(block?.settings?.image.width >= 1100){ %><%= block?.settings?.image  %> 1100w,<% } %>
+            <% if(block?.settings?.image.width >= 1100){ %><%= block?.settings?.image | img_url: '1100x' %> 1100w,<% } %>
             <% if(block?.settings?.image.width >= 1500){ %><%= block?.settings?.image | img_url: '1500x' %> 1500w,<% } %>
             <% if(block?.settings?.image.width >= 1780){ %><%= block?.settings?.image | img_url: '1780x' %> 1780w,<% } %>
             <% if(block?.settings?.image.width >= 2000){ %><%= block?.settings?.image | img_url: '2000x' %> 2000w,<% } %>
@@ -90,7 +90,7 @@
   <div class="collection-hero__inner bc-collection-page-main">
     <div class="collection-hero__text-wrapper">
       <h1 class="collection-hero__title">
-        <span class="visually-hidden"><%=sections.collection_template.title%>:</span>
+        <span class="visually-hidden"><%=sectionst.collection_template.title%>:</span>
         <%=- collection.title -%>
       </h1>
       <% if(collection.description){ %>
@@ -123,7 +123,7 @@
 
 <% schema){ %>
 {
-  "name": "t:sections.main-collection-banner.name",
+  "name": "t:sectionst.main-collection-banner.name",
   "blocks": [
     {
       "type": "collection",
@@ -145,7 +145,7 @@
           "type": "checkbox",
           "id": "show_collection_description",
           "default": false,
-          "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
+          "label": "t:sectionst.main-collection-banner.settings.show_collection_description.label"
         },
         {
           "type": "image_picker",
@@ -216,8 +216,16 @@
                 "value": "var(--py-color-dark)"
               },
               {
+                "label": "Middle Dark",
+                "value": "var(--py-color-middle-dark)"
+              },
+              {
                 "label": "Average",
                 "value": "var(--py-color-avarge)"
+              },
+              {
+                "label": "Middle Light",
+                "value": "var(--py-color-middle-light)"
               },
               {
                 "label": "Light",

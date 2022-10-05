@@ -1,12 +1,13 @@
-<% if(style.size || style.color || style.weight || style.border || style.bg || style.pv || style.ph || style.align || style.padding || style.margin || style.width || style.height || style.b_width || style.c_css || style.show_override || style.ov_bg_color || style.ov_bg_image || style.ov_opacity || style.m_size || style.m_color || style.m_weight || style.m_border || style.m_bg || style.m_pv || style.m_ph || style.m_align || style.m_padding || style.m_margin || style.m_width || style.m_height || style.m_b_width || style.m_c_css){ %>
+<% if(style.length || style.content_color || style.weight || style.border || style.bg || style.pv || style.ph || style.align || style.padding || style.margin || style.width || style.height || style.b_width || style.c_css || style.show_override || style.content_bg_color || style.ov_bg_image || style.ov_opacity
+or style.m_size || style.content_color_m || style.m_weight || style.m_border || style.m_bg || style.m_pv || style.m_ph || style.m_align || style.m_padding || style.m_margin || style.m_width || style.m_height || style.m_b_width || style.m_c_css){ %>
 <style type="text/css">
-<% if(style.size || style.color || style.weight || style.border || style.bg || style.pv || style.ph || style.align || style.padding || style.margin || style.width || style.height || style.b_width || style.c_css){ %>
+<% if(style.length || style.content_color || style.weight || style.border || style.bg || style.pv || style.ph || style.align || style.padding || style.margin || style.width || style.height || style.b_width || style.c_css){ %>
 <%= sufix %>-<%= id %> {
-    <% if(style.size){ %>
-    font-size: <%= style.size %>;
+    <% if(style.length){ %>
+    font-size: <%= style.length %>;
     <% } %>
-    <% if(style.color){ %>
-    color: <%= style.color %>;
+    <% if(style.content_color){ %>
+    color: <%= style.content_color %>;
     <% } %>
     <% if(style.weight){ %>
     font-weight: <%= style.weight %>;
@@ -48,7 +49,7 @@
 }
 <% } %>
 <% if(style.show_override){ %>
-<% if(style.ov_bg_color || style.ov_bg_image || style.ov_opacity){ %>
+<% if(style.content_bg_color || style.ov_bg_image || style.ov_opacity){ %>
 <%= sufix %>-<%= id %>::after {
     content: "";
     position: absolute;
@@ -56,11 +57,11 @@
     top: 0;
     width: 100%;
     height: 100%;
-    <% if(style.ov_bg_color){ %>
-    background-color: <%= style.ov_bg_color %>;
+    <% if(style.content_bg_color){ %>
+    background-color: <%= style.content_bg_color %>;
     <% } %>
     <% if(style.ov_bg_image){ %>
-    background-image: url("<%= style.ov_bg_image %>");
+    background-image: url("<%= style.ov_bg_image | img_url: 'original' %>");
     <% } %>
     <% if(style.ov_opacity){ %>
     opacity: <%= style.ov_opacity %>;
@@ -68,14 +69,14 @@
 }
 <% } %>
 <% } %>
-<% if(style.m_size || style.m_color || style.m_weight || style.m_border || style.m_bg || style.m_pv || style.m_ph || style.m_align || style.m_padding || style.m_margin || style.m_width || style.m_height || style.m_b_width || style.m_c_css){ %>
-@media screen and (max-width: 749px){
+<% if(style.m_size || style.content_color_m || style.m_weight || style.m_border || style.m_bg || style.m_pv || style.m_ph || style.m_align || style.m_padding || style.m_margin || style.m_width || style.m_height || style.m_b_width || style.m_c_css){ %>
+@media screen && (max-width: 749px){
     <%= sufix %>-<%= id %> {
         <% if(style.m_size){ %>
         font-size: <%= style.m_size %>;
         <% } %>
-        <% if(style.m_color){ %>
-        color: <%= style.m_color %>;
+        <% if(style.content_color_m){ %>
+        color: <%= style.content_color_m %>;
         <% } %>
         <% if(style.m_weight){ %>
         font-weight: <%= style.m_weight %>;

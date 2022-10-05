@@ -131,7 +131,7 @@
     <h2 class="title{% if section.settings.title == blank %} title--no-heading{% endif %}">{{ section.settings.title | escape }}</h2>
 
     {%- if section.settings.show_view_all -%}
-      <a href="{{ section.settings.collection.url }}" class="py-btn-light py-btn-hover-dark py-btn-medium">{{ 'sections.featured_collection.view_all' | t }}</a>
+      <a href="{{ section.settings.collection.url }}" class="py-c-light py-hv-c-dark py-bg-c-dark py-hv-bg-c-light py-btn-medium">{{ 'sections.featured_collection.view_all' | t }}</a>
     {%- endif -%}
   </div>
 
@@ -262,19 +262,31 @@
         "type": "select",
         "id": "section_color",
         "label": "Title Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -425,14 +437,26 @@
       "type": "select",
       "id": "card_color",
       "label": "Card Info Color",
-      "options": [     
+      "options": [
+        {
+          "label": "None",
+          "value": "none"
+        },
         {
           "label": "Dark",
           "value": "c-dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "c-middle-dark"
+        },
+        {
           "label": "Average",
           "value": "c-average"
+        },
+        {
+          "label": "Light",
+          "value": "c-middle-light"
         },
         {
           "label": "Light",
@@ -468,15 +492,23 @@
     {
       "type": "select",
       "id": "card_color_view_btn",
-      "label": "View Button Color style",
+      "label": "View Button Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -484,6 +516,34 @@
         }
       ],
       "default": "light"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color_view_btn",
+      "label": "View Button Background Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
     },
     {
       "type": "select",

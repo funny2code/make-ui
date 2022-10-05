@@ -1,3 +1,7 @@
+if ((typeof window.Shopify) == 'undefined') {
+  window.Shopify = {};
+}
+
 Shopify.formatMoney = function(cents, format) {
   if (typeof cents == 'string') { cents = cents.replace('.',''); }
   var value = '';
@@ -186,10 +190,6 @@ function fetchConfigGet(type = 'json') {
  * Shopify Common JS
  *
  */
-if ((typeof window.Shopify) == 'undefined') {
-  window.Shopify = {};
-}
-
 Shopify.bind = function(fn, scope) {
   return function() {
     return fn.apply(scope, arguments);

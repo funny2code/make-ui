@@ -1,8 +1,9 @@
-<link rel="stylesheet" href="/<%=srcId%>/section-main-page.css" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="/<%=srcId%>/component-rte.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="<%=section-main-page.css' <%=srcId%> %>" >
+<link rel="stylesheet" href="<%=component-rte.css' <%=srcId%> %>" >
 
-<link rel="stylesheet" href="/<%=srcId%>/customer.css">
-
+<noscript><%=section-main-page.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-rte.css' <%=srcId%> | stylesheet_tag %></noscript>
+<%=customer.css' <%=srcId%> | stylesheet_tag %>
 <style>  
   .page-container{
     background-color:<%=section.settings.page_bg_color%>;
@@ -53,74 +54,74 @@
   }
   .page-container .customer .field input,
   .page-container .customer.addresses select{
-    border:<%=section.settings.field_border_width%>px solid <%=section.settings.field_br_color%>;
+    border:<%=section.settings.field_border_width%>px solid <%=section.settings.field_color_br%>;
     border-radius:<%=section.settings.field_border_radius%>px;
     background-color:<%=section.settings.field_bg_color%>;
     color:<%=section.settings.field_color%>;
     padding: 12px 15px;
     width:100%;
   }
-  .page-container .customer .submit_address{ 
+  .page-container .customer .submit_address{    
     width:100%;
   }
   
 </style>
 <div class="page-container">
-<%# paginate customer.addresses by 5 %>
+<%# paginate customer.addresses by 5){ %>
   <div class="customer addresses" data-customer-addresses>
     <svg style="display: none">
       <symbol id="icon-caret" viewBox="0 0 10 6">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
       </symbol>
     </svg>
-    <h1>Addresses</h1>
-    <a href="#">
-      Return to Account details
+    <h1><%=customer.addresses.title%></h1>
+    <a href="<%= routes.account_url %>">
+      <%=customer.account.return%>
     </a>
   
     <div data-address>
       <button
-        class="add_address_btn button py-btn-<%=section.settings.add_btn_color%> py-btn-hover-<%=section.settings.add_btn_hover_color%> py-btn-<%=section.settings.add_btn_size%>"      
+        class="add_address_btn button py-c-<%=section.settings.page_color_add_btn%> py-hv-c-<%=section.settings.page_color_add_btn_hover%> py-bg-c-<%=section.settings.page_bg_color_add_btn%> py-hv-bg-c-<%=section.settings.page_bg_color_add_btn_hover%> py-btn-<%=section.settings.add_btn_size%>"      
         type="button"
         aria-expanded="false"
         aria-controls="AddAddress"
       >
-        Add a new address
+        <%=customer.addresses.add_new%>
       </button>
       <div id="AddAddress" class="edit_panel">
-        <h2 id="AddressNewHeading">Add a new address</h2>
-        <form aria-labelledBy="AddressNewHeading">
+        <h2 id="AddressNewHeading"><%=customer.addresses.add_new%></h2>
+        <% form 'customer_address', customer.new_address, aria-labelledBy: 'AddressNewHeading'){ %>
           <div class="field"> 
-            <label for="AddressFirstNameNew">First Name</label>
-            <input type="text" id="AddressFirstNameNew" name="address[first_name]" value="<%= form?.first_name %>" autocomplete="given-name" placeholder="First Name">            
+            <label for="AddressFirstNameNew"><%=customer.addresses.first_name%></label>
+            <input type="text" id="AddressFirstNameNew" name="address[first_name]" value="<%= form.first_name %>" autocomplete="given-name" placeholder="<%=customer.addresses.first_name%>">            
           </div>
           <div class="field">          
-            <label for="AddressLastNameNew">Last Name</label>
-            <input type="text" id="AddressLastNameNew" name="address[last_name]" value="<%= form?.last_name %>" autocomplete="family-name" placeholder="Last Name">
+            <label for="AddressLastNameNew"><%=customer.addresses.last_name%></label>
+            <input type="text" id="AddressLastNameNew" name="address[last_name]" value="<%= form.last_name %>" autocomplete="family-name" placeholder="<%=customer.addresses.last_name%>">
         </div>
           <div class="field">          
-            <label for="AddressCompanyNew">Company</label>
-            <input type="text" id="AddressCompanyNew" name="address[company]" value="<%= form?.company %>" autocomplete="organization" placeholder="Company">            
+            <label for="AddressCompanyNew"><%=customer.addresses.company%></label>
+            <input type="text" id="AddressCompanyNew" name="address[company]" value="<%= form.company %>" autocomplete="organization" placeholder="<%=customer.addresses.company%>">            
           </div>
           <div class="field">          
-            <label for="AddressAddress1New">Address1</label>
-            <input type="text" id="AddressAddress1New" name="address[address1]" value="<%= form?.address1 %>" autocomplete="address-line1" placeholder="Address1">            
+            <label for="AddressAddress1New"><%=customer.addresses.address1%></label>
+            <input type="text" id="AddressAddress1New" name="address[address1]" value="<%= form.address1 %>" autocomplete="address-line1" placeholder="<%=customer.addresses.address1%>">            
           </div>
           <div class="field">          
-            <label for="AddressAddress2New">Address2</label>
-            <input type="text" id="AddressAddress2New" name="address[address2]" value="<%= form?.address2 %>" autocomplete="address-line2" placeholder="Address2">            
+            <label for="AddressAddress2New"><%=customer.addresses.address2%></label>
+            <input type="text" id="AddressAddress2New" name="address[address2]" value="<%= form.address2 %>" autocomplete="address-line2" placeholder="<%=customer.addresses.address2%>">            
           </div>
           <div class="field">          
-            <label for="AddressCityNew">City</label>
-            <input type="text" id="AddressCityNew" name="address[city]" value="<%= form?.city %>" autocomplete="address-level2" placeholder="City">            
+            <label for="AddressCityNew"><%=customer.addresses.city%></label>
+            <input type="text" id="AddressCityNew" name="address[city]" value="<%= form.city %>" autocomplete="address-level2" placeholder="<%=customer.addresses.city%>">            
           </div>
           <div>
-            <label for="AddressCountryNew">Country</label>
+            <label for="AddressCountryNew"><%=customer.addresses.country%></label>
             <div class="select">
               <select
                 id="AddressCountryNew"
                 name="address[country]"
-                data-default="<%= form?.country %>"
+                data-default="<%= form.country %>"
                 autocomplete="country"
               >
                 <%= all_country_option_tags %>
@@ -128,31 +129,31 @@
             </div>
           </div>
           <div id="AddressProvinceContainerNew" style="display: none">
-            <label for="AddressProvinceNew">Province</label>
+            <label for="AddressProvinceNew"><%=customer.addresses.province%></label>
             <div class="select">
               <select
                 id="AddressProvinceNew"
                 name="address[province]"
-                data-default="<%= form?.province %>"
+                data-default="<%= form.province %>"
                 autocomplete="address-level1"
               >
               </select>
             </div>
           </div>
           <div class="field">
-            <label for="AddressZipNew">Zip</label>
-            <input type="text" id="AddressZipNew" name="address[zip]" value="<%= form?.zip %>" autocapitalize="characters" autocomplete="postal-code" placeholder="zip">            
+            <label for="AddressZipNew"><%=customer.addresses.zip%></label>
+            <input type="text" id="AddressZipNew" name="address[zip]" value="<%= form.zip %>" autocapitalize="characters" autocomplete="postal-code" placeholder="<%=customer.addresses.zip%>">            
           </div>
           <div class="field">
-            <label for="AddressPhoneNew">Phone</label>
-            <input type="tel" id="AddressPhoneNew" name="address[phone]" value="<%= form?.phone %>" autocomplete="tel" placeholder="phone">            
+            <label for="AddressPhoneNew"><%=customer.addresses.phone%></label>
+            <input type="tel" id="AddressPhoneNew" name="address[phone]" value="<%= form.phone %>" autocomplete="tel" placeholder="<%=customer.addresses.phone%>">            
           </div>
           <div>
-            <%= form?.set_as_default_checkbox %>
-            <label for="address_default_address_new">Set Default</label>
+            <%= form.set_as_default_checkbox %>
+            <label for="address_default_address_new"><%=customer.addresses.set_default%></label>
           </div>
           <div>
-            <button class="submit_address button py-btn-<%=section.settings.submit_btn_color%> py-btn-hover-<%=section.settings.submit_btn_hover_color%> py-btn-<%=section.settings.submit_btn_size%>">Add</button>
+            <button class="submit_address button py-c-<%=section.settings.panel_color_submit_btn%> py-hv-c-<%=section.settings.panel_color_submit_btn_hover%> py-bg-c-<%=section.settings.panel_bg_color_submit_btn%> py-hv-bg-c-<%=section.settings.panel_bg_color_submit_btn_hover%> py-btn-<%=section.settings.submit_btn_size%>"><%=customer.addresses.add%></button>
             <button class="cancel_submit" type="reset">
               <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
                 <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"></path>
@@ -165,106 +166,106 @@
     </div>
 
     <ul role="list">
-      <% customer.addresses.forEach((address,index)=>{ %>
+      <% for address in customer.addresses){ %>
         <li data-address>
-          <% if(address === customer?.default_address){ %>
-            <h2>Default</h2>
+          <% if(address === customer.default_address){ %>
+            <h2><%=customer.addresses.default%></h2>
           <% } %>
-          <p><%= address.address1 %></p>
+          <%= address | format_address %>
           <button
-            class="edit_address_btn button py-btn-<%=section.settings.edit_btn_color%> py-btn-hover-<%=section.settings.edit_btn_hover_color%> py-btn-<%=section.settings.edit_btn_size%>"
+            class="edit_address_btn button py-c-<%=section.settings.page_color_edit_btn%> py-hv-c-<%=section.settings.page_color_edit_btn_hover%> py-bg-c-<%=section.settings.page_bg_color_edit_btn%> py-hv-bg-c-<%=section.settings.page_bg_color_edit_btn_hover%> py-btn-<%=section.settings.edit_btn_size%>"
             type="button"
-            id="EditFormButton_<%= address?.id %>"
-            aria-label="edit_address <%= index %>"
-            aria-controls="EditAddress_<%= address?.id %>"
+            id="EditFormButton_<%= address.id %>"
+            aria-label="<%=customer.addresses.edit_address%> <%= index %>"
+            aria-controls="EditAddress_<%= address.id %>"
             aria-expanded="false"
-            data-address-id="<%= address?.id %>"
+            data-address-id="<%= address.id %>"
           >
-            Edit
+            <%=customer.addresses.edit%>
           </button>
           <button
-            class="delete_address_btn button py-btn-<%=section.settings.edit_btn_color%> py-btn-hover-<%=section.settings.edit_btn_hover_color%> py-btn-<%=section.settings.edit_btn_size%>"
+            class="delete_address_btn button py-c-<%=section.settings.page_color_edit_btn%> py-hv-c-<%=section.settings.page_color_edit_btn_hover%> py-bg-c-<%=section.settings.page_bg_color_edit_btn%> py-hv-bg-c-<%=section.settings.page_bg_color_edit_btn_hover%> py-btn-<%=section.settings.edit_btn_size%>"
             type="button"
-            aria-label="delete <%= index %>"
-            data-target="<%= address?.url %>"
-            data-confirm-message="delete_confirm"
+            aria-label="<%=customer.addresses.delete%> <%= index %>"
+            data-target="<%= address.url %>"
+            data-confirm-message="<%=customer.addresses.delete_confirm%>"
           >
-            Delete
+            <%=customer.addresses.delete%>
           </button>
-          <div id="EditAddress_<%= address?.id %>" class="edit_panel">
-            <h2>Edit Address</h2>            
-            <form>
+          <div id="EditAddress_<%= address.id %>" class="edit_panel">
+            <h2><%=customer.addresses.edit_address%></h2>            
+            <% form 'customer_address', address){ %>
               <div class="field">               
-                <label for="AddressFirstName_<%= form?.id %>">First Name</label>
-                <input type="text" id="AddressFirstName_<%= form?.id %>" name="address[first_name]" value="<%= form?.first_name %>" autocomplete="given-name" placeholder="First Name">                
+                <label for="AddressFirstName_<%= form.id %>"><%=customer.addresses.first_name%></label>
+                <input type="text" id="AddressFirstName_<%= form.id %>" name="address[first_name]" value="<%= form.first_name %>" autocomplete="given-name" placeholder="<%=customer.addresses.first_name%>">                
               </div>
               <div class="field">                
-                <label for="AddressLastName_<%= form?.id %>">Last Name</label>
-                <input type="text" id="AddressLastName_<%= form?.id %>" name="address[last_name]" value="<%= form?.last_name %>" autocomplete="family-name" placeholder="Last Name">                
+                <label for="AddressLastName_<%= form.id %>"><%=customer.addresses.last_name%></label>
+                <input type="text" id="AddressLastName_<%= form.id %>" name="address[last_name]" value="<%= form.last_name %>" autocomplete="family-name" placeholder="<%=customer.addresses.last_name%>">                
               </div>
               <div class="field">
-                <label for="AddressCompany_<%= form?.id %>">Company</label> 
-                <input type="text" id="AddressCompany_<%= form?.id %>" name="address[company]" value="<%= form?.company %>" autocomplete="organization" placeholder="Company">                               
+                <label for="AddressCompany_<%= form.id %>"><%=customer.addresses.company%></label> 
+                <input type="text" id="AddressCompany_<%= form.id %>" name="address[company]" value="<%= form.company %>" autocomplete="organization" placeholder="<%=customer.addresses.company%>">                               
               </div>
               <div class="field">
-                <label for="AddressAddress1_<%= form?.id %>">Address1</label>   
-                <input type="text" id="AddressAddress1_<%= form?.id %>" name="address[address1]" value="<%= form?.address1 %>" autocomplete="address-line1" placeholder="Address1">                            
+                <label for="AddressAddress1_<%= form.id %>"><%=customer.addresses.address1%></label>   
+                <input type="text" id="AddressAddress1_<%= form.id %>" name="address[address1]" value="<%= form.address1 %>" autocomplete="address-line1" placeholder="<%=customer.addresses.address1%>">                            
               </div>
               <div class="field">
-                <label for="AddressAddress2_<%= form?.id %>">Address2</label>   
-                <input type="text" id="AddressAddress2_<%= form?.id %>" name="address[address2]" value="<%= form?.address2 %>" autocomplete="address-line2" placeholder="Address2">                             
+                <label for="AddressAddress2_<%= form.id %>"><%=customer.addresses.address2%></label>   
+                <input type="text" id="AddressAddress2_<%= form.id %>" name="address[address2]" value="<%= form.address2 %>" autocomplete="address-line2" placeholder="<%=customer.addresses.address2%>">                             
               </div>
               <div class="field">
-                <label for="AddressCity_<%= form?.id %>">City</label> 
-                <input type="text" id="AddressCity_<%= form?.id %>" name="address[city]" value="<%= form?.city %>" autocomplete="address-level2" placeholder="City">                               
+                <label for="AddressCity_<%= form.id %>"><%=customer.addresses.city%></label> 
+                <input type="text" id="AddressCity_<%= form.id %>" name="address[city]" value="<%= form.city %>" autocomplete="address-level2" placeholder="<%=customer.addresses.city%>">                               
               </div>
               <div>
-                <label for="AddressCountry_<%= form?.id %>">
-                  Country
+                <label for="AddressCountry_<%= form.id %>">
+                  <%=customer.addresses.country%>
                 </label>
                 <div class="select">
                   <select
-                    id="AddressCountry_<%= form?.id %>"
+                    id="AddressCountry_<%= form.id %>"
                     name="address[country]"
                     data-address-country-select
-                    data-default="<%= form?.country %>"
-                    data-form-id="<%= form?.id %>"
+                    data-default="<%= form.country %>"
+                    data-form-id="<%= form.id %>"
                     autocomplete="country"
                   >
                     <%= all_country_option_tags %>
                   </select>
                 </div>
               </div>
-              <div id="AddressProvinceContainer_<%= form?.id %>" style="display:none;">
-                <label for="AddressProvince_<%= form?.id %>">
-                  Province
+              <div id="AddressProvinceContainer_<%= form.id %>" style="display:none;">
+                <label for="AddressProvince_<%= form.id %>">
+                  <%=customer.addresses.province%>
                 </label>
                 <div class="select">
                   <select
-                    id="AddressProvince_<%= form?.id %>"
+                    id="AddressProvince_<%= form.id %>"
                     name="address[province]"
-                    data-default="<%= form?.province %>"
+                    data-default="<%= form.province %>"
                     autocomplete="address-level1"
                   >
                   </select>                  
                 </div>
               </div>
               <div class="field">                
-                <label for="AddressZip_<%= form?.id %>">Zip</label>
-                <input type="text" id="AddressZip_<%= form?.id %>" name="address[zip]" value="<%= form?.zip %>" autocapitalize="characters" autocomplete="postal-code" placeholder="zip">                
+                <label for="AddressZip_<%= form.id %>"><%=customer.addresses.zip%></label>
+                <input type="text" id="AddressZip_<%= form.id %>" name="address[zip]" value="<%= form.zip %>" autocapitalize="characters" autocomplete="postal-code" placeholder="<%=customer.addresses.zip%>">                
               </div>
               <div class="field">                
-                <label for="AddressPhone_<%= form?.id %>">Phone</label>
-                <input type="tel" id="AddressPhone_<%= form?.id %>"  name="address[phone]" value="<%= form?.phone %>" autocomplete="tel" placeholder="phone">                
+                <label for="AddressPhone_<%= form.id %>"><%=customer.addresses.phone%></label>
+                <input type="tel" id="AddressPhone_<%= form.id %>"  name="address[phone]" value="<%= form.phone %>" autocomplete="tel" placeholder="<%=customer.addresses.phone%>">                
               </div>
               <div>
-                <%= form?.set_as_default_checkbox %>
-                <label for="address_default_address_<%= form?.id %>">
-                  Set Default
+                <%= form.set_as_default_checkbox %>
+                <label for="address_default_address_<%= form.id %>">
+                  <%=customer.addresses.set_default%>
                 </label>
               </div>
               <div>
-                <button class="submit_address button py-btn-<%=section.settings.submit_btn_color%> py-btn-hover-<%=section.settings.submit_btn_hover_color%> py-btn-<%=section.settings.submit_btn_size%>">Update</button>
+                <button class="submit_address button py-c-<%=section.settings.panel_color_submit_btn%> py-hv-c-<%=section.settings.panel_color_submit_btn_hover%> py-bg-c-<%=section.settings.panel_bg_color_submit_btn%> py-hv-bg-c-<%=section.settings.panel_bg_color_submit_btn_hover%> py-btn-<%=section.settings.submit_btn_size%>"><%=customer.addresses.update%></button>
                 <button class="cancel_submit" type="reset">
                   <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
                     <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"></path>
@@ -278,13 +279,13 @@
       <% }) %>
     </ul>
   
-    <% if(paginate?.pages > 1){ %>
-      <% if(paginate?.parts.length > 0){ %>
-          <nav class="pagination" role="navigation" aria-label="label">
+    <% if(paginate.pages > 1){ %>
+      <% if(paginate.parts.length > 0){ %>
+          <nav class="pagination" role="navigation" aria-label="<%=general.pagination.label%>">
             <ul role="list">
-            <% if(paginate?.previous){ %>
+            <% if(paginate.previous){ %>
               <li>
-                <a href="#" aria-label="previous">
+                <a href="<%= paginate.previous.url %>" aria-label="<%=general.pagination.previous%>">
                   <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                   </svg>
@@ -292,13 +293,13 @@
               </li>
             <% } %>
 
-            <% paginate?.parts.forEach((part, index)=>{ %>
+            <% for part in paginate.parts){ %>
               <li>
                 <% if(part.is_link){ %>
-                  <a href="#" aria-label="page"><%= part.title %></a>
+                  <a href="<%= part.url %>" aria-label="<%=general.pagination.page' | t: number: part.title %>"><%= part.title %></a>
                 <% } else { %>
-                  <% if(part.title === paginate?.current_page){ %>
-                    <span aria-current="page" aria-label="page"><%= part.title %></span>
+                  <% if(part.title === paginate.current_page){ %>
+                    <span aria-current="page" aria-label="<%=general.pagination.page' | t: number: part.title %>"><%= part.title %></span>
                   <% } else { %>
                     <span><%= part.title %></span>
                   <% } %>
@@ -306,9 +307,9 @@
               </li>
             <% }) %>
 
-            <% if(paginate?.next){ %>
+            <% if(paginate.next){ %>
               <li>
-                <a href="#" aria-label="next" >
+                <a href="<%= paginate.next.url %>" aria-label="<%=general.pagination.next%>" >
                   <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                   </svg>
@@ -320,21 +321,691 @@
       <% } %>
     <% } %>
   </div>
-<%# endpaginate %>
+<%# endpaginate){ %>
 </div>
-
-<script src="/<%=srcId%>/customer.js" defer></script>
-
-<script>
-  window.onload = () => {
-    typeof CustomerAddresses !== 'undefined' && new CustomerAddresses();
-  }
-</script>
-
-<script>
-  document.querySelectorAll('.edit_panel_overlay').forEach(element => {
-    element.addEventListener('click', function(event){
-      this.previousElementSibling.querySelector('.cancel_submit').click();
+  <script>
+    document.querySelectorAll('.edit_panel_overlay').forEach(element => {
+      element.addEventListener('click', function(event){
+        this.previousElementSibling.querySelector('.cancel_submit').click();
+      });
     });
-  });
-</script>  
+  </script>  
+  
+<% schema){ %>
+{
+  "name": "Customer-Addresses Page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "page_bg_color",
+      "label": "Page Background Color",
+      "options": [          
+         {
+            "label": "Transparent",
+            "value": "transparent"
+         },        
+         {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+         },
+         {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+         },
+         {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+         },
+         {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+         },
+         {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+         }
+       ],
+     "default": "var(--py-bg-color-light)"
+    },
+    {
+        "type": "select",
+        "id": "page_color",
+        "label": "Page Text Color",
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+    },
+    {
+        "type": "select",
+        "id": "page_align",
+        "label": "Page Alignment",
+        "options": [ 
+            {
+            "label": "Left",
+            "value": "left"
+            },
+            {
+            "label": "Center",
+            "value": "center"
+            }
+        ],
+        "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Add Address Button Style"
+    },
+    {
+      "type": "select",
+      "id": "add_btn_size",
+      "label": "Add Address Button Size",
+      "options": [
+        {
+          "label": "Small",
+          "value": "small"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Large",
+          "value": "large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "page_color_add_btn",
+      "label": "Add Address Button Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "select",
+      "id": "page_bg_color_add_btn",
+      "label": "Add Address Button Background Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "page_color_add_btn_hover",
+      "label": "Add Address Button Hover Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "page_bg_color_add_btn_hover",
+      "label": "Add Address Button Hover Background Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "header",
+      "content": "Edit & Delet Button Style"
+    },
+    {
+      "type": "select",
+      "id": "edit_btn_size",
+      "label": "Edit Button Size",
+      "options": [
+        {
+          "label": "Small",
+          "value": "small"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Large",
+          "value": "large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "page_color_edit_btn",
+      "label": "Edit Button Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "select",
+      "id": "page_bg_color_edit_btn",
+      "label": "Edit Button Background Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "page_color_edit_btn_hover",
+      "label": "Edit Button Hover Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "page_bg_color_edit_btn_hover",
+      "label": "Edit Button Hover Background Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "header",
+      "content": "Add Adress Pannel & Field Style"
+    },
+    {
+      "type": "select",
+      "id": "panel_bg_color",
+      "label": "Edit Panel Background Color",
+      "options": [          
+         {
+            "label": "Transparent",
+            "value": "transparent"
+         },        
+         {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+         },
+         {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+         },
+         {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+         },
+         {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+         },
+         {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+         }
+       ],
+     "default": "var(--py-bg-color-light)"
+    },
+    {
+        "type": "select",
+        "id": "panel_color",
+        "label": "Edit Panel Text Color",
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+    },
+    {
+      "type": "select",
+      "id": "field_bg_color",
+      "label": "Field Background Color",
+      "options": [          
+         {
+            "label": "Transparent",
+            "value": "transparent"
+         },        
+         {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+         },
+         {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+         },
+         {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+         },
+         {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+         },
+         {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+         }
+       ],
+     "default": "var(--py-bg-color-light)"
+    },
+    {
+        "type": "select",
+        "id": "field_color",
+        "label": "Field Text Color",
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+    },
+    {
+        "type": "range",
+        "id": "field_border_width",
+        "min": 0,
+        "max": 5,
+        "step": 1,
+        "default": 1,
+        "label": "Field Border Width"
+    },
+    {
+        "type": "range",
+        "id": "field_border_radius",
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "default": 5,
+        "label": "Field Border Radius"
+    },
+    {
+        "type": "select",
+        "id": "field_color_br",
+        "label": "Field Border Color",
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+    },
+    {
+      "type": "header",
+      "content": "Submit Address Button Style"
+    },
+    {
+      "type": "select",
+      "id": "submit_btn_size",
+      "label": "Submit Button Size",
+      "options": [
+        {
+          "label": "Small",
+          "value": "small"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Large",
+          "value": "large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "panel_color_submit_btn",
+      "label": "Submit Button Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "select",
+      "id": "panel_bg_color_submit_btn",
+      "label": "Submit Button Background Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "panel_color_submit_btn_hover",
+      "label": "Submit Button Hover Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "panel_bg_color_submit_btn_hover",
+      "label": "Submit Button Hover Background Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
+    }
+  ]
+}
+<% endschema){ %>

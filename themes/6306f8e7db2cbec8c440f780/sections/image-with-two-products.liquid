@@ -162,12 +162,20 @@
             "value": "var(--py-color-dark)"
          },
          {
-            "label": "Average",
-            "value": "var(--py-color-avarge)"
+           "label": "Middle Dark",
+           "value": "var(--py-color-middle-dark)"
          },
          {
-            "label": "Light",
-            "value": "var(--py-color-light)"
+           "label": "Average",
+           "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Middle Light",
+           "value": "var(--py-color-middle-light)"
+         },
+         {
+           "label": "Light",
+           "value": "var(--py-color-light)"
          }
        ],
       "default": "var(--py-color-dark)"
@@ -449,20 +457,32 @@
           "type": "select",
           "id": "card_color",
           "label": "Card Info Color",
-          "options": [     
-            {
-              "label": "Dark",
-              "value": "c-dark"
-            },
-            {
-              "label": "Average",
-              "value": "c-average"
-            },
-            {
-              "label": "Light",
-              "value": "c-light"
-            }
-          ],
+          "options": [
+        {
+          "label": "None",
+          "value": "none"
+        },
+        {
+          "label": "Dark",
+          "value": "c-dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "c-middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "c-average"
+        },
+        {
+          "label": "Light",
+          "value": "c-middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "c-light"
+        }
+      ],
           "default": "c-dark"
         },
         {
@@ -492,15 +512,23 @@
         {
           "type": "select",
           "id": "card_color_view_btn",
-          "label": "View Button Color style",
+          "label": "View Button Color",
           "options": [
             {
               "label": "Dark",
               "value": "dark"
             },
             {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
               "label": "Average",
               "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
             },
             {
               "label": "Light",
@@ -511,16 +539,24 @@
         },
         {
           "type": "select",
-          "id": "card_color_view_btn_hover",
-          "label": "View Button Hover Color style",
+          "id": "card_bg_color_view_btn",
+          "label": "View Button Background Color",
           "options": [
             {
               "label": "Dark",
               "value": "dark"
             },
             {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
               "label": "Average",
               "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
             },
             {
               "label": "Light",
@@ -528,6 +564,62 @@
             }
           ],
           "default": "dark"
+        },
+        {
+          "type": "select",
+          "id": "card_color_view_btn_hover",
+          "label": "View Button Hover Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "dark"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
+              "label": "Average",
+              "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
+            },
+            {
+              "label": "Light",
+              "value": "light"
+            }
+          ],
+          "default": "dark"
+        },
+        {
+          "type": "select",
+          "id": "card_bg_color_view_btn_hover",
+          "label": "View Button Hover Background Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "dark"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
+              "label": "Average",
+              "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
+            },
+            {
+              "label": "Light",
+              "value": "light"
+            }
+          ],
+          "default": "light"
         },
         {
           "type": "header",

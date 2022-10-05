@@ -5,29 +5,34 @@
   .announcement-bar__message{
     color:<%=section.settings.py_announcement_color%>;
   }
+  marquee .announcement-bar__message{
+    margin: 0px 40px;
+  }
   .announcement-bar__link{
-    color:<%=section.settings.py_announcement_link_color%>;
+    color:<%=section.settings.py_announcement_color_link%>;
   }
   .announcement-bar__link:hover{
-    color:<%=section.settings.py_announcement_link_hov_color%>;
+    color:<%=section.settings.py_announcement_color_link_hov%>;
   }
 </style>
-<% let d = section.settings %>
-<% section?.blocks?.forEach((block, index) => { %>
+<% var d = section.settings %>
+<% section?.block_order?.forEach((orderItem, index) => { %>
+  <% let block = section?.blocks[orderItem] %>
   <% if(block.type === 'announcement'){ %>
-    <div class="announcement-bar center py-<%=d.page_x_pd%> py-<%=d.page_y_pd%> py-<%=d.br%>" role="region" aria-label="announcement">
-      <% if(block.settings.text){ %>
-        <% if(block.settings.link){ %>
-          <a href="<%= block.settings.link %>" class="announcement-bar__link link link--text">
+      <div class="announcement-bar center py-<%=d.page_x_pd%> py-<%=d.page_y_pd%> py-<%=d.br%>" role="region" aria-label="<%=sectionst.header.announcement%>">
+     
+        <% if(block?.settings?.text){ %>
+          <% if(block?.settings?.link){ %>
+            <a href="<%= block?.settings?.link %>" class="announcement-bar__link link link--text">
+          <% } %>
+              <span class="announcement-bar__message py-<%=d.fs%>">
+                <%- block?.settings?.text -%>
+              </span>
+          <% if(block?.settings?.link){ %>
+            </a>
+          <% } %>
         <% } %>
-            <span class="announcement-bar__message py-<%=d.fs%>">
-              <%- block.settings.text -%>
-            </span>
-        <% if(block.settings.link){ %>
-          </a>
-        <% } %>
-      <% } %>
-    </div>
+      
+      </div>
   <% } %>
 <% }) %>
-

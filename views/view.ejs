@@ -40,29 +40,36 @@
         <% } %>
 
         <% if(component){ %>
-            <% if(component==='Cart' ){ %>
-                <%- include(srcId + '/snippets/cart-drawer', {settings: settings}) %>
-            <% } else if(component==='Global Styles' ){ %>
+            <% if(component === 'global-styles'){ %>
                 <%- include('make/brand', {settings: settings}) %>
-            <% } else if(component==='Typography Settings' ){ %>
+            <% } else if(component === 'typography-settings'){ %>
                 <%- include('make/fonts', {settings: settings}) %>
             <% } %>
         <% } %>
-        <% if(sections && sections.length){ %>
-            <% sections.forEach(item=> { %>
-                <%- include(srcId + '/sections/' + item.file_name, {
+
+        <%- include(srcId + '/sections/announcement-bar', {section: settings?.sections['announcement-bar']}) %>
+        <%- include(srcId + '/sections/header', {
+            search: false,
+            routes: false,
+            section: settings?.sections['header']
+        }) %>
+        <% if(sections?.order?.length){ %>
+            <% sections?.order?.forEach((orderItem, index)=> { %>
+                <% let sectionItem = sections?.sections[orderItem] %>
+                <%- include(srcId + '/sections/' + sectionItem.type, {
                     menu: menu, 
-                    blogs: blog,
+                    blogs: blogs,
                     blog: blog,
+                    page: page,
                     article: article,
                     product: product,
                     settings: settings, 
-                    section: item,
+                    section: sectionItem,
+                    sectionid: orderItem,
                     localization: false,
                     collection: collection,
                     collections: collections,
                     form: false,
-                    page: false,
                     customer: customer, 
                     paginate: false,
                     all_country_option_tags: false,
@@ -74,12 +81,43 @@
                     genereal: false
                 }) %>
             <% }) %>
+        <% } else if(sections){ %>
+            <%- include(srcId + '/sections/' + sections?.type, {
+                menu: menu, 
+                blogs: blogs,
+                article: article,
+                product: product,
+                settings: settings, 
+                section: sections,
+                sectionid: sectionid,
+                blog: blog,
+                page: page,
+                localization: false,
+                collection: collection,
+                collections: collections,
+                form: false,
+                customer: customer, 
+                paginate: false,
+                all_country_option_tags: false,
+                routes: false,
+                search: false,
+                shop: false,
+                request: false,
+                gift_card: false,
+                genereal: false
+            }) %>
         <% } %>
+        <%- include(srcId + '/sections/footer', {
+            section: settings?.sections['footer'],
+            footerMenu: footermenu,
+            form: false
+        }) %>
 
     <script src="https://cdn.shopify.com/s/javascripts/currencies.js" defer="defer"></script>
     <script src="/<%=srcId%>/slider.js" defer="defer"></script>
     <script src="https://cdn.rawgit.com/blowsie/Pure-JavaScript-HTML5-Parser/master/htmlparser.js"></script>
-    <!-- <script src="/<%=srcId%>/variants.js" defer="defer"></script> -->
+    <script src="/<%=srcId%>/product-card-style-1.js" defer="defer"></script>
+    <script src="/<%=srcId%>/cart-notification-<%=settings.cart_style%>.js" defer="defer"></script>
     <% if(settings.enable_global_anim){ %>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="stylesheet" href="/62fe8c9ba58276071f183cb8/base-style.css">
+    <link rel="stylesheet" href="/stylesheets/view.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <script src="/62fe8c9ba58276071f183cb8/global.js" defer="defer"></script>
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+    <% if(settings.enable_global_anim){ %>
+        <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style">
+    <% } %>
+    <% if(component){ %>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <% } %>
+    <link rel="stylesheet" href="/62fe8c9ba58276071f183cb8/component-list-menu.css">
+    <link rel="stylesheet" href="/62fe8c9ba58276071f183cb8/component-search-style-1.css">
+    <link rel="stylesheet" href="/62fe8c9ba58276071f183cb8/component-menu-drawer.css">
+    <link rel="stylesheet" href="/62fe8c9ba58276071f183cb8/component-cart-notification-style-1.css">
+    <link rel="stylesheet" href="/62fe8c9ba58276071f183cb8/component-header-style-1.css">
+</head>
+    <body class="index">
+        <% let fontsNames = ''; %>
+        <% if(settings.heading_font_custom && !fontsNames?.includes(settings.heading_font_custom)){  fontsNames += settings.heading_font_custom + '|'; } %>
+        <% if(settings.title_font_custom && !fontsNames?.includes(settings.title_font_custom)){  fontsNames += settings.title_font_custom + '|'; } %>
+        <% if(settings.sub_title_font_custom && !fontsNames?.includes(settings.sub_title_font_custom)){  fontsNames += settings.sub_title_font_custom + '|'; } %>
+        <% if(settings.body_font_custom && !fontsNames?.includes(settings.body_font_custom)){  fontsNames += settings.body_font_custom + '|'; } %>
+        <% if(settings.button_font_custom && !fontsNames?.includes(settings.button_font_custom)){  fontsNames += settings.button_font_custom + '|'; } %>
+        <% if(settings.nav_font_custom && !fontsNames?.includes(settings.nav_font_custom)){  fontsNames += settings.nav_font_custom + '|'; } %>
+        <% if(settings.field_font_custom && !fontsNames?.includes(settings.field_font_custom)){  fontsNames += settings.field_font_custom + '|'; } %>
+        <% if(fontsNames){ %>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=<%= fontsNames?.replace(/\|$/, "") %>">
+        <% } %>
+        <% if(settings){ %>
+            <%- include('62fe8c9ba58276071f183cb8/snippets/css-selectors', {settings:settings}) %>
+        <% } %>
+
+        <% if(component){ %>
+            <% if(component==='Cart' ){ %>
+                <%- include('62fe8c9ba58276071f183cb8/snippets/cart-drawer', {settings: settings}) %>
+            <% } else if(component==='Global Styles' ){ %>
+                <%- include('make/brand', {settings: settings}) %>
+            <% } else if(component==='Typography Settings' ){ %>
+                <%- include('make/fonts', {settings: settings}) %>
+            <% } %>
+        <% } %>
+        <% if(sections && sections.length){ %>
+            <% sections.forEach(item=> { %>
+
+                <% const menu = JSON.parse(include(`../contents/${item.section_id}/menu.json`)) %>
+                <% const makeFooterMenu = JSON.parse(include(`../contents/${item.section_id}/footermenu.json`)) %>
+                <% const collection = JSON.parse(include(`../contents/${item.section_id}/collection.json`)) %>
+                <% const collections = JSON.parse(include(`../contents/${item.section_id}/collections.json`)) %>
+                <% const product = JSON.parse(include(`../contents/${item.section_id}/product.json`)) %>
+                <% const cart = JSON.parse(include(`../contents/${item.section_id}/cart.json`)) %>
+                <% const blog = JSON.parse(include(`../contents/${item.section_id}/blogs.json`)) %>
+                <% const article = JSON.parse(include(`../contents/${item.section_id}/article.json`)) %>
+                <% const customer = JSON.parse(include(`../contents/${item.section_id}/customer.json`)) %>
+                <% const gift = JSON.parse(include(`../contents/${item.section_id}/gift.json`)) %>
+                <% const themeGeneralTexts = JSON.parse(include(`../themes/${item.section_id}/locales/en.default.json`)) %>
+
+                <% if(item.section_id !== "632a6f7db34039b04f77d3b1" && item.file_name !== "image-with-two-products" && item.file_name !== "featured-blog"){ %>
+                <%- include(item.section_id + '/sections/' + item.file_name, {
+                    srcId: item.section_id,
+                    menu: menu,
+                    footermenu: makeFooterMenu,
+                    blogs: blog,
+                    blog: blog,
+                    article: article,
+                    product: product,
+                    settings: settings, 
+                    section: item,
+                    localization: false,
+                    collection: collection,
+                    collections: collections,
+                    cart: cart,
+                    form: false,
+                    page: false,
+                    customer: customer, 
+                    paginate: false,
+                    all_country_option_tags: false,
+                    routes: false,
+                    search: false,
+                    shop: false,
+                    request: false,
+                    gift_card: false,
+                    genereal: false,
+                    general: themeGeneralTexts?.general,
+                    date_formats: themeGeneralTexts?.date_formats,
+                    newsletter: themeGeneralTexts?.newsletter,
+                    accessibility: themeGeneralTexts?.accessibility,
+                    onboarding: themeGeneralTexts?.onboarding,
+                    products: themeGeneralTexts?.products,
+                    templates: themeGeneralTexts?.templates,
+                    sectionst: themeGeneralTexts?.sections,
+                    localization: themeGeneralTexts?.localization,
+                    customert: themeGeneralTexts?.customer,
+                    gift_cards: themeGeneralTexts?.gift_cards
+                }) %>
+                <% } %>
+            <% }) %>
+        <% } %>
+
+    <script src="https://cdn.shopify.com/s/javascripts/currencies.js" defer="defer"></script>
+    <script src="/62fe8c9ba58276071f183cb8/slider.js" defer="defer"></script>
+    <script src="https://cdn.rawgit.com/blowsie/Pure-JavaScript-HTML5-Parser/master/htmlparser.js"></script>
+    <!-- <script src="/62fe8c9ba58276071f183cb8/variants.js" defer="defer"></script> -->
+    <% if(settings.enable_global_anim){ %>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            let data = {
+                disable: "<%=settings.anim_mobile%>",
+                delay: "<%=settings.anim_delay%>",
+                duration: "<%=settings.anim_duration%>",
+                easing: "<%=settings.anim_easing%>",
+                once: "<%=settings.anim_once%>",
+                anchorPlacement: "<%=settings.anim_anchor%>",
+            };
+            AOS.init(data);
+        </script>
+        <% } %>
+    </body>
+</html>

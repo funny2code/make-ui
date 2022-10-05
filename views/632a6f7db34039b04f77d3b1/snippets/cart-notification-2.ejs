@@ -40,10 +40,10 @@
         <% if(cart_layout === "one-c"){ %>
         <div class="bc-cart__buttons-wrapper">
           <form action="<%= routes.cart_url %>" method="post" id="cart">
-            <button id="loopcheckout" class="button button--primary button--full-width  py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sections.cart.checkout%></button>
+            <button id="loopcheckout" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sectionst.cart.checkout%></button>
           </form>
           <% if(enable_dynamic_pay){ %>
-          <button id="loopcheckoutdynamic" class="button button--primary button--full-width  py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
+          <button id="loopcheckoutdynamic" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
           <% } %>
         </div>
         <% } %>        
@@ -59,10 +59,10 @@
         <% if(cart_layout === "two-c"){ %>
         <div class="bc-cart__buttons-wrapper" style="margin-top:25px;">
           <form action="<%= routes.cart_url %>" method="post" id="cart">
-            <button id="loopcheckout" class="button button--primary button--full-width  py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sections.cart.checkout%></button>
+            <button id="loopcheckout" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sectionst.cart.checkout%></button>
           </form>
           <% if(enable_dynamic_pay){ %>
-          <button id="loopcheckoutdynamic" class="button button--primary button--full-width  py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
+          <button id="loopcheckoutdynamic" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
           <% } %>
         </div>
         <% } %>
@@ -129,8 +129,8 @@
     <div class="cart-notification-overaly"></div>
   </div>
 </cart-notification>
-<% style){ %>
+<style>
   .cart-notification {
      display: none;
   }
-<% endstyle){ %>
+</style>

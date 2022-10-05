@@ -13,7 +13,14 @@
     <div class="py__comp-select">
         <select name="<%= global !== "section" ? global + "_" + data.id : data.id %>" type="select">
             <% data.options.forEach(option => { %>
-                <option value="<%= option.value %>" <% if(data.default === option.value){ %>selected<% } %>><%= option.label %></option>
+                <option 
+                    value="<%= option.value %>" 
+                    <% if(data?.id?.includes('color')){ %>
+                        data-value="<%= settingData[data?.id?.includes('bg') ? 'py_bg_color_' + option?.label?.toLowerCase()?.replace(' ', '_')?.replace('average', 'avarge') : 'py_color_' + option?.label?.toLowerCase()?.replace(' ', '_')?.replace('average', 'avarge')] %>"
+                    <% } %> 
+                    <% if(value === option.value){ %>selected<% } %>>
+                        <%= option.label %>
+                    </option>
             <% }) %>
         </select>
     </div>

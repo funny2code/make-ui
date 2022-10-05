@@ -89,7 +89,7 @@
   <% } %>
 </style>
 
-<div class="template-search <% unless search.performed && search.results.length > 0){ %> template-search--empty<% endunless){ %>">
+<div class="template-search <% if(!search.performed && search.results.length > 0){ %> template-search--empty<% } %>">
   <div class="page-width center">
     <% if(search.performed){ %>
       <h1 class="h2"><%=templates.search.title%></h1>
@@ -137,7 +137,7 @@
           <% for item in search.results){ %>
             <% if(item.object_type){ %>
               <% } else if(block.type === 'product'){ %>                
-                <li aria-tags="<%=item.tags%>" class="search-result-items py-card-<%=section.settings.card_style%> grid__item py-<%=section.settings.card_color%> <% unless item.object_type === 'product'){ %> grid__item--small<% endunless){ %>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
+                <li aria-tags="<%=item.tags%>" class="search-result-items py-card-<%=section.settings.card_style%> grid__item py-<%=section.settings.card_color%> <% if(!item.object_type === 'product'){ %> grid__item--small<% } %>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
                     <% capture product_settings){ %><% if(section.settings.product_show_vendor){ %>vendor,<% } %>title,price<% endcapture){ %>
                     <%- include('../snippets/product-card',
                         product_card_product: item,
@@ -156,7 +156,7 @@
                     
                     <% } else if(block.type === 'article'){ %>
                       <a href="<%= item.url %>" class="card-wrapper">
-                        <div class="card card--search card--soft<% unless item.image){ %> card--text-only<% endunless){ %>">
+                        <div class="card card--search card--soft<% if(!item.image){ %> card--text-only<% } %>">
                           <div class="card__inner">
                             <% if(item.image){ %>
                               <div class="media media--cropped">
@@ -238,7 +238,7 @@
 </style>
 <% schema){ %>
 {
-  "name": "t:sections.main-search.name",
+  "name": "t:sectionst.main-search.name",
   "tag": "section",
   "settings": [
     {
@@ -268,19 +268,19 @@
       "options": [
         {
           "value": "adapt",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__1.label"
         },
         {
           "value": "portrait",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__2.label"
         },
         {
           "value": "square",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__3.label"
         }
       ],
       "default": "square",
-      "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
+      "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.label"
     },
     {
       "type": "checkbox",
@@ -342,7 +342,7 @@
       "type": "checkbox",
       "id": "show_vendor",
       "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
+      "label": "t:sectionst.main-collection-product-grid.settings.show_vendor.label"
     },
     {
       "type": "checkbox",
@@ -388,14 +388,26 @@
       "type": "select",
       "id": "card_color",
       "label": "Card Info Color",
-      "options": [     
+      "options": [
+        {
+          "label": "None",
+          "value": "none"
+        },
         {
           "label": "Dark",
           "value": "c-dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "c-middle-dark"
+        },
+        {
           "label": "Average",
           "value": "c-average"
+        },
+        {
+          "label": "Light",
+          "value": "c-middle-light"
         },
         {
           "label": "Light",
@@ -431,15 +443,23 @@
     {
       "type": "select",
       "id": "card_color_view_btn",
-      "label": "View Button Color style",
+      "label": "View Button Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -450,16 +470,24 @@
     },
     {
       "type": "select",
-      "id": "card_color_view_btn_hover",
-      "label": "View Button Hover Color style",
+      "id": "card_bg_color_view_btn",
+      "label": "View Button Background Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -467,6 +495,62 @@
         }
       ],
       "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_color_view_btn_hover",
+      "label": "View Button Hover Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color_view_btn_hover",
+      "label": "View Button Hover Background Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
     },
     {
       "type": "header",
@@ -582,19 +666,19 @@
     },
     {
       "type": "header",
-      "content": "t:sections.main-search.settings.header__2.content"
+      "content": "t:sectionst.main-search.settings.header__2.content"
     },
     {
       "type": "checkbox",
       "id": "article_show_date",
       "default": true,
-      "label": "t:sections.main-search.settings.article_show_date.label"
+      "label": "t:sectionst.main-search.settings.article_show_date.label"
     },
     {
       "type": "checkbox",
       "id": "article_show_author",
       "default": false,
-      "label": "t:sections.main-search.settings.article_show_author.label"
+      "label": "t:sectionst.main-search.settings.article_show_author.label"
     }
   ]
 }

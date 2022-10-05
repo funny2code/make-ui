@@ -1,9 +1,9 @@
 <%=component-newsletter-style-1.css' <%=srcId%> | stylesheet_tag %>
 <%=newsletter-section.css' <%=srcId%> | stylesheet_tag %>
 
-<div class="newsletter center<% if(section.settings.full_width === false){ %> newsletter--narrow page-width<% endif%> bc-<%=settings.section_style%>-bt">
+<div class="newsletter center<% if(section.settings.full_width === false){ %> newsletter--narrow page-width<% }%> bc-<%=settings.section_style%>-bt">
   <div class="newsletter__wrapper color-<%= section.settings.color_scheme %>">
-    <% section.blocks?.forEach((block,index)=>{ %>
+    <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
       <% if(block.type){ %>
         <% } else if(block.type === 'heading'){ %>
           <h2 class="h1"><%= block?.settings?.heading %></h2>
@@ -39,7 +39,7 @@
                 </label>
               </div>
               <% if(form.errors){ %>
-                <small class="newsletter-form__message form__message" id="Newsletter-error--<%= section.id %>"><%- include('../snippets/icon-error'){ %><%= form.errors.translated_fields['email'] | capitalize %> <%= form.errors.messages['email'] %></small>
+                <small class="newsletter-form__message form__message" id="Newsletter-error--<%= section.id %>"><%- include('../snippets/icon-error'){ %><%= form.errors.translated_fields['email'] %> <%= form.errors.messages['email'] %></small>
               <% } %>
             </div>
             <button type="submit" class="newsletter__button button" name="commit">
@@ -56,7 +56,7 @@
 
 <% schema){ %>
 {
-  "name": "t:sections.newsletter.name",
+  "name": "t:sectionst.newsletter.name",
   "tag": "section",
   "settings": [
     {
@@ -65,75 +65,75 @@
       "options": [
         {
           "value": "accent-1",
-          "label": "t:sections.newsletter.settings.color_scheme.options__1.label"
+          "label": "t:sectionst.newsletter.settings.color_scheme.options__1.label"
         },
         {
           "value": "accent-2",
-          "label": "t:sections.newsletter.settings.color_scheme.options__2.label"
+          "label": "t:sectionst.newsletter.settings.color_scheme.options__2.label"
         },
         {
           "value": "background-1",
-          "label": "t:sections.newsletter.settings.color_scheme.options__3.label"
+          "label": "t:sectionst.newsletter.settings.color_scheme.options__3.label"
         },
         {
           "value": "background-2",
-          "label": "t:sections.newsletter.settings.color_scheme.options__4.label"
+          "label": "t:sectionst.newsletter.settings.color_scheme.options__4.label"
         },
         {
           "value": "inverse",
-          "label": "t:sections.newsletter.settings.color_scheme.options__5.label"
+          "label": "t:sectionst.newsletter.settings.color_scheme.options__5.label"
         }
       ],
       "default": "background-1",
-      "label": "t:sections.newsletter.settings.color_scheme.label"
+      "label": "t:sectionst.newsletter.settings.color_scheme.label"
     },
     {
       "type": "checkbox",
       "id": "full_width",
       "default": true,
-      "label": "t:sections.newsletter.settings.full_width.label"
+      "label": "t:sectionst.newsletter.settings.full_width.label"
     },
     {
       "type": "paragraph",
-      "content": "t:sections.newsletter.settings.paragraph.content"
+      "content": "t:sectionst.newsletter.settings.paragraph.content"
     }
   ],
   "blocks": [
     {
       "type": "heading",
-      "name": "t:sections.newsletter.blocks.heading.name",
+      "name": "t:sectionst.newsletter.blocks.heading.name",
       "limit": 1,
       "settings": [
         {
           "type": "text",
           "id": "heading",
           "default": "Subscribe to our emails",
-          "label": "t:sections.newsletter.blocks.heading.settings.heading.label"
+          "label": "t:sectionst.newsletter.blocks.heading.settings.heading.label"
         }
       ]
     },
     {
       "type": "paragraph",
-      "name": "t:sections.newsletter.blocks.paragraph.name",
+      "name": "t:sectionst.newsletter.blocks.paragraph.name",
       "limit": 1,
       "settings": [
         {
           "type": "richtext",
           "id": "paragraph",
           "default": "<p>Be the first to know about new collections && exclusive offers.</p>",
-          "label": "t:sections.newsletter.blocks.paragraph.settings.paragraph.label"
+          "label": "t:sectionst.newsletter.blocks.paragraph.settings.paragraph.label"
         }
       ]
     },
     {
       "type": "email_form",
-      "name": "t:sections.newsletter.blocks.email_form.name",
+      "name": "t:sectionst.newsletter.blocks.email_form.name",
       "limit": 1
     }
   ],
   "presets": [
     {
-      "name": "t:sections.newsletter.presets.name",
+      "name": "t:sectionst.newsletter.presets.name",
       "blocks": [
         {
           "type": "heading"

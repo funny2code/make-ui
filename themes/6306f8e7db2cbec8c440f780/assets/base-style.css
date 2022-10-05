@@ -737,6 +737,78 @@ input:not([type="checkbox"]):not([type="radio"]):focus {
   }
 }
 
+@media screen and (min-width: 750px) and (max-width: 799px) {
+  .grid--one-third-max.grid--3-col-tablet .slider__slide {
+    max-width: 31.33%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .grid--quarter-max.grid--4-col-desktop .slider__slide {
+    max-width: 23.5%;
+  }
+}
+
+.grid--1-col .slider__slide {
+  max-width: 96%;
+  width: 96%;
+}
+
+.grid--3-col .slider__slide {
+  width: calc(31.33% - 0.5rem * 2 / 3);
+}
+
+@media screen and (min-width: 750px) {
+  .grid--3-col .slider__slide {
+    width: calc(31.33% - 1rem * 2 / 3);
+    max-width:31.33%;
+  }
+}
+
+.grid--2-col .slider__slide {
+  width: calc(47% - 0.5rem / 2);
+}
+
+@media screen and (min-width: 750px) {
+  .grid--2-col .slider__slide {
+    width: calc(47% - 1rem / 2);
+  }
+
+  .grid--4-col-tablet .slider__slide {
+    width: calc(23.5% - 1rem * 3 / 4);
+    max-width:23.5%;
+  }
+
+  .grid--3-col-tablet .slider__slide {
+    width: calc(31.33% - 1rem * 2 / 3);
+    max-width:31.33%;
+  }
+
+  .grid--2-col-tablet .slider__slide {
+    width: calc(47% - 1rem / 2);
+    max-width:47%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .grid--5-col-desktop .slider__slide {
+    width: calc(19% - 1rem * 3 / 4);
+    max-width:19%;
+  }
+  .grid--4-col-desktop .slider__slide {
+    width: calc(23.5% - 1rem * 3 / 4);
+    max-width:23.5%;
+  }
+
+  .grid--3-col-desktop .slider__slide {
+    width: calc(31.33% - 1rem * 2 / 3);
+    max-width:31.33%;
+  }
+
+  .grid--2-col-desktop .slider__slide {
+    width: calc(47% - 1rem / 2);
+  }
+}
 .grid__item--vertical-align {
   align-self: center;
 }
@@ -925,9 +997,9 @@ button:not(.button):not(.has-bg){
 
 .button.loading:after,
 .loading:after {
-  animation: loading var(--duration-long) infinite linear;
-  border: 0.5rem solid rgba(var(--color-button-text-rgb), 0.4);
-  border-left: 0.5rem solid var(--color-button-text);
+  animation: loading 0.5s infinite linear;
+  border: 0.5rem solid rgba(0,0,0,.4);
+  border-left: 0.5rem solid var(--py-bg-color-dark);
   border-radius: 100%;
   box-sizing: content-box;
   content: '';
@@ -938,9 +1010,9 @@ button:not(.button):not(.has-bg){
 }
 
 .loading:not(button)::after {
-  animation: loading var(--duration-long) infinite linear;
-  border: .5rem solid rgba(var(--color-button-text-rgb),.4);
-  border-left: .5rem solid var(--color-button-text);
+  animation: loading 0.5s infinite linear;
+  border: 0.5rem solid rgba(0,0,0,.4);
+  border-left: 0.5rem solid var(--py-bg-color-dark);
   border-radius: 100%;
   box-sizing: content-box;
   content: '';
@@ -1784,32 +1856,7 @@ details[open] > .header__icon--menu .icon-hamburger {
   font-size: .75rem;
   color: #000;
 }
-.bc-selling-tag .bc-vertical-tag-inner{
-  display: inline-block;
-  padding: 10px;
-  font-size: 10px;
-  text-transform: uppercase;
-  font-family: Montserrat,sans-serif;
-  font-weight: 700;
-}
-.bc-selling-tag.bc-vertical-tag {
-  -webkit-transform: rotate(270deg);
-  -moz-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
-  transform: rotate(270deg);
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform-origin: center center;
-  position: absolute;
-  top: 115px;
-    left: -100px;    
-  min-width: 250px;
-    text-align: center;
-    display: flex;
-    justify-content: flex-end;
-}
+
 
 .bc-slide-placeholde {
   min-height: 50vh;
@@ -2292,6 +2339,31 @@ details[open] > .header__icon--menu .icon-hamburger {
 .py-bg-c-light {
   background-color: var(--py-bg-color-light);
 }
+
+.py-hv-bg-c-none:hover,
+.py-hv-bg-c-none[class*=active] {
+  background-color: transparent;
+}
+.py-hv-bg-c-dark:hover,
+.py-hv-bg-c-dark[class*=active] {
+  background-color: var(--py-bg-color-dark);
+}
+.py-hv-bg-c-middle-dark:hover,
+.py-hv-bg-c-middle-dark[class*=active] {
+  background-color: var(--py-bg-color-middle-dark);
+}
+.py-hv-bg-c-average:hover,
+.py-hv-bg-c-average[class*=active] {
+  background-color: var(--py-bg-color-avarge);
+}
+.py-hv-bg-c-middle-light:hover,
+.py-hv-bg-c-middle-light[class*=active] {
+  background-color: var(--py-bg-color-middle-light);
+}
+.py-hv-bg-c-light:hover,
+.py-hv-bg-c-light[class*=active] {
+  background-color: var(--py-bg-color-light);
+}
 /* ===== COLORS ===== */
 .py-c-none {
   color: transparent;
@@ -2299,8 +2371,14 @@ details[open] > .header__icon--menu .icon-hamburger {
 .py-c-dark {
   color: var(--py-color-dark);
 }
+.py-c-middle-dark {
+  color: var(--py-color-middle-dark);
+}
 .py-c-average {
   color: var(--py-color-avarge);
+}
+.py-c-middle-light {
+  color: var(--py-color-middle-light);
 }
 .py-c-light {
   color: var(--py-color-light);
@@ -2311,8 +2389,14 @@ details[open] > .header__icon--menu .icon-hamburger {
 .py-c-dark svg{  
   fill: var(--py-color-dark);
 }
+.py-c-middle-dark svg{  
+  fill: var(--py-color-middle-dark);
+}
 .py-c-average svg{  
   fill: var(--py-color-avarge);
+}
+.py-c-middle-light svg{  
+  fill: var(--py-color-middle-light);
 }
 .py-c-light svg{  
   fill: var(--py-color-light);
@@ -2326,14 +2410,23 @@ details[open] > .header__icon--menu .icon-hamburger {
 .py-hv-c-dark[class*=active]{
     color: var(--py-color-dark);
 }
+.py-hv-c-middle-dark:hover,
+.py-hv-c-middle-dark[class*=active]{
+    color: var(--py-color-middle-dark);
+}
 .py-hv-c-average:hover,
 .py-hv-c-average[class*=active]{
     color: var(--py-color-avarge);
+}
+.py-hv-c-middle-light:hover,
+.py-hv-c-middle-light[class*=active]{
+    color: var(--py-color-middle-light);
 }
 .py-hv-c-light:hover,
 .py-hv-c-light[class*=active]{
     color: var(--py-color-light);
 }
+
 .py-hv-c-none:hover svg,
 .py-hv-c-none[class*=active] svg{  
     fill:transparent;
@@ -2342,9 +2435,17 @@ details[open] > .header__icon--menu .icon-hamburger {
 .py-hv-c-dark[class*=active] svg{  
     fill: var(--py-color-dark);
 }
+.py-hv-c-middle-dark:hover svg,
+.py-hv-c-middle-dark[class*=active] svg{  
+    fill: var(--py-color-middle-dark);
+}
 .py-hv-c-average:hover svg,
 .py-hv-c-average[class*=active] svg{  
     fill: var(--py-color-avarge);
+}
+.py-hv-c-middle-light:hover svg,
+.py-hv-c-middle-light[class*=active] svg{  
+    fill: var(--py-color-middle-light);
 }
 .py-hv-c-light:hover svg,
 .py-hv-c-light[class*=active] svg{  
@@ -2357,8 +2458,14 @@ details[open] > .header__icon--menu .icon-hamburger {
 .py-br-c-dark {
   color: var(--py-color-dark);
 }
+.py-br-c-middle-dark {
+  color: var(--py-color-middle-dark);
+}
 .py-br-c-average {
   color: var(--py-color-avarge);
+}
+.py-br-c-middle-light {
+  border-color: var(--py-color-middle-light);
 }
 .py-br-c-light {
   border-color: var(--py-color-light);
@@ -2394,36 +2501,9 @@ details[open] > .header__icon--menu .icon-hamburger {
   font-size: var(--py-lg-btn-font-size);
   font-weight: var(--py-lg-btn-font-weight);
 }
-/* ===== BUTTON COLORS ===== */
-.py-btn-dark {
-  background-color: var(--py-btn-bg-color-dark);
-  color: var(--py-btn-color-dark);
-  border-color: var(--py-btn-color-dark);
-}
-.py-btn-average {
-  background-color: var(--py-btn-bg-color-average);
-  color: var(--py-btn-color-average);
-  border-color: var(--py-btn-color-average);
-}
-.py-btn-light {
-  background-color: var(--py-btn-bg-color-light);
-  color: var(--py-btn-color-light);
-  border-color: var(--py-btn-color-light);
-}
-.py-btn-hover-dark:hover{
-  background-color: var(--py-btn-bg-color-dark);
-  color: var(--py-btn-color-dark);
-  border-color: var(--py-btn-color-dark);
-}
-.py-btn-hover-average:hover{
-  background-color: var(--py-btn-bg-color-average);
-  color: var(--py-btn-color-average);
-  border-color: var(--py-btn-color-average);
-}
-.py-btn-hover-light:hover{
-  background-color: var(--py-btn-bg-color-light);
-  color: var(--py-btn-color-light);
-  border-color: var(--py-btn-color-light);
+
+.py-btn-no-br{
+  border-width:0px;
 }
 /* ===== BORDER ===== */
 .py-br {
@@ -2442,7 +2522,14 @@ details[open] > .header__icon--menu .icon-hamburger {
   border-left-style: var(--py-br-s, solid);
   border-right-style: var(--py-br-s, solid);  
 }
-  
+.text_link{
+  text-decoration: underline;
+  border: none;
+  text-decoration-thickness: 2px;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: transparent;
+}  
 /* ===== Text Align ===== */
 .py-center{
   text-align:center;

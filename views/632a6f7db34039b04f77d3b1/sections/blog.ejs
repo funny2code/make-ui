@@ -59,19 +59,19 @@
 
 <% schema){ %>
 {
-  "name": "t:sections.main-blog.name",
+  "name": "t:sectionst.main-blog.name",
   "tag": "section",
   "settings": [
     {
       "type": "header",
-      "content": "t:sections.main-blog.settings.header.content"
+      "content": "t:sectionst.main-blog.settings.header.content"
     },
     {
       "type": "checkbox",
       "id": "show_image",
       "default": true,
-      "label": "t:sections.main-blog.settings.show_image.label",
-      "info": "t:sections.main-blog.settings.show_image.info"
+      "label": "t:sectionst.main-blog.settings.show_image.label",
+      "info": "t:sectionst.main-blog.settings.show_image.info"
     },
     {
       "type": "select",
@@ -109,19 +109,31 @@
         "type": "select",
         "id": "py_section_color",
         "label": "General Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -303,19 +315,19 @@
       "options": [
         {
           "value": "adapt",
-          "label": "t:sections.featured-collection.settings.image_ratio.options__1.label"
+          "label": "t:sectionst.featured-collection.settings.image_ratio.options__1.label"
         },
         {
           "value": "portrait",
-          "label": "t:sections.featured-collection.settings.image_ratio.options__2.label"
+          "label": "t:sectionst.featured-collection.settings.image_ratio.options__2.label"
         },
         {
           "value": "square",
-          "label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
+          "label": "t:sectionst.featured-collection.settings.image_ratio.options__3.label"
         }
       ],
       "default": "adapt",
-      "label": "t:sections.featured-collection.settings.image_ratio.label"
+      "label": "t:sectionst.featured-collection.settings.image_ratio.label"
     },
     {
       "type": "range",
@@ -387,38 +399,46 @@
   "blocks": [
     {
       "type": "title",
-      "name": "t:sections.main-blog.blocks.title.name",
+      "name": "t:sectionst.main-blog.blocks.title.name",
       "limit": 1,
       "settings": [
         {
           "type": "checkbox",
           "id": "show_date",
           "default": true,
-          "label": "t:sections.main-blog.blocks.title.settings.show_date.label"
+          "label": "t:sectionst.main-blog.blocks.title.settings.show_date.label"
         },
         {
           "type": "checkbox",
           "id": "show_author",
           "default": false,
-          "label": "t:sections.main-blog.blocks.title.settings.show_author.label"
+          "label": "t:sectionst.main-blog.blocks.title.settings.show_author.label"
         },
         {
             "type": "select",
             "id": "card_color_title",
             "label": "Title Color",
             "options": [ 
-                {
+              {
                 "label": "Dark",
                 "value": "var(--py-color-dark)"
-                },
-                {
+              },
+              {
+                "label": "Middle Dark",
+                "value": "var(--py-color-middle-dark)"
+              },
+              {
                 "label": "Average",
                 "value": "var(--py-color-avarge)"
-                },
-                {
+              },
+              {
+                "label": "Middle Light",
+                "value": "var(--py-color-middle-light)"
+              },
+              {
                 "label": "Light",
                 "value": "var(--py-color-light)"
-                }
+              }
             ],
             "default": "var(--py-color-dark)"
         },
@@ -453,7 +473,7 @@
     },
     {
       "type": "link",
-      "name": "t:sections.main-blog.blocks.link.name",
+      "name": "t:sectionst.main-blog.blocks.link.name",
       "limit": 1,
       "settings": [
         {
@@ -479,15 +499,23 @@
         {
           "type": "select",
           "id": "card_color_view_btn",
-          "label": "View Button Color style",
+          "label": "View Button Color",
           "options": [
             {
               "label": "Dark",
               "value": "dark"
             },
             {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
               "label": "Average",
               "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
             },
             {
               "label": "Light",
@@ -498,16 +526,24 @@
         },
         {
           "type": "select",
-          "id": "card_color_view_btn_hover",
-          "label": "View Button Hover Color style",
+          "id": "card_bg_color_view_btn",
+          "label": "View Button Background Color",
           "options": [
             {
               "label": "Dark",
               "value": "dark"
             },
             {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
               "label": "Average",
               "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
             },
             {
               "label": "Light",
@@ -515,6 +551,62 @@
             }
           ],
           "default": "dark"
+        },
+        {
+          "type": "select",
+          "id": "card_color_view_btn_hover",
+          "label": "View Button Hover Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "dark"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
+              "label": "Average",
+              "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
+            },
+            {
+              "label": "Light",
+              "value": "light"
+            }
+          ],
+          "default": "dark"
+        },
+        {
+          "type": "select",
+          "id": "card_bg_color_view_btn_hover",
+          "label": "View Button Hover Background Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "dark"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
+              "label": "Average",
+              "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
+            },
+            {
+              "label": "Light",
+              "value": "light"
+            }
+          ],
+          "default": "light"
         }
       ]
     }

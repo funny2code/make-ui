@@ -1,7 +1,5 @@
-<link rel="stylesheet" href="/<%=srcId%>/component-cart-notification-style-1.css">
-
 <% if(settings.prod_insurance){ %>
-  <% var insuranceID = settings?.prod_insurance?.variants[0]?.id %>
+  <% var insuranceID = collection?.products?.filter((item,index)=> item.handle === settings.prod_insurance); %>
 <% } %>
 
 <% if(settings.f_s_show && settings.f_s_price){ %>
@@ -12,12 +10,12 @@
 
 <cart-notification>
   <div class="cart-notification-wrapper <% if(freeShipping){ %>cart-notification-wrapper__shipping<% } %>">
-    <div id="cart-notification" class="cart-notification py-<%= settings.py_cart_bg_color %> <%= active ? active : '' %>" aria-modal="true" aria-label="item added" role="dialog" tabindex="-1">
+    <div id="cart-notification" class="cart-notification py-<%= settings.py_cart_bg_color %> <%=activeClass%>" aria-modal="true" aria-label="<%=general.cart?.item_added%>" role="dialog" tabindex="-1">
       <div class="cart-notification__header">
         <% if(settings.cart_heading){ %>
           <h2 class="cart-notification__heading caption-large"><%= settings.cart_heading %></h2>
         <% } %>
-        <button type="button" class="modal__close-button" aria-label="close">
+        <button type="button" class="modal__close-button" aria-label="<%=accessibility.close%>">
           <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
             <use href="#icon-close">
           </svg>
@@ -31,7 +29,7 @@
             <% } %>
             <% if(settings.f_s_succsess){ %>
               <div class="bc-free-shipping-wrapper__success-text">
-                <%- settings.f_s_succsess -%>
+                <%= settings.f_s_succsess %>
               </div>
             <% } %>
             <div class="bc-free-shipping-bar">
@@ -39,13 +37,13 @@
             </div>
           </div>
         <% } %>
-        <% if(checkoutbtn_position == "top"){ %>
+        <% if(checkoutbtn_position === "top"){ %>
         <div class="bc-cart__buttons-wrapper">
-          <form action="/cart" method="post" id="cart">
-            <button id="loopcheckout" class="button button--primary button--full-width py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart">Checkout</button>
+          <form action="<%= routes.cart_url %>" method="post" id="cart">
+            <button id="loopcheckout" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sectionst.cart?.checkout%></button>
           </form>
           <% if(enable_dynamic_pay){ %>
-          <button id="loopcheckoutdynamic" class="button button--primary button--full-width py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
+          <button id="loopcheckoutdynamic" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
           <% } %>
         </div>
         <% } %>        
@@ -53,45 +51,54 @@
       <div class="cart-notification-product-label">
         Your Items
       </div>
-      <% if(cart?.items.length){ %>
-        <div id="cart-notification-product" class="cart-notification-product">
-          <% cart?.items.forEach((item, index) => { %>
-            <div class="bc-cart__item" data-id="<%= item.id %>">
-              <div class="bc-cart__image-wrapper">
-                <a href="<%= item.url %>">
-                  <img class="bc-cart__image-img" src="<%= item.featured_image.url %>" alt="<%= item.featured_image.alt %>" width="55" height="70">
-                </a>
-              </div>
-              <div class="bc-cart__info-wrapper">
-                <a href="<%= item.url %>">
-                  <h3 class="bc-cart__title"><%= item.title %></h3>
-                </a>
-                <div class="bc-cart__price-and-properties">
-                  <div class="bc-cart__price-wrapper">
-                    <span class="bc-cart__price"><%= item.price %></span>
+      <div id="cart-notification-product" class="cart-notification-product">
+        <% cart.items?.forEach((item,index)=>{ %>
+        <div class="bc-cart__item" data-id="<%=item?.id%>">
+          <div class="bc-cart__image-wrapper">
+            <a href="<%=item?.url%>">
+              <img class="bc-cart__image-img width-7" src="<%= item?.image %>"
+              alt="<%= item?.image?.alt %>"
+              loading="lazy"
+              width="75"
+              height="<%= Math.ceil(75 / item?.image?.aspect_ratio) %>">
+            </a>
+          </div>
+          <div class="bc-cart__info-wrapper">
+            <a href="<%=item?.url%>">
+              <h3 class="bc-cart__title"><%=item?.title%></h3>
+              <% Object.entries(item?.properties)?.forEach((property,index)=>{ %>
+                <% var property_first_char = property.first?.slice(0) %>
+                <% if(property.last && property_first_char !== '_'){ %>
+                  <div class="product-option">
+                    <h6 class="bc-cart__variant-title"><%= property?.last %></h6>
                   </div>
-                  <div class="bc-cart__properties-wrapper"></div>
-                </div>
-                <div class="bc-cart__qty-wrapper">
-                  <span class="bc-cart__qty-minus" data-key="<%= item.key %>e" data-qty="1" data-child="undefined">-</span>
-                  <span><%= item.quantity %></span>
-                  <span class="bc-cart__qty-plus" data-key="<%= item.key %>" data-qty="1" data-child="undefined">+</span>
-                </div>
-                <span class="bc-cart__remove" data-key="<%= item.key %>" role="button">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" focusable="false" role="presentation" class="icon icon-remove">
-                    <path d="M14 3h-3.53a3.07 3.07 0 00-.6-1.65C9.44.82 8.8.5 8 .5s-1.44.32-1.87.85A3.06 3.06 0 005.53 3H2a.5.5 0 000 1h1.25v10c0 .28.22.5.5.5h8.5a.5.5 0 00.5-.5V4H14a.5.5 0 000-1zM6.91 1.98c.23-.29.58-.48 1.09-.48s.85.19 1.09.48c.2.24.3.6.36 1.02h-2.9c.05-.42.17-.78.36-1.02zm4.84 11.52h-7.5V4h7.5v9.5z" fill="currentColor"></path>
-                    <path d="M6.55 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5zM9.45 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5z" fill="currentColor"></path>
-                  </svg>
-                </span>
+                <% } %>
+              <% }) %>
+            </a>
+            <div class="bc-cart__price-and-properties">
+              <div class="bc-cart__price-wrapper">
+                <span class="bc-cart__price"><%= item?.original_price %></span>
               </div>
             </div>
-          <% }) %>  
+            <div class="bc-cart__qty-wrapper">
+              <span class="bc-cart__qty-minus" data-key="41362477580449:83dae662640c075cf9eaffc29f681118" data-qty="1" data-child="undefined">-</span>
+              <span><%= item?.quantity %></span>
+              <span class="bc-cart__qty-plus" data-key="41362477580449:83dae662640c075cf9eaffc29f681118" data-qty="1" data-child="undefined">+</span>
+            </div>
+            <span class="bc-cart__remove" data-key="41362477580449:83dae662640c075cf9eaffc29f681118" role="button">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" focusable="false" role="presentation" class="icon icon-remove">
+                <path d="M14 3h-3.53a3.07 3.07 0 00-.6-1.65C9.44.82 8.8.5 8 .5s-1.44.32-1.87.85A3.06 3.06 0 005.53 3H2a.5.5 0 000 1h1.25v10c0 .28.22.5.5.5h8.5a.5.5 0 00.5-.5V4H14a.5.5 0 000-1zM6.91 1.98c.23-.29.58-.48 1.09-.48s.85.19 1.09.48c.2.24.3.6.36 1.02h-2.9c.05-.42.17-.78.36-1.02zm4.84 11.52h-7.5V4h7.5v9.5z" fill="currentColor"></path>
+                <path d="M6.55 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5zM9.45 5.25a.5.5 0 00-.5.5v6a.5.5 0 001 0v-6a.5.5 0 00-.5-.5z" fill="currentColor"></path>
+              </svg>
+            </span>
+          </div>
         </div>
-      <% } %>
+        <% }) %>
+      </div>
       <div class="cart-notification__links">
         <% if(settings.show_packaging && settings.packaging && settings.packaging_note){ %>
           <label for="less-packaging" class="bc-checkbox">
-            <input type="checkbox" data-type="packaging" id="less-packaging" value="<%= settings.packaging_note %>" <% if(cart?.attributes.lessPackaging == 'true'){ %>checked<% } %>>
+            <input type="checkbox" data-type="packaging" id="less-packaging" value="<%= settings.packaging_note %>" <% if(cart?.attributes.lessPackaging === 'true'){ %>checked<% } %>>
             <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
               <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
             </svg>
@@ -122,8 +129,8 @@
         <div class="bc-cart__shipping-wrapper" id="cart-shipping"> 
           <div class="bc-cart__shipping-label">Estimated Shipping</div>
           <div class="bc-cart__shipping-value">
-            <% if(shipping_method?.price){ %>
-            <%= shipping_method?.price %>
+            <% if(shipping_method.price){ %>
+            <%= shipping_method.price %>
             <% } else { %>
              Free
             <% } %>
@@ -132,9 +139,9 @@
         <div class="bc-cart__total-wrapper">
           <div class="bc-cart__total-label">Estimated Total</div>
           <div class="bc-cart__total-value" id="cart-total">
-            <% if(cart?.cart_level_discount_application?.length){ %>
+            <% if(cart?.cart_level_discount_application?.length > 0){ %>
               <ul>
-                <% cart?.cart_level_discount_applications?.forEach((discount_application,index) => { %>
+                <% cart?.cart_level_discount_applications?.forEach((discount_application,index)=>{ %>
                   <li>
                     <%= discount_application.title %> (-<%= discount_application.total_allocated_amount %>)
                   </li>
@@ -144,17 +151,17 @@
             <span><%= cart?.total_price %></span>
           </div>
         </div>
-        <% if(checkoutbtn_position == "bottom"){ %>
+        <% if(checkoutbtn_position === "bottom"){ %>
         <div class="bc-cart__buttons-wrapper" style="margin-top:25px;">
-          <form action="/cart" method="post" id="cart">
-            <button id="loopcheckout" class="button button--primary button--full-width py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart">Checkout</button>
+          <form action="<%= routes.cart_url %>" method="post" id="cart">
+            <button id="loopcheckout" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sectionst.cart?.checkout%></button>
           </form>
           <% if(enable_dynamic_pay){ %>
-          <button id="loopcheckoutdynamic" class="button button--primary button--full-width py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
+          <button id="loopcheckoutdynamic" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
           <% } %>
         </div>
         <% } %>
-        <button type="button" class="link button-label">continue shopping</button>        
+        <button type="button" class="link button-label"><%=general.continue_shopping%></button>        
       </div>
     </div>
     <div class="cart-notification-overaly"></div>
@@ -165,5 +172,3 @@
      display: none;
   }
 </style>
-
-<script src="/<%=srcId%>/cart-notification-style-1.js" defer="defer"></script>

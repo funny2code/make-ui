@@ -6,7 +6,7 @@
 <link rel="preload" href="/<%=srcId%>/component-badge.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="/<%=srcId%>/component-rte.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="/<%=srcId%>/component-variants.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="stylesheet" href="/<%=srcId%>/component-slider.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/<%=srcId%>/component-slider.css" >
 
 <style>
 body.collection #shopify-section-header,body.collection  #shopify-section-header-2 {
@@ -14,24 +14,27 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
 }
 </style>
 
-<% let sort_by = collection.sort_by || collection.default_sort_by %>
+<% var sort_by = collection.sort_by || collection.default_sort_by %>
 
 
 
-<div class="bc-collection-page-main filter-<%=section.settings.filter_style%> py-<%=section.settings.bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%> py-<%=section.settings.page_y_mg%>">
+<div class="bc-collection-page-main filter-<%=section.settings.filter_style%> py-<%=section.settings.py_section_bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%> py-<%=section.settings.page_y_mg%>">
   
   <% if(section.settings.filter_style === 'style-1'){ %>
-    <%- include('../snippets/collection-filters-style-1', {current_tags: false}) %>
+    <%- include('../snippets/collection-filters-style-1') %>
   <% } else if(section.settings.filter_style === 'style-2'){ %>
-    <%- include('../snippets/collection-filters-style-2', {heading: section.settings.filter_heading, btnLabel: section.settings.filter_btn_label}) %>
+    <%- include('../snippets/collection-filters-style-2', {
+      heading: section.settings.filter_heading, 
+      btnLabel: section.settings.filter_btn_label
+    }) %>
   <% } else if(section.settings.filter_style === 'style-3'){ %>
     <%- include('../snippets/collection-filters-style-3') %>
   <% } %> 
 
   <div id="CollectionProductGrid" class="bc-collection-page-products py-<%=section.settings.page_width%>">
-    <%# paginate collection.products by section.settings.products_per_page %>
+    <%# paginate collection.products by section.settings.products_per_page){ %>
       <% if(collection.products.length === 0){ %>
-        <div class="collection collection--empty" id="main-collection-product-grid" data-id="cpg-1">
+        <div class="collection collection--empty" id="main-collection-product-grid" data-id="<%= sectionid %>">
           <div class="loading-overlay">
             <div class="loading-overlay__spinner">
               <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
@@ -41,13 +44,13 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
           </div>
 
           <p class="collection-product-count light">
-            <%= 'Product count ' + collection.products_count + ', ' + collection.all_products_count %>
+            <%=sectionst.collection_template.product_count %>
           </p>
 
           <div class="title-wrapper center">
             <h2 class="title title--primary">
-              Empty<br>
-              <a href="<%=collection.url%>" class="underlined-link link">
+              <%=sectionst.collection_template.empty%><br>
+              <%=sectionst.collection_template.use_fewer_filters_html %>
             </h2>
           </div>
         </div>
@@ -62,10 +65,10 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
           </div>
 
           <p class="collection-product-count light">
-            <%= 'Product Count ' + collection.products_count + ', ' + collection.all_products_count %>
+            <%=sectionst.collection_template.product_count %>
           </p>
 
-          <ul id="main-collection-product-grid" data-id="cpg-1" class="grid grid--1-col grid--3-col-tablet grid--4-col-desktop product-list-cpg-1" style="margin-left:-<%=section.settings.item_space%>px;padding-top:<%=section.settings.item_space%>px">
+          <ul id="main-collection-product-grid" data-id="<%= sectionid %>" class="grid grid--1-col grid--3-col-tablet grid--4-col-desktop product-list-<%=sectionid%>" style="margin-left:-<%=section.settings.item_space%>px;padding-top:<%=section.settings.item_space%>px">
             <style>
               .py-c-dark .card-wrapper *:not(.card-quick-add):not(.card-view-product){
                 color: var(--py-color-dark);
@@ -80,15 +83,15 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
                 padding-bottom:15px;
                 height:100%;
               } 
-              .product-list-cpg-1 .py-center .price,
-              .product-list-cpg-1 .py-center .card-color-wrapper,
-              .product-list-cpg-1 .py-center ul.variant-options,
-              .product-list-cpg-1 .py-center .card-button-wrapper{
+              .product-list-<%=sectionid%> .py-center .price,
+              .product-list-<%=sectionid%> .py-center .card-color-wrapper,
+              .product-list-<%=sectionid%> .py-center ul.variant-options,
+              .product-list-<%=sectionid%> .py-center .card-button-wrapper{
                 justify-content: center;
-              }
+              }              
               <% if(section.settings.custom_font_style){ %>
 
-                .product-list-cpg-1 .card-wrapper .card-information__text{
+                .product-list-<%=sectionid%> .card-wrapper .card-information__text{
                   font-size: <%=section.settings.title_fontsize%>;
                   font-weight: <%=section.settings.title_fontweight%>;
                   font-stretch:<%=section.settings.title_fontstretch%>;
@@ -97,11 +100,11 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
                   letter-spacing:<%=section.settings.title_letterspacing%>
                 }
                 @media(max-width:749px){
-                  .product-list-cpg-1 .card-wrapper .card-information__text{
+                  .product-list-<%=sectionid%> .card-wrapper .card-information__text{
                       font-size: <%=section.settings.title_fontsize_m%>
                   }
                 }
-                .product-list-cpg-1 .card-wrapper .price *{
+                .product-list-<%=sectionid%> .card-wrapper .price *{
                   font-size: <%=section.settings.info_fontsize%>;
                   font-weight: <%=section.settings.info_fontweight%>;
                   font-stretch:<%=section.settings.info_fontstretch%>;
@@ -110,20 +113,19 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
                   letter-spacing:<%=section.settings.info_letterspacing%>
                 }
                 @media(max-width:749px){
-                  .product-list-cpg-1 .card-wrapper .price *{
+                  .product-list-<%=sectionid%> .card-wrapper .price *{
                       font-size: <%=section.settings.info_fontsize_m%>
                   }
                 }              
               <% } %>
             </style>
-            <% collection.products.forEach((product, index)=>{ %>
-              <li class="grid__item py-<%=section.settings.card_color%>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
+            <% collection.products?.forEach((product,index)=>{ %>
+              <li class="grid__item py-card-<%=section.settings.card_style%> py-<%=section.settings.card_color%>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
                 <%- include('../snippets/product-card', {
                   product_card_product: product,
                   media_size: section.settings.image_ratio,
-                  media_gallery: section.settings.image_gallery,
-                  add_image_padding: false,
-                  show_secondary_image: true,
+                  media_gallery:section.settings.image_gallery,
+                  inventory_quantity: false,
                   tag_field:section.settings.tag_field,                                   
                   show_vendor: section.settings.show_vendor,
                   show_colors: section.settings.show_colors,
@@ -138,14 +140,12 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
             <% }) %>
           </ul>
 
-          <%# if(paginate.pages > 1 %>
-            <%# include('../snippets/pagination', {paginate: paginate, anchor: '', class: ''}) %>
+          <%# if(paginate.pages > 1){ %>
+            <%# include('../snippets/pagination', paginate: paginate, anchor: '', class: ''){ %>
           <%# } %>
         </div>
       <% } %>
-    <%# endpaginate %>
+    <%# endpaginate){ %>
   </div>
 
-  <script src="/<%=srcId%>/product-form.js" defer="defer"></script>
-  <script src="/<%=srcId%>/product-card-style-1.js" defer="defer"></script> 
 </div>

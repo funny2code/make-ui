@@ -1,8 +1,14 @@
-<link rel="stylesheet" href="/<%=srcId%>/component-list-menu.css" >
-<link rel="stylesheet" href="/<%=srcId%>/component-search-style-1.css" >
-<link rel="stylesheet" href="/<%=srcId%>/component-menu-drawer.css" >
-<link rel="stylesheet" href="/<%=srcId%>/component-cart-notification-<%=settings.cart_style%>.css" >
-<link rel="stylesheet" href="/<%=srcId%>/component-header-style-1.css" >
+<link rel="stylesheet" href="<%=component-list-menu.css' <%=srcId%> %>" >
+<link rel="stylesheet" href="<%=component-search-style-1.css' <%=srcId%> %>" >
+<link rel="stylesheet" href="<%=component-menu-drawer.css' <%=srcId%> %>" >
+<link rel="stylesheet" href="<%=component-cart-notification-' + settings.cart_style + '.css' <%=srcId%> %>" >
+<link rel="stylesheet" href="<%=component-header-style-1.css' <%=srcId%> %>" >
+
+
+<noscript><%=component-list-menu.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-search-style-1.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-menu-drawer.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-cart-notification-' + settings.cart_style + '.css' <%=srcId%> | stylesheet_tag %></noscript>
 
 <style>
   .header-wrapper{
@@ -458,8 +464,8 @@
   <% } %>
 </style>
 
-<script src="/<%=srcId%>/details-disclosure.js" defer="defer"></script>
-<script src="/<%=srcId%>/details-modal.js" defer="defer"></script>
+<script src="<%=details-disclosure.js' <%=srcId%> %>" defer="defer"></script>
+<script src="<%=details-modal.js' <%=srcId%> %>" defer="defer"></script>
 
 <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
   <symbol id="icon-search" viewbox="0 0 18 19" fill="none">
@@ -475,10 +481,10 @@
     <% if(section.settings.menu){ %>
       <header-drawer>
         <details class="menu-drawer-container">
-          <summary class="header__icon header__icon--menu header__icon--summary link link--text focus-inset" aria-label="<%=sections?.header?.menu%>">
+          <summary class="header__icon header__icon--menu header__icon--summary link link--text focus-inset" aria-label="<%=sectionst.header.menu%>">
             <span>
-              <%- include('../snippets/icon-hamburger') %>
-              <%- include('../snippets/icon-close') %>
+              <%- include('../snippets/icon-hamburger'){ %>
+              <%- include('../snippets/icon-close'){ %>
             </span>
           </summary>
           <div id="menu-drawer" class="menu-drawer motion-reduce" tabindex="-1">
@@ -486,47 +492,47 @@
               <div class="menu-drawer__navigation-container">
                  <nav class="menu-drawer__navigation">
                   <ul class="menu-drawer__menu list-menu" role="list">
-                    <% menu?.links?.forEach((link,index)=>{ %>
+                    <% for link in section.settings.menu.links){ %>
                       <li>
                         <% if(link.links){ %>
                           <details>
                             <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset<% if(link.child_active){ %> menu-drawer__menu-item--active<% } %>">
                               <%= link.title %>
-                              <%- include('../snippets/icon-arrow') %>
-                              <%- include('../snippets/icon-caret') %>
+                              <%- include('../snippets/icon-arrow'){ %>
+                              <%- include('../snippets/icon-caret'){ %>
                             </summary>
                             <div id="link-<%= link.title %>" class="menu-drawer__submenu motion-reduce " tabindex="-1">
                               <div class="menu-drawer__inner-submenu">
                                 <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
-                                  <%- include('../snippets/icon-arrow') %>
+                                  <%- include('../snippets/icon-arrow'){ %>
                                   <%= link.title %>
                                 </button>
                                 <% if(section.blocks.length > 0){ %>
-                                    <% var no_mega = true %>
-                                    <% section.blocks?.forEach((block,index)=>{ %>
+                                    <% var no_mega = true){ %>
+                                    <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
                                     <% 
                                         var name = block?.settings?.name?.trim().toLowerCase()
-                                        var title = link?.title?.trim().toLowerCase() 
-                                    %>
+                                        var title = link.title?.trim().toLowerCase() 
+                                   ){ %>
                                     <% if(block.type === 'mega_menu' && name === title){ %>
-                                    <% var no_mega = false %>
+                                    <% var no_mega = false){ %>
                                     <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
                                       <li>
                                         <details>
                                             <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset mega_title">
                                             <%= link.title %>
-                                            <%- include('../snippets/icon-arrow') %>
-                                            <%- include('../snippets/icon-caret') %>
+                                            <%- include('../snippets/icon-arrow'){ %>
+                                            <%- include('../snippets/icon-caret'){ %>
                                             </summary>
                                             <div id="childlink-<%= link.title %>" class="menu-drawer__submenu motion-reduce">
                                                 <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
-                                                    <%- include('../snippets/icon-arrow') %>
+                                                    <%- include('../snippets/icon-arrow'){ %>
                                                     <%= link.title %>
                                                 </button>
                                                 <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
-                                                <% link?.links?.forEach((childlink,index)=>{ %>
+                                                <% for childlink in link.links){ %>
                                                     <li>
-                                                    <% if(!childlink.links){ %>
+                                                    <% if(childlink.links === blank){ %>
                                                         <a href="<%= childlink.url %>" class="menu-drawer__menu-item link link--text list-menu__item focus-inset<% if(childlink.current){ %> menu-drawer__menu-item--active<% } %>"<% if(childlink.current){ %> aria-current="page"<% } %>>
                                                         <%= childlink.title %>
                                                         </a>
@@ -534,16 +540,16 @@
                                                         <details>
                                                         <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
                                                             <%= childlink.title %>
-                                                            <%- include('../snippets/icon-arrow') %>
-                                                            <%- include('../snippets/icon-caret') %>
+                                                            <%- include('../snippets/icon-arrow'){ %>
+                                                            <%- include('../snippets/icon-caret'){ %>
                                                         </summary>
                                                         <div id="childlink-<%= childlink.title %>" class="menu-drawer__submenu motion-reduce">
                                                             <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
-                                                            <%- include('../snippets/icon-arrow') %>
+                                                            <%- include('../snippets/icon-arrow'){ %>
                                                             <%= childlink.title %>
                                                             </button>
                                                             <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
-                                                            <% childlink?.links?.forEach((grandchildlink,index)=>{ %>
+                                                            <% for grandchildlink in childlink.links){ %>
                                                                 <li>
                                                                 <a href="<%= grandchildlink.url %>" class="menu-drawer__menu-item link link--text list-menu__item focus-inset<% if(grandchildlink.current){ %> menu-drawer__menu-item--active<% } %>"<% if(grandchildlink.current){ %> aria-current="page"<% } %>>
                                                                     <%= grandchildlink.title %>
@@ -564,11 +570,11 @@
                                     <% } %>                                        
                                     <% }) %>
                                 <% } %>  
-                                <% if(no_mega){ %>
+                                <% if(no_mega%>
                                 <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
-                                  <% link?.links?.forEach((childlink,index)=>{ %>
+                                  <% for childlink in link.links){ %>
                                   <li>
-                                    <% if(!childlink.links){ %>
+                                    <% if(childlink.links === blank){ %>
                                     <a href="<%= childlink.url %>" class="menu-drawer__menu-item link link--text list-menu__item focus-inset<% if(childlink.current){ %> menu-drawer__menu-item--active<% } %>"<% if(childlink.current){ %> aria-current="page"<% } %>>
                                       <%= childlink.title %>
                                     </a>
@@ -576,16 +582,16 @@
                                     <details>
                                       <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
                                         <%= childlink.title %>
-                                        <%- include('../snippets/icon-arrow') %>
-                                        <%- include('../snippets/icon-caret') %>
+                                        <%- include('../snippets/icon-arrow'){ %>
+                                        <%- include('../snippets/icon-caret'){ %>
                                       </summary>
                                       <div id="childlink-<%= childlink.title %>" class="menu-drawer__submenu motion-reduce">
                                         <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
-                                          <%- include('../snippets/icon-arrow') %>
+                                          <%- include('../snippets/icon-arrow'){ %>
                                           <%= childlink.title %>
                                         </button>
                                         <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
-                                          <% childlink?.links?.forEach((grandchildlink,index)=>{ %>
+                                          <% for grandchildlink in childlink.links){ %>
                                           <li>
                                             <a href="<%= grandchildlink.url %>" class="menu-drawer__menu-item link link--text list-menu__item focus-inset<% if(grandchildlink.current){ %> menu-drawer__menu-item--active<% } %>"<% if(grandchildlink.current){ %> aria-current="page"<% } %>>
                                               <%= grandchildlink.title %>
@@ -601,13 +607,13 @@
                                 </ul>
                                 <% } %>
                                 <% if(section.blocks.length > 0){ %>
-                                    <% section.blocks?.forEach((block,index)=>{ %>
+                                    <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
                                     <% 
                                         var name = block?.settings?.name?.trim().toLowerCase()
                                         var title = link.title?.trim().toLowerCase() 
-                                    %>
+                                   ){ %>
                                     <% if(block.type === 'mega_menu' && name === title){ %>
-                                        <% for(let i=0; i<=4; i++){ %>
+                                        <% for i in (1..4)){ %>
                                         <% 
                                             var menuHandle = 'menu_' + i 
                                             var imageHandle = 'image_' + i
@@ -617,23 +623,23 @@
                                             var image = block.settings[imageHandle]
                                             var title = block.settings[titleHandel]
                                             var url = block.settings[urlHandle] 
-                                        %>
+                                       ){ %>
                                         <% if(menu){ %>
                                             <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">                                                
                                                 <li>
                                                     <details>
                                                     <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset mega_title">
                                                     <%= menu.title %>
-                                                    <%- include('../snippets/icon-arrow') %>
-                                                    <%- include('../snippets/icon-caret') %>
+                                                    <%- include('../snippets/icon-arrow'){ %>
+                                                    <%- include('../snippets/icon-caret'){ %>
                                                     </summary>
                                                     <div id="childlink-<%= menu.title %>" class="menu-drawer__submenu motion-reduce">
                                                         <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
-                                                            <%- include('../snippets/icon-arrow') %>
+                                                            <%- include('../snippets/icon-arrow'){ %>
                                                             <%= menu.title %>
                                                         </button>
                                                         <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
-                                                        <% menu?.links?.forEach((link,index)=>{ %>
+                                                        <% for link in menu.links){ %>
                                                             <li>
                                                             <a href="<%= link.url %>" class="menu-drawer__menu-item link link--text list-menu__item focus-inset<% if(link.current){ %> menu-drawer__menu-item--active<% } %>"<% if(link.current){ %> aria-current="page"<% } %>>
                                                                 <%= link.title %>
@@ -647,9 +653,9 @@
                                             </ul>
                                         <% } %>
                                         
-                                        <% } %>
+                                        <% }) %>
                                     <div class="bc-mega-menu-image-col <%=block?.settings?.img_col_position%>">
-                                        <% for(let i=1; i<=4; i++){ %>
+                                        <% for i in (1..4)){ %>
                                         <% 
                                             var menuHandle = 'menu_' + i 
                                             var imageHandle = 'image_' + i
@@ -659,15 +665,15 @@
                                             var image = block.settings[imageHandle]
                                             var title = block.settings[titleHandel]
                                             var url = block.settings[urlHandle] 
-                                        %>
+                                       ){ %>
                                         <% if(image){ %>
                                             <div class="bc-mega-menu-image">
                                             <% if(url){ %>
                                                 <a href="<%= url %>">
                                             <% } %>
-                                                <%- include('../snippets/resimg', {image: image}) %>
+                                                <%- include('../snippets/resimg', image: image){ %>
                                                 <% if(title){ %>
-                                                <h3 class="bc-mega-menu-image__title"><%= title %><%- include('../snippets/icon-arrow') %></h3>
+                                                <h3 class="bc-mega-menu-image__title"><%= title %><%- include('../snippets/icon-arrow'){ %></h3>
                                                 <% } %>
                                             <% if(url){ %>
                                                 </a>
@@ -675,7 +681,7 @@
                                             </div>
                                         <% } %>
                                         
-                                        <% } %>
+                                        <% }) %>
                                     </div>
                                     <% } %>
                                     <% }) %>
@@ -693,17 +699,23 @@
                   </ul>
                  </nav>
                 <div class="menu-drawer__utility-links">
-                  <% if(shop?.customer_accounts_enabled){ %>
+                  <% if(shop.customer_accounts_enabled){ %>
                     <a href="<% if(customer){ %><%= routes.account_url %><% } else { %><%= routes.account_login_url %><% } %>" class="menu-drawer__account link link--text focus-inset h5">
-                      <%- include('../snippets/icon-account') %>
-                      <%= customer ? customer.account_fallback : customer.log_in %>
+                      <%- include('../snippets/icon-account'){ %>
+                      <%
+                        if customer
+                          echo 'customer.account_fallback' | t
+                        else
+                          echo 'customer.log_in' | t
+                        }
+                     ){ %>
                     </a>
                   <% } %>
                  <ul class="list list-social list-unstyled" role="list">
                     <% if(settings.social_twitter_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_twitter_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('../snippets/icon-twitter') %>
+                          <%- include('../snippets/icon-twitter'){ %>
                           <span class="visually-hidden"><%=general.social.links.twitter%></span>
                         </a>
                       </li>
@@ -711,7 +723,7 @@
                     <% if(settings.social_facebook_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_facebook_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('../snippets/icon-facebook') %>
+                          <%- include('../snippets/icon-facebook'){ %>
                           <span class="visually-hidden"><%=general.social.links.facebook%></span>
                         </a>
                       </li>
@@ -719,7 +731,7 @@
                     <% if(settings.social_pinterest_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_pinterest_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('../snippets/icon-pinterest') %>
+                          <%- include('../snippets/icon-pinterest'){ %>
                           <span class="visually-hidden"><%=general.social.links.pinterest%></span>
                         </a>
                       </li>
@@ -727,7 +739,7 @@
                     <% if(settings.social_instagram_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_instagram_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('../snippets/icon-instagram') %>
+                          <%- include('../snippets/icon-instagram'){ %>
                           <span class="visually-hidden"><%=general.social.links.instagram%></span>
                         </a>
                       </li>
@@ -735,7 +747,7 @@
                     <% if(settings.social_tumblr_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_tumblr_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('../snippets/icon-tumblr') %>
+                          <%- include('../snippets/icon-tumblr'){ %>
                           <span class="visually-hidden"><%=general.social.links.tumblr%></span>
                         </a>
                       </li>
@@ -743,7 +755,7 @@
                     <% if(settings.social_snapchat_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_snapchat_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('../snippets/icon-snapchat') %>
+                          <%- include('../snippets/icon-snapchat'){ %>
                           <span class="visually-hidden"><%=general.social.links.snapchat%></span>
                         </a>
                       </li>
@@ -751,7 +763,7 @@
                     <% if(settings.social_youtube_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_youtube_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('../snippets/icon-youtube') %>
+                          <%- include('../snippets/icon-youtube'){ %>
                           <span class="visually-hidden"><%=general.social.links.youtube%></span>
                         </a>
                       </li>
@@ -759,7 +771,7 @@
                     <% if(settings.social_vimeo_link){ %>
                       <li class="list-social__item">
                         <a href="<%= settings.social_vimeo_link %>" class="link link--text" aria-describedby="a11y-external-message">
-                          <%- include('../snippets/icon-vimeo') %>
+                          <%- include('../snippets/icon-vimeo'){ %>
                           <span class="visually-hidden"><%=general.social.links.vimeo%></span>
                         </a>
                       </li>
@@ -775,14 +787,14 @@
     <h1 class="header__heading" style="width:<%=section.settings.logo_width%>px">               
          <a href="<%= routes.root_url %>" class="header__heading-link link link--text focus-inset" style="width:100%">
             <% if(section.settings.logo){ %>
-            <% var image_size = section.settings.logo_width.append('x') %>
-               <img srcset="<%= section.settings.logo %> 1x, <%= section.settings.logo %> 2x"
-                    src="<%= section.settings.logo %>"
+            <% var image_size = section.settings.logo_width + 'x'){ %>
+               <img srcset="<%= section.settings.logo | img_url: image_size %> 1x, <%= section.settings.logo | img_url: image_size, scale: 2 %> 2x"
+                    src="<%= section.settings.logo | img_url: image_size %>"
                     loading="lazy"
                     class="header__heading-logo"
                     width="<%= section.settings.logo.width %>"
                     height="<%= section.settings.logo.height %>"
-                    alt="<%= section.settings.logo.alt || shop?.name %>"
+                    alt="<%= section.settings.logo.alt || shop.name %>"
                 >
              <% } else { %>
              <span style="font-weight: bolder;">Logo</span>
@@ -793,21 +805,21 @@
      <% if(section.settings.menu){ %>
       <nav class="header__inline-menu">
         <ul class="list-menu list-menu--inline active" role="list" >
-          <% menu?.links?.forEach((link,index)=>{ %>
+          <% for link in section.settings.menu.links){ %>
             <li>
               <% if(link.links){ %>
                 <details-disclosure>
                   <details>
                     <summary data-href="<%= link.url %>" class="header__menu-item list-menu__item link focus-inset">
                       <span <% if(link.child_active){ %> class="header__active-menu-item"<% } %>><%= link.title %></span>
-                      <%- include('../snippets/icon-caret') %>
+                      <%- include('../snippets/icon-caret'){ %>
                     </summary>
                     <div class="header__submenu list-menu--disclosure caption-large motion-reduce" tabindex="-1">
                       <ul class="list-menu">
                         <h3 class="bc-mega-menu__title"><%= link.title %></h3>
-                        <% link.links?.forEach((childlink,index)=>{ %>
+                        <% for childlink in link.links){ %>
                           <li>
-                            <% if(!childlink.links){ %>
+                            <% if(childlink.links === blank){ %>
                               <a href="<%= childlink.url %>" class="header__menu-item list-menu__item link link--text focus-inset caption-large<% if(childlink.current){ %> list-menu__item--active<% } %>"<% if(childlink.current){ %> aria-current="page"<% } %>>
                                 <%= childlink.title %>
                               </a>
@@ -816,9 +828,9 @@
                         <% }) %>
                       </ul>
                       <ul class="list-menu">
-                        <% link.links?.forEach((childlink,index)=>{ %>
+                        <% for childlink in link.links){ %>
                           <% if(childlink.links){ %>
-                            <% childlink.links?.forEach((grandchildlink,index)=>{ %>
+                            <% for grandchildlink in childlink.links){ %>
                               <li>
                                 <a href="<%= grandchildlink.url %>" class="header__menu-item list-menu__item link link--text focus-inset caption-large<% if(grandchildlink.current){ %> list-menu__item--active<% } %>"<% if(grandchildlink.current){ %> aria-current="page"<% } %>>
                                   <%= grandchildlink.title %>
@@ -829,13 +841,13 @@
                         <% }) %>
                       </ul>
                       <% if(section.blocks.length > 0){ %>
-                        <% section.blocks?.forEach((block,index)=>{ %>
+                        <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
                           <% 
                             var name = block?.settings?.name?.trim().toLowerCase()
                             var title = link.title?.trim().toLowerCase() 
-                          %>
+                         ){ %>
                           <% if(block.type === 'mega_menu' && name === title){ %>
-                            <% for(let i=1; i<=4; i++){ %>
+                            <% for i in (1..4)){ %>
                               <% 
                                 var menuHandle = 'menu_' + i 
                                 var imageHandle = 'image_' + i
@@ -845,11 +857,11 @@
                                 var image = block.settings[imageHandle]
                                 var title = block.settings[titleHandel]
                                 var url = block.settings[urlHandle] 
-                              %>
+                             ){ %>
                               <% if(menu){ %>
                                 <ul class="list-menu">
                                   <h3 class="bc-mega-menu__title"><%= menu.title %></h3>
-                                  <% menu.links?.forEach((link,index)=>{ %>
+                                  <% for link in menu.links){ %>
                                     <li>
                                       <a href="<%= link.url %>" class="header__menu-item list-menu__item link link--text focus-inset caption-large<% if(link.current){ %> list-menu__item--active<% } %>"<% if(link.current){ %> aria-current="page"<% } %>>
                                         <%= link.title %>
@@ -859,9 +871,9 @@
                                 </ul>
                               <% } %>
                               
-                            <% } %>
+                            <% }) %>
                           <div class="bc-mega-menu-image-col <%=block?.settings?.img_col_position%>">
-                            <% for(let i=1; i<=4; i++){ %>
+                            <% for i in (1..4)){ %>
                               <% 
                                 var menuHandle = 'menu_' + i 
                                 var imageHandle = 'image_' + i
@@ -871,15 +883,15 @@
                                 var image = block.settings[imageHandle]
                                 var title = block.settings[titleHandel]
                                 var url = block.settings[urlHandle] 
-                              %>
+                             ){ %>
                               <% if(image){ %>
                                 <div class="bc-mega-menu-image">
                                   <% if(url){ %>
                                     <a href="<%= url %>">
                                   <% } %>
-                                    <%- include('../snippets/resimg', {image: image}) %>
+                                    <%- include('../snippets/resimg', image: image){ %>
                                     <% if(title){ %>
-                                    <h3 class="bc-mega-menu-image__title"><%= title %><%- include('../snippets/icon-arrow') %></h3>
+                                    <h3 class="bc-mega-menu-image__title"><%= title %><%- include('../snippets/icon-arrow'){ %></h3>
                                     <% } %>
                                   <% if(url){ %>
                                     </a>
@@ -887,7 +899,7 @@
                                 </div>
                               <% } %>
                               
-                            <% } %>
+                            <% }) %>
                           </div>
                           <% } %>
                         <% }) %>
@@ -910,7 +922,7 @@
           <details-modal class="header__search">
             <details>
               <summary class="header__icon--search header__icon--summary link link--text focus-inset modal__toggle" aria-haspopup="dialog" aria-label="<%=general.search.search%>">
-                <form action="<%= routes.search_url %>" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags = "<%=section.settings.search_hide_tags%>" <% } %>>
+                <form action="<%= routes.search_url %>" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags = "<%=section.settings.search_hide_tags%>" <%}%>>
                   <div class="field">
                     <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value="<%= search.terms %>" placeholder="<%=general.search.search%>" autocomplete="off">
                     <label class="field__label" for="Search-In-Modal"><%=section.settings.py_search_placeholder%></label>
@@ -928,13 +940,13 @@
               <div class="search-modal modal__content" role="dialog" aria-modal="true" aria-label="<%=general.search.search%>">
                 <div class="search-modal__content" tabindex="-1">             
 
-                  <div class="bc-search-result-wrapper" data_btn_class="py-btn-<%=section.settings.card_color_view_btn%> py-btn-hover-<%=section.settings.card_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">
+                  <div class="bc-search-result-wrapper" data_btn_class="py-c-<%=section.settings.card_color_view_btn%> py-bg-c-<%=section.settings.card_bg_color_view_btn%> py-hv-c-<%=section.settings.card_color_view_btn_hover%> py-hv-bg-c-<%=section.settings.card_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">
                     <div class="bc-cart__not-products">Sorry no results found</div>
                     <div class="bc-search-result-inner-wrapper"></div>
                     <% if(section.settings.search_menu){ %>
                     <ul class="list-menu bc-search-menu">
                       <h3 class="bc-search-menu__title"><%=  section.settings.search_menu.title %></h3>
-                      <% section.settings.search_menu.links?.forEach((link,index)=>{ %>
+                      <% for link in  section.settings.search_menu.links){ %>
                       <li>
                         <a href="<%= link.url %>" class="header__menu-item list-menu__item link link--text focus-inset caption-large<% if(link.current){ %> list-menu__item--active<% } %>"<% if(link.current){ %> aria-current="page"<% } %>>
                           <%= link.title %>
@@ -963,7 +975,7 @@
           </svg>
         </a>
       <% } else { %>
-      <details-modal class="header__search <% if(section.settings.logo_position === 'top-left'){ %>hidden<% } %>">
+      <details-modal class="header__search <%=" "%> <% if(section.settings.logo_position === 'top-left'){ %>hidden<% } %>">
         <details>
           <summary class="header__icon header__icon--search header__icon--summary link link--text focus-inset modal__toggle" aria-haspopup="dialog" aria-label="<%=general.search.search%>">
             <span class="large-up-hide">
@@ -992,13 +1004,13 @@
                     </svg>
                   </button>
                 </div>                
-                <div class="bc-search-result-wrapper" data_btn_class="py-btn-<%=section.settings.card_color_view_btn%> py-btn-hover-<%=section.settings.card_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">
+                <div class="bc-search-result-wrapper" data_btn_class="py-c-<%=section.settings.card_color_view_btn%> py-bg-c-<%=section.settings.card_bg_color_view_btn%> py-hv-c-<%=section.settings.card_color_view_btn_hover%> py-hv-bg-c-<%=section.settings.card_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">
                   <div class="bc-cart__not-products">Sorry no results found</div>
                   <div class="bc-search-result-inner-wrapper"></div>
                   <% if(section.settings.search_menu){ %>
                     <ul class="list-menu bc-search-menu">
                       <h3 class="bc-search-menu__title"><%=  section.settings.search_menu.title %></h3>
-                      <% section.settings.search_menu.links?.forEach((link,index)=>{ %>
+                      <% for link in  section.settings.search_menu.links){ %>
                         <li>
                           <a href="<%= link.url %>" class="header__menu-item list-menu__item link link--text focus-inset caption-large <% if(link.current){ %> list-menu__item--active<% } %>"<% if(link.current){ %> aria-current="page"<% } %>>
                             <%= link.title %>
@@ -1019,19 +1031,19 @@
         </details>
       </details-modal>
       <% } %>
-      <% if(shop?.customer_accounts_enabled){ %>
+      <% if(shop.customer_accounts_enabled){ %>
         <a href="<% if(customer){ %><%= routes.account_url %><% } else { %><%= routes.account_login_url %><% } %>" class="header__icon header__icon--account link link--text focus-inset">
-          <span class="large-up-hide"><%- include('../snippets/icon-account') %></span>
+          <span class="large-up-hide"><%- include('../snippets/icon-account'){ %></span>
           <span class="medium-hide small-hide">
             <%=customer.account_fallback%>
           </span>
         </a>
       <% } %>
-      <% if(shop?.enabled_currencies?.length > 1){ %>
-        <form class="currency-selector">
+      <% if(shop.enabled_currencies.length > 1){ %>
+        <% form 'currency', class: "currency-selector"){ %>
         <div class="currency-selector__input-wrapper select-group font--accent">
           <select name="currency" id="CurrencySelector" class="currency-selector__dropdown" aria-describedby="a11y-refresh-page-message" data-currency-selector>
-            <% shop?.enabled_currencies?.forEach((currency,index)=>{ %>
+            <% for currency in shop.enabled_currencies){ %>
             <% if(currency.iso_code !== 'EUR'){ %>
             <option value="<%=currency.iso_code%>"<% if(currency === cart.currency){ %> selected="true"<% } %>><%=currency.iso_code%></option>
             <% } %>
@@ -1042,16 +1054,16 @@
       <% } %>
        
        <a href="<%= routes.cart_url %>" class="header__icon header__icon--cart link link--text focus-inset" id="cart-icon-bubble">
-        <span class="large-up-hide"><%- include('../snippets/icon-cart') %></span>
+        <span class="large-up-hide"><%- include('../snippets/icon-cart'){ %></span>
         <span class="medium-hide small-hide"><%=templates.cart.cart%></span>
           <div class="cart-count-bubble">
             <span aria-hidden="true" id="cart-count"><%= cart.item_count %></span>
-            <span class="visually-hidden"><%=sections?.header?.cart_count %></span>
+            <span class="visually-hidden"><%=sectionst.header.cart_count' | t: count: cart.item_count %></span>
           </div>
         
       </a>
       <% if(settings.cart_style === 'style-3'){ %>
-         <%- include('../snippets/cart-notification-3') %>
+         <%- include('../snippets/cart-notification-3'){ %>
       <% } %>       
 
     </div>
@@ -1061,21 +1073,20 @@
 </div>        
 <div id="shopify-section-cart-template" class="shopify-section">
   <% if(settings.cart_style === 'style-4'){ %>
-    <%- include('../snippets/cart-notification-4') %>      
-  <% } else if(settings.cart_style === 'style-3'){ %>
-    
-  <% } else if(settings.cart_style === 'style-2'){ %>
-    <%- include('../snippets/cart-notification-2',{
-        cart_layout: settings.cart_layout,
-        enable_dynamic_pay: settings.enable_dynamic_pay
-  }) %>
-  <% } else { %>
-    <%- include('../snippets/cart-notification',{
-      shipping_method: false,
-      checkoutbtn_position: settings.checkoutbtn_position,
-      enable_dynamic_pay: settings.enable_dynamic_pay
-    }) %>
-  <% }%>
+          <%- include('../snippets/cart-notification-4'){ %>      
+        <% } else if(settings.cart_style === 'style-3'){ %>
+          
+        <% } else if(settings.cart_style === 'style-2'){ %>
+          <%- include('../snippets/cart-notification-2',
+              cart_layout: settings.cart_layout,
+              enable_dynamic_pay: settings.enable_dynamic_pay,
+         ){ %>
+        <% } else { %>
+          <%- include('../snippets/cart-notification',
+            checkoutbtn_position: settings.checkoutbtn_position,
+            enable_dynamic_pay: settings.enable_dynamic_pay,
+         ){ %>
+        <% }%>
           </div>  </div>      
 <script>
   class StickyHeader extends HTMLElement {
@@ -1171,7 +1182,45 @@
 
 </script>
 
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": <%= shop.name %>,
+    <% if(section.settings.logo){ %>
+      <% var image_size = section.settings.logo.width + 'x'){ %>
+      "logo": <%= section.settings.logo | img_url: image_size | prepend: "https:" %>,
+    <% } %>
+    "sameAs": [
+      <%= settings.social_twitter_link %>,
+      <%= settings.social_facebook_link %>,
+      <%= settings.social_pinterest_link %>,
+      <%= settings.social_instagram_link %>,
+      <%= settings.social_tumblr_link %>,
+      <%= settings.social_snapchat_link %>,
+      <%= settings.social_youtube_link %>,
+      <%= settings.social_vimeo_link %>
+    ],
+    "url": <%= shop.url + page.url %>
+  }
+</script>
 
+<% if(request.page_type === 'index'){ %>
+  <% var potential_action_target = shop.url + routes.search_url + "?q={search_term_string}"){ %>
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": <%= shop.name %>,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": <%= potential_action_target %>,
+        "query-input": "required name=search_term_string"
+      },
+      "url": <%= shop.url + page.url %>
+    }
+  </script>
+<% } %>
 <script>    
     var parentMenu = document.querySelectorAll('nav> ul.list-menu details-disclosure>details>summary');
     var i;
@@ -1199,3 +1248,1237 @@
       }
     });
 </script>
+
+<% schema){ %>
+{
+  "name": "t:sectionst.header.name",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:sectionst.header.settings.logo.label"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 250,
+      "step": 10,
+      "default": 100,
+      "unit": "t:sectionst.header.settings.logo_width.unit",
+      "label": "t:sectionst.header.settings.logo_width.label"
+    },
+    {
+      "type": "select",
+      "id": "header_position",
+      "options": [
+        {
+          "value": "fixed",
+          "label": "Fixed"
+        },
+        {
+          "value": "static",
+          "label": "Static"
+        }
+      ],
+      "default": "static",
+      "label": "Header Position"
+    },
+    {
+      "type": "select",
+      "id": "logo_position",
+      "options": [
+        {
+          "value": "middle-left",
+          "label": "Middle Left"
+        },
+        {
+          "value": "middle-left-center-nav",
+          "label": "Middle Left with Nav Center"
+        },
+        {
+          "value": "middle-center",
+          "label": "Middle Center"
+        },
+        {
+          "value": "top-left",
+          "label": "Top Left"
+        }
+      ],
+      "default": "middle-left",
+      "label": "t:sectionst.header.settings.logo_position.label"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "t:sectionst.header.settings.menu.label"
+    },
+    {
+      "type": "header",
+      "content": "Search"
+    },
+    {
+      "type": "select",
+      "id": "search_style",
+      "label": "Search Styles",
+      "options": [
+        {
+          "value": "sidebar",
+          "label": "Sidebar"
+        },
+        {
+          "value": "full_screen",
+          "label": "Full Screen"
+        },
+        {
+          "value": "search_page",
+          "label": "Search Page"
+        }   
+      ],
+      "default": "full_screen"
+    },
+    {
+      "type": "text",
+      "id": "search_hide_tags",
+      "label": "Tags for hide on Search",
+      "info": "Please contain tags that you want to hide from search result. Use '|' to seperate tags. example: hide1|hide2|hide3"
+    },
+    {
+      "type": "select",
+      "id": "py_search_bg_color",
+      "label": "Search Area Background Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+          }
+        ],
+        "default": "var(--py-bg-color-light)"
+    },
+    {
+      "type": "select",
+      "id": "py_search_field_bg_color",
+      "label": "Search Field Background Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+          }
+        ],
+        "default": "var(--py-bg-color-light)"
+    },
+    {
+      "type": "select",
+      "id": "py_search_field_color",
+      "label": "Search Field Text Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+    },
+    {
+      "type": "select",
+      "id": "py_search_field_color_br",
+      "label": "Search Field Border Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+    },
+    {
+      "type": "text",
+      "id": "py_search_field_br_width",
+      "label": "Search Field Border Width",
+      "info": "Enter correct value. Example: 1px"
+    },
+    {
+      "type": "text",
+      "id": "py_search_field_br_radius",
+      "label": "Search Field Border Radius",
+      "info": "Enter correct value. Example: 5px"
+    },
+    {
+      "type": "text",
+      "id": "py_search_field_font_size",
+      "label": "Search Field Font Size",
+      "info": "Enter correct value. Example: 18px"
+    },
+    {
+      "type": "select",
+      "id": "py_search_field_focus_bg_color",
+      "label": "Search Field Focus Background Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+          }
+        ],
+        "default": "var(--py-bg-color-light)"
+    },
+    {
+      "type": "select",
+      "id": "py_search_field_focus_color",
+      "label": "Search Field Focus Text Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-avarge)"
+    },
+    {
+      "type": "text",
+      "id": "py_search_placeholder",
+      "label": "Search Bar Placeholder Text",
+      "default": "Search Products"
+    },
+    {
+      "type": "text",
+      "id": "py_search_title",
+      "label": "Title for Search",
+      "default": "Search Product && More"
+    },
+    {
+      "type": "text",
+      "id": "py_search_title_font_size",
+      "label": "Search Title Font Size",
+      "info": "Enter correct value. Example: 24px"
+    },
+    {
+      "type": "select",
+      "id": "py_search_color_title",
+      "label": "Search Title Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-avarge)"
+    },
+    {
+      "type": "header",
+      "content": "t:sectionst.main-collection-product-grid.settings.header__3.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "square",
+      "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.label"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+          }
+        ],
+        "default": "var(--py-bg-color-dark)"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 7,
+      "label": "Card Border Radius"
+    },
+    {
+      "type": "range",
+      "id": "item_space",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 10,
+      "label": "Card Padding"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sectionst.main-collection-product-grid.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_product",
+      "default": true,
+      "label": "Show View Product Button"
+    },
+    {
+      "type": "select",
+      "id": "info_align",
+      "label": "Card Info Alignment",
+      "options": [     
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "card_color",
+      "label": "Card Info Color",
+      "options": [     
+        {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "var(--py-color-middle-dark)"
+        },
+        {
+          "label": "Average",
+          "value": "var(--py-color-avarge)"
+        },
+        {
+          "label": "Middle Light",
+          "value": "var(--py-color-middle-light)"
+        },
+        {
+          "label": "Light",
+          "value": "var(--py-color-light)"
+        }
+      ],
+        "default": "var(--py-color-light)"
+    },
+    {
+      "type": "header",
+      "content": "Card Button Style"
+    },
+    {
+      "type": "select",
+      "id": "view_btn_size",
+      "label": "View Button Size",
+      "options": [
+        {
+          "label": "Small",
+          "value": "small"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Large",
+          "value": "large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "card_color_view_btn",
+      "label": "View Button Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color_view_btn",
+      "label": "View Button Background Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_color_view_btn_hover",
+      "label": "View Button Hover Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color_view_btn_hover",
+      "label": "View Button Hover Background Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "header",
+      "content": "Card Product Title Font Style"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_font_style",
+      "default": false,
+      "label": "Use Custom Style"
+    },
+    {
+      "type": "text",
+      "id": "title_fontsize",
+      "label": "Font size Desktop",
+      "info": "Ex: 20px "
+    },
+    {
+      "type": "text",
+      "id": "title_fontsize_m",
+      "label": "Font size Mobile"
+    },
+    {
+      "type": "text",
+      "id": "title_fontweight",
+      "label": "Font-weight"      
+    },
+    {
+      "type": "text",
+      "id": "title_fontstretch",
+      "label": "Font-stretch",
+      "info": "Ex: 40%"
+    },
+    {
+      "type": "select",
+      "id": "title_fontstyle",
+      "options": [
+        {
+          "value": "normal",
+          "label": "normal"
+        },
+        {
+          "value": "italic",
+          "label": "italic"
+        }
+      ],
+      "default": "normal",
+      "label": "Font-style"
+    },
+    {
+      "type": "text",
+      "id": "title_lineheight",
+      "label": "Lineheight"      
+    },
+    {
+      "type": "text",
+      "id": "title_letterspacing",
+      "label": "Letter-spacing",
+      "info":"Ex: 0.5px"
+    },
+    {
+      "type": "header",
+      "content": "Card Product info Font Style"
+    },
+    {
+      "type": "text",
+      "id": "info_fontsize",
+      "label": "Font size Desktop",
+      "info": "Ex: 20px "
+    },
+    {
+      "type": "text",
+      "id": "info_fontsize_m",
+      "label": "Font size Mobile"
+    },
+    {
+      "type": "text",
+      "id": "info_fontweight",
+      "label": "Font-weight"      
+    },
+    {
+      "type": "text",
+      "id": "info_fontstretch",
+      "label": "Font-stretch",
+      "info": "Ex: 40%"
+    },
+    {
+      "type": "select",
+      "id": "info_fontstyle",
+      "options": [
+        {
+          "value": "normal",
+          "label": "normal"
+        },
+        {
+          "value": "italic",
+          "label": "italic"
+        }
+      ],
+      "default": "normal",
+      "label": "Font-style"
+    },
+    {
+      "type": "text",
+      "id": "info_lineheight",
+      "label": "Lineheight"      
+    },
+    {
+      "type": "text",
+      "id": "info_letterspacing",
+      "label": "Letter-spacing",
+      "info":"Ex: 0.5px"     
+    },
+    {
+      "type": "header",
+      "content": "Header Colors"
+    },
+    {
+      "type": "select",
+      "id": "py_header_bg_color_1",
+      "label": "Header Background Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+          }
+        ],
+        "default": "var(--py-bg-color-dark)"
+    },
+    {
+      "type": "select",
+      "id": "py_header_bg_color_2",
+      "label": "Mega Menu Bottom Header Background Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-bg-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+          }
+        ],
+        "default": "var(--py-bg-color-dark)"
+    },
+    {
+      "type": "select",
+      "id": "py_header_color",
+      "label": "Mega Menu Text Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-light)"
+    },
+    {
+      "type": "select",
+      "id": "py_header_color_link_1",
+      "label": "Main Link Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+    },
+    {
+      "type": "select",
+      "id": "py_header_color_link_hov_1",
+      "label": "Main Link Hover Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-avarge)"
+    },
+    {
+      "type": "select",
+      "id": "py_header_color_link_2",
+      "label": "Bottom Link Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-avarge)"
+    },
+    {
+      "type": "select",
+      "id": "py_header_link_hov_color_2",
+      "label": "Bottom Link Hover Color",
+      "options": [
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-avarge)"
+    },
+    {
+      "type": "select",
+      "id": "py_header_color_border",
+      "label": "Header Border Color",
+      "options": [
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-middle-light)"
+    },
+    {
+      "type": "select",
+      "id": "page_width",
+      "label": "Container (Width)",
+      "options": [
+        {
+          "label": "Unset",
+          "value": "width-un"
+        },
+        {
+          "label": "Large",
+          "value": "width-l"
+        },
+        {
+          "label": "Medium",
+          "value": "width-m"
+        },
+        {
+          "label": "Small",
+          "value": "width-s"
+        }
+      ],
+      "default": "width-un"
+    },
+    {
+      "type": "select",
+      "id": "page_x_pd",
+      "label": "Container Padding Horizontal",
+      "options": [
+        {
+          "label": "Unset",
+          "value": "pd-x-un"
+        },
+        {
+          "label": "None",
+          "value": "pd-x-n"
+        },
+        {
+          "label": "XL",
+          "value": "pd-x-xl"
+        },
+        {
+          "label": "L",
+          "value": "pd-x-l"
+        },
+        {
+          "label": "M",
+          "value": "pd-x-m"
+        },
+        {
+          "label": "S",
+          "value": "pd-x-s"
+        },
+        {
+          "label": "XS",
+          "value": "pd-x-xs"
+        }
+      ],
+      "default": "pd-x-m"
+    },
+    {
+      "type": "select",
+      "id": "page_y_pd",
+      "label": "Container Padding Vertical",
+      "options": [
+        {
+          "label": "Unset",
+          "value": "pd-y-un"
+        },
+        {
+          "label": "None",
+          "value": "pd-y-n"
+        },
+        {
+          "label": "XL",
+          "value": "pd-y-xl"
+        },
+        {
+          "label": "L",
+          "value": "pd-y-l"
+        },
+        {
+          "label": "M",
+          "value": "pd-y-m"
+        },
+        {
+          "label": "S",
+          "value": "pd-y-s"
+        },
+        {
+          "label": "XS",
+          "value": "pd-y-xs"
+        }
+      ],
+      "default": "pd-y-m"
+    },
+    {
+      "type": "select",
+      "id": "br",
+      "label": "Border",
+      "options": [
+        {
+          "label": "None",
+          "value": "br-none"
+        },
+        {
+          "label": "Horizontal && Vertical",
+          "value": "br"
+        },
+        {
+          "label": "Horizontal",
+          "value": "br-x"
+        },
+        {
+          "label": "Vertical",
+          "value": "br-y"
+        }
+      ],
+      "default": "br-none"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mega_menu",
+      "name": "Mega Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name (Menu) for adding Mega Menu"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_1",
+          "label": "Menu One"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_2",
+          "label": "Menu Two"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_3",
+          "label": "Menu Three"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_4",
+          "label": "Menu Four"
+        },
+        {
+          "type": "header",
+          "content": "Image with Link One"
+        },
+        {
+          "type": "select",
+          "id": "img_col_position",
+          "label": "Image Column Position",
+          "options": [
+            {
+              "label": "First",
+              "value": "first"
+            },
+            {
+              "label": "Last",
+              "value": "last"
+            }
+          ],
+          "default": "last"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_1",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "link_1",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Image with Link Two"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "link_2",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Image with Link Three"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_3",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "link_3",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Image with Link Four"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_4",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "link_4",
+          "label": "Link"
+        }
+      ]
+    }
+  ]
+}
+<% endschema){ %>

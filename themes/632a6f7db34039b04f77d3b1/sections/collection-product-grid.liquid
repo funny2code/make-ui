@@ -488,14 +488,26 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
       "type": "select",
       "id": "card_color",
       "label": "Card Info Color",
-      "options": [     
+      "options": [
+        {
+          "label": "None",
+          "value": "none"
+        },
         {
           "label": "Dark",
           "value": "c-dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "c-middle-dark"
+        },
+        {
           "label": "Average",
           "value": "c-average"
+        },
+        {
+          "label": "Light",
+          "value": "c-middle-light"
         },
         {
           "label": "Light",
@@ -531,15 +543,23 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
     {
       "type": "select",
       "id": "card_color_view_btn",
-      "label": "View Button Color style",
+      "label": "View Button Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -550,16 +570,24 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
     },
     {
       "type": "select",
-      "id": "card_color_view_btn_hover",
-      "label": "View Button Hover Color style",
+      "id": "card_bg_color_view_btn",
+      "label": "View Button Background Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -567,6 +595,62 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
         }
       ],
       "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_color_view_btn_hover",
+      "label": "View Button Hover Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color_view_btn_hover",
+      "label": "View Button Hover Background Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
     },
     {
       "type": "header",

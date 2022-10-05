@@ -151,7 +151,7 @@
           </a>
         <% } %>
 
-        <button class="login_btn button py-btn-<%=section.settings.page_color_login_btn%> py-btn-hover-<%=section.settings.page_color_login_btn_hover%> py-btn-<%=section.settings.login_btn_size%>">
+        <button class="login_btn button py-c-<%=section.settings.page_color_login_btn%> py-hv-c-<%=section.settings.page_color_login_btn_hover%> py-bg-c-<%=section.settings.page_bg_color_login_btn%> py-hv-bg-c-<%=section.settings.page_bg_color_login_btn_hover%> py-btn-<%=section.settings.login_btn_size%>">
           <%=customer.login_page.sign_in%>
         </button>
 
@@ -168,7 +168,7 @@
         <h2><%=customer.login_page.guest_title%></h2>
 
         <% form 'guest_login'){ %>
-          <button class="login_btn button py-btn-<%=section.settings.page_color_login_btn%> py-btn-hover-<%=section.settings.page_color_login_btn_hover%> py-btn-<%=section.settings.login_btn_size%>">
+          <button class="login_btn button py-c-<%=section.settings.page_color_login_btn%> py-hv-c-<%=section.settings.page_color_login_btn_hover%> py-bg-c-<%=section.settings.page_bg_color_login_btn%> py-hv-bg-c-<%=section.settings.page_bg_color_login_btn_hover%> py-btn-<%=section.settings.login_btn_size%>">
             <%=customer.login_page.guest_continue%>
           </button>
         </form>
@@ -217,19 +217,31 @@
         "type": "select",
         "id": "page_color",
         "label": "Page Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -273,19 +285,31 @@
         "type": "select",
         "id": "field_color",
         "label": "Field Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -311,19 +335,31 @@
         "type": "select",
         "id": "field_color_br",
         "label": "Field Border Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     }    ,
@@ -354,15 +390,23 @@
     {
       "type": "select",
       "id": "page_color_login_btn",
-      "label": "Login Button Color style",
+      "label": "Login Button Color",
       "options": [
         {
-          "label": "Dark",
-          "value": "dark"
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
         },
         {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -373,16 +417,24 @@
     },
     {
       "type": "select",
-      "id": "page_color_login_btn_hover",
-      "label": "Login Button Hover Color style",
+      "id": "page_bg_color_login_btn",
+      "label": "Login Button Background Color",
       "options": [
         {
-          "label": "Dark",
-          "value": "dark"
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
         },
         {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -390,6 +442,62 @@
         }
       ],
       "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "page_color_login_btn_hover",
+      "label": "Login Button Hover Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "page_bg_color_login_btn_hover",
+      "label": "Login Button Hover Background Color",
+      "options": [
+        {
+           "label": "Dark",
+           "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
     }
   ]
 }

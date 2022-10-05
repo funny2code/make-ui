@@ -566,9 +566,13 @@
 
     // GLOBAL VARIABLES
     var focuseValue = "";
-    var theme = {
-        settings: {},
-        sections: [],
+    const theme = {
+        settings_data: {
+            current: {
+                sections: {}
+            },
+        },
+        templates: {},
     };
     var saveButton = null;
     var downloadButton = null;
@@ -585,7 +589,7 @@
         "settings_ck_btn_bg": "settings_ck_btn_color"
     };
     // Colors Contrast Fun 
-    const getContrastYIQ = (hexcolor) => {
+    const getContrastYIQ = async (hexcolor) => {
         if (!hexcolor) return;
         hexcolor = hexcolor.replace("#", "");
         var r = parseInt(hexcolor.substr(0, 2), 16);
@@ -596,94 +600,212 @@
     };
 
     // Save old settings values
-    const saveSettingsValues = (id = false) => {
+    const saveSettingsValues = async () => {
 
         let dataSections = document.querySelectorAll('.py__settings-section-item');
         if (!dataSections.length) return;
-        dataSections.forEach((data, index) => {
-            let section = { name: null, file_name: null, template_name: null, settings: {}, blocks: [] };
-            let sectionClosest = data.closest('.py__closest');
+        dataSections.forEach(async (sectionItem, index) => {
+            let sectionClosest = sectionItem.closest('.py__closest');
             let blockSettings = sectionClosest ? sectionClosest.querySelectorAll('.py__settings-block-item') : null;
-            // let sectionName = data?.getAttribute('data-section-name');
-            let fileName = data?.getAttribute('data-file-name');
-            let templateName = data?.getAttribute('data-template-name');
+            let sectionHandle = sectionItem?.getAttribute('data-section-handle');
+            let templateName = sectionItem?.getAttribute('data-template-name');
+            let templateHandle = templateName?.split('/').pop(); 
+            let sectionId = sectionItem?.getAttribute('data-section-id');
 
-            // section.file_name = fileName || null;
-            section.template_name = templateName;
-           
-            // if(!fileName){
-            data?.querySelectorAll('[name]').forEach(element => {
-                theme.settings[element.getAttribute('name').replace('settings_', '')] = (element.value === "true" || element.value === "false")
-                    ? (element.value === "true") ? true : false
-                    : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
-            });
-            // }
-
-            if (theme?.sections?.length) {
-                let checking = theme?.sections?.filter(sectionItem => sectionItem.file_name === fileName);
-                if (checking.length) {
-                    theme?.sections?.forEach(sectionItem => {
-                        if (sectionItem.file_name === fileName) {
-                            data?.querySelectorAll('[name]').forEach(element => {
-                                sectionItem.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
-                                    : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
+            if(sectionId && sectionHandle){
+                if(theme.templates[templateHandle]){
+                    if(theme.templates[templateHandle].sections[sectionId]){
+                        await saveSectionSettings(sectionItem, templateHandle, sectionId);
+                        if(blockSettings?.length){
+                            blockSettings.forEach(async (block,index) => {
+                                let blockType = block.getAttribute('data-block-type');
+                                let blockId = block.getAttribute('data-block-id');
+                                if(!blockType && !blockId) return;
+                                if(theme.templates[templateHandle].sections[sectionId].blocks[blockId]){
+                                    await saveBlockSettings(block,templateHandle,sectionId,blockId);
+                                } else {
+                                    theme.templates[templateHandle].sections[sectionId].blocks[blockId] = {
+                                        type: blockType,
+                                        settings: {}
+                                    };
+                                    theme.templates[templateHandle].sections[sectionId].block_order.push(blockId);
+                                    await saveBlockSettings(block,templateHandle,sectionId,blockId);
+                                }
                             });
-                            if (blockSettings?.length) {
-                                blockSettings.forEach(block => {
-                                    sectionItem?.blocks?.forEach(localBlock => {
-                                        if (localBlock.type === block.getAttribute('data-type')) {
-                                            block.querySelectorAll('[name]').forEach(element => {
-                                                console.log(element.getAttribute('name'), "=", element.value);
-                                                localBlock.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
-                                                    : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
-                                            });
-                                        }
-                                    })
-                                });
-                            }
                         }
-                    });
-                } else {
-                    section.file_name = fileName;
-                    data?.querySelectorAll('[name]').forEach(element => {
-                        section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
-                            : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
-                    });
-                    if (blockSettings?.length) {
-                        blockSettings.forEach(block => {
-                            let blockItem = { type: block.getAttribute('data-type'), settings: {} };
-                            block?.querySelectorAll('[name]')?.forEach(element => {
-                                console.log(element.getAttribute('name'), "=", element.value, "-----BLOCK");
-                                blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
-                                    : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
+                    } else {
+                        theme.templates[templateHandle].sections[sectionId] = {
+                            type: sectionHandle,
+                            settings: {}
+                        };
+                        theme.templates[templateHandle].order.push(sectionId);
+                        await saveSectionSettings(sectionItem, templateHandle, sectionId);
+                        if(blockSettings?.length){
+                            theme.templates[templateHandle].sections[sectionId].blocks = {};
+                            theme.templates[templateHandle].sections[sectionId].block_order = [];
+                            blockSettings.forEach(async (block,index) => {
+                                let blockType = block.getAttribute('data-block-type');
+                                let blockId = block.getAttribute('data-block-id');
+                                if(!blockType && !blockId) return;
+                                theme.templates[templateHandle].sections[sectionId].blocks[blockId] = {
+                                    type: blockType,
+                                    settings: {}
+                                };
+                                theme.templates[templateHandle].sections[sectionId].block_order.push(blockId);
+                                await saveBlockSettings(block,templateHandle,sectionId,blockId);
                             });
-                            section.blocks.push(blockItem);
-                        });
+                        }
+                    }
+                } else {
+                    theme.templates[templateHandle] = {
+                        sections:{}, 
+                        order: []
                     };
+                    theme.templates[templateHandle].sections[sectionId] = {
+                        type: sectionHandle,
+                        settings: {}
+                    };
+                    theme.templates[templateHandle].order.push(sectionId);
+                    await saveSectionSettings(sectionItem, templateHandle, sectionId);
+                    if(blockSettings?.length){
+                        theme.templates[templateHandle].sections[sectionId].blocks = {};
+                        theme.templates[templateHandle].sections[sectionId].block_order = [];
+                        blockSettings.forEach(async (block,index) => {
+                            let blockType = block.getAttribute('data-block-type');
+                            let blockId = block.getAttribute('data-block-id');
+                            if(!blockType && !blockId) return;
+                            theme.templates[templateHandle].sections[sectionId].blocks[blockId] = {
+                                type: blockType,
+                                settings: {}
+                            };
+                            theme.templates[templateHandle].sections[sectionId].block_order.push(blockId);
+                            await saveBlockSettings(block,templateHandle,sectionId,blockId);
+                        });
+                    }
                 }
             } else {
-                section.file_name = fileName;
-                data?.querySelectorAll('[name]').forEach(element => {
-                    section.settings[element.getAttribute('name')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
-                        : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
-                });
-                if (blockSettings?.length) {
-                    blockSettings.forEach(block => {
-                        let blockItem = { type: block.getAttribute('data-type'), settings: {} };
-                        block?.querySelectorAll('[name]')?.forEach(element => {
-                            blockItem.settings[element.getAttribute('name').replace('block_', '')] = (element.value === "true" || element.value === "false") ? (element.value === "true") ? true : false
-                                : (element.getAttribute('type') && element.getAttribute('type') === "range" || element.getAttribute('type') === "number") ? parseInt(element.value) : element.value;
+                if(sectionHandle){
+                    if(theme.settings_data.current.sections[sectionHandle]){
+                        await saveSettingsDataSection(sectionItem, sectionHandle);
+                        blockSettings.forEach(async (block,index) => {
+                            let blockType = block.getAttribute('data-block-type');
+                            let blockId = block.getAttribute('data-block-id');
+                            if(!blockType && !blockId) return;
+                            if(theme.settings_data.current.sections[sectionHandle].blocks[blockId]){
+                                await saveSettingsDataBlock(block, sectionHandle, blockId);
+                            } else {
+                                theme.settings_data.current.sections[sectionHandle].blocks[blockId] = {
+                                    type: blockType,
+                                    settings: {}
+                                };
+                                theme.settings_data.current.sections[sectionHandle].block_order.push(blockId);
+                                await saveSettingsDataBlock(block, sectionHandle, blockId);
+                            }
                         });
-                        section.blocks.push(blockItem);
+                    } else {
+                        theme.settings_data.current.sections[sectionHandle] = {
+                            type: sectionHandle,
+                            settings: {}
+                        };
+                        await saveSettingsDataSection(sectionItem, sectionHandle);
+                        if(blockSettings?.length){
+                            theme.settings_data.current.sections[sectionHandle].blocks = {};
+                            theme.settings_data.current.sections[sectionHandle].block_order = [];
+                            blockSettings.forEach(async (block,index) => {
+                                let blockType = block.getAttribute('data-block-type');
+                                let blockId = block.getAttribute('data-block-id');
+                                if(!blockType && !blockId) return;
+                                theme.settings_data.current.sections[sectionHandle].blocks[blockId] = {
+                                    type: blockType,
+                                    settings: {}
+                                };
+                                theme.settings_data.current.sections[sectionHandle].block_order.push(blockId);
+                                await saveSettingsDataBlock(block, sectionHandle, blockId);
+                            });
+                        }
+                    }
+                } else {
+                    sectionItem?.querySelectorAll('[name]')?.forEach(element => {
+                        let elementId = element.getAttribute('name');
+                        let elementType = element.getAttribute('type');
+                        let elementValue = element.value;
+                        let settingsELementId = elementId.replace('settings_', '');
+                        theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true") 
+                        ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
                     });
-                };
-            }
-
-            if (section.file_name) {
-                theme.sections.push(section);
+                }
             }
         })
-        console.log(theme, "THEME");
+    };
+
+    const saveSettingsDataSection = async (sectionItem, sectionHandle) => {
+        sectionItem?.querySelectorAll('[name]')?.forEach(element => {
+            let elementId = element.getAttribute('name');
+            let elementType = element.getAttribute('type');
+            let elementValue = element.value;
+            if(elementId.includes('settings')){
+                let settingsELementId = elementId.replace('settings_', '');
+                theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true") 
+                ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
+            } else {
+                theme.settings_data.current.sections[sectionHandle].settings[elementId] = (elementValue === "false" || elementValue === "true") 
+                ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
+            }
+        });
+        return true;
+    };
+
+    const saveSettingsDataBlock = async (block, sectionHandle, blockId) => {
+        block?.querySelectorAll('[name]')?.forEach(element => {
+            let elementId = element.getAttribute('name');
+            let elementType = element.getAttribute('type');
+            let elementValue = element.value;
+            if(elementId.includes('settings')){
+                let settingsELementId = elementId.replace('settings_', '');
+                theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true") 
+                ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
+            } else {
+                let blockELementId = elementId.replace('block_', '');
+                theme.settings_data.current.sections[sectionHandle].blocks[blockId].settings[blockELementId] = (elementValue === "false" || elementValue === "true") 
+                ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
+            }
+        });
+        return true;
+    };
+
+    const saveSectionSettings = async (sectionItem, templateHandle, sectionId) => {
+        sectionItem?.querySelectorAll('[name]')?.forEach(element => {
+            let elementId = element.getAttribute('name');
+            let elementType = element.getAttribute('type');
+            let elementValue = element.value;
+            if(elementId.includes('settings')){
+                let settingsELementId = elementId.replace('settings_', '');
+                theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true") 
+                ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
+            } else {
+                theme.templates[templateHandle].sections[sectionId].settings[elementId] = (elementValue === "false" || elementValue === "true") 
+                ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
+            }
+        });
+        return true;
+    };
+
+    const saveBlockSettings = async (block, templateHandle, sectionId, blockId) => {
+        block?.querySelectorAll('[name]')?.forEach(element => {
+            let elementId = element.getAttribute('name');
+            let elementType = element.getAttribute('type');
+            let elementValue = element.value;
+            if(elementId.includes('settings')){
+                let settingsELementId = elementId.replace('settings_', '');
+                theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true") 
+                ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
+            } else {
+                let blockELementId = elementId.replace('block_', '');
+                theme.templates[templateHandle].sections[sectionId].blocks[blockId].settings[blockELementId] = (elementValue === "false" || elementValue === "true") 
+                ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
+            }
+        });
+        return true;
     };
 
     // FETCH CONFIG FUNCTION
@@ -702,25 +824,6 @@
         loading?.classList.remove('py__animate');
     };
 
-    // Check settings values 
-    // const checkSettings = (id, value) => {
-    // if(settingsValues[id] === value){
-    //     let isDisabled = true; 
-    //     settingsValuesBool[id] = false;
-    //     Object.entries(settingsValuesBool).forEach(([key, val]) => {
-    //         if(val) return isDisabled = false; 
-    //     });
-    //     if(isDisabled){
-    //         saveButton && saveButton.setAttribute('aria-disabled', 'true');
-    //         downloadButton && downloadButton.setAttribute('aria-disabled', 'false');
-    //     }
-    // } else {
-    //     saveButton && saveButton.setAttribute('aria-disabled', 'false');
-    //     downloadButton && downloadButton.setAttribute('aria-disabled', 'true');
-    //     settingsValuesBool[id] = true;
-    // }       
-    // };
-
     // Save Function
     const save = async () => {
 
@@ -738,7 +841,7 @@
         if (dataParse?.status === 200) {
             saveButton?.setAttribute('aria-disabled', 'true');
             downloadButton?.setAttribute('aria-disabled', 'false');
-            saveSettingsValues();
+            await saveSettingsValues();
         }
         loading?.classList.remove('py__animate');
     };
@@ -1118,47 +1221,23 @@
         window.URL.revokeObjectURL(objectUrl);
         a.remove();
         loading?.classList.remove('py__animate');
-    };
+    };  
 
     // View Iframe Fun
     const viewIframe = async () => {
         let iframes = document.querySelectorAll('iframe.py__view-iframe');
-        let url = null;
-
-        if (!iframes?.length) return;
-        let randomContent = iframes[0].closest('.py__preview-random-content');
-        let ids = randomContent?.getAttribute('data-ids');
-        if (ids) {
-            let newId = null;
-            let arrayIds = ids?.split(',');
-            let signupBtn = document.querySelector('.py__signup-button');
-            arrayIds?.forEach((id, i, array) => {
-                let index = i + 1;
-                if (iframes[0]?.getAttribute('data-theme-id') === id && index !== array.length) {
-                    newId = array[index];
-                    return url = '/view/' + array[index] + location.search;
-                } else if (iframes[0]?.getAttribute('data-theme-id') === id && index === array.length) {
-                    newId = array[0];
-                    return url = '/view/' + array[0] + location.search;
-                }
-            });
-            iframes?.forEach((item) => item?.setAttribute('data-theme-id', newId));
-            signupBtn?.setAttribute('data-id', newId);
-        } else {
-            url = iframes[0]?.getAttribute('src');
-        }
-
+        if (!iframes?.length) return loading?.classList.remove('py__animate');
+        let url = iframes[0].getAttribute('data-src') ? iframes[0].getAttribute('data-src') : iframes[0].getAttribute('src');
+        if(!url) return loading?.classList.remove('py__animate');
         let res = await fetch(url, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(theme) });
         let data = await res.text();
-        if (!data) loading?.classList.remove('py__animate');
+        if (!data) return loading?.classList.remove('py__animate');
         let parser = new DOMParser();
         let html = parser.parseFromString(data, "text/html");
         for (let i = 0; i < iframes.length; i++) {
             let iframeItem = iframes[i];
             let ifrm = iframeItem.contentDocument || iframeItem.contentWindow.document;
-            console.log(ifrm, html);
-            html ? ids ? ifrm.querySelector('html').innerHTML = html.querySelector('html').innerHTML 
-            : ifrm.querySelector('body').innerHTML = html.querySelector('body').innerHTML : null;
+            html ? ifrm.querySelector('body').innerHTML = html.querySelector('body').innerHTML : null;
         }
         loading?.classList.remove('py__animate');
     };
@@ -1221,32 +1300,35 @@
     const changeViewPage = async (event = false, href = false, changeUrl = true) => {
         loading?.classList.add('py__animate');
         let el = event ? event.target : null;
-        let brandBtn = document.querySelector('.global-styles');
-        let url = event ? brandBtn?.classList?.contains('active')
-            ? el.options[el.selectedIndex].getAttribute('data-href') + '&global=Global%20Styles'
+        let activeSidebarItem = document.querySelector('.py__get-section-button.active');
+        let activeSidebarItemHandle = activeSidebarItem?.getAttribute('data-handle');
+        let url = event ? activeSidebarItemHandle
+            ? el.options[el.selectedIndex].getAttribute('data-href') + '&settings=' + activeSidebarItemHandle
             : el.options[el.selectedIndex].getAttribute('data-href') : href;
         if (!url) return;
         changeUrl ? window.history.replaceState({}, '', url) : null;
-        let res = await fetch(url);
+        let res = await fetch(url,{ method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(theme) });
         let data = await res.text();
         if (!data) return loading?.classList.remove('py__animate');
         let parser = new DOMParser();
         let html = parser.parseFromString(data, "text/html");
         let oldSettingsWrap = document.querySelector('.py__make-settings');
         let newSettingsWrap = html.querySelector('.py__make-settings');
-        let oldIframeWrap = document.querySelectorAll('.py__preview-iframe');
-        let newIframeWrap = html.querySelector('.py__preview-iframe');
         let oldRemixSettings = document.querySelectorAll('.py__make-random-settings');
         let newRemixSettings = html.querySelectorAll('.py__make-random-settings');
+        let oldSidebar = document.querySelector('.py__settings-select-options');
+        let newSidebar = html.querySelector('.py__settings-select-options');
         oldSettingsWrap && newSettingsWrap ? oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML : null;
         oldRemixSettings && newRemixSettings ? oldRemixSettings.innerHTML = newRemixSettings : null;
-        if (oldIframeWrap.length && newIframeWrap) {
-            oldIframeWrap.forEach(oldItem => {
-                oldItem.innerHTML = newIframeWrap.innerHTML;
-            });
+        oldSidebar && newSidebar ? oldSidebar.innerHTML = newSidebar.innerHTML : null;
+        let ifrmaes = document.querySelectorAll('.py__view-iframe');
+        if (ifrmaes?.length) {
+            for(let i=0; i<ifrmaes?.length; i++){
+                let iframe = ifrmaes[i];
+                iframe.setAttribute('data-src', url.replace('themes', 'view'));
+            }
         }
-        loading?.classList.remove('py__animate');
-        return true;
+        await viewIframe();
     };
 
     // Get Global settings or Section settings dynamic function
@@ -1259,9 +1341,9 @@
             url = el.options[el.selectedIndex].getAttribute('data-href');
         } else {
             event.preventDefault();
-            if (el.classList.contains('active') && el.classList.contains('global-styles')) {
+            if (el.getAttribute('data-handle') && el.classList.contains('active')) {
                 let currenturlSearchParam = new URLSearchParams(location.search);
-                currenturlSearchParam.delete('global');
+                currenturlSearchParam.delete('settings');
                 let newUrl = location.origin + location.pathname + '?' + currenturlSearchParam.toString();
                 url = newUrl;
             } else {
@@ -1276,26 +1358,8 @@
         let sectionName = urlSearch.get('section');
         let iframe = document.querySelector('.py__view-iframe');
 
-        if (sectionName) {
-            let urlParams = new URL(location.href);
-            let iframeSearchParams = new URLSearchParams(urlParams.search);
-            iframeSearchParams.set('section', sectionName);
-            let iframeUrl = urlParams.pathname.indexOf('/users/') !== -1
-                ? '/view' + urlParams.pathname + '?' + iframeSearchParams.toString()
-                : urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString();
-            iframe.setAttribute('src', iframeUrl);
-        } else {
-            let urlParams = new URL(location.href);
-            let iframeSearchParams = new URLSearchParams(urlParams.search);
-            let iframeUrl = urlParams.pathname.indexOf('/users/') !== -1
-                ? '/view' + urlParams.pathname + '?' + iframeSearchParams.toString()
-                : urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString();
-            iframe.setAttribute('src', iframeUrl);
-        }
-
-
         el.classList.add('active');
-        let res = await fetch(url);
+        let res = await fetch(url, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(theme) });
         let data = await res.text();
 
         if (!data) return loading?.classList.remove('py__animate');
@@ -1307,508 +1371,37 @@
         let newSidebar = html.querySelector('.py__settings-select-options');
         oldSettingsWrap && newSettingsWrap ? oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML : null;
         oldSidebar && newSidebar ? oldSidebar.innerHTML = newSidebar.innerHTML : null;
-        saveSettingsValues();
-        loading?.classList.remove('py__animate');
+        if (sectionName) {
+            let urlParams = new URL(location.href);
+            let iframeSearchParams = new URLSearchParams(urlParams.search);
+            iframeSearchParams.set('section', sectionName);
+            let iframeUrl = urlParams.pathname.indexOf('/users/') !== -1
+                ? '/view' + urlParams.pathname + '?' + iframeSearchParams.toString()
+                : urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString();
+            iframe.setAttribute('data-src', iframeUrl);
+            await viewIframe();
+        } else {
+            let urlParams = new URL(location.href);
+            let iframeSearchParams = new URLSearchParams(urlParams.search);
+            let iframeUrl = urlParams.pathname.indexOf('/users/') !== -1
+                ? '/view' + urlParams.pathname + '?' + iframeSearchParams.toString()
+                : urlParams.pathname.replace('themes', 'view') + '?' + iframeSearchParams.toString();
+            iframe.setAttribute('data-src', iframeUrl);
+            await viewIframe();
+        }
     };
 
-
-    // RANDOM COLOR FUNCTION
-    // let defaultSettings = {
-    //     "backgrounds": [
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#102b00",
-    //             "py_bg_color_avarge": "#2d4c17",
-    //             "py_bg_color_middle_light": "#506f38",
-    //             "py_bg_color_light": "#74945a"
-    //         },
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#2d006e",
-    //             "py_bg_color_avarge": "#50188e",
-    //             "py_bg_color_middle_light": "#7238b0",
-    //             "py_bg_color_light": "#9457d2"
-    //         },
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#341e00",
-    //             "py_bg_color_avarge": "#513a03",
-    //             "py_bg_color_middle_light": "#735822",
-    //             "py_bg_color_light": "#967841"
-    //         },
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#003663",
-    //             "py_bg_color_avarge": "#006192",
-    //             "py_bg_color_middle_light": "#008fc4",
-    //             "py_bg_color_light": "#41c0f8"
-    //         },
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#122800",
-    //             "py_bg_color_avarge": "#1d4600",
-    //             "py_bg_color_middle_light": "#3b6400",
-    //             "py_bg_color_light": "#5c8413"
-    //         },
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#3e008f",
-    //             "py_bg_color_avarge": "#6400b0",
-    //             "py_bg_color_middle_light": "#8800d2",
-    //             "py_bg_color_light": "#ac25f5"
-    //         },
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#001583",
-    //             "py_bg_color_avarge": "#0030a7",
-    //             "py_bg_color_middle_light": "#434ecc",
-    //             "py_bg_color_light": "#6e6ef2"
-    //         },
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#670000",
-    //             "py_bg_color_avarge": "#930500",
-    //             "py_bg_color_middle_light": "#c23b22",
-    //             "py_bg_color_light": "#f26545"
-    //         },
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#510087",
-    //             "py_bg_color_avarge": "#7900ac",
-    //             "py_bg_color_middle_light": "#a200d3",
-    //             "py_bg_color_light": "#cb3dfb"
-    //         },
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#004400",
-    //             "py_bg_color_avarge": "#007b00",
-    //             "py_bg_color_middle_light": "#00b600",
-    //             "py_bg_color_light": "#36f34d"
-    //         },
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#002f50",
-    //             "py_bg_color_avarge": "#005477",
-    //             "py_bg_color_middle_light": "#037ba1",
-    //             "py_bg_color_light": "#4ca5cd"
-    //         },
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#000085",
-    //             "py_bg_color_avarge": "#000095",
-    //             "py_bg_color_middle_light": "#0000a5",
-    //             "py_bg_color_light": "#1b11b6"
-    //         },
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#521700",
-    //             "py_bg_color_avarge": "#7d3d00",
-    //             "py_bg_color_middle_light": "#ae6502",
-    //             "py_bg_color_light": "#e19037"
-    //         },
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#00343b",
-    //             "py_bg_color_avarge": "#005c61",
-    //             "py_bg_color_middle_light": "#00868b",
-    //             "py_bg_color_light": "#1fb2b7"
-    //         },
-    //         {
-    //             "py_bg_color_dark": "#000000",
-    //             "py_bg_color_middle_dark": "#5d0000",
-    //             "py_bg_color_avarge": "#851900",
-    //             "py_bg_color_middle_light": "#b1411e",
-    //             "py_bg_color_light": "#dd6640"
-    //         }
-    //     ],
-    //     "colors": [
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         },
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         },
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         },
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         },
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         },
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         },
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         },
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         },
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         },
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         },
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         },
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         },
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         },
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         },
-    //         {
-    //             "py_color_dark": "#ffffff",
-    //             "py_color_avarge": "#ffffff",
-    //             "py_color_light": "#ffffff"
-    //         }
-    //     ],
-    //     "fonts": [
-    //         {
-    //             "heading_font_custom": "Patua One",
-    //             "title_font_custom": "Londrina Solid",
-    //             "sub_title_font_custom": "Kranky",
-    //             "body_font_custom": "Gorditas",
-    //             "button_font_custom": "Revalia",
-    //             "nav_font_custom": "Petrona",
-    //             "field_font_custom": "Englebert",
-    //             "header_position": "fixed",
-    //             "logo_position": "middle-left-center-nav",
-    //             "search_style": "search_page",
-    //             "title_fontstyle": "normal",
-    //             "info_fontstyle": "italic",
-    //             "block_img_col_position": "last",
-    //             "image_position": "left",
-    //             "block_card_style": "vertical",
-    //             "block_title_fontstyle": "italic",
-    //             "block_info_fontstyle": "italic"
-    //         },
-    //         {
-    //             "heading_font_custom": "Prosto One",
-    //             "title_font_custom": "Armata",
-    //             "sub_title_font_custom": "Rozha One",
-    //             "body_font_custom": "Lakki Reddy",
-    //             "button_font_custom": "Playfair Display SC",
-    //             "nav_font_custom": "Amarante",
-    //             "field_font_custom": "Oxygen Mono",
-    //             "header_position": "static",
-    //             "logo_position": "middle-left",
-    //             "search_style": "sidebar",
-    //             "title_fontstyle": "italic",
-    //             "info_fontstyle": "italic",
-    //             "block_img_col_position": "first",
-    //             "image_position": "left",
-    //             "block_card_style": "horizontal",
-    //             "block_title_fontstyle": "normal",
-    //             "block_info_fontstyle": "italic"
-    //         },
-    //         {
-    //             "heading_font_custom": "Palanquin Dark",
-    //             "title_font_custom": "Ramaraja",
-    //             "sub_title_font_custom": "Questrial",
-    //             "body_font_custom": "Fredoka One",
-    //             "button_font_custom": "Mountains of Christmas",
-    //             "nav_font_custom": "Fresca",
-    //             "field_font_custom": "Judson",
-    //             "header_position": "static",
-    //             "logo_position": "middle-center",
-    //             "search_style": "full_screen",
-    //             "title_fontstyle": "italic",
-    //             "info_fontstyle": "normal",
-    //             "block_img_col_position": "first",
-    //             "image_position": "right",
-    //             "block_card_style": "vertical",
-    //             "block_title_fontstyle": "italic",
-    //             "block_info_fontstyle": "italic"
-    //         },
-    //         {
-    //             "heading_font_custom": "Asap",
-    //             "title_font_custom": "Devonshire",
-    //             "sub_title_font_custom": "Antic",
-    //             "body_font_custom": "Rubik One",
-    //             "button_font_custom": "Seymour One",
-    //             "nav_font_custom": "IM Fell DW Pica SC",
-    //             "field_font_custom": "Rammetto One",
-    //             "header_position": "fixed",
-    //             "logo_position": "top-left",
-    //             "search_style": "search_page",
-    //             "title_fontstyle": "normal",
-    //             "info_fontstyle": "normal",
-    //             "block_img_col_position": "last",
-    //             "image_position": "left",
-    //             "block_card_style": "horizontal",
-    //             "block_title_fontstyle": "normal",
-    //             "block_info_fontstyle": "italic"
-    //         },
-    //         {
-    //             "heading_font_custom": "Exo",
-    //             "title_font_custom": "Kranky",
-    //             "sub_title_font_custom": "Tenali Ramakrishna",
-    //             "body_font_custom": "Expletus Sans",
-    //             "button_font_custom": "Patrick Hand",
-    //             "nav_font_custom": "Grand Hotel",
-    //             "field_font_custom": "Simonetta",
-    //             "header_position": "fixed",
-    //             "logo_position": "middle-center",
-    //             "search_style": "full_screen",
-    //             "title_fontstyle": "italic",
-    //             "info_fontstyle": "italic",
-    //             "block_img_col_position": "last",
-    //             "image_position": "right",
-    //             "block_card_style": "horizontal",
-    //             "block_title_fontstyle": "italic",
-    //             "block_info_fontstyle": "italic"
-    //         },
-    //         {
-    //             "heading_font_custom": "Modern Antiqua",
-    //             "title_font_custom": "Waiting for the Sunrise",
-    //             "sub_title_font_custom": "Quicksand",
-    //             "body_font_custom": "Actor",
-    //             "button_font_custom": "Passion One",
-    //             "nav_font_custom": "Moulpali",
-    //             "field_font_custom": "Glass Antiqua",
-    //             "header_position": "fixed",
-    //             "logo_position": "middle-left-center-nav",
-    //             "search_style": "sidebar",
-    //             "title_fontstyle": "italic",
-    //             "info_fontstyle": "italic",
-    //             "block_img_col_position": "last",
-    //             "image_position": "right",
-    //             "block_card_style": "horizontal",
-    //             "block_title_fontstyle": "italic",
-    //             "block_info_fontstyle": "normal"
-    //         },
-    //         {
-    //             "heading_font_custom": "Londrina Solid",
-    //             "title_font_custom": "Hanalei Fill",
-    //             "sub_title_font_custom": "IM Fell Great Primer SC",
-    //             "body_font_custom": "Vesper Libre",
-    //             "button_font_custom": "Maven Pro",
-    //             "nav_font_custom": "Metal",
-    //             "field_font_custom": "Nova Cut",
-    //             "header_position": "static",
-    //             "logo_position": "middle-left-center-nav",
-    //             "search_style": "sidebar",
-    //             "title_fontstyle": "normal",
-    //             "info_fontstyle": "italic",
-    //             "block_img_col_position": "first",
-    //             "image_position": "left",
-    //             "block_card_style": "horizontal",
-    //             "block_title_fontstyle": "italic",
-    //             "block_info_fontstyle": "italic"
-    //         },
-    //         {
-    //             "heading_font_custom": "Dorsa",
-    //             "title_font_custom": "Lovers Quarrel",
-    //             "sub_title_font_custom": "Sue Ellen Francisco",
-    //             "body_font_custom": "Noto Sans",
-    //             "button_font_custom": "Open Sans Condensed",
-    //             "nav_font_custom": "Fondamento",
-    //             "field_font_custom": "League Script",
-    //             "header_position": "static",
-    //             "logo_position": "middle-left",
-    //             "search_style": "full_screen",
-    //             "title_fontstyle": "normal",
-    //             "info_fontstyle": "normal",
-    //             "block_img_col_position": "first",
-    //             "image_position": "left",
-    //             "block_card_style": "vertical",
-    //             "block_title_fontstyle": "italic",
-    //             "block_info_fontstyle": "normal"
-    //         },
-    //         {
-    //             "heading_font_custom": "IM Fell DW Pica SC",
-    //             "title_font_custom": "Mountains of Christmas",
-    //             "sub_title_font_custom": "Bitter",
-    //             "body_font_custom": "Antic",
-    //             "button_font_custom": "Pacifico",
-    //             "nav_font_custom": "Purple Purse",
-    //             "field_font_custom": "Meddon",
-    //             "header_position": "static",
-    //             "logo_position": "middle-left",
-    //             "search_style": "full_screen",
-    //             "title_fontstyle": "italic",
-    //             "info_fontstyle": "italic",
-    //             "block_img_col_position": "last",
-    //             "image_position": "right",
-    //             "block_card_style": "vertical",
-    //             "block_title_fontstyle": "italic",
-    //             "block_info_fontstyle": "normal"
-    //         },
-    //         {
-    //             "heading_font_custom": "Luckiest Guy",
-    //             "title_font_custom": "Rum Raisin",
-    //             "sub_title_font_custom": "Unlock",
-    //             "body_font_custom": "Dhurjati",
-    //             "button_font_custom": "Monoton",
-    //             "nav_font_custom": "Petrona",
-    //             "field_font_custom": "Dhurjati",
-    //             "header_position": "static",
-    //             "logo_position": "top-left",
-    //             "search_style": "full_screen",
-    //             "title_fontstyle": "italic",
-    //             "info_fontstyle": "italic",
-    //             "block_img_col_position": "first",
-    //             "image_position": "right",
-    //             "block_card_style": "horizontal",
-    //             "block_title_fontstyle": "italic",
-    //             "block_info_fontstyle": "normal"
-    //         },
-    //         {
-    //             "heading_font_custom": "Courgette",
-    //             "title_font_custom": "Diplomata",
-    //             "sub_title_font_custom": "Federo",
-    //             "body_font_custom": "Quicksand",
-    //             "button_font_custom": "Butterfly Kids",
-    //             "nav_font_custom": "Ledger",
-    //             "field_font_custom": "Gentium Basic",
-    //             "header_position": "fixed",
-    //             "logo_position": "middle-left",
-    //             "search_style": "sidebar",
-    //             "title_fontstyle": "normal",
-    //             "info_fontstyle": "normal",
-    //             "block_img_col_position": "last",
-    //             "image_position": "left",
-    //             "block_card_style": "horizontal",
-    //             "block_title_fontstyle": "italic",
-    //             "block_info_fontstyle": "italic"
-    //         },
-    //         {
-    //             "heading_font_custom": "Pompiere",
-    //             "title_font_custom": "Nova Round",
-    //             "sub_title_font_custom": "Parisienne",
-    //             "body_font_custom": "Passero One",
-    //             "button_font_custom": "Prociono",
-    //             "nav_font_custom": "Keania One",
-    //             "field_font_custom": "Angkor",
-    //             "header_position": "static",
-    //             "logo_position": "top-left",
-    //             "search_style": "full_screen",
-    //             "title_fontstyle": "normal",
-    //             "info_fontstyle": "italic",
-    //             "block_img_col_position": "first",
-    //             "image_position": "left",
-    //             "block_card_style": "horizontal",
-    //             "block_title_fontstyle": "normal",
-    //             "block_info_fontstyle": "italic"
-    //         },
-    //         {
-    //             "heading_font_custom": "Fascinate",
-    //             "title_font_custom": "Fjord One",
-    //             "sub_title_font_custom": "Michroma",
-    //             "body_font_custom": "Gilda Display",
-    //             "button_font_custom": "Ruda",
-    //             "nav_font_custom": "Miss Fajardose",
-    //             "field_font_custom": "Exo 2",
-    //             "header_position": "static",
-    //             "logo_position": "middle-left-center-nav",
-    //             "search_style": "sidebar",
-    //             "title_fontstyle": "normal",
-    //             "info_fontstyle": "italic",
-    //             "block_img_col_position": "first",
-    //             "image_position": "left",
-    //             "block_card_style": "vertical",
-    //             "block_title_fontstyle": "normal",
-    //             "block_info_fontstyle": "normal"
-    //         },
-    //         {
-    //             "heading_font_custom": "Homemade Apple",
-    //             "title_font_custom": "Marvel",
-    //             "sub_title_font_custom": "Give You Glory",
-    //             "body_font_custom": "Skranji",
-    //             "button_font_custom": "Allerta",
-    //             "nav_font_custom": "Erica One",
-    //             "field_font_custom": "Lekton",
-    //             "header_position": "static",
-    //             "logo_position": "middle-left-center-nav",
-    //             "search_style": "sidebar",
-    //             "title_fontstyle": "normal",
-    //             "info_fontstyle": "normal",
-    //             "block_img_col_position": "first",
-    //             "image_position": "right",
-    //             "block_card_style": "horizontal",
-    //             "block_title_fontstyle": "normal",
-    //             "block_info_fontstyle": "normal"
-    //         },
-    //         {
-    //             "heading_font_custom": "Angkor",
-    //             "title_font_custom": "Kalam",
-    //             "sub_title_font_custom": "Uncial Antiqua",
-    //             "body_font_custom": "Nothing You Could Do",
-    //             "button_font_custom": "Patrick Hand",
-    //             "nav_font_custom": "Crete Round",
-    //             "field_font_custom": "Euphoria Script",
-    //             "header_position": "fixed",
-    //             "logo_position": "middle-left-center-nav",
-    //             "search_style": "search_page",
-    //             "title_fontstyle": "italic",
-    //             "info_fontstyle": "italic",
-    //             "block_img_col_position": "last",
-    //             "image_position": "left",
-    //             "block_card_style": "horizontal",
-    //             "block_title_fontstyle": "normal",
-    //             "block_info_fontstyle": "italic"
-    //         }
-    //     ]
-    // };
-
-    // let remixColorCount = 0;
-    // let oldColorOne = "#000000";
-    // const generateRandomColor = async () => {
-    //     let mode = document.querySelector('.py__random-colors-mode')?.value || "quad";
-    //     let color1 = chroma.random().hex();
-    //     // if(chroma.deltaE(color1, oldColorOne) < 40){
-    //     //     color1 = chroma.random().hex();
-    //     //     if(chroma.deltaE(color1, oldColorOne) < 40){
-    //     //         color1 = chroma.random().hex();
-    //     //     }
-    //     // }
-    //     // oldColorOne = color1;
-    //     // let color2 = chroma(color1).darken(1);
-    //     // let colorsList = chroma.scale([color2, color1]).mode('lch').colors(3);
-    //     let getColorList = await fetch(`https://www.thecolorapi.com/scheme?hex=${color1?.replace('#', '')}&mode=${mode}&count=5`);
-    //     let res = await getColorList.json();
-    //     // let colorsList = chroma.brewer.OrRd;
-    //     // colorsList.unshift('#000000');
-    //     // colorsList.push('#FFFFFF');
-    //     // console.log(colorsList);
-    //     return res.colors;
-    // };
+    const getRandomSections = async () => {
+        let url = '/remix' + location?.search
+        let res = await fetch(url, { method: 'GET', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }});
+        let data = await res.text();
+        if (!data) return loading?.classList.remove('py__animate');
+        let parser = new DOMParser();
+        let html = parser.parseFromString(data, "text/html");
+        let randomSettingsNew = html?.querySelector('.py__make-random-settings');
+        let randomSettingsOld = document.querySelector('.py__make-random-settings')
+        if(randomSettingsOld && randomSettingsNew) randomSettingsOld.innerHTML = randomSettingsNew.innerHTML;
+    };
 
     let remixCount = 0;
     // let defaultSettingsCount = 0;
@@ -1818,6 +1411,8 @@
         event.preventDefault();
         loading?.classList.add('py__animate');
 
+        await getRandomSections();
+
         let inputFileds = document.querySelectorAll('[name]');
         let mode = document.querySelector('.py__random-colors-mode')?.value || "quad";
         let colorChroma = chroma.random().hex();
@@ -1825,10 +1420,8 @@
         let res = await getColorList.json();
         let colorsList = res.colors;
         let index = 0;
-        //    let colorsList = null;
-        //    let textColorsList = null;
-        //    let fontsList = null;
-        if (!inputFileds.length) return;
+
+        if (!inputFileds.length) return loading?.classList.remove('py__animate');
 
         for(let i = 0; i < inputFileds.length; i++) {
             let filed = inputFileds[i];
@@ -1836,21 +1429,6 @@
             let filedName = filed.getAttribute('name');
             if (filedType === "color") {
                 if (filedName.includes('_bg')) {
-                    // if (index === 0) {
-                        // if(defaultSettingsCount >= 15) defaultSettingsCount = 0; 
-                        // if(remixCount > 15) remixCount = 0;
-                        // if((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)){
-                        // console.log(index, "CHECK");
-                        // colorsList = await generateRandomColor();
-                        
-                        // } else {
-                        //     colorsList = defaultSettings.backgrounds[defaultSettingsCount];
-                        //     textColorsList = defaultSettings.colors[defaultSettingsCount];
-                        //     fontsList = defaultSettings.fonts[defaultSettingsCount];
-                        //     defaultSettingsCount++;
-                        // }
-                    // }
-                    // let color = ((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)) ? colorsList[index] : colorsList[filedName];
                     let colorObj = colorsList[index];
                     let color = filedName?.includes('color_dark') 
                     ? '#000000' : filedName?.includes('color_light') 
@@ -1863,14 +1441,12 @@
                     let filedNameText = filedName.replace('_bg', '');
                     let textInputFiled = document.querySelector(`[name="${filedNameText}"]`);
                     if (textInputFiled){
-                        // let textColor = ((remixCount > 5 && remixCount <= 10) || (remixCount > 15 && remixCount <= 20) || (remixCount > 25 && remixCount <= 30)) ? getContrastYIQ(color) : textColorsList[filedName.replace('_bg', '')];
                         let textColor = filedNameText?.includes('dark') 
                         ? '#000000' : filedNameText?.includes('light') 
                         ? '#FFFFFF' : colorObj?.contrast?.value;
-                        // let textColor = color?.contrast?.value;
                         let textClosestWrap = textInputFiled.closest('.component-is-color');
-                        let textIsColorLabel = textClosestWrap.querySelector('.py__label-for-color');
-                        textIsColorLabel.style.backgroundColor = textColor;
+                        let textIsColorLabel = textClosestWrap?.querySelector('.py__label-for-color');
+                        if(textIsColorLabel) textIsColorLabel.style.backgroundColor = textColor;
                         textInputFiled.value = textColor;
                     }
                 }
@@ -1925,7 +1501,6 @@
                     for(let j=0; j<findAllFileds.length; j++){
                         let filed = findAllFileds[j];
                         let filedName = filed.getAttribute('name');
-                        // console.log(typeof imageBanner[remixCount]?.blocks[blockType][filedName], typeof imageBanner[remixCount]?.blocks[blockType][filedName] === "undefined");
                         if(imageBanner[remixCount]?.blocks && imageBanner[remixCount]?.blocks[blockType] && typeof imageBanner[remixCount]?.blocks[blockType][filedName] !== "undefined") filed.value = imageBanner[remixCount]?.blocks[blockType][filedName];    
                     };
                 }
@@ -1935,8 +1510,8 @@
         remixCount++;
         if(remixCount >= imageBanner?.length) remixCount = 0; 
         fontsCount >= fonts.length ? fontsCount = 0 : fontsCount++;
-        saveSettingsValues();
-        viewIframe();
+        await saveSettingsValues();
+        await viewIframe();
 
     };
 
@@ -1944,7 +1519,7 @@
     // COMPONENTS FUN
     //---------------------------------------
     // Color Component Function
-    const colorComp = (event) => {
+    const colorComp = async (event) => {
         if (!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
@@ -1953,7 +1528,7 @@
         let forColor = wrapper?.querySelector('.py__label-for-color');
         if (isColor) isColor.value = value;
         if (forColor) forColor.style.backgroundColor = value;
-        saveSettingsValues();
+        await saveSettingsValues();
 
         if (uniqName.includes('bg')) {
             let textUniqName = uniqName.replace('bg_', '');
@@ -1970,20 +1545,20 @@
             }
         }
         saveButton?.setAttribute('aria-disabled', false);
-        viewIframe();
+        await viewIframe();
     };
     // Text Component Function
-    const textComp = (event) => {
+    const textComp = async (event) => {
         if (!event) return;
         let el = event.target;
         let uniqName = el?.getAttribute('name');
         let value = el?.value;
-        saveSettingsValues();
-        (value !== focuseValue) ? viewIframe() : null;
+        await saveSettingsValues();
+        (value !== focuseValue) ? await viewIframe() : null;
         if (uniqName === 'settings_theme_name' && value !== focuseValue) themeName = value;
         saveButton?.setAttribute('aria-disabled', false);
     };
-    const colorTextComp = (event) => {
+    const colorTextComp = async (event) => {
         if (!event) return;
         let el = event.target;
         let value = el?.value;
@@ -1992,68 +1567,69 @@
         let label = closest.querySelector('.py__label-for-color');
         range.value = value;
         label.style.backgroundColor = value;
-        saveSettingsValues();
-        viewIframe();
+        await saveSettingsValues();
+        await viewIframe();
     };
     // Textarea Component Function
-    const textareaComp = (event) => {
+    const textareaComp = async (event) => {
         if (!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
-        saveSettingsValues();
-        value !== focuseValue ? viewIframe() : null;
+        await saveSettingsValues();
+        value !== focuseValue ? await viewIframe() : null;
         saveButton?.setAttribute('aria-disabled', false);
     };
     // Richtext Component Function
-    const richtextComp = (event) => {
+    const richtextComp = async (event) => {
         if (!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
-        saveSettingsValues();
-        value !== focuseValue ? viewIframe() : null;
+        await saveSettingsValues();
+        value !== focuseValue ? await viewIframe() : null;
         saveButton?.setAttribute('aria-disabled', false);
     };
     // Select Component Function
-    const selectComp = (event) => {
+    const selectComp = async (event) => {
         if (!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
-        let container = event.target.closest('.py__settings-item');
-        let isHaveGlobal = container?.querySelector('.py__get-result-wrapper');
-        saveSettingsValues();
-        if (uniqName.includes('bg')) {
+        let container = event.target.closest('.py__closest');
+        let colorCode = event.target.selectedOptions[0].getAttribute("data-value");
+        if(uniqName.includes('bg') && value !== 'bg-c-none' && value !== 'bg-c-un'){
             let textUniqName = uniqName.replace('bg_', '');
-            let findInColorsJson = colorsNamesContrast[textUniqName];
-            let textColorInput = findInColorsJson ? document.querySelector(`[name="${findInColorsJson}"]`) : document.querySelector(`[name="${textUniqName}"]`);
-            if (textColorInput) {
-                let newVal = value.includes('dark') ? 'light' : 'dark';
-                textColorInput.selectedIndex = [...textColorInput.options].findIndex(option => option.value.includes(newVal));
+            let textColorInput = container.querySelectorAll(`[name^="${textUniqName}"]`);
+            if(textColorInput?.length) {
+                for(let i=0; i<textColorInput?.length; i++){
+                    let itemColor = textColorInput[i];
+                    let contrastColor = await getContrastYIQ(colorCode);
+                    itemColor.selectedIndex = [...itemColor.options].findIndex(option => option.getAttribute('data-value') === contrastColor);
+                }
             }
         }
-
-        viewIframe();
-        if (isHaveGlobal) getItemFromSettings(event, true);
+        
+        await saveSettingsValues();
+        await viewIframe();
         saveButton?.setAttribute('aria-disabled', false);
     };
     // Checkbox Component Function
-    const checkboxComp = (event) => {
+    const checkboxComp = async (event) => {
         if (!event) return;
         let uniqName = event.target.getAttribute('name');
         let content = event.target.closest('.py__comp-checkbox');
         let hiddenFiled = content.querySelector('input[type="hidden"]');
         hiddenFiled.value = event.target.checked ? true : false;
         let value = hiddenFiled.value;
-        saveSettingsValues();
-        viewIframe();
+        await saveSettingsValues();
+        await viewIframe();
         saveButton?.setAttribute('aria-disabled', false);
     };
     // Range Component Function
-    const rangeComp = (event) => {
+    const rangeComp = async (event) => {
         if (!event) return;
         let uniqName = event.target.getAttribute('name');
         let value = event.target.value;
-        saveSettingsValues();
-        viewIframe();
+        await saveSettingsValues();
+        await viewIframe();
         saveButton?.setAttribute('aria-disabled', false);
     };
 
@@ -2165,8 +1741,8 @@
     });
 
     // When Page Content is Loaded
-    document.addEventListener('DOMContentLoaded', () => {
-        saveSettingsValues();
+    document.addEventListener('DOMContentLoaded', async () => {
+        await saveSettingsValues();
         loading = document.querySelector('.py__loading-wrap');
         saveButton = document.querySelector('.py__save-button');
         downloadButton = document.querySelector('.py__download-button');

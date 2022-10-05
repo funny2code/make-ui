@@ -140,7 +140,7 @@
         
       </div>
       <div class="contact__button">
-        <button type="submit" class="button py-btn-{{section.settings.page_color_submit_btn}} py-btn-hover-{{section.settings.page_color_submit_btn_hover}} py-btn-{{section.settings.submit_btn_size}}">
+        <button type="submit" class="button py-c-{{section.settings.page_color_submit_btn}} py-hv-c-{{section.settings.page_color_submit_btn_hover}} py-bg-c-{{section.settings.page_bg_color_submit_btn}} py-hv-bg-c-{{section.settings.page_bg_color_submit_btn_hover}} py-btn-{{section.settings.submit_btn_size}}">
           {{ 'templates.contact.form.send' | t }}
         </button>
       </div>
@@ -274,8 +274,16 @@
            "value": "var(--py-color-dark)"
          },
          {
+           "label": "Middle Dark",
+           "value": "var(--py-color-middle-dark)"
+         },
+         {
            "label": "Average",
            "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Middle Light",
+           "value": "var(--py-color-middle-light)"
          },
          {
            "label": "Light",
@@ -294,8 +302,16 @@
            "value": "var(--py-color-dark)"
          },
          {
+           "label": "Middle Dark",
+           "value": "var(--py-color-middle-dark)"
+         },
+         {
            "label": "Average",
            "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Middle Light",
+           "value": "var(--py-color-middle-light)"
          },
          {
            "label": "Light",
@@ -314,8 +330,16 @@
            "value": "var(--py-color-dark)"
          },
          {
+           "label": "Middle Dark",
+           "value": "var(--py-color-middle-dark)"
+         },
+         {
            "label": "Average",
            "value": "var(--py-color-avarge)"
+         },
+         {
+           "label": "Middle Light",
+           "value": "var(--py-color-middle-light)"
          },
          {
            "label": "Light",
@@ -356,15 +380,23 @@
     {
       "type": "select",
       "id": "page_color_submit_btn",
-      "label": "Submit Button Color style",
+      "label": "Submit Button Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -375,16 +407,24 @@
     },
     {
       "type": "select",
-      "id": "page_color_submit_btn_hover",
-      "label": "Submit Button Hover Color style",
+      "id": "page_bg_color_submit_btn",
+      "label": "Submit Button Background Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -392,6 +432,62 @@
         }
       ],
       "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "page_color_submit_btn_hover",
+      "label": "Submit Button Hover Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "page_bg_color_submit_btn_hover",
+      "label": "Submit Button Hover Background Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
     }
   ],
   "blocks": [    
@@ -425,8 +521,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",
@@ -481,8 +585,16 @@
                "value": "var(--py-color-dark)"
              },
              {
+               "label": "Middle Dark",
+               "value": "var(--py-color-middle-dark)"
+             },
+             {
                "label": "Average",
                "value": "var(--py-color-avarge)"
+             },
+             {
+               "label": "Middle Light",
+               "value": "var(--py-color-middle-light)"
              },
              {
                "label": "Light",

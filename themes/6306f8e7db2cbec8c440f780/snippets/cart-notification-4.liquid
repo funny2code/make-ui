@@ -97,7 +97,7 @@
         <div class="tax-notify"><i>Shipping, taxes, and discount codes are calculated at checkout</i></div>
         <div class="bc-cart__buttons-wrapper">
           <form action="{{ routes.cart_url }}" method="post" id="cart">
-            <button id="loopcheckout" class="button button--primary button--full-width py-btn-{{settings.cart_btn_color}} py-btn-hover-{{settings.cart_btn_hover_color}} py-btn-{{settings.cart_btn_size}}" name="checkout" form="cart">{{ 'sections.cart.checkout' | t }}</button>
+            <button id="loopcheckout" class="button button--primary button--full-width py-c-{{settings.cart_btn_color}} py-hv-c-{{settings.cart_btn_color_hover}} py-bg-c-{{settings.cart_btn_bg_color}} py-hv-bg-c-{{settings.cart_btn_bg_color_hover}} py-btn-{{settings.cart_btn_size}}" name="checkout" form="cart">{{ 'sections.cart.checkout' | t }}</button>
           </form>
         </div>
       </div>

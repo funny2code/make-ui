@@ -1,42 +1,6 @@
-<% if(settings){ %>
-    <% 
-        var templateName = null;
-        if(page === "Home Page"){ 
-            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
-            ? "config/settings_data" : "templates/index";
-        } else if(page === "Collection Page"){ 
-            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
-            ? "config/settings_data" : "templates/collection";
-        } else if(page === "Product Page"){ 
-            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
-            ? "config/settings_data" : "templates/product";
-        } else if(page === "404 Page"){
-            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
-            ? "config/settings_data" : "templates/404";
-        } else if(page === "Article Page"){
-            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
-            ? "config/settings_data" : "templates/article";
-        } else if(page === "Blog Page"){
-            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
-            ? "config/settings_data" : "templates/blog";
-        } else if(page === "Cart Page"){
-            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
-            ? "config/settings_data" : "templates/cart";
-        } else if(page === "List Collections Page"){
-            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
-            ? "config/settings_data" : "templates/list-collections";
-        } else if(page === "Page"){
-            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
-            ? "config/settings_data" : "templates/page";
-        } else if(page === "Search Page"){
-            templateName = active === 'header' || active === 'footer' || active === 'announcement-bar' 
-            ? "config/settings_data" : "templates/search";
-        } else if(page === "Gift Card Page" || page === "Account Page" || page === "Account Activate Page" || page === "Account Addresses Page" || page === "Account Login Page" || page === "Account Register Page" || page === "Account Reset Password Page"){
-            templateName = "config/settings_data";
-        } 
-    %> 
-    <div class="py__settings-wrapper <% if(global === "section"){ %>py__settings-section-item<% } %>" <% if(global === "section"){ %>data-file-name="<%=active%>"<% } %> data-template-name="<%=templateName%>">
-        <% settings.forEach((item, index) => { %>
+<% if(schemaSettings){ %>
+    <div class="py__settings-wrapper <% if(global === "section"){ %>py__settings-section-item<% } %>" <% if(global === "section"){ %>data-section-handle="<%=active%>"<% } %> <% if(section_id){ %>data-section-id="<%=section_id%>"<% } %> data-template-name="<%=templateName%>">
+        <% schemaSettings.forEach((item, index) => { %>
 
             <% if(global === "settings" && item.type === 'header' && index !== 0){ %>
                     </div>
@@ -53,23 +17,25 @@
             <% } %>
 
             <% if(item.type === 'color'){ %>
-                <%- include('../components/color', {global: global, data: item, typeIs: false}) %>
+                <%- include('../components/color', {global: global, data: item, value: settings[item.id], typeIs: false}) %>
             <% } else if(item.type === 'text' && item.label !== 'Google Font'){ %>
-                <%- include('../components/text', {global: global, data: item}) %>
+                <%- include('../components/text', {global: global, data: item, value: settings[item.id]}) %>
             <% } else if(item.type === 'select'){ %>
-                <%- include('../components/select', {global: global, data: item}) %>
+                <%- include('../components/select', {global: global, data: item, value: settings[item.id]}) %>
             <% } else if(item.type === 'checkbox'){ %>
-                <%- include('../components/checkbox', {global: global, data: item}) %>
+                <%- include('../components/checkbox', {global: global, data: item, value: settings[item.id]}) %>
             <% } else if(item.type === 'range'){ %>
-                <%- include('../components/range', {global: global, data: item}) %>
+                <%- include('../components/range', {global: global, data: item, value: settings[item.id]}) %>
             <% } else if(item.type === 'text' && item.label === 'Google Font' && fonts){ %>
-                <%- include('../components/font', {global: global, data: item, fonts: fonts}) %>
+                <%- include('../components/font', {global: global, data: item, fonts: fonts, value: settings[item.id]}) %>
             <% } else if(item.type === 'textarea'){ %>
-                <%- include('../components/textarea', {global: global, data: item}) %>
+                <%- include('../components/textarea', {global: global, data: item, value: settings[item.id]}) %>
             <% } else if(item.type === 'richtext'){ %>
-                <%- include('../components/richtext', {global: global, data: item}) %>    
+                <%- include('../components/richtext', {global: global, data: item, value: settings[item.id]}) %>    
             <% } else if(item.type === 'paragraph'){ %>
                 <%- include('../components/paragraph', {data: item}) %>
+            <% } else if(item.type !== 'header' && item.type !== 'paragraph'){ %>
+                <input type="hidden" name="<%= global !== "section" ? global + "_" + item.id : item.id %>" value="<%=settings[item.id]%>">
             <% } %>
 
             <% if(global === "settings" && (index + 1) === settings.length){ %>

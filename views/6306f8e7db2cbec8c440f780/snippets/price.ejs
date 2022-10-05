@@ -1,46 +1,46 @@
 <%
   if(use_variant){
-    var target = product?.variants[0]
+    var target = product?.selected_or_first_available_variant
   } else {
     var target = product
   }
-  var discount_disable = product?.metafields?.discount.disable.value
+  var discount_disable = product?.metafields?.discount?.disable?.value
   var collections = product?.collections
-  var non_dis_collections = settings?.discount_hide_collections?.split("|");
+  var non_dis_collections = settings.discount_hide_collections?.split("|")
   var compare_at_price = target?.compare_at_price
   var price = target?.price || 1999
   var available = target?.available || false
   var money_price = price
-  var percent = settings?.discount / 100.0
+  var percent = settings.discount / 100.0
   var disPercent = 1 - percent 
   var finalPrice = price * disPercent
   var discountPrice = price - finalPrice
   var dis_flag = false
   if(target === product && product?.price_varies){
-    var money_price = price
+    var money_price = products.product?.price.from_price_html
   }
 %>
-     <% collections?.forEach((collection, index)=>{ %>
-        <% non_dis_collections?.forEach((non_collection, index)=>{ %>
-            <% if(non_collection === collection.title){ %>                  
-                <% var dis_flag = true %>
-                <% return %>
-            <% } %>
-        <% }) %>
-        <% if(dis_flag){ %>
-              <% return %>      
-        <% } %>
+     <% collections?.forEach((collection,index)=>{ %>
+         <% non_dis_collections?.forEach((non_collection,index)=>{ %>
+             <% if(non_collection === collection.title){ %>                  
+                  <% var dis_flag = true %>
+                  <% return %>
+             <% } %>
+         <% }) %>
+         <% if(dis_flag){ %>
+                <% return %>      
+          <% } %>
      <% }) %>
-<div id="productPrice" class="price
+<div id="productPrice" class=" price
   <% if(price_class){ %> <%= price_class %><% } %>
   <% if(available === false){ %> price--sold-out <% } %>
-  <% if(compare_at_price > price || settings?.discount){ %> price--on-sale <% } %>
+  <% if(compare_at_price > price || settings.discount){ %> price--on-sale <% } %>
   <% if(product?.price_varies === false && product?.compare_at_price_varies){ %> price--no-compare<% } %>
   <% if(discount_disable){ %> non-discount <% } %>">
   <dl>
     <div class="price__regular">
       <dt>
-        <span class="visually-hidden visually-hidden--inline">regular price</span>
+        <span class="visually-hidden visually-hidden--inline"><%=products.product?.price.regular_price%></span>
       </dt>
       <dd <% if(show_badges === false){ %>class="price__last"<% } %>>
         <span class="price-item price-item--regular">
@@ -50,14 +50,14 @@
     </div>
     <div class="price__sale">
       <dt class="price__compare">
-        <span class="visually-hidden visually-hidden--inline">regular price</span>
+        <span class="visually-hidden visually-hidden--inline"><%=products.product?.price.regular_price%></span>
       </dt>
       <dd class="price__compare">
-        <s class="price-item price-item--regular" dd="<%=target?.inventory_quantity%>" aa="<%=target?.selected_or_first_available_selling_plan_allocation%>">
+        <s class="price-item price-item--regular" <%=settings.discount%> dd="<%=target?.inventory_quantity%>" aa="<%=target?.selected_or_first_available_selling_plan_allocation%>">
           <% if(discount_disable){ %>
           <%= compare_at_price %>
           <% } else { %>
-          <% if(settings?.discount && settings?.discount !== "0" && dis_flag !== true){ %>
+          <% if(settings.discount && settings.discount !== "0" && dis_flag !== true){ %>
           	<%= money_price %>
           <% } else { %>
           	<%= compare_at_price %>
@@ -66,45 +66,45 @@
         </s>
       </dd>
       <dt>
-        <span class="visually-hidden visually-hidden--inline">sale price</span>
+        <span class="visually-hidden visually-hidden--inline"><%=products.product?.price.sale_price%></span>
       </dt>
       <dd <% if(show_badges === false){ %>class="price__last"<% } %>>
         <span class="price-item price-item--sale">
-          <% if(settings?.discount && settings?.discount !== "0" && dis_flag !== true && discount_disable !== true){ %>
+          <% if(settings.discount && settings.discount !== "0" && dis_flag !== true && discount_disable !== true ){ %>
           	<%= finalPrice %>
           <% } else { %>
           	<%= money_price %>
           <% } %>
         </span>
       </dd>
-      <% if(settings?.discount){ %>
+      <% if(settings.discount){ %>
       <dd class="price-item price-item--discount">
         (-<%= discountPrice %>)
       </dd>
       <% } %>
     </div>
-    <small class="unit-price caption<% if(available === false || available === true || product?.variants[0]?.unit_price_measurement){ %> hidden<% } %>">
-      <dt class="visually-hidden">unit price</dt>
+    <small class="unit-price caption<% if(available === false || !product?.selected_or_first_available_variant?.unit_price_measurement){ %> hidden<% } %>">
+      <dt class="visually-hidden"><%=products.product?.price.unit_price%></dt>
       <dd <% if(show_badges === false){ %>class="price__last"<% } %>>
-        <span><%= product?.variants[0]?.unit_price %></span>
+        <span><%- product?.selected_or_first_available_variant?.unit_price -%></span>
         <span aria-hidden="true">/</span>
-        <span class="visually-hidden">&nbsp;unit price separator&nbsp;</span>
+        <span class="visually-hidden">&nbsp;<%=accessibility.unit_price_separator%>&nbsp;</span>
         <span>
-          <% if(product?.variants[0]?.unit_price_measurement?.reference_value !== 1){ %>
-            <%= product?.variants[0]?.unit_price_measurement?.reference_value %>
+          <% if(product?.selected_or_first_available_variant?.unit_price_measurement?.reference_value !== 1){ %>
+            <%- product?.selected_or_first_available_variant?.unit_price_measurement?.reference_value -%>
           <% } %>
-          <%= product?.variants[0]?.unit_price_measurement?.reference_unit %>
+          <%= product?.selected_or_first_available_variant?.unit_price_measurement?.reference_unit %>
         </span>
       </dd>
     </small>
   </dl>
   <% if(show_badges){ %>
-    <span class="badge price__badge-sale color-<%= settings?.sale_badge_color_scheme %>" aria-hidden="true">
-      on sale
+    <span class="badge price__badge-sale color-<%= settings.sale_badge_color_scheme %>" aria-hidden="true">
+      <%=products.product?.on_sale%>
     </span>
 
-    <span class="badge price__badge-sold-out color-<%= settings?.sold_out_badge_color_scheme %>" aria-hidden="true">
-      sold out
+    <span class="badge price__badge-sold-out color-<%= settings.sold_out_badge_color_scheme %>" aria-hidden="true">
+      <%=products.product?.sold_out%>
     </span>
   <% } %>
 </div>

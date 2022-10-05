@@ -4,7 +4,7 @@
 
 
 <% if(section.settings.slide_height === 'adapt_image' && section.blocks.first.settings.image){ %>
-  <% style){ %>
+  <style>
   @media screen && (max-width: 749px) {
     #Slider-<%= section.id %>::before,
     #Slider-<%= section.id %> .media::before,
@@ -23,33 +23,33 @@
       display: block;
     }
   }
-  <% endstyle){ %>
+  </style>
 <% } %>
 
-<slideshow-component class="slider-mobile-gutter<% if(section.settings.layout === 'grid'){ %> page-width<% } %><% if(section.settings.show_text_below){ %> mobile-text-below<% } %>" role="region" aria-roledescription="<%=sections.slideshow.carousel%>" aria-label="<%= section.settings.accessibility_info %>">
+<slideshow-component class="slider-mobile-gutter<% if(section.settings.layout === 'grid'){ %> page-width<% } %><% if(section.settings.show_text_below){ %> mobile-text-below<% } %>" role="region" aria-roledescription="<%=sectionst.slideshow.carousel%>" aria-label="<%= section.settings.accessibility_info %>">
   <% if(section.settings.auto_rotate && section.blocks.length > 1){ %>
     <div class="slideshow__controls slideshow__controls--top slider-buttons no-js-hidden<% if(section.settings.show_text_below){ %> slideshow__controls--border-radius-mobile<% } %>">
-      <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="<%=sections.slideshow.previous_slideshow%>" aria-controls="Slider-<%= section.id %>"><%- include('../snippets/icon-caret'){ %></button>
+      <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="<%=sectionst.slideshow.previous_slideshow%>" aria-controls="Slider-<%= section.id %>"><%- include('../snippets/icon-caret'){ %></button>
       <div class="slider-counter slider-counter--<%= section.settings.slider_visual %><% if(section.settings.slider_visual === 'counter' || section.settings.slider_visual === 'numbers'){ %> caption<% } %>">
         <% if(section.settings.slider_visual === 'counter'){ %>
           <span class="slider-counter--current">1</span>
           <span aria-hidden="true"> / </span>
           <span class="visually-hidden"><%=general.slider.of%></span>
           <span class="slider-counter--total"><%= section.blocks.length %></span>
-        <% else%>
+        <% } else { %>
           <div class="slideshow__control-wrapper">
-            <% section.blocks?.forEach((block,index)=>{ %>
-              <button class="slider-counter__link slider-counter__link--<%= section.settings.slider_visual %> link" aria-label="<%=sections.slideshow.load_slide%> <%= forloop.index %> <%=general.slider.of%> <%= forloop.length %>" aria-controls="Slider-<%= section.id %>">
-                <% if(section.settings.slider_visual === 'numbers'){ %><%= forloop.index %><% } else { %><span class="dot"></span><% } %>
+            <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
+              <button class="slider-counter__link slider-counter__link--<%= section.settings.slider_visual %> link" aria-label="<%=sectionst.slideshow.load_slide%> <%= index %> <%=general.slider.of%> <%= forloop.length %>" aria-controls="Slider-<%= section.id %>">
+                <% if(section.settings.slider_visual === 'numbers'){ %><%= index %><% } else { %><span class="dot"></span><% } %>
               </button>
             <% }) %>
           </div>
         <% } %>
       </div>
-      <button type="button" class="slider-button slider-button--next" name="next" aria-label="<%=sections.slideshow.next_slideshow%>" aria-controls="Slider-<%= section.id %>"><%- include('../snippets/icon-caret'){ %></button>
+      <button type="button" class="slider-button slider-button--next" name="next" aria-label="<%=sectionst.slideshow.next_slideshow%>" aria-controls="Slider-<%= section.id %>"><%- include('../snippets/icon-caret'){ %></button>
 
       <% if(section.settings.auto_rotate){ %>
-        <button type="button" class="slideshow__autoplay slider-button no-js-hidden<% if(section.settings.auto_rotate === false){ %> slideshow__autoplay--paused<% } %>" aria-label="<%=sections.slideshow.pause_slideshow%>">
+        <button type="button" class="slideshow__autoplay slider-button no-js-hidden<% if(section.settings.auto_rotate === false){ %> slideshow__autoplay--paused<% } %>" aria-label="<%=sectionst.slideshow.pause_slideshow%>">
           <%- include('../snippets/icon-pause'){ %>
           <%- include('../snippets/icon-play'){ %>
         </button>
@@ -58,9 +58,9 @@
     <noscript>
       <div class="slider-buttons">
         <div class="slider-counter">
-          <% section.blocks?.forEach((block,index)=>{ %>
-            <a href="#Slide-<%= section.id %>-<%= forloop.index %>" class="slider-counter__link link" aria-label="<%=sections.slideshow.load_slide%> <%= forloop.index %> <%=general.slider.of%> <%= forloop.length %>">
-              <%= forloop.index %>
+          <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
+            <a href="#Slide-<%= section.id %>-<%= index %>" class="slider-counter__link link" aria-label="<%=sectionst.slideshow.load_slide%> <%= index %> <%=general.slider.of%> <%= forloop.length %>">
+              <%= index %>
             </a>
           <% }) %>
         </div>
@@ -75,18 +75,18 @@
     data-autoplay="<%= section.settings.auto_rotate %>"
     data-speed="<%= section.settings.change_slides_speed %>"
   >
-    <% section.blocks?.forEach((block,index)=>{ %>
+    <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
       <style>
-        #Slide-<%= section.id %>-<%= forloop.index %> .banner__media::after {
+        #Slide-<%= section.id %>-<%= index %> .banner__media::after {
           opacity: <%= block?.settings?.image_overlay_opacity / 100.0 %>;
         }
       </style>
       <div class="slideshow__slide grid__item grid--1-col slider__slide"
-        id="Slide-<%= section.id %>-<%= forloop.index %>"
+        id="Slide-<%= section.id %>-<%= index %>"
         <%= block.shopify_attributes %>
         role="group"
-        aria-roledescription="<%=sections.slideshow.slide%>"
-        aria-label="<%= forloop.index %> <%=general.slider.of%> <%= forloop.length %>"
+        aria-roledescription="<%=sectionst.slideshow.slide%>"
+        aria-label="<%= index %> <%=general.slider.of%> <%= forloop.length %>"
         tabindex="-1"
       >
         <div class="slideshow__media banner__media media<% if(block?.settings?.image === blank){ %> placeholder<% } %>">
@@ -136,27 +136,27 @@
 
   <% if(section.blocks.length > 1 && section.settings.auto_rotate === false){ %>
     <div class="slideshow__controls slider-buttons no-js-hidden<% if(section.settings.show_text_below){ %> slideshow__controls--border-radius-mobile<% } %>">
-      <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="<%=sections.slideshow.previous_slideshow%>" aria-controls="Slider-<%= section.id %>"><%- include('../snippets/icon-caret'){ %></button>
+      <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="<%=sectionst.slideshow.previous_slideshow%>" aria-controls="Slider-<%= section.id %>"><%- include('../snippets/icon-caret'){ %></button>
       <div class="slider-counter slider-counter--<%= section.settings.slider_visual %><% if(section.settings.slider_visual === 'counter' || section.settings.slider_visual === 'numbers'){ %> caption<% } %>">
         <% if(section.settings.slider_visual === 'counter'){ %>
           <span class="slider-counter--current">1</span>
           <span aria-hidden="true"> / </span>
           <span class="visually-hidden"><%=general.slider.of%></span>
           <span class="slider-counter--total"><%= section.blocks.length %></span>
-        <% else%>
+        <% } else { %>
           <div class="slideshow__control-wrapper">
-            <% section.blocks?.forEach((block,index)=>{ %>
-              <button class="slider-counter__link slider-counter__link--<%= section.settings.slider_visual %> link" aria-label="<%=sections.slideshow.load_slide%> <%= forloop.index %> <%=general.slider.of%> <%= forloop.length %>" aria-controls="Slider-<%= section.id %>">
-                <% if(section.settings.slider_visual === 'numbers'){ %><%= forloop.index %><% } else { %><span class="dot"></span><% } %>
+            <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
+              <button class="slider-counter__link slider-counter__link--<%= section.settings.slider_visual %> link" aria-label="<%=sectionst.slideshow.load_slide%> <%= index %> <%=general.slider.of%> <%= forloop.length %>" aria-controls="Slider-<%= section.id %>">
+                <% if(section.settings.slider_visual === 'numbers'){ %><%= index %><% } else { %><span class="dot"></span><% } %>
               </button>
             <% }) %>
           </div>
         <% } %>
       </div>
-      <button type="button" class="slider-button slider-button--next" name="next" aria-label="<%=sections.slideshow.next_slideshow%>" aria-controls="Slider-<%= section.id %>"><%- include('../snippets/icon-caret'){ %></button>
+      <button type="button" class="slider-button slider-button--next" name="next" aria-label="<%=sectionst.slideshow.next_slideshow%>" aria-controls="Slider-<%= section.id %>"><%- include('../snippets/icon-caret'){ %></button>
 
       <% if(section.settings.auto_rotate){ %>
-        <button type="button" class="slideshow__autoplay slider-button no-js-hidden<% if(section.settings.auto_rotate === false){ %> slideshow__autoplay--paused<% } %>" aria-label="<%=sections.slideshow.pause_slideshow%>">
+        <button type="button" class="slideshow__autoplay slider-button no-js-hidden<% if(section.settings.auto_rotate === false){ %> slideshow__autoplay--paused<% } %>" aria-label="<%=sectionst.slideshow.pause_slideshow%>">
           <%- include('../snippets/icon-pause'){ %>
           <%- include('../snippets/icon-play'){ %>
         </button>
@@ -165,9 +165,9 @@
     <noscript>
       <div class="slider-buttons">
         <div class="slider-counter">
-          <% section.blocks?.forEach((block,index)=>{ %>
-            <a href="#Slide-<%= section.id %>-<%= forloop.index %>" class="slider-counter__link link" aria-label="<%=sections.slideshow.load_slide%> <%= forloop.index %> <%=general.slider.of%> <%= forloop.length %>">
-              <%= forloop.index %>
+          <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
+            <a href="#Slide-<%= section.id %>-<%= index %>" class="slider-counter__link link" aria-label="<%=sectionst.slideshow.load_slide%> <%= index %> <%=general.slider.of%> <%= forloop.length %>">
+              <%= index %>
             </a>
           <% }) %>
         </div>

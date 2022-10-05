@@ -1011,7 +1011,7 @@ button:not(.button):not(.has-bg){
 
 .loading:not(button)::after {
   animation: loading 0.5s infinite linear;
- border: 0.5rem solid rgba(0,0,0,.4);
+  border: 0.5rem solid rgba(0,0,0,.4);
   border-left: 0.5rem solid var(--py-bg-color-dark);
   border-radius: 100%;
   box-sizing: content-box;
@@ -1554,10 +1554,7 @@ input[type='checkbox'] {
   vertical-align: middle;
 }
 
-.header__icon{
-  height: 2.2rem;
-  padding:0px 10px;
-}
+.header__icon,
 .header__icon--cart .icon {
   height: 2.2rem;
   width: 3.4rem;
@@ -1859,35 +1856,7 @@ details[open] > .header__icon--menu .icon-hamburger {
   font-size: .75rem;
   color: #000;
 }
-.card__inner .bc-selling-tag{
-  position: absolute;
-    top: 10px;
-    left: 10px;
-}
-.bc-selling-tag .bc-vertical-tag-inner{
-  display: inline-block;
-  padding: 10px;
-  font-size: 10px;
-  text-transform: uppercase;  
-}
-.bc-selling-tag.bc-vertical-tag {
-  -webkit-transform: rotate(270deg);
-  -moz-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
-  transform: rotate(270deg);
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform-origin: center center;
-  position: absolute;
-  top: 115px;
-    left: -100px;    
-  min-width: 250px;
-    text-align: center;
-    display: flex;
-    justify-content: flex-end;
-}
+
 
 .bc-slide-placeholde {
   min-height: 50vh;
@@ -2370,7 +2339,6 @@ details[open] > .header__icon--menu .icon-hamburger {
 .py-bg-c-light {
   background-color: var(--py-bg-color-light);
 }
-
 /* ===== COLORS ===== */
 .py-c-none {
   color: transparent;
@@ -2378,8 +2346,14 @@ details[open] > .header__icon--menu .icon-hamburger {
 .py-c-dark {
   color: var(--py-color-dark);
 }
+.py-c-middle-dark {
+  color: var(--py-color-middle-dark);
+}
 .py-c-average {
   color: var(--py-color-avarge);
+}
+.py-c-middle-light {
+  color: var(--py-color-middle-light);
 }
 .py-c-light {
   color: var(--py-color-light);
@@ -2390,8 +2364,14 @@ details[open] > .header__icon--menu .icon-hamburger {
 .py-c-dark svg{  
   fill: var(--py-color-dark);
 }
+.py-c-middle-dark svg{  
+  fill: var(--py-color-middle-dark);
+}
 .py-c-average svg{  
   fill: var(--py-color-avarge);
+}
+.py-c-middle-light svg{  
+  fill: var(--py-color-middle-light);
 }
 .py-c-light svg{  
   fill: var(--py-color-light);
@@ -2405,14 +2385,23 @@ details[open] > .header__icon--menu .icon-hamburger {
 .py-hv-c-dark[class*=active]{
     color: var(--py-color-dark);
 }
+.py-hv-c-middle-dark:hover,
+.py-hv-c-middle-dark[class*=active]{
+    color: var(--py-color-middle-dark);
+}
 .py-hv-c-average:hover,
 .py-hv-c-average[class*=active]{
     color: var(--py-color-avarge);
+}
+.py-hv-c-middle-light:hover,
+.py-hv-c-middle-light[class*=active]{
+    color: var(--py-color-middle-light);
 }
 .py-hv-c-light:hover,
 .py-hv-c-light[class*=active]{
     color: var(--py-color-light);
 }
+
 .py-hv-c-none:hover svg,
 .py-hv-c-none[class*=active] svg{  
     fill:transparent;
@@ -2421,9 +2410,17 @@ details[open] > .header__icon--menu .icon-hamburger {
 .py-hv-c-dark[class*=active] svg{  
     fill: var(--py-color-dark);
 }
+.py-hv-c-middle-dark:hover svg,
+.py-hv-c-middle-dark[class*=active] svg{  
+    fill: var(--py-color-middle-dark);
+}
 .py-hv-c-average:hover svg,
 .py-hv-c-average[class*=active] svg{  
     fill: var(--py-color-avarge);
+}
+.py-hv-c-middle-light:hover svg,
+.py-hv-c-middle-light[class*=active] svg{  
+    fill: var(--py-color-middle-light);
 }
 .py-hv-c-light:hover svg,
 .py-hv-c-light[class*=active] svg{  
@@ -2436,8 +2433,14 @@ details[open] > .header__icon--menu .icon-hamburger {
 .py-br-c-dark {
   color: var(--py-color-dark);
 }
+.py-br-c-middle-dark {
+  color: var(--py-color-middle-dark);
+}
 .py-br-c-average {
   color: var(--py-color-avarge);
+}
+.py-br-c-middle-light {
+  border-color: var(--py-color-middle-light);
 }
 .py-br-c-light {
   border-color: var(--py-color-light);
@@ -2473,36 +2476,9 @@ details[open] > .header__icon--menu .icon-hamburger {
   font-size: var(--py-lg-btn-font-size);
   font-weight: var(--py-lg-btn-font-weight);
 }
-/* ===== BUTTON COLORS ===== */
-.py-btn-dark {
-  background-color: var(--py-btn-bg-color-dark);
-  color: var(--py-btn-color-dark);
-  border-color: var(--py-btn-color-dark);
-}
-.py-btn-average {
-  background-color: var(--py-btn-bg-color-average);
-  color: var(--py-btn-color-average);
-  border-color: var(--py-btn-color-average);
-}
-.py-btn-light {
-  background-color: var(--py-btn-bg-color-light);
-  color: var(--py-btn-color-light);
-  border-color: var(--py-btn-color-light);
-}
-.py-btn-hover-dark:hover{
-  background-color: var(--py-btn-bg-color-dark);
-  color: var(--py-btn-color-dark);
-  border-color: var(--py-btn-color-dark);
-}
-.py-btn-hover-average:hover{
-  background-color: var(--py-btn-bg-color-average);
-  color: var(--py-btn-color-average);
-  border-color: var(--py-btn-color-average);
-}
-.py-btn-hover-light:hover{
-  background-color: var(--py-btn-bg-color-light);
-  color: var(--py-btn-color-light);
-  border-color: var(--py-btn-color-light);
+
+.py-btn-no-br{
+  border-width:0px;
 }
 /* ===== BORDER ===== */
 .py-br {
@@ -2527,6 +2503,7 @@ details[open] > .header__icon--menu .icon-hamburger {
   text-decoration-thickness: 2px;
   padding-left: 0;
   padding-right: 0;
+  background-color: transparent;
 }  
 /* ===== Text Align ===== */
 .py-center{

@@ -37,7 +37,7 @@ class CartNotification extends HTMLElement {
   init(event){
 
     event.preventDefault();
-    this.getCart();
+    this.open();
 
   }    
 

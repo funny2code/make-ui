@@ -1,12 +1,20 @@
-<link rel="stylesheet" href="/<%=srcId%>/component-slider.css" >
-<link rel="preload" href="/<%=srcId%>/component-product-card-style-1.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" href="/<%=srcId%>/component-price-style-1.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="stylesheet" href="/<%=srcId%>/component-badge.css" >
-<link rel="preload" href="/<%=srcId%>/component-rte.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" href="/<%=srcId%>/component-variants.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<link rel="preload" href="/<%=srcId%>/component-modal-quickview.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="<%=component-slider.css' <%=srcId%> %>" >
+<link rel="preload" href="<%=component-product-card-style-1.css' <%=srcId%> %>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="<%=component-price-style-1.css' <%=srcId%> %>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="<%=component-badge.css' <%=srcId%> %>" >
+<link rel="preload" href="<%=component-rte.css' <%=srcId%> %>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="<%=component-variants.css' <%=srcId%> %>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="<%=component-modal-quickview.css' <%=srcId%> %>" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-<%- include('../snippets/modal-quickview') %>
+<noscript><%=component-product-card-style-1.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-rte.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-variants.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-slider.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-price-style-1.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-badge.css' <%=srcId%> | stylesheet_tag %></noscript>
+<noscript><%=component-modal-quickview.css' <%=srcId%> | stylesheet_tag %></noscript>
+
+<%- include('../snippets/modal-quickview'){ %>
 
 <style type="text/css">
   
@@ -91,75 +99,647 @@
 </style>
 
 <div class="collection collection-slide product-carousel  product-carousel-<%=section.id%> <% if(section.settings.section_width === "full"){ %>image-with-text--full-width<% } else { %>page-width  py-<%=section.settings.section_width%><% } %> bc-<%=settings.section_style%>-bt py-pd-y-m">
-  <div class="<% if(section.settings.show_view_all ){ %>title-wrapper-with-link<% } %><% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %><% if(collection?.all_products_count > 2  && section.settings.products_limit > 2){ %> title-wrapper--self-padded-tablet-down<% } %>">
-    <h3 class="title<% if(!section.settings.title){ %> title--no-heading<% } %> py-<%= section.settings.title_alignment %>" style="font-size:<%= section.settings.title_font_size %>px"><%= section.settings.title %></h3>
+  <div class="<% if(section.settings.show_view_all ){ %>title-wrapper-with-link<% } %><% if(section.settings.title === blank){ %> title-wrapper-with-link--no-heading<% } %><% if(section.settings.collection.all_products_count > 2  && section.settings.products_limit > 2){ %> title-wrapper--self-padded-tablet-down<% } %>">
+    <h3 class="title<% if(section.settings.title === blank){ %> title--no-heading<% } %> py-<%= section.settings.title_alignment %>" style="font-size:<%= section.settings.title_font_size %>px"><%= section.settings.title %></h3>
   </div>
 
   <%
-    var products_to_display = collection?.all_products_count
+    var products_to_display = section.settings.collection.all_products_count
     var carousel_num = section.settings.products_col_limit
 
-    if(collection?.all_products_count > section.settings.products_limit){
-      products_to_display = section.settings.products_limit
+    if section.settings.collection.all_products_count > section.settings.products_limit
+      var products_to_display = section.settings.products_limit
     }    
-  %>
+ ){ %>
 
   <slider-component class="slider-mobile-gutter">
-    <ul class="grid product-list-<%=section.id%> grid--1-col grid--3-col-tablet py-mg-y-n grid--<%=carousel_num%>-col-desktop <% if(collection?.all_products_count > 2 && section.settings.products_limit > 2){ %> slider slider--desktop <% } %><% if(section.settings.show_view_all === false || collection?.products.length < section.settings.products_limit){ %> negative-margin<% } %><% if(section.settings.show_view_all && collection?.products.length > section.settings.products_limit){ %> negative-margin--small<% } %>" role="list">
-      <% if(collection?.all_products_count > 0){ %>
-        <li class="grid__item py-<%=section.settings.card_bg_color%>  <% if(collection?.all_products_count > 2  && section.settings.products_limit > 2){ %> slider__slide<% } %>" style="margin-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px;width:3%;">
+    <ul class="grid product-list-<%=section.id%> grid--1-col grid--3-col-tablet py-mg-y-n grid--<%=carousel_num%>-col-desktop <% if(section.settings.collection.all_products_count > 2 && section.settings.products_limit > 2){ %> slider slider--desktop <% } %><% if(section.settings.show_view_all === false || section.settings.collection.products.length < section.settings.products_limit){ %> negative-margin<% } %><% if(section.settings.show_view_all && section.settings.collection.products.length > section.settings.products_limit){ %> negative-margin--small<% } %>" role="list">
+      <% if(section.settings.collection.all_products_count > 0){ %>
+        <li class="grid__item py-<%=section.settings.card_bg_color%>  <% if(section.settings.collection.all_products_count > 2  && section.settings.products_limit > 2){ %> slider__slide<% } %>" style="margin-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px;width:3%;">
         </li>
       <% } %>
-      <% if(collection?.products?.length > 0){ %>
-        <% collection?.products?.forEach((product,index)=>{ %>
-          <% if(index < section.settings.products_limit){ %>
-          <li class="grid__item py-<%=section.settings.card_color%> <% if(collection?.all_products_count > 2  && section.settings.products_limit > 2){ %> slider__slide<% } %>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
-            <%- include('../snippets/product-card', {
-                  product_card_product: product,
-                  inventory_quantity: false,
-                  media_size: section.settings.image_ratio,
-                  show_secondary_image:section.settings.show_secondary_image,
-                  tag_field:section.settings.tag_field,                                   
-                  show_vendor: section.settings.show_vendor,                
-                  card_bg_color: section.settings.card_bg_color,
-                  card_radius: section.settings.card_radius,
-                  info_align: section.settings.info_align
-            }) %>
-          </li>
-          <% } %>
-        <% }) %>
+      <% for product in section.settings.collection.products limit: section.settings.products_limit){ %>
+        <li class="grid__item py-<%=section.settings.card_color%> <% if(section.settings.collection.all_products_count > 2  && section.settings.products_limit > 2){ %> slider__slide<% } %>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
+          <%- include('../snippets/product-card',
+                product_card_product: product,
+                media_size: section.settings.image_ratio,
+                show_secondary_image:section.settings.show_secondary_image,
+                tag_field:section.settings.tag_field,                                   
+                show_vendor: section.settings.show_vendor,                
+                card_bg_color: section.settings.card_bg_color,
+                card_radius: section.settings.card_radius,
+                info_align: section.settings.info_align
+           ){ %>
+        </li>
       <% } else { %>
-        <% for(let i=1; i<=5; i++){ %>
+        <% for i in (1..5)){ %>
           <li class="grid__item">
-            <%- include('../snippets/product-card-placeholder') %>
+            <%- include('../snippets/product-card-placeholder'){ %>
           </li>
-        <% } %>
-      <% } %>      
+        <% }) %>
+      <% }) %>      
     </ul>    
-    <% if(collection?.all_products_count > 2 && section.settings.products_limit > 2){ %>
-      <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(collection?.all_products_count < 4){ %>large-up-hide medium-hide<% } %><% if(collection?.all_products_count < 3){ %> small-hide<% } %>">
+    <% if(section.settings.collection.all_products_count > 2 && section.settings.products_limit > 2){ %>
+      <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(section.settings.collection.all_products_count < 4){ %>large-up-hide medium-hide<% } %><% if(section.settings.collection.all_products_count < 3){ %> small-hide<% } %>">
         <div class="slider-counter caption">
           <span class="slider-counter--current">1</span>
           <span aria-hidden="true"> / </span>
           <span class="visually-hidden"><%=accessibility.of%></span>
           <span class="slider-counter--total"><%= products_to_display %></span>
         </div>
-        <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="<%=accessibility.previous_slide%>"><%- include('../snippets/icon-caret') %></button>
-        <button type="button" class="slider-button slider-button--next" name="next" aria-label="<%=accessibility.next_slide%>"><%- include('../snippets/icon-caret') %></button>
+        <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="<%=accessibility.previous_slide%>"><%- include('../snippets/icon-caret'){ %></button>
+        <button type="button" class="slider-button slider-button--next" name="next" aria-label="<%=accessibility.next_slide%>"><%- include('../snippets/icon-caret'){ %></button>
       </div>
     <% } %>
   </slider-component>  
 
-  <% if(section.settings.show_view_all && collection?.all_products_count > section.settings.m_products_limit){ %>
+  <% if(section.settings.show_view_all && section.settings.collection.all_products_count > section.settings.m_products_limit){ %>
     <div class="center small-hide medium-hide">
-      <a href="<%= collection?.url %>"
+      <a href="<%= section.settings.collection.url %>"
         class="button"
-        aria-label="<%=sections.featured_collection.view_all_label %>"
+        aria-label="<%=sectionst.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title %>"
       >
-        <%=sections.featured_collection.view_all%>
+        <%=sectionst.featured_collection.view_all%>
       </a>
     </div>
   <% } %>
 </div>
 
-<script src="/<%=srcId%>/quickview.js" defer="defer"></script>
+<script src="<%=quickview.js' <%=srcId%> %>" defer="defer"></script>
+
+
+<% schema){ %>
+{
+  "name": "Product Carousel",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Featured collection",
+      "label": "t:sectionst.featured-collection.settings.title.label"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section Container (Width)",
+      "options": [
+        {
+          "label": "Full",
+          "value": "full"
+        },
+        {
+          "label": "Large",
+          "value": "width-l"
+        },
+        {
+          "label": "Medium",
+          "value": "width-m"
+        },
+        {
+          "label": "Small",
+          "value": "width-s"
+        }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 14,
+      "max": 60,
+      "step": 1,
+      "default": 38,
+      "label": "Section Title Font Size"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "left",
+      "label": "Section title align"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:sectionst.featured-collection.settings.collection.label"
+    },
+    {
+      "type": "range",
+      "id": "products_col_limit",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 5,
+      "label": "Column Namber"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "min": 5,
+      "max": 15,
+      "step": 1,
+      "default": 10,
+      "label": "Max Products Shown"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "t:sectionst.featured-collection.settings.show_view_all.label"
+    },
+    {
+      "type": "select",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "options": [          
+          {
+          "label": "Transparent",
+          "value": "transparent"
+          },        
+          {
+          "label": "Dark",
+          "value": "var(--py-bg-color-dark)"
+          },
+          {
+          "label": "Middle Dark",
+          "value": "var(--py-bg-color-middle-dark)"
+          },
+          {
+          "label": "Average",
+          "value": "var(--py-bg-color-avarge)"
+          },
+          {
+          "label": "Middle Light",
+          "value": "var(--py-bg-color-middle-light)"
+          },
+          {
+          "label": "Light",
+          "value": "var(--py-bg-color-light)"
+          }
+      ],
+      "default": "var(--py-bg-color-light)"
+    },
+    {
+      "type": "select",
+      "id": "slide_bg_color",
+      "label": "Product carousel Background",
+      "options": [          
+          {
+          "label": "Transparent",
+          "value": "transparent"
+          },        
+          {
+          "label": "Dark",
+          "value": "var(--py-bg-color-dark)"
+          },
+          {
+          "label": "Middle Dark",
+          "value": "var(--py-bg-color-middle-dark)"
+          },
+          {
+          "label": "Average",
+          "value": "var(--py-bg-color-avarge)"
+          },
+          {
+          "label": "Middle Light",
+          "value": "var(--py-bg-color-middle-light)"
+          },
+          {
+          "label": "Light",
+          "value": "var(--py-bg-color-light)"
+          }
+      ],
+      "default": "var(--py-bg-color-avarge)"
+    },
+    {
+        "type": "select",
+        "id": "section_color",
+        "label": "Title Color",
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-avarge)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+    },
+    {
+      "type": "header",
+      "content": "t:sectionst.product-recommendations.settings.header__2.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "square",
+      "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": true,
+      "label": "Show second image on hover"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "bg-c-none"
+          },        
+          {
+            "label": "Dark",
+            "value": "bg-c-dark"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "bg-c-middle-dark"
+          },
+          {
+            "label": "Average",
+            "value": "bg-c-average"
+          },
+          {
+            "label": "Middle Light",
+            "value": "bg-c-middle-light"
+          },
+          {
+            "label": "Light",
+            "value": "bg-c-light"
+          }
+        ],
+        "default": "bg-c-average"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 0,
+      "label": "Card Border Radius"
+    },
+    {
+      "type": "range",
+      "id": "item_space",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "default": 1,
+      "label": "Card Padding"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sectionst.main-collection-product-grid.settings.show_vendor.label"
+    },
+    {
+      "type": "select",
+      "id": "info_align",
+      "label": "Card Info Alignment",
+      "options": [     
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "card_color",
+      "label": "Card Info Color",
+      "options": [
+        {
+          "label": "None",
+          "value": "none"
+        },
+        {
+          "label": "Dark",
+          "value": "c-dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "c-middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "c-average"
+        },
+        {
+          "label": "Light",
+          "value": "c-middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "c-light"
+        }
+      ],
+      "default": "c-dark"
+    },
+    {
+      "type": "header",
+      "content": "Card Button Style"
+    },
+    {
+      "type": "select",
+      "id": "view_btn_size",
+      "label": "View Button Size",
+      "options": [
+        {
+          "label": "Small",
+          "value": "small"
+        },
+        {
+          "label": "Medium",
+          "value": "medium"
+        },
+        {
+          "label": "Large",
+          "value": "large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "card_color_view_btn",
+      "label": "View Button Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color_view_btn",
+      "label": "View Button Background Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_color_view_btn_hover",
+      "label": "View Button Hover Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color_view_btn_hover",
+      "label": "View Button Hover Background Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "header",
+      "content": "Card Product Title Font Style"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_font_style",
+      "default": false,
+      "label": "Use Custom Style"
+    },
+    {
+      "type": "text",
+      "id": "title_fontsize",
+      "label": "Font size Desktop",
+      "info": "Ex: 20px "
+    },
+    {
+      "type": "text",
+      "id": "title_fontsize_m",
+      "label": "Font size Mobile"
+    },
+    {
+      "type": "text",
+      "id": "title_fontweight",
+      "label": "Font-weight"      
+    },
+    {
+      "type": "text",
+      "id": "title_fontstretch",
+      "label": "Font-stretch",
+      "info": "Ex: 40%"
+    },
+    {
+      "type": "select",
+      "id": "title_fontstyle",
+      "options": [
+        {
+          "value": "normal",
+          "label": "normal"
+        },
+        {
+          "value": "italic",
+          "label": "italic"
+        }
+      ],
+      "default": "normal",
+      "label": "Font-style"
+    },
+    {
+      "type": "text",
+      "id": "title_lineheight",
+      "label": "Lineheight"      
+    },
+    {
+      "type": "text",
+      "id": "title_letterspacing",
+      "label": "Letter-spacing",
+      "info":"Ex: 0.5px"
+    },
+    {
+      "type": "header",
+      "content": "Card Product info Font Style"
+    },
+    {
+      "type": "text",
+      "id": "info_fontsize",
+      "label": "Font size Desktop",
+      "info": "Ex: 20px "
+    },
+    {
+      "type": "text",
+      "id": "info_fontsize_m",
+      "label": "Font size Mobile"
+    },
+    {
+      "type": "text",
+      "id": "info_fontweight",
+      "label": "Font-weight"      
+    },
+    {
+      "type": "text",
+      "id": "info_fontstretch",
+      "label": "Font-stretch",
+      "info": "Ex: 40%"
+    },
+    {
+      "type": "select",
+      "id": "info_fontstyle",
+      "options": [
+        {
+          "value": "normal",
+          "label": "normal"
+        },
+        {
+          "value": "italic",
+          "label": "italic"
+        }
+      ],
+      "default": "normal",
+      "label": "Font-style"
+    },
+    {
+      "type": "text",
+      "id": "info_lineheight",
+      "label": "Lineheight"      
+    },
+    {
+      "type": "text",
+      "id": "info_letterspacing",
+      "label": "Letter-spacing",
+      "info":"Ex: 0.5px"     
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Carousel"
+    }
+  ]
+}
+<% endschema){ %>

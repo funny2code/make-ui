@@ -2,7 +2,7 @@
   "links": [
       {
         "id": 433392353441,
-        "title": "Home",
+        "title": "Menu 1",
         "url": "\/",
         "subject_id": null,
         "subject_params": null,
@@ -13,7 +13,7 @@
       },
       {
         "id": 433392386209,
-        "title": "SOMETHING",
+        "title": "Menu 2",
         "url": "\/collections\/all",
         "subject_id": null,
         "subject_params": null,
@@ -111,22 +111,11 @@
       },
       {
         "id": 433392451745,
-        "title": "ART YOU LOVE",
+        "title": "Menu 3",
         "url": "\/collections",
         "subject_id": null,
         "subject_params": null,
         "type": "collections",
-        "links": [
-          
-        ]
-      },
-      {
-        "id": 434276303009,
-        "title": "MORE STUFF",
-        "url": "#",
-        "subject_id": null,
-        "subject_params": null,
-        "type": "http",
         "links": [
           
         ]

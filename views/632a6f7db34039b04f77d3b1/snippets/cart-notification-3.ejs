@@ -55,7 +55,7 @@
         </div>
         <div class="bc-cart__buttons-wrapper">
           <form action="<%= routes.cart_url %>" method="post" id="cart">
-            <button id="loopcheckout" class="button button--primary button--full-width  py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sections.cart.checkout%></button>
+            <button id="loopcheckout" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sectionst.cart.checkout%></button>
           </form>
         </div>           
       </div>
@@ -93,17 +93,17 @@
         </div>
       <div class="new-i-note cart-notification__links">
         <div class="bc-cart__buttons-wrapper">
-          <a href="/cart" id="view-cart" class="button button--primary button--full-width  py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" ><%=general.cart.view%> (<span class="total-num"></span>)</a>
+          <a href="/cart" id="view-cart" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" ><%=general.cart.view%> (<span class="total-num"></span>)</a>
           <form action="<%= routes.cart_url %>" method="post" id="cart">
-            <button id="loopcheckout" class="button button--primary button--full-width  py-btn-<%=settings.cart_btn_color%> py-btn-hover-<%=settings.cart_btn_hover_color%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sections.cart.checkout%></button>
+            <button id="loopcheckout" class="button button--primary button--full-width  py-c-<%=settings.cart_btn_color%> py-hv-c-<%=settings.cart_btn_color_hover%> py-bg-c-<%=settings.cart_btn_bg_color%> py-hv-bg-c-<%=settings.cart_btn_bg_color_hover%> py-btn-<%=settings.cart_btn_size%>" name="checkout" form="cart"><%=sectionst.cart.checkout%></button>
           </form>
         </div>    
       </div>
     </div>
   </div>
 </cart-notification>
-<% style){ %>
+<style>
   .cart-notification {
      display: none;
   }
-<% endstyle){ %>
+</style>

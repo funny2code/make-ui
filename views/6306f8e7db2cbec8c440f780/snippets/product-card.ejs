@@ -3,65 +3,65 @@
   <a href="<%= product_card_product?.url || '#' %>" class="full-unstyled-link">
     <span class="visually-hidden"><%= product_card_product?.title %></span>
   </a>  
-  <div class="card card--product<% if(!product_card_product?.image){ %> card--text-only card--soft<% } %>" tabindex="-1">
+  <div class="card card--product<% if(!product_card_product?.featured_media){ %> card--text-only card--soft<% } %>" tabindex="-1">
     <div class="card__inner <% if(media_gallery){ %>card-img-gallery<% } %>">
-      <% if(product_card_product?.image){ %>
+      <% if(product_card_product?.featured_media){ %>
       <%
-            var featured_media_aspect_ratio = product_card_product?.image?.aspect_ratio
+        var featured_media_aspect_ratio = product_card_product?.featured_media?.aspect_ratio
 
-            if(product_card_product?.image?.aspect_ratio){
-              featured_media_aspect_ratio = 1
-            }
-          %>
+        if(!product_card_product?.featured_media?.aspect_ratio){
+          featured_media_aspect_ratio = 1
+        }
+      %>
       
         <div><a href="<%= product_card_product?.url || '#' %>" class="full-unstyled-link img-wrapper-link">
           <div class="media media--transparent media--<%= media_size %> feature-img-wrapper"
-               <% if(media_size === 'adapt' && product_card_product?.image){ %> style="padding-bottom: <%= 1 / featured_media_aspect_ratio * 100 %>%;"<% } %>
+               <% if(media_size === 'adapt' && product_card_product?.featured_media){ %> style="padding-bottom: <%= 1 / featured_media_aspect_ratio * 100 %>%;"<% } %>
                >
-            <img srcset="<% if(product_card_product?.image.width >= 165){ %><%= product_card_product?.image.src  %> 165w,<% } %>
-                         <% if(product_card_product?.image.width >= 360){ %><%= product_card_product?.image.src  %> 360w,<% } %>
-                         <% if(product_card_product?.image.width >= 533){ %><%= product_card_product?.image.src  %> 533w,<% } %>
-                         <% if(product_card_product?.image.width >= 720){ %><%= product_card_product?.image.src  %> 720w,<% } %>
-                         <% if(product_card_product?.image.width >= 940){ %><%= product_card_product?.image.src  %> 940w,<% } %>
-                         <% if(product_card_product?.image.width >= 1066){ %><%= product_card_product?.image.src %> 1066w<% } %>"
-                 src="<%= product_card_product?.image.src %>"
+            <img srcset="<% if(product_card_product?.featured_media?.width >= 165){ %><%= product_card_product?.featured_media?.src %> 165w,<% } %>
+                         <% if(product_card_product?.featured_media?.width >= 360){ %><%= product_card_product?.featured_media?.src %> 360w,<% } %>
+                         <% if(product_card_product?.featured_media?.width >= 533){ %><%= product_card_product?.featured_media?.src %> 533w,<% } %>
+                         <% if(product_card_product?.featured_media?.width >= 720){ %><%= product_card_product?.featured_media?.src %> 720w,<% } %>
+                         <% if(product_card_product?.featured_media?.width >= 940){ %><%= product_card_product?.featured_media?.src %> 940w,<% } %>
+                         <% if(product_card_product?.featured_media?.width >= 1066){ %><%= product_card_product?.featured_media?.src %> 1066w<% } %>"
+                 src="<%= product_card_product?.featured_media?.src %>"
                  sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
-                 alt="<%= product_card_product?.image.alt %>"
+                 alt="<%= product_card_product?.featured_media?.alt %>"
                  loading="lazy"
                  class="motion-reduce main-feature-img"
-                 width="<%= product_card_product?.image.width %>"
-                 height="<%= product_card_product?.image.height %>"
+                 width="<%= product_card_product?.featured_media?.width %>"
+                 height="<%= product_card_product?.featured_media?.height %>"
                  >
           </div></a>
           <% if(media_gallery){ %>
           <slider-component class="slider-mobile-gutter">
-            <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-1">
-              skip_to_product_info
+            <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-<%= sectionid %>">
+              <%=accessibility.skip_to_product_info%>
             </a>
             <ul class="product__media-list list-unstyled slider slider--desktop" role="list">
-              <% if(product?.selected_or_first_available_variant?.featured_media){ %>
-                <% var media = product?.selected_or_first_available_variant?.featured_media %>
-                <li class="product__media-item slider__slide<% if(media?.media_type !== 'image'){ %> product__media-item--full<% } %>" data-media-id="1-<%= media?.id %>">
+              <% if(product?.variants[0]?.featured_media){ %>
+                <% var media = product?.variants[0]?.featured_media %>
+                <li class="product__media-item slider__slide<% if(media.media_type !== 'image'){ %> product__media-item--full<% } %>" data-media-id="<%= section.id %>-<%= media.id %>">
                   <a href="<%= product_card_product?.url || '#' %>" class="full-unstyled-link">
                     <div class="product__media media media--<%= media_size %>" 
-                         <% if(media_size === 'adapt'){ %> style="padding-bottom: <%= 1 / media?.preview_image.aspect_ratio * 100 %>%;"<% } %>>
+                         <% if(media_size === 'adapt'){ %> style="padding-bottom: <%= 1 / media?.aspect_ratio * 100 %>%;"<% } %>>
                     <img
-                      srcset="<% if(media?.preview_image.width >= 288){ %><%= media?.preview_image.src %> 288w,<% } %>
-                              <% if(media?.preview_image.width >= 576){ %><%= media?.preview_image.src %> 576w,<% } %>
-                              <% if(media?.preview_image.width >= 550){ %><%= media?.preview_image.src %> 550w,<% } %>
-                              <% if(media?.preview_image.width >= 1100){ %><%= media?.preview_image.src %> 1100w<% } %>"
+                      srcset="<% if(media?.width >= 288){ %><%= media?.sec %> 288w,<% } %>
+                              <% if(media?.width >= 576){ %><%= media?.sec %> 576w,<% } %>
+                              <% if(media?.width >= 550){ %><%= media?.sec %> 550w,<% } %>
+                              <% if(media?.width >= 1100){ %><%= media?.sec %> 1100w<% } %>"
                       src="<%= media?.src %>"
                       sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
                       width="288"
-                      height="<%= 288 / media?.preview_image.aspect_ratio %>"
-                      alt="<%= media?.preview_image.alt %>"
+                      height="<%= Math.ceil(288 / media?.aspect_ratio) %>"
+                      alt="<%= media?.alt %>"
                     >
                   </div></a>
                 </li>
               <% } %>
-              <% product?.images.forEach((media,index)=>{ %>
-                <% if(media?.id !== product?.selected_or_first_available_variant?.featured_media?.id){ %>
-                  <li class="product__media-item slider__slide<% if(media?.media_type !== 'image'){ %> product__media-item--full<% } %>" data-media-id="<%= media?.id %>">
+              <% product?.media?.forEach((media,index)=>{ %>
+                <% if(media.id !== product?.variants[0]?.featured_media?.id){ %>
+                  <li class="product__media-item slider__slide<% if(media.media_type !== 'image'){ %> product__media-item--full<% } %>" data-media-id="<%= media.id %>">
                     <a href="<%= product_card_product?.url || '#' %>" class="full-unstyled-link">
                     <div class="product__media media media--<%= media_size %>" 
                          <% if(media_size === 'adapt'){ %> style="padding-top: <%= 1 / media?.aspect_ratio * 100 %>%;"<% } %>>
@@ -73,7 +73,7 @@
                       src="<%= media?.src %>"
                       sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
                       width="288"
-                      height="<%= 288 / media?.aspect_ratio %>"
+                      height="<%= Math.ceil(288 / media?.aspect_ratio) %>"
                       alt="<%= media?.alt %>"
                     >
                       </div>
@@ -82,15 +82,15 @@
                 <% } %>
               <% }) %>
             </ul>
-            <div class="slider-buttons slider-buttons--overlay slider-buttons-desktop no-js-hidden<% if(product?.media?.length < 2){ %> hidden<% } %>">
-              <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="previous_slide"><%- include('./icon-caret') %></button>
+            <div class="slider-buttons slider-buttons--overlay slider-buttons-desktop no-js-hidden<% if(product?.media.length < 2){ %> hidden<% } %>">
+              <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="<%=accessibility.previous_slide%>"><%- include('./icon-caret') %></button>
               <div class="slider-counter caption hidden">
                 <span class="slider-counter--current">1</span>
                 <span aria-hidden="true"> / </span>
-                <span class="visually-hidden">of</span>
-                <span class="slider-counter--total"><%= product?.media?.length %></span>
+                <span class="visually-hidden"><%=accessibility.of%></span>
+                <span class="slider-counter--total"><%= product?.media.length %></span>
               </div>
-              <button type="button" class="slider-button slider-button--next" name="next" aria-label="next_slide"><%- include('./icon-caret') %></button>
+              <button type="button" class="slider-button slider-button--next" name="next" aria-label="<%=accessibility.next_slide%>"><%- include('./icon-caret') %></button>
             </div>
           </slider-component>
           <% } %>
@@ -103,18 +103,18 @@
       <div class="card__badge">
         <% if(product_card_product?.available === false){ %>
         <span class="badge badge--bottom-left color-<%= settings.sold_out_badge_color_scheme %>" aria-hidden="true">
-          sold out
+          <%=products.product?.sold_out%>
         </span>
         <% } else if(product_card_product?.compare_at_price > product_card_product?.price && product_card_product?.available){ %>
         <span class="badge badge--bottom-left color-<%= settings.sale_badge_color_scheme %>" aria-hidden="true">
-          on sale
+          <%=products.product?.on_sale%>
         </span>
         <% } %>
       </div>
       <%- include('./component-badge', {meta: product_card_product?.metafields?.selling, vertical: true, card_bg_color: card_bg_color}) %>
       <% if(product_card_product?.variants.length > 0){ %>
-      <% if(product_card_product?.metafields?.status?.date && product_card_product?.metafields?.status?.comming_soon){ %>
-      <%- include('./comming-soon', {date: product_card_product?.metafields?.status?.date}) %>                 
+      <% if(product_card_product?.metafields?.status.date && product_card_product?.metafields?.status.comming_soon){ %>
+      <%- include('./comming-soon', {date: product_card_product?.metafields?.status.date}) %>                 
       <% } %>
       <% } %>
       
@@ -122,11 +122,11 @@
   </div>  
   <div class="card-information
               <% var color_ab = false %>
-              <% if(product_card_product?.variants?.length !== 1){ %> 
-              <% product_card_product?.options?.forEach((option,index)=>{ %>
-              <% var option_name = option?.name?.toLowerCase() %>                 
+              <% if(!product_card_product?.has_only_default_variant){ %> 
+              <% product_card_product?.options_with_values?.forEach((option,index)=>{ %>
+              <% var option_name = option.name.toLowerCase() %>                 
               <% if(option_name === 'color' || option_name === "colour"){ %>
-              <% var color_ab = true %>
+              <% color_ab = true %>
               variant-color-product
               <% return %>
               <% } %>                    
@@ -137,18 +137,19 @@
     
     <% if(show_variants_on_hover){ %>    
     <div class="card-variant-wrapper py-<%=card_bg_color%> py-<%=info_align%>">
-    <% if(product_card_product?.variants?.length !== 1){ %>    
-    <% product_card_product?.options?.forEach((option,index)=>{ %>
-    <% var option_name = option?.name?.toLowerCase() %> 
+    <% if(!product_card_product?.has_only_default_variant){ %>    
+    <% product_card_product?.options_with_values?.forEach((option,index)=>{ %>
+    <% var option_name = option.name.toLowerCase() %> 
     <% var option_index = index %> 
-    <% if(option_name !== 'color' && option_name !== 'colour'){ %>
-      <ul class="variant-options" option_index="<%=option_index%>">
-        <% option.values.forEach((value,index)=>{ %>
-        <li class="variant-option <% if(index === 0){ %>selected<% } %>" data-index="<%= index %>" data-option="<%= value %>">
-          <%= value.toUpperCase() %>
-        </li>
-        <% }) %>
-      </ul>
+    <% if(option_name.includes('olor') || option_name.includes('olour')){ %>    
+    <% } else { %>      
+        <ul class="variant-options" option_index = "<%=option_index%>">
+          <% option?.values?.forEach((value,index)=>{ %>
+          <li class="variant-option <% if(index===0){ %>selected<% } %>" data-index="<%= index %>" data-option="<%= value %>">
+            <%= value?.toUpperCase() %>
+          </li>
+          <% }) %>
+        </ul>
     <% } %>                    
     <% }) %>
     <% } %> 
@@ -157,23 +158,30 @@
     
     <div class="card-information__wrapper py-<%=info_align%>">      
       <% if(show_vendor){ %>
-      <span class="visually-hidden">vendor</span>
+      <span class="visually-hidden"><%=accessibility.vendor%></span>
       <div class="caption-with-letter-spacing light"><%= product_card_product?.vendor %></div>
       <% } %>
       
-      <% if(product_card_product?.image){ %>
+      <% if(product_card_product?.featured_media){ %>
       <span class="card-information__text h5" >
         <%= product_card_product?.title %>
       </span>
       <% } %>
 
       <div class="card-price-wrapper">
-        <%- include('./price', {show_badges: false, use_variant: false, product: product_card_product, price_class: ''}) %>       
+        <%- include('./price', {
+          use_variant: false,
+          show_badges: false,
+          product: product_card_product, 
+          price_class: ''
+        }) %>       
       </div>      
       
       <% if(show_colors){ %>
       <div class="card-color-wrapper">
-        <%- include('./component-card-color', {options: product_card_product?.options,limit:5}) %>
+        <%- include('./component-card-color', {
+          options: product_card_product?.options_with_values
+        }) %>
       </div>
       <% } %>
       
@@ -181,8 +189,8 @@
       <div class="card-button-wrapper">
         <% if(show_quick_add){ %>
         <div class="card-quick-add-wrapper">
-          <a class="card-quick-add py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%> <% if(product_card_product?.selected_or_first_available_variant?.available === false){ %>disabled<% } %>">            
-            <% if(product_card_product?.selected_or_first_available_variant?.available){ %>
+          <a class="card-quick-add py-c-<%=section.settings.card_color_view_btn%> py-bg-c-<%=section.settings.card_bg_color_view_btn%> py-hv-c-<%=section.settings.card_color_view_btn_hover%> py-hv-bg-c-<%=section.settings.card_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%> <% if(product_card_product?.variants[0]?.available === false){ %>disabled<% } %>">            
+            <% if(product_card_product?.variants[0]?.available){ %>
               Quick Add
               <% } else { %>
               Sold Out
@@ -192,45 +200,36 @@
         <% } %>
         <% if(show_view_product){ %>
         <div class="card-view-wrapper">
-          <a href="#" class="card-view-product py-btn-<%=section.settings.view_btn_color%> py-btn-hover-<%=section.settings.view_btn_hover_color%> py-btn-<%=section.settings.view_btn_size%>">View Product</a>
+          <a href="<%= product_card_product?.url || '#' %>" class="card-view-product py-c-<%=section.settings.card_color_view_btn%> py-bg-c-<%=section.settings.card_bg_color_view_btn%> py-hv-c-<%=section.settings.card_color_view_btn_hover%> py-hv-bg-c-<%=section.settings.card_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">View Product</a>
         </div>
         <% } %>
       </div>
       <% } %>
 
-
-
-      <%# for block in blocks %>
-      <%# case block.type %>
-      <%# when '@app' %>
-      <%# render block %>
-      <%# endcase %>
-      <%# }) %>
-
       <select name="id" id="Variants-<%= product?.id %>" class="variant-select hidden">
         <% product?.variants?.forEach((variant,index)=>{ %>
         <option
-                <% if(variant === product?.selected_or_first_available_variant){ %>selected="selected"<% } %>
+                <% if(variant === product?.variants[0]){ %>selected="selected"<% } %>
                 available="<%= variant?.available %>"
                 value="<%= variant?.id %>"
                 price="<%= variant?.price %>"
                 discount = "<%=settings.discount / 100.0%>"
-                inventory = "<%# inventory_quantity %>"
+                inventory = "<%= inventory_quantity %>"
                 variant-title="<%= variant?.title %>"
                 variant-img = "<%= variant?.image?.src %>"
-                <% variant?.options?.forEach((option,index)=>{  %>
+                <% variant?.options?.forEach((option,index)=>{ %>
                  option-<%=index%> = "<%=option%>"                
                 <% }) %>
                 >
           <%= variant?.title %>
-          <% if(variant?.available === false){ %> - sold out<% } %>
-                        - <%= variant?.price %>
+          <% if(variant?.available === false){ %> - <%=products.product?.sold_out%><% } %>
+                        - <%= variant?.price?.trim() %>
         </option>
         <% }) %>
       </select>
       <product-form class="product-form hidden">
-        <form product="product_card_product" id="product_form_id" class="form" novalidate="novalidate" data-type="add-to-cart-form">
-        <input type="hidden" name="id" value="<%= product_card_product?.selected_or_first_available_variant?.id %>">
+        <form id="product_form_id" class="form" novalidate="novalidate" data-type="add-to-cart-form">
+        <input type="hidden" name="id" value="<%= product_card_product?.variants[0]?.id %>">
         <% if(product_card_product?.metafields?.gift.product_id){ %>
         <input type="hidden" name="gift_id" value="<%= product_card_product?.metafields?.gift.product_id %>">
         <% } %>
@@ -239,17 +238,22 @@
                   type="submit"
                   name="add"
                   class="product-form__submit button button--full-width button--primary"
-                  <% if(product_card_product?.selected_or_first_available_variant?.available === false){ %>disabled<% } %>
+                  <% if(product_card_product?.variants[0]?.available === false){ %>disabled<% } %>
                   >
             <span>
-              <% if(product_card_product?.selected_or_first_available_variant?.available){ %>
-              Add To Cart -
+              <% if(product_card_product?.variants[0]?.available){ %>
+              <%=products.product?.add_to_cart%> -
               <% } else { %>
-              Sold Out -
+              <%=products.product?.sold_out%> -
               <% } %>
             </span>
-            <div class="no-js-hidden bc-product-price-wrapper" id="price-1">
-              <%- include('./price', {product: product_card_product, use_variant: true, show_badges: false, price_class: 'price--large'}) %>
+            <div class="no-js-hidden bc-product-price-wrapper" id="price-<%= section.id %>">
+              <%- include('./price', {
+                product: product_card_product, 
+                use_variant: true, 
+                show_badges: false, 
+                price_class: 'price--large'
+              }) %>
             </div>
           </button>
         </div>
@@ -263,20 +267,20 @@
             <% product_card_product?.variants?.forEach((variant,index)=>{ %>
             {
             "<%=variant?.id%>" : 
-            <% if(variant?.metafields?.order.length > 0){ %>
+            <% if(variant?.metafields?.order?.length > 0){ %>
             <% variant?.metafields?.order?.forEach((item,index)=>{ %>
             <% if(index===0){ %>
             {
             <% } %>
-            "<%=item[0]%>" : "<%= item[1] %>"<% if(index !== variant?.metafields?.order?.length){ %>,<% } %>
-            <% if(index === variant?.metafields?.order?.length){ %>
+            "<%=item[0]%>" : "<%= item[1] %>"<% if(index+1!==variant?.metafields?.order?.length ){ %>,<% } %>
+            <% if(index+1===variant?.metafields?.order?.length ){ %>
             }
             <% } %>
             <% }) %>
             <% } else { %>
             ""
             <% } %>
-            }<% if(index !== variant?.metafields?.order?.length){ %>,<% } %>
+            }<% if(index+1!==variant?.metafields?.order?.length ){ %>,<% } %>
             <% }) %>
             ]</div>
         </div>

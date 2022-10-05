@@ -74,7 +74,7 @@
       <% var count = 1){ %>
       <% for recommendation in recommendations.products){ %>
         <% if(count <= 4){ %>
-          <% unless recommendation.tags.includes('rec_hide'){ %>
+          <% if(!recommendation.tags.includes('rec_hide'){ %>
             <% var count = count + 1){ %>
             <li class="grid__item py-<%=section.settings.card_color%> py-card-<%=section.settings.card_style%>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
               <%- include('../snippets/product-card',
@@ -92,7 +92,7 @@
                 info_align: section.settings.info_align
              ){ %>
             </li>
-          <% endunless){ %>
+          <% } %>
         <% } %>
       <% }) %>
     </ul>
@@ -134,19 +134,19 @@
 
 <% schema){ %>
 {
-  "name": "t:sections.product-recommendations.name",
+  "name": "t:sectionst.product-recommendations.name",
   "tag": "section",
   "class": "js-product-password-recommendation",
   "settings": [
     {
       "type": "paragraph",
-      "content": "t:sections.product-recommendations.settings.paragraph__1.content"
+      "content": "t:sectionst.product-recommendations.settings.paragraph__1.content"
     },
     {
       "type": "text",
       "id": "heading",
       "default": "You may also like",
-      "label": "t:sections.product-recommendations.settings.heading.label"
+      "label": "t:sectionst.product-recommendations.settings.heading.label"
     },
     {
         "type": "select",
@@ -184,25 +184,37 @@
         "type": "select",
         "id": "section_color",
         "label": "Title Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-light)"
     },
     {
       "type": "header",
-      "content": "t:sections.product-recommendations.settings.header__2.content"
+      "content": "t:sectionst.product-recommendations.settings.header__2.content"
     },
     {
       "type": "select",
@@ -227,19 +239,19 @@
       "options": [
         {
           "value": "adapt",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__1.label"
         },
         {
           "value": "portrait",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__2.label"
         },
         {
           "value": "square",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+          "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.options__3.label"
         }
       ],
       "default": "square",
-      "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
+      "label": "t:sectionst.main-collection-product-grid.settings.image_ratio.label"
     },
     {
       "type": "checkbox",
@@ -301,7 +313,7 @@
       "type": "checkbox",
       "id": "show_vendor",
       "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
+      "label": "t:sectionst.main-collection-product-grid.settings.show_vendor.label"
     },
     {
       "type": "checkbox",
@@ -347,14 +359,26 @@
       "type": "select",
       "id": "card_color",
       "label": "Card Info Color",
-      "options": [     
+      "options": [
+        {
+          "label": "None",
+          "value": "none"
+        },
         {
           "label": "Dark",
           "value": "c-dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "c-middle-dark"
+        },
+        {
           "label": "Average",
           "value": "c-average"
+        },
+        {
+          "label": "Light",
+          "value": "c-middle-light"
         },
         {
           "label": "Light",
@@ -390,15 +414,23 @@
     {
       "type": "select",
       "id": "card_color_view_btn",
-      "label": "View Button Color style",
+      "label": "View Button Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -409,16 +441,24 @@
     },
     {
       "type": "select",
-      "id": "card_color_view_btn_hover",
-      "label": "View Button Hover Color style",
+      "id": "card_bg_color_view_btn",
+      "label": "View Button Background Color",
       "options": [
         {
           "label": "Dark",
           "value": "dark"
         },
         {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
           "label": "Average",
           "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
         },
         {
           "label": "Light",
@@ -426,6 +466,62 @@
         }
       ],
       "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_color_view_btn_hover",
+      "label": "View Button Hover Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "card_bg_color_view_btn_hover",
+      "label": "View Button Hover Background Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Middle Dark",
+          "value": "middle-dark"
+        },
+        {
+          "label": "Average",
+          "value": "average"
+        },
+        {
+          "label": "Middle Light",
+          "value": "middle-light"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "light"
     },
     {
       "type": "header",

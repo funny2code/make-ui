@@ -1,16 +1,17 @@
-<div class="bc-marquee-wrapper py-<%=section.settings.br%> py-<%=section.settings.bg_color%> py-<%=section.settings.page_x_mg%> py-<%=section.settings.page_y_mg%>">
-  <div class="page-width page-<%=section.settings.page_width%> py-<%=section.settings.page_x_pd%> py-<%=section.settings.page_y_pd%>">
-    <% if(section.settings.marquee){ %>
+<% var d = section.settings %>
+<div class="bc-marquee-wrapper py-<%=d.br%> py-<%=d.py_section_bg_color%> py-<%=d.page_x_mg%> py-<%=d.page_y_mg%>">
+  <div class="page-width page-<%=d.page_width%> py-<%=d.page_x_pd%> py-<%=d.page_y_pd%>">
+    <% if(d.marquee){ %>
     <marquee class="bc-marquee-wrapper__marquee" 
-        direction="<%=section.settings.direction%>" 
-        behavior="<%=section.settings.behavior%>" 
-        scrollamount="<%=section.settings.speed%>"
-        <% if(section.settings.pause){ %>
+        direction="<%=d.direction%>" 
+        behavior="<%=d.behavior%>" 
+        scrollamount="<%=d.speed%>"
+        <% if(d.pause){ %>
         onmouseover="this.stop();"
         onmouseout="this.start();"
         <% } %>
     >
-        <span class="py-<%=section.settings.font_size%> py-<%=section.settings.color%>"><%- section.settings.marquee -%><span>
+        <span class="py-<%=d.font_size%> py-<%=d.py_section_color%>"><%-section.settings.marquee-%><span>
     </marquee>
     <% } %>
   </div>

@@ -1,5 +1,31 @@
 {
     "title": "make",
-    "themes_name": "Choose a theme",
-    "themes_desc": "You can customize this theme to match your brand guidelines"
+    "theme_name": "Choose a theme",
+    "theme_desc": "You can customize this theme to match your brand guidelines",
+    "app_left_sidebar": [
+        {
+          "title": "Brand",
+          "handle": "global-styles",
+          "icon": "brand",
+          "type": "settings"
+        },
+        {
+          "title": "Fonts",
+          "handle": "typography-settings",
+          "icon": "fonts",
+          "type": "settings"
+        },
+        {
+          "title": "Cart",
+          "handle": "cart",
+          "icon": "cart",
+          "type": "settings"
+        },
+        {
+          "title": "Sections",
+          "icon": "spacing",
+          "subOptions": true,
+          "type": "section"
+        }
+    ]
 }

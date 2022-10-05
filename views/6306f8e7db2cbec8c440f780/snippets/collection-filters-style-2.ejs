@@ -31,7 +31,7 @@
   box-shadow: 0px 0px 4px 3px var(--py-color-dark);
 }
 </style>
-<custom-filters class="coll-filters py-<%=section.settings.filter_bg_color%>  py-<%=section.settings.filter_color%>">
+<custom-filters class="coll-filters py-<%=section.settings.filter_bar_bg_color%>  py-<%=section.settings.filter_bar_color%>">
     <div class="coll-filters__wrapper">
         <div class="coll-filters__mode">
             <button class="btn-unstyle" aria-label="Show two products per row">
@@ -48,9 +48,9 @@
         <div class="coll-filters__type">
             <div class="coll-filters__type-sort">
                 <div class="select">
-                    <% var sort_by = collection?.sort_by || collection?.default_sort_by %>
-                    <select name="sort_by" class="select__select coll-filters__select-sort py-<%=section.settings.filter_bg_color%>" id="SortBy" aria-describedby="a11y-refresh-page-message">
-                      <% collection?.sort_options?.forEach((option, index)=>{ %>
+                    <% var sort_by = collection.sort_by || collection.default_sort_by %>
+                    <select name="sort_by" class="select__select coll-filters__select-sort py-<%=section.settings.filter_bar_bg_color%>" id="SortBy" aria-describedby="a11y-refresh-page-message">
+                      <% collection?.sort_options?.forEach((option,index)=>{ %>
                         <option value="<%= option.value %>"<% if(option.value === sort_by){ %> selected="selected"<% } %>><%= option.name %></option>
                       <% }) %>
                     </select>
@@ -66,7 +66,7 @@
     </div>
 
     <div class="coll-filter-overlay" aria-hidden="true">&nbsp;</div> 
-    <div class="coll-filter-drawer py-<%=section.settings.filter_bg_color%>" aria-hidden="true">
+    <div class="coll-filter-drawer py-<%=section.settings.filter_bg_color%> py-<%=section.settings.filter_color%>" aria-hidden="true">
         <div class="coll-filter-drawer__header">
             <% if(heading){ %>
             <h2 class="coll-filter-drawer__heading py-<%=section.settings.filter_color%>"><%= heading %></h2>
@@ -79,70 +79,71 @@
         </div>
         <form class="filter-form coll-filter-drawer__form">
 
-            <% var sort_by = collection?.sort_by || collection?.default_sort_by %>
+            <% var sort_by = collection.sort_by || collection.default_sort_by %>
             <select name="sort_by" class="select__select coll-filters__select-sort-hidden">
-                <% collection?.sort_options?.forEach((option, index)=>{ %>
+                <% collection?.sort_options?.forEach((option,index)=>{ %>
                 <option value="<%= option.value %>"<% if(option.value === sort_by){ %> selected="selected"<% } %>><%= option.name %></option>
                 <% }) %>
             </select>
 
-            <% collection?.filters?.forEach((filter, index)=>{ %>
+            <% collection?.filters?.forEach((filter,index)=>{ %>
                 <div class="coll-filter-drawer__item-header">
-                    <span class="coll-filter-drawer__item-heading"><%= filter?.label %></span>
-                    <% var type = filter?.label.toLowerCase().trim() %>
+                    <span class="coll-filter-drawer__item-heading"><%= filter.label %></span>
+                    <% var type = filter.label.toLowerCase()?.trim() %>
                 </div>
 
                 <div class="filter-group-display">
-                    <% if(filter?.type === 'list'){ %>
+                    <% if(filter.type){ %>
+                    <% } else if(block.type === 'list'){ %>
                         <ul class="filter-group-display__list">
-                        <% filter?.values?.forEach((filter_value, index) =>{ %>
+                        <% filter?.values?.forEach((filter_value,index)=>{ %>
                             <li class="filter-group-display__list-item filter-group-display__list-item-<%= type %>">
                             <input type="checkbox"
-                                name="<%= filter_value?.param_name %>"
-                                value="<%= filter_value?.value %>"
-                                id="Filter-<%= filter?.param_name %>-<%= index %>"
-                                <% if(filter_value?.active){ %>checked<% } %>
-                                <% if(filter_value?.count === 0 && filter_value?.active === false){ %>disabled<% } %>
+                                name="<%= filter_value.param_name %>"
+                                value="<%= filter_value.value %>"
+                                id="Filter-<%= filter.param_name %>-<%= index %>"
+                                <% if(filter_value.active){ %>checked<% } %>
+                                <% if(filter_value.count === 0 && filter_value.active === false){ %>disabled<% } %>
                             >
-                            <label for="Filter-<%= filter?.param_name %>-<%= index %>" <% if(type === 'color' || type === 'colors'){ %>style="background-color:<%= filter_value?.label %>;"<% } %>>
+                            <label for="Filter-<%= filter.param_name %>-<%= index %>" <% if(type === 'color' || type === 'colors'){ %>style="background-color:<%= filter_value.label %>;"<% } %>>
                             <% if(type === 'color' || type === 'colors'){ %>
                                 &nbsp;
                             <% } else { %>
-                                <%= filter_value?.label %>
+                                <%= filter_value.label %>
                             <% } %>
                             </label>
                             </li>
                         <% }) %>
                         </ul>
-                    <% } else if(filter?.type === 'price_range'){ %>
+                    <% } else if(block.type === 'price_range'){ %>
                         <div class="filter-group-display__price-range">
                         <div class="filter-group-display__price-range-item filter-group-display__price-range-from">
                             <span><%= cart.currency.symbol %></span>
 
-                            <input name="<%= filter?.max_value?.param_name %>"
-                            id="Filter-<%= filter?.max_value?.param_name %>"
-                            <% if(filter?.max_value?.value){ %>
-                                value="<%= filter?.max_value?.value.replace(',', '') %>"
+                            <input name="<%= filter.min_value.param_name %>"
+                            id="Filter-<%= filter.min_value.param_name %>"
+                            <% if(filter.min_value.value){ %>
+                                value="<%= filter.min_value.value_without_currency.replace(',', '') %>"
                             <% } %>
                             type="number"
                             placeholder="0"
                             min="0"
-                            max="<%= filter?.range_max.replace(',', '') %>"
+                            max="<%= filter.range_max_without_currency.replace(',', '') %>"
                             >
                         </div>
                         <span class="filter-price__space">-</span>
                         <div class="filter-group-display__price-range-item filter-group-display__price-range-to">
                             <span><%= cart.currency.symbol %></span>
 
-                            <input name="<%= filter?.max_value?.param_name %>"
-                            id="Filter-<%= filter?.max_value?.param_name %>"
-                            <% if(filter?.max_value?.value){ %>
-                                value="<%= filter?.max_value?.value.replace(',', '') %>"
+                            <input name="<%= filter.max_value.param_name %>"
+                            id="Filter-<%= filter.max_value.param_name %>"
+                            <% if(filter.max_value.value){ %>
+                                value="<%= filter.max_value.value_without_currency.replace(',', '') %>"
                             <% } %>
                             type="number"
-                            placeholder="<%= filter?.range_max.replace(',', '') %>"
+                            placeholder="<%= filter.range_max_without_currency.replace(',', '') %>"
                             min="0"
-                            max="<%= filter?.range_max.replace(',', '') %>"
+                            max="<%= filter.range_max_without_currency.replace(',', '') %>"
                             >
                             </div>
                         </div>
@@ -163,4 +164,4 @@
 
 </custom-filters>
 
-<script src="/assets/collection-filters-custom.js" defer="defer"></script>
+<script src="/<%=srcId%>/collection-filters-custom.js" defer="defer"></script>

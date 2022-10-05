@@ -34,15 +34,14 @@ router.post('/:userId/:themeId', async (req, res, next) => {
     const theme = await modelThemes.findById(themeId).exec();
     if(!theme) return res.status(500).send({status: 500,  message: "SORRY! Please try again few minuts late."});
     
-    theme?.theme_set.map(item => {if(item.theme_name) return item.theme_name = themename});
+    theme?.settings_schema.map(item => {if(item.theme_name) return item.theme_name = themename});
 
     const newUserTheme = new modelUsersThemes({
       user_id: userId,
       extend_id: themeId,
-      theme_set: theme?.theme_set,
-      app_sid: theme?.app_sid,
-      theme_pag: theme?.theme_pag,
-      theme_sec: theme?.theme_sec
+      settings_schema: theme?.settings_schema,
+      pages: theme?.pages,
+      sections_schema: theme?.sections_schema
     });
 
     newUserTheme.save(async (err, newtheme) => {

@@ -24,7 +24,7 @@
 
             if product_card_product.featured_media.aspect_ratio === nil
               var featured_media_aspect_ratio = 1
-            endif
+            }
          ){ %>
       <a href="<%= product_card_product.url || '#' %>" class="full-unstyled-link">
         <div>
@@ -88,9 +88,9 @@
       <% } %>
       <div class="quick-view-badge">
         <a href="#open-quick-view-modal" data-id="<%=product_card_product.id%>" variant_id = "<%=product_card_product.first_available_variant.id%>">Quick View</a>
-        <div class="hidden product_object"><%= product_card_product | json %></div>
-        <div class="hidden product_option_object"><%= product_card_product.options_with_values | json %></div>
-        <div class="hidden product_variant_object"><%= product_card_product.variants | json %></div>
+        <div class="hidden product_object"><%= product_card_product %></div>
+        <div class="hidden product_option_object"><%= product_card_product.options_with_values %></div>
+        <div class="hidden product_variant_object"><%= product_card_product.variants %></div>
         <div class="hidden product_variants-meta">[
                     <% for variant in product_card_product.variants){ %>
                           {
@@ -100,7 +100,7 @@
                                   <% if(forloop.first){ %>
                                       {
                                   <% } %>
-                                          "<%=item[0]%>" : "<%= item[1] %>"<% unless forloop.last){ %>,<% endunless){ %>
+                                          "<%=item[0]%>" : "<%= item[1] %>"<% if(!forloop.last){ %>,<% } %>
                                   <% if(forloop.last){ %>
                                       }
                                   <% } %>
@@ -108,7 +108,7 @@
                             <% } else { %>
                             	""
                             <% } %>
-                          }<% unless forloop.last){ %>,<% endunless){ %>
+                          }<% if(!forloop.last){ %>,<% } %>
                     <% }) %>
                   ]</div>
       </div>
@@ -117,20 +117,20 @@
  
   <a href="<%= product_card_product.url || '#' %>" class="full-unstyled-link">
     <div class="card-information
-          <% unless product_card_product.has_only_default_variant){ %> 
+          <% if(!product_card_product.has_only_default_variant){ %> 
              <% for option in product_card_product.options_with_values){ %>
                  <% var option_name = option.name.toLowerCase()){ %>                 
                  <% if(option_name === 'color' || option_name === "colour"){ %>
                  variant-color-product
-                 <% break){ %>
+                 <% return %>
                  <% } %>                    
               <% }) %>
           
-          <% endunless){ %>" >
+          <% } %>" >
       <div class="card-information__wrapper">
         <div class="product-review-color">
           <div class="review">Review widget </div>
-          <% unless product_card_product.has_only_default_variant){ %> 
+          <% if(!product_card_product.has_only_default_variant){ %> 
              <% for option in product_card_product.options_with_values){ %>
                  <% var option_name = option.name.toLowerCase()){ %>                 
                  <% if(option_name === 'color' || option_name === "colour"){ %>
@@ -138,11 +138,11 @@
                    <div class="color-option">
                      <span class='dot'> &#160;&#160;&sdot;&#160;&#160;</span><%=product_color.values.length%> Colors
                    </div>
-                 <% break){ %>
+                 <% return %>
                  <% } %>                    
               <% }) %>
           
-          <% endunless){ %>
+          <% } %>
          
         </div>
         <% if(product_card_product.featured_media){ %>

@@ -58,7 +58,7 @@
                 <div class="image-with-text__text rte py-{{block.settings.fs}}"  style="color:{{section.settings.py_section_color}}">{{ block.settings.text }}</div>
               {%- when 'button' -%}
                 {%- if block.settings.button_label != blank -%}
-                  <a href="{{ block.settings.button_link }}" class="button py-btn-no-br py-btn-{{block.settings.py_section_color_view_btn}} py-btn-hover-{{block.settings.py_section_color_view_btn_hover}} py-btn-{{block.settings.view_btn_size}}"{% if block.settings.button_link == blank %} aria-disabled="true"{% endif %}>{{ block.settings.button_label | escape }}</a>
+                  <a href="{{ block.settings.button_link }}" class="button py-btn-no-br py-c-{{block.settings.py_section_color_view_btn}} py-hv-c-{{block.settings.py_section_color_view_btn_hover}} py-bg-c-{{block.settings.py_section_bg_color_view_btn}} py-hv-bg-c-{{block.settings.py_section_bg_color_view_btn_hover}} py-btn-{{block.settings.view_btn_size}}"{% if block.settings.button_link == blank %} aria-disabled="true"{% endif %}>{{ block.settings.button_label | escape }}</a>
                 {%- endif -%}
             {%- endcase -%}
           {%- endfor -%}
@@ -226,19 +226,31 @@
         "type": "select",
         "id": "py_section_color",
         "label": "Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     }
@@ -372,44 +384,116 @@
         "default": "medium"
         },
         {
-        "type": "select",
-        "id": "py_section_color_view_btn",
-        "label": "View Button Color style",
-        "options": [
+          "type": "select",
+          "id": "py_section_color_view_btn",
+          "label": "View Button Color",
+          "options": [
             {
-            "label": "Dark",
-            "value": "dark"
+               "label": "Dark",
+               "value": "dark"
             },
             {
-            "label": "Average",
-            "value": "average"
+              "label": "Middle Dark",
+              "value": "middle-dark"
             },
             {
-            "label": "Light",
-            "value": "light"
+              "label": "Average",
+              "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
+            },
+            {
+              "label": "Light",
+              "value": "light"
             }
-        ],
-        "default": "dark"
+          ],
+          "default": "light"
         },
         {
-        "type": "select",
-        "id": "py_section_color_view_btn_hover",
-        "label": "View Button Hover Color style",
-        "options": [
+          "type": "select",
+          "id": "py_section_bg_color_view_btn",
+          "label": "View Button Background Color",
+          "options": [
             {
-            "label": "Dark",
-            "value": "dark"
+               "label": "Dark",
+               "value": "dark"
             },
             {
-            "label": "Average",
-            "value": "average"
+              "label": "Middle Dark",
+              "value": "middle-dark"
             },
             {
-            "label": "Light",
-            "value": "light"
+              "label": "Average",
+              "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
+            },
+            {
+              "label": "Light",
+              "value": "light"
             }
-        ],
-        "default": "dark"
+          ],
+          "default": "dark"
+        },
+        {
+          "type": "select",
+          "id": "py_section_color_view_btn_hover",
+          "label": "View Button Hover Color",
+          "options": [
+            {
+               "label": "Dark",
+               "value": "dark"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
+              "label": "Average",
+              "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
+            },
+            {
+              "label": "Light",
+              "value": "light"
+            }
+          ],
+          "default": "dark"
+        },
+        {
+          "type": "select",
+          "id": "py_section_bg_color_view_btn_hover",
+          "label": "View Button Hover Background Color",
+          "options": [
+            {
+               "label": "Dark",
+               "value": "dark"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "middle-dark"
+            },
+            {
+              "label": "Average",
+              "value": "average"
+            },
+            {
+              "label": "Middle Light",
+              "value": "middle-light"
+            },
+            {
+              "label": "Light",
+              "value": "light"
+            }
+          ],
+          "default": "light"
         }
       ]
     }

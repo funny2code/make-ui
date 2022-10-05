@@ -10,9 +10,9 @@
     <link rel="canonical" href="<%= canonical_url %>">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
-    <% unless settings.type_header_font.system?){ %>
+    <% if(!settings.type_header_font.system?){ %>
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
-    <% endunless){ %>
+    <% } %>
 
     <% var formatted_initial_value = gift_card.initial_value_without_trailing_zeros: gift_card.currency?.trim()_html){ %>
     <title><%=gift_cards.issued.title' | t: value: formatted_initial_value, shop: shop.name %></title>
@@ -27,7 +27,7 @@
       var body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
    ){ %>
 
-    <% style){ %>
+    <style>
       <%= settings.type_body_font | font_face: font_display: 'swap' %>
       <%= body_font_bold | font_face: font_display: 'swap' %>
       <%= body_font_italic | font_face: font_display: 'swap' %>
@@ -52,14 +52,14 @@
         --color-accent-1: <%= settings.colors_accent_1 %>;
         --color-accent-1-rgb: <%= settings.colors_accent_1 | color_to_rgb | remove: 'rgb(' | remove: ')' %>;
       }
-    <% endstyle){ %>
+    </style>
 
-    <% unless settings.type_body_font.system?){ %>
+    <% if(!settings.type_body_font.system?){ %>
       <link rel="preload" as="font" href="<%= settings.type_body_font | font_url %>" type="font/woff2" crossorigin>
-    <% endunless){ %>
-    <% unless settings.type_header_font.system?){ %>
+    <% } %>
+    <% if(!settings.type_header_font.system?){ %>
       <link rel="preload" as="font" href="<%= settings.type_header_font | font_url %>" type="font/woff2" crossorigin>
-    <% endunless){ %>
+    <% } %>
     <%- include('../snippets/css-selectors'){ %>
     <%=base-style.css' <%=srcId%> | stylesheet_tag %>
     <%=template-giftcard.css' <%=srcId%> | stylesheet_tag %>
@@ -188,7 +188,7 @@
 </html>
 
 <script>
-  var string = { qrImageAlt: <%=gift_cards.issued.qr_image_alt' | t | json %> };
+  var string = { qrImageAlt: <%=gift_cards.issued.qr_image_alt' | t %> };
   document.addEventListener('DOMContentLoaded', function() {
    new QRCode( document.querySelector('.gift-card__qr-code'), {
     text: document.querySelector('.gift-card__qr-code').dataset.identifier,
@@ -255,19 +255,31 @@
         "type": "select",
         "id": "page_color",
         "label": "Page Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -316,19 +328,31 @@
         "type": "select",
         "id": "copy_code_color",
         "label": "Copy Code Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -377,19 +401,31 @@
         "type": "select",
         "id": "copy_btn_color",
         "label": "Copy Code Button Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -397,19 +433,31 @@
         "type": "select",
         "id": "copy_btn_color_br",
         "label": "Copy Code Button Border Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -467,19 +515,31 @@
         "type": "select",
         "id": "copy_btn_hover_color",
         "label": "Copy Code Button Hover Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -487,19 +547,31 @@
         "type": "select",
         "id": "copy_btn_hover_color_br",
         "label": "Copy Code  Button Hover Border Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -543,19 +615,31 @@
         "type": "select",
         "id": "print_btn_color",
         "label": "Print Button Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -563,19 +647,31 @@
         "type": "select",
         "id": "print_btn_color_br",
         "label": "Print Button Border Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -633,19 +729,31 @@
         "type": "select",
         "id": "print_btn_hover_color",
         "label": "Print Button Hover Text Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     },
@@ -653,19 +761,31 @@
         "type": "select",
         "id": "print_btn_hover_color_br",
         "label": "Print Button Hover Border Color",
-        "options": [ 
-            {
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
             "label": "Dark",
             "value": "var(--py-color-dark)"
-            },
-            {
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
             "label": "Average",
             "value": "var(--py-color-avarge)"
-            },
-            {
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
             "label": "Light",
             "value": "var(--py-color-light)"
-            }
+          }
         ],
         "default": "var(--py-color-dark)"
     }
