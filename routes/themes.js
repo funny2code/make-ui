@@ -28,6 +28,7 @@ router.get('/:id', async (req, res, next) => {
     ? theme.settings_schema.filter(item => item.name?.replace(' ', '-')?.toLowerCase() === settings_handle)
     : theme.settings_schema.filter(item => item.name?.replace(' ', '-')?.toLowerCase() === 'theme_info' || item.name?.replace(' ', '-')?.toLowerCase() === settings_handle)
     : null;
+    
     const settingsFile = await fs.readFile(path.join(__dirname, `../themes/${id}/config/settings_data.json`), 'utf-8');
     if(!settingsFile) return next();
     const settings = JSON.parse(settingsFile);

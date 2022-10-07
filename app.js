@@ -46,7 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/themes', themesRouter);
 app.use('/remix', randomRouter);
-app.use('/remix', async (req,res) => { res.redirect('/remix?page=Home%20Page') });
+app.use('/remix', async (req,res) => { res.redirect('/remix/6306f8e7db2cbec8c440f780?page=index') });
 app.use('/remixview', randomViewRouter);
 app.use('/users', userThemesRouter);
 app.use('/view', viewRouter);

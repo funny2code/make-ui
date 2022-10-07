@@ -6,11 +6,11 @@
             </a>
         </div>
         <div class="py__header-random-buttons">
-            <% if(pageNames){ %>
+            <% if(pages?.length){ %>
                 <div class="py__preview-select">
                     <select class="py__preview-pages-select">
-                        <% pageNames.forEach(item => { %> 
-                            <option data-href="/remix?page=<%=item.name%>" <% if(page === item.name){ %>selected<% } %>>
+                        <% pages.forEach(item => { %> 
+                            <option data-href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=item.handle%>" <% if(page_handle === item.handle){ %>selected<% } %>>
                                 <%=item.name%>
                             </option>
                         <% }) %>
@@ -27,14 +27,12 @@
             </a>
             <div class="py__preview-select">
                 <select class="py__random-colors-mode"> 
-                    <option value="monochrome" selected>Monochrome</option>
-                    <option value="monochrome-dark">Monochrome Dark</option>
-                    <option value="monochrome-light">Monochrome Light</option>
-                    <option value="analogic">Analogic</option>
-                    <option value="complement">Complement</option>
-                    <option value="analogic-complement">Analogic Complement</option>
-                    <option value="triad">Triad</option>
-                    <option value="quad">Quad</option>
+                    <option value="default" selected>Default</option>
+                    <option value="ui">UI</option>
+                    <option value="makoto_shinkai">Makoto Shinkai</option>
+                    <option value="metroid_fusion">Metroid Fusion</option>
+                    <option value="akira_film">Akira Film</option>
+                    <option value="flower_photography">Flower Photography</option>
                 </select>
             </div>
             <% if(user){ %>

@@ -32,8 +32,8 @@
         },
         {
           "type": "color",
-          "id": "py_bg_color_avarge",
-          "label": "Avarge",
+          "id": "py_bg_color_average",
+          "label": "Average",
           "default": "#A05E49"
         },
         {
@@ -66,8 +66,8 @@
         },
         {
           "type": "color",
-          "id": "py_color_avarge",
-          "label": "Avarge",
+          "id": "py_color_average",
+          "label": "Average",
           "default": "#AB3611"
         },
         {
@@ -1786,7 +1786,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -1797,7 +1797,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "select",
@@ -1818,7 +1818,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -1846,7 +1846,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -2135,7 +2135,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -2146,7 +2146,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-avarge)"
+          "default": "var(--py-bg-color-average)"
         }
       ]
     },
@@ -2494,7 +2494,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -2591,7 +2591,7 @@
         }
       ],
       "file_name": "404",
-      "template_name": "templates/index"
+      "template_name": "templates/404"
     },
     {
       "name": "Announcement bar",
@@ -2616,7 +2616,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -2648,7 +2648,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -2680,7 +2680,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -2712,7 +2712,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -2723,7 +2723,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "select",
@@ -3127,7 +3127,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -3190,7 +3190,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -3201,7 +3201,7 @@
                   "value": "var(--py-color-light)"
                 }
               ],
-              "default": "var(--py-color-avarge)"
+              "default": "var(--py-color-average)"
             },
             {
               "type": "select",
@@ -3253,7 +3253,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -3264,7 +3264,7 @@
                   "value": "var(--py-color-light)"
                 }
               ],
-              "default": "var(--py-color-avarge)"
+              "default": "var(--py-color-average)"
             },
             {
               "type": "select",
@@ -3317,7 +3317,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -3359,7 +3359,7 @@
         }
       ],
       "file_name": "article",
-      "template_name": "templates/index"
+      "template_name": "templates/article"
     },
     {
       "name": "Blog posts",
@@ -3427,7 +3427,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -3732,7 +3732,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -3915,7 +3915,7 @@
         }
       ],
       "file_name": "blog",
-      "template_name": "templates/index"
+      "template_name": "templates/blog"
     },
     {
       "name": "Subtotal",
@@ -4087,7 +4087,7 @@
         }
       ],
       "file_name": "cart-footer",
-      "template_name": "config/settings_data"
+      "template_name": "template/cart"
     },
     {
       "name": "Items",
@@ -4118,7 +4118,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -4139,7 +4139,7 @@
         }
       ],
       "file_name": "cart-items",
-      "template_name": "templates/index"
+      "template_name": "templates/cart"
     },
     {
       "name": "Collection banner",
@@ -4212,7 +4212,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -4240,7 +4240,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -4427,7 +4427,7 @@
         }
       ],
       "file_name": "collection-banner",
-      "template_name": "templates/index"
+      "template_name": "templates/collection"
     },
     {
       "name": "Product Bundle Section",
@@ -4562,7 +4562,7 @@
         }
       ],
       "file_name": "collection-bundle-product",
-      "template_name": "templates/index"
+      "template_name": "templates/collection"
     },
     {
       "name": "Collection Email",
@@ -4627,7 +4627,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -4776,7 +4776,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -4822,7 +4822,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -4970,7 +4970,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -4987,7 +4987,7 @@
         }
       ],
       "file_name": "collection-email-banner",
-      "template_name": "templates/index"
+      "template_name": "templates/collection"
     },
     {
       "name": "Collection list",
@@ -5063,7 +5063,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5356,7 +5356,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5677,7 +5677,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5688,7 +5688,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-avarge)"
+          "default": "var(--py-bg-color-average)"
         },
         {
           "type": "select",
@@ -5705,7 +5705,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5751,7 +5751,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5779,7 +5779,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5811,7 +5811,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5822,7 +5822,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-avarge)"
+          "default": "var(--py-bg-color-average)"
         },
         {
           "type": "select",
@@ -5839,7 +5839,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5854,7 +5854,7 @@
         }
       ],
       "file_name": "collection-password-banner",
-      "template_name": "templates/index"
+      "template_name": "templates/collection.password"
     },
     {
       "name": "Product grid",
@@ -6680,7 +6680,7 @@
         }
       ],
       "file_name": "collection-product-grid",
-      "template_name": "templates/index"
+      "template_name": "templates/collection"
     },
     {
       "name": "Contact Form",
@@ -6729,7 +6729,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -6765,7 +6765,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -6811,7 +6811,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -6839,7 +6839,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -6867,7 +6867,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -6878,7 +6878,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "range",
@@ -7058,7 +7058,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -7122,7 +7122,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -7233,7 +7233,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7265,7 +7265,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7337,7 +7337,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7369,7 +7369,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7401,7 +7401,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7433,7 +7433,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7465,7 +7465,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7501,7 +7501,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7533,7 +7533,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7565,7 +7565,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7597,7 +7597,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7629,7 +7629,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7661,7 +7661,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7855,7 +7855,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7887,7 +7887,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7939,7 +7939,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7971,7 +7971,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8021,7 +8021,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8053,7 +8053,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8085,7 +8085,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8117,7 +8117,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8153,7 +8153,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8185,7 +8185,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8235,7 +8235,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8267,7 +8267,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8299,7 +8299,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8331,7 +8331,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8367,7 +8367,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8399,7 +8399,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8449,7 +8449,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8489,7 +8489,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8521,7 +8521,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8845,7 +8845,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8877,7 +8877,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8909,7 +8909,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8941,7 +8941,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8991,7 +8991,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9167,7 +9167,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9199,7 +9199,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9235,7 +9235,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9267,7 +9267,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9317,7 +9317,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9493,7 +9493,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9525,7 +9525,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9561,7 +9561,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9593,7 +9593,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9643,7 +9643,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9819,7 +9819,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9851,7 +9851,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9887,7 +9887,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9919,7 +9919,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9969,7 +9969,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -10135,7 +10135,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -10442,7 +10442,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -10698,7 +10698,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -10730,7 +10730,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11304,7 +11304,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11350,7 +11350,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11378,7 +11378,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11406,7 +11406,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11417,7 +11417,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "range",
@@ -11649,7 +11649,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11681,7 +11681,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11722,7 +11722,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11754,7 +11754,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11795,7 +11795,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11827,7 +11827,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11859,7 +11859,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11909,7 +11909,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11941,7 +11941,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11973,7 +11973,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12009,7 +12009,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12041,7 +12041,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12073,7 +12073,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12123,7 +12123,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12155,7 +12155,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12187,7 +12187,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12266,7 +12266,7 @@
         },
         {
           "type": "select",
-          "id": "py_header_bg_color_1",
+          "id": "py_header_bg_color",
           "label": "Header Background Color",
           "options": [
             {
@@ -12283,7 +12283,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12315,7 +12315,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12347,7 +12347,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12573,7 +12573,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12605,7 +12605,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12637,7 +12637,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12669,7 +12669,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12719,7 +12719,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12751,7 +12751,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12762,7 +12762,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "text",
@@ -12801,7 +12801,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12812,7 +12812,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "header",
@@ -12857,7 +12857,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12931,7 +12931,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13198,7 +13198,7 @@
         },
         {
           "type": "select",
-          "id": "py_header_bg_color_1",
+          "id": "py_header_bg_color",
           "label": "Header Background Color",
           "options": [
             {
@@ -13215,7 +13215,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13247,7 +13247,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13279,7 +13279,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13311,7 +13311,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13343,7 +13343,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13354,7 +13354,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "select",
@@ -13375,7 +13375,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13386,7 +13386,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "select",
@@ -13407,7 +13407,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13418,7 +13418,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "select",
@@ -13439,7 +13439,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13756,7 +13756,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13767,7 +13767,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-avarge)"
+          "default": "var(--py-bg-color-average)"
         },
         {
           "type": "image_picker",
@@ -14067,7 +14067,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -14154,7 +14154,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -14254,7 +14254,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -14341,7 +14341,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -14706,7 +14706,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -14717,7 +14717,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-avarge)",
+          "default": "var(--py-bg-color-average)",
           "label": "Background color"
         },
         {
@@ -14739,7 +14739,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -15060,7 +15060,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -15813,7 +15813,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -15834,7 +15834,7 @@
         }
       ],
       "file_name": "list-collections",
-      "template_name": "templates/index"
+      "template_name": "templates/list-collections"
     },
     {
       "name": "Main Page",
@@ -15899,7 +15899,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -15943,7 +15943,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -16007,7 +16007,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -16050,7 +16050,7 @@
         }
       ],
       "file_name": "main-page",
-      "template_name": "templates/index"
+      "template_name": "templates/page"
     },
     {
       "name": "Marquee",
@@ -16580,7 +16580,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -16964,7 +16964,7 @@
         }
       ],
       "file_name": "password-footer",
-      "template_name": "config/settings_data"
+      "template_name": "templates/password"
     },
     {
       "name": "Password header",
@@ -17014,7 +17014,7 @@
         }
       ],
       "file_name": "password-header",
-      "template_name": "config/settings_data"
+      "template_name": "templates/password"
     },
     {
       "name": "Password",
@@ -17058,7 +17058,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -17193,7 +17193,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -17280,7 +17280,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -17371,7 +17371,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -17413,7 +17413,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -17685,7 +17685,7 @@
         }
       ],
       "file_name": "password",
-      "template_name": "templates/index"
+      "template_name": "templates/password"
     },
     {
       "name": "Product Carousel",
@@ -17745,7 +17745,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -17777,7 +17777,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -18260,7 +18260,7 @@
         }
       ],
       "file_name": "product-color-uploads",
-      "template_name": "templates/index"
+      "template_name": "config/settings_data"
     },
     {
       "name": "Product recommendations",
@@ -18296,7 +18296,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -18328,7 +18328,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -18771,7 +18771,7 @@
         }
       ],
       "file_name": "product-recommendations",
-      "template_name": "templates/index"
+      "template_name": "templates/product"
     },
     {
       "name": "Product information",
@@ -18980,7 +18980,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19059,7 +19059,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19070,7 +19070,7 @@
                   "value": "var(--py-bg-color-light)"
                 }
               ],
-              "default": "var(--py-bg-color-avarge)"
+              "default": "var(--py-bg-color-average)"
             },
             {
               "type": "select",
@@ -19087,7 +19087,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19115,7 +19115,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19147,7 +19147,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19175,7 +19175,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19203,7 +19203,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19214,7 +19214,7 @@
                   "value": "var(--py-color-light)"
                 }
               ],
-              "default": "var(--py-color-avarge)"
+              "default": "var(--py-color-average)"
             },
             {
               "type": "header",
@@ -19326,7 +19326,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19354,7 +19354,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19386,7 +19386,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19414,7 +19414,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19425,7 +19425,7 @@
                   "value": "var(--py-color-light)"
                 }
               ],
-              "default": "var(--py-color-avarge)"
+              "default": "var(--py-color-average)"
             },
             {
               "type": "select",
@@ -19442,7 +19442,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19539,7 +19539,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19567,7 +19567,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19608,7 +19608,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19636,7 +19636,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19668,7 +19668,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19696,7 +19696,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19741,7 +19741,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19769,7 +19769,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19806,7 +19806,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19869,7 +19869,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19897,7 +19897,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19934,7 +19934,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19997,7 +19997,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -20025,7 +20025,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -20062,7 +20062,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -20127,7 +20127,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -20155,7 +20155,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -20288,7 +20288,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -20316,7 +20316,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -20344,7 +20344,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -20632,7 +20632,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -20664,7 +20664,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -20739,7 +20739,7 @@
         }
       ],
       "file_name": "product",
-      "template_name": "templates/index"
+      "template_name": "templates/product"
     },
     {
       "name": "Search results",
@@ -21186,7 +21186,7 @@
         }
       ],
       "file_name": "search",
-      "template_name": "templates/index"
+      "template_name": "templates/search"
     },
     {
       "name": "Slideshow",
@@ -21534,7 +21534,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",

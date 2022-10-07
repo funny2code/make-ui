@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const router = express.Router();
 const make = require('../contents/make');
 const modelThemes = require('../models/themes');

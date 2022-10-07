@@ -70,7 +70,7 @@
 <% } %>
 <% } %>
 <% if(style.m_size || style.content_color_m || style.m_weight || style.m_border || style.m_bg || style.m_pv || style.m_ph || style.m_align || style.m_padding || style.m_margin || style.m_width || style.m_height || style.m_b_width || style.m_c_css){ %>
-@media screen && (max-width: 749px){
+@media only screen and (max-width: 749px){
     <%= sufix %>-<%= id %> {
         <% if(style.m_size){ %>
         font-size: <%= style.m_size %>;

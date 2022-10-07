@@ -1389,3 +1389,27 @@ select {
     width: 100%;
   }
 }
+.py__settings-heading {
+  padding-right: 45px;
+}
+.py__remix-section-styles-btn {
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 10px;
+  padding: 3px 10px;
+  outline: none;
+  position: fixed;
+  right: 25px;
+  top: 129px;
+  cursor: pointer;
+  z-index: 5;
+}
+.py__remix-section-styles-btn * {
+  pointer-events: none;
+}
+.py__remix-svg {
+  height: 19px;
+}

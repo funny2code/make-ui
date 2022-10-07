@@ -1,4 +1,5 @@
 (function () {
+
     const fonts = [
         {
             "heading": "Sora",
@@ -389,6 +390,7 @@
             "body": "Hind"
         }
     ];
+
     const imageBanner = [
         {
             "image": "/6306f8e7db2cbec8c440f780/image-banner-img-1.webp",
@@ -1403,6 +1405,32 @@
         if(randomSettingsOld && randomSettingsNew) randomSettingsOld.innerHTML = randomSettingsNew.innerHTML;
     };
 
+    // XMLHttpRequest
+    const makeXMLRequest = (method, url, data=false) => {
+        return new Promise(function (resolve, reject) {
+            var http = new XMLHttpRequest();
+
+            http.onreadystatechange = function() {
+                if(http.readyState == 4 && http.status == 200) {
+                    resolve(JSON.parse(http.responseText).result);
+                }
+            }
+
+            http.open(method, url, true);
+            data ? http.send(JSON.stringify(data)) : http.send();
+        });
+    };
+
+    // RGB TO HEX COLOR code converter
+    const componentToHex = async (c) => {
+        let hex = c.toString(16);
+        return hex.length === 1 ? "0" + hex : hex;
+    };
+
+    const rgbToHex = async (rgb) => {
+        return "#" + await componentToHex(rgb[0]) + await componentToHex(rgb[1]) +  await componentToHex(rgb[2]);
+    };
+
     let remixCount = 0;
     // let defaultSettingsCount = 0;
     const randomFun = async (event) => {
@@ -1411,28 +1439,30 @@
         event.preventDefault();
         loading?.classList.add('py__animate');
 
-        await getRandomSections();
-
         let inputFileds = document.querySelectorAll('[name]');
-        let mode = document.querySelector('.py__random-colors-mode')?.value || "quad";
-        let colorChroma = chroma.random().hex();
-        let getColorList = await fetch(`https://www.thecolorapi.com/scheme?hex=${colorChroma?.replace('#', '')}&mode=${mode}&count=5`);
-        let res = await getColorList.json();
-        let colorsList = res.colors;
-        let index = 0;
+        let mode = document.querySelector('.py__random-colors-mode')?.value || "default";
 
+        let url = "http://colormind.io/api/";
+        let colorConfig = {
+            model : mode,
+            input : ["N","N","N","N","N"]
+        };
+
+        let colorsList = await makeXMLRequest("POST", url, colorConfig);
+        console.log(colorsList);
         if (!inputFileds.length) return loading?.classList.remove('py__animate');
+        let index = 0;
 
         for(let i = 0; i < inputFileds.length; i++) {
             let filed = inputFileds[i];
             let filedType = filed.getAttribute('type');
             let filedName = filed.getAttribute('name');
-            if (filedType === "color") {
-                if (filedName.includes('_bg')) {
-                    let colorObj = colorsList[index];
+            if(filedType === "color") {
+                if(filedName.includes('_bg')) {
+                    let colorObj = await rgbToHex(colorsList[index]);
                     let color = filedName?.includes('color_dark') 
                     ? '#000000' : filedName?.includes('color_light') 
-                    ? '#FFFFFF' : colorObj?.hex?.value;
+                    ? '#FFFFFF' : colorObj;
                     let closestWrap = filed.closest('.component-is-color');
                     let isColorLabel = closestWrap.querySelector('.py__label-for-color');
                     isColorLabel.style.backgroundColor = color;
@@ -1440,10 +1470,10 @@
                     filed.value = color;
                     let filedNameText = filedName.replace('_bg', '');
                     let textInputFiled = document.querySelector(`[name="${filedNameText}"]`);
-                    if (textInputFiled){
-                        let textColor = filedNameText?.includes('dark') 
-                        ? '#000000' : filedNameText?.includes('light') 
-                        ? '#FFFFFF' : colorObj?.contrast?.value;
+                    if(textInputFiled){
+                        let textColor = filedNameText?.includes('color_dark') 
+                        ? '#000000' : filedNameText?.includes('color_light') 
+                        ? '#FFFFFF' : colorObj;
                         let textClosestWrap = textInputFiled.closest('.component-is-color');
                         let textIsColorLabel = textClosestWrap?.querySelector('.py__label-for-color');
                         if(textIsColorLabel) textIsColorLabel.style.backgroundColor = textColor;
@@ -1453,6 +1483,7 @@
 
             } else if (filedType === "select") {
                 let options = filed.getElementsByTagName('option');
+                let sectionContainer = filed.closest('.py__closest');
                 let fontObj = fonts[fontsCount];
                 if (filed.getAttribute('name')?.includes('font')) {
                     let selectedOption = filed.getAttribute('name')?.includes('body')
@@ -1462,15 +1493,19 @@
                 } else if(filed.getAttribute('name')?.includes('bg')){
                     let optionIndex = Math.floor(Math.random() * options.length);
                     filed.selectedIndex = optionIndex;
-                    let bgCValue = filed.value;
-                    let textFiledName = filed.getAttribute('name').replace('bg', '');
-                    let textFiled = document.querySelector(`[name="${textFiledName}"]`);
-                    if(textFiled){
-                        let textSelectedIndex = bgCValue?.includes('light') || bgCValue?.includes('middle-light') || bgCValue?.includes('transparent') || bgCValue?.includes('none')  
-                        ? textFiled.querySelector(`option[value="dark"]`)?.index 
-                        : bgCValue?.includes('average') ? textFiled.querySelector(`option[value="average"]`)?.index || textFiled.querySelector(`option[value="avarge"]`)?.index 
-                        : textFiled.querySelector(`option[value="light"]`)?.index;
-                        textFiled.selectedIndex = textSelectedIndex;
+                    let bgCName = options[optionIndex]?.textContent?.toLowerCase()?.replace(' ', '_');
+                    let getBgColorHexCode = (bgCName && bgCName !== 'bg-c-none' && bgCName !== 'bg-c-un' && bgCName !== 'transparent' && bgCName !== 'unset' && bgCName !== 'none') 
+                    ? document.querySelector(`[name="py_bg_color_${bgCName}"]`)?.value
+                    : null;
+                    let textFiledName = filed.getAttribute('name').replace('_bg', '');
+                    let textColorInput = sectionContainer.querySelectorAll(`[name^="${textFiledName}"]`);
+                    console.log(bgCName, getBgColorHexCode, textColorInput, 'Text Items');
+                    if(textColorInput?.length) {
+                        for(let i=0; i<textColorInput?.length; i++){
+                            let itemColor = textColorInput[i];
+                            let contrastColor = getBgColorHexCode ? await getContrastYIQ(getBgColorHexCode) : '#000000';
+                            itemColor.selectedIndex = [...itemColor.options].findIndex(option => document.querySelector(`[name="py_color_${option.textContent?.toLowerCase()?.replace(' ', '_')}"]`)?.value === contrastColor);
+                        }
                     }
                 } else if(!filed.getAttribute('name')?.includes('color')){
                     let optionIndex = Math.floor(Math.random() * options.length);
@@ -1510,10 +1545,59 @@
         remixCount++;
         if(remixCount >= imageBanner?.length) remixCount = 0; 
         fontsCount >= fonts.length ? fontsCount = 0 : fontsCount++;
+
         await saveSettingsValues();
         await viewIframe();
 
     };
+
+    // Remix Section Styles Function
+    const randomSectionFun = async (event) => {
+        if(!event) return;
+        let el = event.target;
+        let sectionContainer = el.closest('.py__closest');
+        let typeSelects = sectionContainer?.querySelectorAll('[type="select"]');
+        let typeCheckboxs = sectionContainer?.querySelectorAll('[type="checkbox"]');
+        if(typeSelects?.length){
+            for(let i=0; i<typeSelects?.length; i++){
+                let select = typeSelects[i];
+                let selectName = select.getAttribute('name');
+                if(selectName.includes('bg')){
+                    let options = select.getElementsByTagName('option');
+                    let optionIndex = Math.floor(Math.random() * options?.length);
+                    select.selectedIndex = optionIndex;
+                    let colorCode = options[optionIndex].getAttribute("data-value");
+                    let textUniqName = selectName.replace('bg_', '');
+                    let textColorInput = sectionContainer.querySelectorAll(`[name^="${textUniqName}"]`);
+                    if(textColorInput?.length) {
+                        for(let i=0; i<textColorInput?.length; i++){
+                            let itemColor = textColorInput[i];
+                            let contrastColor = colorCode && colorCode !== 'bg-c-none' && colorCode !== 'bg-c-un' 
+                            ? await getContrastYIQ(colorCode) 
+                            : '#000000';
+                            itemColor.selectedIndex = [...itemColor.options].findIndex(option => option.getAttribute('data-value') === contrastColor);
+                        }
+                    }
+                } else if(!selectName?.includes('color')){
+                    let options = select.getElementsByTagName('option');
+                    let optionIndex = Math.floor(Math.random() * options?.length);
+                    select.selectedIndex = optionIndex;
+                }
+            };
+        } 
+        if(typeCheckboxs?.length){
+            for(let i=0; i<typeCheckboxs?.length; i++){
+                let checkbox = typeCheckboxs[i];
+                checkbox.checked ? checkbox.checked = false : checkbox.checked = true;
+                let checkboxContent = checkbox?.closest('.py__comp-checkbox');
+                let hiddenFiled = checkboxContent?.querySelector('input[type="hidden"]');
+                hiddenFiled.value = checkbox.checked ? true : false;
+            };
+        } 
+
+        await saveSettingsValues();
+        await viewIframe();
+    }
 
     //---------------------------------------
     // COMPONENTS FUN
@@ -1595,7 +1679,7 @@
         let value = event.target.value;
         let container = event.target.closest('.py__closest');
         let colorCode = event.target.selectedOptions[0].getAttribute("data-value");
-        if(uniqName.includes('bg') && value !== 'bg-c-none' && value !== 'bg-c-un'){
+        if(uniqName.includes('bg') && value !== 'bg-c-none' && value !== 'bg-c-un' && value){
             let textUniqName = uniqName.replace('bg_', '');
             let textColorInput = container.querySelectorAll(`[name^="${textUniqName}"]`);
             if(textColorInput?.length) {
@@ -1730,6 +1814,7 @@
         if (e && e.target.classList.contains('py__save-figma-button')) return saveFigma(e);
         if (e && e.target.classList.contains('py__download-button')) return download(e);
         if (e && e.target.classList.contains('py__button-random')) return randomFun(e);
+        if (e && e.target.classList.contains('py__remix-section-styles-btn')) return randomSectionFun(e);
     });
 
     // Before Unload

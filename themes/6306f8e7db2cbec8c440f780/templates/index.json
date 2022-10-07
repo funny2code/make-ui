@@ -5,7 +5,7 @@
       "settings": {
         "image": "/6306f8e7db2cbec8c440f780/image-banner.webp",
         "show_lazy": true,
-        "image_2": "",
+        "image_2": "/6306f8e7db2cbec8c440f780/image-banner-mobile.webp",
         "url": "shopify://collections/all",
         "show_override": true,
         "content_bg_color": "var(--py-bg-color-dark)",

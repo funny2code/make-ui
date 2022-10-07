@@ -76,28 +76,28 @@
 
 <div class="collection featured-collection-<%=section.id%> bc-<%=settings.section_style%>-bt py-pd-y-m">
   <div class="page-width page-width-<%=settings.section_style%>">
-    <div class="collection__header <% if(section.settings.show_view_all && section.settings.swipe_on_mobile){ %>title-wrapper-with-link<% } %><% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %><% if(section.settings.collection.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> title-wrapper--self-padded-tablet-down<% } %>">
+    <div class="collection__header <% if(section.settings.show_view_all && section.settings.swipe_on_mobile){ %>title-wrapper-with-link<% } %><% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %><% if(collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> title-wrapper--self-padded-tablet-down<% } %>">
       <h2 class="title<% if(!section.settings.title){ %> title--no-heading<% } %>"><%= section.settings.title %></h2>
 
       <% if(section.settings.show_view_all && section.settings.swipe_on_mobile){ %>
-        <a href="<%= section.settings.collection.url %>" class="link underlined-link large-up-hide"><%=sectionst.featured_collection.view_all%></a>
+        <a href="<%= collection?.url %>" class="link underlined-link large-up-hide"><%=sectionst.featured_collection?.view_all%></a>
       <% } %>
     </div>
 
     <%
-      var products_to_display = collection.all_products_count
+      var products_to_display = collection?.all_products_count
 
-      if(collection.all_products_count > section.settings.products_to_show){
+      if(collection?.all_products_count > section.settings.products_to_show){
         products_to_display = section.settings.products_to_show
       }
     %>
 
     <slider-component class="slider-mobile-gutter">
-      <ul class="grid grid--1-col product-list-<%=section.id%> <% if(products_to_display === 4 || !section.settings.collection){ %> grid--2-col-tablet grid--4-col-desktop<% } else { %> grid--3-col-tablet<% } %><% if(products_to_display > 5){ %> grid--one-third-max grid--4-col-desktop grid--quarter-max<% } %><% if(section.settings.collection.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> slider slider--tablet grid--peek<% } %><% if(section.settings.show_view_all === false || section.settings.collection.products.length < section.settings.products_to_show){ %> negative-margin<% } %><% if(section.settings.show_view_all && section.settings.collection.products.length > section.settings.products_to_show){ %> negative-margin--small<% } %>" role="list">
+      <ul class="grid grid--1-col product-list-<%=section.id%> <% if(products_to_display === 4 || !collection){ %> grid--2-col-tablet grid--4-col-desktop<% } else { %> grid--3-col-tablet<% } %><% if(products_to_display > 5){ %> grid--one-third-max grid--4-col-desktop grid--quarter-max<% } %><% if(collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> slider slider--tablet grid--peek<% } %><% if(section.settings.show_view_all === false || collection?.products.length < section.settings.products_to_show){ %> negative-margin<% } %><% if(section.settings.show_view_all && collection?.products.length > section.settings.products_to_show){ %> negative-margin--small<% } %>" role="list">
         <% if(collection?.products?.length){ %>
           <% collection?.products?.forEach((product,index)=>{ %>
             <% if(index < section.settings.products_to_show){ %>
-            <li class="grid__item py-card-<%=section.settings.card_style%> py-<%=section.settings.card_color%> <% if(section.settings.collection.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> slider__slide<% } %>"  style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
+            <li class="grid__item py-card-<%=section.settings.card_style%> py-<%=section.settings.card_color%> <% if(collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> slider__slide<% } %>"  style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
               <%- include('../snippets/product-card', {
                   product_card_product: product,
                   inventory_quantity: false,
@@ -124,8 +124,8 @@
           <% } %>
         <% } %>
       </ul>
-      <% if(section.settings.collection.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %>
-        <div class="slider-buttons no-js-hidden<% if(section.settings.collection.all_products_count < 4){ %> medium-hide<% } %><% if(section.settings.collection.all_products_count < 3){ %> small-hide<% } %>">
+      <% if(collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %>
+        <div class="slider-buttons no-js-hidden<% if(collection?.all_products_count < 4){ %> medium-hide<% } %><% if(collection?.all_products_count < 3){ %> small-hide<% } %>">
           <div class="slider-counter caption">
             <span class="slider-counter--current">1</span>
             <span aria-hidden="true"> / </span>
@@ -138,13 +138,13 @@
       <% } %>
     </slider-component>
 
-    <% if(section.settings.show_view_all && section.settings.collection.all_products_count > section.settings.products_to_show){ %>
+    <% if(section.settings.show_view_all && collection?.all_products_count > section.settings.products_to_show){ %>
       <div class="center<% if(section.settings.swipe_on_mobile){ %> small-hide medium-hide<% } %>">
-        <a href="<%= section.settings.collection.url %>"
+        <a href="<%= collection?.url %>"
           class="button"
-          aria-label="<%=sectionst.featured_collection.view_all_label %>"
+          aria-label="<%=sectionst.featured_collection?.view_all_label %>"
         >
-          <%=sectionst.featured_collection.view_all%>
+          <%=sectionst.featured_collection?.view_all%>
         </a>
       </div>
     <% } %>
