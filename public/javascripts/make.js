@@ -581,7 +581,7 @@
     var loading = null;
     var themeName = "ThemeMake";
 
-    // Colors names Objects 
+    // Colors names Objects
     const colorsNamesContrast = {
         "py_header_bg_color_1": "py_header_link_color_1",
         "py_header_bg_color_2": "py_header_link_color_2",
@@ -590,7 +590,7 @@
         "settings_py_cart_bg_color": "settings_py_cart_color",
         "settings_ck_btn_bg": "settings_ck_btn_color"
     };
-    // Colors Contrast Fun 
+    // Colors Contrast Fun
     const getContrastYIQ = async (hexcolor) => {
         if (!hexcolor) return;
         hexcolor = hexcolor.replace("#", "");
@@ -611,7 +611,7 @@
             let blockSettings = sectionClosest ? sectionClosest.querySelectorAll('.py__settings-block-item') : null;
             let sectionHandle = sectionItem?.getAttribute('data-section-handle');
             let templateName = sectionItem?.getAttribute('data-template-name');
-            let templateHandle = templateName?.split('/').pop(); 
+            let templateHandle = templateName?.split('/').pop();
             let sectionId = sectionItem?.getAttribute('data-section-id');
 
             if(sectionId && sectionHandle){
@@ -660,7 +660,7 @@
                     }
                 } else {
                     theme.templates[templateHandle] = {
-                        sections:{}, 
+                        sections:{},
                         order: []
                     };
                     theme.templates[templateHandle].sections[sectionId] = {
@@ -732,7 +732,7 @@
                         let elementType = element.getAttribute('type');
                         let elementValue = element.value;
                         let settingsELementId = elementId.replace('settings_', '');
-                        theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true") 
+                        theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true")
                         ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
                     });
                 }
@@ -747,10 +747,10 @@
             let elementValue = element.value;
             if(elementId.includes('settings')){
                 let settingsELementId = elementId.replace('settings_', '');
-                theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true") 
+                theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true")
                 ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
             } else {
-                theme.settings_data.current.sections[sectionHandle].settings[elementId] = (elementValue === "false" || elementValue === "true") 
+                theme.settings_data.current.sections[sectionHandle].settings[elementId] = (elementValue === "false" || elementValue === "true")
                 ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
             }
         });
@@ -764,11 +764,11 @@
             let elementValue = element.value;
             if(elementId.includes('settings')){
                 let settingsELementId = elementId.replace('settings_', '');
-                theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true") 
+                theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true")
                 ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
             } else {
                 let blockELementId = elementId.replace('block_', '');
-                theme.settings_data.current.sections[sectionHandle].blocks[blockId].settings[blockELementId] = (elementValue === "false" || elementValue === "true") 
+                theme.settings_data.current.sections[sectionHandle].blocks[blockId].settings[blockELementId] = (elementValue === "false" || elementValue === "true")
                 ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
             }
         });
@@ -782,10 +782,10 @@
             let elementValue = element.value;
             if(elementId.includes('settings')){
                 let settingsELementId = elementId.replace('settings_', '');
-                theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true") 
+                theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true")
                 ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
             } else {
-                theme.templates[templateHandle].sections[sectionId].settings[elementId] = (elementValue === "false" || elementValue === "true") 
+                theme.templates[templateHandle].sections[sectionId].settings[elementId] = (elementValue === "false" || elementValue === "true")
                 ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
             }
         });
@@ -799,11 +799,11 @@
             let elementValue = element.value;
             if(elementId.includes('settings')){
                 let settingsELementId = elementId.replace('settings_', '');
-                theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true") 
+                theme.settings_data.current[settingsELementId] = (elementValue === "false" || elementValue === "true")
                 ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
             } else {
                 let blockELementId = elementId.replace('block_', '');
-                theme.templates[templateHandle].sections[sectionId].blocks[blockId].settings[blockELementId] = (elementValue === "false" || elementValue === "true") 
+                theme.templates[templateHandle].sections[sectionId].blocks[blockId].settings[blockELementId] = (elementValue === "false" || elementValue === "true")
                 ? elementValue === "true" ? true : false : elementType === 'range' ? parseInt(elementValue) : elementValue;
             }
         });
@@ -818,7 +818,7 @@
         };
     };
 
-    // ERROR FUNCTION 
+    // ERROR FUNCTION
     const errorHandle = (el = '.py__error-wrapper', message) => {
         let errorWraper = document.querySelector(el);
         errorWraper.textContent = message;
@@ -1103,7 +1103,7 @@
         let ObjectFormData = Object.fromEntries(formData.entries());
         body = JSON.stringify(ObjectFormData);
 
-        // Signup Ajax POST 
+        // Signup Ajax POST
         let signupFun = await fetch(url, { ...fetchConfig(), body });
         let signupFunRes = await signupFun.text();
         let signupFunParse = JSON.parse(signupFunRes);
@@ -1223,7 +1223,7 @@
         window.URL.revokeObjectURL(objectUrl);
         a.remove();
         loading?.classList.remove('py__animate');
-    };  
+    };
 
     // View Iframe Fun
     const viewIframe = async () => {
@@ -1442,7 +1442,7 @@
         let inputFileds = document.querySelectorAll('[name]');
         let mode = document.querySelector('.py__random-colors-mode')?.value || "default";
 
-        let url = "http://colormind.io/api/";
+        let url = "https://colormind.io/api/";
         let colorConfig = {
             model : mode,
             input : ["N","N","N","N","N"]
@@ -1460,8 +1460,8 @@
             if(filedType === "color") {
                 if(filedName.includes('_bg')) {
                     let colorObj = await rgbToHex(colorsList[index]);
-                    let color = filedName?.includes('color_dark') 
-                    ? '#000000' : filedName?.includes('color_light') 
+                    let color = filedName?.includes('color_dark')
+                    ? '#000000' : filedName?.includes('color_light')
                     ? '#FFFFFF' : colorObj;
                     let closestWrap = filed.closest('.component-is-color');
                     let isColorLabel = closestWrap.querySelector('.py__label-for-color');
@@ -1471,8 +1471,8 @@
                     let filedNameText = filedName.replace('_bg', '');
                     let textInputFiled = document.querySelector(`[name="${filedNameText}"]`);
                     if(textInputFiled){
-                        let textColor = filedNameText?.includes('color_dark') 
-                        ? '#000000' : filedNameText?.includes('color_light') 
+                        let textColor = filedNameText?.includes('color_dark')
+                        ? '#000000' : filedNameText?.includes('color_light')
                         ? '#FFFFFF' : colorObj;
                         let textClosestWrap = textInputFiled.closest('.component-is-color');
                         let textIsColorLabel = textClosestWrap?.querySelector('.py__label-for-color');
@@ -1494,7 +1494,7 @@
                     let optionIndex = Math.floor(Math.random() * options.length);
                     filed.selectedIndex = optionIndex;
                     let bgCName = options[optionIndex]?.textContent?.toLowerCase()?.replace(' ', '_');
-                    let getBgColorHexCode = (bgCName && bgCName !== 'bg-c-none' && bgCName !== 'bg-c-un' && bgCName !== 'transparent' && bgCName !== 'unset' && bgCName !== 'none') 
+                    let getBgColorHexCode = (bgCName && bgCName !== 'bg-c-none' && bgCName !== 'bg-c-un' && bgCName !== 'transparent' && bgCName !== 'unset' && bgCName !== 'none')
                     ? document.querySelector(`[name="py_bg_color_${bgCName}"]`)?.value
                     : null;
                     let textFiledName = filed.getAttribute('name').replace('_bg', '');
@@ -1519,31 +1519,31 @@
         let imageBannerBlocks = imageBannerContent && imageBannerContent.querySelectorAll('.py__settings-block-item');
         if(imageBannerSection && imageBanner[remixCount]){
             let fileds =  imageBannerSection.querySelectorAll('[name]');
-                if(fileds?.length){ 
+                if(fileds?.length){
                 for(let i=0; i<fileds.length; i++){
                     let filed = fileds[i];
                     let filedName = filed.getAttribute('name');
-                    if(typeof imageBanner[remixCount][filedName] !== "undefined") filed.value = imageBanner[remixCount][filedName];    
+                    if(typeof imageBanner[remixCount][filedName] !== "undefined") filed.value = imageBanner[remixCount][filedName];
                 }
             }
-        } 
+        }
         if(imageBannerBlocks?.length){
             for(let i=0; i<imageBannerBlocks.length; i++){
                 let block = imageBannerBlocks[i];
                 let blockType = block.getAttribute('data-type');
                 let findAllFileds = block.querySelectorAll('[name]');
-                if(findAllFileds?.length){ 
+                if(findAllFileds?.length){
                     for(let j=0; j<findAllFileds.length; j++){
                         let filed = findAllFileds[j];
                         let filedName = filed.getAttribute('name');
-                        if(imageBanner[remixCount]?.blocks && imageBanner[remixCount]?.blocks[blockType] && typeof imageBanner[remixCount]?.blocks[blockType][filedName] !== "undefined") filed.value = imageBanner[remixCount]?.blocks[blockType][filedName];    
+                        if(imageBanner[remixCount]?.blocks && imageBanner[remixCount]?.blocks[blockType] && typeof imageBanner[remixCount]?.blocks[blockType][filedName] !== "undefined") filed.value = imageBanner[remixCount]?.blocks[blockType][filedName];
                     };
                 }
             }
         }
 
         remixCount++;
-        if(remixCount >= imageBanner?.length) remixCount = 0; 
+        if(remixCount >= imageBanner?.length) remixCount = 0;
         fontsCount >= fonts.length ? fontsCount = 0 : fontsCount++;
 
         await saveSettingsValues();
@@ -1572,8 +1572,8 @@
                     if(textColorInput?.length) {
                         for(let i=0; i<textColorInput?.length; i++){
                             let itemColor = textColorInput[i];
-                            let contrastColor = colorCode && colorCode !== 'bg-c-none' && colorCode !== 'bg-c-un' 
-                            ? await getContrastYIQ(colorCode) 
+                            let contrastColor = colorCode && colorCode !== 'bg-c-none' && colorCode !== 'bg-c-un'
+                            ? await getContrastYIQ(colorCode)
                             : '#000000';
                             itemColor.selectedIndex = [...itemColor.options].findIndex(option => option.getAttribute('data-value') === contrastColor);
                         }
@@ -1584,7 +1584,7 @@
                     select.selectedIndex = optionIndex;
                 }
             };
-        } 
+        }
         if(typeCheckboxs?.length){
             for(let i=0; i<typeCheckboxs?.length; i++){
                 let checkbox = typeCheckboxs[i];
@@ -1593,7 +1593,7 @@
                 let hiddenFiled = checkboxContent?.querySelector('input[type="hidden"]');
                 hiddenFiled.value = checkbox.checked ? true : false;
             };
-        } 
+        }
 
         await saveSettingsValues();
         await viewIframe();
@@ -1690,7 +1690,7 @@
                 }
             }
         }
-        
+
         await saveSettingsValues();
         await viewIframe();
         saveButton?.setAttribute('aria-disabled', false);
