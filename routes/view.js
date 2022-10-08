@@ -19,6 +19,10 @@ router.get('/:id', async (req, res, next) => {
 
   try {
 
+    
+    const theme = await modelThemes.findById(id).exec();
+    if (!theme) return next();
+    
     const makeMenu = require(`../contents/${id}/menu`);
     const makeFooterMenu = require(`../contents/${id}/footermenu`);
     const page = require(`../contents/${id}/page`);
@@ -32,10 +36,8 @@ router.get('/:id', async (req, res, next) => {
     const gift = require(`../contents/${id}/gift`);
     const themeGeneralTexts = require(`../themes/${id}/locales/en.default.json`);
 
-    const theme = await modelThemes.findById(id).exec();
-    if (!theme) return next();
     let sections = null;
-
+    
     const settingsFile = await fs.readFile(path.join(__dirname, `../themes/${id}/config/settings_data.json`), 'utf-8');
     if(!settingsFile) return next();
     const settings = JSON.parse(settingsFile);
@@ -109,6 +111,10 @@ router.post('/:id', async (req, res, next) => {
 
   try {
 
+    
+    const theme = await modelThemes.findById(id).exec();
+    if (!theme) return next();
+    
     const makeMenu = require(`../contents/${id}/menu`);
     const page = require(`../contents/${id}/page`);
     const makeFooterMenu = require(`../contents/${id}/footermenu`);
@@ -122,8 +128,6 @@ router.post('/:id', async (req, res, next) => {
     const gift = require(`../contents/${id}/gift`);
     const themeGeneralTexts = require(`../themes/${id}/locales/en.default.json`);
 
-    const theme = await modelThemes.findById(id).exec();
-    if (!theme) return next();
     let sections = null;
 
     const settingsFile = await fs.readFile(path.join(__dirname, `../themes/${id}/config/settings_data.json`), 'utf-8');

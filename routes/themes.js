@@ -45,6 +45,7 @@ router.get('/:id', async (req, res, next) => {
     res.render('theme', {
       user: req?.session?.user || null,
       isAdmin: req?.session?.user?.isAdmin || null,
+      userThemeView: false,
       settingsSchema: settingsSchema,
       settings: settings?.current || null, 
       sectionsSchema: theme?.sections_schema || null,
@@ -130,6 +131,7 @@ router.post('/:id', async (req, res, next) => {
     res.render('theme', {
       user: req?.session?.user || null,
       isAdmin: req?.session?.user?.isAdmin || null,
+      userThemeView: false,
       settingsSchema: settingsSchema,
       settings: settings?.current || null, 
       sectionsSchema: theme?.sections_schema || null,

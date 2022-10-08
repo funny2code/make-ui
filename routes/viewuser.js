@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
+const fs = require('fs').promises;
 const modelUsersThemes = require('../models/customer-themes');
 const shop = require('../contents/shop');
 
@@ -8,10 +10,14 @@ const shop = require('../contents/shop');
 router.get('/:userId/themes/:themeId', async (req, res, next) => {
 
     const { userId, themeId } = req.params;
-    const { page, section, global, share} = req.query;
+    const share = req.query.share;
+    const page_handle = req.query.page;
+    const section_handle = req.query.section;
+    const section_id = req.query.section_id;
+    const settings_handle = req.query.settings;
     
-    if(share !== 'fkmksn@e34rra5454421s2dfsfwr2434524s'){
-        if(!themeId || !userId || !page || !req.session.user || req?.session?.user?._id !== userId) return next();
+    if(share !== 'zjo6KVWbwz'){
+        if(!themeId || !userId || !page_handle || !req.session.user || req?.session?.user?._id !== userId) return next();
     }
 
     try {
@@ -21,6 +27,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
 
         const makeMenu = require(`../contents/${theme.extend_id}/menu`);
         const makeFooterMenu = require(`../contents/${theme.extend_id}/footermenu`);
+        const page = require(`../contents/${theme.extend_id}/page`);
         const collection = require(`../contents/${theme.extend_id}/collection`);
         const collections = require(`../contents/${theme.extend_id}/collections`);
         const product = require(`../contents/${theme.extend_id}/product`);
@@ -31,72 +38,25 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
         const gift = require(`../contents/${theme.extend_id}/gift`);
         const themeGeneralTexts = require(`../themes/${theme.extend_id}/locales/en.default.json`);
 
-        const settings = {};
-        const sectionSettings = [];
+        let sections = null;
+    
+        const settingsFile = await fs.readFile(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/config/settings_data.json`), 'utf-8');
+        if(!settingsFile) return next();
+        const settings = JSON.parse(settingsFile);
 
-        theme.theme_set && theme.theme_set.map(el => {
-            if (el.settings) {
-                for (var k in el.settings) {
-                    settings[el.settings[k].id] = el.settings[k].default;
-                }
-            }
-        });
+        const getPage = theme?.pages?.filter(page => page.handle === page_handle);
+        if(!getPage?.length) return next();
 
-        if (section) {
-            theme.theme_sec && theme.theme_sec.map(item => {
-                if (item.file_name === section) {
-                    const sectionChildSettings = {};
-                    const blocks = [];
-                    if (item.settings) {
-                        for (var k in item.settings) {
-                            sectionChildSettings[item.settings[k].id] = item.settings[k].default;
-                        }
-                    }
-                    if (item?.blocks?.length) {
-                        item.blocks.forEach((block, index) => {
-                            blocks[index] = { type: block.type, settings: {} };
-                            if (block && block?.settings) {
-                                for (var i in block.settings) {
-                                    blocks[index].settings[block.settings[i].id] = block.settings[i].default;
-                                }
-                            }
-                        })
-                    }
-                    sectionSettings.push({file_name: item.file_name, name: item.name, settings: sectionChildSettings, blocks: blocks });
-                }
-            });
-        } else if (global === 'Global Styles' || global === undefined) {
-            theme.theme_pag.map(pageItem => {
-                if(pageItem.name === page) {
-                    pageItem.items.forEach(item => {
-                        theme.theme_sec && theme.theme_sec.map(el => {
-                            if (item.handle === el.file_name) {
-                                const sectionChildSettings = {};
-                                const blocks = [];
-                                if (el.settings) {
-                                    for (var k in el.settings) {
-                                        sectionChildSettings[el.settings[k].id] = el.settings[k].default;
-                                    }
-                                }
-                                if (el?.blocks?.length) {
-                                    el.blocks.forEach((block, index) => {
-                                        blocks[index] = { type: block.type, settings: {} };
-                                        if (block && block?.settings) {
-                                            for (var i in block.settings) {
-                                                blocks[index].settings[block.settings[i].id] = block.settings[i].default;
-                                            }
-                                        }
-                                    })
-                                }
-                                sectionSettings.push({file_name: el.file_name, name: item.name, settings: sectionChildSettings, blocks: blocks });
-                            }
-                        })
-                    })
-                }
-            })
+        if(section_handle && !section_id){
+            sections = (section_handle && section_handle !== 'header' && section_handle !== 'footer' && section_handle !== 'announcement-bar') 
+            ? settings?.current?.sections[section_handle]
+            : null;
+        } else {
+            const sectionsFile = await fs.readFile(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/${getPage[0]?.template_name}.json`), 'utf-8');
+            if(!sectionsFile) return next();
+            const parseSections = JSON.parse(sectionsFile);
+            sections = (section_id) ? parseSections?.sections[section_id] : parseSections;
         }
-
-        console.log(sectionSettings);
 
         res.render('view', {
             srcId: theme.extend_id,
@@ -108,16 +68,21 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
             product: product,
             cart: cart,
             blog: blog,
+            page: page,
             article: article,
             customer: customer,
             gift: gift,
-            component: global,
-            settings: settings,
-            sections: sectionSettings,
+            component: settings_handle || null,
+            settingsSchema: theme?.settings_schema || null,
+            settings: settings?.current,
+            sectionSchema: theme?.section_schema || null,
+            sections: sections,
+            sectionid: section_id || null,
             general: themeGeneralTexts?.general,
             date_formats: themeGeneralTexts?.date_formats,
             newsletter: themeGeneralTexts?.newsletter,
             accessibility: themeGeneralTexts?.accessibility,
+            blogs: themeGeneralTexts?.blogs,
             onboarding: themeGeneralTexts?.onboarding,
             products: themeGeneralTexts?.products,
             templates: themeGeneralTexts?.templates,
@@ -138,12 +103,13 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
 router.post('/:userId/themes/:themeId', async (req, res, next) => {
 
     const { userId, themeId } = req.params;
-    const { settings, sections } = req.body;
-    const { page, global } = req.query;
-    const sectionHandle = req.query.section;
+    const {settings_data, templates} = req.body;
+    const page_handle = req.query.page;
+    const section_handle = req.query.section;
+    const section_id = req.query.section_id;
+    const settings_handle = req.query.settings;
 
-    if (!themeId || !userId || !page || !req.session.user || req?.session?.user?._id !== userId) return next();
-    if (!settings && !sections?.length) return next();
+    if (!themeId || !userId || !page_handle || !req.session.user || req?.session?.user?._id !== userId) return next();
 
     try {
 
@@ -151,6 +117,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
         if (!theme) return next();
 
         const makeMenu = require(`../contents/${theme.extend_id}/menu`);
+        const page = require(`../contents/${theme.extend_id}/page`);
         const makeFooterMenu = require(`../contents/${theme.extend_id}/footermenu`);
         const collection = require(`../contents/${theme.extend_id}/collection`);
         const collections = require(`../contents/${theme.extend_id}/collections`);
@@ -162,83 +129,43 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
         const gift = require(`../contents/${theme.extend_id}/gift`);
         const themeGeneralTexts = require(`../themes/${theme.extend_id}/locales/en.default.json`);
 
-        const defaultSettings = {};
-        const defaultSections = [];
+        let sections = null;
 
-        theme?.theme_set && theme.theme_set.map(el => {
-            if (el.settings) {
-                for (var k in el.settings) {
-                    settings ? Object.keys(settings).length && settings[el.settings[k].id]
-                        ? defaultSettings[el.settings[k].id] = settings[el.settings[k].id]
-                        : defaultSettings[el.settings[k].id] = el.settings[k].default
-                        : defaultSettings[el.settings[k].id] = el.settings[k].default;
-                }
-            }
-        });
+        const settingsFile = await fs.readFile(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/config/settings_data.json`), 'utf-8');
+        if(!settingsFile) return next();
+        const settings = JSON.parse(settingsFile);
 
-        if (sectionHandle) {
-            theme.theme_sec && theme.theme_sec.map(el => {
-                if (el.file_name === sectionHandle) {
-                    let sectionChildSettings = {};
-                    let blocks = [];
-                    if (el.settings) {
-                        for (var k in el.settings) {
-                            sectionChildSettings[el.settings[k].id] = el.settings[k].default;
-                        }
-                    }
-                    if (el?.blocks?.length) {
-                        el.blocks.forEach((block, index) => {
-                            blocks[index] = { type: block.type, settings: {} };
-                            if (block && block?.settings) {
-                                for (var i in block.settings) {
-                                    blocks[index].settings[block.settings[i].id] = block.settings[i].default;
-                                }
-                            }
-                        })
-                    }
-                    defaultSections.push({file_name: el.file_name, name: el.name, settings: sectionChildSettings, blocks: blocks });
-                }
-            });
-        } else if (global === 'Global Styles' || global === undefined) {
-            theme?.theme_pag.map(pageItem => {
-                if (pageItem.name === page) {
-                    pageItem?.items.map(item => {
-                        theme?.theme_sec.map(el => {
-                            if (item.handle === el.file_name) {
-                                let sectionChildSettings = {};
-                                let blocks = [];
-                                if (el.settings) {
-                                    for (var k in el.settings) {
-                                        sectionChildSettings[el.settings[k].id] = el.settings[k].default;
-                                    }
-                                }
-                                if (el?.blocks?.length) {
-                                    el.blocks.forEach((block, index) => {
-                                        blocks[index] = { type: block.type, settings: {} };
-                                        if (block && block?.settings) {
-                                            for (var i in block.settings) {
-                                                blocks[index].settings[block.settings[i].id] = block.settings[i].default;
-                                            }
-                                        }
-                                    })
-                                }
-                                defaultSections.push({file_name: el.file_name, name: item.name, settings: sectionChildSettings, blocks: blocks });
-                            }
-                        });
-                    })
+        if(settings_data?.current && Object.keys(settings_data?.current).length > 1){
+            Object.entries(settings_data?.current).forEach(([key, val]) => {
+                if(key && typeof val !== 'object'){
+                settings.current[key] = val;
                 }
             });
         }
 
-        if (sections?.length) {
-            defaultSections.forEach(item => {
-              sections.forEach(section => {
-                if(item.file_name === section.file_name) {
-                  item.settings = section.settings;
-                  item.blocks = section.blocks;
-                }
-              })
+        if(settings_data?.current?.sections && Object.keys(settings_data?.current?.sections).length > 0){
+            Object.entries(settings_data?.current?.sections).forEach(([key, val]) => {
+                settings.current.sections[key] = val; 
             });
+        }
+
+        const getPage = theme?.pages?.filter(page => page.handle === page_handle);
+        if(!getPage?.length) return next();
+
+        if(section_handle && !section_id){
+            sections = (section_handle && section_handle !== 'header' && section_handle !== 'footer' && section_handle !== 'announcement-bar') 
+            ? settings?.current?.sections[section_handle]
+            : null;
+        } else {
+            const sectionsFile = await fs.readFile(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/${getPage[0]?.template_name}.json`), 'utf-8');
+            if(!sectionsFile) return next();
+            const parseSections = JSON.parse(sectionsFile);
+            if(Object.keys(templates).length > 0 && templates[page_handle] && templates[page_handle].sections && Object.keys(templates[page_handle].sections).length > 0){
+                Object.entries(templates[page_handle].sections).forEach(([key, val]) => {
+                    parseSections.sections[key] = val; 
+                });
+            }
+            sections = (section_id) ? parseSections?.sections[section_id] : parseSections;
         }
 
         res.render('view', {
@@ -251,16 +178,21 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
             product: product,
             cart: cart,
             blog: blog,
+            page: page,
             article: article,
             customer: customer,
             gift: gift,
-            component: global,
-            settings: defaultSettings,
-            sections: defaultSections,
+            component: settings_handle || null,
+            settingsSchema: theme?.settings_schema || null,
+            settings: settings?.current,
+            sectionSchema: theme?.section_schema || null,
+            sections: sections,
+            sectionid: section_id || null,
             general: themeGeneralTexts?.general,
             date_formats: themeGeneralTexts?.date_formats,
             newsletter: themeGeneralTexts?.newsletter,
             accessibility: themeGeneralTexts?.accessibility,
+            blogs: themeGeneralTexts?.blogs,
             onboarding: themeGeneralTexts?.onboarding,
             products: themeGeneralTexts?.products,
             templates: themeGeneralTexts?.templates,
@@ -271,7 +203,6 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
         });
 
     } catch (err) {
-        console.log(err);
         next(err);
     }
 

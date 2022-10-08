@@ -26,7 +26,7 @@
                         <div class="py__preview-select">
                             <select class="py__preview-pages-select">
                                 <% pages.forEach(item => { %> 
-                                    <option data-href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=item.handle%>" <% if(page_handle === item.handle){ %>selected<% } %>>
+                                    <option data-href="<% if(user && userThemeView){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=item.handle%>" <% if(page_handle === item.handle){ %>selected<% } %>>
                                         <%=item.name%>
                                     </option>
                                 <% }) %>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="py__preview-iframe">
                         <% if(isAdmin){ %>
-                            <iframe src="/view/<%=id%>?page=<%=page_handle%><% if(activeType === 'section'){%>&section=<%=active%><% if(section_id){ %>&section_id=<%=section_id%><% } %><% } else { %>&settings=<%=active%><% } %>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
+                            <iframe src="/view/<%= userThemeView ? 'users/' + user._id + '/themes/' + id : id%>?page=<%=page_handle%><% if(activeType === 'section'){%>&section=<%=active%><% if(section_id){ %>&section_id=<%=section_id%><% } %><% } else { %>&settings=<%=active%><% } %>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
                         <% } else { %>
                             <iframe src="/view/<%= user ? 'users/' + user._id + '/themes/' + id : id%>?page=<%=page_handle%><% if(activeType === 'section'){%>&section=<%=active%><% if(section_id){ %>&section_id=<%=section_id%><% } %><% } else { %>&settings=<%=active%><% } %>" class="py__view-iframe" scrolling="auto" data-page-name="<%=page_handle%>" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
                         <% } %>
@@ -66,25 +66,25 @@
                         %>
                         <% staticTopSections?.forEach((staticSectionItem,index)=>{ %>
                             <% let sectionSchemaItem = sectionsSchema.filter(sectionItem => sectionItem?.file_name === staticSectionItem?.type) %>
-                            <option value="<%=staticSectionItem?.type%>" data-href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page_handle%>&section=<%=staticSectionItem.type%>" <% if(staticSectionItem.type === active){ %>selected<% } %>>
+                            <option value="<%=staticSectionItem?.type%>" data-href="<% if(user && userThemeView){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page_handle%>&section=<%=staticSectionItem.type%>" <% if(staticSectionItem.type === active){ %>selected<% } %>>
                                 <%= sectionSchemaItem[0]?.name %>
                             </option>
                         <% }) %>
                         <% sections?.order?.forEach((orderItem, index)=>{ %>
                             <% let sectionItem = sections?.sections[orderItem] %>
                             <% let sectionSchemaItem = sectionsSchema?.filter(sectionSchemaItem => sectionSchemaItem.file_name === sectionItem.type) %>
-                            <option value="<%=sectionItem?.type%>" data-href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page_handle%>&section=<%=sectionItem.type%>&section_id=<%=orderItem%>" <% if(sectionItem.type === active){ %>selected<% } %>>
+                            <option value="<%=sectionItem?.type%>" data-href="<% if(user && userThemeView){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page_handle%>&section=<%=sectionItem.type%>&section_id=<%=orderItem%>" <% if(sectionItem.type === active){ %>selected<% } %>>
                                 <%= sectionSchemaItem[0]?.name %>
                             </option>
                         <% }) %> 
                         <% let sectionFooter = settings?.sections['footer'] %>
                         <% let sectionSchemaFooter = sectionsSchema.filter(sectionItem => sectionItem?.file_name === sectionFooter?.type) %>
-                        <option value="<%=sectionFooter?.type%>" data-href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page_handle%>&section=<%=sectionFooter.type%>" <% if(sectionFooter.type === active){ %>selected<% } %>>
+                        <option value="<%=sectionFooter?.type%>" data-href="<% if(user && userThemeView){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page_handle%>&section=<%=sectionFooter.type%>" <% if(sectionFooter.type === active){ %>selected<% } %>>
                             <%= sectionSchemaFooter[0]?.name %>
                         </option>
                     </select>
                 <% } %>
-                <form class="py__settings-form <% if(activeType){ %>py__add-mg-top<% } %>" method="post" action="/save/<%= (user && !isAdmin) ? 'users/' + user._id + '/themes/' + id : id %>?<% if(activeType === 'section'){%>section=<%=active%><% } else { %>settings=<%=active%><% } %>" aria-multiline="true">
+                <form class="py__settings-form <% if(activeType){ %>py__add-mg-top<% } %>" method="post" action="/save/<%= (user && userThemeView) ? 'users/' + user._id + '/themes/' + id : id %>?<% if(activeType === 'section'){%>section=<%=active%><% } else { %>settings=<%=active%><% } %>" aria-multiline="true">
                     <% if(sections && !activeType){ %>
                         <div class="py__settings-static-content">
                             <% let staticTopSections = [];
@@ -93,7 +93,7 @@
                             %>
                             <% staticTopSections?.forEach((staticSectionItem,index)=>{ %>
                                 <% let sectionSchemaItem = sectionsSchema.filter(sectionItem => sectionItem?.file_name === staticSectionItem?.type) %>
-                                <a href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page_handle%>&section=<%=staticSectionItem?.type%>" class="py__section-item-href py__get-section-button <% if(staticSectionItem?.type === active){ %>active<% } %>">
+                                <a href="<% if(user && userThemeView){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page_handle%>&section=<%=staticSectionItem?.type%>" class="py__section-item-href py__get-section-button <% if(staticSectionItem?.type === active){ %>active<% } %>">
                                     <span class="py__section-item-href-name"><%= sectionSchemaItem[0]?.name %></span>
                                     <span><%- include('icons', {type:'arrow_right'}) %></span>
                                 </a>
@@ -104,7 +104,7 @@
                             <% sections?.order?.forEach((orderItem, index)=>{ %>
                                 <% let sectionItem = sections?.sections[orderItem] %>
                                 <% let sectionSchemaItem = sectionsSchema?.filter(sectionSchemaItem => sectionSchemaItem.file_name === sectionItem.type) %>
-                                <a href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page_handle%>&section=<%=sectionItem.type%>&section_id=<%=orderItem%>" class="py__section-item-href py__get-section-button <% if(sectionItem.type === active){ %>active<% } %>">
+                                <a href="<% if(user && userThemeView){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page_handle%>&section=<%=sectionItem.type%>&section_id=<%=orderItem%>" class="py__section-item-href py__get-section-button <% if(sectionItem.type === active){ %>active<% } %>">
                                     <span class="py__section-item-href-name"><%= sectionSchemaItem[0]?.name %></span>
                                     <span><%- include('icons', {type:'arrow_right'}) %></span>
                                 </a>
@@ -117,7 +117,7 @@
                         <% let sectionFooter = settings?.sections['footer'] %>
                         <% let sectionSchemaFooter = sectionsSchema.filter(sectionItem => sectionItem?.file_name === sectionFooter?.type) %>
                         <div class="py__settings-static-bottom-content">
-                            <a href="<% if(user && !isAdmin){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page_handle%>&section=<%=sectionFooter?.type%>" class="py__section-item-href py__get-section-button <% if(sectionSchemaFooter?.type === active){ %>active<% } %>">
+                            <a href="<% if(user && userThemeView){ %>/users/<%=user._id%><% } %>/themes/<%=id%>?page=<%=page_handle%>&section=<%=sectionFooter?.type%>" class="py__section-item-href py__get-section-button <% if(sectionSchemaFooter?.type === active){ %>active<% } %>">
                                 <span class="py__section-item-href-name"><%= sectionSchemaFooter[0]?.name %></span>
                                 <span><%- include('icons', {type:'arrow_right'}) %></span>
                             </a>
