@@ -1449,7 +1449,6 @@
         };
 
         let colorsList = await makeXMLRequest("POST", url, colorConfig);
-        console.log(colorsList);
         if (!inputFileds.length) return loading?.classList.remove('py__animate');
         let index = 0;
 
@@ -1497,7 +1496,10 @@
                     let getBgColorHexCode = (bgCName && bgCName !== 'bg-c-none' && bgCName !== 'bg-c-un' && bgCName !== 'transparent' && bgCName !== 'unset' && bgCName !== 'none') 
                     ? document.querySelector(`[name="py_bg_color_${bgCName}"]`)?.value
                     : null;
-                    let textFiledName = filed.getAttribute('name').replace('_bg', '');
+                    let filedNameA = filed.filed.getAttribute('name');
+                    let textFiledName = filedNameA?.includes('block_') 
+                    ? filedNameA?.replace('block_', '')
+                    : filedNameA?.replace('_bg', '');
                     let textColorInput = sectionContainer.querySelectorAll(`[name^="${textFiledName}"]`);
                     console.log(bgCName, getBgColorHexCode, textColorInput, 'Text Items');
                     if(textColorInput?.length) {
