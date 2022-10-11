@@ -10674,12 +10674,6 @@
           "label": "Enable \"View all\" button if collection has more products than shown"
         },
         {
-          "type": "checkbox",
-          "id": "swipe_on_mobile",
-          "default": false,
-          "label": "Enable swipe on mobile"
-        },
-        {
           "type": "select",
           "id": "section_bg_color",
           "label": "Section Background Color",
