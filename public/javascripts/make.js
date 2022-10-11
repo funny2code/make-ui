@@ -1919,7 +1919,7 @@
           filed.selectedIndex = selectedOption;
         } else if (filed.getAttribute("name")?.includes("_bg")) {
           let optionIndex = filed.getAttribute("name")?.includes("section_bg")
-            ? Math.min(5, Math.floor(Math.random() * 2 + 4))
+            ? options.length - 1
             : Math.floor(Math.random() * 5);
           filed.selectedIndex = optionIndex;
           let bgCName = options[optionIndex]?.textContent
