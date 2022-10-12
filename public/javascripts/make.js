@@ -869,6 +869,7 @@
       let elementId = element.getAttribute("name");
       let elementType = element.getAttribute("type");
       let elementValue = element.value;
+
       if (elementId.includes("settings")) {
         let settingsELementId = elementId.replace("settings_", "");
         theme.settings_data.current[settingsELementId] =
@@ -1744,6 +1745,21 @@
   let remixCount = 0;
   // let defaultSettingsCount = 0;
   const randomFun = async (event) => {
+    const getLuminanceRatio = (r, g, b) => {
+      var a = [r, g, b].map(function (v) {
+        v /= 255;
+        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+      });
+      return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+    };
+    const getContrastRatio = (rgb1, rgb2) => {
+      var lum1 = getLuminanceRatio(rgb1[0], rgb1[1], rgb1[2]);
+      var lum2 = getLuminanceRatio(rgb2[0], rgb2[1], rgb2[2]);
+      var brightest = Math.max(lum1, lum2);
+      var darkest = Math.min(lum1, lum2);
+      return (brightest + 0.05) / (darkest + 0.05);
+    };
+
     var colorGradientor = (p, rgb_beginning, rgb_end) => {
       var w = p * 2 - 1;
 
@@ -1758,6 +1774,93 @@
       return rgb;
     };
 
+    const HSLToRGB = (h, s, l) => {
+      s /= 100;
+      l /= 100;
+      const k = (n) => (n + h / 30) % 12;
+      const a = s * Math.min(l, 1 - l);
+      const f = (n) =>
+        l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+      return [
+        Math.floor(255 * f(0)),
+        Math.floor(255 * f(8)),
+        Math.floor(255 * f(4)),
+      ];
+    };
+
+    const random = (max, min) =>
+      Math.floor(Math.random() * (max - min + 1)) + min;
+
+    const RGBToHSL = ([r, g, b]) => {
+      r /= 255;
+      g /= 255;
+      b /= 255;
+      const l = Math.max(r, g, b);
+      const s = l - Math.min(r, g, b);
+      const h = s
+        ? l === r
+          ? (g - b) / s
+          : l === g
+          ? 2 + (b - r) / s
+          : 4 + (r - g) / s
+        : 0;
+      return [
+        60 * h < 0 ? 60 * h + 360 : 60 * h,
+        100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0),
+        (100 * (2 * l - s)) / 2,
+      ];
+    };
+
+    const hexToRgb = (hex) =>
+      hex
+        .replace(
+          /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
+          (m, r, g, b) => "#" + r + r + g + g + b + b
+        )
+        .substring(1)
+        .match(/.{2}/g)
+        .map((x) => parseInt(x, 16));
+
+    const generateBackgroundColors = () => {
+      let h = random(360, 0);
+      let s = random(100, 50);
+      let l = 80;
+
+      let colors = [];
+      colors.push(HSLToRGB(h, s, 95));
+      colors.push(HSLToRGB(h, s, 85));
+      colors.push(HSLToRGB(h, s, 55));
+      colors.push(HSLToRGB(h, s, 35));
+      colors.push(HSLToRGB(h, s, 25));
+      return colors.reverse();
+    };
+
+    const generateTextColors = (backgroundColor) => {
+      let hsl = RGBToHSL(backgroundColor);
+      let h = hsl[0];
+      let s = random(20, 0); // low value for gray,  high value for pastel
+
+      let colors = [];
+      colors.push(HSLToRGB(h, s, 2));
+      colors.push(HSLToRGB(h, s, 25));
+      colors.push(HSLToRGB(h, s, 55));
+      colors.push(HSLToRGB(h, s, 75));
+      colors.push(HSLToRGB(h, s, 98));
+      return colors;
+    };
+
+    const getTextColorFromBgColor = (bgColor, textColors) => {
+      let textColor = textColors[0],
+        maxContrast = 1;
+      for (let i = 0; i < 5; i++) {
+        if (maxContrast < getContrastRatio(textColors[i], bgColor)) {
+          maxContrast = getContrastRatio(textColors[i], bgColor);
+          textColor = textColors[i];
+        }
+      }
+      return rgbToHex(textColor);
+    };
+
     if (!event) return;
     event.preventDefault();
     loading?.classList.add("py__animate");
@@ -1766,20 +1869,9 @@
     let mode =
       document.querySelector(".py__random-colors-mode")?.value || "default";
 
-    let rgbBegin = [];
-    let rgbEnd = [];
-    for (let i = 0; i < 3; i++) {
-      rgbBegin[i] = Math.floor(Math.random() * 255);
-      rgbEnd[i] = Math.floor(Math.random() * 255);
-    }
-    let colorsList = [];
-    colorsList.push(rgbBegin);
-    colorsList.push(rgbEnd);
-    colorsList.push(colorGradientor(0.2, rgbBegin, rgbEnd));
-    colorsList.push(colorGradientor(0.5, rgbBegin, rgbEnd));
-    colorsList.push(colorGradientor(0.7, rgbBegin, rgbEnd));
+    let colorsList = generateBackgroundColors();
+    let textColors = generateTextColors(colorsList[2]);
 
-    console.log("colorlist", colorsList);
     if (!inputFileds.length) return loading?.classList.remove("py__animate");
     let index = 0;
 
@@ -1790,33 +1882,26 @@
       if (filedType === "color") {
         if (filedName.includes("_bg")) {
           let colorObj = await rgbToHex(colorsList[index]);
-          let color = filedName?.includes("color_dark")
-            ? "#000000"
-            : filedName?.includes("color_light")
-            ? "#FFFFFF"
-            : colorObj;
+          let textColorObj = await rgbToHex(textColors[index]);
+          let color = colorObj;
           let closestWrap = filed.closest(".component-is-color");
           let isColorLabel = closestWrap.querySelector(".py__label-for-color");
           isColorLabel.style.backgroundColor = color;
+          filed.setAttribute("value", color);
           index++;
-          filed.value = color;
           let filedNameText = filedName.replace("_bg", "");
           let textInputFiled = document.querySelector(
             `[name="${filedNameText}"]`
           );
           if (textInputFiled) {
-            let textColor = filedNameText?.includes("color_dark")
-              ? "#000000"
-              : filedNameText?.includes("color_light")
-              ? "#FFFFFF"
-              : colorObj;
+            let textColor = textColorObj;
             let textClosestWrap = textInputFiled.closest(".component-is-color");
             let textIsColorLabel = textClosestWrap?.querySelector(
               ".py__label-for-color"
             );
             if (textIsColorLabel)
               textIsColorLabel.style.backgroundColor = textColor;
-            textInputFiled.value = textColor;
+            textInputFiled.setAttribute("value", textColor);
           }
         }
       } else if (filedType === "select") {
@@ -1828,8 +1913,10 @@
             ? filed.querySelector(`option[value="${fontObj.body}"`)?.index
             : filed.querySelector(`option[value="${fontObj.heading}"`)?.index;
           filed.selectedIndex = selectedOption;
-        } else if (filed.getAttribute("name")?.includes("bg")) {
-          let optionIndex = Math.floor(Math.random() * options.length);
+        } else if (filed.getAttribute("name")?.includes("_bg")) {
+          let optionIndex = filed.getAttribute("name")?.includes("section_bg")
+            ? options.length - 1
+            : Math.floor(Math.random() * 5);
           filed.selectedIndex = optionIndex;
           let bgCName = options[optionIndex]?.textContent
             ?.toLowerCase()
@@ -1847,13 +1934,17 @@
           let textColorInput = sectionContainer.querySelectorAll(
             `[name^="${textFiledName}"]`
           );
-          console.log(bgCName, getBgColorHexCode, textColorInput, "Text Items");
+
           if (textColorInput?.length) {
             for (let i = 0; i < textColorInput?.length; i++) {
               let itemColor = textColorInput[i];
               let contrastColor = getBgColorHexCode
-                ? await getContrastYIQ(getBgColorHexCode)
-                : "#000000";
+                ? await getTextColorFromBgColor(
+                    hexToRgb(getBgColorHexCode),
+                    textColors
+                  )
+                : // ? await getContrastYIQ(getBgColorHexCode)
+                  await rgbToHex(textColors[0]);
               itemColor.selectedIndex = [...itemColor.options].findIndex(
                 (option) =>
                   document.querySelector(
