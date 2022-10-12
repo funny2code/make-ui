@@ -1,7 +1,7 @@
-<%=component-filter-style-1.css' <%=srcId%> | stylesheet_tag %>
-<div class="page-width collection-filters bc-collection-page-fillters py-<%=section.settings.filter_bg_color%> py-<%=section.settings.filter_color%>" id="main-collection-filters" data-id="<%= section.id %>">
+<link rel="stylesheet" href="/<%=srcId%>/component-filter-style-1.css">
+<div class="page-width collection-filters bc-collection-page-fillters py-<%=section.settings.filter_bg_color%> py-<%=section.settings.filter_color%>" id="main-collection-filters" data-id="<%= sectionid %>">
     <% if(section.settings.enable_filtering || section.settings.enable_sorting){ %>
-      <% var total_active_values = 0){ %>
+      <% var total_active_values = 0 %>
       <collection-filters-form class="facets small-hide">
         <form id="CollectionFiltersForm" class="facets__form">
           <% if(section.settings.enable_sorting){ %>
@@ -18,13 +18,13 @@
                 </summary>
                 <div class="facets__display">
                   <div class="select">
-                    <% var sort_by = collection.sort_by || collection.default_sort_by){ %>
+                    <% var sort_by = collection.sort_by || collection.default_sort_by %>
                     <select name="sort_by" class="select__select collection-filters__sort" id="SortBy" aria-describedby="a11y-refresh-page-message">
-                      <% for option in collection.sort_options){ %>
+                      <% collection?.sort_options?.forEach((option,index)=>{ %>
                         <option value="<%= option.value %>"<% if(option.value === sort_by){ %> selected="selected"<% } %>><%= option.name %></option>
                       <% }) %>
                     </select>
-                    <%- include('./icon-caret'){ %>
+                    <%- include('./icon-caret') %>
                   </div>
                 </div>
               </details>
@@ -35,32 +35,33 @@
             </div>
           <% } %>
           <% if(section.settings.enable_filtering){ %>
-            <% if(section.blocks.length > 0){ %>
+            <% if(section?.block_order?.length > 0){ %>
 
-              <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>                
+              <% section?.block_order?.forEach((orderItem, index) => { %>
+              <% let block = section?.blocks[orderItem] %>                
               <% if(block.type === 'filter'){ %>
-                <% var filterName = block?.settings?.label.toLowerCase()){ %>                              
+                <% var filterName = block?.settings?.label?.toLowerCase() %>                              
                 <% if(filterName === 'colors' || filterName === 'color' ){ %>                
                   <details class="disclosure-has-popup facets__disclosure js-filter" data-index="tag-<%= index %>">
                     <summary class="facets__summary">
                       <div>
                         <span><%= block?.settings?.label %></span>
-                        <%- include('./icon-caret'){ %>
+                        <%- include('./icon-caret') %>
                       </div>
                     </summary>
                     <div class="facets__display">
 
-                      <% var filterTagNames = ''?.split(','){ %>                      
+                      <% var filterTagNames = ''?.split(',') %>                      
                       <% if(collection.products.length > 0){ %>
                         <ul class="facets__list list-unstyled color_filter_list Filter-<%= block?.settings?.label %>" role="list">
-                        <% for prod in collection.products){ %>
-                          <% var colorTitle = prod.title?.split(' / '?.pop()){ %>        
-                          <% var color = colorTitle?.trim() | replace: ' ', '-'.toLowerCase() ){ %>                    
-                          <% if(filterTagNames.includes(colorTitle){ %>
-                            <%= continue %>
+                        <% collection?.products?.forEach((prod,index)=>{ %>
+                          <% var colorTitle = prod?.title?.split(' / ')?.pop() %>        
+                          <% var color = colorTitle?.trim()?.replace(' ', '-')?.toLowerCase() %>                    
+                          <% if(filterTagNames.includes(colorTitle)){ %>
+                            <%# continue %>
                           <% } else { %>
-                          <% var new_color = colorTitle?.split(", "){ %>
-                          <% var filterTagNames = filterTagNames | concat: new_color){ %>
+                          <% var new_color = colorTitle?.split(", ") %>
+                          <% var filterTagNames = filterTagNames + new_color %>
                           <li class="list-menu__item facets__item">
                             <label style="align-items: center;" for="Filter-<%= block?.settings?.label %>-<%= index %>" class="facet-checkbox">
                               <input style="display:none" type="checkbox"
@@ -69,7 +70,7 @@
                                 value="<%= color %>"
                                 id="Filter-<%= block?.settings?.label %>-<%= index %>"
                                 onclick="selectOnlyThis(this,'Filter-<%= block?.settings?.label %>')"
-                                <% if(current_tags.includes(color){ %>checked<% } %>
+                                <% if(current_tags.includes(color)){ %>checked<% } %>
                               >
 
                               <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -96,16 +97,16 @@
                     <summary class="facets__summary">
                       <div>
                         <span><%= block?.settings?.label %></span>
-                        <%- include('./icon-caret'){ %>
+                        <%- include('./icon-caret') %>
                       </div>
                     </summary>
                     <div class="facets__display">
 
-                      <% var filterTagNames = block?.settings?.tags?.split('|'){ %>
-                      <% var filterPrefix = block?.settings?.tag_prefix){ %>
+                      <% var filterTagNames = block?.settings?.tags?.split('|') %>
+                      <% var filterPrefix = block?.settings?.tag_prefix %>
 
                       <ul class="facets__list list-unstyled Filter-<%= block?.settings?.label %>" role="list">
-                        <% for name in filterTagNames){ %>
+                        <% filterTagNames?.forEach((name,index)=>{ %>
                           <li class="list-menu__item facets__item">
                             <label style="align-items: center;" for="Filter-<%= block?.settings?.label %>-<%= index %>" class="facet-checkbox">
                               <input style="display:none" type="checkbox"
@@ -114,7 +115,7 @@
                                 value="<%= filterPrefix %><%= name %>"
                                 id="Filter-<%= block?.settings?.label %>-<%= index %>"
                                 onclick="selectOnlyThis(this,'Filter-<%= block?.settings?.label %>')"
-                                <% if(current_tags.includes(name){ %>checked<% } %>
+                                <% if(current_tags.includes(name)){ %>checked<% } %>
                               >
 
                               <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -124,9 +125,9 @@
                               <svg class="icon icon-checkmark" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 9" fill="none" width="10px" height="10px">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.35.643a.5.5 0 01.006.707l-6.77 6.886a.5.5 0 01-.719-.006L.638 4.845a.5.5 0 11.724-.69l2.872 3.011 6.41-6.517a.5.5 0 01.707-.006h-.001z" fill="currentColor"/>
                               </svg>
-                              <%= name | replace: '-', ' ' %>
-                              <% var filterName = block?.settings?.label.toLowerCase()){ %>
-                              <% var colorId = name?.trim() | replace: ' ', '_'.toLowerCase() ){ %>
+                              <%= name?.replace('-', ' ') %>
+                              <% var filterName = block?.settings?.label.toLowerCase() %>
+                              <% var colorId = name?.trim()?.replace(' ', '_')?.toLowerCase() %>
                               <% if(filterName === 'colors' || filterName === 'color' ){ %>
                               <span style="margin-bottom:0px;margin-left:5px;height: 20px;width: 20px;border-radius:5px;" class="bc-colors__icon" data-color="<%=colorId%>"></span>
                               <% } %>
@@ -145,26 +146,25 @@
           
             <div class="facets__wrapper">              
 
-              <% for filter in collection.filters){ %>
-                <% var total_active_values = total_active_values + filter.active_values.length){ %>
-                <% if(filter.type){ %>
-                <% } else if(block.type === 'list'){ %>
+              <% collection?.filters?.forEach((filter,index)=>{ %>
+                <% var total_active_values = total_active_values + filter.active_values.length %>
+                <% if(filter.type === 'list'){ %>
                   <details class="disclosure-has-popup facets__disclosure js-filter" data-index="<%= index %>">
                     <summary class="facets__summary">
                       <div>
                         <span><%= filter.label %></span>
                         <span class="count-bubble"><% if(filter.active_values.length > 0){ %><%= filter.active_values.length %><% } %></span>
-                        <%- include('./icon-caret'){ %>
+                        <%- include('./icon-caret') %>
                       </div>
                     </summary>
                     <div class="facets__display">
                       <div class="facets__header">
-                        <span class="facets__selected no-js-hidden"><%=sectionst.collection_template.filters_selected' | t: count: filter.active_values.length %></span>
+                        <span class="facets__selected no-js-hidden"><%=sectionst.collection_template.filters_selected %></span>
                         <a href="<%= filter.url_to_remove %>" class="facets__reset link underlined-link js-facet-remove" ><%=sectionst.collection_template.reset%></a>
                       </div>
 
                       <ul class="facets__list list-unstyled Filter--aaa" role="list">
-                        <% for value in filter.values){ %>
+                        <% filter?.values?.forEach((value,index)=>{ %>
                           <li class="list-menu__item facets__item">
                             <label for="Filter-<%= filter.label %>-<%= index %>" class="facet-checkbox<% if(value.count === 0 && value.active === false){ %> facet-checkbox--disabled<% } %>">
                               <input style="display:none" type="checkbox"
@@ -190,26 +190,26 @@
                       </ul>
                     </div>
                   </details>
-                <% } else if(block.type === 'price_range'){ %>
+                <% } else if(filter.type === 'price_range'){ %>
                   <%
-                    var currencies_using_comma_decimals = 'ANG,ARS,BRL,BYN,BYR,CLF,CLP,COP,CRC,CZK,DKK,EUR,HRK,HUF,IDR,ISK,MZN,NOK,PLN,RON,RUB,SEK,TRY,UYU,VES,VND'?.split(','
+                    var currencies_using_comma_decimals = 'ANG,ARS,BRL,BYN,BYR,CLF,CLP,COP,CRC,CZK,DKK,EUR,HRK,HUF,IDR,ISK,MZN,NOK,PLN,RON,RUB,SEK,TRY,UYU,VES,VND'?.split(',')
                     var uses_comma_decimals = false
-                    if currencies_using_comma_decimals.includes(cart.currency.iso_code
-                      var uses_comma_decimals = true
+                    if(currencies_using_comma_decimals.includes(cart.currency.iso_code)){
+                      uses_comma_decimals = true
                     }
-                 ){ %>
+                  %>
                   <details class="disclosure-has-popup facets__disclosure js-filter" data-index="<%= index %>">
                     <summary class="facets__summary">
                       <div>
                         <span><%= filter.label %></span>
                         <span class="count-bubble<% if(filter.min_value.value || filter.max_value.value){ %><%= filter.active_values.length %> count-bubble--dot<% } %>"></span>
-                        <%- include('./icon-caret'){ %>
+                        <%- include('./icon-caret') %>
                       </div>
                     </summary>
                     <div class="facets__display">
                       <div class="facets__header">
-                        <% var max_price_amount = filter.range_max){ %>
-                        <span class="facets__selected"><%= "sectionst.collection_template.max_price" | t: price: max_price_amount %></span>
+                        <% var max_price_amount = filter.range_max %>
+                        <span class="facets__selected"><%=sectionst.collection_template.max_price %></span>
                         <a href="<%= filter.url_to_remove %>" class="facets__reset link underlined-link js-facet-remove" ><%=sectionst.collection_template.reset%></a>
                       </div>
                       <price-range class="facets__price">
@@ -220,15 +220,15 @@
                             id="Filter-<%= filter.label %>-<%= index %>"
                             <% if(filter.min_value.value){ %>
                               <% if(uses_comma_decimals){ %>
-                                value="<%= filter.min_value.value_without_currency | replace: '.', '' | replace: ',', '.' %>"
+                                value="<%= filter.min_value.value_without_currency?.replace('.', '')?.replace(',', '.') %>"
                               <% } else { %>
-                                value="<%= filter.min_value.value_without_currency | replace: ',', '' %>"
+                                value="<%= filter.min_value.value_without_currency?.replace(',', '') %>"
                               <% } %>
                             <% } %>
                             type="number"
                             placeholder="0"
                             min="0"
-                            max="<%= filter.range_max_without_currency | replace: ',', '' %>"/>
+                            max="<%= filter.range_max_without_currency?.replace(',', '') %>"/>
                           <label class="field__label" for="Search-In-Modal"><%=sectionst.collection_template.from%></label>
                         </div>
                         <div class="field">
@@ -238,15 +238,15 @@
                             id="Filter-<%= filter.label %>-<%= index %>"
                             <% if(filter.max_value.value){ %>
                               <% if(uses_comma_decimals){ %>
-                                value="<%= filter.max_value.value_without_currency | replace: '.', '' | replace: ',', '.' %>"
+                                value="<%= filter.max_value.value_without_currency?.replace('.', '')?.replace(',', '.') %>"
                               <% } else { %>
-                                value="<%= filter.max_value.value_without_currency | replace: ',', '' %>"
+                                value="<%= filter.max_value.value_without_currency?.replace(',', '') %>"
                               <% } %>
                             <% } %>
                             type="number"
-                            placeholder="<%= filter.range_max_without_currency | replace: ',', '' %>"
+                            placeholder="<%= filter.range_max_without_currency?.replace(',', '') %>"
                             min="0"
-                            max="<%= filter.range_max_without_currency | replace: ',', '' %>"/>
+                            max="<%= filter.range_max_without_currency?.replace(',', '') %>"/>
                           <label class="field__label" for="Search-In-Modal"><%=sectionst.collection_template.to%></label>
                         </div>
                       </div>
@@ -262,27 +262,27 @@
 
           <div class="active-facets active-facets-desktop">
             <a href="<%= collection.url %>?sort_by=<%= sort_by %>" class="active-facets__button button button--secondary js-facet-remove" <% if(current_tags){ %>data-type="clear_all"<% } %>><%=sectionst.collection_template.clear_all%></a>
-            <% for filter in collection.filters){ %>
-              <% for value in filter.active_values){ %>
+            <% collection?.filters?.forEach((filter,index)=>{ %>
+              <% filter?.active_values?.forEach((value,index)=>{ %>
                 <a class="active-facets__button active-facets__button--light button button--tertiary js-facet-remove" href="<%= value.url_to_remove %>" data-value="<%= value.value %>">
                   <%= value.label %>
-                  <%- include('./icon-close-small'){ %>
+                  <%- include('./icon-close-small') %>
                 </a>
               <% }) %>
               <% if(filter.type === "price_range"){ %>
-                <% if(filter.min_value.value !== nil || filter.max_value.value !== nil){ %>
+                <% if(filter.min_value.value || filter.max_value.value){ %>
                   <a class="active-facets__button active-facets__button--light button button--tertiary js-facet-remove" href="<%= filter.url_to_remove %>" >
                     <% if(filter.min_value.value){ %><%= filter.min_value.value %><% } else { %><%= 0 %><% } %>-<% if(filter.max_value.value){ %><%= filter.max_value.value %><% } else { %><%= filter.range_max %><% } %>
-                    <%- include('./icon-close-small'){ %>
+                    <%- include('./icon-close-small') %>
                   </a>
                 <% } %>
               <% } %>
             <% }) %>
             <% if(current_tags){ %>
-              <% for tag in current_tags){ %>
+              <% current_tags?.forEach((tag,index)=>{ %>
                 <a class="active-facets__button active-facets__button--light button button--tertiary js-facet-remove" href="<%= tag %>" data-value="<%= tag %>" data-type="<%= tag %>">
-                  <%= tag | remove: "C_COVERAGES_" | remove: "C_FABRICS_" | remove: "C_TYPES_" %>
-                  <%- include('./icon-close-small'){ %>
+                  <%= tag.replace("C_COVERAGES_","").replace("C_FABRICS_","").replace("C_TYPES_","") %>
+                  <%- include('./icon-close-small') %>
                 </a>
               <% }) %>
             <% } %>
@@ -303,7 +303,7 @@
                 <% if(total_active_values > 0){ %><%= total_active_values %><% } %>
               </span>
             </span>
-            <span tabindex="0" class="mobile-facets__close mobile-facets__close--no-js"><%- include('./icon-close'){ %></span>
+            <span tabindex="0" class="mobile-facets__close mobile-facets__close--no-js"><%- include('./icon-close') %></span>
           </summary>
           <collection-filters-form>
             <form id="CollectionFiltersFormMobile" class="mobile-facets py-<%=section.settings.filter_bg_color%>">
@@ -311,22 +311,22 @@
                 <div class="mobile-facets__header py-<%=section.settings.filter_bg_color%>">
                   <div class="mobile-facets__header-inner">
                     <h2 class="mobile-facets__heading"><%=sectionst.collection_template.filter_and_sort%></h2>
-                    <p class="mobile-facets__count"><%=sectionst.collection_template.product_count' | t: product_count: collection.products_count, count: collection.all_products_count %></p>
+                    <p class="mobile-facets__count"><%=sectionst.collection_template.product_count %></p>
                   </div>
                 </div>
                 <div class="mobile-facets__main">
                   <% if(section.settings.enable_sorting){ %>
-                    <div class="mobile-facets__details js-filter" data-index="mobile-<%= index %>">
+                    <div class="mobile-facets__details js-filter" data-index="mobile-<%# index %>">
                       <div class="mobile-facets__summary">
                         <div class="mobile-facets__sort">
                           <label for="SortBy-mobile"><%=sectionst.collection_template.sort_by_label%></label>
                           <div class="select">
                             <select name="sort_by" class="select__select" id="SortBy-mobile" aria-describedby="a11y-refresh-page-message">
-                              <% for option in collection.sort_options){ %>
+                              <% collection?.sort_options?.forEach((option,index)=>{ %>
                                 <option value="<%= option.value %>"<% if(option.value === sort_by){ %> selected="selected"<% } %>><%= option.name %></option>
                               <% }) %>
                             </select>
-                            <%- include('./icon-caret'){ %>
+                            <%- include('./icon-caret') %>
                           </div>
                         </div>
                       </div>
@@ -335,39 +335,40 @@
 
 
                   <% if(section.settings.enable_filtering){ %>
-                    <% var filter_block = 0){ %>
-                    <% if(section.blocks.length > 0){ %>                      
-                      <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
+                    <% var filter_block = 0 %>
+                    <% if(section?.block_order?.length > 0){ %>                      
+                      <% section?.block_order?.forEach((orderItem, index) => { %>
+                        <% let block = section?.blocks[orderItem] %>
                         <% if(block.type === 'filter'){ %>
-                          <% var filter_block = filter_block + 1){ %>
-                          <% var filterTagNames = block?.settings?.tags?.split('|'){ %>
-                          <% var filterPrefix = block?.settings?.tag_prefix){ %>
-                          <% var filterName = block?.settings?.label.toLowerCase()){ %>                              
+                          <% var filter_block = filter_block + 1 %>
+                          <% var filterTagNames = block?.settings?.tags?.split('|') %>
+                          <% var filterPrefix = block?.settings?.tag_prefix %>
+                          <% var filterName = block?.settings?.label.toLowerCase() %>                              
                           <% if(filterName === 'colors' || filterName === 'color' ){ %>                
                             <details class="mobile-facets__details js-filter tag_filter" data-index="mobile-<%= index %>">
                               <summary class="mobile-facets__summary">
                                 <div>
                                   <span><%= block?.settings?.label %></span>                               
-                                  <span class="mobile-facets__arrow no-js-hidden"><%- include('./icon-arrow'){ %></span>
-                                  <noscript><%- include('./icon-caret'){ %></noscript>
+                                  <span class="mobile-facets__arrow no-js-hidden"><%- include('./icon-arrow') %></span>
+                                  <noscript><%- include('./icon-caret') %></noscript>
                                 </div>
                               </summary>
                               <div class="mobile-facets__submenu py-<%=section.settings.filter_bg_color%>">
                                 <button class="mobile-facets__close-button link link--text focus-inset" aria-expanded="true" type="button">
-                                  <%- include('./icon-arrow'){ %>
+                                  <%- include('./icon-arrow') %>
                                   <%= block?.settings?.label %>
                                 </button> 
-                                  <% var filterTagNames = ''?.split(','){ %>                      
+                                  <% var filterTagNames = ''?.split(',') %>                      
                                   <% if(collection.products.length > 0){ %>
                                     <ul class="mobile-facets__list list-unstyled" role="list">                        
-                                    <% for prod in collection.products){ %>
-                                      <% var colorTitle = prod.title?.split(' / '?.pop()){ %>        
-                                      <% var color = colorTitle?.trim() | replace: ' ', '-'.toLowerCase() ){ %>                    
-                                      <% if(filterTagNames.includes(colorTitle){ %>
-                                        <%= continue %>
+                                    <% collection?.products?.forEach((prod,index)=>{ %>
+                                      <% var colorTitle = prod.title?.split(' / ')?.pop() %>        
+                                      <% var color = colorTitle?.trim()?.replace(' ', '-').toLowerCase() %>                    
+                                      <% if(filterTagNames.includes(colorTitle)){ %>
+                                        <%# continue %>
                                       <% } else { %>
-                                      <% var new_color = colorTitle?.split(", "){ %>
-                                      <% var filterTagNames = filterTagNames | concat: new_color){ %>                    
+                                      <% var new_color = colorTitle?.split(", ") %>
+                                      <% var filterTagNames = filterTagNames + new_color %>                    
 
                                       <li class="mobile-facets__item list-menu__item">
                                         <label for="Filter-<%= block?.settings?.label %>-mobile-<%= index %>" class="mobile-facets__label">
@@ -378,7 +379,7 @@
                                             value="<%= color %>"
                                             id="Filter-<%= block?.settings?.label %>-mobile-<%= index %>"
                                             onclick="selectOnlyThis(this,'Filter-mobile-<%= block?.settings?.label %>')"
-                                            <% if(current_tags.includes(color){ %>checked<% } %>                                        
+                                            <% if(current_tags.includes(color)){ %> checked <% } %>                                        
                                           >
 
                                           <span class="mobile-facets__highlight"></span>
@@ -406,17 +407,17 @@
                               <summary class="mobile-facets__summary">
                                 <div>
                                   <span><%= block?.settings?.label %></span>                               
-                                  <span class="mobile-facets__arrow no-js-hidden"><%- include('./icon-arrow'){ %></span>
-                                  <noscript><%- include('./icon-caret'){ %></noscript>
+                                  <span class="mobile-facets__arrow no-js-hidden"><%- include('./icon-arrow') %></span>
+                                  <noscript><%- include('./icon-caret') %></noscript>
                                 </div>
                               </summary>
                               <div class="mobile-facets__submenu py-<%=section.settings.filter_bg_color%>">
                                 <button class="mobile-facets__close-button link link--text focus-inset" aria-expanded="true" type="button">
-                                  <%- include('./icon-arrow'){ %>
+                                  <%- include('./icon-arrow') %>
                                   <%= block?.settings?.label %>
                                 </button>
                                 <ul class="mobile-facets__list list-unstyled" role="list">
-                                  <% for name in filterTagNames){ %>
+                                  <% filterTagNames?.forEach((name,index)=>{ %>
                                     <li class="mobile-facets__item list-menu__item">
                                       <label for="Filter-<%= block?.settings?.label %>-mobile-<%= index %>" class="mobile-facets__label">
                                         <input class="mobile-facets__checkbox"
@@ -426,7 +427,7 @@
                                           value="<%= filterPrefix %><%= name %>"
                                           id="Filter-<%= block?.settings?.label %>-mobile-<%= index %>"
                                           onclick="selectOnlyThis(this,'Filter-mobile-<%= block?.settings?.label %>')"
-                                          <% if(current_tags.includes(name){ %>checked<% } %>                                        
+                                          <% if(current_tags.includes(name)){ %>checked<% } %>                                        
                                         >
       
                                         <span class="mobile-facets__highlight"></span>
@@ -439,7 +440,7 @@
                                           <path fill-rule="evenodd" clip-rule="evenodd" d="M11.35.643a.5.5 0 01.006.707l-6.77 6.886a.5.5 0 01-.719-.006L.638 4.845a.5.5 0 11.724-.69l2.872 3.011 6.41-6.517a.5.5 0 01.707-.006h-.001z" fill="currentColor"/>
                                         </svg>
       
-                                        <%= name | replace: '-', ' ' %>
+                                        <%= name?.replace('-', ' ') %>
                                       </label>
                                     </li>
                                   <% }) %>
@@ -458,9 +459,8 @@
                     <% } %>                  
 
 
-                    <% for filter in collection.filters){ %>
-                      <% if(filter.type){ %>
-                      <% } else if(block.type === 'list'){ %>
+                    <% collection?.filters?.forEach((filter,index)=>{ %>
+                      <% if(filter.type === 'list'){ %>
                         <details class="mobile-facets__details js-filter" data-index="mobile-<%= index + filter_block %>">
                           <summary class="mobile-facets__summary">
                             <div>
@@ -468,17 +468,17 @@
                               <span class="count-bubble">
                                 <% if(filter.active_values.length > 0){ %><%= filter.active_values.length %><% } %>
                               </span>
-                              <span class="mobile-facets__arrow no-js-hidden"><%- include('./icon-arrow'){ %></span>
-                              <noscript><%- include('./icon-caret'){ %></noscript>
+                              <span class="mobile-facets__arrow no-js-hidden"><%- include('./icon-arrow') %></span>
+                              <noscript><%- include('./icon-caret') %></noscript>
                             </div>
                           </summary>
                           <div class="mobile-facets__submenu py-<%=section.settings.filter_bg_color%>">
                             <button class="mobile-facets__close-button link link--text focus-inset" aria-expanded="true" type="button">
-                              <%- include('./icon-arrow'){ %>
+                              <%- include('./icon-arrow') %>
                               <%= filter.label %>
                             </button>
                             <ul class="mobile-facets__list list-unstyled" role="list">
-                              <% for value in filter.values){ %>
+                              <% filter?.values?.forEach((value,index)=>{ %>
                                 <li class="mobile-facets__item list-menu__item">
                                   <label for="Filter-<%= filter.label %>-mobile-<%= index %>" class="mobile-facets__label<% if(value.count === 0 && value.active === false){ %> mobile-facets__label--disabled<% } %>">
                                     <input class="mobile-facets__checkbox"
@@ -487,8 +487,8 @@
                                       value="<%= value.value %>"
                                       id="Filter-<%= filter.label %>-mobile-<%= index %>"
                                       onclick="selectOnlyThis(this,'Filter-<%= block?.settings?.label %>')"
-                                      <% if(value.active){ %>checked<% } %>
-                                      <% if(value.count === 0 && value.active === false){ %>disabled<% } %>
+                                      <% if(value.active){ %> checked <% } %>
+                                      <% if(value.count === 0 && value.active === false){ %> disabled <% } %>
                                     >
 
                                     <span class="mobile-facets__highlight"></span>
@@ -514,23 +514,23 @@
                             </div>
                           </div>
                         </details>
-                      <% } else if(block.type === 'price_range'){ %>
+                      <% } else if(filter.type === 'price_range'){ %>
                         <details class="mobile-facets__details js-filter" data-index="mobile-<%= index %>">
                           <summary class="mobile-facets__summary">
                             <div>
                               <span><%= filter.label %></span>
                               <span class="count-bubble<% if(filter.min_value.value || filter.max_value.value){ %><%= filter.active_values.length %> count-bubble--dot<% } %>"></span>
-                              <span class="mobile-facets__arrow no-js-hidden"><%- include('./icon-arrow'){ %></span>
-                              <noscript><%- include('./icon-caret'){ %></noscript>
+                              <span class="mobile-facets__arrow no-js-hidden"><%- include('./icon-arrow') %></span>
+                              <noscript><%- include('./icon-caret') %></noscript>
                             </div>
                           </summary>
                           <div class="mobile-facets__submenu py-<%=section.settings.filter_bg_color%>">
                             <button class="mobile-facets__close-button link link--text focus-inset" aria-expanded="true" type="button">
-                              <%- include('./icon-arrow'){ %>
+                              <%- include('./icon-arrow') %>
                               <%= filter.label %>
                             </button>
 
-                            <p class="mobile-facets__info"><%= "sectionst.collection_template.max_price" | t: price: max_price_amount %></p>
+                            <p class="mobile-facets__info"><%=sectionst.collection_template.max_price%></p>
 
                             <price-range class="facets__price">
                               <div class="field">
@@ -540,15 +540,15 @@
                                   id="Filter-<%= filter.label %>-<%= index %>"
                                   <% if(filter.min_value.value){ %>
                                     <% if(uses_comma_decimals){ %>
-                                      value="<%= filter.min_value.value_without_currency | replace: '.', '' | replace: ',', '.' %>"
+                                      value="<%= filter.min_value.value_without_currency?.replace('.', '')?.replace(',', '.') %>"
                                     <% } else { %>
-                                      value="<%= filter.min_value.value_without_currency | replace: ',', '' %>"
+                                      value="<%= filter.min_value.value_without_currency?.replace(',', '') %>"
                                     <% } %>
                                   <% } %>
                                   type="number"
                                   placeholder="0"
                                   min="0"
-                                  max="<%= filter.range_max / 100 Math.ceil() %>"/>
+                                  max="<%= Math.ceil(filter.range_max / 100) %>"/>
                                 <label class="field__label" for="Search-In-Modal"><%=sectionst.collection_template.from%></label>
                               </div>
                               <div class="field">
@@ -558,15 +558,15 @@
                                   id="Filter-<%= filter.label %>-<%= index %>"
                                   <% if(filter.max_value.value){ %>
                                     <% if(uses_comma_decimals){ %>
-                                      value="<%= filter.max_value.value_without_currency | replace: '.', '' | replace: ',', '.' %>"
+                                      value="<%= filter.max_value.value_without_currency?.replace('.', '')?.replace(',', '.') %>"
                                     <% } else { %>
-                                      value="<%= filter.max_value.value_without_currency | replace: ',', '' %>"
+                                      value="<%= filter.max_value.value_without_currency?.replace(',', '') %>"
                                     <% } %>
                                   <% } %>
                                   type="number"
-                                  placeholder="<%= filter.range_max / 100 Math.ceil() %>"
+                                  placeholder="<%= Math.ceil(filter.range_max / 100) %>"
                                   min="0"
-                                  max="<%= filter.range_max / 100 Math.ceil() %>"/>
+                                  max="<%= Math.ceil(filter.range_max / 100) %>"/>
                                 <label class="field__label" for="Search-In-Modal"><%=sectionst.collection_template.to%></label>
                               </div>
                             </price-range>
@@ -596,28 +596,28 @@
 
       <div class="active-facets active-facets-mobile">
         <a href="<%= collection.url %>?sort_by=<%= sort_by %>" class="active-facets__button button button--secondary js-facet-remove" data-type="clear_all"><%=sectionst.collection_template.clear_all%></a>
-        <% for filter in collection.filters){ %>
-          <% for value in filter.active_values){ %>
+        <% collection?.filters?.forEach((filter,index)=>{ %>
+          <% filter?.active_values?.forEach((value,index)=>{ %>
             <a class="active-facets__button active-facets__button--light button button--tertiary js-facet-remove" href="<%= value.url_to_remove %>" data-value="<%= value.value %>">
               <%= value.label %>
-              <%- include('./icon-close-small'){ %>
+              <%- include('./icon-close-small') %>
             </a>
           <% }) %>
 
           <% if(filter.type === "price_range"){ %>
-            <% if(filter.min_value.value !== nil || filter.max_value.value !== nil){ %>
+            <% if(filter.min_value.value || filter.max_value.value){ %>
               <a class="active-facets__button active-facets__button--light button button--tertiary js-facet-remove" href="<%= filter.url_to_remove %>">
                 <% if(filter.min_value.value){ %><%= filter.min_value.value %><% } else { %><%= 0 %><% } %>-<% if(filter.max_value.value){ %><%= filter.max_value.value %><% } else { %><%= filter.range_max %><% } %>
-                <%- include('./icon-close-small'){ %>
+                <%- include('./icon-close-small') %>
               </a>
             <% } %>
           <% } %>
         <% }) %>
         <% if(current_tags){ %>
-          <% for tag in current_tags){ %>
+          <% current_tags?.forEach((tag,index)=>{ %>
             <a class="active-facets__button active-facets__button--light button button--tertiary js-facet-remove" href="<%= tag %>" data-type="<%= tag %>" data-value="<%= tag %>">
-              <%= tag | remove: "C_COVERAGES_" | remove: "C_FABRICS_" | remove: "C_TYPES_" %>
-              <%- include('./icon-close-small'){ %>
+              <%= tag.replace("C_COVERAGES_","").replace("C_FABRICS_","").replace("C_TYPES_","") %>
+              <%- include('./icon-close-small') %>
             </a>
           <% }) %>
         <% } %>
@@ -627,4 +627,4 @@
     
   </div>
 
-  <script src="<%=collection-filters-form.js' <%=srcId%> %>" defer="defer"></script>
+  <script src="/<%=srcId%>/collection-filters-form.js" defer="defer"></script>

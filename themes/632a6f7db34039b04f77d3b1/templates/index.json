@@ -1,1 +1,386 @@
-{"sections":{"1652851716a9bcae46":{"type":"image-with-text","blocks":{"1652851716950d2423-0":{"type":"heading","settings":{"heading":"Meet Your Match","fs":"fs-xl","title_font":"h1"}},"1652851716950d2423-1":{"type":"text","settings":{"text":"<p>Your coziest layer, your easiest outfit—matching sets are here.<\/p>","fs":"fs-s","text_y_mg":"mg-y-xl"}},"1652851716950d2423-2":{"type":"button","settings":{"button_label":"Shop Men's New Arrivals","button_link":"shopify:\/\/collections\/base-brand","view_btn_style":"text_link","view_btn_size":"medium","py_section_color_view_btn":"light","py_section_color_view_btn_hover":"light"}},"9c546d82-d837-486c-abad-ce5929b49554":{"type":"button","settings":{"button_label":"Shop Women's New Arrivals","button_link":"shopify:\/\/collections","view_btn_style":"text_link","view_btn_size":"medium","py_section_color_view_btn":"light","py_section_color_view_btn_hover":"light"}}},"block_order":["1652851716950d2423-0","1652851716950d2423-1","1652851716950d2423-2","9c546d82-d837-486c-abad-ce5929b49554"],"settings":{"image":"shopify:\/\/shop_images\/ad76a7fab6b71e10bdade24b422dfd7387cef604-4298x4400.webp","section_height":"auto","section_height_m":"400px","layout":"image_first","img_style":"normal","align":"center","section_bg_color":"var(--py-bg-color-light)","py_section_color":"var(--py-color-dark)","section_width":"full","section_y_mg":"mg-y-n"}},"1651801075bda11aac":{"type":"multicolumn","blocks":{"165180107452de171a-0":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/ee61f87e0daa620e0cbc46673988cf1b34c7543e-2933x4400.webp","title":"Shop Womenswear","text":"","btn_label":"","btn_link":"shopify:\/\/collections\/bundle-set","view_btn_style":"text_link"}},"165180107452de171a-1":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/6b9cc60dc140d1371252ca1c1a33326aaf84baac-3393x4400.webp","title":"Shop Menswear","text":"","btn_label":"","btn_link":"shopify:\/\/collections\/bundle-set","view_btn_style":"text_link"}},"72f28d44-c0c8-4874-b2ba-5d9ea525992a":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/5da6e5a10c10db7b25441f2bad1dfb58c8dc59e6-3483x4400.webp","title":"Shop Home","text":"","btn_label":"","btn_link":"shopify:\/\/collections\/frontpage","view_btn_style":"text_link"}}},"block_order":["165180107452de171a-0","165180107452de171a-1","72f28d44-c0c8-4874-b2ba-5d9ea525992a"],"settings":{"title":"","title_font_size":38,"title_alignment":"left","section_width":"width-l","section_bg":"bg-c-light","col_style":"overlay","col_overlay_color":"bg-c-dark","overlay_opacity":"0.1","column_number":3,"column_gap":25,"image_width":"full","image_ratio":"square","column_alignment":"center","col_bg_color":"bg-c-light","col_color":"var(--py-color-light)","col_title_font_size":36,"col_title_font_weight":500,"col_title_m_font_size":28,"col_text_font_size":15,"button_label":"","button_link":"","view_btn_size":"medium","col_color_view_btn":"light","col_color_view_btn_hover":"dark","swipe_on_mobile":false}},"1651867483e4606eac":{"type":"product-carousel","settings":{"title":"New arrivals","section_width":"full","title_font_size":22,"title_alignment":"center","collection":"base-brand","products_col_limit":4,"products_limit":10,"show_view_all":false,"section_bg_color":"var(--py-bg-color-light)","slide_bg_color":"var(--py-bg-color-avarge)","section_color":"var(--py-color-dark)","image_ratio":"portrait","show_secondary_image":true,"card_bg_color":"bg-c-light","card_radius":0,"item_space":1,"show_vendor":false,"info_align":"left","card_color":"c-dark","view_btn_size":"small","card_color_view_btn":"light","card_color_view_btn_hover":"dark","custom_font_style":true,"title_fontsize":"16px","title_fontsize_m":"","title_fontweight":"","title_fontstretch":"","title_fontstyle":"normal","title_lineheight":"","title_letterspacing":"","info_fontsize":"","info_fontsize_m":"","info_fontweight":"","info_fontstretch":"","info_fontstyle":"normal","info_lineheight":"","info_letterspacing":""}},"1661490760a063d309":{"type":"image-with-text","blocks":{"1661490760377c147c-0":{"type":"heading","settings":{"heading":"15 schools funded. 2,390 farms supported. 107,888 lives changed.","fs":"fs-xl","title_font":"h3"}},"1661490760377c147c-1":{"type":"text","settings":{"text":"<p>A Certified B Corporation® voted Best for the World™, we work hand-in-hand with every step of our supply chain to ensure the highest quality of life for those who create our pieces and the highest quality product for you.<\/p>","fs":"fs-s","text_y_mg":"mg-y-m"}},"1661490760377c147c-2":{"type":"button","settings":{"button_label":"Explore Our World","button_link":"#","view_btn_style":"text_link","view_btn_size":"medium","py_section_color_view_btn":"light","py_section_color_view_btn_hover":"light"}}},"block_order":["1661490760377c147c-0","1661490760377c147c-1","1661490760377c147c-2"],"settings":{"image":"shopify:\/\/shop_images\/01a0e9c07671466919fa6577e1b070d34b2557d5-5297x3532.webp","section_height":"auto","section_height_m":"400px","layout":"text_first","img_style":"padding","align":"left","section_bg_color":"var(--py-bg-color-light)","py_section_color":"var(--py-color-dark)","section_width":"full","section_y_mg":"mg-y-m"}},"1661492187781f84a1":{"type":"multicolumn","blocks":{"166149218786c67f1a-0":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/210715_UBB_Day2_08945_608x928_cbe2c67d-0a0b-4c2f-ade0-8e4ae58f28a9.webp","title":"Column","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","btn_label":"Learn More","btn_link":"","view_btn_style":"text_link"}},"166149218786c67f1a-1":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/dresses-cropped_608x736_6690ab98-3a7b-4722-b7cf-229e944debec.webp","title":"Column","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","btn_label":"Learn More","btn_link":"","view_btn_style":"text_link"}},"166149218786c67f1a-2":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/mens-tops-cropped_608x736_fe0c2c89-659f-4905-8bca-616fd73117ae.webp","title":"Column","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","btn_label":"Learn More","btn_link":"","view_btn_style":"text_link"}},"c0cd1041-eed8-42bf-92aa-92c4d1223484":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/EM6A2346-2_608x736_6d803d01-86dd-4acd-ac97-c829e5e79f96.webp","title":"Column","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","btn_label":"Learn More","btn_link":"","view_btn_style":"text_link"}}},"block_order":["166149218786c67f1a-0","166149218786c67f1a-1","166149218786c67f1a-2","c0cd1041-eed8-42bf-92aa-92c4d1223484"],"settings":{"title":"","title_font_size":38,"title_alignment":"left","section_width":"width-l","section_bg":"bg-c-light","col_style":"normal","col_overlay_color":"bg-c-dark","overlay_opacity":"0","column_number":4,"column_gap":5,"image_width":"full","image_ratio":"square","column_alignment":"left","col_bg_color":"bg-c-none","col_color":"var(--py-color-dark)","col_title_font_size":26,"col_title_font_weight":500,"col_title_m_font_size":20,"col_text_font_size":18,"button_label":"","button_link":"","view_btn_size":"medium","col_color_view_btn":"light","col_color_view_btn_hover":"dark","swipe_on_mobile":false}},"166156909821b74b03":{"type":"multicolumn","blocks":{"16615690974c97d693-0":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/ce5a786fc71fbcd518fbf57a7da7a59b49f1b224-5760x2880.webp","title":"Raising the Bar with B Corp","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","btn_label":"","btn_link":"","view_btn_style":"text_link"}},"16615690974c97d693-1":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/63a01bbdf0bbab16a98e21d883c4982ee62312a4-4400x2947.webp","title":"The Many Homes of Highland Park","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","btn_label":"","btn_link":"","view_btn_style":"text_link"}},"16615690974c97d693-2":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/ce5a786fc71fbcd518fbf57a7da7a59b49f1b224-5760x2880_3b30067f-e3e5-420f-8914-4fe975b4dd4f.webp","title":"Kotn by Actual Source","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. <\/p><p><\/p><p><em>Add details on availability, style, or even provide a review.<\/em><\/p>","btn_label":"","btn_link":"","view_btn_style":"text_link"}}},"block_order":["16615690974c97d693-0","16615690974c97d693-1","16615690974c97d693-2"],"settings":{"title":"Explore Our Features","title_font_size":58,"title_alignment":"center","section_width":"width-un","section_bg":"bg-c-light","col_style":"normal","col_overlay_color":"bg-c-dark","overlay_opacity":"0","column_number":3,"column_gap":20,"image_width":"full","image_ratio":"square","column_alignment":"left","col_bg_color":"bg-c-none","col_color":"var(--py-color-dark)","col_title_font_size":20,"col_title_font_weight":500,"col_title_m_font_size":18,"col_text_font_size":15,"button_label":"","button_link":"","view_btn_size":"medium","col_color_view_btn":"light","col_color_view_btn_hover":"dark","swipe_on_mobile":false}}},"order":["1652851716a9bcae46","1651801075bda11aac","1651867483e4606eac","1661490760a063d309","1661492187781f84a1","166156909821b74b03"]}
+{
+    "sections": {
+        "1652851716a9bcae46": {
+            "type": "image-with-text",
+            "blocks": {
+                "1652851716950d2423-0": {
+                    "type": "heading",
+                    "settings": {
+                        "heading": "Meet Your Match",
+                        "fs": "fs-xl",
+                        "title_font": "h1"
+                    }
+                },
+                "1652851716950d2423-1": {
+                    "type": "text",
+                    "settings": {
+                        "text": "<p>Your coziest layer, your easiest outfit—matching sets are here.<\/p>",
+                        "fs": "fs-s",
+                        "text_y_mg": "mg-y-xl"
+                    }
+                },
+                "1652851716950d2423-2": {
+                    "type": "button",
+                    "settings": {
+                        "button_label": "Shop Men's New Arrivals",
+                        "button_link": "shopify:\/\/collections\/base-brand",
+                        "view_btn_style": "text_link",
+                        "view_btn_size": "medium",
+                        "py_section_color_view_btn": "light",
+                        "py_section_color_view_btn_hover": "light"
+                    }
+                },
+                "9c546d82-d837-486c-abad-ce5929b49554": {
+                    "type": "button",
+                    "settings": {
+                        "button_label": "Shop Women's New Arrivals",
+                        "button_link": "shopify:\/\/collections",
+                        "view_btn_style": "text_link",
+                        "view_btn_size": "medium",
+                        "py_section_color_view_btn": "light",
+                        "py_section_color_view_btn_hover": "light"
+                    }
+                }
+            },
+            "block_order": [
+                "1652851716950d2423-0",
+                "1652851716950d2423-1",
+                "1652851716950d2423-2",
+                "9c546d82-d837-486c-abad-ce5929b49554"
+            ],
+            "settings": {
+                "image": "/632a6f7db34039b04f77d3b1/image-with-text.webp",
+                "section_height": "auto",
+                "section_height_m": "400px",
+                "layout": "image_first",
+                "img_style": "normal",
+                "align": "center",
+                "section_bg_color": "var(--py-bg-color-light)",
+                "py_section_color": "var(--py-color-dark)",
+                "section_width": "full",
+                "section_y_mg": "mg-y-n"
+            }
+        },
+        "1651801075bda11aac": {
+            "type": "multicolumn",
+            "blocks": {
+                "165180107452de171a-0": {
+                    "type": "column",
+                    "settings": {
+                        "image": "/632a6f7db34039b04f77d3b1/mc-1-1.webp",
+                        "title": "Shop Womenswear",
+                        "text": "",
+                        "btn_label": "",
+                        "btn_link": "shopify:\/\/collections\/bundle-set",
+                        "view_btn_style": "text_link"
+                    }
+                },
+                "165180107452de171a-1": {
+                    "type": "column",
+                    "settings": {
+                        "image": "/632a6f7db34039b04f77d3b1/mc-1-2.webp",
+                        "title": "Shop Menswear",
+                        "text": "",
+                        "btn_label": "",
+                        "btn_link": "shopify:\/\/collections\/bundle-set",
+                        "view_btn_style": "text_link"
+                    }
+                },
+                "72f28d44-c0c8-4874-b2ba-5d9ea525992a": {
+                    "type": "column",
+                    "settings": {
+                        "image": "/632a6f7db34039b04f77d3b1/mc-1-3.webp",
+                        "title": "Shop Home",
+                        "text": "",
+                        "btn_label": "",
+                        "btn_link": "shopify:\/\/collections\/frontpage",
+                        "view_btn_style": "text_link"
+                    }
+                }
+            },
+            "block_order": [
+                "165180107452de171a-0",
+                "165180107452de171a-1",
+                "72f28d44-c0c8-4874-b2ba-5d9ea525992a"
+            ],
+            "settings": {
+                "title": "",
+                "title_font_size": 38,
+                "title_alignment": "left",
+                "section_width": "width-l",
+                "section_bg": "bg-c-light",
+                "col_style": "overlay",
+                "col_overlay_color": "bg-c-dark",
+                "overlay_opacity": "0.1",
+                "column_number": 3,
+                "column_gap": 25,
+                "image_width": "full",
+                "image_ratio": "square",
+                "column_alignment": "center",
+                "col_bg_color": "bg-c-light",
+                "col_color": "var(--py-color-light)",
+                "col_title_font_size": 36,
+                "col_title_font_weight": 500,
+                "col_title_m_font_size": 28,
+                "col_text_font_size": 15,
+                "button_label": "",
+                "button_link": "",
+                "view_btn_size": "medium",
+                "col_color_view_btn": "light",
+                "col_color_view_btn_hover": "dark",
+                "swipe_on_mobile": false
+            }
+        },
+        "1651867483e4606eac": {
+            "type": "product-carousel",
+            "settings": {
+                "title": "New arrivals",
+                "section_width": "full",
+                "title_font_size": 22,
+                "title_alignment": "center",
+                "collection": "base-brand",
+                "products_col_limit": 4,
+                "products_limit": 10,
+                "show_view_all": false,
+                "section_bg_color": "var(--py-bg-color-light)",
+                "slide_bg_color": "var(--py-bg-color-avarge)",
+                "section_color": "var(--py-color-dark)",
+                "image_ratio": "portrait",
+                "show_secondary_image": true,
+                "card_bg_color": "bg-c-light",
+                "card_radius": 0,
+                "item_space": 1,
+                "show_vendor": false,
+                "info_align": "left",
+                "card_color": "c-dark",
+                "view_btn_size": "small",
+                "card_color_view_btn": "light",
+                "card_color_view_btn_hover": "dark",
+                "custom_font_style": true,
+                "title_fontsize": "16px",
+                "title_fontsize_m": "",
+                "title_fontweight": "",
+                "title_fontstretch": "",
+                "title_fontstyle": "normal",
+                "title_lineheight": "",
+                "title_letterspacing": "",
+                "info_fontsize": "",
+                "info_fontsize_m": "",
+                "info_fontweight": "",
+                "info_fontstretch": "",
+                "info_fontstyle": "normal",
+                "info_lineheight": "",
+                "info_letterspacing": ""
+            }
+        },
+        "1661490760a063d309": {
+            "type": "image-with-text",
+            "blocks": {
+                "1661490760377c147c-0": {
+                    "type": "heading",
+                    "settings": {
+                        "heading": "15 schools funded. 2,390 farms supported. 107,888 lives changed.",
+                        "fs": "fs-xl",
+                        "title_font": "h3"
+                    }
+                },
+                "1661490760377c147c-1": {
+                    "type": "text",
+                    "settings": {
+                        "text": "<p>A Certified B Corporation® voted Best for the World™, we work hand-in-hand with every step of our supply chain to ensure the highest quality of life for those who create our pieces and the highest quality product for you.<\/p>",
+                        "fs": "fs-s",
+                        "text_y_mg": "mg-y-m"
+                    }
+                },
+                "1661490760377c147c-2": {
+                    "type": "button",
+                    "settings": {
+                        "button_label": "Explore Our World",
+                        "button_link": "#",
+                        "view_btn_style": "text_link",
+                        "view_btn_size": "medium",
+                        "py_section_color_view_btn": "light",
+                        "py_section_color_view_btn_hover": "light"
+                    }
+                }
+            },
+            "block_order": [
+                "1661490760377c147c-0",
+                "1661490760377c147c-1",
+                "1661490760377c147c-2"
+            ],
+            "settings": {
+                "image": "/632a6f7db34039b04f77d3b1/image-with-text-2.webp",
+                "section_height": "auto",
+                "section_height_m": "400px",
+                "layout": "text_first",
+                "img_style": "padding",
+                "align": "left",
+                "section_bg_color": "var(--py-bg-color-light)",
+                "py_section_color": "var(--py-color-dark)",
+                "section_width": "full",
+                "section_y_mg": "mg-y-m"
+            }
+        },
+        "1661492187781f84a1": {
+            "type": "multicolumn",
+            "blocks": {
+                "166149218786c67f1a-0": {
+                    "type": "column",
+                    "settings": {
+                        "image": "/632a6f7db34039b04f77d3b1/mc-2-1.webp",
+                        "title": "Column",
+                        "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+                        "btn_label": "Learn More",
+                        "btn_link": "",
+                        "view_btn_style": "text_link"
+                    }
+                },
+                "166149218786c67f1a-1": {
+                    "type": "column",
+                    "settings": {
+                        "image": "/632a6f7db34039b04f77d3b1/mc-2-2.webp",
+                        "title": "Column",
+                        "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+                        "btn_label": "Learn More",
+                        "btn_link": "",
+                        "view_btn_style": "text_link"
+                    }
+                },
+                "166149218786c67f1a-2": {
+                    "type": "column",
+                    "settings": {
+                        "image": "/632a6f7db34039b04f77d3b1/mc-2-3.webp",
+                        "title": "Column",
+                        "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+                        "btn_label": "Learn More",
+                        "btn_link": "",
+                        "view_btn_style": "text_link"
+                    }
+                },
+                "c0cd1041-eed8-42bf-92aa-92c4d1223484": {
+                    "type": "column",
+                    "settings": {
+                        "image": "/632a6f7db34039b04f77d3b1/mc-2-4.webp",
+                        "title": "Column",
+                        "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+                        "btn_label": "Learn More",
+                        "btn_link": "",
+                        "view_btn_style": "text_link"
+                    }
+                }
+            },
+            "block_order": [
+                "166149218786c67f1a-0",
+                "166149218786c67f1a-1",
+                "166149218786c67f1a-2",
+                "c0cd1041-eed8-42bf-92aa-92c4d1223484"
+            ],
+            "settings": {
+                "title": "",
+                "title_font_size": 38,
+                "title_alignment": "left",
+                "section_width": "width-l",
+                "section_bg": "bg-c-light",
+                "col_style": "normal",
+                "col_overlay_color": "bg-c-dark",
+                "overlay_opacity": "0",
+                "column_number": 4,
+                "column_gap": 5,
+                "image_width": "full",
+                "image_ratio": "square",
+                "column_alignment": "left",
+                "col_bg_color": "bg-c-none",
+                "col_color": "var(--py-color-dark)",
+                "col_title_font_size": 26,
+                "col_title_font_weight": 500,
+                "col_title_m_font_size": 20,
+                "col_text_font_size": 18,
+                "button_label": "",
+                "button_link": "",
+                "view_btn_size": "medium",
+                "col_color_view_btn": "light",
+                "col_color_view_btn_hover": "dark",
+                "swipe_on_mobile": false
+            }
+        },
+        "166156909821b74b03": {
+            "type": "multicolumn",
+            "blocks": {
+                "16615690974c97d693-0": {
+                    "type": "column",
+                    "settings": {
+                        "image": "/632a6f7db34039b04f77d3b1/mc-3-1.webp",
+                        "title": "Raising the Bar with B Corp",
+                        "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+                        "btn_label": "",
+                        "btn_link": "",
+                        "view_btn_style": "text_link"
+                    }
+                },
+                "16615690974c97d693-1": {
+                    "type": "column",
+                    "settings": {
+                        "image": "/632a6f7db34039b04f77d3b1/mc-3-2.webp",
+                        "title": "The Many Homes of Highland Park",
+                        "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+                        "btn_label": "",
+                        "btn_link": "",
+                        "view_btn_style": "text_link"
+                    }
+                },
+                "16615690974c97d693-2": {
+                    "type": "column",
+                    "settings": {
+                        "image": "/632a6f7db34039b04f77d3b1/mc-3-1.webp",
+                        "title": "Kotn by Actual Source",
+                        "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. <\/p><p><\/p><p><em>Add details on availability, style, or even provide a review.<\/em><\/p>",
+                        "btn_label": "",
+                        "btn_link": "",
+                        "view_btn_style": "text_link"
+                    }
+                }
+            },
+            "block_order": [
+                "16615690974c97d693-0",
+                "16615690974c97d693-1",
+                "16615690974c97d693-2"
+            ],
+            "settings": {
+                "title": "Explore Our Features",
+                "title_font_size": 58,
+                "title_alignment": "center",
+                "section_width": "width-un",
+                "section_bg": "bg-c-light",
+                "col_style": "normal",
+                "col_overlay_color": "bg-c-dark",
+                "overlay_opacity": "0",
+                "column_number": 3,
+                "column_gap": 20,
+                "image_width": "full",
+                "image_ratio": "square",
+                "column_alignment": "left",
+                "col_bg_color": "bg-c-none",
+                "col_color": "var(--py-color-dark)",
+                "col_title_font_size": 20,
+                "col_title_font_weight": 500,
+                "col_title_m_font_size": 18,
+                "col_text_font_size": 15,
+                "button_label": "",
+                "button_link": "",
+                "view_btn_size": "medium",
+                "col_color_view_btn": "light",
+                "col_color_view_btn_hover": "dark",
+                "swipe_on_mobile": false
+            }
+        }
+    },
+    "order": [
+        "1652851716a9bcae46",
+        "1651801075bda11aac",
+        "1651867483e4606eac",
+        "1661490760a063d309",
+        "1661492187781f84a1",
+        "166156909821b74b03"
+    ]
+}

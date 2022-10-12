@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "node ./bin/www",
-    "lint:ejs": "ejslint ./views/6306f8e7db2cbec8c440f780/snippets/cart-notification-4.ejs"
+    "lint:ejs": "ejslint ./views/632a6f7db34039b04f77d3b1/sections/search.ejs"
   },
   "dependencies": {
     "archiver": "^5.3.0",

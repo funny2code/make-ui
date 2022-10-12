@@ -1,129 +1,108 @@
-<% comment){ %>
-    Renders a product thumbnail with a modal-opener
-
-    Accepts:
-    - media: {Object} Product Media object
-    - position: {String} Position of the media. Used for accessible label.
-    - loop: {Boolean} Enable video looping (optional)
-    - modal_id: {String} The product modal that will be shown by clicking the thumbnail
-
-    Usage:
-    <%- include('./product-thumbnail',
-      media: media,
-      position: index,
-      loop: section.settings.enable_video_looping,
-      modal_id: section.id
-   ){ %>
-<% endcomment){ %>
-
 <noscript>
-  <% if(media.media_type === 'video' || media.media_type === 'external_video'){ %>
-    <a href="<% if(media.media_type === 'video'){ %><%= media.sources[1].url %><% } else { %><%= media | external_video_url %><% } %>" aria-label="<%=products.product.video_exit_message' | t: title: product.title %>">
-      <span class="product__media-icon motion-reduce"><%- include('./icon-play'){ %></span>
-      <div class="product__media media" style="padding-top: <%= 1 / media.preview_image.aspect_ratio * 100 %>%;">
+  <% if(media?.media_type === 'video' || media?.media_type === 'external_video'){ %>
+    <a href="<% if(media?.media_type === 'video'){ %><%= media?.sources[1].url %><% } else { %><%= media %><% } %>" aria-label="<%=products.product.video_exit_message %>">
+      <span class="product__media-icon motion-reduce"><%- include('./icon-play') %></span>
+      <div class="product__media media" style="padding-top: <%= 1 / media?.aspect_ratio * 100 %>%;">
         <img
-          srcset="<% if(media.preview_image.width >= 288){ %><%= media.preview_image | img_url: '288x' %> 288w,<% } %>
-                  <% if(media.preview_image.width >= 576){ %><%= media.preview_image | img_url: '576x' %> 576w,<% } %>
-                  <% if(media.preview_image.width >= 550){ %><%= media.preview_image | img_url: '550x' %> 550w,<% } %>
-                  <% if(media.preview_image.width >= 1100){ %><%= media.preview_image | img_url: '1100x' %> 1100w<% } %>"
-          src="<%= media | img_url: '288x288' %>"
+          srcset="<% if(media?.width >= 288){ %><%= media?.src %> 288w,<% } %>
+                  <% if(media?.width >= 576){ %><%= media?.src %> 576w,<% } %>
+                  <% if(media?.width >= 550){ %><%= media?.src %> 550w,<% } %>
+                  <% if(media?.width >= 1100){ %><%= media?.src %> 1100w<% } %>"
+          src="<%= media?.src %>"
           sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
           width="288"
-          height="<%= 288 / media.preview_image.aspect_ratio Math.ceil() %>"
-          alt="<%= media.preview_image.alt %>"
+          height="<%= Math.ceil(288 / media?.aspect_ratio) %>"
+          alt="<%= media?.alt %>"
         >
       </div>
     </a>
   <% } else { %>
-    <div class="product__media media" style="padding-top: <%= 1 / media.preview_image.aspect_ratio * 100 %>%;">
+    <div class="product__media media" style="padding-top: <%= 1 / media?.aspect_ratio * 100 %>%;">
       <img
-        srcset="<% if(media.preview_image.width >= 288){ %><%= media.preview_image | img_url: '288x' %> 288w,<% } %>
-                <% if(media.preview_image.width >= 576){ %><%= media.preview_image | img_url: '576x' %> 576w,<% } %>
-                <% if(media.preview_image.width >= 550){ %><%= media.preview_image | img_url: '550x' %> 550w,<% } %>
-                <% if(media.preview_image.width >= 1100){ %><%= media.preview_image | img_url: '1100x' %> 1100w<% } %>"
-        src="<%= media | img_url: '288x288' %>"
+        srcset="<% if(media?.width >= 288){ %><%= media?.src %> 288w,<% } %>
+                <% if(media?.width >= 576){ %><%= media?.src %> 576w,<% } %>
+                <% if(media?.width >= 550){ %><%= media?.src %> 550w,<% } %>
+                <% if(media?.width >= 1100){ %><%= media?.src %> 1100w<% } %>"
+        src="<%= media?.src %>"
         sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
         width="288"
-        height="<%= 288 / media.preview_image.aspect_ratio Math.ceil() %>"
-        alt="<%= media.preview_image.alt %>"
+        height="<%= Math.ceil(288 / media?.aspect_ratio) %>"
+        alt="<%= media?.alt %>"
       >
     </div>
   <% } %>
 </noscript>
 
-<modal-opener class="product__modal-opener product__modal-opener--<%= media.media_type %> no-js-hidden" data-modal="#ProductModal-<%= modal_id %>">
+<modal-opener class="product__modal-opener product__modal-opener--<%= media?.media_type %> no-js-hidden" data-modal="#ProductModal-<%= modal_id %>">
   <span class="product__media-icon motion-reduce" aria-hidden="true">
-    <%
-      case media.media_type
-      when 'video' || 'external_video'
-        render 'icon-play'
-      when 'model'
-        render 'icon-3d-model'
-      else
-        render 'icon-zoom'
-      endcase
-   ){ %>
+    <% if(media?.media_type === 'video' || media?.media_type === 'external_video'){ %>
+      <%- include('./icon-play') %>
+    <% } else if(media?.media_type === 'model'){ %>
+      <%- include('./icon-3d-model') %>
+    <% } else { %>
+      <%- include('./icon-zoom') %>
+    <% } %>
   </span>
 
-  <div class="product__media media" style="padding-top: <%= 1 / media.preview_image.aspect_ratio * 100 %>%;">
+  <div class="product__media media" style="padding-top: <%= 1 / media?.aspect_ratio * 100 %>%;">
     <img
-      srcset="<% if(media.preview_image.width >= 288){ %><%= media.preview_image | img_url: '288x' %> 288w,<% } %>
-              <% if(media.preview_image.width >= 576){ %><%= media.preview_image | img_url: '576x' %> 576w,<% } %>
-              <% if(media.preview_image.width >= 550){ %><%= media.preview_image | img_url: '550x' %> 550w,<% } %>
-              <% if(media.preview_image.width >= 1100){ %><%= media.preview_image | img_url: '1100x' %> 1100w<% } %>"
-      src="<%= media | img_url: '288x' %>"
+      srcset="<% if(media?.width >= 288){ %><%= media?.src %> 288w,<% } %>
+              <% if(media?.width >= 576){ %><%= media?.src %> 576w,<% } %>
+              <% if(media?.width >= 550){ %><%= media?.src %> 550w,<% } %>
+              <% if(media?.width >= 1100){ %><%= media?.src %> 1100w<% } %>"
+      src="<%= media?.src %>"
       sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
       width="288"
-      height="<%= 288 / media.preview_image.aspect_ratio Math.ceil() %>"
-      alt="<%= media.preview_image.alt %>"
+      height="<%= Math.ceil(288 / media?.aspect_ratio) %>"
+      alt="<%= media?.alt %>"
     >
   </div>
-<button class="product__media-toggle" type="button" aria-haspopup="dialog" data-media-id="<%= media.id %>">
+<button class="product__media-toggle" type="button" aria-haspopup="dialog" data-media-id="<%= media?.id %>">
   <span class="visually-hidden">
     <% if(position === 'featured'){ %>
-      <%=products.product.media.open_featured_media%>
+      <%=products.product.media?.open_featured_media%>
     <% } else { %>
-      <%=products.product.media.open_media' | t: index: position %>
+      <%=products.product.media?.open_media %>
     <% } %>
   </span>
 </button>
 </modal-opener>
 
-<% if(media.media_type !== 'image'){ %>
-  <% if(media.media_type === 'model'){ %>
-    <product-model class="deferred-media media no-js-hidden" style="padding-top: 100%" data-media-id="<%= media.id %>">
+<% if(media?.media_type !== 'image'){ %>
+  <% if(media?.media_type === 'model'){ %>
+    <product-model class="deferred-media media no-js-hidden" style="padding-top: 100%" data-media-id="<%= media?.id %>">
   <% } else { %>
-    <deferred-media class="deferred-media media no-js-hidden" style="padding-top: <%= 1 / media.aspect_ratio * 100 %>%" data-media-id="<%= media.id %>">
+    <deferred-media class="deferred-media media no-js-hidden" style="padding-top: <%= 1 / media?.aspect_ratio * 100 %>%" data-media-id="<%= media?.id %>">
   <% } %>
-  <button id="Deferred-Poster-Modal-<%= media.id %>" class="deferred-media__poster" type="button">
+  <button id="Deferred-Poster-Modal-<%= media?.id %>" class="deferred-media__poster" type="button">
     <span class="deferred-media__poster-button motion-reduce">
-      <% if(media.media_type === 'model'){ %>
-        <span class="visually-hidden"><%=products.product.media.play_model%></span>
-        <%- include('./icon-3d-model'){ %>
+      <% if(media?.media_type === 'model'){ %>
+        <span class="visually-hidden"><%=products.product.media?.play_model%></span>
+        <%- include('./icon-3d-model') %>
       <% } else { %>
-        <span class="visually-hidden"><%=products.product.media.play_video%></span>
-        <%- include('./icon-play'){ %>
+        <span class="visually-hidden"><%=products.product.media?.play_video%></span>
+        <%- include('./icon-play') %>
       <% } %>
     </span>
     <img
-      srcset="<% if(media.preview_image.width >= 288){ %><%= media.preview_image | img_url: '288x' %> 288w,<% } %>
-              <% if(media.preview_image.width >= 576){ %><%= media.preview_image | img_url: '576x' %> 576w,<% } %>
-              <% if(media.preview_image.width >= 550){ %><%= media.preview_image | img_url: '550x' %> 550w,<% } %>
-              <% if(media.preview_image.width >= 1100){ %><%= media.preview_image | img_url: '1100x' %> 1100w<% } %>"
-      src="<%= media | img_url: '288x' %>"
+      srcset="<% if(media?.width >= 288){ %><%= media?.src %> 288w,<% } %>
+              <% if(media?.width >= 576){ %><%= media?.src %> 576w,<% } %>
+              <% if(media?.width >= 550){ %><%= media?.src %> 550w,<% } %>
+              <% if(media?.width >= 1100){ %><%= media?.src %> 1100w<% } %>"
+      src="<%= media?.src %>"
       sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
       width="288"
-      height="<%= 288 / media.preview_image.aspect_ratio %>"
-      alt="<%= media.preview_image.alt %>"
+      height="<%= 288 / media?.aspect_ratio %>"
+      alt="<%= media?.alt %>"
     >
   </button>
   <template>
-    <%
-      case media.media_type
+    <%#
+      case media?.media_type
       when 'external_video'
-        var video_class = 'js-' + media.host
-        if media.host === 'youtube'
-          echo media | external_video_url: autoplay: true, loop: loop, playlist: media.external_id | external_video_tag: class: video_class, loading: "lazy"
+        var video_class = 'js-' + media?.host
+        if media?.host === 'youtube'
+          echo media | external_video_url: autoplay: true, loop: loop, playlist: media?.external_id | external_video_tag: class: video_class, loading: "lazy"
         else
           echo media | external_video_url: autoplay: true, loop: loop | external_video_tag: class: video_class, loading: "lazy"
         }
@@ -135,18 +114,18 @@
    ){ %>
   </template>
 
-  <% if(media.media_type === 'model'){ %>
+  <% if(media?.media_type === 'model'){ %>
     </product-model>
     <button
       class="button button--full-width product__xr-button"
       type="button"
       aria-label="<%=products.product.xr_button_label%>"
       data-shopify-xr
-      data-shopify-model3d-id="<%= media.id %>"
+      data-shopify-model3d-id="<%= media?.id %>"
       data-shopify-title="title"
       data-shopify-xr-hidden
       >
-      <%- include('./icon-3d-model'){ %>
+      <%- include('./icon-3d-model') %>
       <%=products.product.xr_button%>
     </button>
   <% } else { %>

@@ -17,13 +17,13 @@
   }
   <% } %>
 </style>
-<div class="page-width<% if(cart === empty){ %> is-empty<% } %>" id="main-cart-footer" data-id="<%= section.id %>">
+<div class="page-width<% if(!cart){ %> is-empty<% } %>" id="main-cart-footer" data-id="<%= sectionid %>">
   <div><div class="title-wrapper-with-link" style="opacity:0"><h3 style="margin:0">Form</h3></div>
     <div class="cart__footer">
       <div class="cart__footer-container">
-        <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
-          <% if(block.type){ %>
-            <% } else if(block.type === "buttons"){ %>
+        <% section?.block_order?.forEach((orderItem, index) => { %>
+          <% let block = section?.blocks[orderItem] %>
+          <% if(block.type === "buttons"){ %>
               <div class="cart__ctas">
                 <noscript>
                   <button type="submit" class="cart__update-button button button--secondary" form="cart">
@@ -31,7 +31,7 @@
                   </button>
                 </noscript>
 
-                <button type="submit" class="cart__checkout-button button py-c-<%=block?.settings?.btn_color%> py-hv-c-<%=block?.settings?.btn_color_hover%> py-bg-c-<%=block?.settings?.btn_bg_color%> py-hv-bg-c-<%=block?.settings?.btn_bg_color_hover%> py-btn-<%=block?.settings?.btn_size%>" name="checkout"<% if(cart === empty){ %> disabled<% } %> form="cart">
+                <button type="submit" class="cart__checkout-button button py-c-<%=block?.settings?.btn_color%> py-hv-c-<%=block?.settings?.btn_color_hover%> py-bg-c-<%=block?.settings?.btn_bg_color%> py-hv-bg-c-<%=block?.settings?.btn_bg_color_hover%> py-btn-<%=block?.settings?.btn_size%>" name="checkout"<% if(!cart){ %> disabled<% } %> form="cart">
                   <%=sectionst.cart.checkout%>
                 </button>
                 <% if(section.settings.enable_dynamic_pay){ %>
@@ -50,9 +50,9 @@
                 <div>
                   <% if(cart.cart_level_discount_applications.length > 0){ %>
                     <ul class="discounts list-unstyled" role="list" aria-label="<%=customer.order.discount%>">
-                      <% for discount in cart.cart_level_discount_applications){ %>
+                      <% cart?.cart_level_discount_applications?.forEach((discount,index)=>{ %>
                         <li class="discounts__discount discounts__discount--end">
-                          <%- include('../snippets/icon-discount'){ %>
+                          <%- include('../snippets/icon-discount') %>
                           <%= discount.title %>
                           (-<%= discount.total_allocated_amount %>)
                         </li>
@@ -62,12 +62,12 @@
                 </div>
 
                 <small class="tax-note caption-large rte">
-                  <% if(cart.taxes_included && shop.shipping_policy.body){ %>
-                    <%=sectionst.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url %>
+                  <% if(cart.taxes_included && shop?.shipping_policy?.body){ %>
+                    <%=sectionst.cart.taxes_included_and_shipping_policy_html %>
                   <% } else if(cart.taxes_included){ %>
                     <%=sectionst.cart.taxes_included_but_shipping_at_checkout%>
-                  <% } else if(shop.shipping_policy.body){ %>
-                    <%=sectionst.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url %>
+                  <% } else if(shop?.shipping_policy?.body){ %>
+                    <%=sectionst.cart.taxes_and_shipping_policy_at_checkout_html %>
                   <% } else { %>
                     <%=sectionst.cart.taxes_and_shipping_at_checkout%>
                   <% } %>
@@ -102,176 +102,3 @@
 
   customElements.define('cart-note', CartNote);
 </script>
-
-<% schema){ %>
-{
-  "name": "t:sectionst.main-cart-footer.name",
-  "class": "cart__footer-wrapper",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_cart_note",
-      "default": false,
-      "label": "t:sectionst.main-cart-footer.settings.show_cart_note.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_dynamic_pay",
-      "default": false,
-      "label": "Add Dynamic Payment Button"
-    },      
-    {
-      "type": "text",
-      "id": "button_radius",
-      "default": "50",
-      "label": "Checkout Button Radius"
-    } 
-  ],
-  "blocks": [
-    {
-      "type": "subtotal",
-      "name": "t:sectionst.main-cart-footer.blocks.subtotal.name",
-      "limit": 1
-    },
-    {
-      "type": "buttons",
-      "name": "t:sectionst.main-cart-footer.blocks.buttons.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "select",
-          "id": "btn_size",
-          "label": "Button Size",
-          "options": [
-            {
-              "label": "Small",
-              "value": "small"
-            },
-            {
-              "label": "Medium",
-              "value": "medium"
-            },
-            {
-              "label": "Large",
-              "value": "large"
-            }
-          ],
-          "default": "medium"
-        },
-        {
-          "type": "select",
-          "id": "btn_color",
-          "label": "Button Color",
-          "options": [
-            {
-              "label": "Dark",
-              "value": "dark"
-            },
-            {
-              "label": "Middle Dark",
-              "value": "middle-dark"
-            },
-            {
-              "label": "Average",
-              "value": "average"
-            },
-            {
-              "label": "Middle Light",
-              "value": "middle-light"
-            },
-            {
-              "label": "Light",
-              "value": "light"
-            }
-          ],
-          "default": "light"
-        },
-        {
-          "type": "select",
-          "id": "btn_bg_color",
-          "label": "Button Background Color",
-          "options": [
-            {
-              "label": "Dark",
-              "value": "dark"
-            },
-            {
-              "label": "Middle Dark",
-              "value": "middle-dark"
-            },
-            {
-              "label": "Average",
-              "value": "average"
-            },
-            {
-              "label": "Middle Light",
-              "value": "middle-light"
-            },
-            {
-              "label": "Light",
-              "value": "light"
-            }
-          ],
-          "default": "dark"
-        },
-        {
-          "type": "select",
-          "id": "btn_color_hover",
-          "label": "Button Hover Color",
-          "options": [
-            {
-              "label": "Dark",
-              "value": "dark"
-            },
-            {
-              "label": "Middle Dark",
-              "value": "middle-dark"
-            },
-            {
-              "label": "Average",
-              "value": "average"
-            },
-            {
-              "label": "Middle Light",
-              "value": "middle-light"
-            },
-            {
-              "label": "Light",
-              "value": "light"
-            }
-          ],
-          "default": "dark"
-        },
-        {
-          "type": "select",
-          "id": "btn_bg_color_hover",
-          "label": "Button Hover Background Color",
-          "options": [
-            {
-              "label": "Dark",
-              "value": "dark"
-            },
-            {
-              "label": "Middle Dark",
-              "value": "middle-dark"
-            },
-            {
-              "label": "Average",
-              "value": "average"
-            },
-            {
-              "label": "Middle Light",
-              "value": "middle-light"
-            },
-            {
-              "label": "Light",
-              "value": "light"
-            }
-          ],
-          "default": "light"
-        }
-      ]
-    }
-  ]
-}
-<% endschema){ %>

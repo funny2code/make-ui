@@ -80,6 +80,7 @@
       "updated_at": "2022-08-23T14:30:26-04:00",
       "published_at": "2022-08-02T15:22:44-04:00",
       "template_suffix": "",
+      "has_only_default_variant": false,
       "published_scope": "global",
       "tags": "100% Cotton, Core, Essentials, F\/W 22, Fan, Final Few, Heavyweight, Ivory, MLB, MLB Expansion, Natural, On Demand, San Diego Padres, T-Shirts, under 65, Unisex, US Food Bank",
       "variants": [
@@ -246,7 +247,7 @@
           "requires_shipping": true
         }
       ],
-      "options": [
+      "options_with_values": [
         {
           "id": 9484630589528,
           "product_id": 7194761920600,
@@ -263,6 +264,34 @@
         }
       ],
       "media": [
+        {
+          "id": 29751536648280,
+          "product_id": 7194761920600,
+          "position": 1,
+          "created_at": "2022-07-26T17:18:35-04:00",
+          "updated_at": "2022-07-26T17:18:37-04:00",
+          "alt": null,
+          "width": 3001,
+          "height": 4455,
+          "aspect_ratio": 0.8,
+          "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/MLBProductFlatlays-Tier4-HWTee-15.png?v=1658870317",
+          "variant_ids": []
+        },
+        {
+          "id": 29751536681048,
+          "product_id": 7194761920600,
+          "position": 2,
+          "created_at": "2022-07-26T17:18:35-04:00",
+          "updated_at": "2022-07-26T17:18:38-04:00",
+          "alt": null,
+          "width": 3001,
+          "height": 4455,
+          "aspect_ratio": 0.8,
+          "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/MLBProductFlatlays-Tier4-HWTee-16.png?v=1658870318",
+          "variant_ids": []
+        }
+      ],
+      "images": [
         {
           "id": 29751536648280,
           "product_id": 7194761920600,
@@ -315,6 +344,7 @@
       "updated_at": "2022-08-20T00:25:46-04:00",
       "published_at": "2022-08-02T15:22:43-04:00",
       "template_suffix": "",
+      "has_only_default_variant": false,
       "published_scope": "global",
       "tags": "100% Cotton, Colorado Rockies, Core, Essentials, F\/W 22, Fan, Final Few, Heavyweight, Ivory, MLB, MLB Expansion, Natural, On Demand, T-Shirts, under 65, Unisex, US Food Bank",
       "variants": [
@@ -481,7 +511,7 @@
           "requires_shipping": true
         }
       ],
-      "options": [
+      "options_with_values": [
         {
           "id": 9484629246040,
           "product_id": 7194761166936,
@@ -498,6 +528,34 @@
         }
       ],
       "media": [
+        {
+          "id": 29751535599704,
+          "product_id": 7194761166936,
+          "position": 1,
+          "created_at": "2022-07-26T17:16:59-04:00",
+          "updated_at": "2022-07-26T17:17:01-04:00",
+          "alt": null,
+          "width": 3000,
+          "height": 4456,
+          "aspect_ratio": 0.8,
+          "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/MLBProductFlatlays-Tier4-HWTee-09.png?v=1658870221",
+          "variant_ids": []
+        },
+        {
+          "id": 29751535698008,
+          "product_id": 7194761166936,
+          "position": 2,
+          "created_at": "2022-07-26T17:17:13-04:00",
+          "updated_at": "2022-07-26T17:17:15-04:00",
+          "alt": null,
+          "width": 3001,
+          "height": 4456,
+          "aspect_ratio": 0.8,
+          "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/MLBProductFlatlays-Tier4-HWTee-10.png?v=1658870235",
+          "variant_ids": []
+        }
+      ],
+      "images": [
         {
           "id": 29751535599704,
           "product_id": 7194761166936,
@@ -550,6 +608,7 @@
       "updated_at": "2022-08-20T00:50:42-04:00",
       "published_at": "2022-08-02T15:22:42-04:00",
       "template_suffix": "",
+      "has_only_default_variant": false,
       "published_scope": "global",
       "tags": "100% Cotton, Arizona Diamondbacks, Core, Essentials, F\/W 22, Fan, Final Few, Heavyweight, Ivory, MLB, MLB Expansion, Natural, On Demand, T-Shirts, under 65, Unisex, US Food Bank",
       "variants": [
@@ -716,7 +775,7 @@
           "requires_shipping": true
         }
       ],
-      "options": [
+      "options_with_values": [
         {
           "id": 9484627771480,
           "product_id": 7194760347736,
@@ -733,6 +792,34 @@
         }
       ],
       "media": [
+        {
+          "id": 29751533797464,
+          "product_id": 7194760347736,
+          "position": 1,
+          "created_at": "2022-07-26T17:15:46-04:00",
+          "updated_at": "2022-07-26T17:15:49-04:00",
+          "alt": null,
+          "width": 3000,
+          "height": 4456,
+          "aspect_ratio": 0.8,
+          "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/MLBProductFlatlays-Tier4-HWTee-01.png?v=1658870149",
+          "variant_ids": []
+        },
+        {
+          "id": 29751533764696,
+          "product_id": 7194760347736,
+          "position": 2,
+          "created_at": "2022-07-26T17:15:46-04:00",
+          "updated_at": "2022-07-26T17:15:48-04:00",
+          "alt": null,
+          "width": 3001,
+          "height": 4456,
+          "aspect_ratio": 0.8,
+          "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/MLBProductFlatlays-Tier4-HWTee-02.png?v=1658870148",
+          "variant_ids": []
+        }
+      ],
+      "images": [
         {
           "id": 29751533797464,
           "product_id": 7194760347736,
@@ -785,6 +872,7 @@
       "updated_at": "2022-08-23T16:19:10-04:00",
       "published_at": "2022-08-02T15:22:41-04:00",
       "template_suffix": "",
+      "has_only_default_variant": false,
       "published_scope": "global",
       "tags": "100% Cotton, Core, Essentials, F\/W 22, Fan, Final Few, Heavyweight, Houston Astros, Ivory, MLB, MLB Expansion, Natural, On Demand, T-Shirts, under 65, Unisex, US Food Bank",
       "variants": [
@@ -951,7 +1039,7 @@
           "requires_shipping": true
         }
       ],
-      "options": [
+      "options_with_values": [
         {
           "id": 9484626362456,
           "product_id": 7194759561304,
@@ -968,6 +1056,34 @@
         }
       ],
       "media": [
+        {
+          "id": 29751532453976,
+          "product_id": 7194759561304,
+          "position": 1,
+          "created_at": "2022-07-26T17:14:24-04:00",
+          "updated_at": "2022-07-26T17:14:26-04:00",
+          "alt": null,
+          "width": 3001,
+          "height": 4456,
+          "aspect_ratio": 0.8,
+          "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/MLBProductFlatlays-Tier4-HWTee-11.png?v=1658870066",
+          "variant_ids": []
+        },
+        {
+          "id": 29751532486744,
+          "product_id": 7194759561304,
+          "position": 2,
+          "created_at": "2022-07-26T17:14:24-04:00",
+          "updated_at": "2022-07-26T17:14:27-04:00",
+          "alt": null,
+          "width": 3001,
+          "height": 4456,
+          "aspect_ratio": 0.8,
+          "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/MLBProductFlatlays-Tier4-HWTee-12.png?v=1658870067",
+          "variant_ids": []
+        }
+      ],
+      "images": [
         {
           "id": 29751532453976,
           "product_id": 7194759561304,
@@ -1020,6 +1136,7 @@
       "updated_at": "2022-08-23T11:01:25-04:00",
       "published_at": "2022-08-02T15:22:40-04:00",
       "template_suffix": "",
+      "has_only_default_variant": false,
       "published_scope": "global",
       "tags": "100% Cotton, Core, Essentials, F\/W 22, Fan, Final Few, Heavyweight, Ivory, Miami Marlins, MLB, MLB Expansion, Natural, On Demand, T-Shirts, under 65, Unisex, US Food Bank",
       "variants": [
@@ -1186,7 +1303,7 @@
           "requires_shipping": true
         }
       ],
-      "options": [
+      "options_with_values": [
         {
           "id": 9484619776088,
           "product_id": 7194754580568,
@@ -1203,6 +1320,34 @@
         }
       ],
       "media": [
+        {
+          "id": 29751516495960,
+          "product_id": 7194754580568,
+          "position": 1,
+          "created_at": "2022-07-26T17:12:08-04:00",
+          "updated_at": "2022-07-26T17:12:10-04:00",
+          "alt": null,
+          "width": 3001,
+          "height": 4457,
+          "aspect_ratio": 0.8,
+          "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/MLBProductFlatlays-Tier4-HWTee-05.png?v=1658869930",
+          "variant_ids": []
+        },
+        {
+          "id": 29751516430424,
+          "product_id": 7194754580568,
+          "position": 2,
+          "created_at": "2022-07-26T17:12:08-04:00",
+          "updated_at": "2022-07-26T17:12:10-04:00",
+          "alt": null,
+          "width": 3001,
+          "height": 4455,
+          "aspect_ratio": 0.8,
+          "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/MLBProductFlatlays-Tier4-HWTee-06.png?v=1658869930",
+          "variant_ids": []
+        }
+      ],
+      "images": [
         {
           "id": 29751516495960,
           "product_id": 7194754580568,
@@ -1255,6 +1400,7 @@
       "updated_at": "2022-08-22T19:46:09-04:00",
       "published_at": "2022-08-02T15:22:39-04:00",
       "template_suffix": "",
+      "has_only_default_variant": false,
       "published_scope": "global",
       "tags": "100% Cotton, Core, Essentials, F\/W 22, Fan, Final Few, Heavyweight, Ivory, MLB, MLB Expansion, Natural, On Demand, Pittsburgh Pirates, T-Shirts, under 65, Unisex, US Food Bank",
       "variants": [
@@ -1421,7 +1567,7 @@
           "requires_shipping": true
         }
       ],
-      "options": [
+      "options_with_values": [
         {
           "id": 9484611059800,
           "product_id": 7194749665368,
@@ -1438,6 +1584,34 @@
         }
       ],
       "media": [
+        {
+          "id": 29751499817048,
+          "product_id": 7194749665368,
+          "position": 1,
+          "created_at": "2022-07-26T17:04:42-04:00",
+          "updated_at": "2022-07-26T17:04:44-04:00",
+          "alt": null,
+          "width": 3001,
+          "height": 4457,
+          "aspect_ratio": 0.8,
+          "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/MLBProductFlatlays-Tier4-HWTee-13.png?v=1658869484",
+          "variant_ids": []
+        },
+        {
+          "id": 29751499849816,
+          "product_id": 7194749665368,
+          "position": 2,
+          "created_at": "2022-07-26T17:04:42-04:00",
+          "updated_at": "2022-07-26T17:04:44-04:00",
+          "alt": null,
+          "width": 3001,
+          "height": 4455,
+          "aspect_ratio": 0.8,
+          "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/MLBProductFlatlays-Tier4-HWTee-14.png?v=1658869484",
+          "variant_ids": []
+        }
+      ],
+      "images": [
         {
           "id": 29751499817048,
           "product_id": 7194749665368,

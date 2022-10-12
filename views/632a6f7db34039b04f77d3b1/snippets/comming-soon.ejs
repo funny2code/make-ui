@@ -1,5 +1,5 @@
 <div class="bc-comming-soon">
     <div class="bc-comming-soon_wrapper">
-        <span>AVAILABLE ON <%= date new Date() "%b. %d %Y" %></span>
+        <span>AVAILABLE ON <% let dateN = new Date(date) %><%= dateN?.getMonth() + '.' dateN?.getDate() dateN?.getFullYear() %></span>
     </div>
 </div>

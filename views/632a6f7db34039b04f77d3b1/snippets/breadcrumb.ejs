@@ -1,26 +1,22 @@
-<% comment){ %>
-Documentation - http://docs.shopify.com/support/your-website/navigation/creating-a-breadcrumb-navigation
-<% endcomment){ %>
-
-<% if(!template === 'index'){ %>
+<% if(template !== 'index'){ %>
 <div class="breadcrumb-nav">
   <div class="page-width">
     <ul>
       <li><a href="/">Home</a></li>
-      <% if(template.includes('product'){ %>
+      <% if(template.includes('product')){ %>
       <% if(collection){ %>            
-      <% if(collection.handle){ %>
-      <% capture url){ %>/collections/<%= collection.handle %><% endcapture){ %>
-      <li><%= collection.title | link_to: url %></li>
+      <% if(collection?.handle){ %>
+      <% var url = "/collections/" + collection.handle %>
+      <li><%= collection.title %></li>
       <% } %>
       <% } %>
 
       <li><span><%= product.title %></span></li>
 
-      <% } else if(template.includes('collection' && collection.handle){ %>
+      <% } else if(template.includes('collection') && collection.handle){ %>
       <% if(current_tags){ %>
-      <% capture url){ %>/collections/<%= collection.handle %><% endcapture){ %>
-      <li><%= collection.title | link_to: url %></li>
+      <% var url = "/collections/" + collection.handle %>
+      <li><%= collection.title %></li>
       <% } else { %>
       <li><%= collection.title %></li>
       <% } %>
@@ -28,12 +24,12 @@ Documentation - http://docs.shopify.com/support/your-website/navigation/creating
       <% } else if(template === 'article'){ %>
       <li><a href="<%= blog.url %>"><%= blog.title %></a></li>
       <li><%= article.title %></li>
-      <% } else if(template.includes('customers' && template !== "customers/account"){ %>
-      <% var account = 'customer.account.title_main' | t){ %>
-      <li><%= account | link_to: "/account" %></li>
+      <% } else if(template.includes('customers') && template !== "customers/account"){ %>
+      <% var account = customer.account.title_main %>
+      <li><%= account %></li>
       <li><%= page_title %></li>
 
-      <% } else if(template.includes('page'){ %>
+      <% } else if(template.includes('page')){ %>
       <li><%= page.title %></li>
 
       <% } else { %>

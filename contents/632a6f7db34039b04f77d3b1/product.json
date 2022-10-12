@@ -38,7 +38,8 @@
       "inventory_quantity": 0,
       "old_inventory_quantity": 0,
       "tax_code": "",
-      "requires_shipping": true
+      "requires_shipping": true,
+      "available": true
     },
     {
       "id": 39841190969432,
@@ -65,7 +66,8 @@
       "inventory_quantity": 12,
       "old_inventory_quantity": 12,
       "tax_code": "",
-      "requires_shipping": true
+      "requires_shipping": true,
+      "available": true
     },
     {
       "id": 39841191002200,
@@ -92,7 +94,8 @@
       "inventory_quantity": 17,
       "old_inventory_quantity": 17,
       "tax_code": "",
-      "requires_shipping": true
+      "requires_shipping": true,
+      "available": true
     },
     {
       "id": 39841191034968,
@@ -119,7 +122,8 @@
       "inventory_quantity": 7,
       "old_inventory_quantity": 7,
       "tax_code": "",
-      "requires_shipping": true
+      "requires_shipping": true,
+      "available": true
     },
     {
       "id": 39841191067736,
@@ -146,7 +150,8 @@
       "inventory_quantity": 6,
       "old_inventory_quantity": 6,
       "tax_code": "",
-      "requires_shipping": true
+      "requires_shipping": true,
+      "available": true
     },
     {
       "id": 39841191100504,
@@ -173,7 +178,8 @@
       "inventory_quantity": 2,
       "old_inventory_quantity": 2,
       "tax_code": "",
-      "requires_shipping": true
+      "requires_shipping": true,
+      "available": true
     },
     {
       "id": 39841191133272,
@@ -200,10 +206,11 @@
       "inventory_quantity": 1,
       "old_inventory_quantity": 1,
       "tax_code": "",
-      "requires_shipping": true
+      "requires_shipping": true,
+      "available": true
     }
   ],
-  "options": [
+  "options_with_values": [
     {
       "id": 9149819093080,
       "product_id": 6993798201432,
@@ -221,6 +228,78 @@
     }
   ],
   "media": [
+    {
+      "id": 29710544339032,
+      "product_id": 6993798201432,
+      "position": 1,
+      "created_at": "2022-07-07T22:53:28-04:00",
+      "updated_at": "2022-07-07T22:53:28-04:00",
+      "alt": null,
+      "width": 1379,
+      "height": 2048,
+      "media_type": "image",
+      "aspect_ratio": 0.8,
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/T-Shirt2.1_NBA75th01.jpg?v=1657248808",
+      "variant_ids": []
+    },
+    {
+      "id": 29710544371800,
+      "product_id": 6993798201432,
+      "position": 2,
+      "created_at": "2022-07-07T22:53:28-04:00",
+      "updated_at": "2022-07-07T22:53:28-04:00",
+      "alt": null,
+      "width": 1379,
+      "height": 2048,
+      "media_type": "image",
+      "aspect_ratio": 0.8,
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/T-Shirt2.2_NBA75th01.jpg?v=1657248808",
+      "variant_ids": []
+    },
+    {
+      "id": 29710544404568,
+      "product_id": 6993798201432,
+      "position": 3,
+      "created_at": "2022-07-07T22:53:28-04:00",
+      "updated_at": "2022-07-07T22:53:28-04:00",
+      "alt": null,
+      "width": 1379,
+      "height": 2048,
+      "media_type": "image",
+      "aspect_ratio": 0.8,
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/T-Shirt2.3_NBA75th01.jpg?v=1657248808",
+      "variant_ids": []
+    },
+    {
+      "id": 29710544437336,
+      "product_id": 6993798201432,
+      "position": 4,
+      "created_at": "2022-07-07T22:53:28-04:00",
+      "updated_at": "2022-07-07T22:53:28-04:00",
+      "alt": null,
+      "width": 1380,
+      "height": 2049,
+      "media_type": "image",
+      "aspect_ratio": 0.8,
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/Artboard4copy2.png?v=1657248808",
+      "variant_ids": []
+    },
+    {
+      "id": 29710544470104,
+      "product_id": 6993798201432,
+      "position": 5,
+      "created_at": "2022-07-07T22:53:28-04:00",
+      "updated_at": "2022-07-07T22:53:28-04:00",
+      "alt": null,
+      "width": 1379,
+      "height": 2048,
+      "media_type": "image",
+      "aspect_ratio": 0.8,
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0488\/0597\/products\/T-ShirtBlack_NBA75th01.jpg?v=1657248808",
+      "variant_ids": []
+    }
+  ],
+  "images": [
     {
       "id": 29710544339032,
       "product_id": 6993798201432,

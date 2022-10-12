@@ -31,11 +31,8 @@
     var mHorizontal = self + '_m_horizontal'
     var mVertical   = self + '_m_vertical'
 %>
-<% if(css[width] || css[height] || css[padding] || css[vertical] || css[horizontal] || css[lineHeight] || css[maxWidth] || css[align] || css[color] || css[weight] || css[size] || css[margin] || css[bgColor] || css[bgImage] || css[bgStyle] 
-    || css[mWidth] || css[mHeight] || css[mPadding] || css[mVertical] || css[mHorizontal] || css[mLineHeight] || css[mMaxWidth] || css[mAlign] || css[mColor] || css[mWeight] || css[mSize] || css[mMargin] || css[mBgColor] || css[mBgImage] || css[mBgStyle]
-%>
+<% if(css[width] || css[height] || css[padding] || css[vertical] || css[horizontal] || css[lineHeight] || css[maxWidth] || css[align] || css[color] || css[weight] || css[size] || css[margin] || css[bgColor] || css[bgImage] || css[bgStyle] || css[mWidth] || css[mHeight] || css[mPadding] || css[mVertical] || css[mHorizontal] || css[mLineHeight] || css[mMaxWidth] || css[mAlign] || css[mColor] || css[mWeight] || css[mSize] || css[mMargin] || css[mBgColor] || css[mBgImage] || css[mBgStyle]){ %>
 <style type="text/css">
-    
     <% if(css[width] || css[height] || css[padding] || css[vertical] || css[horizontal] || css[lineHeight] || css[maxWidth] || css[align] || css[color] || css[weight] || css[size] || css[margin] || css[bgColor] || css[bgImage] || css[bgStyle]){ %>
     <%= class %>-<%= id %> {
         <% if(css[width]){ %>
@@ -72,7 +69,7 @@
         background-color: <%=css[bgColor]%>;
         <% } %>
         <% if(css[bgImage]){ %>
-        background-image: url(<%=css[bgImage] | img_url: ''){ %>);
+        background-image: url(<%=css[bgImage] ) %>);
         <% } %>
         <% if(css[bgStyle]){ %>
         background-size: <%=css[bgStyle]%>;
@@ -87,7 +84,7 @@
     <% } %>
 
     <% if(css[mWidth] || css[mHeight] || css[mPadding] || css[mVertical] || css[mHorizontal] || css[mLineHeight] || css[mMaxWidth] || css[mAlign] || css[mColor] || css[mWeight] || css[mSize] || css[mMargin] || css[mBgColor] || css[mBgImage] || css[mBgStyle]){ %>
-    @media only  screen && (max-width: 768px){
+    @media only  screen and (max-width: 768px){
         <%= class %>-<%= id %> {
             <% if(css[mWidth]){ %>
             width: <%=css[mWidth]%>;
@@ -123,7 +120,7 @@
             background-color: <%=css[mBgColor]%>;
             <% } %>
             <% if(css[mBgImage]){ %>
-            background-image: url(<%=css[mBgImage] | img_url: ''){ %>);
+            background-image: url(<%=css[mBgImage]) %>);
             <% } %>
             <% if(css[mBgStyle]){ %>
             background-size: <%=css[mBgStyle]%>;

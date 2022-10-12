@@ -1480,12 +1480,8 @@
     let html = parser.parseFromString(data, "text/html");
     for (let i = 0; i < iframes.length; i++) {
       let iframeItem = iframes[i];
-      let ifrm =
-        iframeItem.contentDocument || iframeItem.contentWindow.document;
-      html
-        ? (ifrm.querySelector("body").innerHTML =
-            html.querySelector("body").innerHTML)
-        : null;
+      let ifrm = iframeItem.contentDocument || iframeItem.contentWindow.document;
+      html ? ifrm.querySelector("body").innerHTML = html.querySelector("body").innerHTML : null;
     }
     loading?.classList.remove("py__animate");
   };
@@ -2262,3 +2258,8 @@
       "ThemeMake";
   });
 })();
+
+
+
+
+

@@ -1,21 +1,23 @@
-<% for option in options){ %>
-<% var optionName = option.name.toLowerCase()){ %>
-<% var option_index = index){ %> 
-<% if(optionName.includes('olor' || optionName.includes('olour'){ %>
+<% options?.forEach((option,index)=>{ %>
+<% var optionName = option.name.toLowerCase() %>
+<% var option_index = index %> 
+<% if(optionName.includes('olor') || optionName.includes('olour')){ %>
     <div class="bc-card-color">
         <div class="bc-card-color__list" option_index="<%=option_index%>">
             <% if(limit !== null && limit !=''){ %>
-              <% for value in option.values limit : limit){ %>
-              <div class="bc-card-color__item <% if(forloop.first){ %>selected<% } %>" data-index="<%= index %>" data-option="<%= value %>">
+              <% option?.values?.forEach((value,index)=>{ %>
+              <% if(index < limit){ %>
+              <div class="bc-card-color__item <% if(index===0){ %>selected<% } %>" data-index="<%= index %>" data-option="<%= value %>">
                   <span class="pd-colors__icon" data-color="<%= value.toLowerCase() %>"></span>
               </div>
+              <% } %>
               <% }) %>
-              <% if(option.values.length>limit){ %>
+              <% if(option?.values?.length>limit){ %>
                <div class="extra-colors"> + <%=option.values.length - 4%></div>
               <% } %>
             <% } else { %>
-              <% for value in option.values){ %>
-              <div class="bc-card-color__item <% if(forloop.first){ %>selected<% } %>" data-index="<%= index %>" data-option="<%= value %>">
+              <% option.values?.forEach((value,index)=>{ %>
+              <div class="bc-card-color__item <% if(index===0){ %>selected<% } %>" data-index="<%= index %>" data-option="<%= value %>">
                   <span class="pd-colors__icon" data-color="<%= value.toLowerCase() %>"></span>
               </div>
               <% }) %>
