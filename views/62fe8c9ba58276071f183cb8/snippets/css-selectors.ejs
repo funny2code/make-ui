@@ -1,101 +1,43 @@
-<%
-    var body_font_bold = settings.body_font | font_modify: 'weight', 'bold'
-    var body_font_italic = settings.body_font | font_modify: 'style', 'italic'
-    var body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
-%>
 <style>
-
-    <% if(settings.body_font_custom){ %>
-        <%= settings.body_font_custom %>
-    <% } %>
-    <% if(settings.heading_font_custom){ %>
-        <%= settings.heading_font_custom %>
-    <% } %>
-    <% if(settings.title_font_custom){ %>
-        <%= settings.title_font_custom %>
-    <% } %>
-    <% if(settings.sub_title_font_custom){ %>
-        <%= settings.sub_title_font_custom %>
-    <% } %>
-    <% if(settings.button_font_custom){ %>
-        <%= settings.button_font_custom %>
-    <% } %>
-    <% if(settings.nav_font_custom){ %>
-        <%= settings.nav_font_custom %>
-    <% } %>
-    <% if(settings.field_font_custom){ %>
-        <%= settings.field_font_custom %>
-    <% } %>
-
-    <%= settings.body_font | font_face: font_display: 'swap' %>
-    <%= body_font_bold | font_face: font_display: 'swap' %>
-    <%= body_font_italic | font_face: font_display: 'swap' %>
-    <%= body_font_bold_italic | font_face: font_display: 'swap' %>
-    <%= settings.heading_font | font_face: font_display: 'swap' %>
-    <%= settings.title_font | font_face: font_display: 'swap' %>
-    <%= settings.sub_title_font | font_face: font_display: 'swap' %>
-    <%= settings.nav_font | font_face: font_display: 'swap' %>
-    <%= settings.button_font | font_face: font_display: 'swap' %>
-    <%= settings.field_font | font_face: font_display: 'swap' %>
 
     :root {
         
-        <% if(settings.body_font_custom){ %>
-        --font-body-family: 'body-font'
-        --font-body-style: normal;
-        --font-body-weight: 400;
-        <% } else { %>
-        --font-body-family: <%= settings.body_font.family %>, <%= settings.body_font.fallback_families %>;
-        --font-body-style: <%= settings.body_font.style %>;
-        --font-body-weight: <%= settings.body_font.weight %>;
-        <% } %>
+        --font-body-family:<% if(settings.body_font_custom){ %><%=settings.body_font_custom%><% } else { %><%= settings.body_font.family %><% } %>;
         <% if(settings.body_font_size){ %>--font-body-size: <%= settings.body_font_size %>;<% } %>
         <% if(settings.body_font_line){ %>--font-body-line: <%= settings.body_font_line %>;<% } %>
         <% if(settings.body_font_spacing){ %>--font-body-spacing: <%= settings.body_font_spacing %>;<% } %>
 
-        --font-heading-family: <% if(settings.heading_font_custom){ %>'heading-font'<% } else { %><%= settings.heading_font.family %>, <%= settings.heading_font.fallback_families %><% } %>;
-        --font-heading-style: <%= settings.heading_font.style %>;
-        --font-heading-weight: <%= settings.heading_font.weight %>;
+        --font-heading-family: <% if(settings.heading_font_custom){ %><%=settings.heading_font_custom%><% } else { %><%= settings.heading_font.family %>, <%= settings.heading_font.fallback_families %><% } %>;
         <% if(settings.heading_font_size){ %>--font-heading-size: <%= settings.heading_font_size %>;<% } %>
         <% if(settings.heading_font_line){ %>--font-heading-line: <%= settings.heading_font_line %>;<% } %>
         <% if(settings.heading_font_spacing){ %>--font-heading-spacing: <%= settings.heading_font_spacing %>;<% } %>
         --font-heading-transform: <%= settings.heading_font_transform %>;
 
-        --font-title-family: <% if(settings.title_font_custom){ %>'title-font'<% } else { %><%= settings.title_font.family %>, <%= settings.title_font.fallback_families %><% } %>;
-        --font-title-style: <%= settings.title_font.style %>;
-        --font-title-weight: <%= settings.title_font.weight %>;
+        --font-title-family: <% if(settings.title_font_custom){ %><%=settings.title_font_custom%><% } else { %><%= settings.title_font.family %>, <%= settings.title_font.fallback_families %><% } %>;
         <% if(settings.title_font_size){ %>--font-title-size: <%= settings.title_font_size %>;<% } %>
         <% if(settings.title_font_line){ %>--font-title-line: <%= settings.title_font_line %>;<% } %>
         <% if(settings.title_font_spacing){ %>--font-title-spacing: <%= settings.title_font_spacing %>;<% } %>
         --font-title-transform: <%= settings.title_font_transform %>;
 
-        --font-sub-title-family: <% if(settings.sub_title_font_custom){ %>'sub-title-font'<% } else { %><%= settings.sub_title_font.family %>, <%= settings.sub_title_font.fallback_families %><% } %>;
-        --font-sub-title-style: <%= settings.sub_title_font.style %>;
-        --font-sub-title-weight: <%= settings.sub_title_font.weight %>;
+        --font-sub-title-family: <% if(settings.sub_title_font_custom){ %><%=settings.sub_title_font_custom%><% } else { %><%= settings.sub_title_font.family %>, <%= settings.sub_title_font.fallback_families %><% } %>;
         <% if(settings.sub_title_font_size){ %>--font-sub-title-size: <%= settings.sub_title_font_size %>;<% } %>
         <% if(settings.sub_title_font_line){ %>--font-sub-title-line: <%= settings.sub_title_font_line %>;<% } %>
         <% if(settings.sub_title_font_spacing){ %>--font-sub-title-spacing: <%= settings.sub_title_font_spacing %>;<% } %>
         --font-sub-title-transform: <%= settings.sub_title_font_transform %>;
 
-        --font-nav-family: <% if(settings.nav_font_custom){ %>'navigation-font'<% } else { %><%= settings.nav_font.family %>, <%= settings.nav_font.fallback_families %><% } %>;
-        --font-nav-style: <%= settings.nav_font.style %>;
-        --font-nav-weight: <%= settings.nav_font.weight %>;
+        --font-nav-family: <% if(settings.nav_font_custom){ %><%=settings.nav_font_custom%><% } else { %><%= settings.nav_font.family %>, <%= settings.nav_font.fallback_families %><% } %>;
         <% if(settings.nav_font_size){ %>--font-nav-size: <%= settings.nav_font_size %>;<% } %>
         <% if(settings.nav_font_line){ %>--font-nav-line: <%= settings.nav_font_line %>;<% } %>
         <% if(settings.nav_font_spacing){ %>--font-nav-spacing: <%= settings.nav_font_spacing %>;<% } %>
         --font-nav-transform: <%= settings.nav_font_transform %>;
 
-        --font-button-family: <% if(settings.button_font_custom){ %>'navigation-font'<% } else { %><%= settings.button_font.family %>, <%= settings.button_font.fallback_families %><% } %>;
-        --font-button-style: <%= settings.button_font.style %>;
-        --font-button-weight: <%= settings.button_font.weight %>;
+        --font-button-family: <% if(settings.button_font_custom){ %><%=settings.button_font_custom%><% } else { %><%= settings.button_font.family %>, <%= settings.button_font.fallback_families %><% } %>;
         <% if(settings.button_font_size){ %>--font-button-size: <%= settings.button_font_size %>;<% } %>
         <% if(settings.button_font_line){ %>--font-button-line: <%= settings.button_font_line %>;<% } %>
         <% if(settings.button_font_spacing){ %>--font-button-spacing: <%= settings.button_font_spacing %>;<% } %>
         --font-button-transform: <%= settings.nav_font_transform %>;
 
-        --font-field-family: <% if(settings.field_font_custom){ %>'field-font'<% } else { %><%= settings.field_font.family %>, <%= settings.field_font.fallback_families %><% } %>;
-        --font-field-style: <%= settings.field_font.style %>;
-        --font-field-weight: <%= settings.field_font.weight %>;
+        --font-field-family: <% if(settings.field_font_custom){ %><%=settings.field_font_custom%><% } else { %><%= settings.field_font.family %>, <%= settings.field_font.fallback_families %><% } %>;
         <% if(settings.field_font_size){ %>--font-field-size: <%= settings.field_font_size %>;<% } %>
         <% if(settings.field_font_line){ %>--font-field-line: <%= settings.field_font_line %>;<% } %>
         <% if(settings.field_font_spacing){ %>--font-field-spacing: <%= settings.field_font_spacing %>;<% } %>

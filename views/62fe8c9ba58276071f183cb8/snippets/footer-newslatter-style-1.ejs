@@ -17,15 +17,15 @@
         <% if(section.settings.newsletter_heading){ %>
         <h2 class="footer-block__heading"><%= section.settings.newsletter_heading %></h2>
         <% } %>
-        <% form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form'){ %>
+        <form id="ContactFooter" class="footer__newsletter newsletter-form">
         <input type="hidden" name="contact[tags]" value="newsletter">
         <div class="newsletter-form__field-wrapper">
         <div class="field">
-            <label class="field__label" for="NewsletterForm--<%= section.id %>">
+            <label class="field__label" for="NewsletterForm--<%= sectionid %>">
             <%=newsletter.label%>
             </label>
             <input
-                    id="NewsletterForm--<%= section.id %>"
+                    id="NewsletterForm--<%= sectionid %>"
                     type="email"
                     name="contact[email]"
                     class="field__input"
@@ -38,7 +38,7 @@
                     autofocus
                     aria-invalid="true"
                     aria-describedby="ContactFooter-error"
-                    <% } else if(form.posted_successfully?){ %>
+                    <% } else if(form.posted_successfully){ %>
                     aria-describedby="ContactFooter-success"
                     <% } %>
                     placeholder="<%=newsletter.label%>"
@@ -46,14 +46,14 @@
                     >
         </div>
         <% if(form.errors){ %>
-        <small class="newsletter-form__message form__message" id="ContactFooter-error"><%- include('./icon-error'){ %><%= form.errors.translated_fields['email'] %> <%= form.errors.messages['email'] %></small>
+        <small class="newsletter-form__message form__message" id="ContactFooter-error"><%- include('./icon-error') %><%= form.errors.translated_fields['email'] %> <%= form.errors.messages['email'] %></small>
         <% } %>
         </div>
         <button type="submit" class="button button--secondary newsletter-form__button py-c-<%=section.settings.py_section_color_submit_btn%> py-hv-c-<%=section.settings.py_section_color_submit_btn_hover%> py-bg-c-<%=section.settings.py_section_bg_color_submit_btn%> py-hv-bg-c-<%=section.settings.py_section_bg_color_submit_btn_hover%> py-btn-<%=section.settings.submit_btn_size%>" name="commit" id="Subscribe">
         <%=newsletter.button_label%>
         </button>
-        <% if(form.posted_successfully?){ %>
-        <h3 class="newsletter-form__message newsletter-form__message--success form__message" id="ContactFooter-success" tabindex="-1" autofocus><%- include('./icon-success'){ %><%=newsletter.success%></h3>
+        <% if(form.posted_successfully){ %>
+        <h3 class="newsletter-form__message newsletter-form__message--success form__message" id="ContactFooter-success" tabindex="-1" autofocus><%- include('./icon-success') %><%=newsletter.success%></h3>
         <% } %>
         </form>
     </div>
@@ -64,7 +64,7 @@
         <% if(settings.social_twitter_link){ %>
         <li class="list-social__item">
         <a href="<%= settings.social_twitter_link %>" class="link list-social__link" aria-describedby="a11y-external-message">
-            <%- include('./icon-twitter'){ %>
+            <%- include('./icon-twitter') %>
             <span class="visually-hidden"><%=general.social.links.twitter%></span>
         </a>
         </li>
@@ -72,7 +72,7 @@
         <% if(settings.social_facebook_link){ %>
         <li class="list-social__item">
         <a href="<%= settings.social_facebook_link %>" class="link list-social__link" aria-describedby="a11y-external-message">
-            <%- include('./icon-facebook'){ %>
+            <%- include('./icon-facebook') %>
             <span class="visually-hidden"><%=general.social.links.facebook%></span>
         </a>
         </li>
@@ -80,7 +80,7 @@
         <% if(settings.social_pinterest_link){ %>
         <li class="list-social__item">
         <a href="<%= settings.social_pinterest_link %>" class="link list-social__link" aria-describedby="a11y-external-message">
-            <%- include('./icon-pinterest'){ %>
+            <%- include('./icon-pinterest') %>
             <span class="visually-hidden"><%=general.social.links.pinterest%></span>
         </a>
         </li>
@@ -88,7 +88,7 @@
         <% if(settings.social_instagram_link){ %>
         <li class="list-social__item">
         <a href="<%= settings.social_instagram_link %>" class="link list-social__link" aria-describedby="a11y-external-message">
-            <%- include('./icon-instagram'){ %>
+            <%- include('./icon-instagram') %>
             <span class="visually-hidden"><%=general.social.links.instagram%></span>
         </a>
         </li>
@@ -96,7 +96,7 @@
         <% if(settings.social_tiktok_link){ %>
         <li class="list-social__item">
         <a href="<%= settings.social_tiktok_link %>" class="link list-social__link" aria-describedby="a11y-external-message">
-            <%- include('./icon-tiktok'){ %>
+            <%- include('./icon-tiktok') %>
             <span class="visually-hidden"><%=general.social.links.tiktok%></span>
         </a>
         </li>
@@ -104,7 +104,7 @@
         <% if(settings.social_tumblr_link){ %>
         <li class="list-social__item">
         <a href="<%= settings.social_tumblr_link %>" class="link list-social__link" aria-describedby="a11y-external-message">
-            <%- include('./icon-tumblr'){ %>
+            <%- include('./icon-tumblr') %>
             <span class="visually-hidden"><%=general.social.links.tumblr%></span>
         </a>
         </li>
@@ -112,7 +112,7 @@
         <% if(settings.social_snapchat_link){ %>
         <li class="list-social__item">
         <a href="<%= settings.social_snapchat_link %>" class="link list-social__link" aria-describedby="a11y-external-message">
-            <%- include('./icon-snapchat'){ %>
+            <%- include('./icon-snapchat') %>
             <span class="visually-hidden"><%=general.social.links.snapchat%></span>
         </a>
         </li>
@@ -120,7 +120,7 @@
         <% if(settings.social_youtube_link){ %>
         <li class="list-social__item">
         <a href="<%= settings.social_youtube_link %>" class="link list-social__link" aria-describedby="a11y-external-message">
-            <%- include('./icon-youtube'){ %>
+            <%- include('./icon-youtube') %>
             <span class="visually-hidden"><%=general.social.links.youtube%></span>
         </a>
         </li>
@@ -128,7 +128,7 @@
         <% if(settings.social_vimeo_link){ %>
         <li class="list-social__item">
         <a href="<%= settings.social_vimeo_link %>" class="link list-social__link" aria-describedby="a11y-external-message">
-            <%- include('./icon-vimeo'){ %>
+            <%- include('./icon-vimeo') %>
             <span class="visually-hidden"><%=general.social.links.vimeo%></span>
         </a>
         </li>
