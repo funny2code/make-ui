@@ -54,7 +54,7 @@ router.get('/:id', async (req, res, next) => {
 module.exports = router;
 
 /* POST Theme Settings and Sections. */
-router.get('/:id', async (req, res, next) => {
+router.post('/:id', async (req, res, next) => {
 
   const {id} = req.params;
   const {settings_data, templates} = req.body;

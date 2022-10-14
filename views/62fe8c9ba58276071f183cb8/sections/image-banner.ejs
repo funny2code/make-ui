@@ -44,7 +44,8 @@
       <% if(section.settings.image_2){ %>
         <%- include('../snippets/resimg', {
           image: section.settings.image_2, 
-          classwrapper: 'large-up-hide medium-hide'
+          classwrapper: 'large-up-hide medium-hide',
+          classimg: false
         }) %>
       <% } %>
       <div class="banner__content banner__content-<%= sectionid %> page-width">

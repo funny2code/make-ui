@@ -390,184 +390,450 @@
     },
   ];
 
-  const imageBanner = [
-    {
-      image: "/6306f8e7db2cbec8c440f780/image-banner-img-1.webp",
-      image_2: "/6306f8e7db2cbec8c440f780/image-banner-img-1.webp",
-      show_override: false,
-      ov_bg_color: "var(--py-color-black)",
-      ov_bg_image: "",
-      ov_opacity: "0.5",
-      align: "center",
-      m_align: "center",
-      enable_anim: "",
-      anim: "",
-      blocks: {
-        heading: {
-          block_heading: "Classic Headphones",
-          block_color: "var(--py-color-light)",
-          block_weight: "",
-          block_size: "60px",
-          block_c_css: "",
-          block_m_align: "",
-          block_m_weight: "",
-          block_m_size: "40px",
-          block_m_c_css: "",
-        },
-        text: {
-          block_text: "Simple, slim fit and super comfy headphones.",
-          block_color: "var(--py-color-light)",
-          block_weight: "",
-          block_size: "22px",
-          block_c_css: "",
-          block_m_align: "",
-          block_m_weight: "",
-          block_m_size: "18px",
-          block_m_c_css: "",
-        },
-        buttons: {
-          block_button_label_1: "Shop All",
-          block_view_btn_size: "large",
-          block_view_btn_color: "dark",
-        },
+  const imageBanner = {
+    "6306f8e7db2cbec8c440f780": [
+      {
+        "164253890362d227ae": {
+          "type": "image-banner",
+          "settings": {
+            "image": "/6306f8e7db2cbec8c440f780/image-banner-v1-desktop.webp",
+            "show_lazy": true,
+            "image_2": "/6306f8e7db2cbec8c440f780/image-banner-v1-mobile.webp",
+            "url": "shopify://collections/all",
+            "show_override": true,
+            "content_bg_color": "var(--py-bg-color-dark)",
+            "ov_bg_image": "",
+            "ov_opacity": "0.4",
+            "pv": "center",
+            "ph": "center",
+            "align": "left",
+            "padding": "",
+            "margin": "",
+            "width": "",
+            "height": "",
+            "c_css": "",
+            "m_pv": "center",
+            "m_ph": "center",
+            "m_align": "center",
+            "m_padding": "",
+            "m_margin": "",
+            "m_width": "",
+            "m_height": "",
+            "m_c_css": "",
+            "enable_anim": true,
+            "anim": "zoom-out"
+          },
+          "blocks": {
+            "16425389039f659f32-0": {
+              "type": "heading",
+              "settings": {
+                "heading": "High-Performance & Elegant Design",
+                "align": "left",
+                "content_color": "var(--py-color-light)",
+                "weight": "",
+                "size": "50px",
+                "padding": "",
+                "margin": "",
+                "width": "",
+                "height": "",
+                "c_css": "max-width:800px;\nmargin:auto;",
+                "m_align": "left",
+                "content_color_m": "var(--py-color-light)",
+                "m_weight": "",
+                "m_size": "",
+                "m_padding": "",
+                "m_margin": "",
+                "m_width": "",
+                "m_height": "",
+                "m_c_css": "font-size:26px"
+              }
+            },
+            "16425389039f659f32-2": {
+              "type": "buttons",
+              "settings": {
+                "button_label_1": "Shop the MW08 Sport",
+                "button_link_1": "shopify://collections/all",
+                "view_btn_size": "large",
+                "content_color_view_btn": "dark",
+                "content_bg_color_view_btn": "light",
+                "content_color_view_btn_hover": "light",
+                "content_bg_color_view_btn_hover": "dark",
+                "c_css": "border-width:0px;"
+              }
+            }
+          },
+          "block_order": [
+            "16425389039f659f32-0",
+            "16425389039f659f32-2"
+          ]
+        }
       },
-    },
-    {
-      section_height: "600px",
-      image: "/62fe8c9ba58276071f183cb8/image-banner-img-left-1.webp",
-      image_desk_2: "/62fe8c9ba58276071f183cb8/image-banner-img-right-1.webp",
-      image_2: "",
-      show_override: false,
-      ov_bg_color: "var(--py-color-black)",
-      ov_bg_image: "",
-      ov_opacity: "0.5",
-      align: "center",
-      m_align: "center",
-      enable_anim: "",
-      anim: "",
-      blocks: {
-        heading: {
-          block_heading: "Industrial design meets fashion.",
-          block_color: "var(--py-color-light)",
-          block_weight: "",
-          block_size: "60px",
-          block_c_css: "",
-          block_m_align: "",
-          block_m_weight: "",
-          block_m_size: "40px",
-          block_m_c_css: "",
-        },
-        text: {
-          block_text: "Atypical leather goods",
-          block_color: "var(--py-color-light)",
-          block_weight: "",
-          block_size: "22px",
-          block_c_css: "",
-          block_m_align: "",
-          block_m_weight: "",
-          block_m_size: "18px",
-          block_m_c_css: "",
-        },
-        buttons: {
-          block_button_label_1: "Shop Now",
-          block_view_btn_size: "large",
-          block_view_btn_color: "dark",
-        },
+      {
+        "164253890362d227ae": {
+          "type": "image-banner",
+          "settings": {
+            "image": "/6306f8e7db2cbec8c440f780/image-banner-v2-desktop.webp",
+            "show_lazy": true,
+            "image_2": "/6306f8e7db2cbec8c440f780/image-banner-v2-mobile.webp",
+            "url": "shopify://collections/all",
+            "show_override": true,
+            "content_bg_color": "var(--py-bg-color-dark)",
+            "ov_bg_image": "",
+            "ov_opacity": "0.4",
+            "pv": "center",
+            "ph": "center",
+            "align": "center",
+            "padding": "",
+            "margin": "",
+            "width": "",
+            "height": "",
+            "c_css": "",
+            "m_pv": "center",
+            "m_ph": "center",
+            "m_align": "center",
+            "m_padding": "",
+            "m_margin": "",
+            "m_width": "",
+            "m_height": "",
+            "m_c_css": "",
+            "enable_anim": true,
+            "anim": "zoom-out"
+          },
+          "blocks": {
+            "16425389039f659f32-0": {
+              "type": "heading",
+              "settings": {
+                "heading": "Summer style",
+                "align": "center",
+                "content_color": "var(--py-color-light)",
+                "weight": "",
+                "size": "50px",
+                "padding": "",
+                "margin": "",
+                "width": "",
+                "height": "",
+                "c_css": "max-width:800px;\nmargin:auto;",
+                "m_align": "center",
+                "content_color_m": "var(--py-color-light)",
+                "m_weight": "",
+                "m_size": "",
+                "m_padding": "",
+                "m_margin": "",
+                "m_width": "",
+                "m_height": "",
+                "m_c_css": "font-size:26px"
+              }
+            },
+            "16425389039f659f32-2": {
+              "type": "buttons",
+              "settings": {
+                "button_label_1": "SHOP TOPS",
+                "button_link_1": "shopify://collections/all",
+                "view_btn_size": "large",
+                "content_color_view_btn": "dark",
+                "content_bg_color_view_btn": "light",
+                "content_color_view_btn_hover": "light",
+                "content_bg_color_view_btn_hover": "dark",
+                "c_css": "border-width:0px;"
+              }
+            }
+          },
+          "block_order": [
+            "16425389039f659f32-0",
+            "16425389039f659f32-2"
+          ]
+        }
+      }
+    ],
+    "632a6f7db34039b04f77d3b1": [
+      {
+        "1652851716a9bcae46": {
+          "type": "image-with-text",
+          "blocks": {
+              "1652851716950d2423-0": {
+                  "type": "heading",
+                  "settings": {
+                      "heading": "Meet Your Match",
+                      "fs": "fs-xl",
+                      "title_font": "h1"
+                  }
+              },
+              "1652851716950d2423-1": {
+                  "type": "text",
+                  "settings": {
+                      "text": "<p>Your coziest layer, your easiest outfit—matching sets are here.<\/p>",
+                      "fs": "fs-s",
+                      "text_y_mg": "mg-y-xl"
+                  }
+              },
+              "1652851716950d2423-2": {
+                  "type": "button",
+                  "settings": {
+                      "button_label": "Shop Men's New Arrivals",
+                      "button_link": "shopify:\/\/collections\/base-brand",
+                      "view_btn_style": "text_link",
+                      "view_btn_size": "medium",
+                      "py_section_color_view_btn": "light",
+                      "py_section_color_view_btn_hover": "light"
+                  }
+              },
+              "9c546d82-d837-486c-abad-ce5929b49554": {
+                  "type": "button",
+                  "settings": {
+                      "button_label": "Shop Women's New Arrivals",
+                      "button_link": "shopify:\/\/collections",
+                      "view_btn_style": "text_link",
+                      "view_btn_size": "medium",
+                      "py_section_color_view_btn": "light",
+                      "py_section_color_view_btn_hover": "light"
+                  }
+              }
+          },
+          "block_order": [
+              "1652851716950d2423-0",
+              "1652851716950d2423-1",
+              "1652851716950d2423-2",
+              "9c546d82-d837-486c-abad-ce5929b49554"
+          ],
+          "settings": {
+              "image": "/632a6f7db34039b04f77d3b1/image-with-text.webp",
+              "section_height": "auto",
+              "section_height_m": "400px",
+              "layout": "image_first",
+              "img_style": "normal",
+              "align": "center",
+              "section_bg_color": "var(--py-bg-color-light)",
+              "py_section_color": "var(--py-color-dark)",
+              "section_width": "full",
+              "section_y_mg": "mg-y-n"
+          }
+      }
       },
-    },
-    {},
-    {
-      image: "/6306f8e7db2cbec8c440f780/image-banner-img-2.webp",
-      image_2: "/6306f8e7db2cbec8c440f780/image-banner-img-2.webp",
-      show_override: false,
-      ov_bg_color: "var(--py-color-black)",
-      ov_bg_image: "",
-      ov_opacity: "0.5",
-      align: "center",
-      m_align: "center",
-      enable_anim: "",
-      anim: "",
-      blocks: {
-        heading: {
-          block_heading: "Summer vibes.",
-          block_color: "var(--py-color-light)",
-          block_weight: "",
-          block_size: "60px",
-          block_c_css: "",
-          block_m_align: "",
-          block_m_weight: "",
-          block_m_size: "40px",
-          block_m_c_css: "",
-        },
-        text: {
-          block_text: "",
-          block_color: "var(--py-color-light)",
-          block_weight: "",
-          block_size: "22px",
-          block_c_css: "",
-          block_m_align: "",
-          block_m_weight: "",
-          block_m_size: "18px",
-          block_m_c_css: "",
-        },
-        buttons: {
-          block_button_label_1: "Shop Tops",
-          block_view_btn_size: "large",
-          block_view_btn_color: "dark",
-        },
+      {
+        "1652851716a9bcae46": {
+          "type": "image-with-text",
+          "blocks": {
+              "1652851716950d2423-0": {
+                  "type": "heading",
+                  "settings": {
+                      "heading": "Meet Your Match",
+                      "fs": "fs-xl",
+                      "title_font": "h1"
+                  }
+              },
+              "1652851716950d2423-1": {
+                  "type": "text",
+                  "settings": {
+                      "text": "<p>Your coziest layer, your easiest outfit—matching sets are here.<\/p>",
+                      "fs": "fs-s",
+                      "text_y_mg": "mg-y-xl"
+                  }
+              },
+              "1652851716950d2423-2": {
+                  "type": "button",
+                  "settings": {
+                      "button_label": "Shop Men's New Arrivals",
+                      "button_link": "shopify:\/\/collections\/base-brand",
+                      "view_btn_style": "text_link",
+                      "view_btn_size": "medium",
+                      "py_section_color_view_btn": "light",
+                      "py_section_color_view_btn_hover": "light"
+                  }
+              },
+              "9c546d82-d837-486c-abad-ce5929b49554": {
+                  "type": "button",
+                  "settings": {
+                      "button_label": "Shop Women's New Arrivals",
+                      "button_link": "shopify:\/\/collections",
+                      "view_btn_style": "text_link",
+                      "view_btn_size": "medium",
+                      "py_section_color_view_btn": "light",
+                      "py_section_color_view_btn_hover": "light"
+                  }
+              }
+          },
+          "block_order": [
+              "1652851716950d2423-0",
+              "1652851716950d2423-1",
+              "1652851716950d2423-2",
+              "9c546d82-d837-486c-abad-ce5929b49554"
+          ],
+          "settings": {
+              "image": "/632a6f7db34039b04f77d3b1/image-with-text.webp",
+              "section_height": "auto",
+              "section_height_m": "400px",
+              "layout": "image_first",
+              "img_style": "normal",
+              "align": "center",
+              "section_bg_color": "var(--py-bg-color-light)",
+              "py_section_color": "var(--py-color-dark)",
+              "section_width": "full",
+              "section_y_mg": "mg-y-n"
+          }
+      }
+      }
+    ],
+    "62fe8c9ba58276071f183cb8": [
+      {
+        "164253890362d227ae": {
+          "type": "image-banner",
+          "blocks": {
+              "16425389039f659f32-0": {
+                  "type": "heading",
+                  "settings": {
+                      "heading": "Industrial design meets fashion.",
+                      "align": "center",
+                      "content_color": "var(--py-color-light)",
+                      "weight": "",
+                      "size": "60px",
+                      "padding": "",
+                      "margin": "",
+                      "width": "",
+                      "height": "",
+                      "c_css": "max-width:600px;\nmargin:auto;",
+                      "m_align": "center",
+                      "content_color_m": "var(--py-color-light)",
+                      "m_weight": "",
+                      "m_size": "40px",
+                      "m_padding": "",
+                      "m_margin": "",
+                      "m_width": "",
+                      "m_height": "",
+                      "m_c_css": ""
+                  }
+              },
+              "16425389039f659f32-2": {
+                  "type": "buttons",
+                  "settings": {
+                      "button_label_1": "Shop Now",
+                      "button_link_1": "shopify:\/\/collections\/all",
+                      "view_btn_size": "large",
+                      "content_color_view_btn": "light",
+                      "content_bg_color_view_btn": "dark",
+                      "content_color_view_btn_hover": "dark",
+                      "content_bg_color_view_btn_hover": "light",
+                      "c_css": "border-width:0px;"
+                  }
+              }
+          },
+          "block_order": [
+              "16425389039f659f32-0",
+              "16425389039f659f32-2"
+          ],
+          "settings": {
+              "section_height": "auto",
+              "image": "/62fe8c9ba58276071f183cb8/image-banner-img-left-1.webp",
+              "image_desk_2": "/62fe8c9ba58276071f183cb8/image-banner-img-right-1.webp",
+              "show_lazy": true,
+              "url": "shopify:\/\/collections\/all",
+              "show_override": true,
+              "content_bg_color": "var(--py-bg-color-dark)",
+              "ov_opacity": "0.2",
+              "pv": "center",
+              "ph": "center",
+              "align": "center",
+              "padding": "",
+              "margin": "",
+              "width": "",
+              "height": "",
+              "c_css": "",
+              "m_pv": "center",
+              "m_ph": "center",
+              "m_align": "center",
+              "m_padding": "",
+              "m_margin": "",
+              "m_width": "",
+              "m_height": "",
+              "m_c_css": "",
+              "enable_anim": true,
+              "anim": "zoom-out"
+          }
+      }
       },
-    },
-    {
-      section_height: "700px",
-      image: "/62fe8c9ba58276071f183cb8/image-banner-img-left-2.webp",
-      image_desk_2: "/62fe8c9ba58276071f183cb8/image-banner-img-right-2.jpg",
-      image_2: "",
-      show_override: true,
-      ov_bg_color: "var(--py-color-black)",
-      ov_bg_image: "",
-      ov_opacity: "0.5",
-      align: "center",
-      m_align: "center",
-      enable_anim: "",
-      anim: "",
-      blocks: {
-        heading: {
-          block_heading: "Adventure-Inspired",
-          block_color: "var(--py-color-light)",
-          block_weight: "",
-          block_size: "60px",
-          block_c_css: "",
-          block_m_align: "",
-          block_m_weight: "",
-          block_m_size: "40px",
-          block_m_c_css: "",
-        },
-        text: {
-          block_text: "Sustainable Outdoor Supplies",
-          block_color: "var(--py-color-light)",
-          block_weight: "",
-          block_size: "22px",
-          block_c_css: "",
-          block_m_align: "",
-          block_m_weight: "",
-          block_m_size: "18px",
-          block_m_c_css: "",
-        },
-        buttons: {
-          block_button_label_1: "SHOP EVERYTHING",
-          block_view_btn_size: "large",
-          block_view_btn_color: "dark",
-        },
-      },
-    },
-    {},
-  ];
+      {
+        "164253890362d227ae": {
+          "type": "image-banner",
+          "blocks": {
+              "16425389039f659f32-0": {
+                  "type": "heading",
+                  "settings": {
+                      "heading": "Summer Sale",
+                      "align": "center",
+                      "content_color": "var(--py-color-light)",
+                      "weight": "",
+                      "size": "60px",
+                      "padding": "",
+                      "margin": "",
+                      "width": "",
+                      "height": "",
+                      "c_css": "max-width:600px;\nmargin:auto;",
+                      "m_align": "center",
+                      "content_color_m": "var(--py-color-light)",
+                      "m_weight": "",
+                      "m_size": "40px",
+                      "m_padding": "",
+                      "m_margin": "",
+                      "m_width": "",
+                      "m_height": "",
+                      "m_c_css": ""
+                  }
+              },
+              "16425389039f659f32-2": {
+                  "type": "buttons",
+                  "settings": {
+                      "button_label_1": "Our Collections",
+                      "button_link_1": "shopify:\/\/collections\/all",
+                      "view_btn_size": "large",
+                      "content_color_view_btn": "light",
+                      "content_bg_color_view_btn": "dark",
+                      "content_color_view_btn_hover": "dark",
+                      "content_bg_color_view_btn_hover": "light",
+                      "c_css": "border-width:0px;"
+                  }
+              }
+          },
+          "block_order": [
+              "16425389039f659f32-0",
+              "16425389039f659f32-2"
+          ],
+          "settings": {
+              "section_height": "auto",
+              "image": "/62fe8c9ba58276071f183cb8/image-banner-img-left-2.webp",
+              "image_desk_2": "/62fe8c9ba58276071f183cb8/image-banner-img-right-2.jpg",
+              "show_lazy": true,
+              "url": "shopify:\/\/collections\/all",
+              "show_override": true,
+              "content_bg_color": "var(--py-bg-color-dark)",
+              "ov_opacity": "0.2",
+              "pv": "center",
+              "ph": "center",
+              "align": "center",
+              "padding": "",
+              "margin": "",
+              "width": "",
+              "height": "",
+              "c_css": "",
+              "m_pv": "center",
+              "m_ph": "center",
+              "m_align": "center",
+              "m_padding": "",
+              "m_margin": "",
+              "m_width": "",
+              "m_height": "",
+              "m_c_css": "",
+              "enable_anim": true,
+              "anim": "zoom-out"
+          }
+      }
+      }
+    ]
+  }
 
   let fontsCount = 0;
 
   // GLOBAL VARIABLES
-  var focuseValue = "";
-  const theme = {
+  let focuseValue = "";
+  let theme = {
     settings_data: {
       current: {
         sections: {},
@@ -575,10 +841,21 @@
     },
     templates: {},
   };
-  var saveButton = null;
-  var downloadButton = null;
-  var loading = null;
-  var themeName = "ThemeMake";
+  let saveButton = null;
+  let downloadButton = null;
+  let loading = null;
+  let themeName = "ThemeMake";
+
+  const clearTheme = () => {
+    theme = {
+      settings_data: {
+        current: {
+          sections: {},
+        },
+      },
+      templates: {},
+    };
+  }
 
   // Colors names Objects
   const colorsNamesContrast = {
@@ -1611,38 +1888,41 @@
   };
 
   // Get Global settings or Section settings dynamic function
-  const getSettingsLists = async (event) => {
-    if (!event) return;
+  const getSettingsLists = async (event, newurl=false) => {
+    if (!event && !newurl) return;
 
     loading?.classList.add("py__animate");
-    let el = event.target,
-      url = null;
-    if (event.type === "change") {
-      url = el.options[el.selectedIndex].getAttribute("data-href");
+    let el = event.target;
+    let url = null;
+    if(newurl){
+      url = newurl;
     } else {
-      event.preventDefault();
-      if (el.getAttribute("data-handle") && el.classList.contains("active")) {
-        let currenturlSearchParam = new URLSearchParams(location.search);
-        currenturlSearchParam.delete("settings");
-        let newUrl =
-          location.origin +
-          location.pathname +
-          "?" +
-          currenturlSearchParam.toString();
-        url = newUrl;
+      if (event.type === "change") {
+        url = el.options[el.selectedIndex].getAttribute("data-href");
       } else {
-        url = el.getAttribute("href");
+        event.preventDefault();
+        if (el.getAttribute("data-handle") && el.classList.contains("active")) {
+          let currenturlSearchParam = new URLSearchParams(location.search);
+          currenturlSearchParam.delete("settings");
+          let newUrl =
+            location.origin +
+            location.pathname +
+            "?" +
+            currenturlSearchParam.toString();
+          url = newUrl;
+        } else {
+          url = el.getAttribute("href");
+        }
       }
     }
-
     if (!url) return;
 
     window.history.replaceState({}, "", url);
     let urlSearch = new URLSearchParams(url);
     let sectionName = urlSearch.get("section");
-    let iframe = document.querySelector(".py__view-iframe");
+    let iframes = document.querySelectorAll(".py__view-iframe");
 
-    el.classList.add("active");
+    if(!newurl) el.classList.add("active");
     let res = await fetch(url, {
       method: "POST",
       headers: {
@@ -1660,23 +1940,27 @@
     let newSettingsWrap = html.querySelector(".py__make-settings");
     let oldSidebar = document.querySelector(".py__settings-select-options");
     let newSidebar = html.querySelector(".py__settings-select-options");
+    let oldRandomSettings = document.querySelector(".py__make-random-settings");
+    let newRandomSettings = html.querySelector(".py__make-random-settings");
     oldSettingsWrap && newSettingsWrap
       ? (oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML)
       : null;
     oldSidebar && newSidebar
       ? (oldSidebar.innerHTML = newSidebar.innerHTML)
       : null;
+      oldRandomSettings && newRandomSettings
+      ? (oldRandomSettings.innerHTML = newRandomSettings.innerHTML)
+      : null;
     if (sectionName) {
       let urlParams = new URL(location.href);
       let iframeSearchParams = new URLSearchParams(urlParams.search);
       iframeSearchParams.set("section", sectionName);
-      let iframeUrl =
-        urlParams.pathname.indexOf("/users/") !== -1
+      let iframeUrl = urlParams.pathname.indexOf("/users/") !== -1
           ? "/view" + urlParams.pathname + "?" + iframeSearchParams.toString()
-          : urlParams.pathname.replace("themes", "view") +
-            "?" +
-            iframeSearchParams.toString();
-      iframe.setAttribute("data-src", iframeUrl);
+          : urlParams.pathname.replace("themes", "view").replace("remix", "view") + "?" + iframeSearchParams.toString();
+      iframes?.length && iframes?.forEach(iframe => {
+        iframe.setAttribute("data-src", iframeUrl);
+      })
       await viewIframe();
     } else {
       let urlParams = new URL(location.href);
@@ -1684,10 +1968,10 @@
       let iframeUrl =
         urlParams.pathname.indexOf("/users/") !== -1
           ? "/view" + urlParams.pathname + "?" + iframeSearchParams.toString()
-          : urlParams.pathname.replace("themes", "view") +
-            "?" +
-            iframeSearchParams.toString();
-      iframe.setAttribute("data-src", iframeUrl);
+          : urlParams.pathname.replace("themes", "view").replace("remix", "view") + "?" + iframeSearchParams.toString();
+      iframes?.length && iframes?.forEach(iframe => {
+        iframe.setAttribute("data-src", iframeUrl);
+      })
       await viewIframe();
     }
   };
@@ -1743,7 +2027,8 @@
   };
 
   let remixCount = 0;
-  // let defaultSettingsCount = 0;
+  let currentThemeKey = 0;
+  let allThemesID = ["6306f8e7db2cbec8c440f780","632a6f7db34039b04f77d3b1","62fe8c9ba58276071f183cb8"];
   const randomFun = async (event) => {
     const getLuminanceRatio = (r, g, b) => {
       var a = [r, g, b].map(function (v) {
@@ -1962,53 +2247,64 @@
       }
     }
 
-    let imageBannerSection = document.querySelector(
-      '[data-file-name="image-banner"]'
-    );
-    let imageBannerContent =
-      imageBannerSection && imageBannerSection?.closest(".py__closest");
-    let imageBannerBlocks =
-      imageBannerContent &&
-      imageBannerContent.querySelectorAll(".py__settings-block-item");
-    if (imageBannerSection && imageBanner[remixCount]) {
-      let fileds = imageBannerSection.querySelectorAll("[name]");
-      if (fileds?.length) {
-        for (let i = 0; i < fileds.length; i++) {
-          let filed = fileds[i];
-          let filedName = filed.getAttribute("name");
-          if (typeof imageBanner[remixCount][filedName] !== "undefined")
-            filed.value = imageBanner[remixCount][filedName];
-        }
-      }
-    }
-    if (imageBannerBlocks?.length) {
-      for (let i = 0; i < imageBannerBlocks.length; i++) {
-        let block = imageBannerBlocks[i];
-        let blockType = block.getAttribute("data-type");
-        let findAllFileds = block.querySelectorAll("[name]");
-        if (findAllFileds?.length) {
-          for (let j = 0; j < findAllFileds.length; j++) {
-            let filed = findAllFileds[j];
-            let filedName = filed.getAttribute("name");
-            if (
-              imageBanner[remixCount]?.blocks &&
-              imageBanner[remixCount]?.blocks[blockType] &&
-              typeof imageBanner[remixCount]?.blocks[blockType][filedName] !==
-                "undefined"
-            )
-              filed.value =
-                imageBanner[remixCount]?.blocks[blockType][filedName];
+    fontsCount++
+    if (fontsCount >= fonts.length) fontsCount = 0;
+    if (remixCount >= imageBanner[allThemesID[currentThemeKey]]?.length){ 
+      remixCount = 0;
+      clearTheme();
+      currentThemeKey++;
+      if (currentThemeKey >= allThemesID?.length)  currentThemeKey = 0;
+      let remixUrl = '/remix/' + allThemesID[currentThemeKey] + location?.search;
+      await getSettingsLists(false, remixUrl);
+    } else {
+      let imageBannerSections = document.querySelectorAll('[data-section-handle="image-banner"]');
+      if(imageBannerSections?.length){
+        imageBannerSections?.forEach(imageBannerSection => {
+          let imageBannerSectionId = imageBannerSection?.getAttribute('data-section-id');
+          let imageBannerContent = imageBannerSection?.closest(".py__closest");
+          let imageBannerBlocks = imageBannerContent?.querySelectorAll(".py__settings-block-item");
+          
+          if (imageBanner[allThemesID[currentThemeKey]]?.length && imageBanner[allThemesID[currentThemeKey]][remixCount][imageBannerSectionId]) {
+            let fileds = imageBannerSection.querySelectorAll("[name]");
+            if (fileds?.length) {
+              for (let i = 0; i < fileds.length; i++) {
+                let filed = fileds[i];
+                let filedName = filed.getAttribute("name");
+                if (typeof imageBanner[allThemesID[currentThemeKey]][remixCount][imageBannerSectionId].settings[filedName] !== "undefined")
+                  filed.value = imageBanner[allThemesID[currentThemeKey]][remixCount][imageBannerSectionId].settings[filedName];
+              }
+            }
+            if (imageBannerBlocks?.length) {
+              for (let i = 0; i < imageBannerBlocks.length; i++) {
+                let block = imageBannerBlocks[i];
+                let blockId = block.getAttribute("data-block-id");
+                let findAllFileds = block.querySelectorAll("[name]");
+                if (findAllFileds?.length) {
+                  for (let j = 0; j < findAllFileds.length; j++) {
+                    let filed = findAllFileds[j];
+                    let filedName = filed.getAttribute("name").replace('block_', '');
+                  if (
+                    imageBanner[allThemesID[currentThemeKey]][remixCount][imageBannerSectionId]?.blocks &&
+                    imageBanner[allThemesID[currentThemeKey]][remixCount][imageBannerSectionId]?.blocks[blockId] &&
+                    typeof imageBanner[allThemesID[currentThemeKey]][remixCount][imageBannerSectionId]?.blocks[blockId].settings[filedName] !==
+                    "undefined"
+                    )
+                    filed.value = imageBanner[allThemesID[currentThemeKey]][remixCount][imageBannerSectionId]?.blocks[blockId].settings[filedName];
+                  }
+                }
+              }
+            }
           }
-        }
+        })
       }
+
+      remixCount++;
+        
+      await saveSettingsValues();
+      await viewIframe();
     }
+    
 
-    remixCount++;
-    if (remixCount >= imageBanner?.length) remixCount = 0;
-    fontsCount >= fonts.length ? (fontsCount = 0) : fontsCount++;
-
-    await saveSettingsValues();
-    await viewIframe();
   };
 
   // Remix Section Styles Function
