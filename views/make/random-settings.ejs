@@ -1,6 +1,6 @@
 <div class="py__random-section-item py__closest">
-    <% if(item?.settings){ %>
-        <div class="py__random-section-content py__settings-section-item" data-section-handle="<%=item.type%>" data-section-id="<%=orderItem%>" data-template-name="<%=itemSchema.template_name%>">
+    <% if(comitem?.settings){ %>
+        <div class="py__random-section-content py__settings-section-item" data-section-handle="<%=comitem.type%>" <% if(orderItem){ %>data-section-id="<%=orderItem%>"<% } %> data-template-name="<%=itemSchema.template_name%>">
             <% itemSchema.settings.forEach((item,index)=>{ %>
                 <% if(item.type === "select" && item?.id?.includes('style') || item.type === "select" && item?.id?.includes('position') || item.type === "select" && item?.id?.includes('color')){ %>
                     <div class="py__random-comp py__random-comp-select">
@@ -17,9 +17,9 @@
             <% }) %>
         </div>
     <% } %>
-    <% if(item?.block_order?.length){ %>
-        <% item?.block_order?.forEach((blockOrder,index)=>{ %>
-            <% let blockItem = item?.blocks[blockOrder] %>
+    <% if(comitem?.block_order?.length){ %>
+        <% comitem?.block_order?.forEach((blockOrder,index)=>{ %>
+            <% let blockItem = comitem?.blocks[blockOrder] %>
             <% let schemaBlockItem = itemSchema?.blocks?.filter(block => block?.type === blockItem?.type) %>
             <% if(schemaBlockItem[0]?.settings){ %>
                 <div class="py__random-block-wrap py__settings-block-item" data-block-type="<%=blockItem?.type%>" data-block-id="<%=blockOrder%>">

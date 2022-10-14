@@ -119,29 +119,29 @@
 </style>
 
 <div class="collection collection-slide product-carousel  product-carousel-<%=sectionid%> page-width bc-<%=settings.section_style%>-bt py-pd-y-m">
-  <div class="<% if(section.settings.show_view_all ){ %>title-wrapper-with-link<% } %><% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %><% if(section.settings.collection.all_products_count > 2  && section.settings.products_limit > 2){ %> title-wrapper--self-padded-tablet-down<% } %>">
+  <div class="<% if(section.settings.show_view_all ){ %>title-wrapper-with-link<% } %><% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %><% if(section.settings.collection?.all_products_count > 2  && section.settings.products_limit > 2){ %> title-wrapper--self-padded-tablet-down<% } %>">
     <h2 class="title<% if(!section.settings.title){ %> title--no-heading<% } %>"><%= section.settings.title %></h2>
 
     <% if(section.settings.show_view_all){ %>
-      <a href="<%= section.settings.collection.url %>" class="py-c-light py-hv-c-dark py-bg-c-dark py-hv-bg-c-light py-btn-medium"><%=sectionst.featured_collection.view_all%></a>
+      <a href="<%= section.settings.collection?.url %>" class="py-c-light py-hv-c-dark py-bg-c-dark py-hv-bg-c-light py-btn-medium"><%=sectionst.featured_collection.view_all%></a>
     <% } %>
   </div>
 
   <%
-    var products_to_display = section.settings.collection.all_products_count
+    var products_to_display = section.settings.collection?.all_products_count
     var carousel_num = section.settings.products_col_limit
 
-    if(section.settings.collection.all_products_count > section.settings.products_limit){
+    if(section.settings.collection?.all_products_count > section.settings.products_limit){
       products_to_display = section.settings.products_limit
     }    
   %>
 
   <slider-component class="slider-mobile-gutter">
-    <ul class="grid product-list-<%=sectionid%> grid--1-col grid--3-col-tablet grid--<%=carousel_num%>-col-desktop <% if(section.settings.collection.all_products_count > 2 && section.settings.products_limit > 2){ %> slider slider--desktop <% } %><% if(section.settings.show_view_all === false || section.settings?.collection?.products?.length < section.settings.products_limit){ %> negative-margin<% } %><% if(section.settings.show_view_all && section.settings?.collection?.products?.length > section.settings.products_limit){ %> negative-margin--small<% } %>" role="list">
-      <% if(section.settings?.collection.products?.length){ %>
-      <% section.settings.collection.products?.forEach((product,index)=>{ %>
+    <ul class="grid product-list-<%=sectionid%> grid--1-col grid--3-col-tablet grid--<%=carousel_num%>-col-desktop <% if(section.settings.collection?.all_products_count > 2 && section.settings.products_limit > 2){ %> slider slider--desktop <% } %><% if(section.settings.show_view_all === false || section.settings?.collection?.products?.length < section.settings.products_limit){ %> negative-margin<% } %><% if(section.settings.show_view_all && section.settings?.collection?.products?.length > section.settings.products_limit){ %> negative-margin--small<% } %>" role="list">
+      <% if(section.settings?.collection?.products?.length){ %>
+      <% section.settings.collection?.products?.forEach((product,index)=>{ %>
         <% if(index < section.settings.products_limit){ %>
-        <li class="grid__item py-card-<%=section.settings.card_style%> py-<%=section.settings.card_color%> <% if(section.settings.collection.all_products_count > 2  && section.settings.products_limit > 2){ %> slider__slide<% } %>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
+        <li class="grid__item py-card-<%=section.settings.card_style%> py-<%=section.settings.card_color%> <% if(section.settings.collection?.all_products_count > 2  && section.settings.products_limit > 2){ %> slider__slide<% } %>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
           <%- include('../snippets/product-card', {
                 product_card_product: product,
                 media_size: section.settings.image_ratio,
@@ -167,8 +167,8 @@
         <% } %>
       <% } %>
     </ul>    
-    <% if(section.settings.collection.all_products_count > 2 && section.settings.products_limit > 2){ %>
-      <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(section.settings.collection.all_products_count < 4){ %>large-up-hide medium-hide<% } %><% if(section.settings.collection.all_products_count < 3){ %> small-hide<% } %>">
+    <% if(section.settings.collection?.all_products_count > 2 && section.settings.products_limit > 2){ %>
+      <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(section.settings.collection?.all_products_count < 4){ %>large-up-hide medium-hide<% } %><% if(section.settings.collection?.all_products_count < 3){ %> small-hide<% } %>">
         <div class="slider-counter caption">
           <span class="slider-counter--current">1</span>
           <span aria-hidden="true"> / </span>
