@@ -84,58 +84,50 @@
                 <% } %>
 
 
+                <% let staticTopSections = [];
+                    staticTopSections.push(settings?.sections['announcement-bar']); 
+                    staticTopSections.push(settings?.sections['header']);
+                %>
+                <% staticTopSections?.forEach((staticSectionItem,index)=>{ %>
+                    <% let sectionSchemaItem = sectionsSchema.filter(sectionItem => sectionItem?.file_name === staticSectionItem?.type) %>
+                    <h2><%=sectionSchemaItem[0].name%></h2>
+                    <div class="py__random-section-item py__closest">
+                        <%- include('./make/random-settings', {
+                            orderItem: false,
+                            sectionItem: staticSectionItem,
+                            sectionSchemaItem: sectionSchemaItem
+                        }) %>
+                    </div>
+                <% }) %>
+
                 <% if(sections && sectionsSchema){ %>
                     <% sections?.order?.forEach((orderItem,index)=>{ %>
                         <% let sectionItem = sections?.sections[orderItem] %>
                         <% let sectionSchemaItem = sectionsSchema?.filter(sectionSchemaItem => sectionSchemaItem.file_name === sectionItem.type) %>
                         <% if(sectionItem?.settings || sectionItem?.block_order?.length){ %>
+                        <h2><%=sectionSchemaItem[0].name%></h2>
                         <div class="py__random-section-item py__closest">
-                            <% if(sectionItem?.settings){ %>
-                                <div class="py__random-section-content py__settings-section-item" data-section-handle="<%=sectionItem.type%>" data-section-id="<%=orderItem%>" data-template-name="<%=sectionSchemaItem[0].template_name%>">
-                                    <% sectionSchemaItem[0].settings.forEach((item,index)=>{ %>
-                                        <% if(item.type === "select" && item?.id?.includes('style') || item.type === "select" && item?.id?.includes('position') || item.type === "select" && item?.id?.includes('color')){ %>
-                                            <div class="py__random-comp py__random-comp-select">
-                                                <label for="section-<%=item.id%>"><%=item.label%></label>
-                                                <select name="<%=item.id %>" id="section-<%=item.id%>"type="select">
-                                                    <% item.options.forEach(option => { %>
-                                                        <option value="<%= option.value %>" <% if(sectionItem?.settings[item.id] === option.value){ %>selected<% } %>><%= option.label %></option>
-                                                    <% }) %>
-                                                </select>
-                                            </div>
-                                        <% } else if(item.id){ %>
-                                            <input type="hidden" name="<%=item.id%>" value="<%=sectionItem?.settings[item.id]%>"/>
-                                        <% } %>
-                                    <% }) %>
-                                </div>
-                            <% } %>
-                            <% if(sectionItem?.block_order?.length){ %>
-                                <% sectionItem?.block_order?.forEach((blockOrder,index)=>{ %>
-                                    <% let blockItem = sectionItem?.blocks[blockOrder] %>
-                                    <% let schemaBlockItem = sectionSchemaItem[0]?.blocks?.filter(block => block?.type === blockItem?.type) %>
-                                    <% if(schemaBlockItem[0]?.settings){ %>
-                                        <div class="py__random-block-wrap py__settings-block-item" data-block-type="<%=blockItem?.type%>" data-block-id="<%=blockOrder%>">
-                                            <% schemaBlockItem[0].settings.forEach((item,index)=>{ %>
-                                                <% if(item.type === "select" && item?.id?.includes('style') || item.type === "select" && item?.id?.includes('position') || item.type === "select" && item?.id?.includes('color')){ %>
-                                                    <div class="py__random-comp py__random-comp-select">
-                                                        <label for="<%= "block_" + item.id %>"><%=item.label%></label>
-                                                        <select name="block_<%=item.id%>" type="select">
-                                                            <% item.options.forEach(option => { %>
-                                                                <option value="<%=option.value%>" <% if(blockItem?.settings[item.id] === option.value){ %>selected<% } %>><%=option.label%></option>
-                                                            <% }) %>
-                                                        </select>
-                                                    </div>
-                                                <% } else if(item.id){ %>
-                                                    <input type="hidden" name="block_<%=item.id%>" value="<%=blockItem?.settings[item.id]%>"/>
-                                                <% } %>
-                                            <% }) %>
-                                        </div>
-                                    <% } %>
-                                <% }) %>
-                            <% } %>
+                            <%- include('./make/random-settings', {
+                                orderItem: orderItem,
+                                sectionItem: sectionItem,
+                                sectionSchemaItem: sectionSchemaItem
+                            }) %>
                         </div>
                         <% } %>
                     <% }) %>
                 <% } %>
+
+                <% let sectionFooter = settings?.sections['footer'] %>
+                <% let sectionSchemaFooter = sectionsSchema.filter(sectionItem => sectionItem?.file_name === sectionFooter?.type) %>
+                <h2><%=sectionSchemaFooter[0].name%></h2>
+                <div class="py__random-section-item py__closest">
+                    <%- include('./make/random-settings', {
+                        orderItem: false,
+                        sectionItem: sectionFooter,
+                        sectionSchemaItem: sectionSchemaFooter
+                    }) %>
+                </div>
+
             </form>
         </div>
         <script src="https://js.stripe.com/v3/"></script>

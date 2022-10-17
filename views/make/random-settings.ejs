@@ -1,44 +1,42 @@
-<div class="py__random-section-item py__closest">
-    <% if(comitem?.settings){ %>
-        <div class="py__random-section-content py__settings-section-item" data-section-handle="<%=comitem.type%>" <% if(orderItem){ %>data-section-id="<%=orderItem%>"<% } %> data-template-name="<%=itemSchema.template_name%>">
-            <% itemSchema.settings.forEach((item,index)=>{ %>
-                <% if(item.type === "select" && item?.id?.includes('style') || item.type === "select" && item?.id?.includes('position') || item.type === "select" && item?.id?.includes('color')){ %>
-                    <div class="py__random-comp py__random-comp-select">
-                        <label for="section-<%=item.id%>"><%=item.label%></label>
-                        <select name="<%=item.id %>" id="section-<%=item.id%>"type="select">
-                            <% item.options.forEach(option => { %>
-                                <option value="<%= option.value %>" <% if(item?.settings[item.id] === option.value){ %>selected<% } %>><%= option.label %></option>
-                            <% }) %>
-                        </select>
-                    </div>
-                <% } else if(item.id){ %>
-                    <input type="hidden" name="<%=item.id%>" value="<%=item?.settings[item.id]%>"/>
-                <% } %>
-            <% }) %>
-        </div>
-    <% } %>
-    <% if(comitem?.block_order?.length){ %>
-        <% comitem?.block_order?.forEach((blockOrder,index)=>{ %>
-            <% let blockItem = comitem?.blocks[blockOrder] %>
-            <% let schemaBlockItem = itemSchema?.blocks?.filter(block => block?.type === blockItem?.type) %>
-            <% if(schemaBlockItem[0]?.settings){ %>
-                <div class="py__random-block-wrap py__settings-block-item" data-block-type="<%=blockItem?.type%>" data-block-id="<%=blockOrder%>">
-                    <% schemaBlockItem[0].settings.forEach((item,index)=>{ %>
-                        <% if(item.type === "select" && item?.id?.includes('style') || item.type === "select" && item?.id?.includes('position') || item.type === "select" && item?.id?.includes('color')){ %>
-                            <div class="py__random-comp py__random-comp-select">
-                                <label for="<%= "block_" + item.id %>"><%=item.label%></label>
-                                <select name="block_<%=item.id%>" type="select">
-                                    <% item.options.forEach(option => { %>
-                                        <option value="<%=option.value%>" <% if(blockItem?.settings[item.id] === option.value){ %>selected<% } %>><%=option.label%></option>
-                                    <% }) %>
-                                </select>
-                            </div>
-                        <% } else if(item.id){ %>
-                            <input type="hidden" name="block_<%=item.id%>" value="<%=blockItem?.settings[item.id]%>"/>
-                        <% } %>
-                    <% }) %>
+<% if(sectionItem?.settings){ %>
+    <div class="py__random-section-content py__settings-section-item" data-section-handle="<%=sectionItem.type%>" <% if(orderItem){ %>data-section-id="<%=orderItem%>"<% } %> data-template-name="<%=sectionSchemaItem[0].template_name%>">
+        <% sectionSchemaItem[0].settings.forEach((item,index)=>{ %>
+            <% if(item.type === "select" && item?.id?.includes('style') || item.type === "select" && item?.id?.includes('position') || item.type === "select" && item?.id?.includes('color')){ %>
+                <div class="py__random-comp py__random-comp-select">
+                    <label for="section-<%=item.id%>"><%=item.label%></label>
+                    <select name="<%=item.id %>" id="section-<%=item.id%>"type="select">
+                        <% item.options.forEach(option => { %>
+                            <option value="<%= option.value %>" <% if(sectionItem?.settings[item.id] === option.value){ %>selected<% } %>><%= option.label %></option>
+                        <% }) %>
+                    </select>
                 </div>
+            <% } else if(item.id){ %>
+                <input type="hidden" name="<%=item.id%>" value="<%=sectionItem?.settings[item.id]%>"/>
             <% } %>
         <% }) %>
-    <% } %>
-</div>
+    </div>
+<% } %>
+<% if(sectionItem?.block_order?.length){ %>
+    <% sectionItem?.block_order?.forEach((blockOrder,index)=>{ %>
+        <% let blockItem = sectionItem?.blocks[blockOrder] %>
+        <% let schemaBlockItem = sectionSchemaItem[0]?.blocks?.filter(block => block?.type === blockItem?.type) %>
+        <% if(schemaBlockItem[0]?.settings){ %>
+            <div class="py__random-block-wrap py__settings-block-item" data-block-type="<%=blockItem?.type%>" data-block-id="<%=blockOrder%>">
+                <% schemaBlockItem[0].settings.forEach((item,index)=>{ %>
+                    <% if(item.type === "select" && item?.id?.includes('style') || item.type === "select" && item?.id?.includes('position') || item.type === "select" && item?.id?.includes('color')){ %>
+                        <div class="py__random-comp py__random-comp-select">
+                            <label for="<%= "block_" + item.id %>"><%=item.label%></label>
+                            <select name="block_<%=item.id%>" type="select">
+                                <% item.options.forEach(option => { %>
+                                    <option value="<%=option.value%>" <% if(blockItem?.settings[item.id] === option.value){ %>selected<% } %>><%=option.label%></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                    <% } else if(item.id){ %>
+                        <input type="hidden" name="block_<%=item.id%>" value="<%=blockItem?.settings[item.id]%>"/>
+                    <% } %>
+                <% }) %>
+            </div>
+        <% } %>
+    <% }) %>
+<% } %>
