@@ -63,7 +63,7 @@
                 <% const gift = JSON.parse(include(`../contents/${item.section_id}/gift.json`)) %>
                 <% const themeGeneralTexts = JSON.parse(include(`../themes/${item.section_id}/locales/en.default.json`)) %>
 
-                <% if(item.section_id !== "632a6f7db34039b04f77d3b1" && item.file_name !== "image-with-two-products" && item.file_name !== "featured-blog"){ %>
+                <% if(item.section_id !== "632a6f7db34039b04f77d3b1" && item.file_name !== "featured-blog"){ %>
                 <%- include(item.section_id + '/sections/' + item.file_name, {
                     srcId: item.section_id,
                     menu: menu,

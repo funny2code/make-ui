@@ -20,6 +20,7 @@
   color: var(--py-cart-color);
   flex-direction: column;  
   padding: 20px 10px 20px 0px;
+  overflow-y: auto;
 }
 .cart-notification>div{
   padding: 15px 15px 15px 25px;
@@ -94,6 +95,7 @@
   overflow: auto;
   margin-bottom: 1.3rem;
   margin-top: 1.3rem;
+  min-height: 130px;
 }
 
 .bc-cart__item {

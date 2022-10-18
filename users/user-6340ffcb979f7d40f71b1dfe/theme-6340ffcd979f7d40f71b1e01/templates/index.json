@@ -403,107 +403,6 @@
         "1652851716950d2423-2"
       ]
     },
-    "165285191190a33df1": {
-      "type": "image-with-two-products",
-      "blocks": {
-        "1652851911520ae017-0": {
-          "type": "product",
-          "settings": {
-            "product": "arizona-diamondbacks-heavyweight-t-shirt-ivory",
-            "card_style": "vertical",
-            "image_ratio": "square",
-            "image_gallery": false,
-            "card_bg_color": "bg-c-average",
-            "card_radius": 7,
-            "item_space": 10,
-            "show_vendor": false,
-            "show_colors": true,
-            "show_variants_on_hover": true,
-            "show_view_product": true,
-            "show_quick_add": true,
-            "info_align": "center",
-            "card_color": "c-dark",
-            "view_btn_size": "medium",
-            "card_color_view_btn": "light",
-            "card_color_view_btn_hover": "dark",
-            "custom_font_style": false,
-            "title_fontsize": "",
-            "title_fontsize_m": "",
-            "title_fontweight": "",
-            "title_fontstretch": "",
-            "title_fontstyle": "normal",
-            "title_lineheight": "",
-            "title_letterspacing": "",
-            "info_fontsize": "",
-            "info_fontsize_m": "",
-            "info_fontweight": "",
-            "info_fontstretch": "",
-            "info_fontstyle": "normal",
-            "info_lineheight": "",
-            "info_letterspacing": "",
-            "enable_anim": false,
-            "anim": "zoom-in"
-          }
-        },
-        "1652851911520ae017-1": {
-          "type": "product",
-          "settings": {
-            "product": "colorado-rockies-heavyweight-t-shirt-ivory",
-            "card_style": "vertical",
-            "image_ratio": "square",
-            "image_gallery": false,
-            "card_bg_color": "bg-c-average",
-            "card_radius": 7,
-            "item_space": 10,
-            "show_vendor": false,
-            "show_colors": true,
-            "show_variants_on_hover": true,
-            "show_view_product": true,
-            "show_quick_add": true,
-            "info_align": "center",
-            "card_color": "c-dark",
-            "view_btn_size": "medium",
-            "card_color_view_btn": "light",
-            "card_color_view_btn_hover": "dark",
-            "custom_font_style": false,
-            "title_fontsize": "",
-            "title_fontsize_m": "",
-            "title_fontweight": "",
-            "title_fontstretch": "",
-            "title_fontstyle": "normal",
-            "title_lineheight": "",
-            "title_letterspacing": "",
-            "info_fontsize": "",
-            "info_fontsize_m": "",
-            "info_fontweight": "",
-            "info_fontstretch": "",
-            "info_fontstyle": "normal",
-            "info_lineheight": "",
-            "info_letterspacing": "",
-            "enable_anim": false,
-            "anim": "zoom-in"
-          }
-        }
-      },
-      "block_order": [
-        "1652851911520ae017-0",
-        "1652851911520ae017-1"
-      ],
-      "settings": {
-        "image": "",
-        "image_position": "left",
-        "section_color": "var(--py-color-dark)",
-        "title": "Your Heading Here",
-        "weight": "",
-        "size": "",
-        "m_weight": "",
-        "m_size": "",
-        "text": "<p>Your content and iformation text here!</p>",
-        "align": "left",
-        "enable_anim": false,
-        "anim": "zoom-in"
-      }
-    },
     "165285246185f95e1b": {
       "type": "contact-form",
       "blocks": {
@@ -555,7 +454,6 @@
     "1651801075bda11aac",
     "1651867483e4606eac",
     "1652851716a9bcae46",
-    "165285191190a33df1",
     "165285246185f95e1b"
   ]
 }
