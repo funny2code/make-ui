@@ -2545,4 +2545,24 @@ details[open] > .header__icon--menu .icon-hamburger {
       white-space: nowrap;
     }
   }
+
+.font-smaller {
+  font-size: smaller;
+}
+
+.font-small {
+  font-size: small;
+}
+
+.font-xx-small {
+  font-size: xx-small;
+}
+
+.font-x-small {
+  font-size: x-small;
+}
+
+.font-larger {
+  font-size: larger;
+}
   
