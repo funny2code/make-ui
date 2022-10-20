@@ -5,13 +5,13 @@ const modelFigma = require('../models/figma');
 router.get('/:userId/:themeId', async (req, res, next) => {
 
   const { userId, themeId} = req.params;
-  const {pageName} = req.query;
-  if (!userId || !themeId || !pageName) return next();
+  const {pagename} = req.query;
+  if (!userId || !themeId || !pagename) return next();
 
   try {
 
-    const pages = await modelFigma.findOne({user_id: userId, theme_id: themeId, page_name: pageName}).exec();
-    if (!pages) return next();
+    const pages = await modelFigma.findOne({user_id: userId, theme_id: themeId, page_name: pagename}).exec();
+    if (!pages) return res.status(404).json({status:'404', message: "404 Not Found!"});
     res.status(200).json(pages?.data);
 
   } catch (err) {
