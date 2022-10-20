@@ -1780,13 +1780,10 @@
 
   // SAVE FIGMA DATA
   let figmaContent = [];
-  const saveFigma = async () => {
-    let userID = document
-      .querySelector(".py__save-figma-button")
-      .getAttribute("data-user-id");
-    let themeID = document
-      .querySelector(".py__save-figma-button")
-      .getAttribute("data-theme-id");
+  const saveFigma = async (event) => {
+    if(!event) return;
+    let userID = event.target.getAttribute("data-user-id");
+    let themeID = event.target.getAttribute("data-theme-id");
     if (!userID || !themeID) return;
     loading?.classList.add("py__animate", "py__notopacity");
     loading?.insertAdjacentHTML(
@@ -1794,36 +1791,40 @@
       '<span class="py__save-figma-message">Please wait few minuts...</span>'
     );
 
-    let currentUrl = location?.pathname + location?.search;
-    let brandhref = encodeURI(
-      document.querySelector(".global-styles")?.getAttribute("href")
-    );
-    currentUrl !== brandhref
-      ? await changeViewPage(false, brandhref, false)
-      : null;
-    currentUrl !== brandhref ? await timeout(4000) : null;
-    await saveBrandForFigma();
+    // let currentUrl = location?.pathname + location?.search;
+    // let brandhref = encodeURI(
+    //   document.querySelector(".global-styles")?.getAttribute("href")
+    // );
+    // currentUrl !== brandhref
+    //   ? await changeViewPage(false, brandhref, false)
+    //   : null;
+    // currentUrl !== brandhref ? await timeout(4000) : null;
+    // await saveBrandForFigma();
 
     let selectPages = document.querySelector(".py__preview-pages-select");
     let selectPagesOptions = selectPages.querySelectorAll("option");
     for (let option of selectPagesOptions) {
       let href = option.getAttribute("data-href");
-      await changeViewPage(false, href, false);
+      let pageName = option.textContent.toLowerCase().trim().replaceAll(' ', '-');
+      await changeViewPage(false, href, false, false);
       await timeout(3000);
       await savePageResForFigma();
+      let url = "/figma/" + userID + "/" + themeID + "/" + pageName;
+      let res = await fetch(url, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(figmaContent),
+      });
+      let data = await res.text();
+      if (!data) loading?.querySelector(".py__save-figma-message")?.innerHTML('WE HAVE ERROR! Please Try Again Few Minuts Late!');
+      figmaContent  = [];
     }
 
-    let url = "/figma/" + userID + "/" + themeID;
-    let res = await fetch(url, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(figmaContent),
-    });
-    let data = await res.text();
-    if (!data) return;
+    
+    console.log("DAV QO MTACACNA");
     loading?.classList.remove("py__animate", "py__notopacity");
     loading?.querySelector(".py__save-figma-message")?.remove();
   };
@@ -2258,13 +2259,14 @@
   };
 
   // View Iframe Fun
-  const viewIframe = async () => {
+  const viewIframe = async (showLoading=true) => {
+    console.log(showLoading, "VIEW IFRAME");
     let iframes = document.querySelectorAll("iframe.py__view-iframe");
-    if (!iframes?.length) return loading?.classList.remove("py__animate");
+    if (!iframes?.length && showLoading) return loading?.classList.remove("py__animate");
     let url = iframes[0].getAttribute("data-src")
       ? iframes[0].getAttribute("data-src")
       : iframes[0].getAttribute("src");
-    if (!url) return loading?.classList.remove("py__animate");
+    if (!url && showLoading) return loading?.classList.remove("py__animate");
     let res = await fetch(url, {
       method: "POST",
       headers: {
@@ -2274,7 +2276,7 @@
       body: JSON.stringify(theme),
     });
     let data = await res.text();
-    if (!data) return loading?.classList.remove("py__animate");
+    if (!data && showLoading) return loading?.classList.remove("py__animate");
     let parser = new DOMParser();
     let html = parser.parseFromString(data, "text/html");
     for (let i = 0; i < iframes.length; i++) {
@@ -2286,7 +2288,7 @@
             html.querySelector("body").innerHTML)
         : null;
     }
-    loading?.classList.remove("py__animate");
+    if(showLoading) loading?.classList.remove("py__animate");
   };
 
   // Ifeame Previews Function (Mobile, Desktop, Tablet)
@@ -2355,9 +2357,11 @@
   const changeViewPage = async (
     event = false,
     href = false,
-    changeUrl = true
+    changeUrl = true,
+    showLoading = true
   ) => {
-    loading?.classList.add("py__animate");
+    console.log(showLoading, "CHANGE VIEW PAGE");
+    if(showLoading) loading?.classList.add("py__animate");
     let el = event ? event.target : null;
     let activeSidebarItem = document.querySelector(
       ".py__get-section-button.active"
@@ -2403,14 +2407,16 @@
       ? (oldSidebar.innerHTML = newSidebar.innerHTML)
       : null;
     let ifrmaes = document.querySelectorAll(".py__view-iframe");
-    console.log(url);
     if (ifrmaes?.length) {
       for (let i = 0; i < ifrmaes?.length; i++) {
         let iframe = ifrmaes[i];
-        iframe.setAttribute("data-src", url.replace("themes", "view").replace("remix", "view"));
+        let newUrl = (url && url.includes('users'))
+        ? '/view' + url
+        : url.replace("themes", "view").replace("remix", "view");
+        iframe.setAttribute("data-src", newUrl);
       }
     }
-    await viewIframe();
+    await viewIframe(showLoading);
   };
 
   // Get Global settings or Section settings dynamic function

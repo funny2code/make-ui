@@ -4,27 +4,15 @@ const modelFigma = require('../models/figma');
 
 router.get('/:userId/:themeId', async (req, res, next) => {
 
-  const { userId, themeId } = req.params;
-  const {select} = req.query;
-  if (!userId || !themeId || !select) return next();
+  const { userId, themeId} = req.params;
+  const {pageName} = req.query;
+  if (!userId || !themeId || !pageName) return next();
 
   try {
 
-    const pages = await modelFigma.findOne({user_id: userId, theme_id: themeId}).exec();
+    const pages = await modelFigma.findOne({user_id: userId, theme_id: themeId, page_name: pageName}).exec();
     if (!pages) return next();
-    if(select !== "all"){
-      const slectedData = select?.split(',');
-      const newData = [];
-      slectedData?.forEach(selectItem => {
-        pages?.data?.forEach(item => {
-          let itemName = item?.name?.toLowerCase();
-          if(itemName.includes(selectItem)) newData.push(item);
-        })
-      });
-      res.status(200).json(newData);
-    } else {
-      res.status(200).json(pages?.data);
-    }
+    res.status(200).json(pages?.data);
 
   } catch (err) {
     return next(err);
@@ -32,15 +20,15 @@ router.get('/:userId/:themeId', async (req, res, next) => {
 
 });
 
-router.post('/:userId/:themeId', async (req, res, next) => {
+router.post('/:userId/:themeId/:pageName', async (req, res, next) => {
 
-    const { userId, themeId } = req.params;
+    const { userId, themeId, pageName} = req.params;
     const data = req.body;
-    if (!userId || !themeId || !data) return next();
+    if (!userId || !themeId || !data || !pageName) return next();
   
     try {
   
-        const findFigma = await modelFigma.findOne({user_id: userId, theme_id: themeId}).exec();
+        const findFigma = await modelFigma.findOne({user_id: userId, theme_id: themeId, page_name: pageName}).exec();
         if(findFigma){
             modelFigma.findByIdAndUpdate(findFigma._id, { data: data }, { new: true }).exec(err => {
                 if (err) return res.status(500).send("error");
@@ -50,6 +38,7 @@ router.post('/:userId/:themeId', async (req, res, next) => {
             const newFigma = await new modelFigma({
                 user_id: userId, 
                 theme_id: themeId, 
+                page_name: pageName,
                 data: data
             });
         
