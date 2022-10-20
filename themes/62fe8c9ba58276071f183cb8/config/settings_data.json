@@ -841,26 +841,45 @@
         ],
         "settings": {}
       },
-      "customer-account": {
-        "type": "customer-account",
+      "customers-activate-account": {
+        "type": "customers-activate-account",
         "settings": {
           "page_bg_color": "var(--py-bg-color-dark)",
           "page_color": "var(--py-color-light)",
           "page_align": "center",
-          "order_history_desktop": "table",
-          "table_header_bg_color": "var(--py-bg-color-middle-light)",
-          "table_header_color": "var(--py-color-dark)",
-          "table_body_bg_color": "var(--py-bg-color-light)",
-          "table_body_color": "var(--py-color-dark)",
-          "card_bg_color": "var(--py-bg-color-light)",
-          "card_color": "var(--py-color-dark)",
-          "card_pay_bg_color": "var(--py-bg-color-dark)",
-          "card_pay_color": "var(--py-color-light)",
-          "card_ful_bg_color": "var(--py-bg-color-middle-light)",
-          "card_ful_color": "var(--py-color-dark)",
-          "card_border_radius": 10,
-          "card_pay_border_radius": 30,
-          "btn_size": "medium"
+          "activate_btn_bg_color": "var(--py-bg-color-middle-light)",
+          "activate_btn_color": "var(--py-color-dark)",
+          "activate_btn_border_width": 3,
+          "activate_btn_border_radius": 20,
+          "activate_btn_color_br": "var(--py-color-dark)",
+          "activate_btn_hover_bg_color": "var(--py-bg-color-avarge)",
+          "activate_btn_hover_color": "var(--py-color-dark)",
+          "activate_btn_hover_color_br": "var(--py-color-dark)",
+          "decline_btn_bg_color": "var(--py-bg-color-middle-dark)",
+          "decline_btn_color": "var(--py-color-light)",
+          "decline_btn_border_width": 3,
+          "decline_btn_border_radius": 20,
+          "decline_btn_color_br": "var(--py-color-light)",
+          "decline_btn_hover_bg_color": "var(--py-bg-color-avarge)",
+          "decline_btn_hover_color": "var(--py-color-dark)",
+          "decline_btn_hover_color_br": "var(--py-color-dark)",
+          "field_bg_color": "var(--py-bg-color-middle-light)",
+          "field_color": "var(--py-color-dark)",
+          "field_border_width": 3,
+          "field_border_radius": 20,
+          "field_color_br": "var(--py-color-dark)"
+        }
+      },
+      "customers-reset-password": {
+        "type": "customers-reset-password",
+        "settings": {
+
+        }
+      },
+      "customers-account": {
+        "type": "customers-account",
+        "settings": {
+
         }
       },
       "customers-login": {
@@ -902,6 +921,12 @@
           "field_border_width": 1,
           "field_border_radius": 5,
           "submit_btn_size": "medium"
+        }
+      },
+      "gift-card": {
+        "type": "gift-card",
+        "settings": {
+
         }
       },
       "header-2": {
