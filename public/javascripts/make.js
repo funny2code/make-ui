@@ -394,440 +394,961 @@
     "6306f8e7db2cbec8c440f780": [
       {
         "164253890362d227ae": {
-          "type": "image-banner",
-          "settings": {
-            "image": "/6306f8e7db2cbec8c440f780/image-banner-v1-desktop.webp",
-            "show_lazy": true,
-            "image_2": "/6306f8e7db2cbec8c440f780/image-banner-v1-mobile.webp",
-            "url": "shopify://collections/all",
-            "show_override": true,
-            "content_bg_color": "var(--py-bg-color-dark)",
-            "ov_bg_image": "",
-            "ov_opacity": "0.4",
-            "pv": "center",
-            "ph": "center",
-            "align": "left",
-            "padding": "",
-            "margin": "",
-            "width": "",
-            "height": "",
-            "c_css": "",
-            "m_pv": "center",
-            "m_ph": "center",
-            "m_align": "center",
-            "m_padding": "",
-            "m_margin": "",
-            "m_width": "",
-            "m_height": "",
-            "m_c_css": "",
-            "enable_anim": true,
-            "anim": "zoom-out"
+          type: "image-banner",
+          settings: {
+            image: "/6306f8e7db2cbec8c440f780/image-banner-v6-desktop.webp",
+            show_lazy: true,
+            image_2: "/6306f8e7db2cbec8c440f780/image-banner-v6-mobile.webp",
+            url: "shopify://collections/all",
+            show_override: true,
+            content_bg_color: "var(--py-bg-color-dark)",
+            ov_bg_image: "",
+            ov_opacity: "0.4",
+            pv: "center",
+            ph: "center",
+            align: "center",
+            padding: "",
+            margin: "",
+            width: "",
+            height: "",
+            c_css:
+              "flex-direction: column;\njustify-content: end;\npadding-bottom:30px;",
+            m_pv: "center",
+            m_ph: "center",
+            m_align: "center",
+            m_padding: "",
+            m_margin: "",
+            m_width: "",
+            m_height: "",
+            m_c_css:
+              "flex-direction: column;\njustify-content: end;\npadding-bottom:30px;",
+            enable_anim: true,
+            anim: "zoom-in",
           },
-          "blocks": {
+          blocks: {
             "16425389039f659f32-0": {
-              "type": "heading",
-              "settings": {
-                "heading": "High-Performance & Elegant Design",
-                "align": "left",
-                "content_color": "var(--py-color-light)",
-                "weight": "",
-                "size": "50px",
-                "padding": "",
-                "margin": "",
-                "width": "",
-                "height": "",
-                "c_css": "max-width:800px;\nmargin:auto;",
-                "m_align": "left",
-                "content_color_m": "var(--py-color-light)",
-                "m_weight": "",
-                "m_size": "",
-                "m_padding": "",
-                "m_margin": "",
-                "m_width": "",
-                "m_height": "",
-                "m_c_css": "font-size:26px"
-              }
+              type: "heading",
+              settings: {
+                heading:
+                  '<div class="grid grid--1-col"> <div class="grid__item font-larger">Green Fiend</div><div class="grid__item font-small">Our botanicals bring the outside in</div></div>',
+                align: "center",
+                content_color: "var(--py-color-light)",
+                weight: "400",
+                size: "50px",
+                padding: "",
+                margin: "",
+                width: "",
+                height: "",
+                c_css: "",
+                m_align: "center",
+                content_color_m: "var(--py-color-light)",
+                m_weight: "",
+                m_size: "",
+                m_padding: "",
+                m_margin: "",
+                m_width: "",
+                m_height: "",
+                m_c_css: "font-size:30px",
+              },
             },
             "16425389039f659f32-2": {
-              "type": "buttons",
-              "settings": {
-                "button_label_1": "Shop the MW08 Sport",
-                "button_link_1": "shopify://collections/all",
-                "view_btn_size": "large",
-                "content_color_view_btn": "dark",
-                "content_bg_color_view_btn": "light",
-                "content_color_view_btn_hover": "light",
-                "content_bg_color_view_btn_hover": "dark",
-                "c_css": "border-width:0px;"
-              }
-            }
+              type: "buttons",
+              settings: {
+                button_label_1: "SHOP NOW",
+                button_link_1: "shopify://collections/all",
+                view_btn_size: "large",
+                align: "right",
+                content_color_view_btn: "dark",
+                content_bg_color_view_btn: "light",
+                content_color_view_btn_hover: "light",
+                content_bg_color_view_btn_hover: "dark",
+                c_css: "border-width:0px;\nmargin-right: 1rem",
+              },
+            },
           },
-          "block_order": [
-            "16425389039f659f32-0",
-            "16425389039f659f32-2"
-          ]
-        }
+          block_order: ["16425389039f659f32-0", "16425389039f659f32-2"],
+        },
       },
       {
         "164253890362d227ae": {
-          "type": "image-banner",
-          "settings": {
-            "image": "/6306f8e7db2cbec8c440f780/image-banner-v2-desktop.webp",
-            "show_lazy": true,
-            "image_2": "/6306f8e7db2cbec8c440f780/image-banner-v2-mobile.webp",
-            "url": "shopify://collections/all",
-            "show_override": true,
-            "content_bg_color": "var(--py-bg-color-dark)",
-            "ov_bg_image": "",
-            "ov_opacity": "0.4",
-            "pv": "center",
-            "ph": "center",
-            "align": "center",
-            "padding": "",
-            "margin": "",
-            "width": "",
-            "height": "",
-            "c_css": "",
-            "m_pv": "center",
-            "m_ph": "center",
-            "m_align": "center",
-            "m_padding": "",
-            "m_margin": "",
-            "m_width": "",
-            "m_height": "",
-            "m_c_css": "",
-            "enable_anim": true,
-            "anim": "zoom-out"
+          type: "image-banner",
+          settings: {
+            image: "/6306f8e7db2cbec8c440f780/image-banner-v7-desktop.webp",
+            show_lazy: true,
+            image_2: "/6306f8e7db2cbec8c440f780/image-banner-v7-mobile.webp",
+            url: "shopify://collections/all",
+            show_override: true,
+            content_bg_color: "var(--py-bg-color-dark)",
+            ov_bg_image: "",
+            ov_opacity: "0.4",
+            pv: "center",
+            ph: "center",
+            align: "left",
+            padding: "",
+            margin: "",
+            width: "",
+            height: "",
+            c_css:
+              "flex-direction: column;\njustify-content: end;\npadding-bottom:30px;",
+            m_pv: "center",
+            m_ph: "center",
+            m_align: "left",
+            m_padding: "",
+            m_margin: "",
+            m_width: "",
+            m_height: "",
+            m_c_css:
+              "flex-direction: column;\njustify-content: end;\npadding-bottom:30px;",
+            enable_anim: true,
+            anim: "zoom-in",
           },
-          "blocks": {
+          blocks: {
             "16425389039f659f32-0": {
-              "type": "heading",
-              "settings": {
-                "heading": "Summer style",
-                "align": "center",
-                "content_color": "var(--py-color-light)",
-                "weight": "",
-                "size": "50px",
-                "padding": "",
-                "margin": "",
-                "width": "",
-                "height": "",
-                "c_css": "max-width:800px;\nmargin:auto;",
-                "m_align": "center",
-                "content_color_m": "var(--py-color-light)",
-                "m_weight": "",
-                "m_size": "",
-                "m_padding": "",
-                "m_margin": "",
-                "m_width": "",
-                "m_height": "",
-                "m_c_css": "font-size:26px"
-              }
+              type: "heading",
+              settings: {
+                heading:
+                  '<div class="grid grid--1-col"> <div class="grid__item font-larger">Beauty You</div><div class="grid__item font-small">It smartly nourish your skin with lotions, day creams, night creams, tinted moisturizers.</div></div>',
+                align: "left",
+                content_color: "var(--py-color-light)",
+                weight: "400",
+                size: "50px",
+                padding: "",
+                margin: "",
+                width: "",
+                height: "",
+                c_css: "",
+                m_align: "left",
+                content_color_m: "var(--py-color-light)",
+                m_weight: "",
+                m_size: "",
+                m_padding: "",
+                m_margin: "",
+                m_width: "",
+                m_height: "",
+                m_c_css: "font-size:30px",
+              },
             },
             "16425389039f659f32-2": {
-              "type": "buttons",
-              "settings": {
-                "button_label_1": "SHOP TOPS",
-                "button_link_1": "shopify://collections/all",
-                "view_btn_size": "large",
-                "content_color_view_btn": "dark",
-                "content_bg_color_view_btn": "light",
-                "content_color_view_btn_hover": "light",
-                "content_bg_color_view_btn_hover": "dark",
-                "c_css": "border-width:0px;"
-              }
-            }
+              type: "buttons",
+              settings: {
+                button_label_1: "Shop Chamarel",
+                button_link_1: "shopify://collections/all",
+                view_btn_size: "large",
+                align: "left",
+                content_color_view_btn: "dark",
+                content_bg_color_view_btn: "light",
+                content_color_view_btn_hover: "light",
+                content_bg_color_view_btn_hover: "dark",
+                c_css: "border-width:0px;\nmargin-left: 1rem",
+              },
+            },
           },
-          "block_order": [
-            "16425389039f659f32-0",
-            "16425389039f659f32-2"
-          ]
-        }
-      }
+          block_order: ["16425389039f659f32-0", "16425389039f659f32-2"],
+        },
+      },
+      {
+        "164253890362d227ae": {
+          type: "image-banner",
+          settings: {
+            image: "/6306f8e7db2cbec8c440f780/image-banner-v8-desktop.webp",
+            show_lazy: true,
+            image_2: "/6306f8e7db2cbec8c440f780/image-banner-v8-mobile.webp",
+            url: "shopify://collections/all",
+            show_override: true,
+            content_bg_color: "var(--py-bg-color-dark)",
+            ov_bg_image: "",
+            ov_opacity: "0.4",
+            pv: "center",
+            ph: "center",
+            align: "right",
+            padding: "",
+            margin: "",
+            width: "",
+            height: "",
+            c_css:
+              "flex-direction: column;\njustify-content: end;\npadding-bottom:30px;",
+            m_pv: "center",
+            m_ph: "center",
+            m_align: "right",
+            m_padding: "",
+            m_margin: "",
+            m_width: "",
+            m_height: "",
+            m_c_css:
+              "flex-direction: column;\njustify-content: end;\npadding-bottom:30px;",
+            enable_anim: true,
+            anim: "zoom-in",
+          },
+          blocks: {
+            "16425389039f659f32-0": {
+              type: "heading",
+              settings: {
+                heading:
+                  '<div class="grid grid--1-col"> <div class="grid__item font-larger">Beauty Deal</div><div class="grid__item font-small">50% OFF on the most popular cosmetic brands. Order all classy products today!</div></div>',
+                align: "right",
+                content_color: "var(--py-color-light)",
+                weight: "400",
+                size: "50px",
+                padding: "",
+                margin: "",
+                width: "",
+                height: "",
+                c_css: "",
+                m_align: "right",
+                content_color_m: "var(--py-color-light)",
+                m_weight: "",
+                m_size: "",
+                m_padding: "",
+                m_margin: "",
+                m_width: "",
+                m_height: "",
+                m_c_css: "font-size:30px",
+              },
+            },
+            "16425389039f659f32-2": {
+              type: "buttons",
+              settings: {
+                button_label_1: "SHOP NOW",
+                button_link_1: "shopify://collections/all",
+                view_btn_size: "large",
+                align: "right",
+                content_color_view_btn: "dark",
+                content_bg_color_view_btn: "light",
+                content_color_view_btn_hover: "light",
+                content_bg_color_view_btn_hover: "dark",
+                c_css: "border-width:0px;\nmargin-right: 1rem",
+              },
+            },
+          },
+          block_order: ["16425389039f659f32-0", "16425389039f659f32-2"],
+        },
+      },
+      {
+        "164253890362d227ae": {
+          type: "image-banner",
+          settings: {
+            image: "/6306f8e7db2cbec8c440f780/image-banner-v9-desktop.webp",
+            show_lazy: true,
+            image_2: "/6306f8e7db2cbec8c440f780/image-banner-v9-mobile.webp",
+            url: "shopify://collections/all",
+            show_override: true,
+            content_bg_color: "var(--py-bg-color-dark)",
+            ov_bg_image: "",
+            ov_opacity: "0.4",
+            pv: "center",
+            ph: "center",
+            align: "left",
+            padding: "",
+            margin: "",
+            width: "",
+            height: "",
+            c_css: "",
+            m_pv: "center",
+            m_ph: "center",
+            m_align: "left",
+            m_padding: "",
+            m_margin: "",
+            m_width: "",
+            m_height: "",
+            m_c_css: "",
+            enable_anim: true,
+            anim: "zoom-in",
+          },
+          blocks: {
+            "16425389039f659f32-0": {
+              type: "heading",
+              settings: {
+                heading:
+                  '<div class="grid grid--1-col">  <div class="grid__item font-x-small">THE TRANSEASONAL EDIT</div>  <div class="grid__item font-larger">Best-selling classics</div><div class="grid__item font-small">Go-to swimsuits designed to last you season after season.</div></div>',
+                align: "left",
+                content_color: "var(--py-color-light)",
+                weight: "400",
+                size: "50px",
+                padding: "",
+                margin: "",
+                width: "",
+                height: "",
+                c_css: "",
+                m_align: "left",
+                content_color_m: "var(--py-color-light)",
+                m_weight: "",
+                m_size: "",
+                m_padding: "",
+                m_margin: "",
+                m_width: "",
+                m_height: "",
+                m_c_css: "font-size:30px",
+              },
+            },
+            "16425389039f659f32-2": {
+              type: "buttons",
+              settings: {
+                button_label_1: "Shop Chamarel",
+                button_link_1: "shopify://collections/all",
+                view_btn_size: "large",
+                align: "left",
+                content_color_view_btn: "dark",
+                content_bg_color_view_btn: "light",
+                content_color_view_btn_hover: "light",
+                content_bg_color_view_btn_hover: "dark",
+                c_css: "border-width:0px;\nmargin-left: 1rem",
+              },
+            },
+          },
+          block_order: ["16425389039f659f32-0", "16425389039f659f32-2"],
+        },
+      },
+      {
+        "164253890362d227ae": {
+          type: "image-banner",
+          settings: {
+            image: "/6306f8e7db2cbec8c440f780/image-banner-v5-desktop.webp",
+            show_lazy: true,
+            image_2: "/6306f8e7db2cbec8c440f780/image-banner-v5-mobile.webp",
+            url: "shopify://collections/all",
+            show_override: true,
+            content_bg_color: "var(--py-bg-color-dark)",
+            ov_bg_image: "",
+            ov_opacity: "0.4",
+            pv: "center",
+            ph: "center",
+            align: "center",
+            padding: "",
+            margin: "",
+            width: "",
+            height: "",
+            c_css: "",
+            m_pv: "center",
+            m_ph: "center",
+            m_align: "center",
+            m_padding: "",
+            m_margin: "",
+            m_width: "",
+            m_height: "",
+            m_c_css: "",
+            enable_anim: true,
+            anim: "zoom-in",
+          },
+          blocks: {
+            "16425389039f659f32-0": {
+              type: "heading",
+              settings: {
+                heading:
+                  '<div class="grid grid--1-col">  <div class="grid__item font-xx-small">NEW COLLECTION</div>  <div class="grid__item font-larger">Jackets & Liners</div></div>',
+                align: "center",
+                content_color: "var(--py-color-light)",
+                weight: "400",
+                size: "50px",
+                padding: "",
+                margin: "",
+                width: "",
+                height: "",
+                c_css: "",
+                m_align: "center",
+                content_color_m: "var(--py-color-light)",
+                m_weight: "",
+                m_size: "",
+                m_padding: "",
+                m_margin: "",
+                m_width: "",
+                m_height: "",
+                m_c_css: "font-size:30px",
+              },
+            },
+            "16425389039f659f32-2": {
+              type: "buttons",
+              settings: {
+                button_label_1: "EXPLORE ALL",
+                button_link_1: "shopify://collections/all",
+                view_btn_size: "medium",
+                align: "center",
+                content_color_view_btn: "dark",
+                content_bg_color_view_btn: "light",
+                content_color_view_btn_hover: "light",
+                content_bg_color_view_btn_hover: "dark",
+                c_css: "border-width:0px;",
+              },
+            },
+          },
+          block_order: ["16425389039f659f32-0", "16425389039f659f32-2"],
+        },
+      },
+      {
+        "164253890362d227ae": {
+          type: "image-banner",
+          settings: {
+            image: "/6306f8e7db2cbec8c440f780/image-banner-v4-desktop.webp",
+            show_lazy: true,
+            image_2: "/6306f8e7db2cbec8c440f780/image-banner-v4-mobile.jpg",
+            url: "shopify://collections/all",
+            show_override: true,
+            content_bg_color: "var(--py-bg-color-dark)",
+            ov_bg_image: "",
+            ov_opacity: "0.4",
+            pv: "center",
+            ph: "center",
+            align: "left",
+            padding: "",
+            margin: "",
+            width: "",
+            height: "",
+            c_css: "",
+            m_pv: "center",
+            m_ph: "center",
+            m_align: "left",
+            m_padding: "",
+            m_margin: "",
+            m_width: "",
+            m_height: "",
+            m_c_css: "",
+            enable_anim: true,
+            anim: "zoom-in",
+          },
+          blocks: {
+            "16425389039f659f32-0": {
+              type: "heading",
+              settings: {
+                heading:
+                  '<div class="grid grid--1-col">  <div class="grid__item font-xx-small"><span>1926 AT SEA</span></div>  <div class="grid__item font-larger">THE FIRST WATERPROOF WRISTWATCH</div></div>',
+                align: "left",
+                content_color: "var(--py-color-light)",
+                weight: "400",
+                size: "50px",
+                padding: "",
+                margin: "",
+                width: "",
+                height: "",
+                c_css: "max-width:800px;\nmargin:0 20px;",
+                m_align: "left",
+                content_color_m: "var(--py-color-light)",
+                m_weight: "",
+                m_size: "",
+                m_padding: "",
+                m_margin: "",
+                m_width: "",
+                m_height: "",
+                m_c_css: "font-size:30px",
+              },
+            },
+            "16425389039f659f32-2": {
+              type: "buttons",
+              settings: {
+                button_label_1: "SHOP WATCH",
+                button_link_1: "shopify://collections/all",
+                view_btn_size: "large",
+                align: "left",
+                content_color_view_btn: "dark",
+                content_bg_color_view_btn: "light",
+                content_color_view_btn_hover: "light",
+                content_bg_color_view_btn_hover: "dark",
+                c_css: "border-width:0px;\nmargin:0 20px;",
+              },
+            },
+          },
+          block_order: ["16425389039f659f32-0", "16425389039f659f32-2"],
+        },
+      },
+      {
+        "164253890362d227ae": {
+          type: "image-banner",
+          settings: {
+            image: "/6306f8e7db2cbec8c440f780/image-banner-v3-desktop.webp",
+            show_lazy: true,
+            image_2: "/6306f8e7db2cbec8c440f780/image-banner-v3-mobile.webp",
+            url: "shopify://collections/all",
+            show_override: true,
+            content_bg_color: "var(--py-bg-color-dark)",
+            ov_bg_image: "",
+            ov_opacity: "0.4",
+            pv: "center",
+            ph: "center",
+            align: "center",
+            padding: "",
+            margin: "",
+            width: "",
+            height: "",
+            c_css: "",
+            m_pv: "center",
+            m_ph: "center",
+            m_align: "center",
+            m_padding: "",
+            m_margin: "",
+            m_width: "",
+            m_height: "",
+            m_c_css: "",
+            enable_anim: true,
+            anim: "zoom-out",
+          },
+          blocks: {
+            "16425389039f659f32-0": {
+              type: "heading",
+              settings: {
+                heading:
+                  '<div class="grid grid--1-col">  <div class="grid__item">SAGE</div>  <div class="grid__item">COLLECTION</div></div>',
+                align: "center",
+                content_color: "var(--py-color-light)",
+                weight: "400",
+                size: "100px",
+                padding: "",
+                margin: "",
+                width: "",
+                height: "",
+                c_css: "max-width:800px;\nmargin:auto;",
+                m_align: "center",
+                content_color_m: "var(--py-color-light)",
+                m_weight: "",
+                m_size: "",
+                m_padding: "",
+                m_margin: "",
+                m_width: "",
+                m_height: "",
+                m_c_css: "font-size:30px",
+              },
+            },
+            "16425389039f659f32-2": {
+              type: "buttons",
+              settings: {
+                button_label_1: "LEARN MORE",
+                button_link_1: "shopify://collections/all",
+                view_btn_size: "large",
+                align: "center",
+                content_color_view_btn: "dark",
+                content_bg_color_view_btn: "light",
+                content_color_view_btn_hover: "light",
+                content_bg_color_view_btn_hover: "dark",
+                c_css: "border-width:0px;",
+              },
+            },
+          },
+          block_order: ["16425389039f659f32-0", "16425389039f659f32-2"],
+        },
+      },
+      {
+        "164253890362d227ae": {
+          type: "image-banner",
+          settings: {
+            image: "/6306f8e7db2cbec8c440f780/image-banner-v1-desktop.webp",
+            show_lazy: true,
+            image_2: "/6306f8e7db2cbec8c440f780/image-banner-v1-mobile.webp",
+            url: "shopify://collections/all",
+            show_override: true,
+            content_bg_color: "var(--py-bg-color-dark)",
+            ov_bg_image: "",
+            ov_opacity: "0.4",
+            pv: "center",
+            ph: "center",
+            align: "left",
+            padding: "",
+            margin: "",
+            width: "",
+            height: "",
+            c_css: "",
+            m_pv: "center",
+            m_ph: "center",
+            m_align: "center",
+            m_padding: "",
+            m_margin: "",
+            m_width: "",
+            m_height: "",
+            m_c_css: "",
+            enable_anim: true,
+            anim: "zoom-out",
+          },
+          blocks: {
+            "16425389039f659f32-0": {
+              type: "heading",
+              settings: {
+                heading: "High-Performance & Elegant Design",
+                align: "left",
+                content_color: "var(--py-color-light)",
+                weight: "",
+                size: "50px",
+                padding: "",
+                margin: "",
+                width: "",
+                height: "",
+                c_css: "max-width:800px;\nmargin:auto;",
+                m_align: "left",
+                content_color_m: "var(--py-color-light)",
+                m_weight: "",
+                m_size: "",
+                m_padding: "",
+                m_margin: "",
+                m_width: "",
+                m_height: "",
+                m_c_css: "font-size:26px",
+              },
+            },
+            "16425389039f659f32-2": {
+              type: "buttons",
+              settings: {
+                button_label_1: "Shop the MW08 Sport",
+                button_link_1: "shopify://collections/all",
+                view_btn_size: "large",
+                content_color_view_btn: "dark",
+                content_bg_color_view_btn: "light",
+                content_color_view_btn_hover: "light",
+                content_bg_color_view_btn_hover: "dark",
+                c_css: "border-width:0px;",
+              },
+            },
+          },
+          block_order: ["16425389039f659f32-0", "16425389039f659f32-2"],
+        },
+      },
+      {
+        "164253890362d227ae": {
+          type: "image-banner",
+          settings: {
+            image: "/6306f8e7db2cbec8c440f780/image-banner-v2-desktop.webp",
+            show_lazy: true,
+            image_2: "/6306f8e7db2cbec8c440f780/image-banner-v2-mobile.webp",
+            url: "shopify://collections/all",
+            show_override: true,
+            content_bg_color: "var(--py-bg-color-dark)",
+            ov_bg_image: "",
+            ov_opacity: "0.4",
+            pv: "center",
+            ph: "center",
+            align: "center",
+            padding: "",
+            margin: "",
+            width: "",
+            height: "",
+            c_css: "",
+            m_pv: "center",
+            m_ph: "center",
+            m_align: "center",
+            m_padding: "",
+            m_margin: "",
+            m_width: "",
+            m_height: "",
+            m_c_css: "",
+            enable_anim: true,
+            anim: "zoom-out",
+          },
+          blocks: {
+            "16425389039f659f32-0": {
+              type: "heading",
+              settings: {
+                heading: "Summer style",
+                align: "center",
+                content_color: "var(--py-color-light)",
+                weight: "",
+                size: "50px",
+                padding: "",
+                margin: "",
+                width: "",
+                height: "",
+                c_css: "max-width:800px;\nmargin:auto;",
+                m_align: "center",
+                content_color_m: "var(--py-color-light)",
+                m_weight: "",
+                m_size: "",
+                m_padding: "",
+                m_margin: "",
+                m_width: "",
+                m_height: "",
+                m_c_css: "font-size:26px",
+              },
+            },
+            "16425389039f659f32-2": {
+              type: "buttons",
+              settings: {
+                button_label_1: "SHOP TOPS",
+                button_link_1: "shopify://collections/all",
+                view_btn_size: "large",
+                content_color_view_btn: "dark",
+                content_bg_color_view_btn: "light",
+                content_color_view_btn_hover: "light",
+                content_bg_color_view_btn_hover: "dark",
+                c_css: "border-width:0px;",
+              },
+            },
+          },
+          block_order: ["16425389039f659f32-0", "16425389039f659f32-2"],
+        },
+      },
     ],
     "632a6f7db34039b04f77d3b1": [
       {
         "1652851716a9bcae46": {
-          "type": "image-with-text",
-          "blocks": {
-              "1652851716950d2423-0": {
-                  "type": "heading",
-                  "settings": {
-                      "heading": "Meet Your Match",
-                      "fs": "fs-xl",
-                      "title_font": "h1"
-                  }
+          type: "image-with-text",
+          blocks: {
+            "1652851716950d2423-0": {
+              type: "heading",
+              settings: {
+                heading: "Meet Your Match",
+                fs: "fs-xl",
+                title_font: "h1",
               },
-              "1652851716950d2423-1": {
-                  "type": "text",
-                  "settings": {
-                      "text": "<p>Your coziest layer, your easiest outfit—matching sets are here.<\/p>",
-                      "fs": "fs-s",
-                      "text_y_mg": "mg-y-xl"
-                  }
+            },
+            "1652851716950d2423-1": {
+              type: "text",
+              settings: {
+                text: "<p>Your coziest layer, your easiest outfit—matching sets are here.</p>",
+                fs: "fs-s",
+                text_y_mg: "mg-y-xl",
               },
-              "1652851716950d2423-2": {
-                  "type": "button",
-                  "settings": {
-                      "button_label": "Shop Men's New Arrivals",
-                      "button_link": "shopify:\/\/collections\/base-brand",
-                      "view_btn_style": "text_link",
-                      "view_btn_size": "medium",
-                      "py_section_color_view_btn": "light",
-                      "py_section_color_view_btn_hover": "light"
-                  }
+            },
+            "1652851716950d2423-2": {
+              type: "button",
+              settings: {
+                button_label: "Shop Men's New Arrivals",
+                button_link: "shopify://collections/base-brand",
+                view_btn_style: "text_link",
+                view_btn_size: "medium",
+                py_section_color_view_btn: "light",
+                py_section_color_view_btn_hover: "light",
               },
-              "9c546d82-d837-486c-abad-ce5929b49554": {
-                  "type": "button",
-                  "settings": {
-                      "button_label": "Shop Women's New Arrivals",
-                      "button_link": "shopify:\/\/collections",
-                      "view_btn_style": "text_link",
-                      "view_btn_size": "medium",
-                      "py_section_color_view_btn": "light",
-                      "py_section_color_view_btn_hover": "light"
-                  }
-              }
+            },
+            "9c546d82-d837-486c-abad-ce5929b49554": {
+              type: "button",
+              settings: {
+                button_label: "Shop Women's New Arrivals",
+                button_link: "shopify://collections",
+                view_btn_style: "text_link",
+                view_btn_size: "medium",
+                py_section_color_view_btn: "light",
+                py_section_color_view_btn_hover: "light",
+              },
+            },
           },
-          "block_order": [
-              "1652851716950d2423-0",
-              "1652851716950d2423-1",
-              "1652851716950d2423-2",
-              "9c546d82-d837-486c-abad-ce5929b49554"
+          block_order: [
+            "1652851716950d2423-0",
+            "1652851716950d2423-1",
+            "1652851716950d2423-2",
+            "9c546d82-d837-486c-abad-ce5929b49554",
           ],
-          "settings": {
-              "image": "/632a6f7db34039b04f77d3b1/image-with-text.webp",
-              "section_height": "auto",
-              "section_height_m": "400px",
-              "layout": "image_first",
-              "img_style": "normal",
-              "align": "center",
-              "section_bg_color": "var(--py-bg-color-light)",
-              "py_section_color": "var(--py-color-dark)",
-              "section_width": "full",
-              "section_y_mg": "mg-y-n"
-          }
-      }
+          settings: {
+            image: "/632a6f7db34039b04f77d3b1/image-with-text-1.webp",
+            section_height: "auto",
+            section_height_m: "400px",
+            layout: "image_first",
+            img_style: "normal",
+            align: "center",
+            section_bg_color: "var(--py-bg-color-light)",
+            py_section_color: "var(--py-color-dark)",
+            section_width: "full",
+            section_y_mg: "mg-y-n",
+          },
+        },
       },
       {
         "1652851716a9bcae46": {
-          "type": "image-with-text",
-          "blocks": {
-              "1652851716950d2423-0": {
-                  "type": "heading",
-                  "settings": {
-                      "heading": "Meet Your Match",
-                      "fs": "fs-xl",
-                      "title_font": "h1"
-                  }
+          type: "image-with-text",
+          blocks: {
+            "1652851716950d2423-0": {
+              type: "heading",
+              settings: {
+                heading: "Meet Your Match",
+                fs: "fs-xl",
+                title_font: "h1",
               },
-              "1652851716950d2423-1": {
-                  "type": "text",
-                  "settings": {
-                      "text": "<p>Your coziest layer, your easiest outfit—matching sets are here.<\/p>",
-                      "fs": "fs-s",
-                      "text_y_mg": "mg-y-xl"
-                  }
+            },
+            "1652851716950d2423-1": {
+              type: "text",
+              settings: {
+                text: "<p>Your coziest layer, your easiest outfit—matching sets are here.</p>",
+                fs: "fs-s",
+                text_y_mg: "mg-y-xl",
               },
-              "1652851716950d2423-2": {
-                  "type": "button",
-                  "settings": {
-                      "button_label": "Shop Men's New Arrivals",
-                      "button_link": "shopify:\/\/collections\/base-brand",
-                      "view_btn_style": "text_link",
-                      "view_btn_size": "medium",
-                      "py_section_color_view_btn": "light",
-                      "py_section_color_view_btn_hover": "light"
-                  }
+            },
+            "1652851716950d2423-2": {
+              type: "button",
+              settings: {
+                button_label: "Shop Men's New Arrivals",
+                button_link: "shopify://collections/base-brand",
+                view_btn_style: "text_link",
+                view_btn_size: "medium",
+                py_section_color_view_btn: "light",
+                py_section_color_view_btn_hover: "light",
               },
-              "9c546d82-d837-486c-abad-ce5929b49554": {
-                  "type": "button",
-                  "settings": {
-                      "button_label": "Shop Women's New Arrivals",
-                      "button_link": "shopify:\/\/collections",
-                      "view_btn_style": "text_link",
-                      "view_btn_size": "medium",
-                      "py_section_color_view_btn": "light",
-                      "py_section_color_view_btn_hover": "light"
-                  }
-              }
+            },
+            "9c546d82-d837-486c-abad-ce5929b49554": {
+              type: "button",
+              settings: {
+                button_label: "Shop Women's New Arrivals",
+                button_link: "shopify://collections",
+                view_btn_style: "text_link",
+                view_btn_size: "medium",
+                py_section_color_view_btn: "light",
+                py_section_color_view_btn_hover: "light",
+              },
+            },
           },
-          "block_order": [
-              "1652851716950d2423-0",
-              "1652851716950d2423-1",
-              "1652851716950d2423-2",
-              "9c546d82-d837-486c-abad-ce5929b49554"
+          block_order: [
+            "1652851716950d2423-0",
+            "1652851716950d2423-1",
+            "1652851716950d2423-2",
+            "9c546d82-d837-486c-abad-ce5929b49554",
           ],
-          "settings": {
-              "image": "/632a6f7db34039b04f77d3b1/image-with-text.webp",
-              "section_height": "auto",
-              "section_height_m": "400px",
-              "layout": "image_first",
-              "img_style": "normal",
-              "align": "center",
-              "section_bg_color": "var(--py-bg-color-light)",
-              "py_section_color": "var(--py-color-dark)",
-              "section_width": "full",
-              "section_y_mg": "mg-y-n"
-          }
-      }
-      }
+          settings: {
+            image: "/632a6f7db34039b04f77d3b1/image-with-text.webp",
+            section_height: "auto",
+            section_height_m: "400px",
+            layout: "image_first",
+            img_style: "normal",
+            align: "center",
+            section_bg_color: "var(--py-bg-color-light)",
+            py_section_color: "var(--py-color-dark)",
+            section_width: "full",
+            section_y_mg: "mg-y-n",
+          },
+        },
+      },
     ],
     "62fe8c9ba58276071f183cb8": [
       {
         "164253890362d227ae": {
-          "type": "image-banner",
-          "blocks": {
-              "16425389039f659f32-0": {
-                  "type": "heading",
-                  "settings": {
-                      "heading": "Industrial design meets fashion.",
-                      "align": "center",
-                      "content_color": "var(--py-color-light)",
-                      "weight": "",
-                      "size": "60px",
-                      "padding": "",
-                      "margin": "",
-                      "width": "",
-                      "height": "",
-                      "c_css": "max-width:600px;\nmargin:auto;",
-                      "m_align": "center",
-                      "content_color_m": "var(--py-color-light)",
-                      "m_weight": "",
-                      "m_size": "40px",
-                      "m_padding": "",
-                      "m_margin": "",
-                      "m_width": "",
-                      "m_height": "",
-                      "m_c_css": ""
-                  }
+          type: "image-banner",
+          blocks: {
+            "16425389039f659f32-0": {
+              type: "heading",
+              settings: {
+                heading: "Industrial design meets fashion.",
+                align: "center",
+                content_color: "var(--py-color-light)",
+                weight: "",
+                size: "60px",
+                padding: "",
+                margin: "",
+                width: "",
+                height: "",
+                c_css: "max-width:600px;\nmargin:auto;",
+                m_align: "center",
+                content_color_m: "var(--py-color-light)",
+                m_weight: "",
+                m_size: "40px",
+                m_padding: "",
+                m_margin: "",
+                m_width: "",
+                m_height: "",
+                m_c_css: "",
               },
-              "16425389039f659f32-2": {
-                  "type": "buttons",
-                  "settings": {
-                      "button_label_1": "Shop Now",
-                      "button_link_1": "shopify:\/\/collections\/all",
-                      "view_btn_size": "large",
-                      "content_color_view_btn": "light",
-                      "content_bg_color_view_btn": "dark",
-                      "content_color_view_btn_hover": "dark",
-                      "content_bg_color_view_btn_hover": "light",
-                      "c_css": "border-width:0px;"
-                  }
-              }
+            },
+            "16425389039f659f32-2": {
+              type: "buttons",
+              settings: {
+                button_label_1: "Shop Now",
+                button_link_1: "shopify://collections/all",
+                view_btn_size: "large",
+                content_color_view_btn: "light",
+                content_bg_color_view_btn: "dark",
+                content_color_view_btn_hover: "dark",
+                content_bg_color_view_btn_hover: "light",
+                c_css: "border-width:0px;",
+              },
+            },
           },
-          "block_order": [
-              "16425389039f659f32-0",
-              "16425389039f659f32-2"
-          ],
-          "settings": {
-              "section_height": "auto",
-              "image": "/62fe8c9ba58276071f183cb8/image-banner-img-left-1.webp",
-              "image_desk_2": "/62fe8c9ba58276071f183cb8/image-banner-img-right-1.webp",
-              "show_lazy": true,
-              "url": "shopify:\/\/collections\/all",
-              "show_override": true,
-              "content_bg_color": "var(--py-bg-color-dark)",
-              "ov_opacity": "0.2",
-              "pv": "center",
-              "ph": "center",
-              "align": "center",
-              "padding": "",
-              "margin": "",
-              "width": "",
-              "height": "",
-              "c_css": "",
-              "m_pv": "center",
-              "m_ph": "center",
-              "m_align": "center",
-              "m_padding": "",
-              "m_margin": "",
-              "m_width": "",
-              "m_height": "",
-              "m_c_css": "",
-              "enable_anim": true,
-              "anim": "zoom-out"
-          }
-      }
+          block_order: ["16425389039f659f32-0", "16425389039f659f32-2"],
+          settings: {
+            section_height: "auto",
+            image: "/62fe8c9ba58276071f183cb8/image-banner-img-left-1.webp",
+            image_desk_2:
+              "/62fe8c9ba58276071f183cb8/image-banner-img-right-1.webp",
+            show_lazy: true,
+            url: "shopify://collections/all",
+            show_override: true,
+            content_bg_color: "var(--py-bg-color-dark)",
+            ov_opacity: "0.2",
+            pv: "center",
+            ph: "center",
+            align: "center",
+            padding: "",
+            margin: "",
+            width: "",
+            height: "",
+            c_css: "",
+            m_pv: "center",
+            m_ph: "center",
+            m_align: "center",
+            m_padding: "",
+            m_margin: "",
+            m_width: "",
+            m_height: "",
+            m_c_css: "",
+            enable_anim: true,
+            anim: "zoom-out",
+          },
+        },
       },
       {
         "164253890362d227ae": {
-          "type": "image-banner",
-          "blocks": {
-              "16425389039f659f32-0": {
-                  "type": "heading",
-                  "settings": {
-                      "heading": "Summer Sale",
-                      "align": "center",
-                      "content_color": "var(--py-color-light)",
-                      "weight": "",
-                      "size": "60px",
-                      "padding": "",
-                      "margin": "",
-                      "width": "",
-                      "height": "",
-                      "c_css": "max-width:600px;\nmargin:auto;",
-                      "m_align": "center",
-                      "content_color_m": "var(--py-color-light)",
-                      "m_weight": "",
-                      "m_size": "40px",
-                      "m_padding": "",
-                      "m_margin": "",
-                      "m_width": "",
-                      "m_height": "",
-                      "m_c_css": ""
-                  }
+          type: "image-banner",
+          blocks: {
+            "16425389039f659f32-0": {
+              type: "heading",
+              settings: {
+                heading: "Summer Sale",
+                align: "center",
+                content_color: "var(--py-color-light)",
+                weight: "",
+                size: "60px",
+                padding: "",
+                margin: "",
+                width: "",
+                height: "",
+                c_css: "max-width:600px;\nmargin:auto;",
+                m_align: "center",
+                content_color_m: "var(--py-color-light)",
+                m_weight: "",
+                m_size: "40px",
+                m_padding: "",
+                m_margin: "",
+                m_width: "",
+                m_height: "",
+                m_c_css: "",
               },
-              "16425389039f659f32-2": {
-                  "type": "buttons",
-                  "settings": {
-                      "button_label_1": "Our Collections",
-                      "button_link_1": "shopify:\/\/collections\/all",
-                      "view_btn_size": "large",
-                      "content_color_view_btn": "light",
-                      "content_bg_color_view_btn": "dark",
-                      "content_color_view_btn_hover": "dark",
-                      "content_bg_color_view_btn_hover": "light",
-                      "c_css": "border-width:0px;"
-                  }
-              }
+            },
+            "16425389039f659f32-2": {
+              type: "buttons",
+              settings: {
+                button_label_1: "Our Collections",
+                button_link_1: "shopify://collections/all",
+                view_btn_size: "large",
+                content_color_view_btn: "light",
+                content_bg_color_view_btn: "dark",
+                content_color_view_btn_hover: "dark",
+                content_bg_color_view_btn_hover: "light",
+                c_css: "border-width:0px;",
+              },
+            },
           },
-          "block_order": [
-              "16425389039f659f32-0",
-              "16425389039f659f32-2"
-          ],
-          "settings": {
-              "section_height": "auto",
-              "image": "/62fe8c9ba58276071f183cb8/image-banner-img-left-2.webp",
-              "image_desk_2": "/62fe8c9ba58276071f183cb8/image-banner-img-right-2.jpg",
-              "show_lazy": true,
-              "url": "shopify:\/\/collections\/all",
-              "show_override": true,
-              "content_bg_color": "var(--py-bg-color-dark)",
-              "ov_opacity": "0.2",
-              "pv": "center",
-              "ph": "center",
-              "align": "center",
-              "padding": "",
-              "margin": "",
-              "width": "",
-              "height": "",
-              "c_css": "",
-              "m_pv": "center",
-              "m_ph": "center",
-              "m_align": "center",
-              "m_padding": "",
-              "m_margin": "",
-              "m_width": "",
-              "m_height": "",
-              "m_c_css": "",
-              "enable_anim": true,
-              "anim": "zoom-out"
-          }
-      }
-      }
-    ]
-  }
+          block_order: ["16425389039f659f32-0", "16425389039f659f32-2"],
+          settings: {
+            section_height: "auto",
+            image: "/62fe8c9ba58276071f183cb8/image-banner-img-left-2.webp",
+            image_desk_2:
+              "/62fe8c9ba58276071f183cb8/image-banner-img-right-2.jpg",
+            show_lazy: true,
+            url: "shopify://collections/all",
+            show_override: true,
+            content_bg_color: "var(--py-bg-color-dark)",
+            ov_opacity: "0.2",
+            pv: "center",
+            ph: "center",
+            align: "center",
+            padding: "",
+            margin: "",
+            width: "",
+            height: "",
+            c_css: "",
+            m_pv: "center",
+            m_ph: "center",
+            m_align: "center",
+            m_padding: "",
+            m_margin: "",
+            m_width: "",
+            m_height: "",
+            m_c_css: "",
+            enable_anim: true,
+            anim: "zoom-out",
+          },
+        },
+      },
+    ],
+  };
 
   let fontsCount = 0;
 
@@ -855,7 +1376,7 @@
       },
       templates: {},
     };
-  }
+  };
 
   // Colors names Objects
   const colorsNamesContrast = {
@@ -1758,8 +2279,12 @@
     let html = parser.parseFromString(data, "text/html");
     for (let i = 0; i < iframes.length; i++) {
       let iframeItem = iframes[i];
-      let ifrm = iframeItem.contentDocument || iframeItem.contentWindow.document;
-      html ? ifrm.querySelector("body").innerHTML = html.querySelector("body").innerHTML : null;
+      let ifrm =
+        iframeItem.contentDocument || iframeItem.contentWindow.document;
+      html
+        ? (ifrm.querySelector("body").innerHTML =
+            html.querySelector("body").innerHTML)
+        : null;
     }
     loading?.classList.remove("py__animate");
   };
@@ -1889,13 +2414,13 @@
   };
 
   // Get Global settings or Section settings dynamic function
-  const getSettingsLists = async (event, newurl=false) => {
+  const getSettingsLists = async (event, newurl = false) => {
     if (!event && !newurl) return;
 
     loading?.classList.add("py__animate");
     let el = event.target;
     let url = null;
-    if(newurl){
+    if (newurl) {
       url = newurl;
     } else {
       if (event.type === "change") {
@@ -1923,7 +2448,7 @@
     let sectionName = urlSearch.get("section");
     let iframes = document.querySelectorAll(".py__view-iframe");
 
-    if(!newurl) el.classList.add("active");
+    if (!newurl) el.classList.add("active");
     let res = await fetch(url, {
       method: "POST",
       headers: {
@@ -1961,12 +2486,18 @@
       let urlParams = new URL(location.href);
       let iframeSearchParams = new URLSearchParams(urlParams.search);
       iframeSearchParams.set("section", sectionName);
-      let iframeUrl = urlParams.pathname.indexOf("/users/") !== -1
+      let iframeUrl =
+        urlParams.pathname.indexOf("/users/") !== -1
           ? "/view" + urlParams.pathname + "?" + iframeSearchParams.toString()
-          : urlParams.pathname.replace("themes", "view").replace("remix", "view") + "?" + iframeSearchParams.toString();
-      iframes?.length && iframes?.forEach(iframe => {
-        iframe.setAttribute("data-src", iframeUrl);
-      })
+          : urlParams.pathname
+              .replace("themes", "view")
+              .replace("remix", "view") +
+            "?" +
+            iframeSearchParams.toString();
+      iframes?.length &&
+        iframes?.forEach((iframe) => {
+          iframe.setAttribute("data-src", iframeUrl);
+        });
       await viewIframe();
     } else {
       let urlParams = new URL(location.href);
@@ -1974,10 +2505,15 @@
       let iframeUrl =
         urlParams.pathname.indexOf("/users/") !== -1
           ? "/view" + urlParams.pathname + "?" + iframeSearchParams.toString()
-          : urlParams.pathname.replace("themes", "view").replace("remix", "view") + "?" + iframeSearchParams.toString();
-      iframes?.length && iframes?.forEach(iframe => {
-        iframe.setAttribute("data-src", iframeUrl);
-      })
+          : urlParams.pathname
+              .replace("themes", "view")
+              .replace("remix", "view") +
+            "?" +
+            iframeSearchParams.toString();
+      iframes?.length &&
+        iframes?.forEach((iframe) => {
+          iframe.setAttribute("data-src", iframeUrl);
+        });
       await viewIframe();
     }
   };
@@ -2034,7 +2570,11 @@
 
   let remixCount = 0;
   let currentThemeKey = 0;
-  let allThemesID = ["6306f8e7db2cbec8c440f780","632a6f7db34039b04f77d3b1","62fe8c9ba58276071f183cb8"];
+  let allThemesID = [
+    "6306f8e7db2cbec8c440f780",
+    "632a6f7db34039b04f77d3b1",
+    "62fe8c9ba58276071f183cb8",
+  ];
   const randomFun = async (event) => {
     const getLuminanceRatio = (r, g, b) => {
       var a = [r, g, b].map(function (v) {
@@ -2205,6 +2745,10 @@
             : filed.querySelector(`option[value="${fontObj.heading}"`)?.index;
           filed.selectedIndex = selectedOption;
         } else if (filed.getAttribute("name")?.includes("_bg")) {
+          // set header bg & text color
+
+
+          // set section bg & text color
           let optionIndex = filed.getAttribute("name")?.includes("section_bg")
             ? options.length - 1
             : Math.floor(Math.random() * 5);
@@ -2234,8 +2778,7 @@
                     hexToRgb(getBgColorHexCode),
                     textColors
                   )
-                : // ? await getContrastYIQ(getBgColorHexCode)
-                  await rgbToHex(textColors[0]);
+                : await rgbToHex(textColors[0]);
               itemColor.selectedIndex = [...itemColor.options].findIndex(
                 (option) =>
                   document.querySelector(
@@ -2253,31 +2796,49 @@
       }
     }
 
-    fontsCount++
+    fontsCount++;
     if (fontsCount >= fonts.length) fontsCount = 0;
-    if (remixCount >= imageBanner[allThemesID[currentThemeKey]]?.length){ 
+    if (remixCount >= imageBanner[allThemesID[currentThemeKey]]?.length) {
       remixCount = 0;
       clearTheme();
       currentThemeKey++;
-      if (currentThemeKey >= allThemesID?.length)  currentThemeKey = 0;
-      let remixUrl = '/remix/' + allThemesID[currentThemeKey] + location?.search;
+      if (currentThemeKey >= allThemesID?.length) currentThemeKey = 0;
+      let remixUrl =
+        "/remix/" + allThemesID[currentThemeKey] + location?.search;
       await getSettingsLists(false, remixUrl);
     } else {
-      let imageBannerSections = document.querySelectorAll('[data-section-handle="image-banner"]');
-      if(imageBannerSections?.length){
-        imageBannerSections?.forEach(imageBannerSection => {
-          let imageBannerSectionId = imageBannerSection?.getAttribute('data-section-id');
+      let imageBannerSections = document.querySelectorAll(
+        '[data-section-handle="image-banner"]'
+      );
+      if (imageBannerSections?.length) {
+        imageBannerSections?.forEach((imageBannerSection) => {
+          let imageBannerSectionId =
+            imageBannerSection?.getAttribute("data-section-id");
           let imageBannerContent = imageBannerSection?.closest(".py__closest");
-          let imageBannerBlocks = imageBannerContent?.querySelectorAll(".py__settings-block-item");
-          
-          if (imageBanner[allThemesID[currentThemeKey]]?.length && imageBanner[allThemesID[currentThemeKey]][remixCount][imageBannerSectionId]) {
+          let imageBannerBlocks = imageBannerContent?.querySelectorAll(
+            ".py__settings-block-item"
+          );
+
+          if (
+            imageBanner[allThemesID[currentThemeKey]]?.length &&
+            imageBanner[allThemesID[currentThemeKey]][remixCount][
+              imageBannerSectionId
+            ]
+          ) {
             let fileds = imageBannerSection.querySelectorAll("[name]");
             if (fileds?.length) {
               for (let i = 0; i < fileds.length; i++) {
                 let filed = fileds[i];
                 let filedName = filed.getAttribute("name");
-                if (typeof imageBanner[allThemesID[currentThemeKey]][remixCount][imageBannerSectionId].settings[filedName] !== "undefined")
-                  filed.value = imageBanner[allThemesID[currentThemeKey]][remixCount][imageBannerSectionId].settings[filedName];
+                if (
+                  typeof imageBanner[allThemesID[currentThemeKey]][remixCount][
+                    imageBannerSectionId
+                  ].settings[filedName] !== "undefined"
+                )
+                  filed.value =
+                    imageBanner[allThemesID[currentThemeKey]][remixCount][
+                      imageBannerSectionId
+                    ].settings[filedName];
               }
             }
             if (imageBannerBlocks?.length) {
@@ -2288,29 +2849,39 @@
                 if (findAllFileds?.length) {
                   for (let j = 0; j < findAllFileds.length; j++) {
                     let filed = findAllFileds[j];
-                    let filedName = filed.getAttribute("name").replace('block_', '');
-                  if (
-                    imageBanner[allThemesID[currentThemeKey]][remixCount][imageBannerSectionId]?.blocks &&
-                    imageBanner[allThemesID[currentThemeKey]][remixCount][imageBannerSectionId]?.blocks[blockId] &&
-                    typeof imageBanner[allThemesID[currentThemeKey]][remixCount][imageBannerSectionId]?.blocks[blockId].settings[filedName] !==
-                    "undefined"
+                    let filedName = filed
+                      .getAttribute("name")
+                      .replace("block_", "");
+                    if (
+                      imageBanner[allThemesID[currentThemeKey]][remixCount][
+                        imageBannerSectionId
+                      ]?.blocks &&
+                      imageBanner[allThemesID[currentThemeKey]][remixCount][
+                        imageBannerSectionId
+                      ]?.blocks[blockId] &&
+                      typeof imageBanner[allThemesID[currentThemeKey]][
+                        remixCount
+                      ][imageBannerSectionId]?.blocks[blockId].settings[
+                        filedName
+                      ] !== "undefined"
                     )
-                    filed.value = imageBanner[allThemesID[currentThemeKey]][remixCount][imageBannerSectionId]?.blocks[blockId].settings[filedName];
+                      filed.value =
+                        imageBanner[allThemesID[currentThemeKey]][remixCount][
+                          imageBannerSectionId
+                        ]?.blocks[blockId].settings[filedName];
                   }
                 }
               }
             }
           }
-        })
+        });
       }
 
       remixCount++;
-        
+
       await saveSettingsValues();
       await viewIframe();
     }
-    
-
   };
 
   // Remix Section Styles Function
@@ -2651,8 +3222,3 @@
       "ThemeMake";
   });
 })();
-
-
-
-
-

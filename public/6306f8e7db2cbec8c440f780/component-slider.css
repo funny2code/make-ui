@@ -186,9 +186,6 @@ slider-component .slider-buttons {
   top: -65px;
   bottom: auto;
 }
-.collection-slide .slider-buttons{
-  justify-content: flex-end;
-}
 .collection-slide  .slider-counter{
   display:none
 }
