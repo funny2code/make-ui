@@ -1,9 +1,9 @@
-<%=component-cart.css' <%=srcId%> | stylesheet_tag %>
-<%=component-cart-items.css' <%=srcId%> | stylesheet_tag %>
-<%=component-totals.css' <%=srcId%> | stylesheet_tag %>
-<%=component-price-style-1.css' <%=srcId%> | stylesheet_tag %>
-<%=component-discounts.css' <%=srcId%> | stylesheet_tag %>
-<%=component-loading-overlay.css' <%=srcId%> | stylesheet_tag %>
+<link rel="stylesheet" href="/<%=srcId%>/component-cart.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-cart-items.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-totals.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-price-style-1.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-discounts.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-loading-overlay.css">
 <style>  
   <% if(section.settings.item_bg){ %>
   .cart-item{
@@ -20,7 +20,7 @@
   } 
   <% } %>
 </style>
-<cart-items class="page-width<% if(cart === empty){ %> is-empty<% } %>">
+<cart-items class="page-width<% if(!cart){ %> is-empty<% } %>">
   <div class="title-wrapper-with-link">
     <h3 class="title title--primary"><%=sectionst.cart.caption%></h3>
     <a href="<%= routes.all_products_collection_url %>" class="underlined-link hidden"><%=general.continue_shopping%></a>
@@ -34,9 +34,9 @@
   </div>
 
   <form action="<%= routes.cart_url %>" class="cart__contents critical-hidden" method="post" id="cart">
-    <div class="cart__items" id="main-cart-items" data-id="<%= section.id %>">
+    <div class="cart__items" id="main-cart-items" data-id="<%= sectionid %>">
       <div class="js-contents">
-        <% if(cart !== empty){ %>
+        <% if(cart){ %>
           <table class="cart-items">
             <thead class="hidden">
               <tr>
@@ -47,31 +47,31 @@
             </thead>
 
             <tbody>
-              <% for item in cart.items){ %>
-                <tr class="cart-item" id="CartItem-<%= item.index + 1 %>">
+              <% cart?.items?.forEach((item,index)=>{ %>
+                <tr class="cart-item" id="CartItem-<%= item?.index + 1 %>">
                   <td class="cart-item__media">
-                    <% if(item.image){ %>
+                    <% if(item?.image){ %>
                       <img class="cart-item__image"
-                        src="<%= item.image | img_url: '150x' %>"
-                        alt="<%= item.image.alt %>"
+                        src="<%= item?.image %>"
+                        alt="<%= item?.image.alt %>"
                         loading="lazy"
                         width="75"
-                        height="<%= 75 / item.image.aspect_ratio Math.ceil() %>"
+                        height="<%= Math.ceil(75 / item?.image.aspect_ratio) %>"
                       >
                     <% } %>
                   </td>
 
                   <td class="cart-item__details">
                     <% if(section.settings.show_vendor){ %>
-                      <p class="caption-with-letter-spacing light"><%= item.product.vendor %></p>
+                      <p class="caption-with-letter-spacing light"><%= item?.product?.vendor %></p>
                     <% } %>
 
-                    <a href="<%= item.product.url %>" class="cart-item__name break"><%= item.product.title %></a>
+                    <a href="<%= item?.product?.url %>" class="cart-item__name break"><%= item?.product?.title %></a>
 
-                    <% if(item.product.has_only_default_variant === false || item.properties.length !== 0 || item.selling_plan_allocation !== nil){ %>
+                    <% if(item?.product?.has_only_default_variant === false || item?.properties?.length !== 0 || item?.selling_plan_allocation){ %>
                       <dl>
-                        <% if(item.product.has_only_default_variant === false){ %>
-                          <% for option in item.options_with_values){ %>
+                        <% if(item?.product?.has_only_default_variant === false){ %>
+                          <% item?.options_with_values?.forEach((option,index)=>{ %>
                             <div class="product-option">
                               <dt><%= option.name %>: </dt>
                               <dd><%= option.value %></dd>
@@ -79,15 +79,15 @@
                           <% }) %>
                         <% } %>
 
-                        <% for property in item.properties){ %>
-                          <% var property_first_char = property.first?.slice(0){ %>
+                        <%  Object.entries(item?.properties)?.forEach((property,index)=>{ %>
+                          <% var property_first_char = property.first?.slice(0) %>
                           <% if(property.last && property_first_char !== '_'){ %>
                             <div class="product-option">
                               <dt><%= property.first %>: </dt>
                               <dd>
-                                <% if(property.last.includes('/uploads/'){ %>
+                                <% if(property.last.includes('/uploads/')){ %>
                                   <a href="<%= property.last %>" target="_blank">
-                                    <%= property.last?.split('/'?.pop() %>
+                                    <%= property.last?.split('/')?.pop() %>
                                   </a>
                                 <% } else { %>
                                   <%= property.last %>
@@ -98,57 +98,57 @@
                         <% }) %>
                       </dl>
 
-                      <p class="product-option"><%= item.selling_plan_allocation.selling_plan.name %></p>
+                      <p class="product-option"><%= item?.selling_plan_allocation?.selling_plan.name %></p>
                     <% } %>
 
-                    <ul class="discounts list-unstyled" role="list" aria-label="<%=customer.order.discount%>">
-                      <% for discount in item.discounts){ %>
+                    <ul class="discounts list-unstyled" role="list" aria-label="<%=customer?.order?.discount%>">
+                      <% item?.discounts?.forEach((discount,index)=>{ %>
                         <li class="discounts__discount">
-                          <%- include('../snippets/icon-discount'){ %>
+                          <%- include('../snippets/icon-discount') %>
                           <%= discount.title %>
                         </li>
                       <% }) %>
                     </ul>
                     
                     <div class="cart-item__price-wrapper">
-                      <% if(item.original_price !== item.final_price){ %>
+                      <% if(item?.original_price !== item?.final_price){ %>
                         <dl class="cart-item__discounted-prices">
                           <dt class="visually-hidden">
                             <%=products.product.price.regular_price%>
                           </dt>
                           <dd>
                             <s class="cart-item__old-price price price--end">
-                              <%= item.original_price %>
+                              <%= item?.original_price %>
                             </s>
                           </dd>
                           <dt class="visually-hidden">
                             <%=products.product.price.sale_price%>
                           </dt>
                           <dd class="price price--end">
-                            <%= item.final_price %>
+                            <%= item?.final_price %>
                           </dd>
                         </dl>
 
-                        <% if(item.variant.available && item.unit_price_measurement){ %>
+                        <% if(item?.variant.available && item?.unit_price_measurement){ %>
                           <div class="unit-price caption">
                             <span class="visually-hidden"><%=products.product.price.unit_price%></span>
-                            <%= item.variant.unit_price %>
+                            <%= item?.variant.unit_price %>
                             <span aria-hidden="true">/</span>
                             <span class="visually-hidden">&nbsp;<%=accessibility.unit_price_separator%>&nbsp;</span>
-                            <% if(item.variant.unit_price_measurement.reference_value !== 1){ %>
-                              <%=- item.variant.unit_price_measurement.reference_value -%>
+                            <% if(item?.variant.unit_price_measurement.reference_value !== 1){ %>
+                              <%- item?.variant.unit_price_measurement.reference_value -%>
                             <% } %>
-                            <%= item.variant.unit_price_measurement.reference_unit %>
+                            <%= item?.variant.unit_price_measurement.reference_unit %>
                           </div>
                         <% } %>
                       <% } else { %>
                         <span class="price">
-                          <%= item.original_price %>
+                          <%= item?.original_price %>
                         </span>
                       <% } %>
                     </div>
 
-                    <p class="cart-item__error" id="Line-item-error-<%= item.index + 1 %>">
+                    <p class="cart-item__error" id="Line-item-error-<%= item?.index + 1 %>">
                       <span class="cart-item__error-text"></span>
                       <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
                         <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
@@ -168,50 +168,50 @@
                     </div>
 
                     <div class="cart-item__price-wrapper">
-                      <% if(item.original_line_price !== item.final_line_price){ %>
+                      <% if(item?.original_line_price !== item?.final_line_price){ %>
                         <dl class="cart-item__discounted-prices">
                           <dt class="visually-hidden">
                             <%=products.product.price.sale_price%>
                           </dt>
                           <dd class="price price--end">
-                            <%= item.final_line_price %>
+                            <%= item?.final_line_price %>
                           </dd>
                         </dl>
                       <% } else { %>
                         <span class="price price--end">
-                          <%= item.original_line_price %>
+                          <%= item?.original_line_price %>
                         </span>
                       <% } %>
                     </div>
                     
                     <div class="cart-item__quantity">
-                      <label class="hidden" for="Quantity-<%= item.index + 1 %>">
+                      <label class="hidden" for="Quantity-<%= item?.index + 1 %>">
                         <%=products.product.quantity.label%>
                       </label>
                       <quantity-input class="quantity">
                         <button class="quantity__button no-js-hidden" name="minus" type="button">
-                          <span class="visually-hidden"><%=products.product.quantity.decrease' | t: product: item.product.title %></span>
-                          <%- include('../snippets/icon-minus'){ %>
+                          <span class="visually-hidden"><%=products.product.quantity.decrease %></span>
+                          <%- include('../snippets/icon-minus') %>
                         </button>
                         <input class="quantity__input"
                           type="number"
                           name="updates[]"
-                          value="<%= item.quantity %>"
+                          value="<%= item?.quantity %>"
                           min="0"
-                          aria-label="<%=products.product.quantity.input_label' | t: product: item.product.title %>"
-                          id="Quantity-<%= item.index + 1 %>"
-                          data-index="<%= item.index + 1 %>"
+                          aria-label="<%=products.product.quantity.input_label %>"
+                          id="Quantity-<%= item?.index + 1 %>"
+                          data-index="<%= item?.index + 1 %>"
                         >
                         <button class="quantity__button no-js-hidden" name="plus" type="button">
-                          <span class="visually-hidden"><%=products.product.quantity.increase' | t: product: item.product.title %></span>
-                          <%- include('../snippets/icon-plus'){ %>
+                          <span class="visually-hidden"><%=products.product.quantity.increase %></span>
+                          <%- include('../snippets/icon-plus') %>
                         </button>
                       </quantity-input>
                     </div>
 
-                    <cart-remove-button id="Remove-<%= item.index + 1 %>" data-index="<%= item.index + 1 %>">
-                      <a href="<%= item.url_to_remove %>" class="" aria-label="<%=sectionst.cart.remove_title' | t: title: item.title %>">
-                        <%- include('../snippets/icon-remove'){ %>
+                    <cart-remove-button id="Remove-<%= item?.index + 1 %>" data-index="<%= item?.index + 1 %>">
+                      <a href="<%= item?.url_to_remove %>" class="" aria-label="<%=sectionst.cart.remove_title %>">
+                        <%- include('../snippets/icon-remove') %>
                       </a>
                     </cart-remove-button>
                   </td>
@@ -228,57 +228,4 @@
   </form>
 </cart-items>
 
-<script src="<%=cart.js' <%=srcId%> %>" defer="defer"></script>
-
-<% schema){ %>
-{
-  "name": "t:sectionst.main-cart-items.name",
-  "class": "cart__items-wrapper",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_vendor",
-      "default": false,
-      "label": "t:sectionst.main-cart-items.settings.show_vendor.label"
-    },
-    {
-      "type": "select",
-      "id": "item_bg",      
-      "label": "Item Background",
-      "options": [          
-          {
-            "label": "Transparent",
-            "value": "transparent"
-          },        
-          {
-            "label": "Dark",
-            "value": "var(--py-bg-color-dark)"
-          },
-          {
-            "label": "Middle Dark",
-            "value": "var(--py-bg-color-middle-dark)"
-          },
-          {
-            "label": "Average",
-            "value": "var(--py-bg-color-avarge)"
-          },
-          {
-            "label": "Middle Light",
-            "value": "var(--py-bg-color-middle-light)"
-          },
-          {
-            "label": "Light",
-            "value": "var(--py-bg-color-light)"
-          }
-        ],
-      "default": "var(--py-bg-color-middle-dark)"
-    },
-    {
-      "type": "text",
-      "id": "item_radius",
-      "default": "10",        
-      "label": "Item Border Radius"
-    }
-  ]
-}
-<% endschema){ %>
+<script src="/<%=srcId%>/cart.js" defer="defer"></script>

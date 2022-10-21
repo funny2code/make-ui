@@ -51,7 +51,9 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
             sections = (section_handle && section_handle !== 'header' && section_handle !== 'footer' && section_handle !== 'announcement-bar') 
             ? settings?.current?.sections[section_handle]
             : null;
-        } else {
+        } else if(!section_handle && (page_handle?.includes('customer') || page_handle?.includes('gift-card'))){
+            sections = settings?.current?.sections[page_handle];
+        } else { 
             const sectionsFile = await fs.readFile(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/${getPage[0]?.template_name}.json`), 'utf-8');
             if(!sectionsFile) return next();
             const parseSections = JSON.parse(sectionsFile);
@@ -156,6 +158,8 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
             sections = (section_handle && section_handle !== 'header' && section_handle !== 'footer' && section_handle !== 'announcement-bar') 
             ? settings?.current?.sections[section_handle]
             : null;
+        } else if(!section_handle && (page_handle?.includes('customer') || page_handle?.includes('gift-card'))){
+            sections = settings?.current?.sections[page_handle];
         } else {
             const sectionsFile = await fs.readFile(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/${getPage[0]?.template_name}.json`), 'utf-8');
             if(!sectionsFile) return next();

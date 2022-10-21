@@ -1,6 +1,6 @@
 <% if(sectionItem?.settings){ %>
     <div class="py__random-section-content py__settings-section-item" data-section-handle="<%=sectionItem.type%>" <% if(orderItem){ %>data-section-id="<%=orderItem%>"<% } %> data-template-name="<%=sectionSchemaItem[0].template_name%>">
-        <% sectionSchemaItem[0].settings.forEach((item,index)=>{ %>
+        <% sectionSchemaItem[0]?.settings?.forEach((item,index)=>{ %>
             <% if(item.type === "select" && item?.id?.includes('style') || item.type === "select" && item?.id?.includes('position') || item.type === "select" && item?.id?.includes('color')){ %>
                 <div class="py__random-comp py__random-comp-select">
                     <label for="section-<%=item.id%>"><%=item.label%></label>

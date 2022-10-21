@@ -2403,10 +2403,11 @@
       ? (oldSidebar.innerHTML = newSidebar.innerHTML)
       : null;
     let ifrmaes = document.querySelectorAll(".py__view-iframe");
+    console.log(url);
     if (ifrmaes?.length) {
       for (let i = 0; i < ifrmaes?.length; i++) {
         let iframe = ifrmaes[i];
-        iframe.setAttribute("data-src", url.replace("themes", "view"));
+        iframe.setAttribute("data-src", url.replace("themes", "view").replace("remix", "view"));
       }
     }
     await viewIframe();
@@ -2467,6 +2468,8 @@
     let newSidebar = html.querySelector(".py__settings-select-options");
     let oldRandomSettings = document.querySelector(".py__make-random-settings");
     let newRandomSettings = html.querySelector(".py__make-random-settings");
+    let oldRandomPages = document.querySelector(".py__preview-select");
+    let newRandomPages = html.querySelector(".py__preview-select");
     oldSettingsWrap && newSettingsWrap
       ? (oldSettingsWrap.innerHTML = newSettingsWrap.innerHTML)
       : null;
@@ -2475,6 +2478,9 @@
       : null;
     oldRandomSettings && newRandomSettings
       ? (oldRandomSettings.innerHTML = newRandomSettings.innerHTML)
+      : null;
+    oldRandomPages && newRandomPages
+      ? (oldRandomPages.innerHTML = newRandomPages.innerHTML)
       : null;
     if (sectionName) {
       let urlParams = new URL(location.href);

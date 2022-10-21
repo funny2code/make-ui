@@ -1,42 +1,43 @@
-<% var defaultBanner = true){ %>
-<% if(section.blocks.length > 0){ %>
-<%=component-collection-hero.css' <%=srcId%> | stylesheet_tag %>
-<% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
+<% var defaultBanner = true %>
+<% if(section?.block_order?.length > 0){ %>
+<link rel="stylesheet" href="/<%=srcId%>/component-collection-hero.css">
+<% section?.block_order?.forEach((orderItem, index) => { %>
+<% let block = section?.blocks[orderItem] %>
 <% if(block.type === 'collection' && block?.settings?.coll === collection.handle){ %>
-<% var defaultBanner = false){ %>
+<% defaultBanner = false %>
 <div class="collection-hero <% if(collection.image || block?.settings?.image){ %>collection-hero--with-image<% } %> py-<%=block?.settings?.page_y_pd%> py-<%=block?.settings?.page_x_pd%> py-<%=block?.settings?.page_y_mg%> py-<%=block?.settings?.page_width%>">
-<div class="collection-hero__inner collection-hero__inner-<%= block.id %>">
-  <%- include('../snippets/style', sufix: '.collection-hero__inner', id: block.id, style: block.settings){ %>
+<div class="collection-hero__inner collection-hero__inner-<%= orderItem %>">
+  <%- include('../snippets/style', {sufix: '.collection-hero__inner', id: orderItem, style: block.settings}) %>
   <div class="collection-hero__text-wrapper">
 
     <% if(block?.settings?.show_collection_title){ %>
     <h1 class="collection-hero__title">
       <span class="visually-hidden"><%=sectionst.collection_template.title%>: </span>
-      <%=- collection.title -%>
+      <%- collection.title -%>
     </h1>
     <% } %>
 
     <% if(block?.settings?.show_collection_description){ %>
-      <div class="collection-hero__description rte"><%= collection.description %></div>
+      <div class="collection-hero__description rte"><%- collection.description -%></div>
     <% } %>
     <% if(block?.settings?.countdown){ %>
-      <%- include('../snippets/component-countdown', countdown: block?.settings?.countdown){ %>
+      <%- include('../snippets/component-countdown', {countdown: block?.settings?.countdown}) %>
     <% } %>
   </div>
 
   <% if(collection.image || block?.settings?.image){ %>
     <div class="collection-hero__image-container">
       <% if(block?.settings?.image){ %>
-        <div class="media <% if(block?.settings?.m_image){ %>small-hide<% } %>" style="padding-bottom: <%= 1 / block?.settings?.image.aspect_ratio * 100 %>%;">
-          <img srcset="<% if(block?.settings?.image.width >= 375){ %><%= block?.settings?.image | img_url: '375x' %> 375w,<% } %>
-            <% if(block?.settings?.image.width >= 750){ %><%= block?.settings?.image | img_url: '750x' %> 750w,<% } %>
-            <% if(block?.settings?.image.width >= 1100){ %><%= block?.settings?.image | img_url: '1100x' %> 1100w,<% } %>
-            <% if(block?.settings?.image.width >= 1500){ %><%= block?.settings?.image | img_url: '1500x' %> 1500w,<% } %>
-            <% if(block?.settings?.image.width >= 1780){ %><%= block?.settings?.image | img_url: '1780x' %> 1780w,<% } %>
-            <% if(block?.settings?.image.width >= 2000){ %><%= block?.settings?.image | img_url: '2000x' %> 2000w,<% } %>
-            <% if(block?.settings?.image.width >= 2800){ %><%= block?.settings?.image | img_url: '2800x' %> 2800w<% } %>"
+        <div class="media <% if(block?.settings?.m_image){ %>small-hide<% } %>" style="padding-bottom: <%= 1 / block?.settings?.image.aspect_ratio || 1 * 100 %>%;">
+          <img srcset="<% if(block?.settings?.image.width >= 375){ %><%= block?.settings?.image %> 375w,<% } %>
+            <% if(block?.settings?.image.width >= 750){ %><%= block?.settings?.image %> 750w,<% } %>
+            <% if(block?.settings?.image.width >= 1100){ %><%= block?.settings?.image %> 1100w,<% } %>
+            <% if(block?.settings?.image.width >= 1500){ %><%= block?.settings?.image %> 1500w,<% } %>
+            <% if(block?.settings?.image.width >= 1780){ %><%= block?.settings?.image %> 1780w,<% } %>
+            <% if(block?.settings?.image.width >= 2000){ %><%= block?.settings?.image %> 2000w,<% } %>
+            <% if(block?.settings?.image.width >= 2800){ %><%= block?.settings?.image %> 2800w<% } %>"
             sizes="100vw"
-            src="<%= block?.settings?.image | img_url: '750x' %>"
+            src="<%= block?.settings?.image %>"
             alt="<%= block?.settings?.image.alt %>"
             width="<%= block?.settings?.image.width %>"
             height="<%= block?.settings?.image.width / block?.settings?.image.aspect_ratio %>"
@@ -44,14 +45,14 @@
         </div>
       <% } %>
       <% if(block?.settings?.m_image){ %>
-        <div class="media large-up-hide medium-hide" style="padding-bottom: <%= 1 / block?.settings?.m_image.aspect_ratio * 100 %>%;">
-          <img srcset="<% if(block?.settings?.m_image.width >= 165){ %><%= block?.settings?.m_image | img_url: '165x' %> 165w,<% } %>
-            <% if(block?.settings?.m_image.width >= 360){ %><%= block?.settings?.m_image | img_url: '360x' %> 360w,<% } %>
-            <% if(block?.settings?.m_image.width >= 535){ %><%= block?.settings?.m_image | img_url: '535x' %> 535w,<% } %>
-            <% if(block?.settings?.m_image.width >= 720){ %><%= block?.settings?.m_image | img_url: '720x' %> 720w,<% } %>
-            <% if(block?.settings?.m_image.width >= 940){ %><%= block?.settings?.m_image | img_url: '940x' %> 940w,<% } %>
-            <% if(block?.settings?.m_image.width >= 1070){ %><%= block?.settings?.m_image | img_url: '1070x' %> 1070w<% } %>"
-            src="<%= block?.settings?.m_image | img_url: '533x' %>"
+        <div class="media large-up-hide medium-hide" style="padding-bottom: <%= 1 / block?.settings?.m_image.aspect_ratio || 1 * 100 %>%;">
+          <img srcset="<% if(block?.settings?.m_image.width >= 165){ %><%= block?.settings?.m_image %> 165w,<% } %>
+            <% if(block?.settings?.m_image.width >= 360){ %><%= block?.settings?.m_image %> 360w,<% } %>
+            <% if(block?.settings?.m_image.width >= 535){ %><%= block?.settings?.m_image %> 535w,<% } %>
+            <% if(block?.settings?.m_image.width >= 720){ %><%= block?.settings?.m_image %> 720w,<% } %>
+            <% if(block?.settings?.m_image.width >= 940){ %><%= block?.settings?.m_image %> 940w,<% } %>
+            <% if(block?.settings?.m_image.width >= 1070){ %><%= block?.settings?.m_image %> 1070w<% } %>"
+            src="<%= block?.settings?.m_image %>"
             sizes="(min-width: 1100px) 535px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
             alt="<%= collection.title %>"
             loading="lazy"
@@ -60,15 +61,15 @@
           >
         </div>
       <% } %>
-      <% if(collection.image && block?.settings?.image === blank){ %>
-        <div class="media" style="padding-bottom: <%= 1 / collection.image.aspect_ratio * 100 %>%;">
-          <img srcset="<% if(collection.image.width >= 165){ %><%= collection.image | img_url: '165x' %> 165w,<% } %>
-            <% if(collection.image.width >= 360){ %><%= collection.image | img_url: '360x' %> 360w,<% } %>
-            <% if(collection.image.width >= 535){ %><%= collection.image | img_url: '535x' %> 535w,<% } %>
-            <% if(collection.image.width >= 720){ %><%= collection.image | img_url: '720x' %> 720w,<% } %>
-            <% if(collection.image.width >= 940){ %><%= collection.image | img_url: '940x' %> 940w,<% } %>
-            <% if(collection.image.width >= 1070){ %><%= collection.image | img_url: '1070x' %> 1070w<% } %>"
-            src="<%= collection.image | img_url: '533x' %>"
+      <% if(collection.image && !block?.settings?.image){ %>
+        <div class="media" style="padding-bottom: <%= 1 / collection.image.aspect_ratio || 1 * 100 %>%;">
+          <img srcset="<% if(collection.image.width >= 165){ %><%= collection.image %> 165w,<% } %>
+            <% if(collection.image.width >= 360){ %><%= collection.image %> 360w,<% } %>
+            <% if(collection.image.width >= 535){ %><%= collection.image %> 535w,<% } %>
+            <% if(collection.image.width >= 720){ %><%= collection.image %> 720w,<% } %>
+            <% if(collection.image.width >= 940){ %><%= collection.image %> 940w,<% } %>
+            <% if(collection.image.width >= 1070){ %><%= collection.image %> 1070w<% } %>"
+            src="<%= collection.image %>"
             sizes="(min-width: 1100px) 535px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
             alt="<%= collection.title %>"
             loading="lazy"
@@ -86,28 +87,28 @@
 <% } %>
 
 <% if(defaultBanner){ %>
-<div class="collection-hero <% if(collection.image){ %>collection-hero--with-image<% } %> py-<%=block?.settings?.page_y_pd%> py-<%=block?.settings?.page_x_pd%> py-<%=block?.settings?.page_y_mg%> py-<%=block?.settings?.page_width%>">
+<div class="collection-hero <% if(collection.image){ %>collection-hero--with-image<% } %> py-<%=collection?.settings?.page_y_pd%> py-<%=collection?.settings?.page_x_pd%> py-<%=collection?.settings?.page_y_mg%> py-<%=collection?.settings?.page_width%>">
   <div class="collection-hero__inner bc-collection-page-main">
     <div class="collection-hero__text-wrapper">
-      <h1 class="collection-hero__title">
+      <h1 class="collection-hero__title" style="color:<%=section.settings.content_color%>">
         <span class="visually-hidden"><%=sectionst.collection_template.title%>:</span>
-        <%=- collection.title -%>
+        <%- collection.title -%>
       </h1>
       <% if(collection.description){ %>
-        <div class="collection-hero__description rte"><%= collection.description %></div>
+        <div class="collection-hero__description rte"><%- collection.description -%></div>
       <% } %>
     </div>
 
     <% if(collection.image){ %>
     <div class="collection-hero__image-container">
-        <div class="media" style="padding-bottom: <%= 1 / collection.image.aspect_ratio * 100 %>%;">
-          <img srcset="<% if(collection.image.width >= 165){ %><%= collection.image | img_url: '165x' %> 165w,<% } %>
-            <% if(collection.image.width >= 360){ %><%= collection.image | img_url: '360x' %> 360w,<% } %>
-            <% if(collection.image.width >= 535){ %><%= collection.image | img_url: '535x' %> 535w,<% } %>
-            <% if(collection.image.width >= 720){ %><%= collection.image | img_url: '720x' %> 720w,<% } %>
-            <% if(collection.image.width >= 940){ %><%= collection.image | img_url: '940x' %> 940w,<% } %>
-            <% if(collection.image.width >= 1070){ %><%= collection.image | img_url: '1070x' %> 1070w<% } %>"
-            src="<%= collection.image | img_url: '533x' %>"
+        <div class="media" style="padding-bottom: <%= 1 / collection.image.aspect_ratio || 1 * 100 %>%;">
+          <img srcset="<% if(collection.image.width >= 165){ %><%= collection.image.src %> 165w,<% } %>
+            <% if(collection.image.width >= 360){ %><%= collection.image.src %> 360w,<% } %>
+            <% if(collection.image.width >= 535){ %><%= collection.image.src %> 535w,<% } %>
+            <% if(collection.image.width >= 720){ %><%= collection.image.src %> 720w,<% } %>
+            <% if(collection.image.width >= 940){ %><%= collection.image.src %> 940w,<% } %>
+            <% if(collection.image.width >= 1070){ %><%= collection.image.src %> 1070w<% } %>"
+            src="<%= collection.image.src %>"
             sizes="(min-width: 1100px) 535px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
             alt="<%= collection.title %>"
             loading="lazy"
@@ -116,296 +117,25 @@
           >
         </div>
     </div>
+    <% } else { %>
+    <div class="collection-hero__image-container a">
+        <div class="media" style="padding-bottom: 30%;">
+          <img srcset="<% if(section.settings.image.width >= 165){ %><%= section.settings.image %> 165w,<% } %>
+            <% if(section.settings.image.width >= 360){ %><%= section.settings.image %> 360w,<% } %>
+            <% if(section.settings.image.width >= 535){ %><%= section.settings.image %> 535w,<% } %>
+            <% if(section.settings.image.width >= 720){ %><%= section.settings.image %> 720w,<% } %>
+            <% if(section.settings.image.width >= 940){ %><%= section.settings.image %> 940w,<% } %>
+            <% if(section.settings.image.width >= 1070){ %><%= section.settings.image %> 1070w<% } %>"
+            src="<%= section.settings.image %>"
+            sizes="(min-width: 1100px) 535px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
+            alt="<%= section.settings.title %>"
+            loading="lazy"
+            width="<%= section.settings.image.width %>"
+            height="<%= section.settings.image.height %>"
+          >
+        </div>
+    </div>
     <% } %>
   </div>
 </div>
 <% } %>
-
-<% schema){ %>
-{
-  "name": "t:sectionst.main-collection-banner.name",
-  "blocks": [
-    {
-      "type": "collection",
-      "name": "Collection",
-      "settings": [
-        {
-          "type": "collection",
-          "id": "coll",
-          "label": "Select Collection",
-          "info": "Please select Collection where you want to show Banner Settings!"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_collection_title",
-          "default": true,
-          "label": "Show Collection Title"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_collection_description",
-          "default": false,
-          "label": "t:sectionst.main-collection-banner.settings.show_collection_description.label"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Desktop Image"
-        },
-        {
-          "type": "image_picker",
-          "id": "m_image",
-          "label": "Mobile Image"
-        },
-        {
-          "type": "text",
-          "id": "countdown",
-          "label": "Count Down Date",
-          "default": "2021-12-31T00:00:00",
-          "info": "Format 2021-12-31T00:00:00"
-        },
-        {
-          "type": "header",
-          "content": "Override"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_override",
-          "label": "Show Override",
-          "default": false
-        },
-        {
-          "type": "select",
-          "id": "content_bg_color",
-          "label": "Background",
-          "options": [          
-              {
-                "label": "Transparent",
-                "value": "transparent"
-              },        
-              {
-                "label": "Dark",
-                "value": "var(--py-bg-color-dark)"
-              },
-              {
-                "label": "Middle Dark",
-                "value": "var(--py-bg-color-middle-dark)"
-              },
-              {
-                "label": "Average",
-                "value": "var(--py-bg-color-avarge)"
-              },
-              {
-                "label": "Middle Light",
-                "value": "var(--py-bg-color-middle-light)"
-              },
-              {
-                "label": "Light",
-                "value": "var(--py-bg-color-light)"
-              }
-            ],
-          "default": "transparent"
-        },
-        {
-          "type": "select",
-          "id": "content_color",
-          "label": "Texts Color",
-          "options": [ 
-              {
-                "label": "Dark",
-                "value": "var(--py-color-dark)"
-              },
-              {
-                "label": "Middle Dark",
-                "value": "var(--py-color-middle-dark)"
-              },
-              {
-                "label": "Average",
-                "value": "var(--py-color-avarge)"
-              },
-              {
-                "label": "Middle Light",
-                "value": "var(--py-color-middle-light)"
-              },
-              {
-                "label": "Light",
-                "value": "var(--py-color-light)"
-              }
-            ],
-            "default": "var(--py-color-light)"
-        },
-        {
-          "type": "image_picker",
-          "id": "ov_bg_image",
-          "label": "Background"
-        },
-        {
-          "type": "text",
-          "id": "ov_opacity",
-          "label": "Opacity"
-        },
-        {
-          "type": "header",
-          "content": "Custom Styles"
-        },
-        {
-          "type": "select",
-          "id": "page_width",
-          "label": "Container (Width)",
-          "options": [
-            {
-              "label": "Unset",
-              "value": "width-un"
-            },
-            {
-              "label": "Large",
-              "value": "width-l"
-            },
-            {
-              "label": "Medium",
-              "value": "width-m"
-            },
-            {
-              "label": "Small",
-              "value": "width-s"
-            }
-          ],
-          "default": "width-un"
-        },
-        {
-          "type": "select",
-          "id": "page_y_mg",
-          "label": "Container Margin Vertical",
-          "options": [
-              {
-              "label": "Unset",
-              "value": "mg-y-un"
-              },
-              {
-              "label": "None",
-              "value": "mg-y-n"
-              },
-              {
-              "label": "XL",
-              "value": "mg-y-xl"
-              },
-              {
-              "label": "L",
-              "value": "mg-y-l"
-              },
-              {
-              "label": "M",
-              "value": "mg-y-m"
-              },
-              {
-              "label": "S",
-              "value": "mg-y-s"
-              },
-              {
-              "label": "XS",
-              "value": "mg-y-xs"
-              }
-          ],
-          "default": "mg-y-un"
-        },
-        {
-          "type": "select",
-          "id": "page_x_pd",
-          "label": "Container Padding Horizontal",
-          "options": [
-            {
-              "label": "Unset",
-              "value": "pd-x-un"
-            },
-            {
-              "label": "None",
-              "value": "pd-x-n"
-            },
-            {
-              "label": "XL",
-              "value": "pd-x-xl"
-            },
-            {
-              "label": "L",
-              "value": "pd-x-l"
-            },
-            {
-              "label": "M",
-              "value": "pd-x-m"
-            },
-            {
-              "label": "S",
-              "value": "pd-x-s"
-            },
-            {
-              "label": "XS",
-              "value": "pd-x-xs"
-            }
-          ],
-          "default": "pd-x-un"
-        },
-        {
-          "type": "select",
-          "id": "page_y_pd",
-          "label": "Container Padding Vertical",
-          "options": [
-            {
-              "label": "Unset",
-              "value": "pd-y-un"
-            },
-            {
-              "label": "None",
-              "value": "pd-y-n"
-            },
-            {
-              "label": "XL",
-              "value": "pd-y-xl"
-            },
-            {
-              "label": "L",
-              "value": "pd-y-l"
-            },
-            {
-              "label": "M",
-              "value": "pd-y-m"
-            },
-            {
-              "label": "S",
-              "value": "pd-y-s"
-            },
-            {
-              "label": "XS",
-              "value": "pd-y-xs"
-            }
-          ],
-          "default": "pd-y-un"
-        },
-        {
-          "type": "select",
-          "id": "br",
-          "label": "Border",
-          "options": [
-            {
-              "label": "None",
-              "value": "br-none"
-            },
-            {
-              "label": "Horizontal && Vertical",
-              "value": "br"
-            },
-            {
-              "label": "Horizontal",
-              "value": "br-x"
-            },
-            {
-              "label": "Vertical",
-              "value": "br-y"
-            }
-          ],
-          "default": "br-y"
-        }
-      ]
-    }
-  ]
-}
-<% endschema){ %>

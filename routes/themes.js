@@ -17,8 +17,11 @@ router.get('/:id', async (req, res, next) => {
 
   if(!id || !page_handle) return next();
 
-  const activeType = settings_handle || section_handle ? settings_handle ? 'settings' : 'section' : null;
-  const active = settings_handle ? settings_handle : section_handle;
+  const activeType = (settings_handle || section_handle) ? settings_handle ? 'settings' : 'section' 
+  : (page_handle?.includes('customer') || page_handle?.includes('gift-card')) ? 'liquid' : null;
+  const active = (settings_handle || section_handle) 
+  ? settings_handle ? settings_handle : section_handle
+  : (page_handle?.includes('customer') || page_handle?.includes('gift-card')) ? page_handle : null;
 
   try{
     const theme = await modelThemes.findById(id).exec();
@@ -37,10 +40,17 @@ router.get('/:id', async (req, res, next) => {
     const sectionsFile = await fs.readFile(path.join(__dirname, `../themes/${id}/${getPage[0]?.template_name}.json`), 'utf-8');
     if(!sectionsFile) return next();
     const parseSections = JSON.parse(sectionsFile);
-    const sectionSchema = section_handle ? theme?.sections_schema?.filter(section => section.file_name === section_handle) : null;
+    const sectionSchema = section_handle 
+    ? theme?.sections_schema?.filter(section => section.file_name === section_handle) 
+    : (page_handle?.includes('customer') || page_handle?.includes('gift-card')) 
+    ? theme?.sections_schema?.filter(section => section.file_name === page_handle)
+    : null;
     const section = (section_handle && section_id) 
     ? parseSections?.sections[section_id] : section_handle 
-    ? settings?.current?.sections[section_handle] : null;
+    ? settings?.current?.sections[section_handle] 
+    : (page_handle?.includes('customer') || page_handle?.includes('gift-card')) 
+    ? parseSections?.current?.sections[page_handle] 
+    : null;
 
     res.render('theme', {
       user: req?.session?.user || null,
@@ -80,8 +90,11 @@ router.post('/:id', async (req, res, next) => {
 
   if(!id || !page_handle) return next();
 
-  const activeType = settings_handle || section_handle ? settings_handle ? 'settings' : 'section' : null;
-  const active = settings_handle ? settings_handle : section_handle;
+  const activeType = settings_handle || section_handle ? settings_handle ? 'settings' : 'section' 
+  : (page_handle?.includes('customer') || page_handle?.includes('gift-card')) ? 'liquid' : null;
+  const active = (settings_handle || section_handle) 
+  ? settings_handle ? settings_handle : section_handle
+  : (page_handle?.includes('customer') || page_handle?.includes('gift-card')) ? page_handle : null;
 
   try{
     const theme = await modelThemes.findById(id).exec();
@@ -123,10 +136,17 @@ router.post('/:id', async (req, res, next) => {
     }
 
 
-    const sectionSchema = section_handle ? theme?.sections_schema?.filter(section => section.file_name === section_handle) : null;
+    const sectionSchema = section_handle 
+    ? theme?.sections_schema?.filter(section => section.file_name === section_handle) 
+    : (page_handle?.includes('customer') || page_handle?.includes('gift-card')) 
+    ? theme?.sections_schema?.filter(section => section.file_name === page_handle) 
+    : null;
     const section = (section_handle && section_id) 
     ? parseSections?.sections[section_id] : section_handle 
-    ? settings?.current?.sections[section_handle] : null;
+    ? settings?.current?.sections[section_handle] 
+    : (page_handle?.includes('customer') || page_handle?.includes('gift-card')) 
+    ? settings?.current?.sections[page_handle]
+    : null;
 
     res.render('theme', {
       user: req?.session?.user || null,

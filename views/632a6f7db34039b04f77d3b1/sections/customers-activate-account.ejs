@@ -1,9 +1,7 @@
-<link rel="stylesheet" href="<%=section-main-page.css' <%=srcId%> %>" >
-<link rel="stylesheet" href="<%=component-rte.css' <%=srcId%> %>" >
+<link rel="stylesheet" href="/<%=srcId%>/section-main-page.css" >
+<link rel="stylesheet" href="/<%=srcId%>/component-rte.css" >
+<link rel="stylesheet" href="/<%=srcId%>/customer.css" >
 
-<noscript><%=section-main-page.css' <%=srcId%> | stylesheet_tag %></noscript>
-<noscript><%=component-rte.css' <%=srcId%> | stylesheet_tag %></noscript>
-<%=customer.css' <%=srcId%> | stylesheet_tag %>
 <style>  
   .page-container{
     background-color:<%=section.settings.page_bg_color%>;
@@ -58,28 +56,28 @@
       </symbol>
     </svg>
     <h1>
-      <%=customer.activate_account.title%>
+      <%=customert.activate_account?.title%>
     </h1>
     <p>
-      <%=customer.activate_account.subtext%>
+      <%=customert.activate_account?.subtext%>
     </p>
-    <% form 'activate_customer_password'){ %>
-      <% if(form.errors){ %>
+    <form>
+      <% if(form?.errors){ %>
         <h2 class="form__message" tabindex="-1" autofocus>
           <svg aria-hidden="true" focusable="false" role="presentation">
             <use href="#icon-error" />
           </svg>
-          <%=templates.contact.form.error_heading%>
+          <%=templates.contact.form?.error_heading%>
         </h2>
         <ul>
-          <% for field in form.errors){ %>
+          <% form?.errors?.forEach((field,index)=>{ %>
             <li>
               <% if(field === 'form'){ %>
-                <%= form.errors.messages[field] %>
+                <%= form?.errors?.messages[field] %>
               <% } else { %>
                 <a href="#<%= field %>">
-                  <%= form.errors.translated_fields[field] %>
-                  <%= form.errors.messages[field] %>
+                  <%= form?.errors?.translated_fields[field] %>
+                  <%= form?.errors?.messages[field] %>
                 </a>
               <% }%>
             </li>
@@ -89,697 +87,62 @@
 
       <div class="field">     
        <label for="password">
-          <%=customer.activate_account.password%>
+          <%=customert.activate_account?.password%>
         </label> 
         <input
           type="password"
           name="customer[password]"
           id="password"
           autocomplete="new-password"
-          placeholder="<%=customer.activate_account.password%>"
-          <% if(form.errors.includes('password'){ %>
+          placeholder="<%=customert.activate_account?.password%>"
+          <% if(form?.errors?.includes('password')){ %>
             aria-invalid="true"
             aria-describedby="password-error"
           <% } %>
         >
         
-        <% if(form.errors.includes('password'){ %>
+        <% if(form?.errors?.includes('password')){ %>
           <small id="password-error" class="form__message">
             <svg aria-hidden="true" focusable="false" role="presentation">
               <use href="#icon-error" />
             </svg>
-            <%= form.errors.translated_fields['password'] %> <%= form.errors.messages['password'] %>
+            <%= form?.errors?.translated_fields['password'] %> <%= form?.errors?.messages['password'] %>
           </small>
         <% } %>
       </div>
 
       <div class="field">     
         <label for="password_confirmation">
-          <%=customer.activate_account.password_confirm%>
+          <%=customert.activate_account?.password_confirm%>
         </label>
         <input
           type="password"
           name="customer[password_confirmation]"
           id="password_confirmation"
           autocomplete="new-password"
-          placeholder="<%=customer.activate_account.password_confirm%>"
-          <% if(form.errors.includes('password'){ %>
+          placeholder="<%=customert.activate_account?.password_confirm%>"
+          <% if(form?.errors?.includes('password')){ %>
             aria-invalid="true"
             aria-describedby="password_confirmation-error"
           <% } %>
         >
         
-        <% if(form.errors.includes('password_confirmation'){ %>
+        <% if(form?.errors?.includes('password_confirmation')){ %>
           <small id="password_confirmation-error" class="form__message">
             <svg aria-hidden="true" focusable="false" role="presentation">
               <use href="#icon-error" />
             </svg>
-            <%= form.errors.translated_fields['password_confirmation'] %> <%= form.errors.messages['password_confirmation'] %>
+            <%= form?.errors?.translated_fields['password_confirmation'] %> <%= form?.errors?.messages['password_confirmation'] %>
           </small>
         <% } %>
       </div>
 
       <button class="activate_btn">
-        <%=customer.activate_account.submit%>
+        <%=customert.activate_account?.submit%>
       </button>
       <button class="decline_btn" name="decline">
-        <%=customer.activate_account.cancel%>
+        <%=customert.activate_account?.cancel%>
       </button>
     </form>
   </div>
 </div>  
-  
-<% schema){ %>
-{
-  "name": "Customer-Activate Page",
-  "tag": "section",
-  "settings": [
-    {
-      "type": "select",
-      "id": "page_bg_color",
-      "label": "Page Background Color",
-      "options": [          
-         {
-            "label": "Transparent",
-            "value": "transparent"
-         },        
-         {
-            "label": "Dark",
-            "value": "var(--py-bg-color-dark)"
-         },
-         {
-            "label": "Middle Dark",
-            "value": "var(--py-bg-color-middle-dark)"
-         },
-         {
-            "label": "Average",
-            "value": "var(--py-bg-color-avarge)"
-         },
-         {
-            "label": "Middle Light",
-            "value": "var(--py-bg-color-middle-light)"
-         },
-         {
-            "label": "Light",
-            "value": "var(--py-bg-color-light)"
-         }
-       ],
-     "default": "var(--py-bg-color-light)"
-    },
-    {
-        "type": "select",
-        "id": "page_color",
-        "label": "Page Text Color",
-        "options": [          
-          {
-            "label": "Transparent",
-            "value": "transparent"
-          },        
-          {
-            "label": "Dark",
-            "value": "var(--py-color-dark)"
-          },
-          {
-            "label": "Middle Dark",
-            "value": "var(--py-color-middle-dark)"
-          },
-          {
-            "label": "Average",
-            "value": "var(--py-color-avarge)"
-          },
-          {
-            "label": "Middle Light",
-            "value": "var(--py-color-middle-light)"
-          },
-          {
-            "label": "Light",
-            "value": "var(--py-color-light)"
-          }
-        ],
-        "default": "var(--py-color-dark)"
-    },
-    {
-        "type": "select",
-        "id": "page_align",
-        "label": "Page Alignment",
-        "options": [ 
-            {
-            "label": "Left",
-            "value": "left"
-            },
-            {
-            "label": "Center",
-            "value": "center"
-            }
-        ],
-        "default": "left"
-    },
-    {
-      "type": "header",
-      "content": "Activate Button Style"
-    },
-    {
-      "type": "select",
-      "id": "activate_btn_bg_color",
-      "label": "Activate Button Background Color",
-      "options": [          
-         {
-            "label": "Transparent",
-            "value": "transparent"
-         },        
-         {
-            "label": "Dark",
-            "value": "var(--py-bg-color-dark)"
-         },
-         {
-            "label": "Middle Dark",
-            "value": "var(--py-bg-color-middle-dark)"
-         },
-         {
-            "label": "Average",
-            "value": "var(--py-bg-color-avarge)"
-         },
-         {
-            "label": "Middle Light",
-            "value": "var(--py-bg-color-middle-light)"
-         },
-         {
-            "label": "Light",
-            "value": "var(--py-bg-color-light)"
-         }
-       ],
-     "default": "var(--py-bg-color-light)"
-    },
-    {
-        "type": "select",
-        "id": "activate_btn_color",
-        "label": "Activate Button Text Color",
-        "options": [          
-          {
-            "label": "Transparent",
-            "value": "transparent"
-          },        
-          {
-            "label": "Dark",
-            "value": "var(--py-color-dark)"
-          },
-          {
-            "label": "Middle Dark",
-            "value": "var(--py-color-middle-dark)"
-          },
-          {
-            "label": "Average",
-            "value": "var(--py-color-avarge)"
-          },
-          {
-            "label": "Middle Light",
-            "value": "var(--py-color-middle-light)"
-          },
-          {
-            "label": "Light",
-            "value": "var(--py-color-light)"
-          }
-        ],
-        "default": "var(--py-color-dark)"
-    },
-    {
-        "type": "range",
-        "id": "activate_btn_border_width",
-        "min": 0,
-        "max": 5,
-        "step": 1,
-        "default": 1,
-        "label": "Activate  Button Border Width"
-    },
-    {
-        "type": "range",
-        "id": "activate_btn_border_radius",
-        "min": 0,
-        "max": 40,
-        "step": 1,
-        "default": 5,
-        "label": "Activate  Button Border Radius"
-    },
-    {
-        "type": "select",
-        "id": "activate_btn_color_br",
-        "label": "Activate Button Border Color",
-        "options": [          
-          {
-            "label": "Transparent",
-            "value": "transparent"
-          },        
-          {
-            "label": "Dark",
-            "value": "var(--py-color-dark)"
-          },
-          {
-            "label": "Middle Dark",
-            "value": "var(--py-color-middle-dark)"
-          },
-          {
-            "label": "Average",
-            "value": "var(--py-color-avarge)"
-          },
-          {
-            "label": "Middle Light",
-            "value": "var(--py-color-middle-light)"
-          },
-          {
-            "label": "Light",
-            "value": "var(--py-color-light)"
-          }
-        ],
-        "default": "var(--py-color-dark)"
-    },
-    {
-      "type": "select",
-      "id": "activate_btn_hover_bg_color",
-      "label": "Activate Button Hover Background Color",
-      "options": [          
-         {
-            "label": "Transparent",
-            "value": "transparent"
-         },        
-         {
-            "label": "Dark",
-            "value": "var(--py-bg-color-dark)"
-         },
-         {
-            "label": "Middle Dark",
-            "value": "var(--py-bg-color-middle-dark)"
-         },
-         {
-            "label": "Average",
-            "value": "var(--py-bg-color-avarge)"
-         },
-         {
-            "label": "Middle Light",
-            "value": "var(--py-bg-color-middle-light)"
-         },
-         {
-            "label": "Light",
-            "value": "var(--py-bg-color-light)"
-         }
-       ],
-     "default": "var(--py-bg-color-light)"
-    },
-    {
-        "type": "select",
-        "id": "activate_btn_hover_color",
-        "label": "Activate Button Hover Text Color",
-        "options": [          
-          {
-            "label": "Transparent",
-            "value": "transparent"
-          },        
-          {
-            "label": "Dark",
-            "value": "var(--py-color-dark)"
-          },
-          {
-            "label": "Middle Dark",
-            "value": "var(--py-color-middle-dark)"
-          },
-          {
-            "label": "Average",
-            "value": "var(--py-color-avarge)"
-          },
-          {
-            "label": "Middle Light",
-            "value": "var(--py-color-middle-light)"
-          },
-          {
-            "label": "Light",
-            "value": "var(--py-color-light)"
-          }
-        ],
-        "default": "var(--py-color-dark)"
-    },
-    {
-        "type": "select",
-        "id": "activate_btn_hover_color_br",
-        "label": "Activate Button Hover Border Color",
-        "options": [          
-          {
-            "label": "Transparent",
-            "value": "transparent"
-          },        
-          {
-            "label": "Dark",
-            "value": "var(--py-color-dark)"
-          },
-          {
-            "label": "Middle Dark",
-            "value": "var(--py-color-middle-dark)"
-          },
-          {
-            "label": "Average",
-            "value": "var(--py-color-avarge)"
-          },
-          {
-            "label": "Middle Light",
-            "value": "var(--py-color-middle-light)"
-          },
-          {
-            "label": "Light",
-            "value": "var(--py-color-light)"
-          }
-        ],
-        "default": "var(--py-color-dark)"
-    },
-    {
-      "type": "header",
-      "content": "Decline Button Style"
-    },
-    {
-      "type": "select",
-      "id": "decline_btn_bg_color",
-      "label": "Decline Button Background Color",
-      "options": [          
-         {
-            "label": "Transparent",
-            "value": "transparent"
-         },        
-         {
-            "label": "Dark",
-            "value": "var(--py-bg-color-dark)"
-         },
-         {
-            "label": "Middle Dark",
-            "value": "var(--py-bg-color-middle-dark)"
-         },
-         {
-            "label": "Average",
-            "value": "var(--py-bg-color-avarge)"
-         },
-         {
-            "label": "Middle Light",
-            "value": "var(--py-bg-color-middle-light)"
-         },
-         {
-            "label": "Light",
-            "value": "var(--py-bg-color-light)"
-         }
-       ],
-     "default": "var(--py-bg-color-light)"
-    },
-    {
-        "type": "select",
-        "id": "decline_btn_color",
-        "label": "Decline Button Text Color",
-        "options": [          
-          {
-            "label": "Transparent",
-            "value": "transparent"
-          },        
-          {
-            "label": "Dark",
-            "value": "var(--py-color-dark)"
-          },
-          {
-            "label": "Middle Dark",
-            "value": "var(--py-color-middle-dark)"
-          },
-          {
-            "label": "Average",
-            "value": "var(--py-color-avarge)"
-          },
-          {
-            "label": "Middle Light",
-            "value": "var(--py-color-middle-light)"
-          },
-          {
-            "label": "Light",
-            "value": "var(--py-color-light)"
-          }
-        ],
-        "default": "var(--py-color-dark)"
-    },
-    {
-        "type": "range",
-        "id": "decline_btn_border_width",
-        "min": 0,
-        "max": 5,
-        "step": 1,
-        "default": 1,
-        "label": "Decline Button Border Width"
-    },
-    {
-        "type": "range",
-        "id": "decline_btn_border_radius",
-        "min": 0,
-        "max": 40,
-        "step": 1,
-        "default": 5,
-        "label": "Decline Button Border Radius"
-    },
-    {
-        "type": "select",
-        "id": "decline_btn_color_br",
-        "label": "Decline Button Border Color",
-        "options": [          
-          {
-            "label": "Transparent",
-            "value": "transparent"
-          },        
-          {
-            "label": "Dark",
-            "value": "var(--py-color-dark)"
-          },
-          {
-            "label": "Middle Dark",
-            "value": "var(--py-color-middle-dark)"
-          },
-          {
-            "label": "Average",
-            "value": "var(--py-color-avarge)"
-          },
-          {
-            "label": "Middle Light",
-            "value": "var(--py-color-middle-light)"
-          },
-          {
-            "label": "Light",
-            "value": "var(--py-color-light)"
-          }
-        ],
-        "default": "var(--py-color-dark)"
-    },
-    {
-      "type": "select",
-      "id": "decline_btn_hover_bg_color",
-      "label": "Decline Button Hover Background Color",
-      "options": [          
-         {
-            "label": "Transparent",
-            "value": "transparent"
-         },        
-         {
-            "label": "Dark",
-            "value": "var(--py-bg-color-dark)"
-         },
-         {
-            "label": "Middle Dark",
-            "value": "var(--py-bg-color-middle-dark)"
-         },
-         {
-            "label": "Average",
-            "value": "var(--py-bg-color-avarge)"
-         },
-         {
-            "label": "Middle Light",
-            "value": "var(--py-bg-color-middle-light)"
-         },
-         {
-            "label": "Light",
-            "value": "var(--py-bg-color-light)"
-         }
-       ],
-     "default": "var(--py-bg-color-light)"
-    },
-    {
-        "type": "select",
-        "id": "decline_btn_hover_color",
-        "label": "Decline Button Hover Text Color",
-        "options": [          
-          {
-            "label": "Transparent",
-            "value": "transparent"
-          },        
-          {
-            "label": "Dark",
-            "value": "var(--py-color-dark)"
-          },
-          {
-            "label": "Middle Dark",
-            "value": "var(--py-color-middle-dark)"
-          },
-          {
-            "label": "Average",
-            "value": "var(--py-color-avarge)"
-          },
-          {
-            "label": "Middle Light",
-            "value": "var(--py-color-middle-light)"
-          },
-          {
-            "label": "Light",
-            "value": "var(--py-color-light)"
-          }
-        ],
-        "default": "var(--py-color-dark)"
-    },
-    {
-        "type": "select",
-        "id": "decline_btn_hover_color_br",
-        "label": "Decline Button Hover Border Color",
-        "options": [          
-          {
-            "label": "Transparent",
-            "value": "transparent"
-          },        
-          {
-            "label": "Dark",
-            "value": "var(--py-color-dark)"
-          },
-          {
-            "label": "Middle Dark",
-            "value": "var(--py-color-middle-dark)"
-          },
-          {
-            "label": "Average",
-            "value": "var(--py-color-avarge)"
-          },
-          {
-            "label": "Middle Light",
-            "value": "var(--py-color-middle-light)"
-          },
-          {
-            "label": "Light",
-            "value": "var(--py-color-light)"
-          }
-        ],
-        "default": "var(--py-color-dark)"
-    },
-    {
-      "type": "header",
-      "content": "Field Style"
-    },
-    {
-      "type": "select",
-      "id": "field_bg_color",
-      "label": "Field Background Color",
-      "options": [          
-         {
-            "label": "Transparent",
-            "value": "transparent"
-         },        
-         {
-            "label": "Dark",
-            "value": "var(--py-bg-color-dark)"
-         },
-         {
-            "label": "Middle Dark",
-            "value": "var(--py-bg-color-middle-dark)"
-         },
-         {
-            "label": "Average",
-            "value": "var(--py-bg-color-avarge)"
-         },
-         {
-            "label": "Middle Light",
-            "value": "var(--py-bg-color-middle-light)"
-         },
-         {
-            "label": "Light",
-            "value": "var(--py-bg-color-light)"
-         }
-       ],
-     "default": "var(--py-bg-color-light)"
-    },
-    {
-        "type": "select",
-        "id": "field_color",
-        "label": "Field Text Color",
-        "options": [          
-          {
-            "label": "Transparent",
-            "value": "transparent"
-          },        
-          {
-            "label": "Dark",
-            "value": "var(--py-color-dark)"
-          },
-          {
-            "label": "Middle Dark",
-            "value": "var(--py-color-middle-dark)"
-          },
-          {
-            "label": "Average",
-            "value": "var(--py-color-avarge)"
-          },
-          {
-            "label": "Middle Light",
-            "value": "var(--py-color-middle-light)"
-          },
-          {
-            "label": "Light",
-            "value": "var(--py-color-light)"
-          }
-        ],
-        "default": "var(--py-color-dark)"
-    },
-    {
-        "type": "range",
-        "id": "field_border_width",
-        "min": 0,
-        "max": 5,
-        "step": 1,
-        "default": 1,
-        "label": "Field Border Width"
-    },
-    {
-        "type": "range",
-        "id": "field_border_radius",
-        "min": 0,
-        "max": 40,
-        "step": 1,
-        "default": 5,
-        "label": "Field Border Radius"
-    },
-    {
-        "type": "select",
-        "id": "field_color_br",
-        "label": "Field Border Color",
-        "options": [          
-          {
-            "label": "Transparent",
-            "value": "transparent"
-          },        
-          {
-            "label": "Dark",
-            "value": "var(--py-color-dark)"
-          },
-          {
-            "label": "Middle Dark",
-            "value": "var(--py-color-middle-dark)"
-          },
-          {
-            "label": "Average",
-            "value": "var(--py-color-avarge)"
-          },
-          {
-            "label": "Middle Light",
-            "value": "var(--py-color-middle-light)"
-          },
-          {
-            "label": "Light",
-            "value": "var(--py-color-light)"
-          }
-        ],
-        "default": "var(--py-color-dark)"
-    }
-  ]
-}
-<% endschema){ %>

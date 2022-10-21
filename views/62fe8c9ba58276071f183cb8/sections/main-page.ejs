@@ -1,8 +1,6 @@
-<link rel="stylesheet" href="<%=section-main-page.css' <%=srcId%> %>" >
-<link rel="stylesheet" href="<%=component-rte.css' <%=srcId%> %>" >
+<link rel="stylesheet" href="/<%=srcId%>/section-main-page.css" >
+<link rel="stylesheet" href="/<%=srcId%>/component-rte.css" >
 
-<noscript><%=section-main-page.css' <%=srcId%> | stylesheet_tag %></noscript>
-<noscript><%=component-rte.css' <%=srcId%> | stylesheet_tag %></noscript>
 <style>
   @media(min-width:750px){
   .py-horizontal{
@@ -22,9 +20,9 @@
 </style>
 <div class="page-container">
 <div class=" page-width py-<%=section.settings.layout%> py-<%=section.settings.page_width%> py-pd-y-xl">
-  <% section?.block_order?.forEach((orderItem, index) => {){ %><% let block = section?.blocks[orderItem]){ %>
-    <% if(block.type){ %>
-        <% } else if(block.type === 'title'){ %>
+  <% section?.block_order?.forEach((orderItem, index) => { %>
+    <% let block = section?.blocks[orderItem] %>
+    <% if(block.type === 'title'){ %>
           <style>
             .main-page-title{
               font-size:<%=block?.settings?.title_font_size%>px;
@@ -33,7 +31,7 @@
             }            
           </style>
           <h1 class="main-page-title page-title h0">
-            <%= page.title %>
+            <%- page.title -%>
           </h1>
         <% } else if(block.type === 'content'){ %>
            <style>              
@@ -44,7 +42,7 @@
               }
           </style>
           <div class="rte page-content">
-            <%= page.content %>
+            <%- page.content -%>
           </div>
 
     <% } %>
@@ -52,219 +50,3 @@
  
 </div>
 </div>
-<% schema){ %>
-{
-  "name": "t:sectionst.main-page.name",
-  "tag": "section",
-  "settings": [
-    {
-      "type": "select",
-      "id": "layout",
-      "options": [        
-        {
-          "value": "vertical",
-          "label": "Vertical"
-        },
-        {
-          "value": "horizontal",
-          "label": "Horizontal"
-        }
-      ],
-      "default": "vertical",
-      "label": "Page layout"
-    },
-    {
-      "type": "select",
-      "id": "page_width",
-      "label": "Page Container (Width)",
-      "options": [
-        {
-          "label": "Unset",
-          "value": "width-un"
-        },
-        {
-          "label": "Large",
-          "value": "width-l"
-        },
-        {
-          "label": "Medium",
-          "value": "width-m"
-        },
-        {
-          "label": "Small",
-          "value": "width-s"
-        }
-      ],
-      "default": "width-un"
-    },
-    {
-      "type": "select",
-      "id": "page_bg_color",
-      "label": "Page Background Color",
-      "options": [          
-         {
-            "label": "Transparent",
-            "value": "transparent"
-         },        
-         {
-            "label": "Dark",
-            "value": "var(--py-bg-color-dark)"
-         },
-         {
-            "label": "Middle Dark",
-            "value": "var(--py-bg-color-middle-dark)"
-         },
-         {
-            "label": "Average",
-            "value": "var(--py-bg-color-avarge)"
-         },
-         {
-            "label": "Middle Light",
-            "value": "var(--py-bg-color-middle-light)"
-         },
-         {
-            "label": "Light",
-            "value": "var(--py-bg-color-light)"
-         }
-       ],
-     "default": "var(--py-bg-color-light)"
-    }
-  ],
-  "blocks": [    
-    {
-      "type": "title",
-      "name": "Page Title",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "range",
-          "id": "title_font_size",
-          "min": 10,
-          "max": 40,
-          "step": 1,
-          "default": 24,
-          "label": "Title Font Size"
-        },
-        {
-          "type": "select",
-          "id": "page_color_title",
-          "label": "Title Color",
-          "options": [ 
-             {
-               "label": "Dark",
-               "value": "var(--py-color-dark)"
-             },
-             {
-               "label": "Middle Dark",
-               "value": "var(--py-color-middle-dark)"
-             },
-             {
-               "label": "Average",
-               "value": "var(--py-color-avarge)"
-             },
-             {
-               "label": "Middle Light",
-               "value": "var(--py-color-middle-light)"
-             },
-             {
-               "label": "Light",
-               "value": "var(--py-color-light)"
-             }
-            ],
-          "default": "var(--py-color-dark)"
-        },
-        {
-          "type": "select",
-          "id": "title_align",
-          "label": "Title Alignment",
-          "options": [ 
-             {
-               "label": "Left",
-               "value": "left"
-             },
-             {
-               "label": "Center",
-               "value": "center"
-             },
-             {
-               "label": "Right",
-               "value": "right"
-             }
-            ],
-          "default": "left"
-        }
-      ]
-    },
-    {
-      "type": "content",
-      "name": "Page Content",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "range",
-          "id": "content_font_size",
-          "min": 10,
-          "max": 40,
-          "step": 1,
-          "default": 24,
-          "label": "Content Font Size"
-        },
-        {
-          "type": "select",
-          "id": "page_color_content",
-          "label": "Content Color",
-          "options": [ 
-             {
-               "label": "Dark",
-               "value": "var(--py-color-dark)"
-             },
-             {
-               "label": "Middle Dark",
-               "value": "var(--py-color-middle-dark)"
-             },
-             {
-               "label": "Average",
-               "value": "var(--py-color-avarge)"
-             },
-             {
-               "label": "Middle Light",
-               "value": "var(--py-color-middle-light)"
-             },
-             {
-               "label": "Light",
-               "value": "var(--py-color-light)"
-             }
-            ],
-          "default": "var(--py-color-dark)"
-        },
-        {
-          "type": "select",
-          "id": "content_align",
-          "label": "Content Alignment",
-          "options": [ 
-             {
-               "label": "Left",
-               "value": "left"
-             },
-             {
-               "label": "Center",
-               "value": "center"
-             },
-             {
-               "label": "Right",
-               "value": "right"
-             }
-            ],
-          "default": "left"
-        },
-        {
-          "type": "textarea",
-          "id": "content_custom_css",
-          "label": "Content Custom CSS",          
-          "info": "Custom CSS for rich text field"
-        }
-      ]
-    }
-  ]
-}
-<% endschema){ %>
