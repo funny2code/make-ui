@@ -2739,10 +2739,6 @@
             : filed.querySelector(`option[value="${fontObj.heading}"`)?.index;
           filed.selectedIndex = selectedOption;
         } else if (filed.getAttribute("name")?.includes("_bg")) {
-          // set header bg & text color
-
-
-          // set section bg & text color
           let optionIndex = filed.getAttribute("name")?.includes("section_bg")
             ? options.length - 1
             : Math.floor(Math.random() * 5);
@@ -2760,9 +2756,21 @@
               ? document.querySelector(`[name="py_bg_color_${bgCName}"]`)?.value
               : null;
           let textFiledName = filed.getAttribute("name").replace("_bg", "");
+          if (filed.getAttribute("name") === "py_header_bg_color") {
+            textFiledName =
+              filed.getAttribute("name").replace("_bg", "") + "_link_1";
+          } else if (filed.getAttribute("name") === "py_header_bg_color_2") {
+            textFiledName = "py_header_color_link_2";
+          }
+          // else if (filed.getAttribute("name") === "card_bg_color") {
+          //   textFiledName = "block_card_color_title";
+          // }
+
           let textColorInput = sectionContainer.querySelectorAll(
             `[name^="${textFiledName}"]`
           );
+
+          console.log(filed.getAttribute("name"), "<--->", textFiledName);
 
           if (textColorInput?.length) {
             for (let i = 0; i < textColorInput?.length; i++) {
