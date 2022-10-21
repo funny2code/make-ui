@@ -1785,10 +1785,11 @@
     let userID = event.target.getAttribute("data-user-id");
     let themeID = event.target.getAttribute("data-theme-id");
     if (!userID || !themeID) return;
-    loading?.classList.add("py__animate", "py__notopacity");
+    // "py__notopacity"
+    loading?.classList.add("py__animate");
     loading?.insertAdjacentHTML(
       "beforeend",
-      '<span class="py__save-figma-message">Please wait few minuts...</span>'
+      '<span class="py__save-figma-message">Please wait 5-10 minuts. We converting your site to figma design...</span>'
     );
 
     // let currentUrl = location?.pathname + location?.search;
@@ -1802,14 +1803,16 @@
     // await saveBrandForFigma();
 
     let selectPages = document.querySelector(".py__preview-pages-select");
-    let selectPagesOptions = selectPages.querySelectorAll("option");
-    for (let option of selectPagesOptions) {
-      let href = option.getAttribute("data-href");
-      let pageName = option.textContent.toLowerCase().trim().replaceAll(' ', '-');
-      await changeViewPage(false, href, false, false);
-      await timeout(3000);
+    let pageName = selectPages.options[selectPages.selectedIndex].textContent.toLowerCase().trim().replaceAll(' ', '-');
+    // let selectPagesOptions = selectPages.querySelectorAll("option");
+    // for (let option of selectPagesOptions) {
+    //   let href = option.getAttribute("data-href");
+    //   let pageName = option.textContent.toLowerCase().trim().replaceAll(' ', '-');
+    //   await changeViewPage(false, href, false, false);
+    //   await timeout(3000);
       await savePageResForFigma();
       let url = "/figma/" + userID + "/" + themeID + "/" + pageName;
+      console.log(figmaContent);
       let res = await fetch(url, {
         method: "POST",
         headers: {
@@ -1821,11 +1824,9 @@
       let data = await res.text();
       if (!data) loading?.querySelector(".py__save-figma-message")?.innerHTML('WE HAVE ERROR! Please Try Again Few Minuts Late!');
       figmaContent  = [];
-    }
-
-    
-    console.log("DAV QO MTACACNA");
-    loading?.classList.remove("py__animate", "py__notopacity");
+    // }
+    // "py__notopacity"
+    loading?.classList.remove("py__animate");
     loading?.querySelector(".py__save-figma-message")?.remove();
   };
 
@@ -1906,7 +1907,8 @@
 
   // FIGMA HTML TO JSON
   const mapDOM = async (element, json) => {
-    let treeObject = {};
+    let figmaData = [];
+    let figmaItemIndex = 1;
 
     if (typeof element === "string") {
       if (window.DOMParser) {
@@ -1930,7 +1932,7 @@
 
     const dumpCSSText = async (element) => {
       let s = {};
-      let o = getComputedStyle(element);
+      let o = window.getComputedStyle(element);
       s.backgroundColor = o["backgroundColor"];
       s.color = o["color"];
       s.width = o["width"];
@@ -1966,8 +1968,16 @@
       return display === "none" || visibility === "hidden" ? true : false;
     };
 
+    const getAttributes = async (attributes) => {
+        let attrs = {};
+        for (var i = 0; i < attributes.length; i++) {
+          attrs[attributes[i].nodeName] = attributes[i].nodeValue;
+        }
+        return attrs;
+    };
+
     //Recursively loop through DOM elements and assign properties to object
-    const treeHTML = async (element, object) => {
+    const treeHTML = async (element, isChild=false) => {
       if (
         element.nodeName === "STYLE" ||
         element.nodeName === "LINK" ||
@@ -1981,45 +1991,97 @@
         element?.classList?.contains("visually-hidden")
       )
         return;
-      object["type"] = element.nodeName;
-      object["css"] = await dumpCSSText(element);
-      if (element.nodeName === "svg")
-        return (object["content"] = element.outerHTML);
-      let nodeList = element.childNodes;
-      if (nodeList != null) {
-        if (nodeList.length) {
-          object["content"] = [];
-          for (let i = 0; i < nodeList.length; i++) {
-            if (nodeList[i].nodeType == 3) {
-              if (nodeList[i].nodeValue.replace(/[\r\n]/gm, "").trim() !== "") {
-                object["content"].push(nodeList[i].nodeValue.trim());
-              }
+        let figmaDataItem = {};
+        figmaDataItem.type = element.nodeName === "svg" || element.nodeName === "IMG" || element.nodeName === "BODY" ? element.nodeName : "FRAME";
+        if(element?.attributes?.length) figmaDataItem.attributes = await getAttributes(element.attributes);
+        figmaDataItem.title = (element.nodeName === "BODY") ? element.nodeName : (figmaDataItem?.attributes?.class || figmaDataItem?.attributes?.id) 
+        ? (figmaDataItem?.attributes?.class) ? figmaDataItem?.attributes.class?.split(' ')[0].replaceAll('_', ' ').replaceAll('-', ' ').replaceAll('__', ' ') + ' ' + figmaItemIndex
+        : figmaDataItem?.attributes?.id.replaceAll('_', ' ').replaceAll('-', ' ').replaceAll('__', ' ') + ' ' + figmaItemIndex : "no name " + figmaItemIndex;
+        figmaItemIndex++;
+        figmaDataItem.css = await dumpCSSText(element);
+        if(element.nodeName === "svg") return figmaDataItem.svg = element.outerHTML;
+        if(isChild) figmaDataItem.parent = isChild;
+        if(element.nodeName === "IMG" && figmaDataItem?.attributes?.src){
+            let newBytes = await getBase64Image(figmaDataItem?.attributes?.src?.replace("http://", "https://"));
+            figmaDataItem.newBytes = newBytes;
+        }
+        figmaData.push(figmaDataItem);
+        if(element?.childNodes?.length){ 
+          for (let i = 0; i < element?.childNodes?.length; i++) {
+            let figmaChildItem = element?.childNodes[i];
+            if(figmaChildItem.nodeType === 3){
+              if(figmaChildItem.nodeValue.replace(/[\r\n]/gm, "").trim() !== "") return figmaData.push({type: "TEXT", text: figmaChildItem.nodeValue.trim(), css: figmaDataItem.css, attrinutes: figmaChildItem?.attributes, parent: figmaDataItem.title})
             } else {
-              object["content"].push({});
-              await treeHTML(
-                nodeList[i],
-                object["content"][object["content"].length - 1]
-              );
+              await treeHTML(figmaChildItem, figmaDataItem.title);
             }
           }
         }
-      }
-      if (element.attributes != null) {
-        if (element.attributes.length) {
-          object["attributes"] = {};
-          for (var i = 0; i < element.attributes.length; i++) {
-            element.attributes[i].nodeName === "src"
-              ? (object["attributes"][element.attributes[i].nodeName] =
-                  element.src)
-              : (object["attributes"][element.attributes[i].nodeName] =
-                  element.attributes[i].nodeValue);
-          }
-        }
-      }
+      
     };
-    await treeHTML(element, treeObject);
+    await treeHTML(element);
 
-    return json ? JSON.stringify(treeObject) : treeObject;
+    return json ? JSON.stringify(figmaData) : figmaData;
+  };
+
+  // get an image blob from url using fetch
+  const getImageBytes = async (url) => {
+    return await new Promise( async resolve=>{
+      let resposne = await fetch( url );
+      let blob = resposne.arrayBuffer();
+      resolve(blob);
+    });
+  };
+
+
+
+  // Encoding an image is also done by sticking pixels in an
+  // HTML canvas and by asking the canvas to serialize it into
+  // an actual PNG file via canvas.toBlob().
+  const encode = async (canvas, ctx, imageData) => {
+    ctx.putImageData(imageData, 0, 0);
+    return await new Promise((resolve, reject) => {
+      canvas.toBlob(blob => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(new Uint8Array(reader.result));
+        reader.onerror = () => reject(new Error('Could not read from blob'));
+        reader.readAsArrayBuffer(blob);
+      })
+    });
+  }
+
+  // Decoding an image can be done by sticking it in an HTML
+  // canvas, as we can read individual pixels off the canvas.
+  const decode = async (canvas, ctx, bytes) => {
+    const url = URL.createObjectURL(new Blob([bytes]))
+    const image = await new Promise((resolve, reject) => {
+      const img = new Image()
+      img.onload = () => resolve(img)
+      img.onerror = () => reject()
+      img.src = url
+    })
+    canvas.width = image.width
+    canvas.height = image.height
+    ctx.drawImage(image, 0, 0)
+    const imageData = ctx.getImageData(0, 0, image.width, image.height);
+    return imageData;
+  }
+
+  // combine the previous two functions to return a base64 encode image from url
+  // let figmaImageIndex = 0;
+  const getBase64Image = async (url) => {
+    let bytes = await getImageBytes(url);
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const imageData = await decode(canvas, ctx, bytes);
+    // const pixels = imageData.data;
+
+    // for (let i = 0; i < pixels.length; i += 4) {
+    //   pixels[i + 0] = 255 - pixels[i + 0]
+    //   pixels[i + 1] = 255 - pixels[i + 1]
+    //   pixels[i + 2] = 255 - pixels[i + 2]
+    // }
+    const newBytes = await encode(canvas, ctx, imageData);
+    return newBytes;
   };
 
   // Get Register Popup Function
@@ -2259,7 +2321,7 @@
   };
 
   // View Iframe Fun
-  const viewIframe = async (showLoading=true) => {
+  const viewIframe = async (showLoading=false) => {
     console.log(showLoading, "VIEW IFRAME");
     let iframes = document.querySelectorAll("iframe.py__view-iframe");
     if (!iframes?.length && showLoading) return loading?.classList.remove("py__animate");
@@ -2358,7 +2420,7 @@
     event = false,
     href = false,
     changeUrl = true,
-    showLoading = true
+    showLoading = false
   ) => {
     console.log(showLoading, "CHANGE VIEW PAGE");
     if(showLoading) loading?.classList.add("py__animate");
@@ -2522,6 +2584,7 @@
         });
       await viewIframe();
     }
+    loading?.classList.remove("py__animate");
   };
 
   const getRandomSections = async () => {
@@ -2886,7 +2949,7 @@
       remixCount++;
 
       await saveSettingsValues();
-      await viewIframe();
+      await viewIframe(true);
     }
   };
 

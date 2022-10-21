@@ -24,7 +24,7 @@ router.post('/:userId/:themeId/:pageName', async (req, res, next) => {
 
     const { userId, themeId, pageName} = req.params;
     const data = req.body;
-    if (!userId || !themeId || !data || !pageName) return next();
+    if (!userId || !themeId || !data?.length || !pageName) return next();
   
     try {
   
@@ -39,7 +39,7 @@ router.post('/:userId/:themeId/:pageName', async (req, res, next) => {
                 user_id: userId, 
                 theme_id: themeId, 
                 page_name: pageName,
-                data: data
+                data: JSON.stringify(data)
             });
         
             newFigma.save((err, data) => {
