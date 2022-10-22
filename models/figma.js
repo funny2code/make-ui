@@ -15,7 +15,7 @@ const schema = new db.Schema({
         required: true
     },
     data: {
-        type: String,
+        type: Array,
         required: true
     }
 });

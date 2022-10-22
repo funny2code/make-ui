@@ -39,7 +39,7 @@ router.post('/:userId/:themeId/:pageName', async (req, res, next) => {
                 user_id: userId, 
                 theme_id: themeId, 
                 page_name: pageName,
-                data: JSON.stringify(data)
+                data: data
             });
         
             newFigma.save((err, data) => {
