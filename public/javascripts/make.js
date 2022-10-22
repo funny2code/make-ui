@@ -1785,11 +1785,11 @@
     let userID = event.target.getAttribute("data-user-id");
     let themeID = event.target.getAttribute("data-theme-id");
     if (!userID || !themeID) return;
-    // "py__notopacity"
-    loading?.classList.add("py__animate");
+    // ""
+    loading?.classList.add("py__animate", "py__notopacity");
     loading?.insertAdjacentHTML(
       "beforeend",
-      '<span class="py__save-figma-message">Please wait 5-10 minuts. We converting your site to figma design...</span>'
+      '<span class="py__save-figma-message">Please wait 1..4 minuts. We converting your site to figma design...</span>'
     );
 
     // let currentUrl = location?.pathname + location?.search;
@@ -1803,16 +1803,15 @@
     // await saveBrandForFigma();
 
     let selectPages = document.querySelector(".py__preview-pages-select");
-    let pageName = selectPages.options[selectPages.selectedIndex].textContent.toLowerCase().trim().replaceAll(' ', '-');
-    // let selectPagesOptions = selectPages.querySelectorAll("option");
-    // for (let option of selectPagesOptions) {
-    //   let href = option.getAttribute("data-href");
-    //   let pageName = option.textContent.toLowerCase().trim().replaceAll(' ', '-');
-    //   await changeViewPage(false, href, false, false);
-    //   await timeout(3000);
+    // let pageName = selectPages.options[selectPages.selectedIndex].textContent.toLowerCase().trim().replaceAll(' ', '-');
+    let selectPagesOptions = selectPages.querySelectorAll("option");
+    for (let option of selectPagesOptions) {
+      let href = option.getAttribute("data-href");
+      let pageName = option.textContent.toLowerCase().trim().replaceAll(' ', '-');
+      await changeViewPage(false, href, false, false);
+      await timeout(2000);
       await savePageResForFigma();
       let url = "/figma/" + userID + "/" + themeID + "/" + pageName;
-      console.log(figmaContent);
       let res = await fetch(url, {
         method: "POST",
         headers: {
@@ -1824,9 +1823,9 @@
       let data = await res.text();
       if (!data) loading?.querySelector(".py__save-figma-message")?.innerHTML('WE HAVE ERROR! Please Try Again Few Minuts Late!');
       figmaContent  = [];
-    // }
+    }
     // "py__notopacity"
-    loading?.classList.remove("py__animate");
+    loading?.classList.remove("py__animate", "py__notopacity");
     loading?.querySelector(".py__save-figma-message")?.remove();
   };
 
@@ -2001,10 +2000,10 @@
         figmaDataItem.css = await dumpCSSText(element);
         if(element.nodeName === "svg") return figmaDataItem.svg = element.outerHTML;
         if(isChild) figmaDataItem.parent = isChild;
-        if(element.nodeName === "IMG" && figmaDataItem?.attributes?.src){
-            let newBytes = await getBase64Image(figmaDataItem?.attributes?.src?.replace("http://", "https://"));
-            figmaDataItem.newBytes = newBytes;
-        }
+        // if(element.nodeName === "IMG" && figmaDataItem?.attributes?.src){
+        //     let newBytes = await getBase64Image(figmaDataItem?.attributes?.src?.replace("http://", "https://"));
+        //     figmaDataItem.newBytes = newBytes;
+        // }
         figmaData.push(figmaDataItem);
         if(element?.childNodes?.length){ 
           for (let i = 0; i < element?.childNodes?.length; i++) {
@@ -2021,67 +2020,6 @@
     await treeHTML(element);
 
     return json ? JSON.stringify(figmaData) : figmaData;
-  };
-
-  // get an image blob from url using fetch
-  const getImageBytes = async (url) => {
-    return await new Promise( async resolve=>{
-      let resposne = await fetch( url );
-      let blob = resposne.arrayBuffer();
-      resolve(blob);
-    });
-  };
-
-
-
-  // Encoding an image is also done by sticking pixels in an
-  // HTML canvas and by asking the canvas to serialize it into
-  // an actual PNG file via canvas.toBlob().
-  const encode = async (canvas, ctx, imageData) => {
-    ctx.putImageData(imageData, 0, 0);
-    return await new Promise((resolve, reject) => {
-      canvas.toBlob(blob => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(new Uint8Array(reader.result));
-        reader.onerror = () => reject(new Error('Could not read from blob'));
-        reader.readAsArrayBuffer(blob);
-      })
-    });
-  }
-
-  // Decoding an image can be done by sticking it in an HTML
-  // canvas, as we can read individual pixels off the canvas.
-  const decode = async (canvas, ctx, bytes) => {
-    const url = URL.createObjectURL(new Blob([bytes]))
-    const image = await new Promise((resolve, reject) => {
-      const img = new Image()
-      img.onload = () => resolve(img)
-      img.onerror = () => reject()
-      img.src = url
-    })
-    canvas.width = image.width
-    canvas.height = image.height
-    ctx.drawImage(image, 0, 0)
-    const imageData = ctx.getImageData(0, 0, image.width, image.height);
-    return imageData;
-  }
-
-  // combine the previous two functions to return a base64 encode image from url
-  // let figmaImageIndex = 0;
-  const getBase64Image = async (url) => {
-    let bytes = await getImageBytes(url);
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    const imageData = await decode(canvas, ctx, bytes);
-    // const pixels = imageData.data;
-
-    // for (let i = 0; i < pixels.length; i += 4) {
-    //   pixels[i + 0] = 255 - pixels[i + 0]
-    //   pixels[i + 1] = 255 - pixels[i + 1]
-    //   pixels[i + 2] = 255 - pixels[i + 2]
-    // }
-    const newBytes = await encode(canvas, ctx, imageData);
-    return newBytes;
   };
 
   // Get Register Popup Function
@@ -2814,6 +2752,10 @@
             : filed.querySelector(`option[value="${fontObj.heading}"`)?.index;
           filed.selectedIndex = selectedOption;
         } else if (filed.getAttribute("name")?.includes("_bg")) {
+          // set header bg & text color
+
+
+          // set section bg & text color
           let optionIndex = filed.getAttribute("name")?.includes("section_bg")
             ? options.length - 1
             : Math.floor(Math.random() * 5);
@@ -2831,21 +2773,9 @@
               ? document.querySelector(`[name="py_bg_color_${bgCName}"]`)?.value
               : null;
           let textFiledName = filed.getAttribute("name").replace("_bg", "");
-          if (filed.getAttribute("name") === "py_header_bg_color") {
-            textFiledName =
-              filed.getAttribute("name").replace("_bg", "") + "_link_1";
-          } else if (filed.getAttribute("name") === "py_header_bg_color_2") {
-            textFiledName = "py_header_color_link_2";
-          }
-          // else if (filed.getAttribute("name") === "card_bg_color") {
-          //   textFiledName = "block_card_color_title";
-          // }
-
           let textColorInput = sectionContainer.querySelectorAll(
             `[name^="${textFiledName}"]`
           );
-
-          console.log(filed.getAttribute("name"), "<--->", textFiledName);
 
           if (textColorInput?.length) {
             for (let i = 0; i < textColorInput?.length; i++) {
