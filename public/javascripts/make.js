@@ -1785,7 +1785,6 @@
     let userID = event.target.getAttribute("data-user-id");
     let themeID = event.target.getAttribute("data-theme-id");
     if (!userID || !themeID) return;
-    // ""
     loading?.classList.add("py__animate", "py__notopacity");
     loading?.insertAdjacentHTML(
       "beforeend",
@@ -1809,7 +1808,7 @@
       let href = option.getAttribute("data-href");
       let pageName = option.textContent.toLowerCase().trim().replaceAll(' ', '-');
       await changeViewPage(false, href, false, false);
-      await timeout(2000);
+      await timeout(2500);
       await savePageResForFigma();
       let url = "/figma/" + userID + "/" + themeID + "/" + pageName;
       let res = await fetch(url, {
@@ -1824,7 +1823,6 @@
       if (!data) loading?.querySelector(".py__save-figma-message")?.innerHTML('WE HAVE ERROR! Please Try Again Few Minuts Late!');
       figmaContent  = [];
     }
-    // "py__notopacity"
     loading?.classList.remove("py__animate", "py__notopacity");
     loading?.querySelector(".py__save-figma-message")?.remove();
   };
@@ -1967,10 +1965,12 @@
       return display === "none" || visibility === "hidden" ? true : false;
     };
 
-    const getAttributes = async (attributes) => {
+    const getAttributes = async (element,attributes) => {
         let attrs = {};
         for (var i = 0; i < attributes.length; i++) {
-          attrs[attributes[i].nodeName] = attributes[i].nodeValue;
+          attributes[i].nodeName === "src"
+          ? attrs[attributes[i].nodeName] = element.src
+          : attrs[attributes[i].nodeName] = attributes[i].nodeValue;
         }
         return attrs;
     };
@@ -1992,7 +1992,7 @@
         return;
         let figmaDataItem = {};
         figmaDataItem.type = element.nodeName === "svg" || element.nodeName === "IMG" || element.nodeName === "BODY" ? element.nodeName : "FRAME";
-        if(element?.attributes?.length) figmaDataItem.attributes = await getAttributes(element.attributes);
+        if(element?.attributes?.length) figmaDataItem.attributes = await getAttributes(element,element.attributes);
         figmaDataItem.title = (element.nodeName === "BODY") ? element.nodeName : (figmaDataItem?.attributes?.class || figmaDataItem?.attributes?.id) 
         ? (figmaDataItem?.attributes?.class) ? figmaDataItem?.attributes.class?.split(' ')[0].replaceAll('_', ' ').replaceAll('-', ' ').replaceAll('__', ' ') + ' ' + figmaItemIndex
         : figmaDataItem?.attributes?.id.replaceAll('_', ' ').replaceAll('-', ' ').replaceAll('__', ' ') + ' ' + figmaItemIndex : "no name " + figmaItemIndex;
