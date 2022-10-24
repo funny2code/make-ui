@@ -1891,9 +1891,9 @@
   };
 
   // FIGMA HTML TO JSON
+  let figmaItemIndex = 1;
   const mapDOM = async (element, json, pagename) => {
     let figmaData = [];
-    let figmaItemIndex = 1;
 
     if (typeof element === "string") {
       if (window.DOMParser) {
