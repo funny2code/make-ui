@@ -10,8 +10,13 @@ const schema = new db.Schema({
         type: Schema.Types.ObjectId,
         required: true
     },
+    page_name: {
+        type: String,
+        required: true
+    },
     data: {
-        type: Array
+        type: Array,
+        required: true
     }
 });
 
