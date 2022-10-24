@@ -1809,7 +1809,7 @@
       let pageName = option.textContent.toLowerCase().trim().replaceAll(' ', '-');
       await changeViewPage(false, href, false, false);
       await timeout(2500);
-      await savePageResForFigma();
+      await savePageResForFigma(option.textContent.trim());
       let url = "/figma/" + userID + "/" + themeID + "/" + pageName;
       let res = await fetch(url, {
         method: "POST",
@@ -1831,26 +1831,22 @@
     return new Promise((resolve) => setTimeout(resolve, ms));
   };
 
-  const savePageResForFigma = async () => {
-    let res = await saveDesktopForFigma();
+  const savePageResForFigma = async (pagename) => {
+    let res = await saveDesktopForFigma(pagename);
     return res;
   };
 
-  const saveDesktopForFigma = async () => {
+  const saveDesktopForFigma = async (pagename) => {
     let iframe = document.querySelector(".py__view-iframe");
     let pageName = iframe.getAttribute("data-page-name");
     let iframeDocument =
       iframe.contentDocument || iframe.contentWindow.document;
     if (!iframeDocument) return;
-    let data = await mapDOM(
-      iframeDocument.getElementsByTagName("body")[0],
-      false
-    );
-    if (data) data.name = pageName + " Desktop";
+    let data = await mapDOM(iframeDocument.getElementsByTagName("body")[0],false,pagename + " Desktop");
     figmaContent.push(data);
     let tablet = document.querySelector('.py__button-view[data-type="tablet"]');
     tablet.click();
-    let res = await saveTabletForFigma();
+    let res = await saveTabletForFigma(pagename);
     return res;
   };
 
@@ -1865,35 +1861,27 @@
     figmaContent.push(data);
   };
 
-  const saveTabletForFigma = async () => {
+  const saveTabletForFigma = async (pagename) => {
     let iframe = document.querySelector(".py__view-iframe");
     let pageName = iframe.getAttribute("data-page-name");
     let iframeDocument =
       iframe.contentDocument || iframe.contentWindow.document;
     if (!iframeDocument) return;
-    let data = await mapDOM(
-      iframeDocument.getElementsByTagName("body")[0],
-      false
-    );
-    if (data) data.name = pageName + " Tablet";
+    let data = await mapDOM(iframeDocument.getElementsByTagName("body")[0],false,pagename+ " Tablet");
     figmaContent.push(data);
     let mobile = document.querySelector('.py__button-view[data-type="mobile"]');
     mobile.click();
-    let res = await saveMobileForFigma();
+    let res = await saveMobileForFigma(pagename);
     return res;
   };
 
-  const saveMobileForFigma = async () => {
+  const saveMobileForFigma = async (pagename) => {
     let iframe = document.querySelector(".py__view-iframe");
     let pageName = iframe.getAttribute("data-page-name");
     let iframeDocument =
       iframe.contentDocument || iframe.contentWindow.document;
     if (!iframeDocument) return;
-    let data = await mapDOM(
-      iframeDocument.getElementsByTagName("body")[0],
-      false
-    );
-    if (data) data.name = pageName + " Mobile";
+    let data = await mapDOM(iframeDocument.getElementsByTagName("body")[0],false,pagename + " Mobile");
     figmaContent.push(data);
     let desktop = document.querySelector(
       '.py__button-view[data-type="desktop"]'
@@ -1903,7 +1891,7 @@
   };
 
   // FIGMA HTML TO JSON
-  const mapDOM = async (element, json) => {
+  const mapDOM = async (element, json, pagename) => {
     let figmaData = [];
     let figmaItemIndex = 1;
 
@@ -1993,7 +1981,7 @@
         let figmaDataItem = {};
         figmaDataItem.type = element.nodeName === "svg" || element.nodeName === "IMG" || element.nodeName === "BODY" ? element.nodeName : "FRAME";
         if(element?.attributes?.length) figmaDataItem.attributes = await getAttributes(element,element.attributes);
-        figmaDataItem.title = (element.nodeName === "BODY") ? element.nodeName : (figmaDataItem?.attributes?.class || figmaDataItem?.attributes?.id) 
+        figmaDataItem.title = (element.nodeName === "BODY") ? pagename : (figmaDataItem?.attributes?.class || figmaDataItem?.attributes?.id) 
         ? (figmaDataItem?.attributes?.class) ? figmaDataItem?.attributes.class?.split(' ')[0].replaceAll('_', ' ').replaceAll('-', ' ').replaceAll('__', ' ') + ' ' + figmaItemIndex
         : figmaDataItem?.attributes?.id.replaceAll('_', ' ').replaceAll('-', ' ').replaceAll('__', ' ') + ' ' + figmaItemIndex : "no name " + figmaItemIndex;
         figmaItemIndex++;
