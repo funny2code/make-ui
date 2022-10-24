@@ -390,6 +390,60 @@
     },
   ];
 
+  const blogSection = {
+    "6306f8e7db2cbec8c440f780": [
+      {
+        "1650654428c3ab222d": {
+          type: "featured-blog",
+          settings: {
+            blog: "news",
+            show_image: true,
+            py_section_bg_color: "bg-c-light",
+            scroll_bar_bg_color: "#ffffff",
+            scroll_bar_color: "#000000",
+            title: "Blog Post Base Theme",
+            py_section_color: "var(--py-color-avarge)",
+            title_font_size: 24,
+            title_font_weight: 600,
+            page_width: "width-un",
+            page_x_mg: "mg-x-un",
+            page_y_mg: "mg-y-un",
+            page_x_pd: "pd-x-m",
+            page_y_pd: "pd-y-m",
+            image_ratio: "adapt",
+            item_space: 8,
+            card_radius: 10,
+            card_bg_color: "bg-c-average",
+          },
+          blocks: {
+            "1650654428f31a1383-0": {
+              type: "title",
+              settings: {
+                show_date: true,
+                show_author: false,
+                card_color_title: "var(--py-color-avarge)",
+                title_font_size: 22,
+                title_font_weight: 500,
+                title_m_font_size: 18,
+              },
+            },
+            "1650654428f31a1383-1": {
+              type: "link",
+              settings: {
+                view_btn_size: "medium",
+                card_color_view_btn: "light",
+                card_bg_color_view_btn: "middle-dark",
+                card_color_view_btn_hover: "light",
+                card_bg_color_view_btn_hover: "dark",
+              },
+            },
+          },
+          block_order: ["1650654428f31a1383-0", "1650654428f31a1383-1"],
+        },
+      },
+    ],
+  };
+
   const imageBanner = {
     "6306f8e7db2cbec8c440f780": [
       {
@@ -467,6 +521,54 @@
             },
           },
           block_order: ["16425389039f659f32-0", "16425389039f659f32-2"],
+        },
+
+        "1650654428c3ab222d": {
+          type: "featured-blog",
+          settings: {
+            blog: "news",
+            show_image: true,
+            py_section_bg_color: "bg-c-light",
+            scroll_bar_bg_color: "#ffffff",
+            scroll_bar_color: "#000000",
+            title: "Blog Post Base Theme--1",
+            py_section_color: "var(--py-color-avarge)",
+            title_font_size: 24,
+            title_font_weight: 600,
+            page_width: "width-un",
+            page_x_mg: "mg-x-un",
+            page_y_mg: "mg-y-un",
+            page_x_pd: "pd-x-m",
+            page_y_pd: "pd-y-m",
+            image_ratio: "adapt",
+            item_space: 8,
+            card_radius: 10,
+            card_bg_color: "bg-c-average",
+          },
+          blocks: {
+            "1650654428f31a1383-0": {
+              type: "title",
+              settings: {
+                show_date: true,
+                show_author: false,
+                card_color_title: "var(--py-color-avarge)",
+                title_font_size: 22,
+                title_font_weight: 500,
+                title_m_font_size: 18,
+              },
+            },
+            "1650654428f31a1383-1": {
+              type: "link",
+              settings: {
+                view_btn_size: "medium",
+                card_color_view_btn: "light",
+                card_bg_color_view_btn: "middle-dark",
+                card_color_view_btn_hover: "light",
+                card_bg_color_view_btn_hover: "dark",
+              },
+            },
+          },
+          block_order: ["1650654428f31a1383-0", "1650654428f31a1383-1"],
         },
       },
       {
@@ -2407,7 +2509,10 @@
     if (ifrmaes?.length) {
       for (let i = 0; i < ifrmaes?.length; i++) {
         let iframe = ifrmaes[i];
-        iframe.setAttribute("data-src", url.replace("themes", "view").replace("remix", "view"));
+        iframe.setAttribute(
+          "data-src",
+          url.replace("themes", "view").replace("remix", "view")
+        );
       }
     }
     await viewIframe();
@@ -2767,10 +2872,13 @@
               filed.getAttribute("name").replace("_bg", "") + "_link_1";
           } else if (filed.getAttribute("name") === "py_header_bg_color_2") {
             textFiledName = "py_header_color_link_2";
+          } else if (
+            filed.getAttribute("name") === "card_bg_color" &&
+            filed.previousElementSibling.parentElement.parentElement
+              .parentElement.previousElementSibling.textContent === "Blog posts"
+          ) {
+            textFiledName = "block_card_color_title";
           }
-          // else if (filed.getAttribute("name") === "card_bg_color") {
-          //   textFiledName = "block_card_color_title";
-          // }
 
           let textColorInput = sectionContainer.querySelectorAll(
             `[name^="${textFiledName}"]`
