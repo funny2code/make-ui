@@ -3,9 +3,9 @@
     "164253890362d227ae": {
       "type": "image-banner",
       "settings": {
-        "image": "/6306f8e7db2cbec8c440f780/image-banner.webp",
+        "image": "/6306f8e7db2cbec8c440f780/image-banner-v6-desktop.webp",
         "show_lazy": true,
-        "image_2": "/6306f8e7db2cbec8c440f780/image-banner-mobile.webp",
+        "image_2": "/6306f8e7db2cbec8c440f780/image-banner-v6-mobile.webp",
         "url": "shopify://collections/all",
         "show_override": true,
         "content_bg_color": "var(--py-bg-color-dark)",
@@ -18,7 +18,7 @@
         "margin": "",
         "width": "",
         "height": "",
-        "c_css": "",
+        "c_css": "flex-direction: column;\njustify-content: end;\npadding-bottom:30px;",
         "m_pv": "center",
         "m_ph": "center",
         "m_align": "center",
@@ -26,7 +26,7 @@
         "m_margin": "",
         "m_width": "",
         "m_height": "",
-        "m_c_css": "",
+        "m_c_css": "flex-direction: column;\njustify-content: end;\npadding-bottom:30px;",
         "enable_anim": true,
         "anim": "zoom-out"
       },
@@ -34,7 +34,7 @@
         "16425389039f659f32-0": {
           "type": "heading",
           "settings": {
-            "heading": "<div class=\"grid grid--1-col grid--3-col-desktop\">  <div class=\"grid__item\">fashion</div>  <div class=\"grid__item\">lifestyle</div>  <div class=\"grid__item\">food</div> </div>",
+            "heading": "<div class=\"grid grid--1-col\"> <div class=\"grid__item font-larger\">Green Fiend</div><div class=\"grid__item font-small\">Our botanicals bring the outside in</div></div>",
             "align": "center",
             "content_color": "var(--py-color-light)",
             "weight": "",
@@ -43,7 +43,7 @@
             "margin": "",
             "width": "",
             "height": "",
-            "c_css": "max-width:800px;\nmargin:auto;",
+            "c_css": "",
             "m_align": "center",
             "content_color_m": "var(--py-color-light)",
             "m_weight": "",
@@ -52,13 +52,13 @@
             "m_margin": "",
             "m_width": "",
             "m_height": "",
-            "m_c_css": "font-size:26px"
+            "m_c_css": "font-size:30px"
           }
         },
         "16425389039f659f32-2": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop Now",
+            "button_label_1": "SHOP NOW",
             "button_link_1": "shopify://collections/all",
             "view_btn_size": "large",
             "content_color_view_btn": "dark",
