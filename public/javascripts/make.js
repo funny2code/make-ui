@@ -1366,6 +1366,8 @@
   let downloadButton = null;
   let loading = null;
   let themeName = "ThemeMake";
+  let textColors = [];
+  let bgColors = [];
 
   const clearTheme = () => {
     theme = {
@@ -2399,6 +2401,7 @@
     showLoading = false
   ) => {
     console.log(showLoading, "CHANGE VIEW PAGE");
+
     if (showLoading) loading?.classList.add("py__animate");
     let el = event ? event.target : null;
     let activeSidebarItem = document.querySelector(
@@ -2455,6 +2458,8 @@
         iframe.setAttribute("data-src", newUrl);
       }
     }
+    await setColorToSettings();
+    await saveSettingsValues();
     await viewIframe(showLoading);
   };
 
@@ -2742,8 +2747,8 @@
 
     let inputFileds = document.querySelectorAll("[name]");
 
-    let colorsList = generateBackgroundColors();
-    let textColors = generateTextColors(colorsList[2]);
+    bgColors = generateBackgroundColors();
+    textColors = generateTextColors(bgColors[2]);
 
     let index = 0;
 
@@ -2753,7 +2758,7 @@
       let filedName = filed.getAttribute("name");
       if (filedType === "color") {
         if (filedName.includes("_bg")) {
-          let colorObj = await rgbToHex(colorsList[index]);
+          let colorObj = await rgbToHex(bgColors[index]);
           let textColorObj = await rgbToHex(textColors[index]);
           let color = colorObj;
           let closestWrap = filed.closest(".component-is-color");
@@ -2781,13 +2786,8 @@
     return textColors;
   };
 
-  const randomFun = async (event) => {
-    if (!event) return;
-    event.preventDefault();
-    loading?.classList.add("py__animate");
-
+  const setColorToSettings = async () => {
     let inputFileds = document.querySelectorAll("[name]");
-    const textColors = await generateRandomColors();
 
     if (!inputFileds.length) return loading?.classList.remove("py__animate");
 
@@ -2804,6 +2804,8 @@
             : filed.querySelector(`option[value="${fontObj.heading}"`)?.index;
           filed.selectedIndex = selectedOption;
         } else if (filed.getAttribute("name")?.includes("_bg")) {
+          if (filed.getAttribute("name").includes("section_bg"))
+            console.log(filed.getAttribute("name"));
           // set section bg & text color
           let optionIndex = filed.getAttribute("name")?.includes("section_bg")
             ? options.length - 1
@@ -2863,6 +2865,16 @@
         }
       }
     }
+  };
+
+  const randomFun = async (event) => {
+    if (!event) return;
+    event.preventDefault();
+    loading?.classList.add("py__animate");
+
+    textColors = await generateRandomColors();
+
+    await setColorToSettings();
 
     fontsCount++;
     if (fontsCount >= fonts.length) fontsCount = 0;
@@ -2955,6 +2967,7 @@
   // Remix Section Styles Function
   const randomSectionFun = async (event) => {
     if (!event) return;
+    console.log("sectionFunction");
     let el = event.target;
     let sectionContainer = el.closest(".py__closest");
     let typeSelects = sectionContainer?.querySelectorAll('[type="select"]');
@@ -3291,7 +3304,7 @@
       "ThemeMake";
   });
 
-  window.addEventListener("load", (event) => {
+  window.addEventListener("load", async (event) => {
     randomFun(event);
   });
 })();
