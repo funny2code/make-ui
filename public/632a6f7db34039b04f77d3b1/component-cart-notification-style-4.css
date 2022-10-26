@@ -402,7 +402,7 @@
 }
 #note{
   margin-top:10px;
-  border: 1px solid var(--py-bg-color-avarge);
+  border: 1px solid var(--py-bg-color-average);
   min-height:100px;
   width:100%;
   outline: none;

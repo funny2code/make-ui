@@ -2,7 +2,7 @@ footer.py-c-dark *{
   color: var(--py-color-dark);
 }
 footer.py-c-average *{
-  color: var(--py-color-avarge);
+  color: var(--py-color-average);
 }
 footer.py-c-light *{
   color: var(--py-color-light);

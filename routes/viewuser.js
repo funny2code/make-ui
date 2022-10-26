@@ -17,7 +17,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
     const settings_handle = req.query.settings;
     
     if(share !== 'zjo6KVWbwz'){
-        if(!themeId || !userId || !page_handle || !req.session.user || req?.session?.user?._id !== userId) return next();
+        if(!themeId || !userId || !req.session.user || req?.session?.user?._id !== userId) return next();
     }
 
     try {
@@ -44,8 +44,7 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
         if(!settingsFile) return next();
         const settings = JSON.parse(settingsFile);
 
-        const getPage = theme?.pages?.filter(page => page.handle === page_handle);
-        if(!getPage?.length) return next();
+        const getPage = page_handle && theme?.pages?.filter(page => page.handle === page_handle);
 
         if(section_handle && !section_id){
             sections = (section_handle && section_handle !== 'header' && section_handle !== 'footer' && section_handle !== 'announcement-bar') 
@@ -54,9 +53,8 @@ router.get('/:userId/themes/:themeId', async (req, res, next) => {
         } else if(!section_handle && (page_handle?.includes('customer') || page_handle?.includes('gift-card'))){
             sections = settings?.current?.sections[page_handle];
         } else { 
-            const sectionsFile = await fs.readFile(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/${getPage[0]?.template_name}.json`), 'utf-8');
-            if(!sectionsFile) return next();
-            const parseSections = JSON.parse(sectionsFile);
+            const sectionsFile = getPage?.length && await fs.readFile(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/${getPage[0]?.template_name}.json`), 'utf-8');
+            const parseSections = sectionsFile && JSON.parse(sectionsFile);
             sections = (section_id) ? parseSections?.sections[section_id] : parseSections;
         }
 
@@ -111,7 +109,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
     const section_id = req.query.section_id;
     const settings_handle = req.query.settings;
 
-    if (!themeId || !userId || !page_handle || !req.session.user || req?.session?.user?._id !== userId) return next();
+    if (!themeId || !userId || !req.session.user || req?.session?.user?._id !== userId) return next();
 
     try {
 
@@ -151,8 +149,7 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
             });
         }
 
-        const getPage = theme?.pages?.filter(page => page.handle === page_handle);
-        if(!getPage?.length) return next();
+        const getPage = page_handle && theme?.pages?.filter(page => page.handle === page_handle);
 
         if(section_handle && !section_id){
             sections = (section_handle && section_handle !== 'header' && section_handle !== 'footer' && section_handle !== 'announcement-bar') 
@@ -161,11 +158,10 @@ router.post('/:userId/themes/:themeId', async (req, res, next) => {
         } else if(!section_handle && (page_handle?.includes('customer') || page_handle?.includes('gift-card'))){
             sections = settings?.current?.sections[page_handle];
         } else {
-            const sectionsFile = await fs.readFile(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/${getPage[0]?.template_name}.json`), 'utf-8');
-            if(!sectionsFile) return next();
-            const parseSections = JSON.parse(sectionsFile);
-            if(Object.keys(templates).length > 0 && templates[page_handle] && templates[page_handle].sections && Object.keys(templates[page_handle].sections).length > 0){
-                Object.entries(templates[page_handle].sections).forEach(([key, val]) => {
+            const sectionsFile = getPage?.length && await fs.readFile(path.join(__dirname, `../users/user-${userId}/theme-${themeId}/${getPage[0]?.template_name}.json`), 'utf-8');
+            const parseSections = sectionsFile && JSON.parse(sectionsFile);
+            if(Object.keys(templates).length > 0 && templates[page_handle] && templates[page_handle]?.sections && Object.keys(templates[page_handle]?.sections).length > 0){
+                Object.entries(templates[page_handle]?.sections).forEach(([key, val]) => {
                     parseSections.sections[key] = val; 
                 });
             }

@@ -207,7 +207,7 @@
                 "layout": "text_first",
                 "img_style": "offset",
                 "align": "left",
-                "py_section_bg_color": "var(--py-bg-color-avarge)",
+                "py_section_bg_color": "var(--py-bg-color-average)",
                 "py_section_color": "var(--py-color-dark)"
             }
         },

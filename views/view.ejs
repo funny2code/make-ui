@@ -47,25 +47,51 @@
             <% } %>
         <% } %>
 
-        <%- include(srcId + '/sections/announcement-bar', {section: settings?.sections['announcement-bar']}) %>
-        <%- include(srcId + '/sections/header', {
-            search: false,
-            routes: false,
-            section: settings?.sections['header']
-        }) %>
-        <% if(sections?.order?.length){ %>
-            <% sections?.order?.forEach((orderItem, index)=> { %>
-                <% let sectionItem = sections?.sections[orderItem] %>
-                <%- include(srcId + '/sections/' + sectionItem.type, {
+            <%- include(srcId + '/sections/announcement-bar', {section: settings?.sections['announcement-bar']}) %>
+            <%- include(srcId + '/sections/header', {
+                search: false,
+                routes: false,
+                section: settings?.sections['header']
+            }) %>
+            <% if(sections?.order?.length){ %>
+                <% sections?.order?.forEach((orderItem, index)=> { %>
+                    <% let sectionItem = sections?.sections[orderItem] %>
+                    <%- include(srcId + '/sections/' + sectionItem.type, {
+                        menu: menu, 
+                        blogs: blogs,
+                        blog: blog,
+                        page: page,
+                        article: article,
+                        product: product,
+                        settings: settings, 
+                        section: sectionItem,
+                        sectionid: orderItem,
+                        localization: false,
+                        collection: collection,
+                        collections: collections,
+                        form: false,
+                        customer: customer, 
+                        paginate: false,
+                        all_country_option_tags: false,
+                        routes: false,
+                        search: false,
+                        shop: false,
+                        request: false,
+                        gift_card: false,
+                        genereal: false
+                    }) %>
+                <% }) %>
+            <% } else if(sections){ %>
+                <%- include(srcId + '/sections/' + sections?.type, {
                     menu: menu, 
                     blogs: blogs,
-                    blog: blog,
-                    page: page,
                     article: article,
                     product: product,
                     settings: settings, 
-                    section: sectionItem,
-                    sectionid: orderItem,
+                    section: sections,
+                    sectionid: sectionid,
+                    blog: blog,
+                    page: page,
                     localization: false,
                     collection: collection,
                     collections: collections,
@@ -80,38 +106,12 @@
                     gift_card: false,
                     genereal: false
                 }) %>
-            <% }) %>
-        <% } else if(sections){ %>
-            <%- include(srcId + '/sections/' + sections?.type, {
-                menu: menu, 
-                blogs: blogs,
-                article: article,
-                product: product,
-                settings: settings, 
-                section: sections,
-                sectionid: sectionid,
-                blog: blog,
-                page: page,
-                localization: false,
-                collection: collection,
-                collections: collections,
-                form: false,
-                customer: customer, 
-                paginate: false,
-                all_country_option_tags: false,
-                routes: false,
-                search: false,
-                shop: false,
-                request: false,
-                gift_card: false,
-                genereal: false
+            <% } %>
+            <%- include(srcId + '/sections/footer', {
+                section: settings?.sections['footer'],
+                footerMenu: footermenu,
+                form: false
             }) %>
-        <% } %>
-        <%- include(srcId + '/sections/footer', {
-            section: settings?.sections['footer'],
-            footerMenu: footermenu,
-            form: false
-        }) %>
 
     <script src="https://cdn.shopify.com/s/javascripts/currencies.js" defer="defer"></script>
     <script src="/<%=srcId%>/slider.js" defer="defer"></script>

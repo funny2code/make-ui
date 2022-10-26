@@ -3304,7 +3304,6 @@
       "ThemeMake";
   });
 
-  window.addEventListener("load", async (event) => {
-    randomFun(event);
-  });
+  // randomFun(event);
+
 })();

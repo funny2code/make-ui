@@ -16,7 +16,7 @@
                 <option 
                     value="<%= option.value %>" 
                     <% if(data?.id?.includes('color')){ %>
-                        data-value="<%= settingData[data?.id?.includes('bg') ? 'py_bg_color_' + option?.label?.toLowerCase()?.replace(' ', '_')?.replace('average', 'avarge') : 'py_color_' + option?.label?.toLowerCase()?.replace(' ', '_')?.replace('average', 'avarge')] %>"
+                        data-value="<%= settingData[data?.id?.includes('bg') ? 'py_bg_color_' + option?.label?.toLowerCase()?.replace(' ', '_')?.replace('average', 'average') : 'py_color_' + option?.label?.toLowerCase()?.replace(' ', '_')?.replace('average', 'average')] %>"
                     <% } %> 
                     <% if(value === option.value){ %>selected<% } %>>
                         <%= option.label %>

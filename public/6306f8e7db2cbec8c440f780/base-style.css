@@ -2328,7 +2328,7 @@ details[open] > .header__icon--menu .icon-hamburger {
   background-color: var(--py-bg-color-middle-dark);
 }
 .py-bg-c-average {
-  background-color: var(--py-bg-color-avarge);
+  background-color: var(--py-bg-color-average);
 }
 .py-bg-c-middle-light {
   background-color: var(--py-bg-color-middle-light);
@@ -2351,7 +2351,7 @@ details[open] > .header__icon--menu .icon-hamburger {
 }
 .py-hv-bg-c-average:hover,
 .py-hv-bg-c-average[class*=active] {
-  background-color: var(--py-bg-color-avarge);
+  background-color: var(--py-bg-color-average);
 }
 .py-hv-bg-c-middle-light:hover,
 .py-hv-bg-c-middle-light[class*=active] {
@@ -2372,7 +2372,7 @@ details[open] > .header__icon--menu .icon-hamburger {
   color: var(--py-color-middle-dark);
 }
 .py-c-average {
-  color: var(--py-color-avarge);
+  color: var(--py-color-average);
 }
 .py-c-middle-light {
   color: var(--py-color-middle-light);
@@ -2390,7 +2390,7 @@ details[open] > .header__icon--menu .icon-hamburger {
   fill: var(--py-color-middle-dark);
 }
 .py-c-average svg{  
-  fill: var(--py-color-avarge);
+  fill: var(--py-color-average);
 }
 .py-c-middle-light svg{  
   fill: var(--py-color-middle-light);
@@ -2413,7 +2413,7 @@ details[open] > .header__icon--menu .icon-hamburger {
 }
 .py-hv-c-average:hover,
 .py-hv-c-average[class*=active]{
-    color: var(--py-color-avarge);
+    color: var(--py-color-average);
 }
 .py-hv-c-middle-light:hover,
 .py-hv-c-middle-light[class*=active]{
@@ -2438,7 +2438,7 @@ details[open] > .header__icon--menu .icon-hamburger {
 }
 .py-hv-c-average:hover svg,
 .py-hv-c-average[class*=active] svg{  
-    fill: var(--py-color-avarge);
+    fill: var(--py-color-average);
 }
 .py-hv-c-middle-light:hover svg,
 .py-hv-c-middle-light[class*=active] svg{  
@@ -2459,7 +2459,7 @@ details[open] > .header__icon--menu .icon-hamburger {
   color: var(--py-color-middle-dark);
 }
 .py-br-c-average {
-  color: var(--py-color-avarge);
+  color: var(--py-color-average);
 }
 .py-br-c-middle-light {
   border-color: var(--py-color-middle-light);

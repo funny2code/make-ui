@@ -28,8 +28,8 @@
             },
             {
                 "type": "color",
-                "id": "py_bg_color_avarge",
-                "label": "Avarge",
+                "id": "py_bg_color_average",
+                "label": "average",
                 "default": "#A05E49"
             },
             {
@@ -62,8 +62,8 @@
             },
             {
                 "type": "color",
-                "id": "py_color_avarge",
-                "label": "Avarge",
+                "id": "py_color_average",
+                "label": "average",
                 "default": "#AB3611"
             },
             {
@@ -1782,7 +1782,7 @@
                     },
                     {
                       "label": "Average",
-                      "value": "var(--py-color-avarge)"
+                      "value": "var(--py-color-average)"
                     },
                     {
                       "label": "Middle Light",
@@ -1793,7 +1793,7 @@
                       "value": "var(--py-color-light)"
                     }
                 ],
-                "default": "var(--py-color-avarge)"
+                "default": "var(--py-color-average)"
             },
             {
                 "type": "select",
@@ -1814,7 +1814,7 @@
                     },
                     {
                         "label": "Average",
-                        "value": "var(--py-bg-color-avarge)"
+                        "value": "var(--py-bg-color-average)"
                     },
                     {
                         "label": "Middle Light",
@@ -1842,7 +1842,7 @@
                     },
                     {
                       "label": "Average",
-                      "value": "var(--py-color-avarge)"
+                      "value": "var(--py-color-average)"
                     },
                     {
                       "label": "Middle Light",
@@ -2131,7 +2131,7 @@
                     },
                     {
                         "label": "Average",
-                        "value": "var(--py-bg-color-avarge)"
+                        "value": "var(--py-bg-color-average)"
                     },
                     {
                         "label": "Middle Light",
@@ -2142,7 +2142,7 @@
                         "value": "var(--py-bg-color-light)"
                     }
                 ],
-                "default": "var(--py-bg-color-avarge)"
+                "default": "var(--py-bg-color-average)"
             }
         ]
     },

@@ -243,9 +243,9 @@
   width: 100%;
   flex-wrap: wrap;
   gap: 1px;
-  background-color: var(--py-btn-bg-color-avarge);
+  background-color: var(--py-btn-bg-color-average);
   position:relative;
-  border-top: 1px solid var(--py-btn-bg-color-avarge);
+  border-top: 1px solid var(--py-btn-bg-color-average);
 }
 .filter-triger,.sort-triger{
   width:calc(50% - 0.5px);  

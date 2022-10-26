@@ -8,8 +8,8 @@
       "theme_name": "Base Kotn",
       "theme_version": "1.0.0",
       "theme_author": "Make UI",
-      "theme_documentation_url": "https:\/\/shopify.dev\/themes\/tools\/dawn",
-      "theme_support_url": "https:\/\/support.shopify.com\/"
+      "theme_documentation_url": "https://shopify.dev/themes/tools/dawn",
+      "theme_support_url": "https://support.shopify.com/"
     },
     {
       "name": "Global Styles",
@@ -32,8 +32,8 @@
         },
         {
           "type": "color",
-          "id": "py_bg_color_avarge",
-          "label": "Avarge",
+          "id": "py_bg_color_average",
+          "label": "Average",
           "default": "#A05E49"
         },
         {
@@ -66,8 +66,8 @@
         },
         {
           "type": "color",
-          "id": "py_color_avarge",
-          "label": "Avarge",
+          "id": "py_color_average",
+          "label": "Average",
           "default": "#AB3611"
         },
         {
@@ -381,28 +381,52 @@
         {
           "type": "range",
           "id": "py_sm_btn_border_width",
-          "min": 0,
-          "max": 10,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "10"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Small Button Border Width"
         },
         {
           "type": "range",
           "id": "py_sm_btn_font_size",
-          "min": 8,
-          "max": 24,
-          "step": 1,
-          "default": 13,
+          "min": {
+            "$numberInt": "8"
+          },
+          "max": {
+            "$numberInt": "24"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "13"
+          },
           "label": "Small Button Font Size"
         },
         {
           "type": "range",
           "id": "py_sm_btn_font_weight",
-          "min": 100,
-          "max": 900,
-          "step": 100,
-          "default": 500,
+          "min": {
+            "$numberInt": "100"
+          },
+          "max": {
+            "$numberInt": "900"
+          },
+          "step": {
+            "$numberInt": "100"
+          },
+          "default": {
+            "$numberInt": "500"
+          },
           "label": "Small Button Font Weight"
         },
         {
@@ -424,28 +448,52 @@
         {
           "type": "range",
           "id": "py_md_btn_border_width",
-          "min": 0,
-          "max": 10,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "10"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Medium Button Border Width"
         },
         {
           "type": "range",
           "id": "py_md_btn_font_size",
-          "min": 10,
-          "max": 40,
-          "step": 1,
-          "default": 17,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "17"
+          },
           "label": "Medium Button Font Size"
         },
         {
           "type": "range",
           "id": "py_md_btn_font_weight",
-          "min": 100,
-          "max": 900,
-          "step": 100,
-          "default": 500,
+          "min": {
+            "$numberInt": "100"
+          },
+          "max": {
+            "$numberInt": "900"
+          },
+          "step": {
+            "$numberInt": "100"
+          },
+          "default": {
+            "$numberInt": "500"
+          },
           "label": "Medium Button Font Weight"
         },
         {
@@ -467,28 +515,52 @@
         {
           "type": "range",
           "id": "py_lg_btn_border_width",
-          "min": 0,
-          "max": 10,
-          "step": 1,
-          "default": 2,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "10"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "2"
+          },
           "label": "Large Button Border Width"
         },
         {
           "type": "range",
           "id": "py_lg_btn_font_size",
-          "min": 14,
-          "max": 40,
-          "step": 1,
-          "default": 22,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "22"
+          },
           "label": "Large Button Font Size"
         },
         {
           "type": "range",
           "id": "py_lg_btn_font_weight",
-          "min": 100,
-          "max": 900,
-          "step": 100,
-          "default": 600,
+          "min": {
+            "$numberInt": "100"
+          },
+          "max": {
+            "$numberInt": "900"
+          },
+          "step": {
+            "$numberInt": "100"
+          },
+          "default": {
+            "$numberInt": "600"
+          },
           "label": "Large Button Font Weight"
         },
         {
@@ -630,10 +702,18 @@
         {
           "type": "range",
           "id": "py_btn_border_radius",
-          "min": 0,
-          "max": 60,
-          "step": 5,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "5"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Button Border Radius"
         },
         {
@@ -924,7 +1004,7 @@
           "type": "textarea",
           "id": "heading_font_custom",
           "label": "Custom Font",
-          "default": "@font-face{font-family:'heading-font';src:url(https:\/\/kotn.com\/fonts\/SohneBreit-Buch.woff2) format('woff2');}",
+          "default": "@font-face{font-family:'heading-font';src:url(https://kotn.com/fonts/SohneBreit-Buch.woff2) format('woff2');}",
           "info": "Please enter your custom font css here and use font name `heading-font` example: @font-face{font-family:'heading-font', ... and etc.}"
         },
         {
@@ -1787,7 +1867,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -1798,7 +1878,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "select",
@@ -1819,7 +1899,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -1847,7 +1927,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -1863,37 +1943,69 @@
         {
           "type": "range",
           "id": "item_radius",
-          "min": 0,
-          "max": 25,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "25"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Item Border Radius"
         },
         {
           "type": "range",
           "id": "item_title_font_size",
-          "min": 9,
-          "max": 15,
-          "step": 1,
-          "default": 12,
+          "min": {
+            "$numberInt": "9"
+          },
+          "max": {
+            "$numberInt": "15"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "12"
+          },
           "label": "Item Title Font Size"
         },
         {
           "type": "range",
           "id": "item_content_font_size",
-          "min": 7,
-          "max": 13,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "7"
+          },
+          "max": {
+            "$numberInt": "13"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Item Content Font Size"
         },
         {
           "type": "range",
           "id": "item_price_font_size",
-          "min": 8,
-          "max": 14,
-          "step": 1,
-          "default": 12,
+          "min": {
+            "$numberInt": "8"
+          },
+          "max": {
+            "$numberInt": "14"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "12"
+          },
           "label": "Item Price Font Size"
         },
         {
@@ -2108,14 +2220,14 @@
           "type": "richtext",
           "id": "f_s_text",
           "label": "Free Shipping Text",
-          "default": "<p>YOU’RE <strong>$100<\/strong> USD AWAY FROM FREE SHIPPING<\/p>",
+          "default": "<p>YOU’RE <strong>$100</strong> USD AWAY FROM FREE SHIPPING</p>",
           "info": "Please select ONLY PRICE and add the STRONG (BOLD) style"
         },
         {
           "type": "richtext",
           "id": "f_s_succsess",
           "label": "Succsess Message",
-          "default": "<p>YOU QUALIFY FOR FREE SHIPPING!<\/p>"
+          "default": "<p>YOU QUALIFY FOR FREE SHIPPING!</p>"
         },
         {
           "type": "select",
@@ -2136,7 +2248,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -2147,7 +2259,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-avarge)"
+          "default": "var(--py-bg-color-average)"
         }
       ]
     },
@@ -2357,12 +2469,6 @@
       "icon": "account"
     },
     {
-      "name": "Customer order",
-      "handle": "customers-order",
-      "template_name": "templates/customers/order",
-      "icon": "account"
-    },
-    {
       "name": "Customer addresses",
       "handle": "customers-addresses",
       "template_name": "config/settings_data",
@@ -2495,7 +2601,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -2513,7 +2619,9 @@
         {
           "type": "title",
           "name": "Title",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -2524,19 +2632,35 @@
             {
               "type": "range",
               "id": "title_font_size",
-              "min": 10,
-              "max": 34,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "34"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Title Font size"
             },
             {
               "type": "range",
               "id": "title_font_weight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 600,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "600"
+              },
               "label": "Title Font weight"
             }
           ]
@@ -2544,7 +2668,9 @@
         {
           "type": "description",
           "name": "Description",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -2555,19 +2681,35 @@
             {
               "type": "range",
               "id": "desc_font_size",
-              "min": 10,
-              "max": 34,
-              "step": 1,
-              "default": 16,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "34"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "16"
+              },
               "label": "Description Font size"
             },
             {
               "type": "range",
               "id": "desc_font_weight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 400,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "400"
+              },
               "label": "Description Font weight"
             }
           ]
@@ -2575,7 +2717,9 @@
         {
           "type": "image",
           "name": "Image",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "image_picker",
@@ -2592,11 +2736,13 @@
         }
       ],
       "file_name": "404",
-      "template_name": "templates/index"
+      "template_name": "templates/404"
     },
     {
       "name": "Announcement bar",
-      "max_blocks": 12,
+      "max_blocks": {
+        "$numberInt": "12"
+      },
       "settings": [
         {
           "type": "select",
@@ -2617,7 +2763,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -2649,7 +2795,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -2681,7 +2827,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -2713,7 +2859,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -2724,7 +2870,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "select",
@@ -3025,7 +3171,9 @@
         {
           "type": "featured_image",
           "name": "Featured image",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "select",
@@ -3091,10 +3239,18 @@
             {
               "type": "range",
               "id": "img_border_radius",
-              "min": 0,
-              "max": 40,
-              "step": 1,
-              "default": 5,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "5"
+              },
               "label": "Image Border Radius"
             }
           ]
@@ -3102,15 +3258,25 @@
         {
           "type": "title",
           "name": "Title",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "range",
               "id": "title_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Title Font Size"
             },
             {
@@ -3128,7 +3294,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -3170,10 +3336,18 @@
             {
               "type": "range",
               "id": "date_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Date Font Size"
             },
             {
@@ -3191,7 +3365,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -3202,7 +3376,7 @@
                   "value": "var(--py-color-light)"
                 }
               ],
-              "default": "var(--py-color-avarge)"
+              "default": "var(--py-color-average)"
             },
             {
               "type": "select",
@@ -3233,10 +3407,18 @@
             {
               "type": "range",
               "id": "author_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Author Font Size"
             },
             {
@@ -3254,7 +3436,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -3265,7 +3447,7 @@
                   "value": "var(--py-color-light)"
                 }
               ],
-              "default": "var(--py-color-avarge)"
+              "default": "var(--py-color-average)"
             },
             {
               "type": "select",
@@ -3292,15 +3474,25 @@
         {
           "type": "content",
           "name": "Content",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "range",
               "id": "content_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Content Font Size"
             },
             {
@@ -3318,7 +3510,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -3356,11 +3548,13 @@
         {
           "type": "social_sharing",
           "name": "Social share buttons",
-          "limit": 1
+          "limit": {
+            "$numberInt": "1"
+          }
         }
       ],
       "file_name": "article",
-      "template_name": "templates/index"
+      "template_name": "templates/article"
     },
     {
       "name": "Blog posts",
@@ -3428,7 +3622,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -3636,19 +3830,35 @@
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Space"
         },
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Card Border Radius"
         },
         {
@@ -3704,7 +3914,9 @@
         {
           "type": "title",
           "name": "Title",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "checkbox",
@@ -3733,7 +3945,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -3749,28 +3961,52 @@
             {
               "type": "range",
               "id": "title_font_size",
-              "min": 14,
-              "max": 40,
-              "step": 1,
-              "default": 22,
+              "min": {
+                "$numberInt": "14"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "22"
+              },
               "label": "Title Font Size"
             },
             {
               "type": "range",
               "id": "title_font_weight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 500,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "500"
+              },
               "label": "Title Font Weight"
             },
             {
               "type": "range",
               "id": "title_m_font_size",
-              "min": 14,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "14"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Title Mobile Font Size"
             }
           ]
@@ -3778,7 +4014,9 @@
         {
           "type": "link",
           "name": "Link",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "select",
@@ -3916,7 +4154,7 @@
         }
       ],
       "file_name": "blog",
-      "template_name": "templates/index"
+      "template_name": "templates/blog"
     },
     {
       "name": "Subtotal",
@@ -3945,12 +4183,16 @@
         {
           "type": "subtotal",
           "name": "Subtotal price",
-          "limit": 1
+          "limit": {
+            "$numberInt": "1"
+          }
         },
         {
           "type": "buttons",
           "name": "Checkout button",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "select",
@@ -4088,7 +4330,7 @@
         }
       ],
       "file_name": "cart-footer",
-      "template_name": "config/settings_data"
+      "template_name": "templates/cart"
     },
     {
       "name": "Items",
@@ -4119,7 +4361,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -4140,7 +4382,7 @@
         }
       ],
       "file_name": "cart-items",
-      "template_name": "templates/index"
+      "template_name": "templates/cart"
     },
     {
       "name": "Collection banner",
@@ -4213,7 +4455,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -4241,7 +4483,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -4428,7 +4670,7 @@
         }
       ],
       "file_name": "collection-banner",
-      "template_name": "templates/index"
+      "template_name": "templates/collection"
     },
     {
       "name": "Product Bundle Section",
@@ -4563,7 +4805,7 @@
         }
       ],
       "file_name": "collection-bundle-product",
-      "template_name": "templates/index"
+      "template_name": "templates/product"
     },
     {
       "name": "Collection Email",
@@ -4628,7 +4870,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -4777,7 +5019,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -4823,7 +5065,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -4971,7 +5213,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -4988,12 +5230,14 @@
         }
       ],
       "file_name": "collection-email-banner",
-      "template_name": "templates/index"
+      "template_name": "templates/collection"
     },
     {
       "name": "Collection list",
       "tag": "section",
-      "max_blocks": 12,
+      "max_blocks": {
+        "$numberInt": "12"
+      },
       "settings": [
         {
           "type": "text",
@@ -5064,7 +5308,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5080,19 +5324,35 @@
         {
           "type": "range",
           "id": "title_font_size",
-          "min": 14,
-          "max": 40,
-          "step": 1,
-          "default": 22,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "22"
+          },
           "label": "Section Title Font Size"
         },
         {
           "type": "range",
           "id": "title_font_weight",
-          "min": 100,
-          "max": 900,
-          "step": 100,
-          "default": 500,
+          "min": {
+            "$numberInt": "100"
+          },
+          "max": {
+            "$numberInt": "900"
+          },
+          "step": {
+            "$numberInt": "100"
+          },
+          "default": {
+            "$numberInt": "500"
+          },
           "label": "Section Title Font Weight"
         },
         {
@@ -5291,19 +5551,35 @@
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Space"
         },
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Card Border Radius"
         },
         {
@@ -5357,7 +5633,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5373,37 +5649,69 @@
         {
           "type": "range",
           "id": "card_title_font_size",
-          "min": 14,
-          "max": 40,
-          "step": 1,
-          "default": 22,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "22"
+          },
           "label": "Collection Title Font Size"
         },
         {
           "type": "range",
           "id": "card_title_font_weight",
-          "min": 100,
-          "max": 900,
-          "step": 100,
-          "default": 500,
+          "min": {
+            "$numberInt": "100"
+          },
+          "max": {
+            "$numberInt": "900"
+          },
+          "step": {
+            "$numberInt": "100"
+          },
+          "default": {
+            "$numberInt": "500"
+          },
           "label": "Collection Title Font Weight"
         },
         {
           "type": "range",
           "id": "card_title_m_font_size",
-          "min": 14,
-          "max": 40,
-          "step": 1,
-          "default": 18,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "18"
+          },
           "label": "Collection Title Mobile Font Size"
         },
         {
           "type": "range",
           "id": "card_text_font_size",
-          "min": 14,
-          "max": 40,
-          "step": 1,
-          "default": 15,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "15"
+          },
           "label": "Collection Description Font Size"
         },
         {
@@ -5678,7 +5986,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5689,7 +5997,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-avarge)"
+          "default": "var(--py-bg-color-average)"
         },
         {
           "type": "select",
@@ -5706,7 +6014,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5752,7 +6060,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5780,7 +6088,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5812,7 +6120,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5823,7 +6131,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-avarge)"
+          "default": "var(--py-bg-color-average)"
         },
         {
           "type": "select",
@@ -5840,7 +6148,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5870,10 +6178,18 @@
         {
           "type": "range",
           "id": "products_per_page",
-          "min": 8,
-          "max": 48,
-          "step": 4,
-          "default": 16,
+          "min": {
+            "$numberInt": "8"
+          },
+          "max": {
+            "$numberInt": "48"
+          },
+          "step": {
+            "$numberInt": "4"
+          },
+          "default": {
+            "$numberInt": "16"
+          },
           "label": "Products per page"
         },
         {
@@ -5899,7 +6215,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -5910,7 +6226,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-avarge)"
+          "default": "var(--py-bg-color-average)"
         },
         {
           "type": "select",
@@ -6145,19 +6461,35 @@
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 0,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "0"
+          },
           "label": "Card Border Radius"
         },
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 0,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "0"
+          },
           "label": "Card Padding"
         },
         {
@@ -6634,7 +6966,7 @@
         }
       ],
       "file_name": "collection-product-grid",
-      "template_name": "templates/index"
+      "template_name": "templates/collection"
     },
     {
       "name": "Contact Form",
@@ -6683,7 +7015,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -6719,7 +7051,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -6735,19 +7067,35 @@
         {
           "type": "range",
           "id": "field_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Field Border Width"
         },
         {
           "type": "range",
           "id": "field_border_radius",
-          "min": 0,
-          "max": 50,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "50"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Field Border Radius"
         },
         {
@@ -6765,7 +7113,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -6793,7 +7141,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -6821,7 +7169,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -6832,15 +7180,23 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "range",
           "id": "field_font_size",
-          "min": 10,
-          "max": 40,
-          "step": 1,
-          "default": 18,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "18"
+          },
           "label": "Field Font Size"
         },
         {
@@ -6980,7 +7336,9 @@
         {
           "type": "title",
           "name": "Page Title",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -6991,10 +7349,18 @@
             {
               "type": "range",
               "id": "title_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Title Font Size"
             },
             {
@@ -7012,7 +7378,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -7050,15 +7416,25 @@
         {
           "type": "content",
           "name": "Page Content",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "range",
               "id": "content_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Content Font Size"
             },
             {
@@ -7076,7 +7452,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -7187,7 +7563,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7219,7 +7595,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7291,7 +7667,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7323,7 +7699,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7355,7 +7731,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7387,7 +7763,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7419,7 +7795,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7455,7 +7831,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7487,7 +7863,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7519,7 +7895,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7551,7 +7927,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7583,7 +7959,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7615,7 +7991,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7631,19 +8007,35 @@
         {
           "type": "range",
           "id": "card_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Border Radius"
         },
         {
           "type": "range",
           "id": "card_pay_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 30,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "30"
+          },
           "label": "Card Tags Border Radius"
         },
         {
@@ -7783,7 +8175,7 @@
           "default": "light"
         }
       ],
-      "file_name": "customer-account",
+      "file_name": "customers-account",
       "template_name": "config/settings_data"
     },
     {
@@ -7809,7 +8201,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7841,7 +8233,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7893,7 +8285,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7925,7 +8317,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -7941,19 +8333,35 @@
         {
           "type": "range",
           "id": "activate_btn_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Activate  Button Border Width"
         },
         {
           "type": "range",
           "id": "activate_btn_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Activate  Button Border Radius"
         },
         {
@@ -7975,7 +8383,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8007,7 +8415,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8039,7 +8447,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8071,7 +8479,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8107,7 +8515,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8139,7 +8547,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8155,19 +8563,35 @@
         {
           "type": "range",
           "id": "decline_btn_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Decline Button Border Width"
         },
         {
           "type": "range",
           "id": "decline_btn_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Decline Button Border Radius"
         },
         {
@@ -8189,7 +8613,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8221,7 +8645,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8253,7 +8677,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8285,7 +8709,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8321,7 +8745,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8353,7 +8777,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8369,19 +8793,35 @@
         {
           "type": "range",
           "id": "field_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Field Border Width"
         },
         {
           "type": "range",
           "id": "field_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Field Border Radius"
         },
         {
@@ -8403,7 +8843,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8443,7 +8883,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8475,7 +8915,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8799,7 +9239,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8831,7 +9271,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8863,7 +9303,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8895,7 +9335,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -8911,19 +9351,35 @@
         {
           "type": "range",
           "id": "field_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Field Border Width"
         },
         {
           "type": "range",
           "id": "field_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Field Border Radius"
         },
         {
@@ -8945,7 +9401,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9121,7 +9577,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9153,7 +9609,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9189,7 +9645,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9221,7 +9677,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9237,19 +9693,35 @@
         {
           "type": "range",
           "id": "field_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Field Border Width"
         },
         {
           "type": "range",
           "id": "field_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Field Border Radius"
         },
         {
@@ -9271,7 +9743,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9447,7 +9919,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9479,7 +9951,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9515,7 +9987,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9547,7 +10019,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9563,19 +10035,35 @@
         {
           "type": "range",
           "id": "field_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Field Border Width"
         },
         {
           "type": "range",
           "id": "field_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Field Border Radius"
         },
         {
@@ -9597,7 +10085,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9773,7 +10261,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9805,7 +10293,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9841,7 +10329,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9873,7 +10361,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -9889,19 +10377,35 @@
         {
           "type": "range",
           "id": "field_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Field Border Width"
         },
         {
           "type": "range",
           "id": "field_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Field Border Radius"
         },
         {
@@ -9923,7 +10427,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -10089,7 +10593,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -10105,19 +10609,35 @@
         {
           "type": "range",
           "id": "title_font_size",
-          "min": 14,
-          "max": 40,
-          "step": 1,
-          "default": 22,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "22"
+          },
           "label": "Title Font Size"
         },
         {
           "type": "range",
           "id": "title_font_weight",
-          "min": 100,
-          "max": 900,
-          "step": 100,
-          "default": 500,
+          "min": {
+            "$numberInt": "100"
+          },
+          "max": {
+            "$numberInt": "900"
+          },
+          "step": {
+            "$numberInt": "100"
+          },
+          "default": {
+            "$numberInt": "500"
+          },
           "label": "Title Font Weight"
         },
         {
@@ -10315,19 +10835,35 @@
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Space"
         },
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Card Border Radius"
         },
         {
@@ -10367,7 +10903,9 @@
         {
           "type": "title",
           "name": "Title",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "checkbox",
@@ -10396,7 +10934,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -10412,28 +10950,52 @@
             {
               "type": "range",
               "id": "title_font_size",
-              "min": 14,
-              "max": 40,
-              "step": 1,
-              "default": 22,
+              "min": {
+                "$numberInt": "14"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "22"
+              },
               "label": "Title Font Size"
             },
             {
               "type": "range",
               "id": "title_font_weight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 500,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "500"
+              },
               "label": "Title Font Weight"
             },
             {
               "type": "range",
               "id": "title_m_font_size",
-              "min": 14,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "14"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Title Mobile Font Size"
             }
           ]
@@ -10441,7 +11003,9 @@
         {
           "type": "link",
           "name": "Link",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "select",
@@ -10615,10 +11179,18 @@
         {
           "type": "range",
           "id": "products_to_show",
-          "min": 2,
-          "max": 12,
-          "step": 2,
-          "default": 4,
+          "min": {
+            "$numberInt": "2"
+          },
+          "max": {
+            "$numberInt": "12"
+          },
+          "step": {
+            "$numberInt": "2"
+          },
+          "default": {
+            "$numberInt": "4"
+          },
           "label": "Maximum products to show"
         },
         {
@@ -10652,7 +11224,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -10684,7 +11256,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -10779,19 +11351,35 @@
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Card Border Radius"
         },
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Padding"
         },
         {
@@ -11259,46 +11847,86 @@
         {
           "type": "range",
           "id": "footer_heading_font_size",
-          "min": 10,
-          "max": 60,
-          "step": 1,
-          "default": 38,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "38"
+          },
           "label": "Footer Heading Font Size"
         },
         {
           "type": "range",
           "id": "footer_heading_font_size_m",
-          "min": 10,
-          "max": 60,
-          "step": 1,
-          "default": 32,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "32"
+          },
           "label": "Footer Heading Mobile Font Size"
         },
         {
           "type": "range",
           "id": "footer_subtitle_font_size",
-          "min": 10,
-          "max": 60,
-          "step": 1,
-          "default": 20,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "20"
+          },
           "label": "Footer Sub Title Font Size"
         },
         {
           "type": "range",
           "id": "footer_subtitle_font_size_m",
-          "min": 10,
-          "max": 60,
-          "step": 1,
-          "default": 18,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "18"
+          },
           "label": "Footer Sub Title Mobile Font Size"
         },
         {
           "type": "range",
           "id": "footer_info_font_size",
-          "min": 10,
-          "max": 60,
-          "step": 1,
-          "default": 18,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "18"
+          },
           "label": "Footer Text Font Size"
         },
         {
@@ -11331,7 +11959,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11347,19 +11975,35 @@
         {
           "type": "range",
           "id": "field_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Field Border Width"
         },
         {
           "type": "range",
           "id": "field_border_radius",
-          "min": 0,
-          "max": 50,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "50"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Field Border Radius"
         },
         {
@@ -11377,7 +12021,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11405,7 +12049,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11433,7 +12077,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11449,10 +12093,18 @@
         {
           "type": "range",
           "id": "field_font_size",
-          "min": 10,
-          "max": 40,
-          "step": 1,
-          "default": 16,
+          "min": {
+            "$numberInt": "10"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "16"
+          },
           "label": "Field Font Size"
         },
         {
@@ -11676,7 +12328,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11708,7 +12360,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11749,7 +12401,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11781,7 +12433,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11797,10 +12449,18 @@
         {
           "type": "range",
           "id": "copy_code_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 15,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "15"
+          },
           "label": "Copy Code  Area Border Radius"
         },
         {
@@ -11822,7 +12482,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11854,7 +12514,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11886,7 +12546,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11902,19 +12562,35 @@
         {
           "type": "range",
           "id": "copy_btn_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Copy Code  Button Border Width"
         },
         {
           "type": "range",
           "id": "copy_btn_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Copy Code  Button Border Radius"
         },
         {
@@ -11936,7 +12612,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -11968,7 +12644,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12000,7 +12676,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12036,7 +12712,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12068,7 +12744,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12100,7 +12776,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12116,19 +12792,35 @@
         {
           "type": "range",
           "id": "print_btn_border_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Print Button Border Width"
         },
         {
           "type": "range",
           "id": "print_btn_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Print Button Border Radius"
         },
         {
@@ -12150,7 +12842,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12182,7 +12874,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12214,7 +12906,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12242,10 +12934,18 @@
         {
           "type": "range",
           "id": "logo_width",
-          "min": 50,
-          "max": 250,
-          "step": 10,
-          "default": 100,
+          "min": {
+            "$numberInt": "50"
+          },
+          "max": {
+            "$numberInt": "250"
+          },
+          "step": {
+            "$numberInt": "10"
+          },
+          "default": {
+            "$numberInt": "100"
+          },
           "unit": "t:sections.header.settings.logo_width.unit",
           "label": "t:sections.header.settings.logo_width.label"
         },
@@ -12310,7 +13010,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12342,7 +13042,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12374,7 +13074,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12498,10 +13198,18 @@
         {
           "type": "range",
           "id": "logo_width",
-          "min": 50,
-          "max": 250,
-          "step": 10,
-          "default": 100,
+          "min": {
+            "$numberInt": "50"
+          },
+          "max": {
+            "$numberInt": "250"
+          },
+          "step": {
+            "$numberInt": "10"
+          },
+          "default": {
+            "$numberInt": "100"
+          },
           "unit": "px",
           "label": "Custom logo width"
         },
@@ -12600,7 +13308,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12632,7 +13340,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12664,7 +13372,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12696,7 +13404,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12746,7 +13454,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12778,7 +13486,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12789,7 +13497,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "text",
@@ -12828,7 +13536,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12839,7 +13547,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "header",
@@ -12884,7 +13592,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -12900,19 +13608,35 @@
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Card Border Radius"
         },
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Padding"
         },
         {
@@ -12958,7 +13682,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13242,7 +13966,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13274,7 +13998,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13306,7 +14030,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13338,7 +14062,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13370,7 +14094,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13381,7 +14105,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "select",
@@ -13402,7 +14126,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13413,7 +14137,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "select",
@@ -13430,7 +14154,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle light",
@@ -13441,7 +14165,7 @@
               "value": "var(--py-color-light)"
             }
           ],
-          "default": "var(--py-color-avarge)"
+          "default": "var(--py-color-average)"
         },
         {
           "type": "select",
@@ -13458,7 +14182,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle light",
@@ -13775,7 +14499,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -13786,7 +14510,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-avarge)"
+          "default": "var(--py-bg-color-average)"
         },
         {
           "type": "image_picker",
@@ -14039,7 +14763,9 @@
         {
           "type": "heading",
           "name": "Heading",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -14086,7 +14812,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -14173,7 +14899,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -14226,7 +14952,9 @@
         {
           "type": "text",
           "name": "Text",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "richtext",
@@ -14273,7 +15001,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -14360,7 +15088,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -14413,7 +15141,9 @@
         {
           "type": "buttons",
           "name": "Buttons",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -14725,7 +15455,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -14736,7 +15466,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-avarge)",
+          "default": "var(--py-bg-color-average)",
           "label": "Section background color"
         },
         {
@@ -14758,7 +15488,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -14836,7 +15566,9 @@
         {
           "type": "heading",
           "name": "Heading",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -14897,7 +15629,9 @@
         {
           "type": "text",
           "name": "Text",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "richtext",
@@ -15162,6 +15896,712 @@
       "template_name": "templates/index"
     },
     {
+      "name": "Image With Two Products",
+      "tag": "section",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "m_image",
+          "label": "Mobile Image"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "label": "Image Position",
+          "default": "left"
+        },
+        {
+          "type": "select",
+          "id": "section_color",
+          "label": "Content Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-average)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+          "default": "var(--py-color-dark)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Your Heading Here"
+        },
+        {
+          "type": "header",
+          "content": "Desktop Settings"
+        },
+        {
+          "type": "text",
+          "id": "weight",
+          "label": "Font Weight"
+        },
+        {
+          "type": "text",
+          "id": "size",
+          "label": "Font Size"
+        },
+        {
+          "type": "header",
+          "content": "Mobile Settings"
+        },
+        {
+          "type": "text",
+          "id": "m_weight",
+          "label": "Font Weight"
+        },
+        {
+          "type": "text",
+          "id": "m_size",
+          "label": "Font Size"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Your content and iformation text here!</p>"
+        },
+        {
+          "type": "select",
+          "id": "align",
+          "label": "Content Aligment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "header",
+          "content": "Animation"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_anim",
+          "label": "Enable Animation",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "anim",
+          "label": "Animation Type",
+          "options": [
+            {
+              "value": "fade-up",
+              "label": "Fade In Up"
+            },
+            {
+              "value": "fade-down",
+              "label": "Fade In Down"
+            },
+            {
+              "value": "fade-right",
+              "label": "Fade In Right"
+            },
+            {
+              "value": "fade-left",
+              "label": "Fade In Left"
+            },
+            {
+              "value": "flip-up",
+              "label": "Flip In Up"
+            },
+            {
+              "value": "flip-down",
+              "label": "Flip In Down"
+            },
+            {
+              "value": "flip-left",
+              "label": "Flip In Left"
+            },
+            {
+              "value": "flip-right",
+              "label": "Flip In Right"
+            },
+            {
+              "value": "zoom-in",
+              "label": "Zoom In"
+            },
+            {
+              "value": "zoom-out",
+              "label": "Zoom Out"
+            }
+          ],
+          "default": "zoom-in"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "product",
+          "name": "Product",
+          "limit": {
+            "$numberInt": "2"
+          },
+          "settings": [
+            {
+              "type": "product",
+              "id": "product",
+              "label": "Select Product"
+            },
+            {
+              "type": "header",
+              "content": "Product Card"
+            },
+            {
+              "type": "select",
+              "id": "card_style",
+              "options": [
+                {
+                  "value": "vertical",
+                  "label": "Vertical"
+                },
+                {
+                  "value": "horizontal",
+                  "label": "horizontal"
+                }
+              ],
+              "default": "vertical",
+              "label": "Card Style",
+              "info": "Horizontal style will work on desktop only"
+            },
+            {
+              "type": "select",
+              "id": "image_ratio",
+              "options": [
+                {
+                  "value": "adapt",
+                  "label": "t:sections.collection-product-grid.settings.image_ratio.options__1.label"
+                },
+                {
+                  "value": "portrait",
+                  "label": "t:sections.collection-product-grid.settings.image_ratio.options__2.label"
+                },
+                {
+                  "value": "square",
+                  "label": "t:sections.collection-product-grid.settings.image_ratio.options__3.label"
+                }
+              ],
+              "default": "square",
+              "label": "t:sections.collection-product-grid.settings.image_ratio.label"
+            },
+            {
+              "type": "checkbox",
+              "id": "image_gallery",
+              "default": false,
+              "label": "Enable Image Slider"
+            },
+            {
+              "type": "select",
+              "id": "card_bg_color",
+              "label": "Card Background Color",
+              "options": [
+                {
+                  "label": "Transparent",
+                  "value": "bg-c-none"
+                },
+                {
+                  "label": "Dark",
+                  "value": "bg-c-dark"
+                },
+                {
+                  "label": "Middle Dark",
+                  "value": "bg-c-middle-dark"
+                },
+                {
+                  "label": "Average",
+                  "value": "bg-c-average"
+                },
+                {
+                  "label": "Middle Light",
+                  "value": "bg-c-middle-light"
+                },
+                {
+                  "label": "Light",
+                  "value": "bg-c-light"
+                }
+              ],
+              "default": "bg-c-average"
+            },
+            {
+              "type": "range",
+              "id": "card_radius",
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "20"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "7"
+              },
+              "label": "Card Border Radius"
+            },
+            {
+              "type": "range",
+              "id": "item_space",
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "10"
+              },
+              "label": "Card Padding"
+            },
+            {
+              "type": "checkbox",
+              "id": "show_vendor",
+              "default": false,
+              "label": "t:sections.collection-product-grid.settings.show_vendor.label"
+            },
+            {
+              "type": "checkbox",
+              "id": "show_colors",
+              "default": true,
+              "label": "Show Colors"
+            },
+            {
+              "type": "checkbox",
+              "id": "show_variants_on_hover",
+              "default": true,
+              "label": "Show Variants On Hover"
+            },
+            {
+              "type": "checkbox",
+              "id": "show_view_product",
+              "default": true,
+              "label": "Show View Product Button"
+            },
+            {
+              "type": "checkbox",
+              "id": "show_quick_add",
+              "default": true,
+              "label": "Show Quick Add Button"
+            },
+            {
+              "type": "select",
+              "id": "info_align",
+              "label": "Card Info Alignment",
+              "options": [
+                {
+                  "label": "Left",
+                  "value": "left"
+                },
+                {
+                  "label": "Center",
+                  "value": "center"
+                }
+              ],
+              "default": "center"
+            },
+            {
+              "type": "select",
+              "id": "card_color",
+              "label": "Card Info Color",
+              "options": [
+                {
+                  "label": "None",
+                  "value": "none"
+                },
+                {
+                  "label": "Dark",
+                  "value": "c-dark"
+                },
+                {
+                  "label": "Middle Dark",
+                  "value": "c-middle-dark"
+                },
+                {
+                  "label": "Average",
+                  "value": "c-average"
+                },
+                {
+                  "label": "Light",
+                  "value": "c-middle-light"
+                },
+                {
+                  "label": "Light",
+                  "value": "c-light"
+                }
+              ],
+              "default": "c-dark"
+            },
+            {
+              "type": "header",
+              "content": "Card Button Style"
+            },
+            {
+              "type": "select",
+              "id": "view_btn_size",
+              "label": "View Button Size",
+              "options": [
+                {
+                  "label": "Small",
+                  "value": "small"
+                },
+                {
+                  "label": "Medium",
+                  "value": "medium"
+                },
+                {
+                  "label": "Large",
+                  "value": "large"
+                }
+              ],
+              "default": "medium"
+            },
+            {
+              "type": "select",
+              "id": "card_color_view_btn",
+              "label": "View Button Color",
+              "options": [
+                {
+                  "label": "Dark",
+                  "value": "dark"
+                },
+                {
+                  "label": "Middle Dark",
+                  "value": "middle-dark"
+                },
+                {
+                  "label": "Average",
+                  "value": "average"
+                },
+                {
+                  "label": "Middle Light",
+                  "value": "middle-light"
+                },
+                {
+                  "label": "Light",
+                  "value": "light"
+                }
+              ],
+              "default": "light"
+            },
+            {
+              "type": "select",
+              "id": "card_bg_color_view_btn",
+              "label": "View Button Background Color",
+              "options": [
+                {
+                  "label": "Dark",
+                  "value": "dark"
+                },
+                {
+                  "label": "Middle Dark",
+                  "value": "middle-dark"
+                },
+                {
+                  "label": "Average",
+                  "value": "average"
+                },
+                {
+                  "label": "Middle Light",
+                  "value": "middle-light"
+                },
+                {
+                  "label": "Light",
+                  "value": "light"
+                }
+              ],
+              "default": "dark"
+            },
+            {
+              "type": "select",
+              "id": "card_color_view_btn_hover",
+              "label": "View Button Hover Color",
+              "options": [
+                {
+                  "label": "Dark",
+                  "value": "dark"
+                },
+                {
+                  "label": "Middle Dark",
+                  "value": "middle-dark"
+                },
+                {
+                  "label": "Average",
+                  "value": "average"
+                },
+                {
+                  "label": "Middle Light",
+                  "value": "middle-light"
+                },
+                {
+                  "label": "Light",
+                  "value": "light"
+                }
+              ],
+              "default": "dark"
+            },
+            {
+              "type": "select",
+              "id": "card_bg_color_view_btn_hover",
+              "label": "View Button Hover Background Color",
+              "options": [
+                {
+                  "label": "Dark",
+                  "value": "dark"
+                },
+                {
+                  "label": "Middle Dark",
+                  "value": "middle-dark"
+                },
+                {
+                  "label": "Average",
+                  "value": "average"
+                },
+                {
+                  "label": "Middle Light",
+                  "value": "middle-light"
+                },
+                {
+                  "label": "Light",
+                  "value": "light"
+                }
+              ],
+              "default": "light"
+            },
+            {
+              "type": "header",
+              "content": "Card Product Title Font Style"
+            },
+            {
+              "type": "checkbox",
+              "id": "custom_font_style",
+              "default": false,
+              "label": "Use Custom Style"
+            },
+            {
+              "type": "text",
+              "id": "title_fontsize",
+              "label": "Font size Desktop",
+              "info": "Ex: 20px "
+            },
+            {
+              "type": "text",
+              "id": "title_fontsize_m",
+              "label": "Font size Mobile"
+            },
+            {
+              "type": "text",
+              "id": "title_fontweight",
+              "label": "Font-weight"
+            },
+            {
+              "type": "text",
+              "id": "title_fontstretch",
+              "label": "Font-stretch",
+              "info": "Ex: 40%"
+            },
+            {
+              "type": "select",
+              "id": "title_fontstyle",
+              "options": [
+                {
+                  "value": "normal",
+                  "label": "normal"
+                },
+                {
+                  "value": "italic",
+                  "label": "italic"
+                }
+              ],
+              "default": "normal",
+              "label": "Font-style"
+            },
+            {
+              "type": "text",
+              "id": "title_lineheight",
+              "label": "Lineheight"
+            },
+            {
+              "type": "text",
+              "id": "title_letterspacing",
+              "label": "Letter-spacing",
+              "info": "Ex: 0.5px"
+            },
+            {
+              "type": "header",
+              "content": "Card Product info Font Style"
+            },
+            {
+              "type": "text",
+              "id": "info_fontsize",
+              "label": "Font size Desktop",
+              "info": "Ex: 20px "
+            },
+            {
+              "type": "text",
+              "id": "info_fontsize_m",
+              "label": "Font size Mobile"
+            },
+            {
+              "type": "text",
+              "id": "info_fontweight",
+              "label": "Font-weight"
+            },
+            {
+              "type": "text",
+              "id": "info_fontstretch",
+              "label": "Font-stretch",
+              "info": "Ex: 40%"
+            },
+            {
+              "type": "select",
+              "id": "info_fontstyle",
+              "options": [
+                {
+                  "value": "normal",
+                  "label": "normal"
+                },
+                {
+                  "value": "italic",
+                  "label": "italic"
+                }
+              ],
+              "default": "normal",
+              "label": "Font-style"
+            },
+            {
+              "type": "text",
+              "id": "info_lineheight",
+              "label": "Lineheight"
+            },
+            {
+              "type": "text",
+              "id": "info_letterspacing",
+              "label": "Letter-spacing",
+              "info": "Ex: 0.5px"
+            },
+            {
+              "type": "header",
+              "content": "Animation"
+            },
+            {
+              "type": "checkbox",
+              "id": "enable_anim",
+              "label": "Enable Animation",
+              "default": false
+            },
+            {
+              "type": "select",
+              "id": "anim",
+              "label": "Animation Type",
+              "options": [
+                {
+                  "value": "fade-up",
+                  "label": "Fade In Up"
+                },
+                {
+                  "value": "fade-down",
+                  "label": "Fade In Down"
+                },
+                {
+                  "value": "fade-right",
+                  "label": "Fade In Right"
+                },
+                {
+                  "value": "fade-left",
+                  "label": "Fade In Left"
+                },
+                {
+                  "value": "flip-up",
+                  "label": "Flip In Up"
+                },
+                {
+                  "value": "flip-down",
+                  "label": "Flip In Down"
+                },
+                {
+                  "value": "flip-left",
+                  "label": "Flip In Left"
+                },
+                {
+                  "value": "flip-right",
+                  "label": "Flip In Right"
+                },
+                {
+                  "value": "zoom-in",
+                  "label": "Zoom In"
+                },
+                {
+                  "value": "zoom-out",
+                  "label": "Zoom Out"
+                }
+              ],
+              "default": "zoom-in"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "Imagw with two products",
+          "blocks": [
+            {
+              "type": "product"
+            },
+            {
+              "type": "product"
+            }
+          ]
+        }
+      ],
+      "file_name": "image-with-two-products",
+      "template_name": "templates/index"
+    },
+    {
       "name": "Collections list page",
       "class": "bc-collection-list-section",
       "settings": [
@@ -15271,7 +16711,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -15292,7 +16732,7 @@
         }
       ],
       "file_name": "list-collections",
-      "template_name": "templates/index"
+      "template_name": "templates/list-collections"
     },
     {
       "name": "Main Page",
@@ -15357,7 +16797,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -15375,15 +16815,25 @@
         {
           "type": "title",
           "name": "Page Title",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "range",
               "id": "title_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Title Font Size"
             },
             {
@@ -15401,7 +16851,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -15439,15 +16889,25 @@
         {
           "type": "content",
           "name": "Page Content",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "range",
               "id": "content_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Content Font Size"
             },
             {
@@ -15465,7 +16925,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -15508,7 +16968,7 @@
         }
       ],
       "file_name": "main-page",
-      "template_name": "templates/index"
+      "template_name": "templates/page"
     },
     {
       "name": "Marquee",
@@ -15573,11 +17033,19 @@
           "type": "range",
           "id": "speed",
           "label": "Speed",
-          "min": 6,
-          "max": 50,
-          "step": 4,
+          "min": {
+            "$numberInt": "6"
+          },
+          "max": {
+            "$numberInt": "50"
+          },
+          "step": {
+            "$numberInt": "4"
+          },
           "unit": " px",
-          "default": 22
+          "default": {
+            "$numberInt": "22"
+          }
         },
         {
           "type": "header",
@@ -15889,10 +17357,18 @@
         {
           "type": "range",
           "id": "title_font_size",
-          "min": 14,
-          "max": 60,
-          "step": 1,
-          "default": 38,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "38"
+          },
           "label": "Section Title Font Size"
         },
         {
@@ -16024,19 +17500,35 @@
         {
           "type": "range",
           "id": "column_number",
-          "min": 1,
-          "max": 5,
-          "step": 1,
-          "default": 3,
+          "min": {
+            "$numberInt": "1"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "3"
+          },
           "label": "Column Number Per Row"
         },
         {
           "type": "range",
           "id": "column_gap",
-          "min": 0,
-          "max": 50,
-          "step": 1,
-          "default": 20,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "50"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "20"
+          },
           "label": "Column Gap"
         },
         {
@@ -16150,7 +17642,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -16166,37 +17658,69 @@
         {
           "type": "range",
           "id": "col_title_font_size",
-          "min": 14,
-          "max": 60,
-          "step": 1,
-          "default": 38,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "38"
+          },
           "label": "Column Title Font Size"
         },
         {
           "type": "range",
           "id": "col_title_font_weight",
-          "min": 100,
-          "max": 900,
-          "step": 100,
-          "default": 500,
+          "min": {
+            "$numberInt": "100"
+          },
+          "max": {
+            "$numberInt": "900"
+          },
+          "step": {
+            "$numberInt": "100"
+          },
+          "default": {
+            "$numberInt": "500"
+          },
           "label": "Column Title Font Weight"
         },
         {
           "type": "range",
           "id": "col_title_m_font_size",
-          "min": 12,
-          "max": 40,
-          "step": 1,
-          "default": 22,
+          "min": {
+            "$numberInt": "12"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "22"
+          },
           "label": "Column Title Mobile Font Size"
         },
         {
           "type": "range",
           "id": "col_text_font_size",
-          "min": 11,
-          "max": 40,
-          "step": 1,
-          "default": 17,
+          "min": {
+            "$numberInt": "11"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "17"
+          },
           "label": "Column Description Font Size"
         },
         {
@@ -16466,7 +17990,9 @@
         {
           "type": "heading",
           "name": "Heading",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -16479,7 +18005,9 @@
         {
           "type": "paragraph",
           "name": "Subheading",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "richtext",
@@ -16492,7 +18020,9 @@
         {
           "type": "email_form",
           "name": "Email form",
-          "limit": 1
+          "limit": {
+            "$numberInt": "1"
+          }
         }
       ],
       "presets": [
@@ -16560,7 +18090,7 @@
         }
       ],
       "file_name": "password-footer",
-      "template_name": "config/settings_data"
+      "template_name": "templates/password"
     },
     {
       "name": "Password header",
@@ -16573,10 +18103,18 @@
         {
           "type": "range",
           "id": "logo_max_width",
-          "min": 50,
-          "max": 250,
-          "step": 10,
-          "default": 100,
+          "min": {
+            "$numberInt": "50"
+          },
+          "max": {
+            "$numberInt": "250"
+          },
+          "step": {
+            "$numberInt": "10"
+          },
+          "default": {
+            "$numberInt": "100"
+          },
           "unit": "px",
           "label": "Custom logo width"
         },
@@ -16610,7 +18148,7 @@
         }
       ],
       "file_name": "password-header",
-      "template_name": "config/settings_data"
+      "template_name": "templates/password"
     },
     {
       "name": "Password",
@@ -16654,7 +18192,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -16714,10 +18252,18 @@
         {
           "type": "range",
           "id": "pw_field_br_width",
-          "min": 0,
-          "max": 5,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Password Field Border Width"
         },
         {
@@ -16789,7 +18335,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -16876,7 +18422,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -16929,7 +18475,9 @@
         {
           "type": "countdown",
           "name": "Count Down",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -16967,7 +18515,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -17009,7 +18557,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -17027,7 +18575,9 @@
         {
           "type": "email_form",
           "name": "Email Form",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "header",
@@ -17226,10 +18776,18 @@
             {
               "type": "range",
               "id": "e_field_br_width",
-              "min": 0,
-              "max": 5,
-              "step": 1,
-              "default": 1,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "5"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "1"
+              },
               "label": "Email Field Border Width"
             },
             {
@@ -17253,10 +18811,18 @@
             {
               "type": "range",
               "id": "e_btn_br_width",
-              "min": 0,
-              "max": 5,
-              "step": 1,
-              "default": 1,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "5"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "1"
+              },
               "label": "Email Field Border Width"
             },
             {
@@ -17270,7 +18836,9 @@
         {
           "type": "html",
           "name": "Custom HTML",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "html",
@@ -17281,7 +18849,7 @@
         }
       ],
       "file_name": "password",
-      "template_name": "templates/index"
+      "template_name": "templates/password"
     },
     {
       "name": "Product Carousel",
@@ -17320,10 +18888,18 @@
         {
           "type": "range",
           "id": "title_font_size",
-          "min": 14,
-          "max": 60,
-          "step": 1,
-          "default": 38,
+          "min": {
+            "$numberInt": "14"
+          },
+          "max": {
+            "$numberInt": "60"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "38"
+          },
           "label": "Section Title Font Size"
         },
         {
@@ -17350,19 +18926,35 @@
         {
           "type": "range",
           "id": "products_col_limit",
-          "min": 2,
-          "max": 5,
-          "step": 1,
-          "default": 5,
+          "min": {
+            "$numberInt": "2"
+          },
+          "max": {
+            "$numberInt": "5"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          },
           "label": "Column Namber"
         },
         {
           "type": "range",
           "id": "products_limit",
-          "min": 5,
-          "max": 15,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "5"
+          },
+          "max": {
+            "$numberInt": "15"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Max Products Shown"
         },
         {
@@ -17390,7 +18982,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -17422,7 +19014,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -17433,7 +19025,7 @@
               "value": "var(--py-bg-color-light)"
             }
           ],
-          "default": "var(--py-bg-color-avarge)"
+          "default": "var(--py-bg-color-average)"
         },
         {
           "type": "select",
@@ -17454,7 +19046,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -17532,19 +19124,35 @@
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 0,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "0"
+          },
           "label": "Card Border Radius"
         },
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Card Padding"
         },
         {
@@ -17932,7 +19540,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -17964,7 +19572,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -18059,19 +19667,35 @@
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Card Border Radius"
         },
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Padding"
         },
         {
@@ -18407,7 +20031,7 @@
         }
       ],
       "file_name": "product-recommendations",
-      "template_name": "templates/index"
+      "template_name": "templates/product"
     },
     {
       "name": "Product information",
@@ -18452,7 +20076,9 @@
         {
           "type": "title",
           "name": "Title",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "header",
@@ -18461,28 +20087,52 @@
             {
               "type": "range",
               "id": "title_fontsize",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Font size Desktop"
             },
             {
               "type": "range",
               "id": "title_fontsize_m",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Font size Mobile"
             },
             {
               "type": "range",
               "id": "title_fontweight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 600,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "600"
+              },
               "label": "Font-weight"
             },
             {
@@ -18523,12 +20173,16 @@
         {
           "type": "type",
           "name": "Type",
-          "limit": 1
+          "limit": {
+            "$numberInt": "1"
+          }
         },
         {
           "type": "price",
           "name": "Price",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "header",
@@ -18537,28 +20191,52 @@
             {
               "type": "range",
               "id": "price_fontsize",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 24,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "24"
+              },
               "label": "Font size Desktop"
             },
             {
               "type": "range",
               "id": "price_fontsize_m",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 20,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "20"
+              },
               "label": "Font size Mobile"
             },
             {
               "type": "range",
               "id": "price_fontweight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 400,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "400"
+              },
               "label": "Font-weight"
             },
             {
@@ -18599,7 +20277,9 @@
         {
           "type": "quantity_selector",
           "name": "Quantity selector",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "select",
@@ -18616,7 +20296,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -18634,7 +20314,9 @@
         {
           "type": "variant_picker",
           "name": "Variant picker",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "select",
@@ -18695,7 +20377,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -18723,7 +20405,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -18751,7 +20433,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -18783,7 +20465,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -18811,7 +20493,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -18839,7 +20521,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -18850,7 +20532,7 @@
                   "value": "var(--py-color-light)"
                 }
               ],
-              "default": "var(--py-color-avarge)"
+              "default": "var(--py-color-average)"
             },
             {
               "type": "header",
@@ -18859,28 +20541,52 @@
             {
               "type": "range",
               "id": "option_fontsize",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Font size Desktop"
             },
             {
               "type": "range",
               "id": "option_fontsize_m",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Font size Mobile"
             },
             {
               "type": "range",
               "id": "option_fontweight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 400,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "400"
+              },
               "label": "Font-weight"
             },
             {
@@ -18921,7 +20627,9 @@
         {
           "type": "buy_buttons",
           "name": "Buy buttons",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "select",
@@ -18962,7 +20670,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -18990,7 +20698,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19022,7 +20730,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19050,7 +20758,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19061,7 +20769,7 @@
                   "value": "var(--py-color-light)"
                 }
               ],
-              "default": "var(--py-color-avarge)"
+              "default": "var(--py-color-average)"
             },
             {
               "type": "select",
@@ -19078,7 +20786,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19094,28 +20802,52 @@
             {
               "type": "range",
               "id": "btn_border_width",
-              "min": 0,
-              "max": 5,
-              "step": 1,
-              "default": 1,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "5"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "1"
+              },
               "label": "Button Border Width"
             },
             {
               "type": "range",
               "id": "btn_border_radius",
-              "min": 0,
-              "max": 40,
-              "step": 1,
-              "default": 1,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "1"
+              },
               "label": "Button Border Radius"
             },
             {
               "type": "range",
               "id": "btn_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Button Font Size"
             },
             {
@@ -19175,7 +20907,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19203,7 +20935,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19219,10 +20951,18 @@
             {
               "type": "range",
               "id": "fixed_add_radius",
-              "min": 0,
-              "max": 20,
-              "step": 1,
-              "default": 7,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "20"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "7"
+              },
               "label": "Fixed Add to Cart Border Radius"
             },
             {
@@ -19244,7 +20984,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19272,7 +21012,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19304,7 +21044,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19332,7 +21072,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19348,10 +21088,18 @@
             {
               "type": "range",
               "id": "fixed_add_btn_radius",
-              "min": 0,
-              "max": 20,
-              "step": 1,
-              "default": 7,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "20"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "7"
+              },
               "label": "Fixed Add to Cart Button Border Radius"
             },
             {
@@ -19377,7 +21125,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19405,7 +21153,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19421,10 +21169,18 @@
             {
               "type": "range",
               "id": "sold_out_card_radius",
-              "min": 0,
-              "max": 20,
-              "step": 1,
-              "default": 7,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "20"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "7"
+              },
               "label": "Sold Out Border Radius"
             },
             {
@@ -19442,7 +21198,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19458,28 +21214,52 @@
             {
               "type": "range",
               "id": "sold_out_border_width",
-              "min": 0,
-              "max": 5,
-              "step": 1,
-              "default": 1,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "5"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "1"
+              },
               "label": "Sold Out Border Width"
             },
             {
               "type": "range",
               "id": "sold_out_title_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Sold Out Title Font Size"
             },
             {
               "type": "range",
               "id": "sold_out_desc_font_size",
-              "min": 8,
-              "max": 32,
-              "step": 1,
-              "default": 14,
+              "min": {
+                "$numberInt": "8"
+              },
+              "max": {
+                "$numberInt": "32"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "14"
+              },
               "label": "Sold Out Description Font Size"
             },
             {
@@ -19505,7 +21285,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19533,7 +21313,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19549,10 +21329,18 @@
             {
               "type": "range",
               "id": "pre_order_card_radius",
-              "min": 0,
-              "max": 20,
-              "step": 1,
-              "default": 7,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "20"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "7"
+              },
               "label": "Pre Order Border Radius"
             },
             {
@@ -19570,7 +21358,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19586,28 +21374,52 @@
             {
               "type": "range",
               "id": "pre_order_border_width",
-              "min": 0,
-              "max": 5,
-              "step": 1,
-              "default": 1,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "5"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "1"
+              },
               "label": "Pre Order Border Width"
             },
             {
               "type": "range",
               "id": "pre_order_title_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Pre Order Title Font Size"
             },
             {
               "type": "range",
               "id": "pre_order_desc_font_size",
-              "min": 8,
-              "max": 32,
-              "step": 1,
-              "default": 14,
+              "min": {
+                "$numberInt": "8"
+              },
+              "max": {
+                "$numberInt": "32"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "14"
+              },
               "label": "Pre Order Description Font Size"
             },
             {
@@ -19633,7 +21445,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19661,7 +21473,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19677,10 +21489,18 @@
             {
               "type": "range",
               "id": "pick_up_card_radius",
-              "min": 0,
-              "max": 20,
-              "step": 1,
-              "default": 7,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "20"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "7"
+              },
               "label": "Pick Up Card Border Radius"
             },
             {
@@ -19698,7 +21518,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19714,19 +21534,35 @@
             {
               "type": "range",
               "id": "pick_up_border_width",
-              "min": 0,
-              "max": 5,
-              "step": 1,
-              "default": 1,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "5"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "1"
+              },
               "label": "Pick Up Card Border Width"
             },
             {
               "type": "range",
               "id": "pick_up_title_font_size",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 18,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "18"
+              },
               "label": "Pick Up Title Font Size"
             },
             {
@@ -19738,10 +21574,18 @@
             {
               "type": "range",
               "id": "pick_up_desc_font_size",
-              "min": 8,
-              "max": 32,
-              "step": 1,
-              "default": 14,
+              "min": {
+                "$numberInt": "8"
+              },
+              "max": {
+                "$numberInt": "32"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "14"
+              },
               "label": "Pick Up Description Font Size"
             },
             {
@@ -19763,7 +21607,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19791,7 +21635,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19807,10 +21651,18 @@
             {
               "type": "range",
               "id": "pick_up_location_radius",
-              "min": 0,
-              "max": 20,
-              "step": 1,
-              "default": 8,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "20"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "8"
+              },
               "label": "Pick Up Location Border Radius"
             }
           ]
@@ -19818,7 +21670,9 @@
         {
           "type": "description",
           "name": "Description",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "header",
@@ -19827,28 +21681,52 @@
             {
               "type": "range",
               "id": "info_fontsize",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 17,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "17"
+              },
               "label": "Font size Desktop"
             },
             {
               "type": "range",
               "id": "info_fontsize_m",
-              "min": 10,
-              "max": 40,
-              "step": 1,
-              "default": 15,
+              "min": {
+                "$numberInt": "10"
+              },
+              "max": {
+                "$numberInt": "40"
+              },
+              "step": {
+                "$numberInt": "1"
+              },
+              "default": {
+                "$numberInt": "15"
+              },
               "label": "Font size Mobile"
             },
             {
               "type": "range",
               "id": "info_fontweight",
-              "min": 100,
-              "max": 900,
-              "step": 100,
-              "default": 400,
+              "min": {
+                "$numberInt": "100"
+              },
+              "max": {
+                "$numberInt": "900"
+              },
+              "step": {
+                "$numberInt": "100"
+              },
+              "default": {
+                "$numberInt": "400"
+              },
               "label": "Font-weight"
             },
             {
@@ -19889,7 +21767,9 @@
         {
           "type": "share",
           "name": "Share",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "paragraph",
@@ -19924,7 +21804,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-bg-color-avarge)"
+                  "value": "var(--py-bg-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19952,7 +21832,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -19980,7 +21860,7 @@
                 },
                 {
                   "label": "Average",
-                  "value": "var(--py-color-avarge)"
+                  "value": "var(--py-color-average)"
                 },
                 {
                   "label": "Middle Light",
@@ -20136,7 +22016,9 @@
         {
           "type": "goes",
           "name": "goes",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "text",
@@ -20231,10 +22113,18 @@
         {
           "type": "range",
           "id": "pd_media_space",
-          "min": 0,
-          "max": 30,
-          "step": 1,
-          "default": 1,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "30"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "1"
+          },
           "label": "Media space"
         },
         {
@@ -20268,7 +22158,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -20300,7 +22190,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-color-avarge)"
+              "value": "var(--py-color-average)"
             },
             {
               "label": "Middle Light",
@@ -20375,7 +22265,7 @@
         }
       ],
       "file_name": "product",
-      "template_name": "templates/index"
+      "template_name": "templates/product"
     },
     {
       "name": "Search results",
@@ -20463,19 +22353,35 @@
         {
           "type": "range",
           "id": "card_radius",
-          "min": 0,
-          "max": 20,
-          "step": 1,
-          "default": 7,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "20"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "7"
+          },
           "label": "Card Border Radius"
         },
         {
           "type": "range",
           "id": "item_space",
-          "min": 0,
-          "max": 40,
-          "step": 1,
-          "default": 10,
+          "min": {
+            "$numberInt": "0"
+          },
+          "max": {
+            "$numberInt": "40"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "10"
+          },
           "label": "Card Padding"
         },
         {
@@ -20898,12 +22804,20 @@
         {
           "type": "range",
           "id": "change_slides_speed",
-          "min": 3,
-          "max": 9,
-          "step": 2,
+          "min": {
+            "$numberInt": "3"
+          },
+          "max": {
+            "$numberInt": "9"
+          },
+          "step": {
+            "$numberInt": "2"
+          },
           "unit": "s",
           "label": "Change speed",
-          "default": 5
+          "default": {
+            "$numberInt": "5"
+          }
         },
         {
           "type": "header",
@@ -20931,7 +22845,9 @@
         {
           "type": "slide",
           "name": "Slider",
-          "limit": 5,
+          "limit": {
+            "$numberInt": "5"
+          },
           "settings": [
             {
               "type": "image_picker",
@@ -21062,12 +22978,20 @@
             {
               "type": "range",
               "id": "image_overlay_opacity",
-              "min": 0,
-              "max": 100,
-              "step": 10,
+              "min": {
+                "$numberInt": "0"
+              },
+              "max": {
+                "$numberInt": "100"
+              },
+              "step": {
+                "$numberInt": "10"
+              },
               "unit": "%",
               "label": "Image overlay opacity",
-              "default": 0
+              "default": {
+                "$numberInt": "0"
+              }
             },
             {
               "type": "select",
@@ -21170,7 +23094,7 @@
             },
             {
               "label": "Average",
-              "value": "var(--py-bg-color-avarge)"
+              "value": "var(--py-bg-color-average)"
             },
             {
               "label": "Middle Light",
@@ -21187,19 +23111,35 @@
           "id": "spacing_value_desktop",
           "label": "Spacing Value Desktop",
           "type": "range",
-          "min": 5,
-          "max": 100,
-          "step": 1,
-          "default": 5
+          "min": {
+            "$numberInt": "5"
+          },
+          "max": {
+            "$numberInt": "100"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          }
         },
         {
           "id": "spacing_value_mobile",
           "label": "Spacing Value Mobile",
           "type": "range",
-          "min": 5,
-          "max": 100,
-          "step": 1,
-          "default": 5
+          "min": {
+            "$numberInt": "5"
+          },
+          "max": {
+            "$numberInt": "100"
+          },
+          "step": {
+            "$numberInt": "1"
+          },
+          "default": {
+            "$numberInt": "5"
+          }
         }
       ],
       "presets": [
@@ -21235,7 +23175,9 @@
         {
           "type": "title",
           "name": "t:sections.blog.blocks.title.name",
-          "limit": 1,
+          "limit": {
+            "$numberInt": "1"
+          },
           "settings": [
             {
               "type": "checkbox",
@@ -21254,12 +23196,16 @@
         {
           "type": "summary",
           "name": "t:sections.blog.blocks.summary.name",
-          "limit": 1
+          "limit": {
+            "$numberInt": "1"
+          }
         },
         {
           "type": "link",
           "name": "t:sections.blog.blocks.link.name",
-          "limit": 1
+          "limit": {
+            "$numberInt": "1"
+          }
         }
       ],
       "file_name": "video-blog",

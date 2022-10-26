@@ -15,7 +15,7 @@ router.get('/:id', async (req, res, next) => {
   const section_handle = req.query.section;
   const section_id = req.query.section_id;
 
-  if(!id || !page_handle) return next();
+  if(!id) return next();
 
   const activeType = (settings_handle || section_handle) ? settings_handle ? 'settings' : 'section' 
   : (page_handle?.includes('customer') || page_handle?.includes('gift-card')) ? 'liquid' : null;
@@ -35,11 +35,9 @@ router.get('/:id', async (req, res, next) => {
     const settingsFile = await fs.readFile(path.join(__dirname, `../themes/${id}/config/settings_data.json`), 'utf-8');
     if(!settingsFile) return next();
     const settings = JSON.parse(settingsFile);
-    const getPage = theme?.pages?.filter(page => page.handle === page_handle);
-    if(!getPage?.length) return next();
-    const sectionsFile = await fs.readFile(path.join(__dirname, `../themes/${id}/${getPage[0]?.template_name}.json`), 'utf-8');
-    if(!sectionsFile) return next();
-    const parseSections = JSON.parse(sectionsFile);
+    const getPage = page_handle && theme?.pages?.filter(page => page.handle === page_handle);
+    const sectionsFile = getPage?.length && await fs.readFile(path.join(__dirname, `../themes/${id}/${getPage[0]?.template_name}.json`), 'utf-8');
+    const parseSections = sectionsFile && JSON.parse(sectionsFile);
     const sectionSchema = section_handle 
     ? theme?.sections_schema?.filter(section => section.file_name === section_handle) 
     : (page_handle?.includes('customer') || page_handle?.includes('gift-card')) 
@@ -88,7 +86,7 @@ router.post('/:id', async (req, res, next) => {
   const section_handle = req.query.section;
   const section_id = req.query.section_id;
 
-  if(!id || !page_handle) return next();
+  if(!id) return next();
 
   const activeType = settings_handle || section_handle ? settings_handle ? 'settings' : 'section' 
   : (page_handle?.includes('customer') || page_handle?.includes('gift-card')) ? 'liquid' : null;
@@ -123,14 +121,12 @@ router.post('/:id', async (req, res, next) => {
       });
     }
 
-    const getPage = theme?.pages?.filter(page => page.handle === page_handle);
-    if(!getPage?.length) return next();
-    const sectionsFile = await fs.readFile(path.join(__dirname, `../themes/${id}/${getPage[0]?.template_name}.json`), 'utf-8');
-    if(!sectionsFile) return next();
-    const parseSections = JSON.parse(sectionsFile);
+    const getPage = page_handle && theme?.pages?.filter(page => page.handle === page_handle);
+    const sectionsFile = getPage?.length && await fs.readFile(path.join(__dirname, `../themes/${id}/${getPage[0]?.template_name}.json`), 'utf-8');
+    const parseSections = sectionsFile && JSON.parse(sectionsFile);
     
-    if(Object.keys(templates).length > 0 && templates[page_handle] && templates[page_handle].sections && Object.keys(templates[page_handle].sections).length > 0){
-      Object.entries(templates[page_handle].sections).forEach(([key, val]) => {
+    if(Object.keys(templates).length > 0 && templates[page_handle] && templates[page_handle]?.sections && Object.keys(templates[page_handle]?.sections).length > 0){
+      Object.entries(templates[page_handle]?.sections).forEach(([key, val]) => {
           parseSections.sections[key] = val; 
       });
     }
