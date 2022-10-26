@@ -7,7 +7,7 @@
   }
 </style>
 
-<div class="template-404 py-pd-y-xs py-<%=section.settings.py_section_bg_color%>">  
+<div class="template-404 py-pd-y-xs py-<%=section.settings.py_section_bg_color%>" data-title="404 Page">  
   <% section?.block_order?.forEach((orderItem, index) => { %>
     <% let block = section?.blocks[orderItem] %>
     <% if(block.type === 'title'){ %>

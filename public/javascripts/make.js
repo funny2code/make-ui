@@ -1793,18 +1793,28 @@
       '<span class="py__save-figma-message">Please wait 1..4 minuts. We converting your site to figma design...</span>'
     );
 
-    // let currentUrl = location?.pathname + location?.search;
-    // let brandhref = encodeURI(
-    //   document.querySelector(".global-styles")?.getAttribute("href")
-    // );
-    // currentUrl !== brandhref
-    //   ? await changeViewPage(false, brandhref, false)
-    //   : null;
-    // currentUrl !== brandhref ? await timeout(4000) : null;
-    // await saveBrandForFigma();
-
     let selectPages = document.querySelector(".py__preview-pages-select");
-    // let pageName = selectPages.options[selectPages.selectedIndex].textContent.toLowerCase().trim().replaceAll(' ', '-');
+    let selectedPageUrl = selectPages.options[selectPages.selectedIndex].getAttribute("data-href");
+    let brandUrl = location?.pathname + "?settings=global-styles";
+    console.log(brandUrl, "BRAND URL");
+    await changeViewPage(false, brandUrl, false, false);
+    await timeout(2500);
+    await savePageResForFigma("Brand");
+    let url = "/figma/" + userID + "/" + themeID + "/brand";
+    let res = await fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(figmaContent),
+    });
+    let data = await res.text();
+    if (!data)
+      loading
+        ?.querySelector(".py__save-figma-message")
+        ?.innerHTML("WE HAVE ERROR! Please Try Again Few Minuts Late!");
+    figmaContent = [];
     let selectPagesOptions = selectPages.querySelectorAll("option");
     for (let option of selectPagesOptions) {
       let href = option.getAttribute("data-href");
@@ -1831,6 +1841,7 @@
           ?.innerHTML("WE HAVE ERROR! Please Try Again Few Minuts Late!");
       figmaContent = [];
     }
+    changeViewPage(false, selectedPageUrl, false, false);
     loading?.classList.remove("py__animate", "py__notopacity");
     loading?.querySelector(".py__save-figma-message")?.remove();
   };
@@ -1860,17 +1871,6 @@
     tablet.click();
     let res = await saveTabletForFigma(pagename);
     return res;
-  };
-
-  const saveBrandForFigma = async () => {
-    let iframe = document.querySelector(".py__view-iframe");
-    let iframeDocument =
-      iframe.contentDocument || iframe.contentWindow.document;
-    if (!iframeDocument) return;
-    let brandHtml = iframeDocument.getElementsByTagName("body")[0];
-    let data = await mapDOM(brandHtml, false);
-    if (data) data.name = "Brand";
-    figmaContent.push(data);
   };
 
   const saveTabletForFigma = async (pagename) => {
@@ -2458,7 +2458,7 @@
         iframe.setAttribute("data-src", newUrl);
       }
     }
-    await setColorToSettings();
+    // await setColorToSettings();
     await saveSettingsValues();
     await viewIframe(showLoading);
   };

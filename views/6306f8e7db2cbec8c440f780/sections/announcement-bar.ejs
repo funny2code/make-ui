@@ -19,7 +19,7 @@
 <% section?.block_order?.forEach((orderItem, index) => { %>
   <% let block = section?.blocks[orderItem] %>
   <% if(block.type === 'announcement'){ %>
-      <div class="announcement-bar center py-<%=d.page_x_pd%> py-<%=d.page_y_pd%> py-<%=d.br%>" role="region" aria-label="<%=sectionst.header.announcement%>">
+      <div class="announcement-bar center py-<%=d.page_x_pd%> py-<%=d.page_y_pd%> py-<%=d.br%>" role="region" aria-label="<%=sectionst.header.announcement%>" data-title="Announcement Bar">
      
         <% if(block?.settings?.text){ %>
           <% if(block?.settings?.link){ %>
