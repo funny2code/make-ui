@@ -1790,7 +1790,7 @@
     loading?.classList.add("py__animate", "py__notopacity");
     loading?.insertAdjacentHTML(
       "beforeend",
-      '<span class="py__save-figma-message">Please wait 1..4 minuts. We converting your site to figma design...</span>'
+      '<span class="py__save-figma-message">Please wait 3..5 minuts. We converting your site to figma design...</span>'
     );
 
     let selectPages = document.querySelector(".py__preview-pages-select");
@@ -1959,6 +1959,7 @@
       s.alignItems = o["alignItems"];
       s.textAlign = o["textAlign"];
       s.textDecoration = o["textDecorationLine"];
+      s.overflow = o["overflow"];
       let rect = element.getBoundingClientRect();
       s.x = rect.left;
       s.y = rect.top;
@@ -2011,11 +2012,13 @@
           element.attributes
         );
       figmaDataItem.title =
-        element.nodeName === "BODY"
+        (element.nodeName === "BODY")
           ? pagename
-          : figmaDataItem?.attributes?.class || figmaDataItem?.attributes?.id
-          ? figmaDataItem?.attributes?.class
-            ? figmaDataItem?.attributes.class
+          : (figmaDataItem?.attributes && figmaDataItem?.attributes['data-component']) 
+          ? figmaDataItem?.attributes['data-component']
+          : (figmaDataItem?.attributes?.class || figmaDataItem?.attributes?.id)
+          ? (figmaDataItem?.attributes?.class)
+          ? figmaDataItem?.attributes.class
                 ?.split(" ")[0]
                 .replaceAll("_", " ")
                 .replaceAll("-", " ")
@@ -2034,10 +2037,6 @@
       if (element.nodeName === "svg")
         return (figmaDataItem.svg = element.outerHTML);
       if (isChild) figmaDataItem.parent = isChild;
-      // if(element.nodeName === "IMG" && figmaDataItem?.attributes?.src){
-      //     let newBytes = await getBase64Image(figmaDataItem?.attributes?.src?.replace("http://", "https://"));
-      //     figmaDataItem.newBytes = newBytes;
-      // }
       figmaData.push(figmaDataItem);
       if (element?.childNodes?.length) {
         for (let i = 0; i < element?.childNodes?.length; i++) {

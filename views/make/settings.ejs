@@ -38,7 +38,7 @@
                 <input type="hidden" name="<%= global !== "section" ? global + "_" + item.id : item.id %>" value="<%=settings[item.id]%>">
             <% } %>
 
-            <% if(global === "settings" && (index + 1) === settings.length){ %>
+            <% if(global === "settings" && (index + 1) === schemaSettings.length){ %>
                     </div>
                 </div>
             <% } %>
