@@ -104,7 +104,7 @@
               <%= block?.settings?.image | image_url %> <%= block?.settings?.image.width %>w"
               sizes="100vw"
               src="<%= block?.settings?.image | image_url: width: 1500 %>"
-              loading="lazy"
+              
               alt="<%= block?.settings?.image.alt %>"
               width="<%= block?.settings?.image.width %>"
               height="<%= block?.settings?.image.width / block?.settings?.image.aspect_ratio | round %>"

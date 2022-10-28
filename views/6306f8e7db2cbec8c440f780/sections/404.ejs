@@ -7,7 +7,7 @@
   }
 </style>
 
-<div class="template-404 py-pd-y-xs py-<%=section.settings.py_section_bg_color%>" data-title="404 Page">  
+<div class="template-404 py-pd-y-xs py-<%=section.settings.py_section_bg_color%>">  
   <% section?.block_order?.forEach((orderItem, index) => { %>
     <% let block = section?.blocks[orderItem] %>
     <% if(block.type === 'title'){ %>
@@ -35,7 +35,7 @@
                   <% if(block?.settings?.image.width >= 2200){ %><%= block?.settings?.image %> 2200w,<% } %>"
                 sizes="(min-width: 1200px) 1100px, (min-width: 750px) calc(100vw - 10rem), 100vw"
                 src="<%= block?.settings?.image %>"
-                loading="lazy">
+                >
             </div>
           </div>
         <% } %>

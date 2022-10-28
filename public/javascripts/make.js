@@ -1947,8 +1947,7 @@
       s.borderWidth = o["borderWidth"];
       s.borderColor = o["borderColor"];
       s.textTransform = o["textTransform"];
-      s.transform =
-        o["transform"] !== "none"
+      s.transform = o["transform"] !== "none"
           ? await convertToAngle(o["transform"])
           : "none";
       s.borderStyle = o["borderStyle"];
@@ -1970,7 +1969,8 @@
       let css = getComputedStyle(element);
       let display = css.getPropertyValue("display");
       let visibility = css.getPropertyValue("visibility");
-      return display === "none" || visibility === "hidden" ? true : false;
+      let height = css.getPropertyValue("height");
+      return display === "none" || visibility === "hidden" || parseInt(height) === 0 ? true : false;
     };
 
     const getAttributes = async (element, attributes) => {

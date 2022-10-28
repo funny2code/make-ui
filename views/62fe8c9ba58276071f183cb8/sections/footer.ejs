@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/<%=srcId%>/component-rte.css">
 <link rel="stylesheet" href="/<%=srcId%>/disclosure.css">
 
-<footer class="footer py-<%= section.settings.py_section_bg_color %> py-<%= section.settings.py_section_color %>">
+<footer class="footer py-<%= section.settings.py_section_bg_color %> py-<%= section.settings.py_section_color %>" data-component="<%=compName%>">
   <% if(section?.block_order?.length > 0 || section.settings.newsletter_enable || section.settings.show_social){ %>
     <div class="footer__content-top page-width bc-<%=settings.section_style%>-bt">
       <% if(section?.block_order?.length > 0){ %>

@@ -466,7 +466,7 @@
   </symbol>
 </svg>
 
-<sticky-header id="shopify-section-header" class="header-wrapper py-<%=section.settings.br%> header-position-<%=section.settings.header_position%> ">
+<sticky-header id="shopify-section-header" class="header-wrapper py-<%=section.settings.br%> header-position-<%=section.settings.header_position%> " data-component="<%=compName%>">
   <header class="header header--<%= section.settings.logo_position %> search-<%=section.settings.search_style%> page-width <% if(section.settings.menu){ %> header--has-menu<% } %> py-<%=section.settings.page_width%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%>">
     <% if(section.settings.menu){ %>
       <header-drawer>
@@ -776,7 +776,7 @@
             <% var image_size = section.settings.logo_width + 'x' %>
                <img srcset="<%= section.settings.logo %> 1x, <%= section.settings.logo %> 2x"
                     src="<%= section.settings.logo %>"
-                    loading="lazy"
+                    
                     class="header__heading-logo"
                     width="<%= section.settings.logo.width %>"
                     height="<%= section.settings.logo.height %>"
@@ -1060,8 +1060,7 @@
     </div>
   </header>
 </sticky-header>
-
-</div>        
+       
 <div id="shopify-section-cart-template" class="shopify-section">
   <% if(settings.cart_style === 'style-4'){ %>
     <%- include('../snippets/cart-notification-4', {
@@ -1086,8 +1085,7 @@
       enable_dynamic_pay: settings.enable_dynamic_pay
     }) %>
   <% }%>
-</div>  
-</div>      
+</div>       
 <script>
   class StickyHeader extends HTMLElement {
     constructor() {

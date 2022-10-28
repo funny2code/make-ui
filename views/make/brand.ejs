@@ -1,56 +1,58 @@
 <div class="py__brand">
     <div class="py__brand-bg-colors-wrapper">
         <div class="py__brand-bg-colors-item">
-            <div <% if(settings.py_bg_color_dark){ %>style="background-color: <%= settings.py_bg_color_dark %>;"<% } %>>
+            <div <% if(settings.py_bg_color_dark){ %>style="background-color: <%= settings.py_bg_color_dark %>;"<% } %> data-style-name="Background Dark" data-style-type="paint">
                 &nbsp;
             </div>
             <span>Background Dark</span>
         </div>
         <div class="py__brand-bg-colors-item">
-            <div <% if(settings.py_bg_color_middle_dark){ %>style="background-color: <%= settings.py_bg_color_middle_dark %>;"<% } %>>
+            <div <% if(settings.py_bg_color_middle_dark){ %>style="background-color: <%= settings.py_bg_color_middle_dark %>;"<% } %> data-style-name="Background Middle Dark" data-style-type="paint">
                 &nbsp;
             </div>
             <span>Background Middle Dark</span>
         </div>
         <div class="py__brand-bg-colors-item">
-            <div <% if(settings.py_bg_color_average){ %>style="background-color: <%= settings.py_bg_color_average %>;"<% } %>>
+            <div <% if(settings.py_bg_color_average){ %>style="background-color: <%= settings.py_bg_color_average %>;"<% } %> data-style-name="Background Average" data-style-type="paint">
                 &nbsp;
             </div>
             <span>Background Avearge</span>
         </div>
         <div class="py__brand-bg-colors-item">
-            <div <% if(settings.py_bg_color_middle_light){ %>style="background-color: <%= settings.py_bg_color_middle_light %>;"<% } %>>
+            <div <% if(settings.py_bg_color_middle_light){ %>style="background-color: <%= settings.py_bg_color_middle_light %>;"<% } %> data-style-name="Background Middle Light" data-style-type="paint">
                 &nbsp;
             </div>
             <span>Background Middle Light</span>
         </div>
         <div class="py__brand-bg-colors-item">
-            <div <% if(settings.py_bg_color_light){ %>style="background-color: <%= settings.py_bg_color_light %>;"<% } %>>
+            <div <% if(settings.py_bg_color_light){ %>style="background-color: <%= settings.py_bg_color_light %>;"<% } %> data-style-name="Background Light" data-style-type="paint">
                 &nbsp;
             </div>
             <span>Background Light</span>
         </div>
-        <div class="py__brand-color-item" <% if(settings.py_color_dark){ %>style="color:<%=settings.py_color_dark%>;"<% } %>>Label Dark</div>
-        <div class="py__brand-color-item" <% if(settings.py_color_average){ %>style="color:<%=settings.py_color_average%>;"<% } %>>Label Average</div>
-        <div class="py__brand-color-item" <% if(settings.py_color_light){ %>style="color:<%=settings.py_color_light%>;"<% } %>>Label Light</div>
+        <div class="py__brand-color-item" <% if(settings.py_color_dark){ %>style="color:<%=settings.py_color_dark%>;"<% } %> data-style-name="Text Dark" data-style-type="paint">Label Dark</div>
+        <div class="py__brand-color-item" <% if(settings.py_color_middle_dark){ %>style="color:<%=settings.py_color_middle_dark%>;"<% } %> data-style-name="Text Middle Dark" data-style-type="paint">Label Middle Dark</div>
+        <div class="py__brand-color-item" <% if(settings.py_color_average){ %>style="color:<%=settings.py_color_average%>;"<% } %> data-style-name="Text Average" data-style-type="paint">Label Average</div>
+        <div class="py__brand-color-item" <% if(settings.py_color_middle_light){ %>style="color:<%=settings.py_color_middle_light%>;"<% } %> data-style-name="Text Middle Light" data-style-type="paint">Label Middle Light</div>
+        <div class="py__brand-color-item" <% if(settings.py_color_light){ %>style="color:<%=settings.py_color_light%>;"<% } %> data-style-name="Text Light" data-style-type="paint">Label Light</div>
     </div>
     <div class="py__brand-items">
         <div class="py__fonts-headings">
             <div class="py__fonts-header">
                 <h2 class="py__fonts-header-title">Fonts</h2>
             </div>
-            <h1>Heading 1</h1>
-            <h2>Heading 2</h2>
-            <h3>Heading 3</h3>
-            <h4>Heading 4</h4>
-            <h5>Heading 5</h5>
-            <h6>Heading 6</h6>
+            <h1 data-style-name="H1" data-style-type="text">Heading 1</h1>
+            <h2 data-style-name="H2" data-style-type="text">Heading 2</h2>
+            <h3 data-style-name="H3" data-style-type="text">Heading 3</h3>
+            <h4 data-style-name="H4" data-style-type="text">Heading 4</h4>
+            <h5 data-style-name="H5" data-style-type="text">Heading 5</h5>
+            <h6 data-style-name="H6" data-style-type="text">Heading 6</h6>
         </div>
         <div class="py__fonts-paragraph">
             <div class="py__fonts-header">
                 <h2 class="py__fonts-header-title">Paragraph</h2>
             </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            <p data-style-name="Paragraph" data-style-type="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                 industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
                 scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
                 electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of

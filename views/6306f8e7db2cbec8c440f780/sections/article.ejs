@@ -11,7 +11,7 @@
   }
   }
 </style>
-<div class="py-<%=section.settings.py_section_bg_color%>" data-title="Article">
+<div class="py-<%=section.settings.py_section_bg_color%>">
 <article class=" py-<%=section.settings.page_y_pd%> article-template <% if(section.settings.layout === 'horizontal'){ %> py-<%=section.settings.page_width%><% } %>" itemscope itemtype="http://schema.org/BlogPosting">
 <div class="main-content-container py-<%=section.settings.layout%>">
   <% section?.block_order?.forEach((orderItem, index) => { %>
@@ -58,7 +58,7 @@
                   <% if(article.image.width >= 2200){ %><%= article.image.src %> 2200w,<% } %>"
                 sizes="(min-width: 1200px) 1100px, (min-width: 750px) calc(100vw - 10rem), 100vw"
                 src="<%= article.image.src %>"
-                loading="lazy"
+                
                 width="<%= article.image.width %>"
                 height="<%= article.image.height %>"
                 alt="<%= article.image.alt %>">

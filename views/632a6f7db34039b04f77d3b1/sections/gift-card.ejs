@@ -63,9 +63,9 @@
     <main class="gift-card">
       <div class="gift-card__image-wrapper">
         <% if(section.settings.gift_image){ %>
-        <img src="<%= section.settings.gift_image %>" alt="" class="gift-card__image" height="<%= 570 / 1.5 %>" width="570" loading="lazy">
+        <img src="<%= section.settings.gift_image %>" alt="" class="gift-card__image" height="<%= 570 / 1.5 %>" width="570" >
         <% } else { %>
-        <!-- <img src="<%#gift-card/card.svg %>" alt="" class="gift-card__image" height="<%# 570 / 1.5 %>" width="570" loading="lazy"> -->
+        <!-- <img src="<%#gift-card/card.svg %>" alt="" class="gift-card__image" height="<%# 570 / 1.5 %>" width="570" > -->
         <% } %>
       </div>
       <div class="gift-card__qr-code" data-identifier="<%= gift_card?.qr_identifier %>"></div>
@@ -88,7 +88,7 @@
         </div>
         <% if(gift_card?.pass_url){ %>
           <a href="<%= gift_card?.pass_url %>" class="gift_card__apple-wallet">
-            <!-- <img src="<%#gift-card/add-to-apple-wallet.svg %>" width="120" height="40" alt="<%#gift_cards.issued.add_to_apple_wallet%>" loading="lazy"> -->
+            <!-- <img src="<%#gift-card/add-to-apple-wallet.svg %>" width="120" height="40" alt="<%#gift_cards.issued.add_to_apple_wallet%>" > -->
           </a>
         <% } %>
         <div class="gift-card__buttons no-print">

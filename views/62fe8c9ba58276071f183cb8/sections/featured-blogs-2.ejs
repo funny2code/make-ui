@@ -68,34 +68,34 @@
   }
 </style>
 
-  <div class="featured-blogs-2 featured-blogs-2-<%=section.id%> py-<%=section.settings.py_section_bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%>  bc-<%=settings.section_style%>-bt">
-    <div class="page-width py-<%=section.settings.page_width%> py-<%=section.settings.page_y_mg%> py-<%=section.settings.page_y_mg%>">
-      <div class="featured-blogs-wraper">
-        <div class="feature-article">
-          <h1 class="title--primary"><%= section.settings.title %></h1>
-          <div class="blog-articles__article article ">
-              <%- include('../snippets/article-card', {
-                article: blog.articles[0], 
-                show_image: true
-              }) %>
-          </div>
+<div class="featured-blogs-2 featured-blogs-2-<%=section.id%> py-<%=section.settings.py_section_bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%>  bc-<%=settings.section_style%>-bt">
+  <div class="page-width py-<%=section.settings.page_width%> py-<%=section.settings.page_y_mg%> py-<%=section.settings.page_y_mg%>">
+    <div class="featured-blogs-wraper">
+      <div class="feature-article">
+        <h1 class="title--primary"><%= section.settings.title %></h1>
+        <div class="blog-articles__article article ">
+            <%- include('../snippets/article-card', {
+              article: blog.articles[0], 
+              show_image: true
+            }) %>
         </div>
-        <div class="list-blog-articles">  
-          <h1 class="title--second"><%= section.settings.sub_title %></h1>      
-          <% blog.articles?.forEach((article,index)=>{ %>
-            <% if(index < 4){ %>
-              <% if(index > 1){ %>            
-              <div class="blog-articles__article article ">
-                  <%- include('../snippets/article-card', {
-                    article: article, 
-                    show_image: false
-                  }) %>
-              </div>            
-              <% } %>
-            <% } %>     
-          <% }) %> 
-          <a href="" class="py-c-<%=section.settings.py_section_color_view_btn%> py-hv-c-<%=section.settings.py_section_color_view_btn_hover%> py-bg-c-<%=section.settings.py_section_bg_color_view_btn%> py-hv-bg-c-<%=section.settings.py_section_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>" >View all articles</a>        
-        </div>
+      </div>
+      <div class="list-blog-articles">  
+        <h1 class="title--second"><%= section.settings.sub_title %></h1>      
+        <% blog.articles?.forEach((article,index)=>{ %>
+          <% if(index < 4){ %>
+            <% if(index > 1){ %>            
+            <div class="blog-articles__article article ">
+                <%- include('../snippets/article-card', {
+                  article: article, 
+                  show_image: false
+                }) %>
+            </div>            
+            <% } %>
+          <% } %>     
+        <% }) %> 
+        <a href="" class="py-c-<%=section.settings.py_section_color_view_btn%> py-hv-c-<%=section.settings.py_section_color_view_btn_hover%> py-bg-c-<%=section.settings.py_section_bg_color_view_btn%> py-hv-bg-c-<%=section.settings.py_section_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>" >View all articles</a>        
       </div>
     </div>
   </div>
+</div>

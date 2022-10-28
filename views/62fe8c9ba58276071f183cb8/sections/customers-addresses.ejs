@@ -321,10 +321,10 @@
   </div>
 <%# endpaginate){ %>
 </div>
-  <script>
-    document.querySelectorAll('.edit_panel_overlay').forEach(element => {
-      element.addEventListener('click', function(event){
-        this.previousElementSibling.querySelector('.cancel_submit').click();
-      });
+<script>
+  document.querySelectorAll('.edit_panel_overlay').forEach(element => {
+    element.addEventListener('click', function(event){
+      this.previousElementSibling.querySelector('.cancel_submit').click();
     });
-  </script>  
+  });
+</script>  
