@@ -2043,7 +2043,8 @@
         if (isChild) figmaDataItem.parent = isChild;
         if (element.nodeName === "svg")  figmaDataItem.svg = element.outerHTML;
         figmaData.push(figmaDataItem);
-        if (element.nodeName === "svg") return;
+        if(isComponent) figmaDataItem?.attributes['data-component'] = isComponent;
+        if(element.nodeName === "svg") return;
         if(isComponent && components[isComponent]) return;
         if(isComponent) components[isComponent] = true;
       if (element?.childNodes?.length) {
