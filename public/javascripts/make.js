@@ -2017,7 +2017,7 @@
         );
       figmaDataItem.title =
         (element.nodeName === "BODY")
-          ? pagename
+          ? pagename + pageSuffix
           : (figmaDataItem?.attributes && figmaDataItem?.attributes['data-component']) 
           ? figmaDataItem?.attributes['data-component'] + " " + pageSuffix
           : (figmaDataItem?.attributes?.class || figmaDataItem?.attributes?.id)
@@ -2038,10 +2038,10 @@
           : "no name " + figmaItemIndex;
           figmaItemIndex++;
         figmaDataItem.css = await dumpCSSText(element);
-      if (element.nodeName === "svg")
-        return (figmaDataItem.svg = element.outerHTML);
-      if (isChild) figmaDataItem.parent = isChild;
-      figmaData.push(figmaDataItem);
+        if (isChild) figmaDataItem.parent = isChild;
+        if (element.nodeName === "svg")  figmaDataItem.svg = element.outerHTML;
+        figmaData.push(figmaDataItem);
+        if (element.nodeName === "svg") return;
       if (element?.childNodes?.length) {
         for (let i = 0; i < element?.childNodes?.length; i++) {
           let figmaChildItem = element?.childNodes[i];
