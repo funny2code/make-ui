@@ -2056,10 +2056,12 @@
               });
           } else {
             console.log(components);
-            if((figmaDataItem?.attributes && figmaDataItem?.attributes['data-component'])) figmaDataItem.attributes['data-component'] =  figmaDataItem.attributes['data-component'] + " " + pageSuffix;
-            if((figmaDataItem?.attributes && figmaDataItem?.attributes['data-component']) && components[figmaDataItem.title]) return
-            if((figmaDataItem?.attributes && figmaDataItem?.attributes['data-component'])) components[figmaDataItem.title] = true;
-            await treeHTML(figmaChildItem, figmaDataItem.title);
+            if(figmaDataItem?.attributes && figmaDataItem?.attributes['data-component'] && components[figmaDataItem.title]){
+            } else {
+              if((figmaDataItem?.attributes && figmaDataItem?.attributes['data-component'])) figmaDataItem.attributes['data-component'] =  figmaDataItem.attributes['data-component'] + " " + pageSuffix;
+              if((figmaDataItem?.attributes && figmaDataItem?.attributes['data-component'])) components[figmaDataItem.title] = true;
+              await treeHTML(figmaChildItem, figmaDataItem.title);
+            }
           }
         }
       }
