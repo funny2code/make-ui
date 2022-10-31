@@ -1796,7 +1796,6 @@
     let selectPages = document.querySelector(".py__preview-pages-select");
     let selectedPageUrl = selectPages.options[selectPages.selectedIndex].getAttribute("data-href");
     let brandUrl = location?.pathname + "?settings=global-styles";
-    console.log(brandUrl, "BRAND URL");
     await changeViewPage(false, brandUrl, false, false);
     await timeout(2500);
     await savePageResForFigma("Brand");
@@ -1814,6 +1813,7 @@
       loading
         ?.querySelector(".py__save-figma-message")
         ?.innerHTML("WE HAVE ERROR! Please Try Again Few Minuts Late!");
+        // console.log(figmaContent, "BRAND");
     figmaContent = [];
     let selectPagesOptions = selectPages.querySelectorAll("option");
     for (let option of selectPagesOptions) {
@@ -1839,6 +1839,7 @@
         loading
           ?.querySelector(".py__save-figma-message")
           ?.innerHTML("WE HAVE ERROR! Please Try Again Few Minuts Late!");
+          // console.log(figmaContent, "ARRAY LANGTH");
       figmaContent = [];
     }
     changeViewPage(false, selectedPageUrl, false, false);
@@ -2015,11 +2016,12 @@
           element,
           element.attributes
         );
+      let isComponent = (figmaDataItem?.attributes && figmaDataItem?.attributes['data-component']) ? figmaDataItem?.attributes['data-component'] + " " + pageSuffix : null;
       figmaDataItem.title =
         (element.nodeName === "BODY")
           ? pagename + " " + pageSuffix
-          : (figmaDataItem?.attributes && figmaDataItem?.attributes['data-component']) 
-          ? figmaDataItem?.attributes['data-component'] + " " + pageSuffix
+          : (isComponent) 
+          ? isComponent
           : (figmaDataItem?.attributes?.class || figmaDataItem?.attributes?.id)
           ? (figmaDataItem?.attributes?.class)
           ? figmaDataItem?.attributes.class
@@ -2042,6 +2044,8 @@
         if (element.nodeName === "svg")  figmaDataItem.svg = element.outerHTML;
         figmaData.push(figmaDataItem);
         if (element.nodeName === "svg") return;
+        if(isComponent && components[isComponent]) return;
+        if(isComponent) components[isComponent] = true;
       if (element?.childNodes?.length) {
         for (let i = 0; i < element?.childNodes?.length; i++) {
           let figmaChildItem = element?.childNodes[i];
@@ -2055,13 +2059,7 @@
                 parent: figmaDataItem.title,
               });
           } else {
-            console.log(components);
-            if(figmaDataItem?.attributes && figmaDataItem?.attributes['data-component'] && components[figmaDataItem.title]){
-            } else {
-              if((figmaDataItem?.attributes && figmaDataItem?.attributes['data-component'])) figmaDataItem.attributes['data-component'] =  figmaDataItem.attributes['data-component'] + " " + pageSuffix;
-              if((figmaDataItem?.attributes && figmaDataItem?.attributes['data-component'])) components[figmaDataItem.title] = true;
-              await treeHTML(figmaChildItem, figmaDataItem.title);
-            }
+            await treeHTML(figmaChildItem, figmaDataItem.title);
           }
         }
       }
