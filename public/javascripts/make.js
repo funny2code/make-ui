@@ -2017,7 +2017,7 @@
         );
       figmaDataItem.title =
         (element.nodeName === "BODY")
-          ? pagename + pageSuffix
+          ? pagename + " " + pageSuffix
           : (figmaDataItem?.attributes && figmaDataItem?.attributes['data-component']) 
           ? figmaDataItem?.attributes['data-component'] + " " + pageSuffix
           : (figmaDataItem?.attributes?.class || figmaDataItem?.attributes?.id)
