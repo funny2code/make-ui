@@ -1864,7 +1864,8 @@
     let data = await mapDOM(
       iframeDocument.getElementsByTagName("body")[0],
       false,
-      pagename + " Desktop"
+      pagename,
+      "Desktop"
     );
     figmaContent.push(data);
     let tablet = document.querySelector('.py__button-view[data-type="tablet"]');
@@ -1882,7 +1883,8 @@
     let data = await mapDOM(
       iframeDocument.getElementsByTagName("body")[0],
       false,
-      pagename + " Tablet"
+      pagename,
+      "Tablet"
     );
     figmaContent.push(data);
     let mobile = document.querySelector('.py__button-view[data-type="mobile"]');
@@ -1900,7 +1902,8 @@
     let data = await mapDOM(
       iframeDocument.getElementsByTagName("body")[0],
       false,
-      pagename + " Mobile"
+      pagename,
+      "Mobile"
     );
     figmaContent.push(data);
     let desktop = document.querySelector(
@@ -1912,7 +1915,8 @@
 
   // FIGMA HTML TO JSON
   let figmaItemIndex = 1;
-  const mapDOM = async (element, json, pagename) => {
+  let components = {};
+  const mapDOM = async (element, json, pagename, pageSuffix) => {
     let figmaData = [];
 
     if (typeof element === "string") {
@@ -2015,7 +2019,7 @@
         (element.nodeName === "BODY")
           ? pagename
           : (figmaDataItem?.attributes && figmaDataItem?.attributes['data-component']) 
-          ? figmaDataItem?.attributes['data-component']
+          ? figmaDataItem?.attributes['data-component'] + " " + pageSuffix
           : (figmaDataItem?.attributes?.class || figmaDataItem?.attributes?.id)
           ? (figmaDataItem?.attributes?.class)
           ? figmaDataItem?.attributes.class
@@ -2032,8 +2036,8 @@
               " " +
               figmaItemIndex
           : "no name " + figmaItemIndex;
-      figmaItemIndex++;
-      figmaDataItem.css = await dumpCSSText(element);
+          figmaItemIndex++;
+        figmaDataItem.css = await dumpCSSText(element);
       if (element.nodeName === "svg")
         return (figmaDataItem.svg = element.outerHTML);
       if (isChild) figmaDataItem.parent = isChild;
@@ -2051,6 +2055,9 @@
                 parent: figmaDataItem.title,
               });
           } else {
+            console.log(components);
+            if((figmaDataItem?.attributes && figmaDataItem?.attributes['data-component']) && components[figmaDataItem.title]) return
+            if((figmaDataItem?.attributes && figmaDataItem?.attributes['data-component'])) components[figmaDataItem.title] = true;
             await treeHTML(figmaChildItem, figmaDataItem.title);
           }
         }
