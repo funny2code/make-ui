@@ -63,7 +63,7 @@
                                 <div class="py__random-settings-wrap py__settings-section-item">
                                     <% comp.settings.forEach((item, index) => { %>
                                         <% if(item.type === "textarea" && item.label === "Custom Font"){ %>
-                                            <% if(item?.id?.includes('heading') || item?.id?.includes('title') || item?.id?.includes('sub_title') || item?.id?.includes('body')){ %>
+                                            <%# if(item?.id?.includes('heading') || item?.id?.includes('title') || item?.id?.includes('sub_title') || item?.id?.includes('body')){ %>
                                                 <div class="py__random-comp py__random-comp-select">
                                                     <label for="settings-<%=item.id%>"><%=item.label%></label>
                                                     <select name="<%=item.id %>" id="settings-<%=item.id%>"type="select">
@@ -74,7 +74,7 @@
                                                         <% }) %>
                                                     </select>
                                                 </div>
-                                            <% } %>
+                                            <%# } %>
                                         <% } %>
                                     <% }) %>
                                 </div>
