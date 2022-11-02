@@ -1869,6 +1869,7 @@
       "Desktop"
     );
     figmaContent.push(data);
+    if(pageName === "Brand") return;
     let tablet = document.querySelector('.py__button-view[data-type="tablet"]');
     tablet.click();
     let res = await saveTabletForFigma(pagename);
@@ -2058,6 +2059,7 @@
                 css: figmaDataItem.css,
                 attrinutes: figmaChildItem?.attributes,
                 parent: figmaDataItem.title,
+                tag: figmaDataItem?.nodeName
               });
           } else {
             await treeHTML(figmaChildItem, figmaDataItem.title);
