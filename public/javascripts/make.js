@@ -1858,7 +1858,6 @@
 
   const saveDesktopForFigma = async (pagename) => {
     let iframe = document.querySelector(".py__view-iframe");
-    let pageName = iframe.getAttribute("data-page-name");
     let iframeDocument =
       iframe.contentDocument || iframe.contentWindow.document;
     if (!iframeDocument) return;
@@ -1869,7 +1868,7 @@
       "Desktop"
     );
     figmaContent.push(data);
-    if(pageName === "Brand") return;
+    if(pagename === "Brand") return;
     let tablet = document.querySelector('.py__button-view[data-type="tablet"]');
     tablet.click();
     let res = await saveTabletForFigma(pagename);
@@ -1878,7 +1877,6 @@
 
   const saveTabletForFigma = async (pagename) => {
     let iframe = document.querySelector(".py__view-iframe");
-    let pageName = iframe.getAttribute("data-page-name");
     let iframeDocument =
       iframe.contentDocument || iframe.contentWindow.document;
     if (!iframeDocument) return;
@@ -1897,7 +1895,6 @@
 
   const saveMobileForFigma = async (pagename) => {
     let iframe = document.querySelector(".py__view-iframe");
-    let pageName = iframe.getAttribute("data-page-name");
     let iframeDocument =
       iframe.contentDocument || iframe.contentWindow.document;
     if (!iframeDocument) return;
