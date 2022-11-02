@@ -2059,7 +2059,7 @@
                 css: figmaDataItem.css,
                 attrinutes: figmaChildItem?.attributes,
                 parent: figmaDataItem.title,
-                tag: figmaDataItem?.nodeName
+                tag: element.nodeName
               });
           } else {
             await treeHTML(figmaChildItem, figmaDataItem.title);
