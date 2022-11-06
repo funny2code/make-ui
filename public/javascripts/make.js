@@ -2013,7 +2013,7 @@
           element,
           element.attributes
         );
-      if(element.nodeName === "BODY" || element.nodeName === "SECTION" || element.nodeName === "IMG" || element.nodeName === "svg" || figmaDataItem.css.display === "flex" || figmaDataItem.css.backgroundColor.replaceAll(' ', '') !== "rgba(0, 0, 0, 0)"){
+      if(element.nodeName === "BODY" || element.nodeName === "BUTTON" || element.nodeName === "INPUT" || element.nodeName === "SECTION" || element.nodeName === "IMG" || element.nodeName === "svg" || figmaDataItem.css.display === "flex" || figmaDataItem.css.backgroundColor.replaceAll(' ', '') !== "rgba(0, 0, 0, 0)"){
         figmaDataItem.type =
           element.nodeName === "svg" ||
           element.nodeName === "IMG" ||
