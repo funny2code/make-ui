@@ -1915,6 +1915,7 @@
   // FIGMA HTML TO JSON
   let figmaItemIndex = 1;
   let components = {};
+  let perentTitle = null;
   const mapDOM = async (element, json, pagename, pageSuffix) => {
     let figmaData = [];
 
@@ -1958,7 +1959,10 @@
       s.borderBottomRightRadius = o["borderBottomRightRadius"];
       s.borderTopLeftRadius = o["borderTopLeftRadius"];
       s.borderTopRightRadius = o["borderTopRightRadius"];
+      s.display = o["display"];
+      s.direction = o["flexDirection"];
       s.justifyContent = o["justifyContent"];
+      s.gap = o["gap"];
       s.alignItems = o["alignItems"];
       s.textAlign = o["textAlign"];
       s.textDecoration = o["textDecorationLine"];
@@ -2000,51 +2004,54 @@
         (element && element.nodeType === 8) ||
         (await checkElementHide(element)) ||
         element?.classList?.contains("visually-hidden")
-      )
+        )
         return;
-      let figmaDataItem = {};
-      figmaDataItem.type =
-        element.nodeName === "svg" ||
-        element.nodeName === "IMG" ||
-        element.nodeName === "BODY"
-          ? element.nodeName
-          : "FRAME";
-      if (element?.attributes?.length)
+        let figmaDataItem = {};
+        figmaDataItem.css = await dumpCSSText(element);
+        if (element?.attributes?.length)
         figmaDataItem.attributes = await getAttributes(
           element,
           element.attributes
         );
-      let isComponent = (figmaDataItem?.attributes && figmaDataItem?.attributes['data-component']) ? figmaDataItem?.attributes['data-component'] + " " + pageSuffix : null;
-      figmaDataItem.title =
-        (element.nodeName === "BODY")
-          ? pagename + " " + pageSuffix
-          : (isComponent) 
-          ? isComponent
-          : (figmaDataItem?.attributes?.class || figmaDataItem?.attributes?.id)
-          ? (figmaDataItem?.attributes?.class)
-          ? figmaDataItem?.attributes.class
-                ?.split(" ")[0]
-                .replaceAll("_", " ")
-                .replaceAll("-", " ")
-                .replaceAll("__", " ") +
-              " " +
-              figmaItemIndex
-            : figmaDataItem?.attributes?.id
-                .replaceAll("_", " ")
-                .replaceAll("-", " ")
-                .replaceAll("__", " ") +
-              " " +
-              figmaItemIndex
-          : "no name " + figmaItemIndex;
-          figmaItemIndex++;
-        figmaDataItem.css = await dumpCSSText(element);
-        if (isChild) figmaDataItem.parent = isChild;
-        if (element.nodeName === "svg")  figmaDataItem.svg = element.outerHTML;
-        figmaData.push(figmaDataItem);
-        if(isComponent) figmaDataItem.attributes['data-component'] = isComponent;
-        if(element.nodeName === "svg") return;
-        if(isComponent && components[isComponent]) return;
-        if(isComponent) components[isComponent] = true;
+      if(element.nodeName === "BODY" || element.nodeName === "SECTION" || element.nodeName === "IMG" || element.nodeName === "svg" || figmaDataItem.css.display === "flex" || figmaDataItem.css.backgroundColor.replaceAll(' ', '') !== "rgba(0, 0, 0, 0)"){
+        figmaDataItem.type =
+          element.nodeName === "svg" ||
+          element.nodeName === "IMG" ||
+          element.nodeName === "BODY"
+            ? element.nodeName
+            : "FRAME";
+        let isComponent = (figmaDataItem?.attributes && figmaDataItem?.attributes['data-component']) ? figmaDataItem?.attributes['data-component'] + " " + pageSuffix : null;
+        perentTitle =
+          (element.nodeName === "BODY")
+            ? pagename + " " + pageSuffix
+            : (isComponent) 
+            ? isComponent
+            : (figmaDataItem?.attributes?.class || figmaDataItem?.attributes?.id)
+            ? (figmaDataItem?.attributes?.class)
+            ? figmaDataItem?.attributes.class
+                  ?.split(" ")[0]
+                  .replaceAll("_", " ")
+                  .replaceAll("-", " ")
+                  .replaceAll("__", " ") +
+                " " +
+                figmaItemIndex
+              : figmaDataItem?.attributes?.id
+                  .replaceAll("_", " ")
+                  .replaceAll("-", " ")
+                  .replaceAll("__", " ") +
+                " " +
+                figmaItemIndex
+            : "no name " + figmaItemIndex;
+            figmaDataItem.title = perentTitle;
+            figmaItemIndex++;
+          if (isChild) figmaDataItem.parent = isChild;
+          if (element.nodeName === "svg")  figmaDataItem.svg = element.outerHTML;
+          figmaData.push(figmaDataItem);
+          if(isComponent) figmaDataItem.attributes['data-component'] = isComponent;
+          if(element.nodeName === "svg") return;
+          if(isComponent && components[isComponent]) return;
+          if(isComponent) components[isComponent] = true;
+      }
       if (element?.childNodes?.length) {
         for (let i = 0; i < element?.childNodes?.length; i++) {
           let figmaChildItem = element?.childNodes[i];
@@ -2055,11 +2062,11 @@
                 text: figmaChildItem.nodeValue.trim(),
                 css: figmaDataItem.css,
                 attrinutes: figmaChildItem?.attributes,
-                parent: figmaDataItem.title,
+                parent: perentTitle,
                 tag: element.nodeName
               });
           } else {
-            await treeHTML(figmaChildItem, figmaDataItem.title);
+            await treeHTML(figmaChildItem, perentTitle);
           }
         }
       }
