@@ -1993,6 +1993,7 @@
 
     //Recursively loop through DOM elements and assign properties to object
     const treeHTML = async (element, isChild = false) => {
+      let isComponent = null;
       if (
         element.nodeName === "STYLE" ||
         element.nodeName === "LINK" ||
@@ -2013,15 +2014,15 @@
           element,
           element.attributes
         );
-      if(element.nodeName === "BODY" || element.nodeName === "BUTTON" || element.nodeName === "INPUT" || element.nodeName === "SECTION" || element.nodeName === "IMG" || element.nodeName === "svg" || figmaDataItem.css.display === "flex" || figmaDataItem.css.backgroundColor.replaceAll(' ', '') !== "rgba(0, 0, 0, 0)"){
+      if(element.nodeName === "BODY" || element.nodeName === "BUTTON" || element.nodeName === "INPUT" || element.nodeName === "SECTION" || element.nodeName === "IMG" || element.nodeName === "svg" || figmaDataItem.css.display === "flex" || figmaDataItem.css.backgroundColor !== "rgba(0, 0, 0, 0)"){
         figmaDataItem.type =
           element.nodeName === "svg" ||
           element.nodeName === "IMG" ||
           element.nodeName === "BODY"
             ? element.nodeName
             : "FRAME";
-        let isComponent = (figmaDataItem?.attributes && figmaDataItem?.attributes['data-component']) ? figmaDataItem?.attributes['data-component'] + " " + pageSuffix : null;
-        perentTitle =
+          isComponent = (figmaDataItem?.attributes && figmaDataItem?.attributes['data-component']) ? figmaDataItem?.attributes['data-component'] + " " + pageSuffix : null;
+          perentTitle =
           (element.nodeName === "BODY")
             ? pagename + " " + pageSuffix
             : (isComponent) 
@@ -2043,7 +2044,7 @@
                 figmaItemIndex
             : "no name " + figmaItemIndex;
             figmaDataItem.title = perentTitle;
-            figmaItemIndex++;
+          figmaItemIndex++;
           if (isChild) figmaDataItem.parent = isChild;
           if (element.nodeName === "svg")  figmaDataItem.svg = element.outerHTML;
           figmaData.push(figmaDataItem);
@@ -2066,6 +2067,28 @@
                 tag: element.nodeName
               });
           } else {
+            perentTitle =
+            (element.nodeName === "BODY")
+            ? pagename + " " + pageSuffix
+            : (isComponent) 
+            ? isComponent
+            : (figmaDataItem?.attributes?.class || figmaDataItem?.attributes?.id)
+            ? (figmaDataItem?.attributes?.class)
+            ? figmaDataItem?.attributes.class
+                  ?.split(" ")[0]
+                  .replaceAll("_", " ")
+                  .replaceAll("-", " ")
+                  .replaceAll("__", " ") +
+                " " +
+                figmaItemIndex
+              : figmaDataItem?.attributes?.id
+                  .replaceAll("_", " ")
+                  .replaceAll("-", " ")
+                  .replaceAll("__", " ") +
+                " " +
+                figmaItemIndex
+            : "no name " + figmaItemIndex;
+            figmaDataItem.title = perentTitle;
             await treeHTML(figmaChildItem, perentTitle);
           }
         }
