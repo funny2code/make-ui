@@ -1914,7 +1914,7 @@
 
   // FIGMA HTML TO JSON
   let components = {};
-  let perentTitle = null;
+  let figmaItemIndex = 1;
   const mapDOM = async (element, json, pagename, pageSuffix) => {
     let figmaData = [];
 
@@ -1991,7 +1991,7 @@
     };
 
     //Recursively loop through DOM elements and assign properties to object
-    const treeHTML = async (element, isChild = false, figmaItemIndex=1) => {
+    const treeHTML = async (element, isChild = false) => {
       if (
         element.nodeName === "STYLE" ||
         element.nodeName === "LINK" ||
@@ -2013,8 +2013,7 @@
           element.attributes
         );
         let isComponent = (figmaDataItem?.attributes && figmaDataItem?.attributes['data-component']) ? figmaDataItem?.attributes['data-component'] + " " + pageSuffix : null;
-        perentTitle =
-        (element.nodeName === "BODY")
+        figmaDataItem.title = (element.nodeName === "BODY")
           ? pagename + " " + pageSuffix
           : (isComponent) 
           ? isComponent
@@ -2034,6 +2033,7 @@
               " " +
               figmaItemIndex
           : "no name " + figmaItemIndex;
+          figmaItemIndex++;
       if(element.nodeName === "BODY" || element.nodeName === "BUTTON" || element.nodeName === "INPUT" || element.nodeName === "SECTION" || element.nodeName === "IMG" || element.nodeName === "svg" || figmaDataItem.css.display === "flex" || figmaDataItem.css.backgroundColor !== "rgba(0, 0, 0, 0)"){
         figmaDataItem.type =
           element.nodeName === "svg" ||
@@ -2041,7 +2041,6 @@
           element.nodeName === "BODY"
             ? element.nodeName
             : "FRAME";
-            figmaDataItem.title = perentTitle;
           if (isChild) figmaDataItem.parent = isChild;
           if (element.nodeName === "svg")  figmaDataItem.svg = element.outerHTML;
           figmaData.push(figmaDataItem);
@@ -2060,11 +2059,11 @@
               text: figmaChildItem.nodeValue.trim(),
               css: figmaDataItem.css,
               attrinutes: figmaChildItem?.attributes,
-              parent: perentTitle,
+              parent: figmaDataItem.title,
               tag: element.nodeName
             });
           } else {
-            await treeHTML(figmaChildItem, perentTitle, i);
+            await treeHTML(figmaChildItem, figmaDataItem.title);
           }
         }
       }
