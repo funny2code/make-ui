@@ -1913,7 +1913,6 @@
   };
 
   // FIGMA HTML TO JSON
-  let figmaItemIndex = 1;
   let components = {};
   let perentTitle = null;
   const mapDOM = async (element, json, pagename, pageSuffix) => {
@@ -1992,7 +1991,7 @@
     };
 
     //Recursively loop through DOM elements and assign properties to object
-    const treeHTML = async (element, isChild = false) => {
+    const treeHTML = async (element, isChild = false, figmaItemIndex=1) => {
       if (
         element.nodeName === "STYLE" ||
         element.nodeName === "LINK" ||
@@ -2035,7 +2034,6 @@
               " " +
               figmaItemIndex
           : "no name " + figmaItemIndex;
-          figmaItemIndex++;
       if(element.nodeName === "BODY" || element.nodeName === "BUTTON" || element.nodeName === "INPUT" || element.nodeName === "SECTION" || element.nodeName === "IMG" || element.nodeName === "svg" || figmaDataItem.css.display === "flex" || figmaDataItem.css.backgroundColor !== "rgba(0, 0, 0, 0)"){
         figmaDataItem.type =
           element.nodeName === "svg" ||
@@ -2066,7 +2064,7 @@
               tag: element.nodeName
             });
           } else {
-            await treeHTML(figmaChildItem, perentTitle);
+            await treeHTML(figmaChildItem, perentTitle, i);
           }
         }
       }
