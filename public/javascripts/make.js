@@ -1993,6 +1993,7 @@
 
     //Recursively loop through DOM elements and assign properties to object
     const treeHTML = async (element, isChild = false) => {
+      figmaItemIndex++;
       let isComponent = null;
       if (
         element.nodeName === "STYLE" ||
@@ -2065,7 +2066,6 @@
               parent: perentTitle,
               tag: element.nodeName
             });
-            figmaItemIndex++;
           } else {
             perentTitle =
             (element.nodeName === "BODY")
@@ -2088,7 +2088,6 @@
                 " " +
                 figmaItemIndex
             : "no name " + figmaItemIndex;
-            figmaItemIndex++;
             figmaDataItem.title = perentTitle;
             await treeHTML(figmaChildItem, perentTitle);
           }
