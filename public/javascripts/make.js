@@ -2034,7 +2034,7 @@
               figmaItemIndex
           : "no name " + figmaItemIndex;
           figmaItemIndex++;
-      if(element.nodeName === "BODY" || element.nodeName === "BUTTON" || element.nodeName === "INPUT" || element.nodeName === "SECTION" || element.nodeName === "IMG" || element.nodeName === "svg" || figmaDataItem.css.display === "flex" || figmaDataItem.css.backgroundColor !== "rgba(0, 0, 0, 0)"){
+      // if(element.nodeName === "BODY" || element.nodeName === "BUTTON" || element.nodeName === "INPUT" || element.nodeName === "SECTION" || element.nodeName === "IMG" || element.nodeName === "svg" || figmaDataItem.css.display === "flex" || figmaDataItem.css.backgroundColor !== "rgba(0, 0, 0, 0)"){
         figmaDataItem.type =
           element.nodeName === "svg" ||
           element.nodeName === "IMG" ||
@@ -2048,7 +2048,7 @@
           if(element.nodeName === "svg") return;
           if(isComponent && components[isComponent]) return;
           if(isComponent) components[isComponent] = true;
-      }
+      // }
       if (element?.childNodes?.length) {
         for (let i = 0; i < element?.childNodes?.length; i++) {
           let figmaChildItem = element?.childNodes[i];
