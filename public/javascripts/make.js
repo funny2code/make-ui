@@ -2044,7 +2044,6 @@
                 figmaItemIndex
             : "no name " + figmaItemIndex;
             figmaDataItem.title = perentTitle;
-          figmaItemIndex++;
           if (isChild) figmaDataItem.parent = isChild;
           if (element.nodeName === "svg")  figmaDataItem.svg = element.outerHTML;
           figmaData.push(figmaDataItem);
@@ -2058,14 +2057,15 @@
           let figmaChildItem = element?.childNodes[i];
           if (figmaChildItem.nodeType === 3) {
             if (figmaChildItem.nodeValue.replace(/[\r\n]/gm, "").trim() !== "")
-              return figmaData.push({
-                type: "TEXT",
-                text: figmaChildItem.nodeValue.trim(),
-                css: figmaDataItem.css,
-                attrinutes: figmaChildItem?.attributes,
-                parent: perentTitle,
-                tag: element.nodeName
-              });
+            return figmaData.push({
+              type: "TEXT",
+              text: figmaChildItem.nodeValue.trim(),
+              css: figmaDataItem.css,
+              attrinutes: figmaChildItem?.attributes,
+              parent: perentTitle,
+              tag: element.nodeName
+            });
+            figmaItemIndex++;
           } else {
             perentTitle =
             (element.nodeName === "BODY")
@@ -2088,6 +2088,7 @@
                 " " +
                 figmaItemIndex
             : "no name " + figmaItemIndex;
+            figmaItemIndex++;
             figmaDataItem.title = perentTitle;
             await treeHTML(figmaChildItem, perentTitle);
           }
