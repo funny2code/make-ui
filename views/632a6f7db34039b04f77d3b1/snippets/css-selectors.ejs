@@ -2,11 +2,7 @@
 
     :root {
         
-        <% if(settings.body_font_custom){ %>
-        --font-body-family: <%=settings.body_font_custom%>
-        <% } else { %>
-        --font-body-family: <%= settings.body_font.family %>, <%= settings.body_font.fallback_families %>
-        <% } %>
+        --font-body-family: <%= settings.body_font_custom ? settings.body_font_custom :  settings.body_font.family %>;
         <% if(settings.body_font_size){ %>--font-body-size: <%= settings.body_font_size %>;<% } %>
         <% if(settings.body_font_line){ %>--font-body-line: <%= settings.body_font_line %>;<% } %>
         <% if(settings.body_font_spacing){ %>--font-body-spacing: <%= settings.body_font_spacing %>;<% } %>

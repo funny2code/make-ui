@@ -1,0 +1,24 @@
+<style>
+.flexible-text-<%= sectionid %> {
+    background:<%=section.settings.py_section_bg_color%>
+}
+.flexible-text-container{
+  display: flex;
+}
+.flexible-text-container a {
+  width:100%;
+}
+.bc-br-bt .flexible-text-container a:not(:first-child){
+  border-left:var(--py-br, 1px) solid var(--py-br-c);
+}
+</style>
+<div class="flexible-text-<%= sectionid %> block-section bc-<%=settings.section_style%>-bt">
+  <div class="flexible-text-container py-<%=section.settings.section_width%>">
+  <% section?.block_order?.forEach((orderItem, index) => { %>
+    <% let block = section?.blocks[orderItem] %>
+    <a class="block-text py-<%=block.settings.fs%> py-<%=section.settings.section_y_pd%> py-<%=section.settings.section_x_pd%>"  style="color:<%=section.settings.py_section_color%>;text-align:<%=section.settings.align%>" href="<%= block.settings.url %>">
+        <%= block.settings.text %>
+    </a>
+  <% }) %>
+  </div>
+</div>

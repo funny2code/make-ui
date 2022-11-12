@@ -1,0 +1,44 @@
+<style type="text/css">
+  .content-title{    
+    color:<%=section.settings.py_section_color%>;
+  }
+  .content-description{    
+    color:<%=section.settings.py_section_color%>;
+  }
+</style>
+
+<div class="template-404 py-pd-y-xs py-<%=section.settings.py_section_bg_color%>">  
+  <% section?.block_order?.forEach((orderItem, index) => { %>
+    <% let block = section?.blocks[orderItem] %>
+    <% if(block.type === 'title'){ %>
+          <div class="page-width">
+            <h1 class="content-title py-<%=section.settings.text_align%> py-mg-y-m" itemprop="headline" style="font-size:<%=block?.settings?.title_font_size%>px;font-weight:<%=block?.settings?.title_font_weight%>">
+              <%= block?.settings?.title %></h1>            
+          </div>
+
+        <% } else if(block.type === 'description'){ %>
+          <div class="content-description page-width rte py-<%=section.settings.text_align%> py-mg-y-m" style="font-size:<%=block?.settings?.desc_font_size%>px;font-weight:<%=block?.settings?.desc_font_weight%>">
+              <%- block?.settings?.description -%>
+          </div>
+  
+        <% } else if(block.type === 'image'){ %>
+        <% if(block?.settings?.image){ %>
+          <div class="content-img py-mg-y-m <% if(block?.settings?.img_full_width){ %>full-width<% } else { %> page-width<% } %>">
+            <div class="media"
+              itemprop="image"
+              style="padding-bottom: <%= 1 / block?.settings?.image.aspect_ratio * 100 %>%;">
+              <img srcset="<% if(block?.settings?.image.width >= 350){ %><%= block?.settings?.image %> 350w,<% } %>
+                  <% if(block?.settings?.image.width >= 700){ %><%= block?.settings?.image %> 700w,<% } %>
+                  <% if(block?.settings?.image.width >= 749){ %><%= block?.settings?.image %> 749w,<% } %>
+                  <% if(block?.settings?.image.width >= 1498){ %><%= block?.settings?.image %> 1498w,<% } %>
+                  <% if(block?.settings?.image.width >= 1100){ %><%= block?.settings?.image %> 1100w,<% } %>
+                  <% if(block?.settings?.image.width >= 2200){ %><%= block?.settings?.image %> 2200w,<% } %>"
+                sizes="(min-width: 1200px) 1100px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+                src="<%= block?.settings?.image %>"
+                >
+            </div>
+          </div>
+        <% } %>
+    <% } %>
+  <% }) %>
+</div>

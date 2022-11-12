@@ -2978,7 +2978,6 @@
   // Remix Section Styles Function
   const randomSectionFun = async (event) => {
     if (!event) return;
-    console.log("sectionFunction");
     let el = event.target;
     let sectionContainer = el.closest(".py__closest");
     let typeSelects = sectionContainer?.querySelectorAll('[type="select"]');

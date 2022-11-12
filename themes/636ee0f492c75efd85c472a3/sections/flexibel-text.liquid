@@ -1,0 +1,268 @@
+<style>
+.flexible-text-{{ section.id }}{
+    background:{{section.settings.py_section_bg_color}}
+}
+.flexible-text-container{
+  display: flex;
+}
+.flexible-text-container a{
+  width:100%;
+}
+.bc-br-bt .flexible-text-container a:not(:first-child){
+  border-left:var(--py-br, 1px) solid var(--py-br-c);
+}
+</style>
+<div class="flexible-text-{{ section.id }} block-section bc-{{settings.section_style}}-bt">
+  <div class="flexible-text-container py-{{section.settings.section_width}}">
+  {% for block in section.blocks %}
+    <a class="block-text py-{{block.settings.fs}} py-{{section.settings.section_y_pd}} py-{{section.settings.section_x_pd}}"  style="color:{{section.settings.py_section_color}};text-align:{{section.settings.align}}" href="{{ block.settings.url | escape }}">
+        {{  block.settings.text }}
+    </a>
+  {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flexible Text",
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section Container (Width)",
+      "options": [
+        {
+          "label": "Unset",
+          "value": "width-un"
+        },
+        {
+          "label": "Large",
+          "value": "width-l"
+        },
+        {
+          "label": "Medium",
+          "value": "width-m"
+        },
+        {
+          "label": "Small",
+          "value": "width-s"
+        }
+      ],
+      "default": "width-un"
+    },
+    {
+      "type": "select",
+      "id": "align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Text Aligment"
+    },    
+    {
+      "type": "select",
+      "id": "py_section_bg_color",
+      "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-bg-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-bg-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-bg-color-average)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-bg-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-bg-color-light)"
+          }
+        ],
+        "default": "var(--py-bg-color-light)",
+      "label": "Background color"
+    },
+    {
+        "type": "select",
+        "id": "py_section_color",
+        "label": "Color",
+        "options": [          
+          {
+            "label": "Transparent",
+            "value": "transparent"
+          },        
+          {
+            "label": "Dark",
+            "value": "var(--py-color-dark)"
+          },
+          {
+            "label": "Middle Dark",
+            "value": "var(--py-color-middle-dark)"
+          },
+          {
+            "label": "Average",
+            "value": "var(--py-color-average)"
+          },
+          {
+            "label": "Middle Light",
+            "value": "var(--py-color-middle-light)"
+          },
+          {
+            "label": "Light",
+            "value": "var(--py-color-light)"
+          }
+        ],
+        "default": "var(--py-color-dark)"
+    },
+    {
+      "type": "select",
+      "id": "section_x_pd",
+      "label": "Text Padding Horizontal",
+      "options": [
+        {
+          "label": "Unset",
+          "value": "pd-x-un"
+        },
+        {
+          "label": "None",
+          "value": "pd-x-n"
+        },
+        {
+          "label": "XL",
+          "value": "pd-x-xl"
+        },
+        {
+          "label": "L",
+          "value": "pd-x-l"
+        },
+        {
+          "label": "M",
+          "value": "pd-x-m"
+        },
+        {
+          "label": "S",
+          "value": "pd-x-s"
+        },
+        {
+          "label": "XS",
+          "value": "pd-x-xs"
+        }
+      ],
+      "default": "pd-x-s"
+    },
+    {
+      "type": "select",
+      "id": "section_y_pd",
+      "label": "Text Padding Vertical",
+      "options": [
+        {
+          "label": "Unset",
+          "value": "pd-y-un"
+        },
+        {
+          "label": "None",
+          "value": "pd-y-n"
+        },
+        {
+          "label": "XL",
+          "value": "pd-y-xl"
+        },
+        {
+          "label": "L",
+          "value": "pd-y-l"
+        },
+        {
+          "label": "M",
+          "value": "pd-y-m"
+        },
+        {
+          "label": "S",
+          "value": "pd-y-s"
+        },
+        {
+          "label": "XS",
+          "value": "pd-y-xs"
+        }
+      ],
+      "default": "pd-y-s"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Text",
+      "type": "text-columns",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Flexible Text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Text URL"
+        },
+        {
+          "type": "select",
+          "id": "fs",
+          "label": "Font Size",
+          "options": [
+            {
+              "label": "Unset",
+              "value": "fs-un"
+            },
+            {
+              "label": "X Large",
+              "value": "fs-xl"
+            },
+            {
+              "label": "Large",
+              "value": "fs-l"
+            },
+            {
+              "label": "Medium",
+              "value": "fs-m"
+            },
+            {
+              "label": "X Small",
+              "value": "fs-xs"
+            },
+            {
+              "label": "Small",
+              "value": "fs-s"
+            }
+          ],
+          "default": "fs-un"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flexible Text"
+    }
+  ]
+}
+
+{% endschema %}

@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="/<%=srcId%>/component-slider.css">
+<link rel="stylesheet" href="/<%=srcId%>/section-featured-blog.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-article-card.css">
+
+<style>
+  .blog-carousel .title--primary{
+    color: <%=section.settings.py_section_color%>;
+    font-size:<%=section.settings.title_font_size%>px;
+    font-weight:<%=section.settings.title_font_weight%>
+  }
+  .blog-articles{
+    grid-gap :<%=section.settings.item_space%>px;
+    margin-right:-<%=section.settings.item_space%>px;
+  }
+  .blog-articles .article .article-card__info{
+    padding:25px 15px;
+  } 
+  .blog-articles .article{
+    border-radius:<%=section.settings.card_radius%>px;
+    overflow:hidden;
+  }
+ 
+  .blog-carousel .grid__item{
+    padding-left:0;
+    padding-right:<%=section.settings.item_space%>px;
+    padding-top:<%=section.settings.item_space%>px;
+  }  
+  /* width */
+  .blog-carousel .slider::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+    display:initial;
+    background:<%=section.settings.scroll_bar_bg_color%>;
+    border-radius: 10px;    
+  }
+
+  /* Track */
+  .blog-carousel .slider::-webkit-scrollbar-track {    
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  .blog-carousel .slider::-webkit-scrollbar-thumb {
+    background: <%=section.settings.scroll_bar_color%>;
+    border-radius: 10px;
+  } 
+  .blog-carousel .slider{
+    padding-bottom:20px;
+  }
+  .blog-carousel .slider-button{
+    color:<%=section.settings.py_section_color%>;
+    border-radius: 50%;    
+  }  
+  .blog-carousel .slider-buttons{
+    bottom: auto;
+    top: 45%;
+    left:-15px;
+    width: calc(100% + 15px + <%=section.settings.item_space%>px);
+  }
+  
+</style>
+
+  <div class="main-blog blog-carousel py-<%=section.settings.py_section_bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%>  bc-<%=settings.section_style%>-bt">
+    <div class="page-width py-<%=section.settings.page_width%> py-<%=section.settings.page_y_mg%> py-<%=section.settings.page_y_mg%>">
+      <h1 class="title--primary"><%= section.settings.title %></h1>
+      <div class="blog-articles">
+        <slider-component class="slider-mobile-gutter">
+          <ul class="grid grid--1-col grid--2-col-tablet grid--3-col-desktop slider slider--desktop negative-margi negative-margin--small" role="list">
+            <% blog?.articles?.forEach((article,index)=>{ %>
+              <li class="grid__item slider__slide">
+                <div class="blog-articles__article article py-<%=section.settings.card_bg_color%>">
+                  <%- include('../snippets/article-card', {
+                    article: article, 
+                    show_image: section.settings.show_image
+                  }) %>
+                </div>
+              </li>      
+            <% }) %>
+          </ul>    
+          
+          <div class="slider-buttons slider-buttons-desktop no-js-hidden<% if(section.settings.blog.articles_count < 4){ %>large-up-hide medium-hide<% } %><% if(section.settings.blog.articles_count < 3){ %> small-hide<% } %>">
+            <button type="button" class="slider-button slider-button--prev has-bg py-<%=section.settings.card_bg_color%>" name="previous" aria-label="<%=accessibility.previous_slide%>"><%- include('../snippets/icon-caret') %></button>
+            <button type="button" class="slider-button slider-button--next has-bg py-<%=section.settings.card_bg_color%>" name="next" aria-label="<%=accessibility.next_slide%>"><%- include('../snippets/icon-caret') %></button>
+          </div>
+         
+        </slider-component>  
+      </div>
+    </div>
+  </div>

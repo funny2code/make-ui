@@ -1,0 +1,200 @@
+{
+  "sections": {
+    "164253890362d227ae": {
+      "type": "image-banner",
+      "settings": {
+        "section_height": "auto",
+        "image": "/636ee0f492c75efd85c472a3/image-banner-1-1.webp",
+        "image_desk_2": "/636ee0f492c75efd85c472a3/image-banner-1-2.webp",
+        "show_lazy": true,
+        "url": "shopify://collections/base-brand",
+        "url_2": "shopify://collections/bundle-set",
+        "show_override": false,
+        "content_bg_color": "var(--py-bg-color-average)",
+        "ov_opacity": "",
+        "pv": "center",
+        "ph": "center",
+        "align": "center",
+        "padding": "",
+        "margin": "",
+        "width": "",
+        "height": "",
+        "c_css": "",
+        "m_pv": "center",
+        "m_ph": "center",
+        "m_align": "center",
+        "m_padding": "",
+        "m_margin": "",
+        "m_width": "",
+        "m_height": "",
+        "m_c_css": "",
+        "enable_anim": true,
+        "anim": "zoom-out"
+      }
+    },
+    "493733b0-fa11-4651-a575-91c780f77194": {
+      "type": "flexibel-text",
+      "blocks": {
+        "a0f441e5-719e-48fc-a95d-93b9d5cda410": {
+          "type": "text-columns",
+          "settings": {
+            "text": "Base Brand",
+            "url": "shopify://collections/base-brand",
+            "fs": "fs-un"
+          }
+        },
+        "45b301ce-3081-46d1-b769-106b71870629": {
+          "type": "text-columns",
+          "settings": {
+            "text": "Bundle Set",
+            "url": "shopify://collections/bundle-set",
+            "fs": "fs-un"
+          }
+        }
+      },
+      "block_order": [
+        "a0f441e5-719e-48fc-a95d-93b9d5cda410",
+        "45b301ce-3081-46d1-b769-106b71870629"
+      ],
+      "settings": {
+        "section_width": "width-un",
+        "align": "center",
+        "py_section_bg_color": "var(--py-bg-color-light)",
+        "py_section_color": "var(--py-color-dark)",
+        "section_x_pd": "pd-x-s",
+        "section_y_pd": "pd-y-s"
+      }
+    },
+    "4b56fa25-360b-4576-93c2-3fe9172fdabe": {
+      "type": "image-banner",
+      "settings": {
+        "section_height": "600px",
+        "image": "/636ee0f492c75efd85c472a3/image-banner-2-1.webp",
+        "image_desk_2": "",
+        "show_lazy": true,
+        "image_2": "",
+        "url": "shopify://collections/color-the-bandeau-skirt",
+        "url_2": "",
+        "show_override": false,
+        "content_bg_color": "var(--py-bg-color-dark)",
+        "ov_bg_image": "",
+        "ov_opacity": "0.2",
+        "pv": "center",
+        "ph": "center",
+        "align": "center",
+        "padding": "",
+        "margin": "",
+        "width": "",
+        "height": "",
+        "c_css": "",
+        "m_pv": "center",
+        "m_ph": "center",
+        "m_align": "center",
+        "m_padding": "",
+        "m_margin": "",
+        "m_width": "",
+        "m_height": "",
+        "m_c_css": "",
+        "enable_anim": true,
+        "anim": "zoom-out"
+      }
+    },
+    "ee66e6ca-858f-493e-a4ca-f07c24af0575": {
+      "type": "flexibel-text",
+      "blocks": {
+        "52278f46-663f-4e23-a33f-8c2af7d3cc05": {
+          "type": "text-columns",
+          "settings": {
+            "text": "Shop Bags",
+            "url": "shopify://collections/color-the-bandeau-skirt",
+            "fs": "fs-un"
+          }
+        }
+      },
+      "block_order": [
+        "52278f46-663f-4e23-a33f-8c2af7d3cc05"
+      ],
+      "settings": {
+        "section_width": "width-un",
+        "align": "center",
+        "py_section_bg_color": "var(--py-bg-color-light)",
+        "py_section_color": "var(--py-color-dark)",
+        "section_x_pd": "pd-x-s",
+        "section_y_pd": "pd-y-s"
+      }
+    },
+    "42360bfb-3064-4c99-a646-85b57256aecc": {
+      "type": "image-banner",
+      "settings": {
+        "section_height": "auto",
+        "image": "/636ee0f492c75efd85c472a3/image-banner-3-1.jpg",
+        "image_desk_2": "/636ee0f492c75efd85c472a3/image-banner-3-2.webp",
+        "show_lazy": true,
+        "url": "shopify://collections/base-brand",
+        "url_2": "shopify://collections/bundle-set",
+        "show_override": false,
+        "content_bg_color": "var(--py-bg-color-dark)",
+        "ov_opacity": "0.2",
+        "pv": "center",
+        "ph": "center",
+        "align": "center",
+        "padding": "",
+        "margin": "",
+        "width": "",
+        "height": "",
+        "c_css": "",
+        "m_pv": "center",
+        "m_ph": "center",
+        "m_align": "center",
+        "m_padding": "",
+        "m_margin": "",
+        "m_width": "",
+        "m_height": "",
+        "m_c_css": "",
+        "enable_anim": true,
+        "anim": "zoom-out"
+      }
+    },
+    "81cc9250-cb42-4251-abba-21c74056def1": {
+      "type": "flexibel-text",
+      "blocks": {
+        "1a176472-5adb-4b0d-ba68-47aa4d9d3ff8": {
+          "type": "text-columns",
+          "settings": {
+            "text": "Jacquemus 'Le Papier",
+            "url": "shopify://collections/base-brand",
+            "fs": "fs-un"
+          }
+        },
+        "154be0bc-fb80-44a5-93e7-12f6ea342a17": {
+          "type": "text-columns",
+          "settings": {
+            "text": "Day to Night",
+            "url": "shopify://collections/bundle-set",
+            "fs": "fs-un"
+          }
+        }
+      },
+      "block_order": [
+        "1a176472-5adb-4b0d-ba68-47aa4d9d3ff8",
+        "154be0bc-fb80-44a5-93e7-12f6ea342a17"
+      ],
+      "settings": {
+        "section_width": "width-un",
+        "align": "center",
+        "py_section_bg_color": "var(--py-bg-color-light)",
+        "py_section_color": "var(--py-color-dark)",
+        "section_x_pd": "pd-x-s",
+        "section_y_pd": "pd-y-s"
+      }
+    }
+  },
+  "order": [
+    "164253890362d227ae",
+    "493733b0-fa11-4651-a575-91c780f77194",
+    "4b56fa25-360b-4576-93c2-3fe9172fdabe",
+    "ee66e6ca-858f-493e-a4ca-f07c24af0575",
+    "42360bfb-3064-4c99-a646-85b57256aecc",
+    "81cc9250-cb42-4251-abba-21c74056def1"
+  ]
+}

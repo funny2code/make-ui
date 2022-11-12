@@ -1,0 +1,84 @@
+header.header--middle-left-full-nav{
+  grid-template-areas: "navigation";
+  grid-template-columns: auto;
+}
+header.header--middle-left-full-nav nav.header__inline-menu{
+  margin:0px;
+}
+header.header--middle-left-full-nav nav.header__inline-menu>ul{
+  width: 100%;
+  display: flex;
+}
+header.header--middle-left-full-nav nav.header__inline-menu>ul>li{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.py-br header.header--middle-left-full-nav nav.header__inline-menu>ul>li:not(:first-child){
+  border-left:var(--py-br, 1px) solid var(--py-br-c);
+}
+header.header--middle-left-full-nav nav.header__inline-menu>ul>li .cart-count-bubble{
+  position: relative;
+    background: inherit;
+    left: auto;
+    bottom: auto;
+    font-size: 80%;
+    top: 5%;
+  width:auto;
+}
+header.header--middle-left-full-nav nav.header__inline-menu>ul>li .header__icon--cart{
+  width:100%;
+}
+summary.list-menu__item>svg{
+  display:none
+}
+.py-br header.header--middle-left-full-nav nav.header__inline-menu .header__submenu {
+    padding-bottom: inherit;
+    border-bottom: var(--py-br, 1px) solid var(--py-br-c);
+    transform: translateY(var(--py-br, 1px));
+}
+.py-br .bc-mega-menu__title{
+  border-bottom: var(--py-br, 1px) solid var(--py-br-c);
+}
+.header__heading{
+  text-align:center;
+}
+@media(max-width:799px){
+  header.header--middle-left-full-nav{
+    grid-template-areas: "drawer navigation";
+    grid-template-columns: 1fr 2fr;
+  }
+  .header__inline-menu{
+    display:block;
+  }
+  header-drawer{
+    grid-area: drawer;
+    width: 100%;
+    height: 100%;
+    border-right: var(--py-br, 1px) solid var(--py-br-c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  header.header--middle-left-full-nav .header__inline-menu>ul{
+    flex-wrap:nowrap;
+  }
+  header.header--middle-left-full-nav .header__inline-menu>ul>li:not(:first-child,:last-child){
+    display:none;
+  }
+  header.header--middle-left-full-nav .header__inline-menu>ul>li:last-child{
+    padding:10px 0px;
+  }
+  #menu-drawer{
+    margin-top:1px;
+  }
+  #menu-drawer nav li,button.menu-drawer__close-button:not(.has-bg){
+    border-bottom: var(--py-br, 1px) solid var(--py-br-c);
+  } 
+  header.header--middle-left-full-nav .icon.icon-hamburger{
+    position: relative;
+    height: auto;
+    width: auto;
+  }
+}
