@@ -1366,8 +1366,20 @@
   let downloadButton = null;
   let loading = null;
   let themeName = "ThemeMake";
-  let textColors = [];
-  let bgColors = [];
+  let textColors = {
+    "dark": null,
+    "middle_dark": null,
+    "average": null,
+    "middle_light": null,
+    "light": null
+  };
+  let bgColors = {
+    "dark": null,
+    "middle_dark": null,
+    "average": null,
+    "middle_light": null,
+    "light": null
+  };
 
   const clearTheme = () => {
     theme = {
@@ -1390,14 +1402,24 @@
     settings_ck_btn_bg: "settings_ck_btn_color",
   };
   // Colors Contrast Fun
-  const getContrastYIQ = async (hexcolor) => {
+  const getContrastName = (hexcolor) => {
     if (!hexcolor) return;
     hexcolor = hexcolor.replace("#", "");
     var r = parseInt(hexcolor.substr(0, 2), 16);
     var g = parseInt(hexcolor.substr(2, 2), 16);
     var b = parseInt(hexcolor.substr(4, 2), 16);
     var yiq = (r * 299 + g * 587 + b * 114) / 1000;
-    return yiq >= 186 ? "#000000" : "#ffffff";
+    return yiq >= 186 ? "dark" : "light";
+  };
+
+  const getContrastHex = (hexcolor) => {
+    if (!hexcolor) return;
+    hexcolor = hexcolor.replace("#", "");
+    var r = parseInt(hexcolor.substr(0, 2), 16);
+    var g = parseInt(hexcolor.substr(2, 2), 16);
+    var b = parseInt(hexcolor.substr(4, 2), 16);
+    var yiq = (r * 299 + g * 587 + b * 114) / 1000;
+    return yiq >= 186 ? "#000000" : "#FFFFFF";
   };
 
   // Save old settings values
@@ -2599,22 +2621,6 @@
       randomSettingsOld.innerHTML = randomSettingsNew.innerHTML;
   };
 
-  // XMLHttpRequest
-  const makeXMLRequest = (method, url, data = false) => {
-    return new Promise(function (resolve, reject) {
-      var http = new XMLHttpRequest();
-
-      http.onreadystatechange = function () {
-        if (http.readyState == 4 && http.status == 200) {
-          resolve(JSON.parse(http.responseText).result);
-        }
-      };
-
-      http.open(method, url, true);
-      data ? http.send(JSON.stringify(data)) : http.send();
-    });
-  };
-
   // RGB TO HEX COLOR code converter
   const componentToHex = async (c) => {
     let hex = c.toString(16);
@@ -2636,37 +2642,9 @@
     "6306f8e7db2cbec8c440f780",
     "632a6f7db34039b04f77d3b1",
     "62fe8c9ba58276071f183cb8",
+    "636ee0f492c75efd85c472a3"
   ];
-
-  const getLuminanceRatio = (r, g, b) => {
-    var a = [r, g, b].map(function (v) {
-      v /= 255;
-      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-    });
-    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
-  };
-  const getContrastRatio = (rgb1, rgb2) => {
-    var lum1 = getLuminanceRatio(rgb1[0], rgb1[1], rgb1[2]);
-    var lum2 = getLuminanceRatio(rgb2[0], rgb2[1], rgb2[2]);
-    var brightest = Math.max(lum1, lum2);
-    var darkest = Math.min(lum1, lum2);
-    return (brightest + 0.05) / (darkest + 0.05);
-  };
-
-  var colorGradientor = (p, rgb_beginning, rgb_end) => {
-    var w = p * 2 - 1;
-
-    var w1 = (w + 1) / 2.0;
-    var w2 = 1 - w1;
-
-    var rgb = [
-      parseInt(rgb_beginning[0] * w1 + rgb_end[0] * w2),
-      parseInt(rgb_beginning[1] * w1 + rgb_end[1] * w2),
-      parseInt(rgb_beginning[2] * w1 + rgb_end[2] * w2),
-    ];
-    return rgb;
-  };
-
+  
   const HSLToRGB = (h, s, l) => {
     s /= 100;
     l /= 100;
@@ -2704,31 +2682,8 @@
     ];
   };
 
-  const hexToRgb = (hex) =>
-    hex
-      .replace(
-        /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
-        (m, r, g, b) => "#" + r + r + g + g + b + b
-      )
-      .substring(1)
-      .match(/.{2}/g)
-      .map((x) => parseInt(x, 16));
-
-  const getTextColorFromBgColor = async (bgColor, textColors) => {
-    if (bgColor === null) return rgbToHex(textColor[4]);
-    let textColor = textColors[0],
-      maxContrast = 1;
-    for (let i = 0; i < 5; i++) {
-      if (maxContrast < getContrastRatio(textColors[i], bgColor)) {
-        maxContrast = getContrastRatio(textColors[i], bgColor);
-        textColor = textColors[i];
-      }
-    }
-    return rgbToHex(textColor);
-  };
-
   const generateRandomColors = async () => {
-    const generateBackgroundColors = () => {
+    let generateBackgroundColors = () => {
       let h = random(360, 0);
       let s = random(100, 50);
       let l = 80;
@@ -2742,10 +2697,10 @@
       return colors.reverse();
     };
 
-    const generateTextColors = (backgroundColor) => {
+    let generateTextColors = (backgroundColor) => {
       let hsl = RGBToHSL(backgroundColor);
       let h = hsl[0];
-      let s = random(20, 0); // low value for gray,  high value for pastel
+      let s = random(20, 0);
 
       let colors = [];
       colors.push(HSLToRGB(h, s, 2));
@@ -2756,45 +2711,40 @@
       return colors;
     };
 
-    let inputFileds = document.querySelectorAll("[name]");
-
-    bgColors = generateBackgroundColors();
-    textColors = generateTextColors(bgColors[2]);
-
+    let inputFileds = document.querySelectorAll('[type="color"]');
+    let getBgColors = generateBackgroundColors();
+    let getTextColors = generateTextColors(getBgColors[2]);
     let index = 0;
 
     for (let i = 0; i < inputFileds.length; i++) {
       let filed = inputFileds[i];
-      let filedType = filed.getAttribute("type");
       let filedName = filed.getAttribute("name");
-      if (filedType === "color") {
-        if (filedName.includes("_bg")) {
-          let colorObj = await rgbToHex(bgColors[index]);
-          let textColorObj = await rgbToHex(textColors[index]);
-          let color = colorObj;
-          let closestWrap = filed.closest(".component-is-color");
-          let isColorLabel = closestWrap.querySelector(".py__label-for-color");
-          isColorLabel.style.backgroundColor = color;
-          filed.setAttribute("value", color);
-          index++;
-          let filedNameText = filedName.replace("_bg", "");
-          let textInputFiled = document.querySelector(
-            `[name="${filedNameText}"]`
+      if (filedName.includes("_bg")) {
+        let bgColor = await rgbToHex(getBgColors[index]);
+        let textColor = await rgbToHex(getTextColors[index]);
+        bgColors[filedName.replace('py_bg_color_', '')] = bgColor;
+        let closestWrap = filed.closest(".component-is-color");
+        let isColorLabel = closestWrap.querySelector(".py__label-for-color");
+        isColorLabel.style.backgroundColor = bgColor;
+        filed.setAttribute("value", bgColor);
+        index++;
+        let filedNameText = filedName.replace("_bg", "");
+        let textInputFiled = document.querySelector(
+          `[name="${filedNameText}"]`
+        );
+        let filedTextName = textInputFiled.getAttribute("name");
+        if (textInputFiled) {
+          textColors[filedTextName.replace('py_color_', '')] = textColor;
+          let textClosestWrap = textInputFiled.closest(".component-is-color");
+          let textIsColorLabel = textClosestWrap?.querySelector(
+            ".py__label-for-color"
           );
-          if (textInputFiled) {
-            let textColor = textColorObj;
-            let textClosestWrap = textInputFiled.closest(".component-is-color");
-            let textIsColorLabel = textClosestWrap?.querySelector(
-              ".py__label-for-color"
-            );
-            if (textIsColorLabel)
-              textIsColorLabel.style.backgroundColor = textColor;
-            textInputFiled.setAttribute("value", textColor);
-          }
+          if (textIsColorLabel)
+            textIsColorLabel.style.backgroundColor = textColor;
+          textInputFiled.setAttribute("value", textColor);
         }
       }
     }
-    return textColors;
   };
 
   const setColorToSettings = async () => {
@@ -2805,75 +2755,37 @@
     for (let i = 0; i < inputFileds.length; i++) {
       let filed = inputFileds[i];
       let filedType = filed.getAttribute("type");
+      let filedName = filed.getAttribute("name");
       if (filedType === "select") {
         let options = filed.getElementsByTagName("option");
         let sectionContainer = filed.closest(".py__closest");
         let fontObj = fonts[fontsCount];
-        if (filed.getAttribute("name")?.includes("font")) {
-          let selectedOption = filed.getAttribute("name")?.includes("body")
+        if (filedName?.includes("font")) {
+          let selectedOption = filedName?.includes("body")
             ? filed.querySelector(`option[value="${fontObj.body}"`)?.index
             : filed.querySelector(`option[value="${fontObj.heading}"`)?.index;
           filed.selectedIndex = selectedOption;
-        } else if (filed.getAttribute("name")?.includes("_bg")) {
-          if (filed.getAttribute("name").includes("section_bg"))
-            console.log(filed.getAttribute("name"));
-          // set section bg & text color
-          let optionIndex = filed.getAttribute("name")?.includes("section_bg")
-            ? options.length - 1
-            : Math.floor(Math.random() * 5);
-          filed.selectedIndex = optionIndex;
-          let bgCName = options[optionIndex]?.textContent
-            ?.toLowerCase()
-            ?.replace(" ", "_");
-          let getBgColorHexCode =
-            bgCName &&
-            bgCName !== "bg-c-none" &&
-            bgCName !== "bg-c-un" &&
-            bgCName !== "transparent" &&
-            bgCName !== "unset" &&
-            bgCName !== "none"
-              ? document.querySelector(`[name="py_bg_color_${bgCName}"]`)?.value
-              : null;
-          let textFiledName = filed.getAttribute("name").replace("_bg", "");
-          let textColorInput = sectionContainer.querySelectorAll(
-            `[name^="${textFiledName}"]`
-          );
-          if (filed.getAttribute("name") === "py_header_bg_color") {
-            textFiledName =
-              filed.getAttribute("name").replace("_bg", "") + "_link_1";
-          } else if (filed.getAttribute("name") === "py_header_bg_color_2") {
-            textFiledName = "py_header_color_link_2";
-          } else if (
-            filed.getAttribute("name") === "card_bg_color" &&
-            filed.previousElementSibling.parentElement.parentElement
-              .parentElement.previousElementSibling.textContent === "Blog posts"
-          ) {
-            textFiledName = "block_card_color_title";
-          }
-
-          if (textColorInput?.length) {
-            for (let i = 0; i < textColorInput?.length; i++) {
-              let itemColor = textColorInput[i];
-              let contrastColor = getBgColorHexCode
-                ? await getTextColorFromBgColor(
-                    hexToRgb(getBgColorHexCode),
-                    textColors
-                  )
-                : await rgbToHex(textColors[0]);
-              itemColor.selectedIndex = [...itemColor.options].findIndex(
-                (option) =>
-                  document.querySelector(
-                    `[name="py_color_${option.textContent
-                      ?.toLowerCase()
-                      ?.replace(" ", "_")}"]`
-                  )?.value === contrastColor
-              );
-            }
-          }
-        } else if (!filed.getAttribute("name")?.includes("color")) {
+        } else if (filedName?.includes("_bg")) {
           let optionIndex = Math.floor(Math.random() * options.length);
           filed.selectedIndex = optionIndex;
-        }
+          let bgCName = options[optionIndex]?.textContent?.toLowerCase()?.replace(" ", "_");
+          let getBgColorHexCode = bgColors[bgCName];
+          console.log("Background Color", bgCName);
+          let textFiledName = filedName?.replace("_bg", "");
+          let textColorInput = sectionContainer.querySelectorAll(`[name*="${textFiledName}"]`);
+          if(textColorInput?.length) {
+            for (let i = 0; i < textColorInput?.length; i++) {
+              let textItemColor = textColorInput[i];
+              textItemColor.selectedIndex = [...textItemColor.options].findIndex((option) =>  option?.textContent?.toLowerCase()?.replaceAll(' ', '_') === (getBgColorHexCode ? getContrastName(getBgColorHexCode) : 'dark' ));
+              console.log("text Color", textItemColor.value, textItemColor.selectedIndex);
+            }
+          }
+        } 
+        // else {
+        //   console.log("another");
+        //   let optionIndex = Math.floor(Math.random() * options.length);
+        //   filed.selectedIndex = optionIndex;
+        // }
       }
     }
   };
@@ -2883,8 +2795,7 @@
     event.preventDefault();
     loading?.classList.add("py__animate");
 
-    textColors = await generateRandomColors();
-
+    await generateRandomColors();
     await setColorToSettings();
 
     fontsCount++;
@@ -2975,6 +2886,7 @@
     }
   };
 
+
   // Remix Section Styles Function
   const randomSectionFun = async (event) => {
     if (!event) return;
@@ -3002,7 +2914,7 @@
                 colorCode &&
                 colorCode !== "bg-c-none" &&
                 colorCode !== "bg-c-un"
-                  ? await getContrastYIQ(colorCode)
+                  ? getContrastHex(colorCode)
                   : "#000000";
               itemColor.selectedIndex = [...itemColor.options].findIndex(
                 (option) => option.getAttribute("data-value") === contrastColor
@@ -3056,7 +2968,7 @@
         ? document.querySelector(`[name="${findInColorsJson}"]`)
         : document.querySelector(`[name="${textUniqName}"]`);
       if (textColorInput) {
-        let newColor = getContrastYIQ(value);
+        let newColor = getContrastHex(value);
         let childWrapper = textColorInput.closest(".component-is-color");
         let childIsColor = childWrapper?.querySelector(".is__color");
         let childForColor = childWrapper?.querySelector(".py__label-for-color");
@@ -3130,7 +3042,7 @@
       if (textColorInput?.length) {
         for (let i = 0; i < textColorInput?.length; i++) {
           let itemColor = textColorInput[i];
-          let contrastColor = await getContrastYIQ(colorCode);
+          let contrastColor = getContrastName(colorCode);
           itemColor.selectedIndex = [...itemColor.options].findIndex(
             (option) => option.getAttribute("data-value") === contrastColor
           );

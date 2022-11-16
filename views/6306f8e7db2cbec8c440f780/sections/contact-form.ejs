@@ -48,7 +48,7 @@
           <h1 class="main-page-title page-title h0">
             <%= block?.settings?.form_title %>
           </h1>
-        <% } else if(block.type === 'content'){ %>
+        <% } else if(block.type !== 'content'){ %>
            <style>              
               .page-content{
                 font-size:<%=block?.settings?.content_font_size%>px;

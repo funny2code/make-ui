@@ -18,10 +18,13 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
 
 
 
-<div class="bc-collection-page-main filter-<%=section.settings.filter_style%> py-<%=section.settings.py_section_bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%> py-<%=section.settings.page_y_mg%>">
+<div class="bc-collection-page-main filter-<%=section.settings.filter_style%> py-<%#section.settings.py_section_bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%> py-<%=section.settings.page_y_mg%>">
   
   <% if(section.settings.filter_style === 'style-1'){ %>
-    <%- include('../snippets/collection-filters-style-1') %>
+    <%- include('../snippets/collection-filters-style-1', {
+      current_tags: false,
+      index: false
+    }) %>
   <% } else if(section.settings.filter_style === 'style-2'){ %>
     <%- include('../snippets/collection-filters-style-2', {
       heading: section.settings.filter_heading, 

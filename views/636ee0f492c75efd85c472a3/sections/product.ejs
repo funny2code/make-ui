@@ -824,13 +824,13 @@
             <% var headingLow = block?.settings?.heading.toLowerCase()?.trim() %>
             <style>
               .accordion_<%=headingLow?.replace(' ', '-') %>{
-                background-color:<%=block?.settings?.py_content_bg_color%>;
-                color:<%= block?.settings?.py_content_color %>;
-                border-color:<%= block?.settings?.py_content_color_br %>;
+                background-color:<%=section?.settings?.py_content_bg_color%>;
+                color:<%= section?.settings?.py_content_color %>;
+                border-color:<%= section?.settings?.py_content_color_br %>;
               }
               .accordion_<%=headingLow?.replace(' ', '-') %> *{
-                color:<%= block?.settings?.py_content_color %>;
-                fill:<%= block?.settings?.py_content_color %>;
+                color:<%= section?.settings?.py_content_color %>;
+                fill:<%= section?.settings?.py_content_color %>;
               }
             </style>
             <div class="product__accordion accordion accordion_<%=headingLow?.replace(' ', '-') %>">

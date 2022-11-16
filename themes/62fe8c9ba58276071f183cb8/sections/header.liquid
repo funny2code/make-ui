@@ -12,7 +12,7 @@
 
 <style>
   .header-wrapper{
-    border-color:{{section.settings.py_header_color_border}};
+    border-color:{{section.settings.py_header_color_1_border}};
     z-index: 99;
   }
   .header-wrapper,.header__submenu,
@@ -20,14 +20,14 @@
     background: {{section.settings.py_header_bg_color_1}};
   }
   .bc-mega-menu-image__title,.bc-mega-menu__title{
-    color:{{section.settings.py_header_color}};
+    color:{{section.settings.py_header_color_1}};
   }
   .menu-drawer__menu-item--active,
   .menu-drawer__menu-item:focus,
   .menu-drawer__close-button:focus,
   .menu-drawer__menu-item:hover,
   .menu-drawer__close-button:hover {
-    color:{{section.settings.py_header_color_link_hov_1}};
+    color:{{section.settings.py_header_color_1_1_link_hov}};
     background-color: var(--color-foreground-4);
   }
   .header__heading *,
@@ -36,22 +36,22 @@
   .header-wrapper a,
   .header-wrapper .list-menu__item,
   .header-wrapper .link--text{
-    color:{{section.settings.py_header_color_link_1}};
+    color:{{section.settings.py_header_color_1_1_link}};
   }
   .header__heading *:hover,
   .top-left-nav-item:hover,
   .header__icon>*:hover *,
   .header-wrapper a:hover,
   .header-wrapper .list-menu__item:hover{
-    color:{{section.settings.py_header_color_link_hov_1}};
+    color:{{section.settings.py_header_color_1_1_link_hov}};
   }
   .header--top-left .header__inline-menu .list-menu__item,
   .header--top-left-with-nav .header__inline-menu .list-menu__item{
-    color:{{section.settings.py_header_color_link_2}};
+    color:{{section.settings.py_header_color_2_link}};
   }
   .header--top-left .header__inline-menu .list-menu__item:hover,
   .header--top-left-with-nav .header__inline-menu .list-menu__item:hover{
-    color:{{section.settings.py_header_link_hov_color_2}};
+    color:{{section.settings.py_header_color_2_link_hov}};
   }
   .header--top-left .header__submenu,
   .header--top-left-with-nav .header__submenu{
@@ -396,7 +396,7 @@
     }
     .top-left-nav-item.active{
       background:{{section.settings.py_header_bg_color_2}};
-      color:{{section.settings.py_header_color_link_2}};
+      color:{{section.settings.py_header_color_2_link}};
     }
   }
   @media (max-width:799px){
@@ -2057,7 +2057,7 @@
     },
     {
       "type": "select",
-      "id": "py_header_color",
+      "id": "py_header_color_1",
       "label": "Mega Menu Text Color",
       "options": [          
           {
@@ -2089,7 +2089,7 @@
     },
     {
       "type": "select",
-      "id": "py_header_color_link_1",
+      "id": "py_header_color_1_link",
       "label": "Main Link Color",
       "options": [          
           {
@@ -2121,7 +2121,7 @@
     },
     {
       "type": "select",
-      "id": "py_header_color_link_hov_1",
+      "id": "py_header_color_1_link_hov",
       "label": "Main Link Hover Color",
       "options": [          
           {
@@ -2153,7 +2153,7 @@
     },
     {
       "type": "select",
-      "id": "py_header_color_link_2",
+      "id": "py_header_color_2_link",
       "label": "Bottom Link Color",
       "options": [          
           {
@@ -2185,7 +2185,7 @@
     },
     {
       "type": "select",
-      "id": "py_header_link_hov_color_2",
+      "id": "py_header_color_2_link_hov",
       "label": "Bottom Link Hover Color",
       "options": [          
           {
@@ -2217,7 +2217,7 @@
     },
     {
       "type": "select",
-      "id": "py_header_color_border",
+      "id": "py_header_color_1_border",
       "label": "Header Border Color",
       "options": [          
           {

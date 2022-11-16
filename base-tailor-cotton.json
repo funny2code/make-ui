@@ -3869,10 +3869,6 @@
           "label": "Card Background",
           "options": [
             {
-              "label": "Transparent",
-              "value": "bg-c-none"
-            },
-            {
               "label": "Dark",
               "value": "bg-c-dark"
             },
@@ -5637,10 +5633,6 @@
           "label": "Card Background",
           "options": [
             {
-              "label": "Transparent",
-              "value": "bg-c-none"
-            },
-            {
               "label": "Dark",
               "value": "bg-c-dark"
             },
@@ -6372,10 +6364,6 @@
           "label": "Card Background Color",
           "options": [
             {
-              "label": "Transparent",
-              "value": "bg-c-none"
-            },
-            {
               "label": "Dark",
               "value": "bg-c-dark"
             },
@@ -6488,7 +6476,7 @@
               "value": "c-average"
             },
             {
-              "label": "Light",
+              "label": "Middle Light",
               "value": "c-middle-light"
             },
             {
@@ -7769,10 +7757,6 @@
           "id": "card_bg_color",
           "label": "Card Background Color",
           "options": [
-            {
-              "label": "Transparent",
-              "value": "transparent"
-            },
             {
               "label": "Dark",
               "value": "var(--py-bg-color-dark)"
@@ -10824,10 +10808,6 @@
           "label": "Card Background",
           "options": [
             {
-              "label": "Transparent",
-              "value": "bg-c-none"
-            },
-            {
               "label": "Dark",
               "value": "bg-c-dark"
             },
@@ -12029,10 +12009,6 @@
           "label": "Card Background Color",
           "options": [
             {
-              "label": "Transparent",
-              "value": "bg-c-none"
-            },
-            {
               "label": "Dark",
               "value": "bg-c-dark"
             },
@@ -12157,7 +12133,7 @@
               "value": "c-average"
             },
             {
-              "label": "Light",
+              "label": "Middle Light",
               "value": "c-middle-light"
             },
             {
@@ -12661,6 +12637,98 @@
             }
           ],
           "default": "pd-x-m"
+        },
+        {
+          "type": "header",
+          "content": "Collapsible tabs Colors"
+        },
+        {
+          "type": "select",
+          "id": "py_content_bg_color",
+          "label": "Background Color",
+          "options": [
+            {
+              "label": "Transparent",
+              "value": "transparent"
+            },
+            {
+              "label": "Dark",
+              "value": "var(--py-bg-color-dark)"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "var(--py-bg-color-middle-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-bg-color-average)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-bg-color-middle-light)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-bg-color-light)"
+            }
+          ],
+          "default": "var(--py-bg-color-dark)"
+        },
+        {
+          "type": "select",
+          "id": "py_content_color",
+          "label": "Content Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-average)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+          "default": "var(--py-color-light)"
+        },
+        {
+          "type": "select",
+          "id": "py_content_color_br",
+          "label": "Border Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-average)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+          "default": "var(--py-color-light)"
         }
       ],
       "blocks": [
@@ -14412,94 +14480,6 @@
           "name": "t:sections.product.blocks.collapsible_tab.name",
           "settings": [
             {
-              "type": "select",
-              "id": "py_content_bg_color",
-              "label": "Background Color",
-              "options": [
-                {
-                  "label": "Transparent",
-                  "value": "transparent"
-                },
-                {
-                  "label": "Dark",
-                  "value": "var(--py-bg-color-dark)"
-                },
-                {
-                  "label": "Middle Dark",
-                  "value": "var(--py-bg-color-middle-dark)"
-                },
-                {
-                  "label": "Average",
-                  "value": "var(--py-bg-color-average)"
-                },
-                {
-                  "label": "Middle Light",
-                  "value": "var(--py-bg-color-middle-light)"
-                },
-                {
-                  "label": "Light",
-                  "value": "var(--py-bg-color-light)"
-                }
-              ],
-              "default": "var(--py-bg-color-dark)"
-            },
-            {
-              "type": "select",
-              "id": "py_content_color",
-              "label": "Content Color",
-              "options": [
-                {
-                  "label": "Dark",
-                  "value": "var(--py-color-dark)"
-                },
-                {
-                  "label": "Middle Dark",
-                  "value": "var(--py-color-middle-dark)"
-                },
-                {
-                  "label": "Average",
-                  "value": "var(--py-color-average)"
-                },
-                {
-                  "label": "Middle Light",
-                  "value": "var(--py-color-middle-light)"
-                },
-                {
-                  "label": "Light",
-                  "value": "var(--py-color-light)"
-                }
-              ],
-              "default": "var(--py-color-light)"
-            },
-            {
-              "type": "select",
-              "id": "py_content_color_br",
-              "label": "Border Color",
-              "options": [
-                {
-                  "label": "Dark",
-                  "value": "var(--py-color-dark)"
-                },
-                {
-                  "label": "Middle Dark",
-                  "value": "var(--py-color-middle-dark)"
-                },
-                {
-                  "label": "Average",
-                  "value": "var(--py-color-average)"
-                },
-                {
-                  "label": "Middle Light",
-                  "value": "var(--py-color-middle-light)"
-                },
-                {
-                  "label": "Light",
-                  "value": "var(--py-color-light)"
-                }
-              ],
-              "default": "var(--py-color-light)"
-            },
-            {
               "type": "text",
               "id": "heading",
               "default": "Collapsible tab",
@@ -14779,7 +14759,7 @@
               "value": "c-average"
             },
             {
-              "label": "Light",
+              "label": "Middle Light",
               "value": "c-middle-light"
             },
             {
@@ -15917,7 +15897,7 @@
         },
         {
           "type": "select",
-          "id": "py_header_color",
+          "id": "py_header_color_1",
           "label": "Header Text Color",
           "options": [
             {
@@ -16443,10 +16423,6 @@
           "label": "Card Background Color",
           "options": [
             {
-              "label": "Transparent",
-              "value": "transparent"
-            },
-            {
               "label": "Dark",
               "value": "var(--py-bg-color-dark)"
             },
@@ -16877,7 +16853,7 @@
         },
         {
           "type": "select",
-          "id": "py_header_color",
+          "id": "py_header_color_1",
           "label": "Mega Menu Text Color",
           "options": [
             {
@@ -16909,7 +16885,7 @@
         },
         {
           "type": "select",
-          "id": "py_header_color_link_1",
+          "id": "py_header_color_1_link",
           "label": "Main Link Color",
           "options": [
             {
@@ -16941,7 +16917,7 @@
         },
         {
           "type": "select",
-          "id": "py_header_color_link_hov_1",
+          "id": "py_header_color_1_link_hov",
           "label": "Main Link Hover Color",
           "options": [
             {
@@ -16973,7 +16949,7 @@
         },
         {
           "type": "select",
-          "id": "py_header_color_link_2",
+          "id": "py_header_color_2_link",
           "label": "Bottom Link Color",
           "options": [
             {
@@ -17005,7 +16981,7 @@
         },
         {
           "type": "select",
-          "id": "py_header_link_hov_color_2",
+          "id": "py_header_color_2_link_hov",
           "label": "Bottom Link Hover Color",
           "options": [
             {
@@ -17037,7 +17013,7 @@
         },
         {
           "type": "select",
-          "id": "py_header_color_border",
+          "id": "py_header_color_1_border",
           "label": "Header Border Color",
           "options": [
             {
@@ -18973,10 +18949,6 @@
               "label": "Card Background Color",
               "options": [
                 {
-                  "label": "Transparent",
-                  "value": "bg-c-none"
-                },
-                {
                   "label": "Dark",
                   "value": "bg-c-dark"
                 },
@@ -19101,7 +19073,7 @@
                   "value": "c-average"
                 },
                 {
-                  "label": "Light",
+                  "label": "Middle Light",
                   "value": "c-middle-light"
                 },
                 {
@@ -19936,7 +19908,7 @@
               "value": "c-average"
             },
             {
-              "label": "Light",
+              "label": "Middle Light",
               "value": "c-middle-light"
             },
             {
@@ -21781,10 +21753,6 @@
           "label": "Card Background Color",
           "options": [
             {
-              "label": "Transparent",
-              "value": "bg-c-none"
-            },
-            {
               "label": "Dark",
               "value": "bg-c-dark"
             },
@@ -21897,7 +21865,7 @@
               "value": "c-average"
             },
             {
-              "label": "Light",
+              "label": "Middle Light",
               "value": "c-middle-light"
             },
             {
@@ -22300,10 +22268,6 @@
           "label": "Card Background Color",
           "options": [
             {
-              "label": "Transparent",
-              "value": "bg-c-none"
-            },
-            {
               "label": "Dark",
               "value": "bg-c-dark"
             },
@@ -22416,7 +22380,7 @@
               "value": "c-average"
             },
             {
-              "label": "Light",
+              "label": "Middle Light",
               "value": "c-middle-light"
             },
             {
@@ -24436,94 +24400,6 @@
           "name": "Collapsible tab",
           "settings": [
             {
-              "type": "select",
-              "id": "py_content_bg_color",
-              "label": "Background Color",
-              "options": [
-                {
-                  "label": "Transparent",
-                  "value": "transparent"
-                },
-                {
-                  "label": "Dark",
-                  "value": "var(--py-bg-color-dark)"
-                },
-                {
-                  "label": "Middle Dark",
-                  "value": "var(--py-bg-color-middle-dark)"
-                },
-                {
-                  "label": "Average",
-                  "value": "var(--py-bg-color-average)"
-                },
-                {
-                  "label": "Middle Light",
-                  "value": "var(--py-bg-color-middle-light)"
-                },
-                {
-                  "label": "Light",
-                  "value": "var(--py-bg-color-light)"
-                }
-              ],
-              "default": "var(--py-bg-color-dark)"
-            },
-            {
-              "type": "select",
-              "id": "py_content_color",
-              "label": "Content Color",
-              "options": [
-                {
-                  "label": "Dark",
-                  "value": "var(--py-color-dark)"
-                },
-                {
-                  "label": "Middle Dark",
-                  "value": "var(--py-color-middle-dark)"
-                },
-                {
-                  "label": "Average",
-                  "value": "var(--py-color-average)"
-                },
-                {
-                  "label": "Middle Light",
-                  "value": "var(--py-color-middle-light)"
-                },
-                {
-                  "label": "Light",
-                  "value": "var(--py-color-light)"
-                }
-              ],
-              "default": "var(--py-color-light)"
-            },
-            {
-              "type": "select",
-              "id": "py_content_color_br",
-              "label": "Border Color",
-              "options": [
-                {
-                  "label": "Dark",
-                  "value": "var(--py-color-dark)"
-                },
-                {
-                  "label": "Middle Dark",
-                  "value": "var(--py-color-middle-dark)"
-                },
-                {
-                  "label": "Average",
-                  "value": "var(--py-color-average)"
-                },
-                {
-                  "label": "Middle Light",
-                  "value": "var(--py-color-middle-light)"
-                },
-                {
-                  "label": "Light",
-                  "value": "var(--py-color-light)"
-                }
-              ],
-              "default": "var(--py-color-light)"
-            },
-            {
               "type": "text",
               "id": "heading",
               "default": "Collapsible tab",
@@ -24912,6 +24788,98 @@
             }
           ],
           "default": "pd-x-m"
+        },
+        {
+          "type": "header",
+          "content": "Collapsible tabs Colors"
+        },
+        {
+          "type": "select",
+          "id": "py_content_bg_color",
+          "label": "Background Color",
+          "options": [
+            {
+              "label": "Transparent",
+              "value": "transparent"
+            },
+            {
+              "label": "Dark",
+              "value": "var(--py-bg-color-dark)"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "var(--py-bg-color-middle-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-bg-color-average)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-bg-color-middle-light)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-bg-color-light)"
+            }
+          ],
+          "default": "var(--py-bg-color-dark)"
+        },
+        {
+          "type": "select",
+          "id": "py_content_color",
+          "label": "Content Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-average)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+          "default": "var(--py-color-light)"
+        },
+        {
+          "type": "select",
+          "id": "py_content_color_br",
+          "label": "Border Color",
+          "options": [
+            {
+              "label": "Dark",
+              "value": "var(--py-color-dark)"
+            },
+            {
+              "label": "Middle Dark",
+              "value": "var(--py-color-middle-dark)"
+            },
+            {
+              "label": "Average",
+              "value": "var(--py-color-average)"
+            },
+            {
+              "label": "Middle Light",
+              "value": "var(--py-color-middle-light)"
+            },
+            {
+              "label": "Light",
+              "value": "var(--py-color-light)"
+            }
+          ],
+          "default": "var(--py-color-light)"
         }
       ],
       "file_name": "product",
@@ -25267,10 +25235,6 @@
           "label": "Card Background Color",
           "options": [
             {
-              "label": "Transparent",
-              "value": "bg-c-none"
-            },
-            {
               "label": "Dark",
               "value": "bg-c-dark"
             },
@@ -25395,7 +25359,7 @@
               "value": "c-average"
             },
             {
-              "label": "Light",
+              "label": "Middle Light",
               "value": "c-middle-light"
             },
             {

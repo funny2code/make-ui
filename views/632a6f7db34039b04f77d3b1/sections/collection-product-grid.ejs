@@ -12,12 +12,12 @@
 body.collection #shopify-section-header,body.collection  #shopify-section-header-2 {
   z-index: inherit;
 }
-  #CollectionProductGrid{
+  /* #CollectionProductGrid{
     background-color:<%= section.settings.section_bg_color %>;
   }
   #CollectionProductGrid .quick-add-cart-wrapper,filter-style-3 .coll-filters{
     border-color:<%= section.settings.section_bg_color %>;
-  }
+  } */
 </style>
 
 <% var sort_by = collection.sort_by || collection.default_sort_by %>
@@ -33,7 +33,8 @@ body.collection #shopify-section-header,body.collection  #shopify-section-header
   <% } %>
   <% if(section.settings.filter_style === 'style-1'){ %>
     <%- include('../snippets/collection-filters-style-1', {
-      current_tags: false
+      current_tags: false,
+      index: false
     }) %>
   <% } else if(section.settings.filter_style === 'style-2'){ %>
     <%- include('../snippets/collection-filters-style-2', {

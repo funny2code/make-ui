@@ -59,7 +59,7 @@
     "py_sm_btn_font_weight": 500,
     "py_md_btn_x_pd": "2.2rem",
     "py_md_btn_y_pd": "0.8rem",
-    "py_md_btn_border_width": 1,
+    "py_md_btn_border_width": 0,
     "py_md_btn_font_size": 17,
     "py_md_btn_font_weight": 600,
     "py_lg_btn_x_pd": "3.2rem",
@@ -214,14 +214,14 @@
           "info_fontstyle": "normal",
           "info_lineheight": "",
           "info_letterspacing": "",
-          "py_header_bg_color": "var(--py-bg-color-middle-light)",
+          "py_header_bg_color_1": "var(--py-bg-color-middle-light)",
           "py_header_bg_color_2": "var(--py-bg-color-light)",
-          "py_header_color": "var(--py-color-light)",
-          "py_header_color_link_1": "var(--py-color-light)",
-          "py_header_color_link_hov_1": "var(--py-color-light)",
-          "py_header_color_link_2": "var(--py-color-light)",
-          "py_header_link_hov_color_2": "var(--py-color-middle-light)",
-          "py_header_color_border": "var(--py-color-light)",
+          "py_header_color_1": "var(--py-color-light)",
+          "py_header_color_1_link": "var(--py-color-light)",
+          "py_header_color_1_link_hov": "var(--py-color-light)",
+          "py_header_color_2_link": "var(--py-color-light)",
+          "py_header_color_2_link_hov": "var(--py-color-middle-light)",
+          "py_header_color_1_border": "var(--py-color-light)",
           "page_width": "width-un",
           "page_x_pd": "pd-x-m",
           "page_y_pd": "pd-y-m",
@@ -836,8 +836,7 @@
       },
       "customers-activate-account": {
         "type": "customers-activate-account",
-        "settings": {
-        }
+        "settings": {}
       },
       "customers-reset-password": {
         "type": "customers-reset-password",
@@ -845,13 +844,11 @@
       },
       "customers-account": {
         "type": "customers-account",
-        "settings": {
-        }
+        "settings": {}
       },
       "customers-login": {
         "type": "customers-login",
-        "settings": {
-        }
+        "settings": {}
       },
       "customers-register": {
         "type": "customers-register",
@@ -894,9 +891,9 @@
           "promo_text": "Free shipping on North American orders over $250",
           "menu": "main-menu",
           "search_hide_tags": "",
-          "py_header_bg_color": "transparent",
+          "py_header_bg_color_1": "transparent",
           "py_header_bg_color_2": "var(--py-bg-color-light)",
-          "py_header_color": "var(--py-color-dark)",
+          "py_header_color_1": "var(--py-color-dark)",
           "page_width": "width-un",
           "page_x_pd": "pd-x-m",
           "page_y_pd": "pd-y-m"
@@ -930,8 +927,8 @@
     "py_br_s": "solid",
     "py_br": "1px",
     "py_br_x": "1px",
-    "py_sm_btn_border_width": 5,
-    "py_lg_btn_border_width": 5,
+    "py_sm_btn_border_width": 0,
+    "py_lg_btn_border_width": 0,
     "py_lg_btn_font_weight": 500,
     "py_pd_x_xl": "4rem",
     "py_pd_x_l": "3.5rem",

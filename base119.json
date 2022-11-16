@@ -3764,10 +3764,6 @@
                     "label": "Card Background",
                     "options": [
                         {
-                            "label": "Transparent",
-                            "value": "bg-c-none"
-                        },
-                        {
                             "label": "Dark",
                             "value": "bg-c-dark"
                         },
@@ -5485,10 +5481,6 @@
                     "label": "Card Background",
                     "options": [
                         {
-                            "label": "Transparent",
-                            "value": "bg-c-none"
-                        },
-                        {
                             "label": "Dark",
                             "value": "bg-c-dark"
                         },
@@ -6352,10 +6344,6 @@
                     "label": "Card Background Color",
                     "options": [
                         {
-                            "label": "Transparent",
-                            "value": "bg-c-none"
-                        },
-                        {
                             "label": "Dark",
                             "value": "bg-c-dark"
                         },
@@ -6480,7 +6468,7 @@
                             "value": "c-average"
                         },
                         {
-                            "label": "Light",
+                            "label": "Middle Light",
                             "value": "c-middle-light"
                         },
                         {
@@ -7761,10 +7749,6 @@
                     "id": "card_bg_color",
                     "label": "Card Background Color",
                     "options": [
-                        {
-                            "label": "Transparent",
-                            "value": "transparent"
-                        },
                         {
                             "label": "Dark",
                             "value": "var(--py-bg-color-dark)"
@@ -10816,10 +10800,6 @@
                     "label": "Card Background",
                     "options": [
                         {
-                            "label": "Transparent",
-                            "value": "bg-c-none"
-                        },
-                        {
                             "label": "Dark",
                             "value": "bg-c-dark"
                         },
@@ -11266,10 +11246,6 @@
                     "label": "Card Background Color",
                     "options": [
                         {
-                            "label": "Transparent",
-                            "value": "bg-c-none"
-                        },
-                        {
                             "label": "Dark",
                             "value": "bg-c-dark"
                         },
@@ -11394,7 +11370,7 @@
                             "value": "c-average"
                         },
                         {
-                            "label": "Light",
+                            "label": "Middle Light",
                             "value": "c-middle-light"
                         },
                         {
@@ -11771,7 +11747,7 @@
                             "value": "c-average"
                         },
                         {
-                            "label": "Light",
+                            "label": "Middle Light",
                             "value": "c-middle-light"
                         },
                         {
@@ -12845,7 +12821,7 @@
                 },
                 {
                     "type": "select",
-                    "id": "py_header_bg_color",
+                    "id": "py_header_bg_color_1",
                     "label": "Header Background Color",
                     "options": [
                         {
@@ -12909,7 +12885,7 @@
                 },
                 {
                     "type": "select",
-                    "id": "py_header_color",
+                    "id": "py_header_color_1",
                     "label": "Header Text Color",
                     "options": [
                         {
@@ -13427,10 +13403,6 @@
                     "label": "Card Background Color",
                     "options": [
                         {
-                            "label": "Transparent",
-                            "value": "transparent"
-                        },
-                        {
                             "label": "Dark",
                             "value": "var(--py-bg-color-dark)"
                         },
@@ -13845,7 +13817,7 @@
                 },
                 {
                     "type": "select",
-                    "id": "py_header_color",
+                    "id": "py_header_color_1",
                     "label": "Mega Menu Text Color",
                     "options": [
                         {
@@ -13877,7 +13849,7 @@
                 },
                 {
                     "type": "select",
-                    "id": "py_header_color_link_1",
+                    "id": "py_header_color_1_link",
                     "label": "Main Link Color",
                     "options": [
                         {
@@ -13909,7 +13881,7 @@
                 },
                 {
                     "type": "select",
-                    "id": "py_header_color_link_hov_1",
+                    "id": "py_header_color_1_link_hov",
                     "label": "Main Link Hover Color",
                     "options": [
                         {
@@ -13941,7 +13913,7 @@
                 },
                 {
                     "type": "select",
-                    "id": "py_header_color_link_2",
+                    "id": "py_header_color_2_link",
                     "label": "Bottom Link Color",
                     "options": [
                         {
@@ -13973,7 +13945,7 @@
                 },
                 {
                     "type": "select",
-                    "id": "py_header_link_hov_color_2",
+                    "id": "py_header_color_2_link_hov",
                     "label": "Bottom Link Hover Color",
                     "options": [
                         {
@@ -14005,7 +13977,7 @@
                 },
                 {
                     "type": "select",
-                    "id": "py_header_color_border",
+                    "id": "py_header_color_1_border",
                     "label": "Header Border Color",
                     "options": [
                         {
@@ -15938,10 +15910,6 @@
                             "label": "Card Background Color",
                             "options": [
                                 {
-                                    "label": "Transparent",
-                                    "value": "bg-c-none"
-                                },
-                                {
                                     "label": "Dark",
                                     "value": "bg-c-dark"
                                 },
@@ -16066,7 +16034,7 @@
                                     "value": "c-average"
                                 },
                                 {
-                                    "label": "Light",
+                                    "label": "Middle Light",
                                     "value": "c-middle-light"
                                 },
                                 {
@@ -16901,7 +16869,7 @@
                             "value": "c-average"
                         },
                         {
-                            "label": "Light",
+                            "label": "Middle Light",
                             "value": "c-middle-light"
                         },
                         {
@@ -18669,10 +18637,6 @@
                     "label": "Card Background Color",
                     "options": [
                         {
-                            "label": "Transparent",
-                            "value": "bg-c-none"
-                        },
-                        {
                             "label": "Dark",
                             "value": "bg-c-dark"
                         },
@@ -18797,7 +18761,7 @@
                             "value": "c-average"
                         },
                         {
-                            "label": "Light",
+                            "label": "Middle Light",
                             "value": "c-middle-light"
                         },
                         {
@@ -19236,10 +19200,6 @@
                     "label": "Card Background Color",
                     "options": [
                         {
-                            "label": "Transparent",
-                            "value": "bg-c-none"
-                        },
-                        {
                             "label": "Dark",
                             "value": "bg-c-dark"
                         },
@@ -19364,7 +19324,7 @@
                             "value": "c-average"
                         },
                         {
-                            "label": "Light",
+                            "label": "Middle Light",
                             "value": "c-middle-light"
                         },
                         {
@@ -19634,73 +19594,2089 @@
         {
             "name": "Product information",
             "tag": "section",
-            "class": "collection-grid-section",
-            "settings": [
+            "class": "js-product-section-main",
+            "blocks": [
                 {
-                    "type": "select",
-                    "id": "collection_style",
-                    "options": [
+                    "type": "@app"
+                },
+                {
+                    "type": "text",
+                    "name": "Text",
+                    "settings": [
                         {
-                            "value": "style-1",
-                            "label": "Style 1"
+                            "type": "text",
+                            "id": "text",
+                            "default": "Text block",
+                            "label": "Text"
                         },
                         {
-                            "value": "style-2",
-                            "label": "Style 2"
+                            "type": "select",
+                            "id": "text_style",
+                            "options": [
+                                {
+                                    "value": "body",
+                                    "label": "Body"
+                                },
+                                {
+                                    "value": "subtitle",
+                                    "label": "Subtitle"
+                                },
+                                {
+                                    "value": "uppercase",
+                                    "label": "Uppercase"
+                                }
+                            ],
+                            "default": "body",
+                            "label": "Text style"
+                        }
+                    ]
+                },
+                {
+                    "type": "title",
+                    "name": "Title",
+                    "limit": {
+                        "$numberInt": "1"
+                    },
+                    "settings": [
+                        {
+                            "type": "header",
+                            "content": "Product Title Font Style"
+                        },
+                        {
+                            "type": "range",
+                            "id": "title_fontsize",
+                            "min": {
+                                "$numberInt": "10"
+                            },
+                            "max": {
+                                "$numberInt": "40"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "24"
+                            },
+                            "label": "Font size Desktop"
+                        },
+                        {
+                            "type": "range",
+                            "id": "title_fontsize_m",
+                            "min": {
+                                "$numberInt": "10"
+                            },
+                            "max": {
+                                "$numberInt": "40"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "18"
+                            },
+                            "label": "Font size Mobile"
+                        },
+                        {
+                            "type": "range",
+                            "id": "title_fontweight",
+                            "min": {
+                                "$numberInt": "100"
+                            },
+                            "max": {
+                                "$numberInt": "900"
+                            },
+                            "step": {
+                                "$numberInt": "100"
+                            },
+                            "default": {
+                                "$numberInt": "600"
+                            },
+                            "label": "Font-weight"
+                        },
+                        {
+                            "type": "text",
+                            "id": "title_fontstretch",
+                            "label": "Font-stretch",
+                            "info": "Ex: 40%"
+                        },
+                        {
+                            "type": "select",
+                            "id": "title_fontstyle",
+                            "options": [
+                                {
+                                    "value": "normal",
+                                    "label": "normal"
+                                },
+                                {
+                                    "value": "italic",
+                                    "label": "italic"
+                                }
+                            ],
+                            "default": "normal",
+                            "label": "Font-style"
+                        },
+                        {
+                            "type": "text",
+                            "id": "title_lineheight",
+                            "label": "Lineheight"
+                        },
+                        {
+                            "type": "text",
+                            "id": "title_letterspacing",
+                            "label": "Letter-spacing",
+                            "info": "Ex: 0.5px"
+                        }
+                    ]
+                },
+                {
+                    "type": "type",
+                    "name": "Type",
+                    "limit": {
+                        "$numberInt": "1"
+                    }
+                },
+                {
+                    "type": "price",
+                    "name": "Price",
+                    "limit": {
+                        "$numberInt": "1"
+                    },
+                    "settings": [
+                        {
+                            "type": "header",
+                            "content": "Product price Font Style"
+                        },
+                        {
+                            "type": "range",
+                            "id": "price_fontsize",
+                            "min": {
+                                "$numberInt": "10"
+                            },
+                            "max": {
+                                "$numberInt": "40"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "24"
+                            },
+                            "label": "Font size Desktop"
+                        },
+                        {
+                            "type": "range",
+                            "id": "price_fontsize_m",
+                            "min": {
+                                "$numberInt": "10"
+                            },
+                            "max": {
+                                "$numberInt": "40"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "20"
+                            },
+                            "label": "Font size Mobile"
+                        },
+                        {
+                            "type": "range",
+                            "id": "price_fontweight",
+                            "min": {
+                                "$numberInt": "100"
+                            },
+                            "max": {
+                                "$numberInt": "900"
+                            },
+                            "step": {
+                                "$numberInt": "100"
+                            },
+                            "default": {
+                                "$numberInt": "400"
+                            },
+                            "label": "Font-weight"
+                        },
+                        {
+                            "type": "text",
+                            "id": "price_fontstretch",
+                            "label": "Font-stretch",
+                            "info": "Ex: 40%"
+                        },
+                        {
+                            "type": "select",
+                            "id": "price_fontstyle",
+                            "options": [
+                                {
+                                    "value": "normal",
+                                    "label": "normal"
+                                },
+                                {
+                                    "value": "italic",
+                                    "label": "italic"
+                                }
+                            ],
+                            "default": "normal",
+                            "label": "Font-style"
+                        },
+                        {
+                            "type": "text",
+                            "id": "price_lineheight",
+                            "label": "Lineheight"
+                        },
+                        {
+                            "type": "text",
+                            "id": "price_letterspacing",
+                            "label": "Letter-spacing",
+                            "info": "Ex: 0.5px"
+                        }
+                    ]
+                },
+                {
+                    "type": "quantity_selector",
+                    "name": "Quantity selector",
+                    "limit": {
+                        "$numberInt": "1"
+                    },
+                    "settings": [
+                        {
+                            "type": "select",
+                            "id": "option_color",
+                            "label": "Selector Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-dark)"
+                        }
+                    ]
+                },
+                {
+                    "type": "variant_picker",
+                    "name": "Variant picker",
+                    "limit": {
+                        "$numberInt": "1"
+                    },
+                    "settings": [
+                        {
+                            "type": "select",
+                            "id": "color_picker_type",
+                            "options": [
+                                {
+                                    "value": "color",
+                                    "label": "Color"
+                                },
+                                {
+                                    "value": "color_name",
+                                    "label": "Color + Name"
+                                },
+                                {
+                                    "value": "name",
+                                    "label": "Name"
+                                }
+                            ],
+                            "default": "color",
+                            "label": "Color Option Layout"
+                        },
+                        {
+                            "type": "select",
+                            "id": "general_picker_type",
+                            "options": [
+                                {
+                                    "value": "no_radius",
+                                    "label": "No Radius"
+                                },
+                                {
+                                    "value": "sm_radius",
+                                    "label": "Small Radius"
+                                },
+                                {
+                                    "value": "f_radius",
+                                    "label": "Full Radius"
+                                }
+                            ],
+                            "default": "sm_radius",
+                            "label": "General Option Layout"
+                        },
+                        {
+                            "type": "select",
+                            "id": "option_bg_color",
+                            "label": "Option Background Color",
+                            "options": [
+                                {
+                                    "label": "Transparent",
+                                    "value": "transparent"
+                                },
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-bg-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-bg-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-bg-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-bg-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-bg-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-bg-color-average)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "option_color_br",
+                            "label": "Option Border Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-dark)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "option_color",
+                            "label": "Option Text Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-light)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "selected_option_bg_color",
+                            "label": "Selected Option Background Color",
+                            "options": [
+                                {
+                                    "label": "Transparent",
+                                    "value": "transparent"
+                                },
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-bg-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-bg-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-bg-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-bg-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-bg-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-bg-color-dark)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "selected_option_color_br",
+                            "label": "Selected Option Border Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-light)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "selected_option_color",
+                            "label": "Selected Option Text Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-average)"
+                        },
+                        {
+                            "type": "header",
+                            "content": "Product Option Font Style"
+                        },
+                        {
+                            "type": "range",
+                            "id": "option_fontsize",
+                            "min": {
+                                "$numberInt": "10"
+                            },
+                            "max": {
+                                "$numberInt": "40"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "18"
+                            },
+                            "label": "Font size Desktop"
+                        },
+                        {
+                            "type": "range",
+                            "id": "option_fontsize_m",
+                            "min": {
+                                "$numberInt": "10"
+                            },
+                            "max": {
+                                "$numberInt": "40"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "18"
+                            },
+                            "label": "Font size Mobile"
+                        },
+                        {
+                            "type": "range",
+                            "id": "option_fontweight",
+                            "min": {
+                                "$numberInt": "100"
+                            },
+                            "max": {
+                                "$numberInt": "900"
+                            },
+                            "step": {
+                                "$numberInt": "100"
+                            },
+                            "default": {
+                                "$numberInt": "400"
+                            },
+                            "label": "Font-weight"
+                        },
+                        {
+                            "type": "text",
+                            "id": "option_fontstretch",
+                            "label": "Font-stretch",
+                            "info": "Ex: 40%"
+                        },
+                        {
+                            "type": "select",
+                            "id": "option_fontstyle",
+                            "options": [
+                                {
+                                    "value": "normal",
+                                    "label": "normal"
+                                },
+                                {
+                                    "value": "italic",
+                                    "label": "italic"
+                                }
+                            ],
+                            "default": "normal",
+                            "label": "Font-style"
+                        },
+                        {
+                            "type": "text",
+                            "id": "option_lineheight",
+                            "label": "Lineheight"
+                        },
+                        {
+                            "type": "text",
+                            "id": "option_letterspacing",
+                            "label": "Letter-spacing",
+                            "info": "Ex: 0.5px"
+                        }
+                    ]
+                },
+                {
+                    "type": "buy_buttons",
+                    "name": "Buy buttons",
+                    "limit": {
+                        "$numberInt": "1"
+                    },
+                    "settings": [
+                        {
+                            "type": "select",
+                            "id": "add_btn_size",
+                            "label": "Button Size",
+                            "options": [
+                                {
+                                    "label": "Small",
+                                    "value": "small"
+                                },
+                                {
+                                    "label": "Medium",
+                                    "value": "medium"
+                                },
+                                {
+                                    "label": "Large",
+                                    "value": "large"
+                                }
+                            ],
+                            "default": "medium"
+                        },
+                        {
+                            "type": "select",
+                            "id": "btn_bg_color",
+                            "label": "Button Background Color",
+                            "options": [
+                                {
+                                    "label": "Transparent",
+                                    "value": "transparent"
+                                },
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-bg-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-bg-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-bg-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-bg-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-bg-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-bg-color-dark)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "btn_color",
+                            "label": "Button Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-light)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "btn_hover_bg_color",
+                            "label": "Button Hover Background Color",
+                            "options": [
+                                {
+                                    "label": "Transparent",
+                                    "value": "transparent"
+                                },
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-bg-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-bg-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-bg-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-bg-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-bg-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-bg-color-dark)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "btn_hover_color",
+                            "label": "Button Hover Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-average)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "btn_color_br",
+                            "label": "Button Border Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-light)"
+                        },
+                        {
+                            "type": "range",
+                            "id": "btn_border_width",
+                            "min": {
+                                "$numberInt": "0"
+                            },
+                            "max": {
+                                "$numberInt": "5"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "1"
+                            },
+                            "label": "Button Border Width"
+                        },
+                        {
+                            "type": "range",
+                            "id": "btn_border_radius",
+                            "min": {
+                                "$numberInt": "0"
+                            },
+                            "max": {
+                                "$numberInt": "40"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "1"
+                            },
+                            "label": "Button Border Radius"
+                        },
+                        {
+                            "type": "range",
+                            "id": "btn_font_size",
+                            "min": {
+                                "$numberInt": "10"
+                            },
+                            "max": {
+                                "$numberInt": "40"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "18"
+                            },
+                            "label": "Button Font Size"
+                        },
+                        {
+                            "type": "text",
+                            "id": "btn",
+                            "label": "Button Label"
+                        },
+                        {
+                            "type": "checkbox",
+                            "id": "show_dynamic_checkout",
+                            "default": true,
+                            "label": "Show dynamic checkout buttons",
+                            "info": "Using the payment methods available on your store, customers see their preferred option, like PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+                        },
+                        {
+                            "type": "header",
+                            "content": "Fixed Add to Cart Style"
+                        },
+                        {
+                            "type": "checkbox",
+                            "id": "fixed_add",
+                            "default": false,
+                            "label": "Enable Fixed Add to Cart"
+                        },
+                        {
+                            "type": "select",
+                            "id": "fixed_style",
+                            "label": "Fixed Add to Cart Style",
+                            "options": [
+                                {
+                                    "label": "Style 1",
+                                    "value": "style-1"
+                                },
+                                {
+                                    "label": "Style 2",
+                                    "value": "style-2"
+                                }
+                            ],
+                            "default": "style-1"
+                        },
+                        {
+                            "type": "select",
+                            "id": "fixed_add_bg_color",
+                            "label": "Fixed Add to Cart Background Color",
+                            "options": [
+                                {
+                                    "label": "Transparent",
+                                    "value": "transparent"
+                                },
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-bg-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-bg-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-bg-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-bg-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-bg-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-bg-color-light)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "fixed_add_color_info",
+                            "label": "Fixed Add to Cart Text Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-dark)"
+                        },
+                        {
+                            "type": "range",
+                            "id": "fixed_add_radius",
+                            "min": {
+                                "$numberInt": "0"
+                            },
+                            "max": {
+                                "$numberInt": "20"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "7"
+                            },
+                            "label": "Fixed Add to Cart Border Radius"
+                        },
+                        {
+                            "type": "select",
+                            "id": "fixed_add_btn_bg_color",
+                            "label": "Fixed Add to Cart Button Background Color",
+                            "options": [
+                                {
+                                    "label": "Transparent",
+                                    "value": "transparent"
+                                },
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-bg-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-bg-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-bg-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-bg-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-bg-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-bg-color-light)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "fixed_add_btn_color",
+                            "label": "Fixed Add to Cart Button Text Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-dark)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "fixed_add_btn_hv_bg_color",
+                            "label": "Fixed Add to Cart Button Hover Background Color",
+                            "options": [
+                                {
+                                    "label": "Transparent",
+                                    "value": "transparent"
+                                },
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-bg-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-bg-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-bg-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-bg-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-bg-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-bg-color-light)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "fixed_add_btn_hv_color",
+                            "label": "Fixed Add to Cart Button Hover Text Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-dark)"
+                        },
+                        {
+                            "type": "range",
+                            "id": "fixed_add_btn_radius",
+                            "min": {
+                                "$numberInt": "0"
+                            },
+                            "max": {
+                                "$numberInt": "20"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "7"
+                            },
+                            "label": "Fixed Add to Cart Button Border Radius"
+                        },
+                        {
+                            "type": "header",
+                            "content": "Sold Out Card Style"
+                        },
+                        {
+                            "type": "select",
+                            "id": "sold_out_bg_color",
+                            "label": "Sold Out Background Color",
+                            "options": [
+                                {
+                                    "label": "Transparent",
+                                    "value": "transparent"
+                                },
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-bg-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-bg-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-bg-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-bg-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-bg-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-bg-color-light)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "sold_out_color_info",
+                            "label": "Sold Out Info Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-dark)"
+                        },
+                        {
+                            "type": "range",
+                            "id": "sold_out_card_radius",
+                            "min": {
+                                "$numberInt": "0"
+                            },
+                            "max": {
+                                "$numberInt": "20"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "7"
+                            },
+                            "label": "Sold Out Border Radius"
+                        },
+                        {
+                            "type": "select",
+                            "id": "sold_out_color_br",
+                            "label": "Sold Out Border Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-dark)"
+                        },
+                        {
+                            "type": "range",
+                            "id": "sold_out_border_width",
+                            "min": {
+                                "$numberInt": "0"
+                            },
+                            "max": {
+                                "$numberInt": "5"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "1"
+                            },
+                            "label": "Sold Out Border Width"
+                        },
+                        {
+                            "type": "range",
+                            "id": "sold_out_title_font_size",
+                            "min": {
+                                "$numberInt": "10"
+                            },
+                            "max": {
+                                "$numberInt": "40"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "18"
+                            },
+                            "label": "Sold Out Title Font Size"
+                        },
+                        {
+                            "type": "range",
+                            "id": "sold_out_desc_font_size",
+                            "min": {
+                                "$numberInt": "8"
+                            },
+                            "max": {
+                                "$numberInt": "32"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "14"
+                            },
+                            "label": "Sold Out Description Font Size"
+                        },
+                        {
+                            "type": "header",
+                            "content": "Pre Order Card Style"
+                        },
+                        {
+                            "type": "select",
+                            "id": "pre_order_bg_color",
+                            "label": "Pre Order Background Color",
+                            "options": [
+                                {
+                                    "label": "Transparent",
+                                    "value": "transparent"
+                                },
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-bg-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-bg-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-bg-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-bg-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-bg-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-bg-color-light)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "pre_order_color",
+                            "label": "Pre Order Info Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-dark)"
+                        },
+                        {
+                            "type": "range",
+                            "id": "pre_order_card_radius",
+                            "min": {
+                                "$numberInt": "0"
+                            },
+                            "max": {
+                                "$numberInt": "20"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "7"
+                            },
+                            "label": "Pre Order Border Radius"
+                        },
+                        {
+                            "type": "select",
+                            "id": "pre_order_color_br",
+                            "label": "Pre Order Border Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-dark)"
+                        },
+                        {
+                            "type": "range",
+                            "id": "pre_order_border_width",
+                            "min": {
+                                "$numberInt": "0"
+                            },
+                            "max": {
+                                "$numberInt": "5"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "1"
+                            },
+                            "label": "Pre Order Border Width"
+                        },
+                        {
+                            "type": "range",
+                            "id": "pre_order_title_font_size",
+                            "min": {
+                                "$numberInt": "10"
+                            },
+                            "max": {
+                                "$numberInt": "40"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "18"
+                            },
+                            "label": "Pre Order Title Font Size"
+                        },
+                        {
+                            "type": "range",
+                            "id": "pre_order_desc_font_size",
+                            "min": {
+                                "$numberInt": "8"
+                            },
+                            "max": {
+                                "$numberInt": "32"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "14"
+                            },
+                            "label": "Pre Order Description Font Size"
+                        },
+                        {
+                            "type": "header",
+                            "content": "Pick Up Card Style"
+                        },
+                        {
+                            "type": "select",
+                            "id": "pick_up_bg_color",
+                            "label": "Pick Up Card Background ",
+                            "options": [
+                                {
+                                    "label": "Transparent",
+                                    "value": "transparent"
+                                },
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-bg-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-bg-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-bg-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-bg-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-bg-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-bg-color-light)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "pick_up_color",
+                            "label": "Pick Up Card Info Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-dark)"
+                        },
+                        {
+                            "type": "range",
+                            "id": "pick_up_card_radius",
+                            "min": {
+                                "$numberInt": "0"
+                            },
+                            "max": {
+                                "$numberInt": "20"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "7"
+                            },
+                            "label": "Pick Up Card Border Radius"
+                        },
+                        {
+                            "type": "select",
+                            "id": "pick_up_color_br",
+                            "label": "Pick Up Card Border Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-dark)"
+                        },
+                        {
+                            "type": "range",
+                            "id": "pick_up_border_width",
+                            "min": {
+                                "$numberInt": "0"
+                            },
+                            "max": {
+                                "$numberInt": "5"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "1"
+                            },
+                            "label": "Pick Up Card Border Width"
+                        },
+                        {
+                            "type": "range",
+                            "id": "pick_up_title_font_size",
+                            "min": {
+                                "$numberInt": "10"
+                            },
+                            "max": {
+                                "$numberInt": "40"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "18"
+                            },
+                            "label": "Pick Up Title Font Size"
+                        },
+                        {
+                            "type": "text",
+                            "id": "pick_up_txt",
+                            "label": "Pick Up Description",
+                            "default": "This item is available for pickup at these locations:"
+                        },
+                        {
+                            "type": "range",
+                            "id": "pick_up_desc_font_size",
+                            "min": {
+                                "$numberInt": "8"
+                            },
+                            "max": {
+                                "$numberInt": "32"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "14"
+                            },
+                            "label": "Pick Up Description Font Size"
+                        },
+                        {
+                            "type": "select",
+                            "id": "pick_up_location_bg_color",
+                            "label": "Pick Up Location Background Color",
+                            "options": [
+                                {
+                                    "label": "Transparent",
+                                    "value": "transparent"
+                                },
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-bg-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-bg-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-bg-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-bg-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-bg-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-bg-color-light)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "pick_up_location_color",
+                            "label": "Pick Up Location Info Color",
+                            "options": [
+                                {
+                                    "label": "Dark",
+                                    "value": "var(--py-color-dark)"
+                                },
+                                {
+                                    "label": "Middle Dark",
+                                    "value": "var(--py-color-middle-dark)"
+                                },
+                                {
+                                    "label": "Average",
+                                    "value": "var(--py-color-average)"
+                                },
+                                {
+                                    "label": "Middle Light",
+                                    "value": "var(--py-color-middle-light)"
+                                },
+                                {
+                                    "label": "Light",
+                                    "value": "var(--py-color-light)"
+                                }
+                            ],
+                            "default": "var(--py-color-dark)"
+                        },
+                        {
+                            "type": "range",
+                            "id": "pick_up_location_radius",
+                            "min": {
+                                "$numberInt": "0"
+                            },
+                            "max": {
+                                "$numberInt": "20"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "8"
+                            },
+                            "label": "Pick Up Location Border Radius"
+                        }
+                    ]
+                },
+                {
+                    "type": "description",
+                    "name": "Description",
+                    "limit": {
+                        "$numberInt": "1"
+                    },
+                    "settings": [
+                        {
+                            "type": "header",
+                            "content": "Product info Font Style"
+                        },
+                        {
+                            "type": "range",
+                            "id": "info_fontsize",
+                            "min": {
+                                "$numberInt": "10"
+                            },
+                            "max": {
+                                "$numberInt": "40"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "17"
+                            },
+                            "label": "Font size Desktop"
+                        },
+                        {
+                            "type": "range",
+                            "id": "info_fontsize_m",
+                            "min": {
+                                "$numberInt": "10"
+                            },
+                            "max": {
+                                "$numberInt": "40"
+                            },
+                            "step": {
+                                "$numberInt": "1"
+                            },
+                            "default": {
+                                "$numberInt": "15"
+                            },
+                            "label": "Font size Mobile"
+                        },
+                        {
+                            "type": "range",
+                            "id": "info_fontweight",
+                            "min": {
+                                "$numberInt": "100"
+                            },
+                            "max": {
+                                "$numberInt": "900"
+                            },
+                            "step": {
+                                "$numberInt": "100"
+                            },
+                            "default": {
+                                "$numberInt": "400"
+                            },
+                            "label": "Font-weight"
+                        },
+                        {
+                            "type": "text",
+                            "id": "info_fontstretch",
+                            "label": "Font-stretch",
+                            "info": "Ex: 40%"
+                        },
+                        {
+                            "type": "select",
+                            "id": "info_fontstyle",
+                            "options": [
+                                {
+                                    "value": "normal",
+                                    "label": "normal"
+                                },
+                                {
+                                    "value": "italic",
+                                    "label": "italic"
+                                }
+                            ],
+                            "default": "normal",
+                            "label": "Font-style"
+                        },
+                        {
+                            "type": "text",
+                            "id": "info_lineheight",
+                            "label": "Lineheight"
+                        },
+                        {
+                            "type": "text",
+                            "id": "info_letterspacing",
+                            "label": "Letter-spacing",
+                            "info": "Ex: 0.5px"
+                        }
+                    ]
+                },
+                {
+                    "type": "share",
+                    "name": "Share",
+                    "limit": {
+                        "$numberInt": "1"
+                    },
+                    "settings": [
+                        {
+                            "type": "paragraph",
+                            "content": "t:sections.product.blocks.share.settings.featured_image_info.content"
+                        },
+                        {
+                            "type": "paragraph",
+                            "content": "t:sections.product.blocks.share.settings.title_info.content"
+                        }
+                    ]
+                },
+                {
+                    "type": "collapsible_tab",
+                    "name": "Collapsible tab",
+                    "settings": [
+                        {
+                            "type": "text",
+                            "id": "heading",
+                            "default": "Collapsible tab",
+                            "info": "Include a heading that explains the content.",
+                            "label": "Heading"
+                        },
+                        {
+                            "type": "richtext",
+                            "id": "content",
+                            "label": "Tab content"
+                        },
+                        {
+                            "type": "page",
+                            "id": "page",
+                            "label": "Tab content from page"
+                        },
+                        {
+                            "type": "select",
+                            "id": "icon",
+                            "options": [
+                                {
+                                    "value": "none",
+                                    "label": "None"
+                                },
+                                {
+                                    "value": "box",
+                                    "label": "Box"
+                                },
+                                {
+                                    "value": "chat_bubble",
+                                    "label": "Chat bubble"
+                                },
+                                {
+                                    "value": "check_mark",
+                                    "label": "Check mark"
+                                },
+                                {
+                                    "value": "dryer",
+                                    "label": "Dryer"
+                                },
+                                {
+                                    "value": "eye",
+                                    "label": "Eye"
+                                },
+                                {
+                                    "value": "heart",
+                                    "label": "Heart"
+                                },
+                                {
+                                    "value": "iron",
+                                    "label": "Iron"
+                                },
+                                {
+                                    "value": "leaf",
+                                    "label": "Leaf"
+                                },
+                                {
+                                    "value": "leather",
+                                    "label": "Leather"
+                                },
+                                {
+                                    "value": "lock",
+                                    "label": "Lock"
+                                },
+                                {
+                                    "value": "map_pin",
+                                    "label": "Map pin"
+                                },
+                                {
+                                    "value": "pants",
+                                    "label": "Pants"
+                                },
+                                {
+                                    "value": "plane",
+                                    "label": "Plane"
+                                },
+                                {
+                                    "value": "price_tag",
+                                    "label": "Price tag"
+                                },
+                                {
+                                    "value": "question_mark",
+                                    "label": "Question mark"
+                                },
+                                {
+                                    "value": "return",
+                                    "label": "Return"
+                                },
+                                {
+                                    "value": "ruler",
+                                    "label": "Ruler"
+                                },
+                                {
+                                    "value": "shirt",
+                                    "label": "Shirt"
+                                },
+                                {
+                                    "value": "shoe",
+                                    "label": "Shoe"
+                                },
+                                {
+                                    "value": "silhouette",
+                                    "label": "Silhouette"
+                                },
+                                {
+                                    "value": "star",
+                                    "label": "Star"
+                                },
+                                {
+                                    "value": "truck",
+                                    "label": "Truck"
+                                },
+                                {
+                                    "value": "washing",
+                                    "label": "Washing"
+                                }
+                            ],
+                            "default": "check_mark",
+                            "label": "Icon"
+                        }
+                    ]
+                },
+                {
+                    "type": "popup",
+                    "name": "Pop-up",
+                    "settings": [
+                        {
+                            "type": "text",
+                            "id": "link_label",
+                            "default": "Pop-up link text",
+                            "label": "Link label"
+                        },
+                        {
+                            "id": "page",
+                            "type": "page",
+                            "label": "Page"
+                        }
+                    ]
+                },
+                {
+                    "type": "goes",
+                    "name": "goes",
+                    "limit": {
+                        "$numberInt": "1"
+                    },
+                    "settings": [
+                        {
+                            "type": "text",
+                            "id": "heading",
+                            "label": "Headign",
+                            "default": "Goes with:"
+                        },
+                        {
+                            "type": "product",
+                            "id": "prod",
+                            "label": "Product"
+                        }
+                    ]
+                }
+            ],
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "t:sections.product.settings.header.content",
+                    "info": "t:sections.product.settings.header.info"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "enable_breadcrumb_nav",
+                    "default": true,
+                    "label": "Breadcrumb Navigation"
+                },
+                {
+                    "type": "select",
+                    "id": "media_style",
+                    "options": [
+                        {
+                            "value": "vertical_grid",
+                            "label": "Vertical Grid"
+                        },
+                        {
+                            "value": "horizontal_grid",
+                            "label": "Horizontal Grid"
+                        },
+                        {
+                            "value": "vertical",
+                            "label": "Vertical - One Column Info"
+                        },
+                        {
+                            "value": "vertical_two_col",
+                            "label": "Vertical - Two Column Info"
+                        },
+                        {
+                            "value": "carousel",
+                            "label": "Big Carousel"
+                        },
+                        {
+                            "value": "carousel_w_thumb",
+                            "label": "Big Carousel w/thumbnails"
+                        },
+                        {
+                            "value": "top",
+                            "label": "Horizontal Carousel"
+                        },
+                        {
+                            "value": "vertical_w_thumb",
+                            "label": "Vertical w/thumbnails"
                         }
                     ],
-                    "default": "style-2",
-                    "label": "Grid Style"
+                    "default": "carousel_w_thumb",
+                    "label": "Media Gallery Style"
+                },
+                {
+                    "type": "select",
+                    "id": "media_style_m",
+                    "options": [
+                        {
+                            "value": "grid",
+                            "label": "Grid"
+                        },
+                        {
+                            "value": "vertical",
+                            "label": "Vertical"
+                        },
+                        {
+                            "value": "carousel",
+                            "label": "Carousel"
+                        },
+                        {
+                            "value": "top",
+                            "label": "Horizontal Carousel"
+                        }
+                    ],
+                    "default": "top",
+                    "label": "Media Gallery Style Mobile"
                 },
                 {
                     "type": "range",
-                    "id": "products_per_page",
-                    "min": 8,
-                    "max": 48,
-                    "step": 4,
-                    "default": 16,
-                    "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+                    "id": "pd_media_space",
+                    "min": {
+                        "$numberInt": "0"
+                    },
+                    "max": {
+                        "$numberInt": "30"
+                    },
+                    "step": {
+                        "$numberInt": "1"
+                    },
+                    "default": {
+                        "$numberInt": "10"
+                    },
+                    "label": "Media space"
                 },
                 {
-                    "type": "header",
-                    "content": "Custom Styles"
+                    "type": "checkbox",
+                    "id": "enable_sticky_info",
+                    "default": true,
+                    "label": "Enable sticky product information on large screens"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "enable_video_looping",
+                    "default": false,
+                    "label": "Enable video looping"
                 },
                 {
                     "type": "select",
-                    "id": "py_section_bg_color",
-                    "label": "Section Background ",
+                    "id": "section_bg_color",
+                    "label": "Info section Background Color",
                     "options": [
                         {
                             "label": "Transparent",
-                            "value": "bg-c-none"
+                            "value": "transparent"
                         },
                         {
                             "label": "Dark",
-                            "value": "bg-c-dark"
+                            "value": "var(--py-bg-color-dark)"
                         },
                         {
                             "label": "Middle Dark",
-                            "value": "bg-c-middle-dark"
+                            "value": "var(--py-bg-color-middle-dark)"
                         },
                         {
                             "label": "Average",
-                            "value": "bg-c-average"
+                            "value": "var(--py-bg-color-average)"
                         },
                         {
                             "label": "Middle Light",
-                            "value": "bg-c-middle-light"
+                            "value": "var(--py-bg-color-middle-light)"
                         },
                         {
                             "label": "Light",
-                            "value": "bg-c-light"
+                            "value": "var(--py-bg-color-light)"
                         }
                     ],
-                    "default": "bg-c-average"
+                    "default": "var(--py-bg-color-dark)"
+                },
+                {
+                    "type": "select",
+                    "id": "section_color",
+                    "label": "Content Color",
+                    "options": [
+                        {
+                            "label": "Transparent",
+                            "value": "transparent"
+                        },
+                        {
+                            "label": "Dark",
+                            "value": "var(--py-color-dark)"
+                        },
+                        {
+                            "label": "Middle Dark",
+                            "value": "var(--py-color-middle-dark)"
+                        },
+                        {
+                            "label": "Average",
+                            "value": "var(--py-color-average)"
+                        },
+                        {
+                            "label": "Middle Light",
+                            "value": "var(--py-color-middle-light)"
+                        },
+                        {
+                            "label": "Light",
+                            "value": "var(--py-color-light)"
+                        }
+                    ],
+                    "default": "var(--py-color-light)"
                 },
                 {
                     "type": "select",
                     "id": "page_width",
-                    "label": "Container (Width)",
+                    "label": "Info section Container (Width)",
                     "options": [
                         {
                             "label": "Unset",
@@ -19722,81 +21698,9 @@
                     "default": "width-un"
                 },
                 {
-                    "id": "page_x_mg",
                     "type": "select",
-                    "label": "Container Margin Horizontal",
-                    "options": [
-                        {
-                            "label": "Unset",
-                            "value": "mg-x-un"
-                        },
-                        {
-                            "label": "None",
-                            "value": "mg-x-n"
-                        },
-                        {
-                            "label": "XL",
-                            "value": "mg-x-xl"
-                        },
-                        {
-                            "label": "L",
-                            "value": "mg-x-l"
-                        },
-                        {
-                            "label": "M",
-                            "value": "mg-x-m"
-                        },
-                        {
-                            "label": "S",
-                            "value": "mg-x-s"
-                        },
-                        {
-                            "label": "XS",
-                            "value": "mg-x-xs"
-                        }
-                    ],
-                    "default": "mg-x-un"
-                },
-                {
-                    "type": "select",
-                    "id": "page_y_mg",
-                    "label": "Container Margin Vertical",
-                    "options": [
-                        {
-                            "label": "Unset",
-                            "value": "mg-y-un"
-                        },
-                        {
-                            "label": "None",
-                            "value": "mg-y-n"
-                        },
-                        {
-                            "label": "XL",
-                            "value": "mg-y-xl"
-                        },
-                        {
-                            "label": "L",
-                            "value": "mg-y-l"
-                        },
-                        {
-                            "label": "M",
-                            "value": "mg-y-m"
-                        },
-                        {
-                            "label": "S",
-                            "value": "mg-y-s"
-                        },
-                        {
-                            "label": "XS",
-                            "value": "mg-y-xs"
-                        }
-                    ],
-                    "default": "mg-y-un"
-                },
-                {
-                    "type": "select",
-                    "id": "page_x_pd",
-                    "label": "Container Padding Horizontal",
+                    "id": "info_section_padding",
+                    "label": "Info section Padding Horizontal",
                     "options": [
                         {
                             "label": "Unset",
@@ -19830,633 +21734,96 @@
                     "default": "pd-x-m"
                 },
                 {
-                    "type": "select",
-                    "id": "page_y_pd",
-                    "label": "Container Padding Vertical",
-                    "options": [
-                        {
-                            "label": "Unset",
-                            "value": "pd-y-un"
-                        },
-                        {
-                            "label": "None",
-                            "value": "pd-y-n"
-                        },
-                        {
-                            "label": "XL",
-                            "value": "pd-y-xl"
-                        },
-                        {
-                            "label": "L",
-                            "value": "pd-y-l"
-                        },
-                        {
-                            "label": "M",
-                            "value": "pd-y-m"
-                        },
-                        {
-                            "label": "S",
-                            "value": "pd-y-s"
-                        },
-                        {
-                            "label": "XS",
-                            "value": "pd-y-xs"
-                        }
-                    ],
-                    "default": "pd-y-m"
-                },
-                {
                     "type": "header",
-                    "content": "t:sections.main-collection-product-grid.settings.header__3.content"
+                    "content": "Collapsible tabs Colors"
                 },
                 {
                     "type": "select",
-                    "id": "card_style",
-                    "options": [
-                        {
-                            "value": "vertical",
-                            "label": "Vertical"
-                        },
-                        {
-                            "value": "horizontal",
-                            "label": "horizontal"
-                        }
-                    ],
-                    "default": "vertical",
-                    "label": "Card Style",
-                    "info": "Horizontal style will work on desktop only"
-                },
-                {
-                    "type": "select",
-                    "id": "image_ratio",
-                    "options": [
-                        {
-                            "value": "adapt",
-                            "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
-                        },
-                        {
-                            "value": "portrait",
-                            "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
-                        },
-                        {
-                            "value": "square",
-                            "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
-                        }
-                    ],
-                    "default": "square",
-                    "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
-                },
-                {
-                    "type": "checkbox",
-                    "id": "image_gallery",
-                    "default": false,
-                    "label": "Enable Image Slider"
-                },
-                {
-                    "type": "select",
-                    "id": "card_bg_color",
-                    "label": "Card Background Color",
+                    "id": "py_content_bg_color",
+                    "label": "Background Color",
                     "options": [
                         {
                             "label": "Transparent",
-                            "value": "bg-c-none"
+                            "value": "transparent"
                         },
                         {
                             "label": "Dark",
-                            "value": "bg-c-dark"
+                            "value": "var(--py-bg-color-dark)"
                         },
                         {
                             "label": "Middle Dark",
-                            "value": "bg-c-middle-dark"
+                            "value": "var(--py-bg-color-middle-dark)"
                         },
                         {
                             "label": "Average",
-                            "value": "bg-c-average"
+                            "value": "var(--py-bg-color-average)"
                         },
                         {
                             "label": "Middle Light",
-                            "value": "bg-c-middle-light"
+                            "value": "var(--py-bg-color-middle-light)"
                         },
                         {
                             "label": "Light",
-                            "value": "bg-c-light"
+                            "value": "var(--py-bg-color-light)"
                         }
                     ],
-                    "default": "bg-c-average"
-                },
-                {
-                    "type": "range",
-                    "id": "card_radius",
-                    "min": 0,
-                    "max": 20,
-                    "step": 1,
-                    "default": 7,
-                    "label": "Card Border Radius"
-                },
-                {
-                    "type": "range",
-                    "id": "item_space",
-                    "min": 0,
-                    "max": 40,
-                    "step": 1,
-                    "default": 10,
-                    "label": "Card Padding"
-                },
-                {
-                    "type": "checkbox",
-                    "id": "show_vendor",
-                    "default": false,
-                    "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
-                },
-                {
-                    "type": "checkbox",
-                    "id": "show_colors",
-                    "default": true,
-                    "label": "Show Colors"
-                },
-                {
-                    "type": "checkbox",
-                    "id": "show_variants_on_hover",
-                    "default": true,
-                    "label": "Show Variants On Hover"
-                },
-                {
-                    "type": "checkbox",
-                    "id": "show_view_product",
-                    "default": true,
-                    "label": "Show View Product Button"
-                },
-                {
-                    "type": "checkbox",
-                    "id": "show_quick_add",
-                    "default": true,
-                    "label": "Show Quick Add Button"
+                    "default": "var(--py-bg-color-dark)"
                 },
                 {
                     "type": "select",
-                    "id": "info_align",
-                    "label": "Card Info Alignment",
-                    "options": [
-                        {
-                            "label": "Left",
-                            "value": "left"
-                        },
-                        {
-                            "label": "Center",
-                            "value": "center"
-                        }
-                    ],
-                    "default": "center"
-                },
-                {
-                    "type": "select",
-                    "id": "card_color",
-                    "label": "Card Info Color",
-                    "options": [
-                        {
-                            "label": "None",
-                            "value": "none"
-                        },
-                        {
-                            "label": "Dark",
-                            "value": "c-dark"
-                        },
-                        {
-                            "label": "Middle Dark",
-                            "value": "c-middle-dark"
-                        },
-                        {
-                            "label": "Average",
-                            "value": "c-average"
-                        },
-                        {
-                            "label": "Light",
-                            "value": "c-middle-light"
-                        },
-                        {
-                            "label": "Light",
-                            "value": "c-light"
-                        }
-                    ],
-                    "default": "c-dark"
-                },
-                {
-                    "type": "header",
-                    "content": "Card Button Style"
-                },
-                {
-                    "type": "select",
-                    "id": "view_btn_size",
-                    "label": "View Button Size",
-                    "options": [
-                        {
-                            "label": "Small",
-                            "value": "small"
-                        },
-                        {
-                            "label": "Medium",
-                            "value": "medium"
-                        },
-                        {
-                            "label": "Large",
-                            "value": "large"
-                        }
-                    ],
-                    "default": "medium"
-                },
-                {
-                    "type": "select",
-                    "id": "card_color_view_btn",
-                    "label": "View Button Color",
+                    "id": "py_content_color",
+                    "label": "Content Color",
                     "options": [
                         {
                             "label": "Dark",
-                            "value": "dark"
+                            "value": "var(--py-color-dark)"
                         },
                         {
                             "label": "Middle Dark",
-                            "value": "middle-dark"
+                            "value": "var(--py-color-middle-dark)"
                         },
                         {
                             "label": "Average",
-                            "value": "average"
+                            "value": "var(--py-color-average)"
                         },
                         {
                             "label": "Middle Light",
-                            "value": "middle-light"
+                            "value": "var(--py-color-middle-light)"
                         },
                         {
                             "label": "Light",
-                            "value": "light"
+                            "value": "var(--py-color-light)"
                         }
                     ],
-                    "default": "light"
+                    "default": "var(--py-color-light)"
                 },
                 {
                     "type": "select",
-                    "id": "card_bg_color_view_btn",
-                    "label": "View Button Background Color",
+                    "id": "py_content_color_br",
+                    "label": "Border Color",
                     "options": [
                         {
                             "label": "Dark",
-                            "value": "dark"
+                            "value": "var(--py-color-dark)"
                         },
                         {
                             "label": "Middle Dark",
-                            "value": "middle-dark"
+                            "value": "var(--py-color-middle-dark)"
                         },
                         {
                             "label": "Average",
-                            "value": "average"
+                            "value": "var(--py-color-average)"
                         },
                         {
                             "label": "Middle Light",
-                            "value": "middle-light"
+                            "value": "var(--py-color-middle-light)"
                         },
                         {
                             "label": "Light",
-                            "value": "light"
+                            "value": "var(--py-color-light)"
                         }
                     ],
-                    "default": "dark"
-                },
-                {
-                    "type": "select",
-                    "id": "card_color_view_btn_hover",
-                    "label": "View Button Hover Color",
-                    "options": [
-                        {
-                            "label": "Dark",
-                            "value": "dark"
-                        },
-                        {
-                            "label": "Middle Dark",
-                            "value": "middle-dark"
-                        },
-                        {
-                            "label": "Average",
-                            "value": "average"
-                        },
-                        {
-                            "label": "Middle Light",
-                            "value": "middle-light"
-                        },
-                        {
-                            "label": "Light",
-                            "value": "light"
-                        }
-                    ],
-                    "default": "dark"
-                },
-                {
-                    "type": "select",
-                    "id": "card_bg_color_view_btn_hover",
-                    "label": "View Button Hover Background Color",
-                    "options": [
-                        {
-                            "label": "Dark",
-                            "value": "dark"
-                        },
-                        {
-                            "label": "Middle Dark",
-                            "value": "middle-dark"
-                        },
-                        {
-                            "label": "Average",
-                            "value": "average"
-                        },
-                        {
-                            "label": "Middle Light",
-                            "value": "middle-light"
-                        },
-                        {
-                            "label": "Light",
-                            "value": "light"
-                        }
-                    ],
-                    "default": "light"
-                },
-                {
-                    "type": "header",
-                    "content": "Card Product Title Font Style"
-                },
-                {
-                    "type": "checkbox",
-                    "id": "custom_font_style",
-                    "default": false,
-                    "label": "Use Custom Style"
-                },
-                {
-                    "type": "text",
-                    "id": "title_fontsize",
-                    "label": "Font size Desktop",
-                    "info": "Ex: 20px "
-                },
-                {
-                    "type": "text",
-                    "id": "title_fontsize_m",
-                    "label": "Font size Mobile"
-                },
-                {
-                    "type": "text",
-                    "id": "title_fontweight",
-                    "label": "Font-weight"
-                },
-                {
-                    "type": "text",
-                    "id": "title_fontstretch",
-                    "label": "Font-stretch",
-                    "info": "Ex: 40%"
-                },
-                {
-                    "type": "select",
-                    "id": "title_fontstyle",
-                    "options": [
-                        {
-                            "value": "normal",
-                            "label": "normal"
-                        },
-                        {
-                            "value": "italic",
-                            "label": "italic"
-                        }
-                    ],
-                    "default": "normal",
-                    "label": "Font-style"
-                },
-                {
-                    "type": "text",
-                    "id": "title_lineheight",
-                    "label": "Lineheight"
-                },
-                {
-                    "type": "text",
-                    "id": "title_letterspacing",
-                    "label": "Letter-spacing",
-                    "info": "Ex: 0.5px"
-                },
-                {
-                    "type": "header",
-                    "content": "Card Product info Font Style"
-                },
-                {
-                    "type": "text",
-                    "id": "info_fontsize",
-                    "label": "Font size Desktop",
-                    "info": "Ex: 20px "
-                },
-                {
-                    "type": "text",
-                    "id": "info_fontsize_m",
-                    "label": "Font size Mobile"
-                },
-                {
-                    "type": "text",
-                    "id": "info_fontweight",
-                    "label": "Font-weight"
-                },
-                {
-                    "type": "text",
-                    "id": "info_fontstretch",
-                    "label": "Font-stretch",
-                    "info": "Ex: 40%"
-                },
-                {
-                    "type": "select",
-                    "id": "info_fontstyle",
-                    "options": [
-                        {
-                            "value": "normal",
-                            "label": "normal"
-                        },
-                        {
-                            "value": "italic",
-                            "label": "italic"
-                        }
-                    ],
-                    "default": "normal",
-                    "label": "Font-style"
-                },
-                {
-                    "type": "text",
-                    "id": "info_lineheight",
-                    "label": "Lineheight"
-                },
-                {
-                    "type": "text",
-                    "id": "info_letterspacing",
-                    "label": "Letter-spacing",
-                    "info": "Ex: 0.5px"
-                },
-                {
-                    "type": "header",
-                    "content": "t:sections.main-collection-product-grid.settings.header__1.content"
-                },
-                {
-                    "type": "select",
-                    "id": "filter_style",
-                    "label": "Filter Style",
-                    "options": [
-                        {
-                            "label": "Style 1",
-                            "value": "style-1"
-                        },
-                        {
-                            "label": "Style 2",
-                            "value": "style-2"
-                        },
-                        {
-                            "label": "Style 3",
-                            "value": "style-3"
-                        }
-                    ],
-                    "default": "style-1"
-                },
-                {
-                    "type": "checkbox",
-                    "id": "enable_filtering",
-                    "default": true,
-                    "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
-                    "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
-                },
-                {
-                    "type": "checkbox",
-                    "id": "enable_sorting",
-                    "default": true,
-                    "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
-                },
-                {
-                    "type": "select",
-                    "id": "filter_bar_bg_color",
-                    "label": "Filter Bar Background",
-                    "options": [
-                        {
-                            "label": "Transparent",
-                            "value": "bg-c-none"
-                        },
-                        {
-                            "label": "Dark",
-                            "value": "bg-c-dark"
-                        },
-                        {
-                            "label": "Middle Dark",
-                            "value": "bg-c-middle-dark"
-                        },
-                        {
-                            "label": "Average",
-                            "value": "bg-c-average"
-                        },
-                        {
-                            "label": "Middle Light",
-                            "value": "bg-c-middle-light"
-                        },
-                        {
-                            "label": "Light",
-                            "value": "bg-c-light"
-                        }
-                    ],
-                    "default": "bg-c-average"
-                },
-                {
-                    "type": "select",
-                    "id": "filter_bar_color",
-                    "label": "Filter Bar Color",
-                    "options": [
-                        {
-                            "label": "Dark",
-                            "value": "c-dark"
-                        },
-                        {
-                            "label": "Light",
-                            "value": "c-light"
-                        }
-                    ],
-                    "default": "c-dark"
-                },
-                {
-                    "type": "select",
-                    "id": "filter_bg_color",
-                    "label": "Filter Panel Background",
-                    "options": [
-                        {
-                            "label": "Transparent",
-                            "value": "bg-c-none"
-                        },
-                        {
-                            "label": "Dark",
-                            "value": "bg-c-dark"
-                        },
-                        {
-                            "label": "Middle Dark",
-                            "value": "bg-c-middle-dark"
-                        },
-                        {
-                            "label": "Average",
-                            "value": "bg-c-average"
-                        },
-                        {
-                            "label": "Middle Light",
-                            "value": "bg-c-middle-light"
-                        },
-                        {
-                            "label": "Light",
-                            "value": "bg-c-light"
-                        }
-                    ],
-                    "default": "bg-c-average"
-                },
-                {
-                    "type": "select",
-                    "id": "filter_color",
-                    "label": "Filter Panel Color",
-                    "options": [
-                        {
-                            "label": "Dark",
-                            "value": "c-dark"
-                        },
-                        {
-                            "label": "Light",
-                            "value": "c-light"
-                        }
-                    ],
-                    "default": "c-dark"
-                },
-                {
-                    "type": "text",
-                    "id": "filter_heading",
-                    "label": "Heading",
-                    "default": "FILTERS"
-                },
-                {
-                    "type": "text",
-                    "id": "filter_btn_label",
-                    "label": "Button Label",
-                    "default": "SEE RESULTS"
-                }
-            ],
-            "blocks": [
-                {
-                    "type": "filter",
-                    "name": "Filter",
-                    "settings": [
-                        {
-                            "type": "text",
-                            "id": "label",
-                            "label": "Filter Name"
-                        },
-                        {
-                            "type": "text",
-                            "id": "tag_prefix",
-                            "label": "Tag Prefix",
-                            "info": "ex. 'C_COV_'"
-                        },
-                        {
-                            "type": "textarea",
-                            "id": "tags",
-                            "label": "Tag Values",
-                            "info": "Delimit tags with a pipe ('|') ex. RED|DARK BLUE|YELLOW|..."
-                        }
-                    ]
+                    "default": "var(--py-color-light)"
                 }
             ],
             "file_name": "product",
@@ -20762,10 +22129,6 @@
                     "label": "Card Background Color",
                     "options": [
                         {
-                            "label": "Transparent",
-                            "value": "bg-c-none"
-                        },
-                        {
                             "label": "Dark",
                             "value": "bg-c-dark"
                         },
@@ -20890,7 +22253,7 @@
                             "value": "c-average"
                         },
                         {
-                            "label": "Light",
+                            "label": "Middle Light",
                             "value": "c-middle-light"
                         },
                         {
