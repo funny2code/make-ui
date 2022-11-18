@@ -542,7 +542,7 @@
                 "button_link": "",
                 "view_btn_size": "medium",
                 "col_color_view_btn": "light",
-                "col_color_bg_color_view_btn": "dark",
+                "col_bg_color_view_btn": "dark",
                 "col_color_view_btn_hover": "dark",
                 "col_color_bg_color_view_btn_hover": "light",
                 "swipe_on_mobile": false

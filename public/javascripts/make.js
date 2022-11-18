@@ -2750,6 +2750,19 @@
   const setColorToSettings = async () => {
     let inputFileds = document.querySelectorAll("[name]");
 
+    let isSection = {
+      active: true,
+      color: null
+    };
+    let isCard = {
+      active: true,
+      color: null
+    };
+    let isButton = {
+      active: true,
+      color: null
+    };
+
     if (!inputFileds.length) return loading?.classList.remove("py__animate");
 
     for (let i = 0; i < inputFileds.length; i++) {
@@ -2766,26 +2779,56 @@
             : filed.querySelector(`option[value="${fontObj.heading}"`)?.index;
           filed.selectedIndex = selectedOption;
         } else if (filedName?.includes("_bg")) {
-          let optionIndex = Math.floor(Math.random() * options.length);
-          filed.selectedIndex = optionIndex;
-          let bgCName = options[optionIndex]?.textContent?.toLowerCase()?.replace(" ", "_");
-          let getBgColorHexCode = bgColors[bgCName];
-          console.log("Background Color", bgCName);
+          let getBgColorHexCode = null;
+          if(isSection.active && filedName.includes('section') && !filedName.includes('btn') || isSection.active && filedName.includes('page') && !filedName.includes('btn')){ 
+            let optionIndex = Math.floor(Math.random() * options.length);
+            filed.selectedIndex = optionIndex;
+            let bgCName = options[optionIndex]?.textContent?.toLowerCase()?.replace(" ", "_");
+            getBgColorHexCode = bgColors[bgCName];
+            isSection.active = false;
+            isSection.color = bgCName;
+          } else if(isCard.active && filedName.includes('card') && !filedName.includes('btn')){ 
+            let optionIndex = Math.floor(Math.random() * options.length);
+            filed.selectedIndex = optionIndex;
+            let bgCName = options[optionIndex]?.textContent?.toLowerCase()?.replace(" ", "_");
+            getBgColorHexCode = bgColors[bgCName];
+            isCard.active = false;
+            isCard.color = bgCName;
+          } else if(isButton.active && filedName.includes('btn')){ 
+            let optionIndex = Math.floor(Math.random() * options.length);
+            filed.selectedIndex = optionIndex;
+            let bgCName = options[optionIndex]?.textContent?.toLowerCase()?.replace(" ", "_");
+            getBgColorHexCode = bgColors[bgCName];
+            isButton.active = false;
+            isButton.color = bgCName;
+          } else if(!filedName.includes('section') && !filedName.includes('page')  &&  !filedName.includes('btn') && !filedName.includes('card')) {
+            let optionIndex = Math.floor(Math.random() * options.length);
+            filed.selectedIndex = optionIndex;
+            let bgCName = options[optionIndex]?.textContent?.toLowerCase()?.replace(" ", "_");
+            getBgColorHexCode = bgColors[bgCName];
+          }
+          if(!isSection.active && filedName.includes('section') && !filedName.includes('btn') || !isSection.active && filedName.includes('page') && !filedName.includes('btn')){ 
+            filed.selectedIndex = [...options].findIndex((option) =>  option?.textContent?.toLowerCase()?.replaceAll(' ', '_') === isSection.color);
+            getBgColorHexCode = bgColors[options[filed.selectedIndex]?.textContent?.toLowerCase()?.replace(" ", "_")];
+          } else if(!isCard.active && filedName.includes('card') && !filedName.includes('btn')){ 
+            filed.selectedIndex = [...options].findIndex((option) =>  option?.textContent?.toLowerCase()?.replaceAll(' ', '_') === isCard.color);
+            getBgColorHexCode = bgColors[options[filed.selectedIndex]?.textContent?.toLowerCase()?.replace(" ", "_")];
+          } else if(!isButton.active && filedName.includes('btn')){ 
+            filed.selectedIndex = [...options].findIndex((option) =>  option?.textContent?.toLowerCase()?.replaceAll(' ', '_') === isButton.color);
+            getBgColorHexCode = bgColors[options[filed.selectedIndex]?.textContent?.toLowerCase()?.replace(" ", "_")];
+          } 
           let textFiledName = filedName?.replace("_bg", "");
           let textColorInput = sectionContainer.querySelectorAll(`[name*="${textFiledName}"]`);
           if(textColorInput?.length) {
             for (let i = 0; i < textColorInput?.length; i++) {
               let textItemColor = textColorInput[i];
               textItemColor.selectedIndex = [...textItemColor.options].findIndex((option) =>  option?.textContent?.toLowerCase()?.replaceAll(' ', '_') === (getBgColorHexCode ? getContrastName(getBgColorHexCode) : 'dark' ));
-              console.log("text Color", textItemColor.value, textItemColor.selectedIndex);
             }
           }
-        } 
-        // else {
-        //   console.log("another");
-        //   let optionIndex = Math.floor(Math.random() * options.length);
-        //   filed.selectedIndex = optionIndex;
-        // }
+        } else if(!filedName?.includes("color")) {
+          let optionIndex = Math.floor(Math.random() * options.length);
+          filed.selectedIndex = optionIndex;
+        }
       }
     }
   };

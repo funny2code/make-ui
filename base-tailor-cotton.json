@@ -20517,7 +20517,7 @@
         },
         {
           "type": "select",
-          "id": "col_color_bg_color_view_btn",
+          "id": "col_bg_color_view_btn",
           "label": "View Button Background Color",
           "options": [
             {

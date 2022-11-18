@@ -1,12 +1,12 @@
-footer.py-c-dark *,
+footer.py-c-dark .footer-block__heading,
 .footer.py-c-dark .link--text {
   color: var(--py-color-dark);
 }
-footer.py-c-average *,
+footer.py-c-average .footer-block__heading,
 .footer.py-c-average .link--text {
   color: var(--py-color-average);
 }
-footer.py-c-light *, 
+footer.py-c-light .footer-block__heading, 
 .footer.py-c-light .link--text {
   color: var(--py-color-light);
 }
