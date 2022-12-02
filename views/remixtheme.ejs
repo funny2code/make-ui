@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= make.title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <% const currentPage = pages?.filter(page => page?.handle === page_handle) %>
+        <%- include('make/header', {id: id, show: true }) %>
+        <div class="py__make">
+            <div class="py__make-sidebar">
+                <% if(make?.app_left_sidebar){ %>
+                    <%- include('./make/remix-left-sidebar', {
+                        sidebar: make?.app_left_sidebar
+                    }) 
+                    %> 
+                <% } %>
+            </div>
+            <div class="py__make-preview">
+                <div class="py__preview-content">
+                    <div class="py__preview-settings">
+                        <% if(pages?.length){ %>
+                        <div class="py__preview-select">
+                            <select class="py__preview-pages-select">
+                                <% pages.forEach(item => { %> 
+                                    <option data-href="/remix-editor/<%=id%>?page=<%=item.handle%>" <% if(page_handle === item.handle){ %>selected<% } %>>
+                                        <%=item.name%>
+                                    </option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <% } %> 
+                        <div class="py__preview-buttons">
+                            <button type="button" data-type="desktop" data-view="100%" class="py__button py__button-view active">
+                                <%- include('icons', {type: 'desktop'}) %>
+                                Desktop
+                            </button>
+                            <button type="button" data-type="tablet" data-view="768px" class="py__button py__button-view">
+                                <%- include('icons', {type: 'tablet'}) %>
+                                Tablet
+                            </button>
+                            <button type="button" data-type="mobile" data-view="425px" class="py__button py__button-view">
+                                <%- include('icons', {type: 'tablet'}) %>
+                                Mobile
+                            </button>
+                        </div>
+                    </div>
+                    <div class="py__preview-iframe">
+                            <iframe src="/remix-view/<%=id%>?page=<%=page_handle%><% if(activeType === 'section'){%>&section=<%=active%><% if(section_id){ %>&section_id=<%=section_id%><% } %><% } else { %>&settings=<%=active%><% } %>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="py__make-settings">
+                <% if(sectionsSchema && sections){ %>
+                    <select class="py__sections-dropdown-listener">
+                        <% let staticTopSections = [];
+                               staticTopSections.push(settings?.sections['announcement-bar']); 
+                               staticTopSections.push(settings?.sections['header']);
+                        %>
+                        <% staticTopSections?.forEach((staticSectionItem,index)=>{ %>
+                            <% let sectionSchemaItem = sectionsSchema?.filter(sectionItem => sectionItem?.file_handle === staticSectionItem?.type) %>
+                            <option value="<%=staticSectionItem?.type%>" data-href="/remix-editor/<%=id%>?page=<%=page_handle%>&section=<%=staticSectionItem.type%>" <% if(staticSectionItem.type === active){ %>selected<% } %>>
+                                <%= sectionSchemaItem[0]?.section[0]?.name %>
+                            </option>
+                        <% }) %>
+                        <% sections?.order?.forEach((orderItem, index)=>{ %>
+                            <% let sectionItem = sections?.sections[orderItem] %>
+                            <% let sectionSchemaItem = sectionsSchema?.filter(sectionSchemaItem => sectionSchemaItem.file_handle === sectionItem.type) %>
+                            <option value="<%=sectionItem?.type%>" data-href="/remix-editor/<%=id%>?page=<%=page_handle%>&section=<%=sectionItem.type%>&section_id=<%=orderItem%>" <% if(sectionItem.type === active){ %>selected<% } %>>
+                                <%= sectionSchemaItem[0]?.section[0]?.name %>
+                            </option>
+                        <% }) %> 
+                        <% let sectionFooter = settings?.sections['footer'] %>
+                        <% let sectionSchemaFooter = sectionsSchema?.filter(sectionItem => sectionItem?.file_handle === sectionFooter?.type) %>
+                        <option value="<%=sectionFooter?.type%>" data-href="/remix-editor/<%=id%>?page=<%=page_handle%>&section=<%=sectionFooter.type%>" <% if(sectionFooter.type === active){ %>selected<% } %>>
+                            <%= sectionSchemaFooter[0]?.section[0]?.name %>
+                        </option>
+                    </select>
+                <% } %>
+                <form class="py__settings-form <% if(activeType){ %>py__add-mg-top<% } %>" method="post" action="/save/<%= (user && userThemeView) ? 'users/' + user._id + '/themes/' + id : id %>?<% if(activeType === 'section'){%>section=<%=active%><% } else { %>settings=<%=active%><% } %>" aria-multiline="true">
+                    <% if(sections && !activeType){ %>
+                        <div class="py__settings-static-content">
+                            <% let staticTopSections = [];
+                               staticTopSections.push(settings?.sections['announcement-bar']); 
+                               staticTopSections.push(settings?.sections['header']);
+                            %>
+                            <% staticTopSections?.forEach((staticSectionItem,index)=>{ %>
+                                <% let sectionSchemaItem = sectionsSchema?.filter(sectionItem => sectionItem?.file_handle === staticSectionItem?.type) %>
+                                <a href="/remix-editor/<%=id%>?page=<%=page_handle%>&section=<%=staticSectionItem?.type%>" class="py__section-item-href py__get-section-button <% if(staticSectionItem?.type === active){ %>active<% } %>">
+                                    <span class="py__section-item-href-name"><%= sectionSchemaItem[0]?.section[0]?.name %></span>
+                                    <span><%- include('icons', {type:'arrow_right'}) %></span>
+                                </a>
+                            <% }) %>
+                        </div>
+                        <div class="py__settings-content py__sections-list">
+                            <h2 class="py__settings-heading py__back-button-wrap"><%# currentPage[0].name%> Sections</h2>
+                            <% sections?.order?.forEach((orderItem, index)=>{ %>
+                                <% let sectionItem = sections?.sections[orderItem] %>
+                                <% let sectionSchemaItem = sectionsSchema?.filter(sectionSchemaItem => sectionSchemaItem.file_handle === sectionItem.type) %>
+                                <a href="/remix-editor/<%=id%>?page=<%=page_handle%>&section=<%=sectionItem.type%>&section_id=<%=orderItem%>" class="py__section-item-href py__get-section-button <% if(sectionItem.type === active){ %>active<% } %>">
+                                    <span class="py__section-item-href-name"><%= sectionSchemaItem[0]?.section[0]?.name %></span>
+                                    <span><%- include('icons', {type:'arrow_right'}) %></span>
+                                </a>
+                            <% }) %> 
+                            <a class="py__add-item py__add-section-btn">
+                                <svg viewBox="0 0 20 20" class="Polaris-Icon__Svg_375hu" focusable="false" aria-hidden="true"><path d="M15 10a1 1 0 0 1-1 1h-3v3a1 1 0 1 1-2 0v-3h-3a1 1 0 1 1 0-2h3v-3a1 1 0 0 1 2 0v3h3a1 1 0 0 1 1 1zm-5-8a8 8 0 1 0 0 16 8 8 0 0 0 0-16z"></path></svg>
+                                Add Section
+                            </a>
+                        </div>
+                        <% let sectionFooter = settings?.sections['footer'] %>
+                        <% let sectionSchemaFooter = sectionsSchema.filter(sectionItem => sectionItem?.file_handle === sectionFooter?.type) %>
+                        <div class="py__settings-static-bottom-content">
+                            <a href="/remix-editor/<%=id%>?page=<%=page_handle%>&section=<%=sectionFooter?.type%>" class="py__section-item-href py__get-section-button <% if(sectionSchemaFooter?.type === active){ %>active<% } %>">
+                                <span class="py__section-item-href-name"><%= sectionSchemaFooter[0]?.section[0]?.name %></span>
+                                <span><%- include('icons', {type:'arrow_right'}) %></span>
+                            </a>
+                        </div>
+                    <% } %>
+                    <% if(settings && settingsSchema){ %> 
+                        <div class="py__settings-content py__settings-section-item">
+                            <% settingsSchema.forEach(settingItem => { %>
+                                <h2 class="py__settings-heading"><%= settingItem?.name %></h2>
+                                <% if(settingItem.settings){ %>
+                                    <%- include('make/settings', {
+                                        settings: settings, 
+                                        templateName: null,
+                                        settingData: settings,
+                                        schemaSettings: settingItem?.settings,
+                                        global: "settings"
+                                    }) %>
+                                <% } else { %>
+                                    <%- include('components/brand', {name: settingItem.theme_name}) %>
+                                <% } %>
+                            <% }) %>
+                        </div>
+                    <% } %>
+                    <% if(section && sectionSchema){ %>
+                        <div class="py__settings-content py__closest">
+                            <h2 class="py__settings-heading">
+                                <%= sectionSchema[0].section[0].name %>
+                                <button type="button" class="py__remix-section-styles-btn" title="Remix Styles">
+                                    <span class="py__remix-svg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="19" viewBox="0 0 22 19" fill="none">
+                                        <path d="M15.8867 0.5L21.1367 5L15.8867 9.5L21.1367 14L15.8867 18.5V15.5H13.1467L10.3267 12.68L12.4467 10.56L14.3867 12.5H15.8867V9.5V6.5H14.3867L5.38672 15.5H0.886719V12.5H4.14672L13.1467 3.5H15.8867V0.5ZM0.886719 3.5H5.38672L8.20672 6.32L6.08672 8.44L4.14672 6.5H0.886719V3.5Z" fill="white"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </h2>
+                            <% if(section.settings){ %>
+                                <%- include('make/settings', {
+                                    settings: section?.settings,
+                                    templateName: sectionSchema[0]?.template_handle,
+                                    schemaSettings:  sectionSchema[0]?.section[0]?.settings,
+                                    settingData: settings,
+                                    global: "section"
+                                }) %>
+                            <% } %>
+                            <% if(sectionSchema[0]?.section[0]?.blocks?.length){ %>
+                                <h2 class="py__settings-heading">Blocks</h2>
+                                <% if(section?.block_order?.length){ %>
+                                    <%- include('make/blocks', {
+                                        blocks: section.blocks,
+                                        orders: section.block_order,
+                                        schemaBlocks: sectionSchema[0]?.section[0]?.blocks,
+                                        settingData: settings,
+                                        global: "block"
+                                    }) %>
+                                <% } %>
+                                <a class="py__add-item py__add-block-btn">
+                                    <svg viewBox="0 0 20 20" class="Polaris-Icon__Svg_375hu" focusable="false" aria-hidden="true"><path d="M15 10a1 1 0 0 1-1 1h-3v3a1 1 0 1 1-2 0v-3h-3a1 1 0 1 1 0-2h3v-3a1 1 0 0 1 2 0v3h3a1 1 0 0 1 1 1zm-5-8a8 8 0 1 0 0 16 8 8 0 0 0 0-16z"></path></svg>
+                                    Add Block
+                                </a>
+                            <% } %>
+                        </div>
+                    <% } %>
+                </form>
+            </div>
+        </div>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script src="/javascripts/make.js"></script>
+        <div class="py__loading-wrap">
+            <div class="py__loading">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </body>
+</html>

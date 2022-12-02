@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <link rel="stylesheet" href="/assets/base-style.css">
+    <link rel="stylesheet" href="/stylesheets/view.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <script src="/assets/global.js" defer="defer"></script>
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+    <% if(settings.enable_global_anim){ %>
+        <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style">
+    <% } %>
+    <% if(component){ %>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <% } %>
+    <link rel="stylesheet" href="/assets/component-list-menu.css">
+    <link rel="stylesheet" href="/assets/component-search-style-1.css">
+    <link rel="stylesheet" href="/assets/component-menu-drawer.css">
+    <link rel="stylesheet" href="/assets/component-cart-notification-style-1.css">
+    <link rel="stylesheet" href="/assets/component-header-style-1.css">
+</head>
+    <body class="index">
+        <% let fontsNames = ''; %>
+        <% if(settings.heading_font_custom && !fontsNames?.includes(settings.heading_font_custom)){  fontsNames += settings.heading_font_custom + '|'; } %>
+        <% if(settings.title_font_custom && !fontsNames?.includes(settings.title_font_custom)){  fontsNames += settings.title_font_custom + '|'; } %>
+        <% if(settings.sub_title_font_custom && !fontsNames?.includes(settings.sub_title_font_custom)){  fontsNames += settings.sub_title_font_custom + '|'; } %>
+        <% if(settings.body_font_custom && !fontsNames?.includes(settings.body_font_custom)){  fontsNames += settings.body_font_custom + '|'; } %>
+        <% if(settings.button_font_custom && !fontsNames?.includes(settings.button_font_custom)){  fontsNames += settings.button_font_custom + '|'; } %>
+        <% if(settings.nav_font_custom && !fontsNames?.includes(settings.nav_font_custom)){  fontsNames += settings.nav_font_custom + '|'; } %>
+        <% if(settings.field_font_custom && !fontsNames?.includes(settings.field_font_custom)){  fontsNames += settings.field_font_custom + '|'; } %>
+        <% if(fontsNames){ %>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=<%= fontsNames?.replace(/\|$/, "") %>">
+        <% } %>
+        <% if(settings){ %>
+            <%- include('snippets/css-selectors', {settings:settings}) %>
+        <% } %>
+
+        <% if(component){ %>
+            <% if(component === 'global-styles'){ %>
+                <%- include('make/brand', {settings: settings}) %>
+            <% } else if(component === 'typography-settings'){ %>
+                <%- include('make/fonts', {settings: settings}) %>
+            <% } %>
+        <% } %>
+            <section data-component="announcement bar">
+                <%- include('sections/announcement-bar', {
+                    srcId: 'assets',
+                    section: settings?.sections['announcement-bar'],
+                    compName: 'announcement bar'
+                }) %>
+            </section>
+            <section data-component="header">
+                <%- include('sections/header', {
+                    srcId: 'assets',
+                    search: false,
+                    routes: false,
+                    section: settings?.sections['header'],
+                    compName: 'header'
+                }) %>
+            </section>
+            <% if(sections?.order?.length){ %>
+                <% sections?.order?.forEach((orderItem, index)=> { %>
+                    <% let sectionItem = sections?.sections[orderItem] %>
+                    <section data-component="<%=sectionItem?.type?.replaceAll('-', ' ')%>">
+                        <%- include('sections/' + sectionItem.type, {
+                            srcId: 'assets',
+                            menu: menu, 
+                            blogs: blogs,
+                            blog: blog,
+                            page: page,
+                            article: article,
+                            product: product,
+                            settings: settings, 
+                            section: sectionItem,
+                            sectionid: orderItem,
+                            localization: false,
+                            collection: collection,
+                            collections: collections,
+                            form: false,
+                            customer: customer, 
+                            paginate: false,
+                            all_country_option_tags: false,
+                            routes: false,
+                            search: false,
+                            shop: false,
+                            request: false,
+                            gift_card: false,
+                            genereal: false,
+                            compName: sections?.type?.replace('-', ' ')
+                        }) %>
+                    </section>
+                <% }) %>
+            <% } else if(sections){ %>
+                <section data-component="<%=sections?.type?.replace('-', ' ')%>">
+                    <%- include('sections/' + sections?.type, {
+                        srcId: 'assets',
+                        menu: menu, 
+                        blogs: blogs,
+                        article: article,
+                        product: product,
+                        settings: settings, 
+                        section: sections,
+                        sectionid: sectionid,
+                        blog: blog,
+                        page: page,
+                        localization: false,
+                        collection: collection,
+                        collections: collections,
+                        form: false,
+                        customer: customer, 
+                        paginate: false,
+                        all_country_option_tags: false,
+                        routes: false,
+                        search: false,
+                        shop: false,
+                        request: false,
+                        gift_card: false,
+                        genereal: false
+                    }) %>
+                </section>
+            <% } %>
+            <section data-component="footer">
+                <%- include('sections/footer', {
+                    srcId: 'assets',
+                    section: settings?.sections['footer'],
+                    footerMenu: footermenu,
+                    form: false,
+                    compName: 'footer'
+                }) %>
+            </section>
+
+    <script src="https://cdn.shopify.com/s/javascripts/currencies.js" defer="defer"></script>
+    <script src="/assets/slider.js" defer="defer"></script>
+    <script src="https://cdn.rawgit.com/blowsie/Pure-JavaScript-HTML5-Parser/master/htmlparser.js"></script>
+    <script src="/assets/product-card-style-1.js" defer="defer"></script>
+    <script src="/assets/cart-notification-<%=settings.cart_style%>.js" defer="defer"></script>
+    <% if(settings.enable_global_anim){ %>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            let data = {
+                disable: "<%=settings.anim_mobile%>",
+                delay: "<%=settings.anim_delay%>",
+                duration: "<%=settings.anim_duration%>",
+                easing: "<%=settings.anim_easing%>",
+                once: "<%=settings.anim_once%>",
+                anchorPlacement: "<%=settings.anim_anchor%>",
+            };
+            AOS.init(data);
+        </script>
+        <% } %>
+    </body>
+</html>

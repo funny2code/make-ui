@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="/<%=srcId%>/section-multicolumn.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-slider.css" >
+<style>
+  .multicolumn-card__info  .col_title{
+    color: <%=section.settings.col_color%>;
+    font-size:<%=section.settings.col_title_font_size%>px;
+    font-weight:<%=section.settings.col_title_font_weight%>
+  }
+  .multicolumn-card__info .rte{
+    font-size:<%=section.settings.col_text_font_size%>px;
+    color: <%=section.settings.col_color%>;
+  }
+  @media(max-width:749px){
+    .multicolumn-card__info  .col_title{
+      font-size:<%=section.settings.col_title_m_font_size%>px;                  
+    }    
+  }
+</style>
+<div class="py-<%=section.settings.section_bg%>" style="padding:1px 0px;">
+<div class="multicolumn <% if(!section.settings.title){ %> no-heading<% } %>">
+  <div class="page-width">
+    <div class="title-wrapper-with-link title-wrapper--self-padded-mobile<% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %>">
+      <h2 class="title">
+        <%= section.settings.title %>
+      </h2>
+      <% if(section.settings.button_label && section.settings.swipe_on_mobile){ %>
+        <a href="<%= section.settings.button_link %>" class="button py-c-<%=section.settings.col_color_view_btn%> py-hv-c-<%=section.settings.col_color_view_btn_hover%> py-bg-c-<%=section.settings.col_color_bg_color_view_btn%> py-hv-bg-c-<%=section.settings.col_color_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%> large-up-hide"><%= section.settings.button_label %></a>
+      <% } %>
+    </div>
+    <slider-component class="slider-mobile-gutter">
+      <ul class="multicolumn-list grid grid--1-col grid--2-col-tablet grid--<%=section.settings.column_number%>-col-desktop<% if(section.settings.swipe_on_mobile && section?.block_order?.length > 1){ %> slider slider--mobile grid--peek<% } %>"
+        id="Slider-<%= section.id %>"
+        role="list"
+      >
+        <%
+          var highest_ratio = 1;
+          section?.block_order?.forEach((orderItem, index) => {
+            let block = section?.blocks[orderItem];
+            if(block?.settings?.image?.aspect_ratio > highest_ratio){
+              highest_ratio = block?.settings?.image?.aspect_ratio;
+            }
+          })
+        %>
+        <% section?.block_order?.forEach((orderItem, index) => { %>
+          <% let block = section?.blocks[orderItem] %>
+          <li class="multicolumn-list__item grid__item<% if(section.settings.swipe_on_mobile){ %> slider__slide<% } %><% if(section.settings.column_alignment === 'center'){ %> center<% } %>">
+            <div class="multicolumn-card py-<%=section.settings.col_bg_color%>">
+              
+                <% if(section.settings.image_ratio === 'adapt' || section.settings.image_ratio === 'circle'){ %>
+                  <% var spaced_image = true %>
+                <% } %>
+                <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--<%= section.settings.image_width %>-width<% if(section.settings.image_width !== 'full' || spaced_image){ %> multicolumn-card-spacing<% } %>">
+                  <div class="media media--transparent media--<%= section.settings.image_ratio %>"
+                    <% if(section.settings.image_ratio === 'adapt' &&  block?.settings?.image){ %>
+                      style="padding-bottom: <%= 1 / highest_ratio * 100 %>%;"
+                    <% } %>
+                    <% if(!block?.settings?.image){ %>style="padding-bottom:54%"<% } %>>
+                    <% if(block?.settings?.image){ %>
+                    <img
+                      srcset="<% if(block?.settings?.image?.width >= 275){ %><%= block?.settings?.image %> 275w,<% } %>
+                        <% if(block?.settings?.image?.width >= 550){ %><%= block?.settings?.image %> 550w,<% } %>
+                        <% if(block?.settings?.image?.width >= 710){ %><%= block?.settings?.image %> 710w,<% } %>
+                        <% if(block?.settings?.image?.width >= 1420){ %><%= block?.settings?.image %> 1420w,<% } %>"
+                      src="<%= block?.settings?.image %>"
+                      sizes="(min-width: 800px) <% if(section?.block_order?.length <= 2){ %>710px<% } else { %>550px<% } %>,
+                        (min-width: 750px) <% if(section?.block_order?.length === 1){ %>710px<% } else { %>550px<% } %>,
+                        calc(100vw - 30px)"
+                      alt="<%= block?.settings?.title %>"
+                      height="<%= block?.settings?.image?.height %>"
+                      width="<%= block?.settings?.image?.width %>"
+                      
+                    >
+                    <% } else { %>
+                    <% } %>
+                  </div>
+                </div>                            
+              <div class="multicolumn-card__info">
+                <% if(block?.settings?.title){ %>
+                  <h3 class="col_title"><%= block?.settings?.title %></h3>
+                <% } %>
+                <% if(block?.settings?.text){ %>
+                  <div class="rte"><%- block?.settings?.text -%></div>
+                <% } %>
+              </div>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+
+      <% if(section.settings.swipe_on_mobile){ %>
+        <div class="slider-buttons no-js-hidden medium-hide<% if(section?.block_order?.length < 2){ %> small-hide<% } %>">
+          <div class="slider-counter caption">
+            <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="visually-hidden"><%=accessibility.of%></span>
+            <span class="slider-counter--total"><%= section?.block_order?.length %></span>
+          </div>
+          <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="<%=accessibility.previous_slide%>"><%- include('../snippets/icon-caret') %></button>
+          <button type="button" class="slider-button slider-button--next" name="next" aria-label="<%=accessibility.next_slide%>"><%- include('../snippets/icon-caret') %></button>
+        </div>
+      <% } %>
+    </slider-component>
+    <div class="center<% if(section.settings.swipe_on_mobile){ %> small-hide medium-hide<% } %>">
+      <% if(section.settings.button_label){ %>
+        <a class="button button--primary py-c-<%=section.settings.col_color_view_btn%> py-hv-c-<%=section.settings.col_color_view_btn_hover%> py-bg-c-<%=section.settings.col_color_bg_color_view_btn%> py-hv-bg-c-<%=section.settings.col_color_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>"<% if(!section.settings.button_link){ %> aria-disabled="true" role="link"<% } else { %> href="<%= section.settings.button_link %>"<% } %>>
+          <%= section.settings.button_label %>
+        </a>
+      <% }%>
+    </div>
+  </div>
+</div>
+</div>
