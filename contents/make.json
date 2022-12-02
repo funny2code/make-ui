@@ -2,6 +2,8 @@
     "title": "make",
     "theme_name": "Choose a theme",
     "theme_desc": "You can customize this theme to match your brand guidelines",
+    "remix_name": "Remix Themes",
+    "remix_desc": "Admin can customize, add the new or remove this Remix Themes.",
     "app_left_sidebar": [
         {
           "title": "Brand",

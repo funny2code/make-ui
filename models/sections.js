@@ -1,14 +1,18 @@
 const db = require('./db');
 
 const schema = new db.Schema({
-    page_handle: {
-        type: String,
-        required: true
-    },
-    sections_schema: {
-        type: Array,
-        required: true
-    }
+        template_handle: {
+            type: String,
+            required: true
+        },
+        file_handle: {
+            type: String,
+            required: true
+        },
+        section: {
+            type: Array,
+            required: true
+        }
     },
     {
         timestamps: true

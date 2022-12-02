@@ -1835,7 +1835,6 @@
       loading
         ?.querySelector(".py__save-figma-message")
         ?.innerHTML("WE HAVE ERROR! Please Try Again Few Minuts Late!");
-        // console.log(figmaContent, "BRAND");
     figmaContent = [];
     let selectPagesOptions = selectPages.querySelectorAll("option");
     for (let option of selectPagesOptions) {
@@ -1861,7 +1860,6 @@
         loading
           ?.querySelector(".py__save-figma-message")
           ?.innerHTML("WE HAVE ERROR! Please Try Again Few Minuts Late!");
-          // console.log(figmaContent, "ARRAY LANGTH");
       figmaContent = [];
     }
     changeViewPage(false, selectedPageUrl, false, false);
@@ -2433,7 +2431,6 @@
     changeUrl = true,
     showLoading = false
   ) => {
-    console.log(showLoading, "CHANGE VIEW PAGE");
 
     if (showLoading) loading?.classList.add("py__animate");
     let el = event ? event.target : null;
@@ -2484,14 +2481,14 @@
     if (ifrmaes?.length) {
       for (let i = 0; i < ifrmaes?.length; i++) {
         let iframe = ifrmaes[i];
-        let newUrl =
-          url && url.includes("users")
+        let newUrl = (url && url.includes("users"))
             ? "/view" + url
+            : (url.includes('remix-editor')) 
+            ? url.replace("editor", "view") 
             : url.replace("themes", "view").replace("remix", "view");
         iframe.setAttribute("data-src", newUrl);
       }
     }
-    // await setColorToSettings();
     await saveSettingsValues();
     await viewIframe(showLoading);
   };
@@ -2569,9 +2566,10 @@
       let urlParams = new URL(location.href);
       let iframeSearchParams = new URLSearchParams(urlParams.search);
       iframeSearchParams.set("section", sectionName);
-      let iframeUrl =
-        urlParams.pathname.indexOf("/users/") !== -1
+      let iframeUrl = (urlParams.pathname.indexOf("/users/") !== -1)
           ? "/view" + urlParams.pathname + "?" + iframeSearchParams.toString()
+          : (urlParams.pathname.includes('remix-editor')) 
+          ? urlParams.pathname.replace("remix-editor", "remix-view") + "?" + iframeSearchParams.toString()
           : urlParams.pathname
               .replace("themes", "view")
               .replace("remix", "view") +
@@ -2585,9 +2583,10 @@
     } else {
       let urlParams = new URL(location.href);
       let iframeSearchParams = new URLSearchParams(urlParams.search);
-      let iframeUrl =
-        urlParams.pathname.indexOf("/users/") !== -1
+      let iframeUrl = (urlParams.pathname.indexOf("/users/") !== -1)
           ? "/view" + urlParams.pathname + "?" + iframeSearchParams.toString()
+          : (urlParams.pathname.includes('remix-editor')) 
+          ? urlParams.pathname.replace("remix-editor", "remix-view") + "?" + iframeSearchParams.toString()
           : urlParams.pathname
               .replace("themes", "view")
               .replace("remix", "view") +
@@ -3268,7 +3267,5 @@
       document.querySelector('[name="settings_theme_name"]')?.value ||
       "ThemeMake";
   });
-
-  // randomFun(event);
 
 })();

@@ -42,6 +42,41 @@
         <% }) %>
       </div>
     <% } %>
+    <% if(remixThemes?.length){ %>
+      <% if(make.remix_name || make.remix_desc){ %>
+        <div class="py__themes-heading">
+          <% if(make.remix_name){ %>
+            <h2 class="py__themes-heading-name"><%= make.remix_name %></h2>
+          <% } %>
+          <% if(make.remix_desc){ %>
+            <p class="py__themes-heading-description"><%= make.remix_desc %></p>
+          <% } %>
+        </div>
+      <% } %>
+      <div class="py__remix-themes">
+        <table>
+          <tr>
+            <th>#</th>
+            <th>ID</th>
+            <th>IMAGE</th>
+            <th>SETTINGS</th>
+          </tr>
+          <% remixThemes.forEach((theme,index) => { %>
+            <tr>
+              <td><%=index+1%></td>
+              <td><%=theme._id%></td>
+              <td>Image</td>
+              <td>
+                <div class="py_btn-settings-wrapper">
+                  <a class="py__btn-edit" href="/remix-editor/<%=theme._id%>?page=index">Edit</a>
+                  <a class="py__btn-remove" href="/remix-editor/<%=theme._id%>">Remove</a>
+                </div>
+              </td>
+            </tr>
+          <% }) %>
+        </table>
+      </div>
+    <% } %>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="/javascripts/make.js"></script>
     <div class="py__loading-wrap">

@@ -4,22 +4,25 @@
       "type": "product",
       "settings": {
         "enable_breadcrumb_nav": true,
-        "media_style": "vertical",
+        "media_style": "carousel_w_thumb",
         "media_style_m": "top",
         "pd_media_space": 15,
         "enable_sticky_info": false,
         "enable_video_looping": true,
-        "section_bg_color": "var(--py-bg-color-middle-dark)",
-        "section_color": "var(--py-color-light)",
-        "page_width": "width-m",
-        "info_section_padding": "pd-x-m"
+        "section_bg_color": "var(--py-bg-color-light)",
+        "section_color": "var(--py-color-average)",
+        "page_width": "width-un",
+        "info_section_padding": "pd-x-m",
+        "py_content_bg_color": "var(--py-bg-color-average)",
+        "py_content_color": "var(--py-color-light)",
+        "py_content_color_br": "var(--py-color-average)"
       },
       "blocks": {
         "vendor": {
           "type": "text",
           "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "body"
+            "text": "Product Vendor",
+            "text_style": "uppercase"
           }
         },
         "title": {
@@ -76,11 +79,11 @@
           "type": "buy_buttons",
           "settings": {
             "add_btn_size": "large",
-            "btn_bg_color": "var(--py-bg-color-light)",
-            "btn_color": "var(--py-color-dark)",
-            "btn_hover_bg_color": "var(--py-bg-color-dark)",
+            "btn_bg_color": "var(--py-bg-color-middle-dark)",
+            "btn_color": "var(--py-color-light)",
+            "btn_hover_bg_color": "var(--py-bg-color-middle-dark)",
             "btn_hover_color": "var(--py-color-light)",
-            "btn_color_br": "var(--py-color-dark)",
+            "btn_color_br": "var(--py-color-light)",
             "btn_border_width": 2,
             "btn_border_radius": 6,
             "btn_font_size": 18,
@@ -138,9 +141,6 @@
         "ebf2b153-c828-4ff7-9382-2a190c09eecc": {
           "type": "collapsible_tab",
           "settings": {
-            "py_content_bg_color": "var(--py-bg-color-average)",
-            "py_content_color": "var(--py-color-light)",
-            "py_content_color_br": "var(--py-color-light)",
             "heading": "About",
             "content": "<p>add</p>",
             "page": "",
@@ -150,9 +150,6 @@
         "3d71c858-4fe6-4873-847e-c6c5c038a1d2": {
           "type": "collapsible_tab",
           "settings": {
-            "py_content_bg_color": "var(--py-bg-color-average)",
-            "py_content_color": "var(--py-color-light)",
-            "py_content_color_br": "var(--py-color-light)",
             "heading": "Shipping",
             "content": "",
             "page": "",
@@ -162,9 +159,6 @@
         "9b353cd0-2aa4-44ee-b46f-8554cbe45bf4": {
           "type": "collapsible_tab",
           "settings": {
-            "py_content_bg_color": "var(--py-bg-color-average)",
-            "py_content_color": "var(--py-color-light)",
-            "py_content_color_br": "var(--py-color-light)",
             "heading": "Sizing Chart",
             "content": "",
             "page": "",
@@ -174,9 +168,6 @@
         "ee9858bf-bdd8-4787-92fc-78c0831a28ad": {
           "type": "collapsible_tab",
           "settings": {
-            "py_content_bg_color": "var(--py-bg-color-average)",
-            "py_content_color": "var(--py-color-light)",
-            "py_content_color_br": "var(--py-color-light)",
             "heading": "Custom Section",
             "content": "",
             "page": "",

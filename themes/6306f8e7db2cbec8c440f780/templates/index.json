@@ -34,7 +34,7 @@
         "16425389039f659f32-0": {
           "type": "heading",
           "settings": {
-            "heading": "<div class=\"grid grid--1-col\"> <div class=\"grid__item font-larger\">Green Fiend</div><div class=\"grid__item font-small\">Our botanicals bring the outside in</div></div>",
+            "heading": "Authentic coffee, every sip.",
             "align": "center",
             "content_color": "var(--py-color-light)",
             "weight": "",
@@ -77,7 +77,7 @@
     "1640386503a8111c26": {
       "type": "marquee",
       "settings": {
-        "marquee": "MAKE UI | BASE THEME | MAKE UI | BASE THEME | MAKE UI | BASE THEME | MAKE UI | BASE THEME | MAKE UI | BASE THEME | MAKE UI | BASE THEME | MAKE UI | BASE THEME | MAKE UI | BASE THEME | MAKE UI | BASE THEME",
+        "marquee": "We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee | We really love coffee",
         "pause": false,
         "direction": "left",
         "behavior": "scroll",
@@ -113,7 +113,7 @@
         "image_ratio": "adapt",
         "item_space": 8,
         "card_radius": 10,
-        "card_bg_color": "bg-c-average"
+        "card_bg_color": "bg-c-middle-light"
       },
       "blocks": {
         "1650654428f31a1383-0": {
@@ -134,7 +134,7 @@
             "card_color_view_btn": "light",
             "card_bg_color_view_btn": "middle-dark",
             "card_color_view_btn_hover": "light",
-            "card_bg_color_view_btn_hover": "dark"
+            "card_bg_color_view_btn_hover": "middle-dark"
           }
         }
       },
@@ -161,7 +161,7 @@
         "image_ratio": "square",
         "item_space": 14,
         "card_radius": 10,
-        "card_bg_color": "bg-c-average",
+        "card_bg_color": "bg-c-middle-light",
         "card_color": "var(--py-color-average)",
         "card_title_font_size": 22,
         "card_title_font_weight": 500,
@@ -171,7 +171,7 @@
         "card_color_view_btn": "light",
         "card_bg_color_view_btn": "middle-dark",
         "card_color_view_btn_hover": "light",
-        "card_bg_color_view_btn_hover": "dark"
+        "card_bg_color_view_btn_hover": "middle-dark"
       },
       "blocks": {
         "1650916779972e0d3d-0": {
@@ -226,7 +226,7 @@
         "card_style": "vertical",
         "image_ratio": "square",
         "image_gallery": false,
-        "card_bg_color": "bg-c-middle-dark",
+        "card_bg_color": "bg-c-middle-light",
         "card_radius": 7,
         "item_space": 5,
         "show_vendor": false,
@@ -235,12 +235,12 @@
         "show_view_product": true,
         "show_quick_add": true,
         "info_align": "center",
-        "card_color": "c-middle-light",
-        "view_btn_size": "small",
-        "card_color_view_btn": "average",
-        "card_bg_color_view_btn": "average",
-        "card_color_view_btn_hover": "dark",
-        "card_bg_color_view_btn_hover": "dark",
+        "card_color": "c-average",
+        "view_btn_size": "medium",
+        "card_color_view_btn": "light",
+        "card_bg_color_view_btn": "middle-dark",
+        "card_color_view_btn_hover": "light",
+        "card_bg_color_view_btn_hover": "middle-dark",
         "custom_font_style": false,
         "title_fontsize": "",
         "title_fontsize_m": "",
@@ -260,6 +260,28 @@
     },
     "1651801075bda11aac": {
       "type": "multicolumn",
+      "settings": {
+        "title": "Multicolumn",
+        "section_bg": "bg-c-light",
+        "column_number": 3,
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "column_alignment": "center",
+        "col_bg_color": "bg-c-average",
+        "col_color": "var(--py-color-light)",
+        "col_title_font_size": 22,
+        "col_title_font_weight": 500,
+        "col_title_m_font_size": 18,
+        "col_text_font_size": 15,
+        "button_label": "Button label",
+        "button_link": "",
+        "view_btn_size": "medium",
+        "col_color_view_btn": "light",
+        "col_color_bg_color_view_btn": "middle-dark",
+        "col_color_view_btn_hover": "light",
+        "col_color_bg_color_view_btn_hover": "middle-dark",
+        "swipe_on_mobile": false
+      },
       "blocks": {
         "165180107452de171a-0": {
           "type": "column",
@@ -290,27 +312,7 @@
         "165180107452de171a-0",
         "165180107452de171a-1",
         "72f28d44-c0c8-4874-b2ba-5d9ea525992a"
-      ],
-      "settings": {
-        "title": "Multicolumn",
-        "section_bg": "bg-c-light",
-        "column_number": 3,
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "column_alignment": "center",
-        "col_bg_color": "bg-c-light",
-        "col_color": "var(--py-color-dark)",
-        "col_title_font_size": 22,
-        "col_title_font_weight": 500,
-        "col_title_m_font_size": 18,
-        "col_text_font_size": 15,
-        "button_label": "Button label",
-        "button_link": "",
-        "view_btn_size": "medium",
-        "col_color_view_btn": "light",
-        "col_color_view_btn_hover": "dark",
-        "swipe_on_mobile": false
-      }
+      ]
     },
     "1651867483e4606eac": {
       "type": "product-carousel",
@@ -334,12 +336,12 @@
         "show_view_product": true,
         "show_quick_add": true,
         "info_align": "center",
-        "card_color": "c-light",
-        "view_btn_size": "small",
-        "card_color_view_btn": "average",
-        "card_bg_color_view_btn": "average",
-        "card_color_view_btn_hover": "average",
-        "card_bg_color_view_btn_hover": "average",
+        "card_color": "c-average",
+        "view_btn_size": "medium",
+        "card_color_view_btn": "light",
+        "card_bg_color_view_btn": "middle-dark",
+        "card_color_view_btn_hover": "light",
+        "card_bg_color_view_btn_hover": "middle-dark",
         "custom_font_style": true,
         "title_fontsize": "16px",
         "title_fontsize_m": "",
@@ -367,7 +369,7 @@
         "img_style": "padding",
         "align": "left",
         "py_section_bg_color": "var(--py-bg-color-average)",
-        "py_section_color": "var(--py-color-dark)"
+        "py_section_color": "var(--py-color-light)"
       },
       "blocks": {
         "1652851716950d2423-0": {
@@ -389,11 +391,11 @@
           "settings": {
             "button_label": "Button label",
             "button_link": "",
-            "view_btn_size": "small",
+            "view_btn_size": "large",
             "py_section_color_view_btn": "light",
             "py_section_bg_color_view_btn": "middle-dark",
             "py_section_color_view_btn_hover": "light",
-            "py_section_bg_color_view_btn_hover": "middle-light"
+            "py_section_bg_color_view_btn_hover": "middle-dark"
           }
         }
       },
@@ -405,30 +407,6 @@
     },
     "165285246185f95e1b": {
       "type": "contact-form",
-      "blocks": {
-        "1652852461df146919-0": {
-          "type": "title",
-          "settings": {
-            "form_title": "Contact",
-            "title_font_size": 24,
-            "page_color_title": "var(--py-color-dark)",
-            "title_align": "left"
-          }
-        },
-        "1652852461df146919-1": {
-          "type": "content",
-          "settings": {
-            "content_font_size": 24,
-            "page_color_content": "var(--py-color-dark)",
-            "content_align": "left",
-            "content_custom_css": ""
-          }
-        }
-      },
-      "block_order": [
-        "1652852461df146919-0",
-        "1652852461df146919-1"
-      ],
       "settings": {
         "page_width": "width-un",
         "page_bg_color": "var(--py-bg-color-light)",
@@ -441,8 +419,34 @@
         "field_font_size": 18,
         "submit_btn_size": "medium",
         "page_color_submit_btn": "light",
-        "page_color_submit_btn_hover": "dark"
-      }
+        "page_bg_color_submit_btn": "dark",
+        "page_color_submit_btn_hover": "dark",
+        "page_bg_color_submit_btn_hover": "dark"
+      },
+      "blocks": {
+        "1652852461df146919-0": {
+          "type": "title",
+          "settings": {
+            "form_title": "Contact",
+            "title_font_size": 24,
+            "page_color_title": "var(--py-color-average)",
+            "title_align": "left"
+          }
+        },
+        "1652852461df146919-1": {
+          "type": "content",
+          "settings": {
+            "content_font_size": 24,
+            "page_color_content": "var(--py-color-average)",
+            "content_align": "left",
+            "content_custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "1652852461df146919-0",
+        "1652852461df146919-1"
+      ]
     }
   },
   "order": [
@@ -453,7 +457,7 @@
     "16509053100fc45029",
     "1651801075bda11aac",
     "1651867483e4606eac",
-    "1652851716a9bcae46",    
+    "1652851716a9bcae46",
     "165285246185f95e1b"
   ]
 }

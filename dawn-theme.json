@@ -4325,7 +4325,7 @@
         }
       ],
       "file_name": "cart-footer",
-      "template_name": "template/cart"
+      "template_name": "templates/cart"
     },
     {
       "name": "Items",

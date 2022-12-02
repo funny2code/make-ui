@@ -1,1 +1,44 @@
-{"sections":{"cart-items":{"type":"cart-items","settings":{"show_vendor":false,"item_bg":"#dddddd","item_radius":"10"}},"cart-footer":{"type":"cart-footer","blocks":{"buttons":{"type":"buttons","settings":{}},"subtotal":{"type":"subtotal","settings":{}}},"block_order":["buttons","subtotal"],"settings":{"show_cart_note":true,"enable_dynamic_pay":true,"button_radius":"50"}}},"order":["cart-items","cart-footer"]}
+{
+  "sections": {
+    "cart-items": {
+      "type": "cart-items",
+      "settings": {
+        "show_vendor": false,
+        "item_bg": "",
+        "item_radius": "10"
+      }
+    },
+    "cart-footer": {
+      "type": "cart-footer",
+      "settings": {
+        "show_cart_note": true,
+        "enable_dynamic_pay": true,
+        "button_radius": "50"
+      },
+      "blocks": {
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "btn_size": "large",
+            "btn_color": "light",
+            "btn_bg_color": "middle-dark",
+            "btn_color_hover": "light",
+            "btn_bg_color_hover": "middle-dark"
+          }
+        },
+        "subtotal": {
+          "type": "subtotal",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "buttons",
+        "subtotal"
+      ]
+    }
+  },
+  "order": [
+    "cart-items",
+    "cart-footer"
+  ]
+}
