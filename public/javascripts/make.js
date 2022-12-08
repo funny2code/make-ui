@@ -3008,9 +3008,9 @@
       body: JSON.stringify({message: messageValue}),
     });
 
-    let res = await req.json();
-
-    openAires.innerHTML = res.result;
+    let res = await req.text();
+    let parseRes = JSON.parse(res);
+    openAires.innerHTML = parseRes.result;
 
 
   };
