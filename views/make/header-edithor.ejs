@@ -1,0 +1,26 @@
+<header class="py__header">
+    <div class="py__header-top">
+        <div class="py__header-logo">
+            <a href="/">
+                <img src="/images/logo.png" alt="<%=make.title%>" width="120"/>
+            </a>
+        </div>
+        <div class="py__header-login">
+            <% if(isAdmin){ %>
+                <a class="py__button py__button-black py__add-new-remix-button" aria-disabled="false">
+                    add new
+                </a> 
+                <a class="py__button py__button-black py__save-button" aria-disabled="true">
+                    Save Changes
+                </a>
+                <a href="/logout" class="py__button py__button-white">
+                    Log Out
+                </a>
+            <% } else { %>
+                <a href="/login" class="py__button py__button-white py__login-button">
+                    Log In
+                </a>
+            <% } %>
+        </div>
+    </div>
+</header>

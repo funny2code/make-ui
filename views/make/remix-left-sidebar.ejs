@@ -11,37 +11,37 @@
                         <ul class="py__sub-options-ul">
                             <% let subMenuItems = item.type === 'page' ? pages : sections %>
                             <% let announcementItem = settings?.sections['announcement-bar'] %>
-                            <% let announcementSchemaItem = sectionsSchema?.filter(section => section.file_name === announcementItem?.type) %>
+                            <% let announcementSchemaItem = sectionsSchema?.filter(section => section.file_handle === announcementItem?.type) %>
                             <li>
                                 <a href="/remix-editor/<%=id%>?page=<%=page_handle%>&section=<%=announcementItem.type%>" class="py__sub-options-item py__get-section-button <% if(item.type === 'page' && announcementItem.type === page_handle || activeType === 'section' && announcementItem.type === active){ %>active<% } %>">
-                                    <span><%= announcementSchemaItem[0]?.name %></span>
+                                    <span><%= announcementSchemaItem[0]?.section[0]?.name %></span>
                                     <span><%- include('../icons', {type:'arrow_right'}) %></span>
                                 </a>
                             </li>
                             <% let headerItem = settings?.sections['header'] %>
-                            <% let headerSchemaItem = sectionsSchema?.filter(section => section.file_name === headerItem?.type) %>
+                            <% let headerSchemaItem = sectionsSchema?.filter(section => section.file_handle === headerItem?.type) %>
                             <li>
                                 <a href="/remix-editor/<%=id%>?page=<%=page_handle%>&section=<%=headerItem.type%>" class="py__sub-options-item py__get-section-button <% if(item.type === 'page' && headerItem.type === page_handle || activeType === 'section' && headerItem.type === active){ %>active<% } %>">
-                                    <span><%= headerSchemaItem[0]?.name %></span>
+                                    <span><%= headerSchemaItem[0]?.section[0]?.name %></span>
                                     <span><%- include('../icons', {type:'arrow_right'}) %></span>
                                 </a>
                             </li>
                             <% subMenuItems?.order?.forEach((orderItem,index) => { %>
                                 <% let sectionItem = subMenuItems?.sections[orderItem] %>
-                                <% let sectionSchemaItem = sectionsSchema?.filter(section => section.file_name === sectionItem?.type) %>
+                                <% let sectionSchemaItem = sectionsSchema?.filter(section => section.file_handle === sectionItem?.type) %>
                                 <% let subMenuLinks = item.type === 'page' ? `page=${subOption.name}` : `page=${page_handle}&section=${sectionItem.type}&section_id=${orderItem}` %>
                                 <li>
                                     <a href="/remix-editor/<%=id%>?<%=subMenuLinks%>" class="py__sub-options-item py__get-section-button <% if(item.type === 'page' && sectionItem.type === page_handle || activeType === 'section' && sectionItem.type === active){ %>active<% } %>">
-                                        <span><%= sectionSchemaItem[0]?.name %></span>
+                                        <span><%= sectionSchemaItem[0]?.section[0]?.name %></span>
                                         <span><%- include('../icons', {type:'arrow_right'}) %></span>
                                     </a>
                                 </li>
                             <% }) %>
                             <% let footerItem = settings?.sections['footer'] %>
-                            <% let footerSchemaItem = sectionsSchema?.filter(section => section.file_name === footerItem?.type) %>
+                            <% let footerSchemaItem = sectionsSchema?.filter(section => section.file_handle === footerItem?.type) %>
                             <li>
                                 <a href="/remix-editor/<%=id%>?page=<%=page_handle%>&section=<%=footerItem.type%>" class="py__sub-options-item py__get-section-button <% if(item.type === 'page' && footerItem.type === page_handle || activeType === 'section' && footerItem.type === active){ %>active<% } %>">
-                                    <span><%= footerSchemaItem[0]?.name %></span>
+                                    <span><%= footerSchemaItem[0]?.section[0]?.name %></span>
                                     <span><%- include('../icons', {type:'arrow_right'}) %></span>
                                 </a>
                             </li>

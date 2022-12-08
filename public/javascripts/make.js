@@ -1775,13 +1775,15 @@
   };
 
   // Save Function
-  const save = async () => {
+  const save = async (e, action_type=false) => {
     let form = document.querySelector("form.py__settings-form");
     let url = form.getAttribute("action");
 
     if (!form || !url) return;
 
     loading?.classList.add("py__animate");
+
+    if(action_type) theme.action_type = "addnew";
 
     let res = await fetch(url, {
       method: "POST",
@@ -1795,6 +1797,7 @@
     if (!data) return loading?.classList.remove("py__animate");
     let dataParse = JSON.parse(data);
     if (dataParse?.status === 200) {
+      if(dataParse?.message === "added") location.href = "/";
       saveButton?.setAttribute("aria-disabled", "true");
       downloadButton?.setAttribute("aria-disabled", "false");
       await saveSettingsValues();
@@ -2987,7 +2990,31 @@
     await saveSettingsValues();
     await viewIframe();
   };
+  
+  const openAiApi = async (e) => {
+    if(!e) return;
+    e.preventDefault();
+    let message = document.querySelector('[name="openai-req"]');
+    let openAires = document.querySelector('.py__openai-res');
+    if(!message) return;
+    let messageValue = message.value;
 
+    let req = await fetch('/openai', {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({message: messageValue}),
+    });
+
+    let res = await req.json();
+
+    openAires.innerHTML = res.result;
+
+
+  };
+  
   //---------------------------------------
   // COMPONENTS FUN
   //---------------------------------------
@@ -3236,6 +3263,8 @@
     if (e && e.target.classList.contains("py__get-section-button"))
       return getSettingsLists(e);
     if (e && e.target.classList.contains("py__save-button")) return save(e);
+    if (e && e.target.classList.contains("py__add-new-remix-button")) return save(e, true);
+    if (e && e.target.classList.contains("py__openai-req-btn")) return openAiApi(e, true);
     if (e && e.target.classList.contains("py__save-figma-button"))
       return saveFigma(e);
     if (e && e.target.classList.contains("py__download-button"))

@@ -9,7 +9,7 @@
     </head>
     <body>
         <% const currentPage = pages?.filter(page => page?.handle === page_handle) %>
-        <%- include('make/header', {id: id, show: true }) %>
+        <%- include('make/header-edithor', {id: id, isAdmin: user?.isAdmin }) %>
         <div class="py__make">
             <div class="py__make-sidebar">
                 <% if(make?.app_left_sidebar){ %>
@@ -80,7 +80,7 @@
                         </option>
                     </select>
                 <% } %>
-                <form class="py__settings-form <% if(activeType){ %>py__add-mg-top<% } %>" method="post" action="/save/<%= (user && userThemeView) ? 'users/' + user._id + '/themes/' + id : id %>?<% if(activeType === 'section'){%>section=<%=active%><% } else { %>settings=<%=active%><% } %>" aria-multiline="true">
+                <form class="py__settings-form <% if(activeType){ %>py__add-mg-top<% } %>" method="post" action="/save-remix/<%=id%>" aria-multiline="true">
                     <% if(sections && !activeType){ %>
                         <div class="py__settings-static-content">
                             <% let staticTopSections = [];

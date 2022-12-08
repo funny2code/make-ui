@@ -17,6 +17,7 @@ const remixViewRouter = require("./routes/remix-view");
 const viewUserRouter = require("./routes/viewuser");
 const getRouter = require("./routes/get");
 const saveRouter = require("./routes/save");
+const saveRemixRouter = require("./routes/saveoraddremix");
 const saveUserRouter = require("./routes/saveuser");
 const downloadRouter = require("./routes/download");
 const loginRouter = require("./routes/login");
@@ -24,6 +25,7 @@ const logOutRouter = require("./routes/logout");
 const signupRouter = require("./routes/signup");
 const addThemeRouter = require("./routes/addtheme");
 const figmaRouter = require("./routes/figma");
+const openAiRouter = require("./routes/openAi");
 
 const app = express();
 
@@ -61,6 +63,7 @@ app.use("/remix-view", remixViewRouter);
 app.use("/view/users", viewUserRouter);
 app.use("/get", getRouter);
 app.use("/save", saveRouter);
+app.use("/save-remix", saveRemixRouter);
 app.use("/save/users", saveUserRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logOutRouter);
@@ -68,6 +71,7 @@ app.use("/signup", signupRouter);
 app.use("/download", downloadRouter);
 app.use("/add", addThemeRouter);
 app.use("/figma", figmaRouter);
+app.use("/openai", openAiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

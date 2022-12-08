@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const modelRemix = require('../models/remix');
 const modelSections = require('../models/sections');
+const modelSettings = require('../models/settings');
 const make = require('../contents/make');
 const fonts = require('../contents/fonts');
 const utils = require('./utils');
@@ -25,11 +26,12 @@ router.get('/:id', async (req, res, next) => {
 
   try{
     const theme = await modelRemix.findById(id).exec();
-    if(!theme) return next();
+    const getSettings = await modelSettings.find().exec();
+    if(!theme || !getSettings) return next();
 
     const settingsSchema = settings_handle ? (settings_handle !== 'global-styles') 
-    ? theme.settings_schema.filter(item => item.name?.replace(' ', '-')?.toLowerCase() === settings_handle)
-    : theme.settings_schema.filter(item => item.name?.replace(' ', '-')?.toLowerCase() === 'theme_info' || item.name?.replace(' ', '-')?.toLowerCase() === settings_handle)
+    ? getSettings[0].settings_schema.filter(item => item.name?.replace(' ', '-')?.toLowerCase() === settings_handle)
+    : getSettings[0].settings_schema.filter(item => item.name?.replace(' ', '-')?.toLowerCase() === 'theme_info' || item.name?.replace(' ', '-')?.toLowerCase() === settings_handle)
     : null;
     
     const settings = theme?.settings_data;
@@ -71,6 +73,7 @@ router.get('/:id', async (req, res, next) => {
     });
 
   } catch (err){
+    console.log(err, "ERROR");
     return next(err);
   }
 
@@ -95,12 +98,14 @@ router.post('/:id', async (req, res, next) => {
   : (page_handle?.includes('customer') || page_handle?.includes('gift-card')) ? page_handle : null;
 
   try {
+
     const theme = await modelRemix.findById(id).exec();
-    if(!theme) return next();
+    const getSettings = await modelSettings.find().exec();
+    if(!theme || !getSettings) return next();
 
     const settingsSchema = settings_handle ? (settings_handle !== 'global-styles') 
-    ? theme.settings_data.filter(item => item.name?.replace(' ', '-')?.toLowerCase() === settings_handle)
-    : theme.settings_data.filter(item => item.name?.replace(' ', '-')?.toLowerCase() === 'theme_info' || item.name?.replace(' ', '-')?.toLowerCase() === settings_handle)
+    ? getSettings[0].settings_schema.filter(item => item.name?.replace(' ', '-')?.toLowerCase() === settings_handle)
+    : getSettings[0].settings_schema.filter(item => item.name?.replace(' ', '-')?.toLowerCase() === 'theme_info' || item.name?.replace(' ', '-')?.toLowerCase() === settings_handle)
     : null;
 
     // const settingsFile = await fs.readFile(path.join(__dirname, `../themes/${id}/config/settings_data.json`), 'utf-8');
