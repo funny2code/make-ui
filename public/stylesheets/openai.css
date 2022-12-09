@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin: 0;
+    min-height: 100vh;
+    padding-bottom: 105px;
+}
+
+.py__openai-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.code-block {
+    background-color: #000000;
+    border: 1px solid #000;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #fff;
+    width: calc(20% - 5px);
+    height: calc(100vh - 125px);
+    overflow: auto;
+}
+.py__openai-res {
+    width: calc(80% - 5px);
+}
+
+.py__openai-form-container {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+}
+.py__openai-form-container form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+.btn {
+    background-color: #0099ff;
+    color: #fff;
+    padding: 19px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.loading-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+.loading-popup.active {
+    display: block;
+}
+.loading-popup-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.loading-popup-icon {
+    margin-bottom: 10px;
+}
+
+.loading-popup-text {
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+}

@@ -2994,12 +2994,18 @@
   const openAiApi = async (e) => {
     if(!e) return;
     e.preventDefault();
-    let message = document.querySelector('[name="openai-req"]');
+    let loading = document.querySelector('.loading-popup');
+    loading?.classList.add('active');
+    let form = e.target;
+    let url = form.getAttribute('action');
+    let message = form.querySelector('[name="openai-req"]');
     let openAires = document.querySelector('.py__openai-res');
-    if(!message) return;
+    let openAiCode = document.querySelector('.code-block');
+    let openAiCodePre = openAiCode?.querySelector('pre');
+    if(!message || !url) return loading?.classList.remove('active');
     let messageValue = message.value;
 
-    let req = await fetch('/openai', {
+    let req = await fetch(url, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -3011,7 +3017,8 @@
     let res = await req.text();
     let parseRes = JSON.parse(res);
     openAires.innerHTML = parseRes.result;
-
+    openAiCodePre.textContent = parseRes.result;
+    loading?.classList.remove('active');
 
   };
   
@@ -3228,8 +3235,8 @@
   document.addEventListener("submit", (e) => {
     if (e && e.target.classList.contains("py__signup-form")) return signup(e);
     if (e && e.target.classList.contains("py__login-form")) return login(e);
-    if (e && e.target.classList.contains("py__addtheme-form"))
-      return addTheme(e);
+    if (e && e.target.classList.contains("py__addtheme-form")) return addTheme(e);
+    if (e && e.target.classList.contains("py__openai-form")) return openAiApi(e);
   });
 
   // Sidebar Select Settings Open Close Fun
@@ -3264,7 +3271,6 @@
       return getSettingsLists(e);
     if (e && e.target.classList.contains("py__save-button")) return save(e);
     if (e && e.target.classList.contains("py__add-new-remix-button")) return save(e, true);
-    if (e && e.target.classList.contains("py__openai-req-btn")) return openAiApi(e, true);
     if (e && e.target.classList.contains("py__save-figma-button"))
       return saveFigma(e);
     if (e && e.target.classList.contains("py__download-button"))
