@@ -2999,7 +2999,7 @@
     let form = e.target;
     let url = form.getAttribute('action');
     let message = form.querySelector('[name="openai-req"]');
-    let openAires = document.querySelector('.py__openai-res');
+    let openAiIframe = document.querySelector('.py__openai-res');
     let openAiCode = document.querySelector('.code-block');
     let openAiCodePre = openAiCode?.querySelector('pre');
     if(!message || !url) return loading?.classList.remove('active');
@@ -3016,7 +3016,8 @@
 
     let res = await req.text();
     let parseRes = JSON.parse(res);
-    openAires.innerHTML = parseRes.result;
+    let iframeContent = openAiIframe.contentDocument || openAiIframe.contentWindow.document;
+    iframeContent.querySelector("body").innerHTML = parseRes.result;
     openAiCodePre.textContent = parseRes.result;
     loading?.classList.remove('active');
 
