@@ -2,6 +2,7 @@ const express = require("express");
 const { Configuration, OpenAIApi } = require("openai");
 const router = express.Router();
 
+
 router.get("/", async (req, res, next) => {
 
     try {
