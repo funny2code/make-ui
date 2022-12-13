@@ -1,14 +1,22 @@
 const express = require("express");
 const { Configuration, OpenAIApi } = require("openai");
 const router = express.Router();
+const request = require('request');
 
+const validURL = async (str) => {
+    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+      '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    return !!pattern.test(str);
+};
 
 router.get("/", async (req, res, next) => {
 
     try {
-
         res.render('openai');
-
     } catch (err) {
         return next(err);
     }
@@ -25,15 +33,22 @@ router.post("/", async (req, res, next) => {
 
     try {
         
-        const openai = new OpenAIApi(configuration);
-        const response = await openai.createCompletion({
-            model: "text-davinci-003",
-            prompt: message,
-            temperature: 0,
-            max_tokens: 4000,
-        });
+        if(await validURL(message)){
+            request(message, function (error, response, body) {
+                if(error) return next(error);
+                return res.status(response.statusCode).json({result: body})
+            });
+        } else {
+            const openai = new OpenAIApi(configuration);
+            const response = await openai.createCompletion({
+                model: "text-davinci-003",
+                prompt: message,
+                temperature: 0,
+                max_tokens: 4000,
+            });
 
-        return res.status(response.status).json({result: response.data.choices[0].text});
+            return res.status(response.status).json({result: response.data.choices[0].text});
+        }
 
     } catch (err) {
         return next(err);
