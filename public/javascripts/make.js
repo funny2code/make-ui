@@ -3020,6 +3020,10 @@
     iframeContent.querySelector("body").innerHTML = parseRes.result;
     openAiCodePre.textContent = parseRes.result;
     loading?.classList.remove('active');
+    // let newOpenAiIframe = document.querySelector('.py__openai-res');
+    // let newIframeContent = newOpenAiIframe.contentDocument || newOpenAiIframe.contentWindow.document;
+    // let el = newIframeContent.querySelector(".footer-block__heading");
+    // console.log(el, window.getComputedStyle(el), "HELLO");
 
   };
   

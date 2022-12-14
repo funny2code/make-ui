@@ -2,6 +2,7 @@ const express = require('express');
 const { Configuration, OpenAIApi } = require('openai');
 const router = express.Router();
 const axios = require('axios');
+const cheerio = require('cheerio');
 
 
 const validURL = async (str) => {
@@ -36,8 +37,8 @@ router.post("/", async (req, res, next) => {
         
         if(await validURL(message)){
             const {data} = await axios.get(message);
-            console.log(data);
-            return res.status(200).json({result: data})
+            const $ = cheerio.load(data);
+            return res.status(200).json({result: $.html()});
         } else {
             const openai = new OpenAIApi(configuration);
             const response = await openai.createCompletion({
