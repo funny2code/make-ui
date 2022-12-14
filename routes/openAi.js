@@ -1,7 +1,7 @@
-const express = require("express");
-const { Configuration, OpenAIApi } = require("openai");
+const express = require('express');
+const { Configuration, OpenAIApi } = require('openai');
 const router = express.Router();
-const request = require('request');
+const axios = require('axios');
 
 
 const validURL = async (str) => {
@@ -35,10 +35,9 @@ router.post("/", async (req, res, next) => {
     try {
         
         if(await validURL(message)){
-            request(message, function (error, response, body) {
-                if(error) return next(error);
-                return res.status(response.statusCode).json({result: body})
-            });
+            const {data} = await axios.get(message);
+            console.log(data);
+            return res.status(200).json({result: data})
         } else {
             const openai = new OpenAIApi(configuration);
             const response = await openai.createCompletion({
