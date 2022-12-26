@@ -2860,7 +2860,6 @@
     });
     let res = await req.text();
     let parseRes = JSON.parse(res);
-    console.log(parseRes.result, "CHECK");
     return parseRes.result;
   };
 
@@ -2875,9 +2874,26 @@
     let allTextFileds = document.querySelectorAll('.py__ai-text');
     for(let i=0; i<allTextFileds?.length; i++){
       let textFiled = allTextFileds[i];
-      let textPropmt = `make a similar sentence to this with a similar amount of character within 5-10 characters " ${textFiled.value} "`;
+      let textPropmt = `make a similar sentence to this with a similar amount of character within 5-10 characters ${textFiled.value}`;
       textFiled.value = await createTextAi(textPropmt);
-      await timeout(2000); 
+      // await timeout(2000); 
+    }
+
+    let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
+    let colorsFileds = document.querySelectorAll('.py__ai-color');
+    let colorDesc = "difference";
+    let colorPropmt = `using a json format show me 5 color ${colorDesc} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
+    let getColorsParse = await createTextAi(colorPropmt);
+    let getColors = JSON.parse(getColorsParse);
+    for(let i=0; i<5; i++){
+      let bgColorFiled = bgColorsFileds[i]; 
+      let colorFiled = colorsFileds[i];
+      bgColorFiled.value = getColors.backgrounds[i].backgroundHex;
+      colorFiled.value = getColors.backgrounds[i].textHex;
+      let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
+      let wrapColor = colorFiled.closest('.py__label-for-color');
+      wrapBgColor.style.backgroundColor = getColors.backgrounds[i].backgroundHex;
+      wrapColor.style.backgroundColor = getColors.backgrounds[i].textHex;
     }
     // let logo = await createImageFun(busNameVal);
     // let iframes = document.querySelectorAll('.py__view-iframe');
@@ -2897,6 +2913,8 @@
     //     }
     //   }
     // }
+    await saveSettingsValues();
+    await viewIframe(true);
     return loading?.classList.remove("py__animate");
   };
 

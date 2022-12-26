@@ -46,7 +46,7 @@
                                         <% if(item.type === "color"){ %>
                                             <div class="py__random-comp py__random_comp-color component-is-color">
                                                 <label for="settings-<%=item.id%>" class="py__label-for-color" <% if(settings[item.id]){ %>style="background:<%=settings[item.id]%>;"<% } %>>
-                                                    <input type="color" id="settings-<%=item.id%>" name="<%=item.id%>" <% if(settings[item.id]){ %>value="<%=settings[item.id]%>"<% } %>/>
+                                                    <input type="color" class="<%= item?.id?.includes('bg') ? "py__ai-bg-color" : "py__ai-color" %>" id="settings-<%=item.id%>" name="<%=item.id%>" <% if(settings[item.id]){ %>value="<%=settings[item.id]%>"<% } %>/>
                                                 </label>
                                                 <span><%=item.label%></span>
                                             </div>
