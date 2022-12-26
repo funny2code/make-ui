@@ -60,22 +60,24 @@ router.post("/", async (req, res, next) => {
             const response = await openai.createCompletion({
                 model: "text-davinci-003",
                 prompt: message,
-                temperature: 0,
+                temperature: 0.9,
                 max_tokens: 4000,
             });
 
+            if(!image) return res.status(response.status).json({result: response.data.choices[0].text});
+            
             const imageResponse = await openai.createImage({
                 prompt: image,
                 n: 1,
                 size: "1024x1024",
             });
 
-            console.log(imageResponse.data.data[0].url);
             return res.status(response.status).json({result: response.data.choices[0].text, image: imageResponse.data.data[0].url});
 
         }
 
     } catch (err) {
+        console.log(err, "CHECK");
         return next(err);
     }
 

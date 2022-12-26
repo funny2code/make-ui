@@ -2835,32 +2835,69 @@
     }
   };
 
-  const bussinesName = async (event) => {
-    console.log("WORKS");
-    let busName = document.querySelector('[name="bussines_name"]');
-    let busNameVal = (busName.value.trim() !== "") ? busName.value : null;
-    if(!busNameVal) return;
-    alert(busNameVal);
+  const createImageAi = async (propmt) => {
     let req = await fetch('/openai', {
       method: "POST",
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({image: busNameVal}),
+      body: JSON.stringify({image: propmt}),
     });
-
     let res = await req.text();
     let parseRes = JSON.parse(res);
-    console.log(parseRes);
-    let iframes = document.querySelectorAll('py__view-iframe');
-    if(!iframes?.length) return;
-    for(let i=0; i<iframes.length; i++){
-      let iframe = iframes[i];
-      let iframeContent = iframe.contentDocument || iframe.contentWindow.document;
-      let logoWrapper = iframeContent.querySelector('.header__heading');
-      logoWrapper.innerHTML = `<img src="${parseRes.image}"/>`;
+    return parseRes.image;
+  };
+
+  const createTextAi = async (propmt) => {
+    let req = await fetch('/openai', {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({message: propmt}),
+    });
+    let res = await req.text();
+    let parseRes = JSON.parse(res);
+    console.log(parseRes.result, "CHECK");
+    return parseRes.result;
+  };
+
+  const bussinesName = async (event) => {
+    if(!event) return;
+    loading?.classList.add("py__animate");
+    let busName = document.querySelector('[name="bussines_name"]');
+    // let defaultImageAlt = `make a colorful image with products in the background about a sale that a business that sells ${busName} is having. the image should only contain visuals and no text` 
+    let busNameVal = (busName && busName?.value.trim() !== "") ? busName.value : null;
+    if(!busNameVal) return loading?.classList.remove("py__animate");
+    
+    let allTextFileds = document.querySelectorAll('.py__ai-text');
+    for(let i=0; i<allTextFileds?.length; i++){
+      let textFiled = allTextFileds[i];
+      let textPropmt = `make a similar sentence to this with a similar amount of character within 5-10 characters " ${textFiled.value} "`;
+      textFiled.value = await createTextAi(textPropmt);
+      await timeout(2000); 
     }
+    // let logo = await createImageFun(busNameVal);
+    // let iframes = document.querySelectorAll('.py__view-iframe');
+    // if(!iframes?.length) return loading?.classList.remove("py__animate");
+    // for(let i=0; i<iframes.length; i++){
+    //   let iframe = iframes[i];
+    //   let iframeContent = iframe.contentDocument || iframe.contentWindow.document;
+    //   let logoWrapper = iframeContent.querySelector('.header__heading');
+    //   logoWrapper.innerHTML = `<img width="180" src="${logo}"/>`;
+    //   let images = iframeContent.querySelectorAll('img');
+    //   for(let j=0; j<images.length; j++){
+    //     let image = images[j];
+    //     let alt = image.getAttribute('alt');
+    //     if(alt){
+    //       let getNewImage = await createImageFun(image.getAttribute('alt'));
+    //       image.setAttribute('src', getNewImage);
+    //     }
+    //   }
+    // }
+    return loading?.classList.remove("py__animate");
   };
 
   const randomFun = async (event) => {
