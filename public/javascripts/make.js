@@ -2835,6 +2835,34 @@
     }
   };
 
+  const bussinesName = async (event) => {
+    console.log("WORKS");
+    let busName = document.querySelector('[name="bussines_name"]');
+    let busNameVal = (busName.value.trim() !== "") ? busName.value : null;
+    if(!busNameVal) return;
+    alert(busNameVal);
+    let req = await fetch('/openai', {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({image: busNameVal}),
+    });
+
+    let res = await req.text();
+    let parseRes = JSON.parse(res);
+    console.log(parseRes);
+    let iframes = document.querySelectorAll('py__view-iframe');
+    if(!iframes?.length) return;
+    for(let i=0; i<iframes.length; i++){
+      let iframe = iframes[i];
+      let iframeContent = iframe.contentDocument || iframe.contentWindow.document;
+      let logoWrapper = iframeContent.querySelector('.header__heading');
+      logoWrapper.innerHTML = `<img src="${parseRes.image}"/>`;
+    }
+  };
+
   const randomFun = async (event) => {
     if (!event) return;
     event.preventDefault();
@@ -2999,11 +3027,13 @@
     let form = e.target;
     let url = form.getAttribute('action');
     let message = form.querySelector('[name="openai-req"]');
+    let imageMessage = form.querySelector('[name="image"]');
     let openAiIframe = document.querySelector('.py__openai-res');
     let openAiCode = document.querySelector('.code-block');
     let openAiCodePre = openAiCode?.querySelector('pre');
     if(!message || !url) return loading?.classList.remove('active');
     let messageValue = message.value;
+    let imageMessageVal = imageMessage.value; 
 
     let req = await fetch(url, {
       method: "POST",
@@ -3011,13 +3041,16 @@
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({message: messageValue}),
+      body: JSON.stringify({
+        message: messageValue,
+        image: imageMessageVal
+      }),
     });
 
     let res = await req.text();
     let parseRes = JSON.parse(res);
     let iframeContent = openAiIframe.contentDocument || openAiIframe.contentWindow.document;
-    iframeContent.querySelector("body").innerHTML = parseRes.result;
+    iframeContent.querySelector("body").innerHTML = parseRes.result + '<img src="' + parseRes.image +  '"/>';
     openAiCodePre.textContent = parseRes.result;
     loading?.classList.remove('active');
     // let newOpenAiIframe = document.querySelector('.py__openai-res');
@@ -3284,6 +3317,8 @@
       return randomFun(e);
     if (e && e.target.classList.contains("py__remix-section-styles-btn"))
       return randomSectionFun(e);
+    if (e && e.target.classList.contains("py__button-bussines"))
+      return bussinesName(e);
   });
 
   // Before Unload

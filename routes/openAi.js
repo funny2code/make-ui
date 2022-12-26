@@ -28,7 +28,7 @@ router.get("/", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
 
 
-    const {message} = req.body;
+    const {message, image} = req.body;
     const configuration = new Configuration({
         apiKey: process.env.OPENAI_API_KEY,
     });
@@ -64,7 +64,15 @@ router.post("/", async (req, res, next) => {
                 max_tokens: 4000,
             });
 
-            return res.status(response.status).json({result: response.data.choices[0].text});
+            const imageResponse = await openai.createImage({
+                prompt: image,
+                n: 1,
+                size: "1024x1024",
+            });
+
+            console.log(imageResponse.data.data[0].url);
+            return res.status(response.status).json({result: response.data.choices[0].text, image: imageResponse.data.data[0].url});
+
         }
 
     } catch (err) {
