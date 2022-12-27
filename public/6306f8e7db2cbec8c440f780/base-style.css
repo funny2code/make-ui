@@ -1478,6 +1478,8 @@ input[type='checkbox'] {
 }
 
 .header__heading {
+  position: relative;
+  max-height: 80px;
   margin: 0;
   line-height: 0;
 }
@@ -1497,8 +1499,12 @@ input[type='checkbox'] {
 }
 
 .header__heading-logo {
-  height: auto;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 @media screen and (min-width: 800px) {

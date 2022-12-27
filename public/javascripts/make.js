@@ -2880,9 +2880,11 @@
     let allTextFileds = document.querySelectorAll('.py__ai-text');
     for(let i=0; i<allTextFileds?.length; i++){
       let textFiled = allTextFileds[i];
-      let textPropmt = `make a similar sentence to this with a similar amount of character within 5-10 characters ${textFiled.value}`;
-      let getNewText = await createTextAi(textPropmt);
-      textFiled.value = getNewText;
+      if(textFiled?.value?.trim() !== ""){
+        let textPropmt = `make a similar sentence to this in terms of character count but make it about ${prodType} for a business called ${busName} ${textFiled.value}`;
+        let getNewText = await createTextAi(textPropmt);
+        textFiled.value = getNewText;
+      }
     }
 
     // AI GET NEW COLORS FOR THEME
@@ -2891,6 +2893,7 @@
     let colorPropmt = `using a json format show me 5 color ${colorDesc || "difference"} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
     let getColorsParse = await createTextAi(colorPropmt);
     let getColors = JSON.parse(getColorsParse);
+
     for(let i=0; i<5; i++){
       let bgColorFiled = bgColorsFileds[i]; 
       let colorFiled = colorsFileds[i];
@@ -2911,13 +2914,15 @@
     }
     
     // AI CREATE NEW IMAGES FOR THEME 
-    // let imagesFiled = document.querySelectorAll('.py__ai-image');
-    // for(let i=0; i<imagesFiled.length; i++){
-    //   let imageFiled = imagesFiled[i];
-    //   let imageAlt = imageFiled.getAttribute('alt');
-    //   let getNewImage = await createImageAi(null, prodType, imageAlt);
-    //   imageFiled.value = getNewImage;
-    // };
+    let imagesFiled = document.querySelectorAll('.py__ai-image');
+    for(let i=0; i<imagesFiled.length; i++){
+      if(i < 1){ 
+        let imageFiled = imagesFiled[i];
+        let imageAlt = imageFiled.getAttribute('alt');
+        let getNewImage = await createImageAi(null, prodType, imageAlt);
+        imageFiled.value = getNewImage;
+      }
+    };
 
     await saveSettingsValues();
     await viewIframe(true);
