@@ -127,12 +127,28 @@
                         sectionSchemaItem: sectionSchemaFooter
                     }) %>
                 </div>
-                <div style="position: fixed; bottom: 0; left: 0; display: flex; align-items: center;">
-                    <input type="text" placeholder="Your bussines name" name="bussines_name"/>
-                    <!-- <input type="text" placeholder="Type of Products" name="type_product"/> -->
-                    <button class="py__button py__button-bussines" type="button">GO</button>
-                </div>
             </form>
+        </div>
+        <div class="py__remix-popup active">
+            <div class="py__remix-popup__content">
+                <div class="py__remix-popup__content-wrap">
+                    <div class="py__filed-wrap">
+                        <label>Your Bussines Name</label>
+                        <input type="text" class="py__filed" placeholder="Name" name="bussines_name"/>
+                    </div>
+                    <div class="py__filed-wrap">
+                        <label>Your Product Type</label>
+                        <input type="text" class="py__filed" placeholder="Type" name="type_product"/>
+                    </div>
+                    <div class="py__filed-wrap">
+                        <label>Your Theme Colors Description</label>
+                        <input type="text" class="py__filed" placeholder="Description" name="color_desc"/>
+                    </div>
+                    <div class="py__button-wrap">
+                        <button class="py__button py__button-blue py__button-bussines" type="button">GO</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="https://js.stripe.com/v3/"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js" integrity="sha512-zInFF17qBFVvvvFpIfeBzo7Tj7+rQxLeTJDmbxjBz5/zIr89YVbTNelNhdTT+/DCrxoVzBeUPVFJsczKbB7sew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

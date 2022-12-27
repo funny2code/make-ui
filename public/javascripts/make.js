@@ -2835,7 +2835,11 @@
     }
   };
 
-  const createImageAi = async (propmt) => {
+  const createImageAi = async (hard=null, type, alt=null) => {
+    let propmt = "";
+    if(hard) propmt += hard + " ";
+    if(type) propmt += type + " ";
+    if(alt) propmt += alt;
     let req = await fetch('/openai', {
       method: "POST",
       headers: {
@@ -2866,23 +2870,25 @@
   const bussinesName = async (event) => {
     if(!event) return;
     loading?.classList.add("py__animate");
-    let busName = document.querySelector('[name="bussines_name"]');
-    // let defaultImageAlt = `make a colorful image with products in the background about a sale that a business that sells ${busName} is having. the image should only contain visuals and no text` 
-    let busNameVal = (busName && busName?.value.trim() !== "") ? busName.value : null;
-    if(!busNameVal) return loading?.classList.remove("py__animate");
+    let aiPopup = document.querySelector('.py__remix-popup');
+    let busName = document.querySelector('[name="bussines_name"]')?.value;
+    let prodType = document.querySelector('[name="type_product"]')?.value;
+    let colorDesc = document.querySelector('[name="color_desc"]')?.value;
+    if(!busName.trim() && !prodType.trim() && !colorDesc.trim()) return loading?.classList.remove("py__animate");
     
+    // AI GET NEW TEXTS FOR THEME
     let allTextFileds = document.querySelectorAll('.py__ai-text');
     for(let i=0; i<allTextFileds?.length; i++){
       let textFiled = allTextFileds[i];
       let textPropmt = `make a similar sentence to this with a similar amount of character within 5-10 characters ${textFiled.value}`;
-      textFiled.value = await createTextAi(textPropmt);
-      // await timeout(2000); 
+      let getNewText = await createTextAi(textPropmt);
+      textFiled.value = getNewText;
     }
 
+    // AI GET NEW COLORS FOR THEME
     let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
     let colorsFileds = document.querySelectorAll('.py__ai-color');
-    let colorDesc = "difference";
-    let colorPropmt = `using a json format show me 5 color ${colorDesc} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
+    let colorPropmt = `using a json format show me 5 color ${colorDesc || "difference"} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
     let getColorsParse = await createTextAi(colorPropmt);
     let getColors = JSON.parse(getColorsParse);
     for(let i=0; i<5; i++){
@@ -2895,26 +2901,27 @@
       wrapBgColor.style.backgroundColor = getColors.backgrounds[i].backgroundHex;
       wrapColor.style.backgroundColor = getColors.backgrounds[i].textHex;
     }
-    // let logo = await createImageFun(busNameVal);
-    // let iframes = document.querySelectorAll('.py__view-iframe');
-    // if(!iframes?.length) return loading?.classList.remove("py__animate");
-    // for(let i=0; i<iframes.length; i++){
-    //   let iframe = iframes[i];
-    //   let iframeContent = iframe.contentDocument || iframe.contentWindow.document;
-    //   let logoWrapper = iframeContent.querySelector('.header__heading');
-    //   logoWrapper.innerHTML = `<img width="180" src="${logo}"/>`;
-    //   let images = iframeContent.querySelectorAll('img');
-    //   for(let j=0; j<images.length; j++){
-    //     let image = images[j];
-    //     let alt = image.getAttribute('alt');
-    //     if(alt){
-    //       let getNewImage = await createImageFun(image.getAttribute('alt'));
-    //       image.setAttribute('src', getNewImage);
-    //     }
-    //   }
-    // }
+
+    // AI CREATE NEW LOGO FROM BUSSINES NAME
+    let logoFiled = document.querySelector('.py__ai-logo');
+    if(logoFiled){
+      let logoPropmt = `make a logo mark for a business that sells ${prodType} called ${busName} in the style of rob janoff`;
+      let getNewlogo = await createImageAi(null, logoPropmt);
+      logoFiled.value = getNewlogo;
+    }
+    
+    // AI CREATE NEW IMAGES FOR THEME 
+    // let imagesFiled = document.querySelectorAll('.py__ai-image');
+    // for(let i=0; i<imagesFiled.length; i++){
+    //   let imageFiled = imagesFiled[i];
+    //   let imageAlt = imageFiled.getAttribute('alt');
+    //   let getNewImage = await createImageAi(null, prodType, imageAlt);
+    //   imageFiled.value = getNewImage;
+    // };
+
     await saveSettingsValues();
     await viewIframe(true);
+    aiPopup?.classList.remove('active');
     return loading?.classList.remove("py__animate");
   };
 
