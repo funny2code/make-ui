@@ -2894,15 +2894,16 @@
     let getColorsParse = await createTextAi(colorPropmt);
     let getColors = JSON.parse(getColorsParse);
 
+    console.log(getColors, "CHECK COLORS");
     for(let i=0; i<5; i++){
       let bgColorFiled = bgColorsFileds[i]; 
       let colorFiled = colorsFileds[i];
-      bgColorFiled.value = getColors.backgrounds[i].backgroundHex;
-      colorFiled.value = getColors.backgrounds[i].textHex;
+      bgColorFiled.value = getColors.backgrounds[i].backgroundHex || getColors.backgrounds[i].background;
+      colorFiled.value = getColors.backgrounds[i].textHex || getColors.backgrounds[i].text;
       let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
       let wrapColor = colorFiled.closest('.py__label-for-color');
-      wrapBgColor.style.backgroundColor = getColors.backgrounds[i].backgroundHex;
-      wrapColor.style.backgroundColor = getColors.backgrounds[i].textHex;
+      wrapBgColor.style.backgroundColor = getColors.backgrounds[i].backgroundHex || getColors.backgrounds[i].background;
+      wrapColor.style.backgroundColor = getColors.backgrounds[i].textHex || getColors.backgrounds[i].text;
     }
 
     // AI CREATE NEW LOGO FROM BUSSINES NAME
@@ -2916,11 +2917,13 @@
     // AI CREATE NEW IMAGES FOR THEME 
     let imagesFiled = document.querySelectorAll('.py__ai-image');
     for(let i=0; i<imagesFiled.length; i++){
-      if(i < 1){ 
+      if(i > 3 && i < 6){ 
         let imageFiled = imagesFiled[i];
+        console.log(imageFiled.value, "CHECK IMAGE");
         let imageAlt = imageFiled.getAttribute('alt');
         let getNewImage = await createImageAi(null, prodType, imageAlt);
         imageFiled.value = getNewImage;
+        console.log(imageFiled.value, "CHECK NEW IMAGE");
       }
     };
 
