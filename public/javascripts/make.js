@@ -1380,6 +1380,13 @@
     "middle_light": null,
     "light": null
   };
+  let isAiLogo = false;
+  let isAiColor = false;
+  let isAiImage = false;
+
+  let busNamePromp = false;
+  let prodTypePromp = false;
+  let colorDescPromp = false;
 
   const clearTheme = () => {
     theme = {
@@ -2714,8 +2721,29 @@
     };
 
     let inputFileds = document.querySelectorAll('[type="color"]');
-    let getBgColors = generateBackgroundColors();
-    let getTextColors = generateTextColors(getBgColors[2]);
+    let getBgColors = null;
+    let getTextColors = null;
+
+    if(isAiColor){
+      console.log("AI COLORS");
+      let colorPropmt = `using a json format show me 5 color ${colorDescPromp} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
+      let getAiColorsParse = await createTextAi(colorPropmt);
+      let getAiColors = JSON.parse(getAiColorsParse);
+      getBgColors = [];
+      getTextColors = [];
+      if(getAiColors?.backgrounds){
+        for(let i=0; i<getAiColors.backgrounds.length; i++){
+          let aiColorItem = getAiColors.backgrounds[i];
+          getBgColors.push(aiColorItem.backgroundHex || aiColorItem.background);
+          getTextColors.push(aiColorItem.textHex || aiColorItem.text);
+        }
+      }
+      console.log(getBgColors, getTextColors);
+    } else {
+      console.log("DEFAULT COLORS");
+      getBgColors = generateBackgroundColors();
+      getTextColors = generateTextColors(getBgColors[2]);
+    }
     let index = 0;
 
     for (let i = 0; i < inputFileds.length; i++) {
@@ -2874,8 +2902,20 @@
     let busName = document.querySelector('[name="bussines_name"]')?.value;
     let prodType = document.querySelector('[name="type_product"]')?.value;
     let colorDesc = document.querySelector('[name="color_desc"]')?.value;
-    if(!busName.trim() && !prodType.trim() && !colorDesc.trim()) return loading?.classList.remove("py__animate");
+    if(!busName.trim()) return loading?.classList.remove("py__animate");
+
+    let useAiColor = document.querySelector('[name="use_ai_color"]:checked')?.value;
+    let useAiImage = document.querySelector('[name="use_ai_image"]:checked')?.value;
+    let useAiLogo = document.querySelector('[name="use_ai_logo"]:checked')?.value;
     
+    if(useAiColor === "yes") isAiColor = true;
+    if(useAiImage === "yes") isAiImage = true;
+    if(useAiLogo === "yes") isAiLogo = true;
+
+    if(busName?.trim() !== "") busNamePromp = busName;
+    if(prodType?.trim() !== "") prodTypePromp = prodType;
+    if(colorDesc?.trim() !== "") colorDescPromp = colorDesc;
+
     // AI GET NEW TEXTS FOR THEME
     let allTextFileds = document.querySelectorAll('.py__ai-text');
     for(let i=0; i<allTextFileds?.length; i++){
@@ -2888,44 +2928,49 @@
     }
 
     // AI GET NEW COLORS FOR THEME
-    let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
-    let colorsFileds = document.querySelectorAll('.py__ai-color');
-    let colorPropmt = `using a json format show me 5 color ${colorDesc || "difference"} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
-    let getColorsParse = await createTextAi(colorPropmt);
-    let getColors = JSON.parse(getColorsParse);
+    if(isAiColor){
+      let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
+      let colorsFileds = document.querySelectorAll('.py__ai-color');
+      let colorPropmt = `using a json format show me 5 color ${colorDesc || "difference"} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
+      let getColorsParse = await createTextAi(colorPropmt);
+      let getColors = JSON.parse(getColorsParse);
 
-    console.log(getColors, "CHECK COLORS");
-    for(let i=0; i<5; i++){
-      let bgColorFiled = bgColorsFileds[i]; 
-      let colorFiled = colorsFileds[i];
-      bgColorFiled.value = getColors.backgrounds[i].backgroundHex || getColors.backgrounds[i].background;
-      colorFiled.value = getColors.backgrounds[i].textHex || getColors.backgrounds[i].text;
-      let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
-      let wrapColor = colorFiled.closest('.py__label-for-color');
-      wrapBgColor.style.backgroundColor = getColors.backgrounds[i].backgroundHex || getColors.backgrounds[i].background;
-      wrapColor.style.backgroundColor = getColors.backgrounds[i].textHex || getColors.backgrounds[i].text;
+      for(let i=0; i<5; i++){
+        let bgColorFiled = bgColorsFileds[i]; 
+        let colorFiled = colorsFileds[i];
+        bgColorFiled.value = getColors.backgrounds[i].backgroundHex || getColors.backgrounds[i].background;
+        colorFiled.value = getColors.backgrounds[i].textHex || getColors.backgrounds[i].text;
+        let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
+        let wrapColor = colorFiled.closest('.py__label-for-color');
+        wrapBgColor.style.backgroundColor = getColors.backgrounds[i].backgroundHex || getColors.backgrounds[i].background;
+        wrapColor.style.backgroundColor = getColors.backgrounds[i].textHex || getColors.backgrounds[i].text;
+      }
     }
 
     // AI CREATE NEW LOGO FROM BUSSINES NAME
-    let logoFiled = document.querySelector('.py__ai-logo');
-    if(logoFiled){
-      let logoPropmt = `make a logo mark for a business that sells ${prodType} called ${busName} in the style of rob janoff`;
-      let getNewlogo = await createImageAi(null, logoPropmt);
-      logoFiled.value = getNewlogo;
+    if(isAiLogo){
+      let logoFiled = document.querySelector('.py__ai-logo');
+      if(logoFiled){
+        let logoPropmt = `make a logo mark for a business that sells ${prodType} called ${busName} in the style of rob janoff`;
+        let getNewlogo = await createImageAi(null, logoPropmt);
+        logoFiled.value = getNewlogo;
+      }
     }
     
     // AI CREATE NEW IMAGES FOR THEME 
-    let imagesFiled = document.querySelectorAll('.py__ai-image');
-    for(let i=0; i<imagesFiled.length; i++){
-      if(i > 3 && i < 6){ 
-        let imageFiled = imagesFiled[i];
-        console.log(imageFiled.value, "CHECK IMAGE");
-        let imageAlt = imageFiled.getAttribute('alt');
-        let getNewImage = await createImageAi(null, prodType, imageAlt);
-        imageFiled.value = getNewImage;
-        console.log(imageFiled.value, "CHECK NEW IMAGE");
-      }
-    };
+    if(isAiImage){
+      let imagesFiled = document.querySelectorAll('.py__ai-image');
+      for(let i=0; i<imagesFiled.length; i++){
+        if(i > 3 && i < 6){ 
+          let imageFiled = imagesFiled[i];
+          console.log(imageFiled.value, "CHECK IMAGE");
+          let imageAlt = imageFiled.getAttribute('alt');
+          let getNewImage = await createImageAi(null, prodType, imageAlt);
+          imageFiled.value = getNewImage;
+          console.log(imageFiled.value, "CHECK NEW IMAGE");
+        }
+      };
+    }
 
     await saveSettingsValues();
     await viewIframe(true);
@@ -2952,75 +2997,108 @@
         "/remix/" + allThemesID[currentThemeKey] + location?.search;
       await getSettingsLists(false, remixUrl);
     } else {
-      let imageBannerSections = document.querySelectorAll(
-        '[data-section-handle="image-banner"]'
-      );
-      if (imageBannerSections?.length) {
-        imageBannerSections?.forEach((imageBannerSection) => {
-          let imageBannerSectionId =
-            imageBannerSection?.getAttribute("data-section-id");
-          let imageBannerContent = imageBannerSection?.closest(".py__closest");
-          let imageBannerBlocks = imageBannerContent?.querySelectorAll(
-            ".py__settings-block-item"
-          );
 
-          if (
-            imageBanner[allThemesID[currentThemeKey]]?.length &&
-            imageBanner[allThemesID[currentThemeKey]][remixCount][
-              imageBannerSectionId
-            ]
-          ) {
-            let fileds = imageBannerSection.querySelectorAll("[name]");
-            if (fileds?.length) {
-              for (let i = 0; i < fileds.length; i++) {
-                let filed = fileds[i];
-                let filedName = filed.getAttribute("name");
-                if (
-                  typeof imageBanner[allThemesID[currentThemeKey]][remixCount][
-                    imageBannerSectionId
-                  ].settings[filedName] !== "undefined"
-                )
-                  filed.value =
-                    imageBanner[allThemesID[currentThemeKey]][remixCount][
-                      imageBannerSectionId
-                    ].settings[filedName];
-              }
-            }
-            if (imageBannerBlocks?.length) {
-              for (let i = 0; i < imageBannerBlocks.length; i++) {
-                let block = imageBannerBlocks[i];
-                let blockId = block.getAttribute("data-block-id");
-                let findAllFileds = block.querySelectorAll("[name]");
-                if (findAllFileds?.length) {
-                  for (let j = 0; j < findAllFileds.length; j++) {
-                    let filed = findAllFileds[j];
-                    let filedName = filed
-                      .getAttribute("name")
-                      .replace("block_", "");
-                    if (
-                      imageBanner[allThemesID[currentThemeKey]][remixCount][
-                        imageBannerSectionId
-                      ]?.blocks &&
-                      imageBanner[allThemesID[currentThemeKey]][remixCount][
-                        imageBannerSectionId
-                      ]?.blocks[blockId] &&
-                      typeof imageBanner[allThemesID[currentThemeKey]][
-                        remixCount
-                      ][imageBannerSectionId]?.blocks[blockId].settings[
-                        filedName
-                      ] !== "undefined"
-                    )
-                      filed.value =
-                        imageBanner[allThemesID[currentThemeKey]][remixCount][
-                          imageBannerSectionId
-                        ]?.blocks[blockId].settings[filedName];
-                  }
-                }
-              }
-            }
-          }
-        });
+      // AI GET NEW TEXTS FOR THEME
+      let allTextFileds = document.querySelectorAll('.py__ai-text');
+      for(let i=0; i<allTextFileds?.length; i++){
+        let textFiled = allTextFileds[i];
+        if(textFiled?.value?.trim() !== ""){
+          let textPropmt = `make a similar sentence to this in terms of character count but make it about ${prodTypePromp} for a business called ${busNamePromp} ${textFiled.value}`;
+          let getNewText = await createTextAi(textPropmt);
+          textFiled.value = getNewText;
+        }
       }
+
+      if(isAiLogo){
+        let logoFiled = document.querySelector('.py__ai-logo');
+        if(logoFiled){
+          let logoPropmt = `make a logo mark for a business that sells ${prodTypePromp} called ${busNamePromp} in the style of rob janoff`;
+          let getNewlogo = await createImageAi(null, logoPropmt);
+          logoFiled.value = getNewlogo;
+        }
+      }
+
+      if(isAiImage){
+        let imagesFiled = document.querySelectorAll('.py__ai-image');
+        for(let i=0; i<imagesFiled.length; i++){
+          if(i > 3 && i < 6){ 
+            let imageFiled = imagesFiled[i];
+            let imageAlt = imageFiled.getAttribute('alt');
+            let getNewImage = await createImageAi(null, prodTypePromp, imageAlt);
+            imageFiled.value = getNewImage;
+          }
+        };
+      }
+      
+      // let imageBannerSections = document.querySelectorAll(
+      //   '[data-section-handle="image-banner"]'
+      // );
+      // if (imageBannerSections?.length) {
+      //   imageBannerSections?.forEach((imageBannerSection) => {
+      //     let imageBannerSectionId =
+      //       imageBannerSection?.getAttribute("data-section-id");
+      //     let imageBannerContent = imageBannerSection?.closest(".py__closest");
+      //     let imageBannerBlocks = imageBannerContent?.querySelectorAll(
+      //       ".py__settings-block-item"
+      //     );
+
+      //     if (
+      //       imageBanner[allThemesID[currentThemeKey]]?.length &&
+      //       imageBanner[allThemesID[currentThemeKey]][remixCount][
+      //         imageBannerSectionId
+      //       ]
+      //     ) {
+      //       let fileds = imageBannerSection.querySelectorAll("[name]");
+      //       if (fileds?.length) {
+      //         for (let i = 0; i < fileds.length; i++) {
+      //           let filed = fileds[i];
+      //           let filedName = filed.getAttribute("name");
+      //           if (
+      //             typeof imageBanner[allThemesID[currentThemeKey]][remixCount][
+      //               imageBannerSectionId
+      //             ].settings[filedName] !== "undefined"
+      //           )
+      //             filed.value =
+      //               imageBanner[allThemesID[currentThemeKey]][remixCount][
+      //                 imageBannerSectionId
+      //               ].settings[filedName];
+      //         }
+      //       }
+      //       if (imageBannerBlocks?.length) {
+      //         for (let i = 0; i < imageBannerBlocks.length; i++) {
+      //           let block = imageBannerBlocks[i];
+      //           let blockId = block.getAttribute("data-block-id");
+      //           let findAllFileds = block.querySelectorAll("[name]");
+      //           if (findAllFileds?.length) {
+      //             for (let j = 0; j < findAllFileds.length; j++) {
+      //               let filed = findAllFileds[j];
+      //               let filedName = filed
+      //                 .getAttribute("name")
+      //                 .replace("block_", "");
+      //               if (
+      //                 imageBanner[allThemesID[currentThemeKey]][remixCount][
+      //                   imageBannerSectionId
+      //                 ]?.blocks &&
+      //                 imageBanner[allThemesID[currentThemeKey]][remixCount][
+      //                   imageBannerSectionId
+      //                 ]?.blocks[blockId] &&
+      //                 typeof imageBanner[allThemesID[currentThemeKey]][
+      //                   remixCount
+      //                 ][imageBannerSectionId]?.blocks[blockId].settings[
+      //                   filedName
+      //                 ] !== "undefined"
+      //               )
+      //                 filed.value =
+      //                   imageBanner[allThemesID[currentThemeKey]][remixCount][
+      //                     imageBannerSectionId
+      //                   ]?.blocks[blockId].settings[filedName];
+      //             }
+      //           }
+      //         }
+      //       }
+      //     }
+      //   });
+      // }
 
       remixCount++;
 
