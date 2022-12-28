@@ -2998,135 +2998,143 @@
         "/remix/" + allThemesID[currentThemeKey] + location?.search;
       await getSettingsLists(false, remixUrl);
     } else {
-
-      // AI GET NEW TEXTS FOR THEME
-      let allTextFileds = document.querySelectorAll('.py__ai-text');
-      let countText = allTextFileds.length / 2;
-      let textIndex1 = 0;
-      let textIndex2 = 0;
-      console.log(countText);
-      for(let j=1; j<=countText; j++){
-        let textLenght = j * 2;  
-        let allText = "";
-        console.log(textIndex1, textIndex2, j, textLenght);
-        for(textIndex1; textIndex1<textLenght; textIndex1++){
-          let textFiled = allTextFileds[textIndex1];
-          if(textFiled?.value?.trim() !== ""){
-            allText += textFiled.value + " | "; 
-          }
-        }
-        if(allText.trim() !== ""){
-          let textPropmt = `create a json object called items and each item should have number id and a value |. rewrite each value to sound more like a sales pitch "${allText.replaceAll('<p>', "").replaceAll('</p>', "")}"`;
-          let getNewText = await createTextAi(textPropmt);
-          console.log(getNewText, "CHECK");
-          let parseText = JSON.parse(getNewText);
-
-          for(textIndex2; textIndex2<textLenght?.length; textIndex2++){
-            let textValue = parseText.items[textIndex2];
-            let textFiled = allTextFileds[textIndex2];
+      try {
+        // AI GET NEW TEXTS FOR THEME
+        let allTextFileds = document.querySelectorAll('.py__ai-text');
+        let countText = allTextFileds.length / 4;
+        let textIndex1 = 0;
+        let textIndex2 = 0;
+        console.log(countText);
+        for(let j=1; j<=countText; j++){
+          let textLenght = j * 4;  
+          let allText = "";
+          console.log(textIndex1, textIndex2, j, textLenght);
+          for(textIndex1; textIndex1<textLenght; textIndex1++){
+            let textFiled = allTextFileds[textIndex1];
             if(textFiled?.value?.trim() !== ""){
-              textFiled.value = textValue;
+              allText += textFiled.value + " | "; 
+            }
+          }
+          if(allText.trim() !== ""){
+            let textPropmt = `create a json object called items and each item should have number id and a value |. rewrite each value to sound more like a sales pitch "${allText.replaceAll('<p>', "").replaceAll('</p>', "")}"`;
+            let getNewText = await createTextAi(textPropmt);
+            console.log(getNewText, "CHECK");
+          
+            let parseText = JSON.parse(getNewText);
+
+            let aiTextI = 0;
+            for(textIndex2; textIndex2<textLenght; textIndex2++){
+              console.log(typeof parseText.items, parseText.items[aiTextI]);
+              let textValue = (parseText.items[aiTextI]) ? parseText.items[aiTextI].value : parseText.items.value;
+              let textFiled = allTextFileds[textIndex2];
+              if(textFiled?.value?.trim() !== "" && textValue !== undefined){
+                textFiled.value = textValue;
+              }
+              aiTextI++;
             }
           }
         }
-      }
-      
+        
 
-      if(isAiLogo){
-        let logoFiled = document.querySelector('.py__ai-logo');
-        if(logoFiled){
-          let logoPropmt = `make a logo mark for a business that sells ${prodTypePromp} called ${busNamePromp} in the style of rob janoff`;
-          let getNewlogo = await createImageAi(null, logoPropmt);
-          logoFiled.value = getNewlogo;
-        }
-      }
-
-      if(isAiImage){
-        let imagesFiled = document.querySelectorAll('.py__ai-image');
-        for(let i=0; i<imagesFiled.length; i++){
-          if(i > 3 && i < 6){ 
-            let imageFiled = imagesFiled[i];
-            let imageAlt = imageFiled.getAttribute('alt');
-            let getNewImage = await createImageAi(null, prodTypePromp, imageAlt);
-            imageFiled.value = getNewImage;
+        if(isAiLogo){
+          let logoFiled = document.querySelector('.py__ai-logo');
+          if(logoFiled){
+            let logoPropmt = `make a logo mark for a business that sells ${prodTypePromp} called ${busNamePromp} in the style of rob janoff`;
+            let getNewlogo = await createImageAi(null, logoPropmt);
+            logoFiled.value = getNewlogo;
           }
-        };
+        }
+
+        if(isAiImage){
+          let imagesFiled = document.querySelectorAll('.py__ai-image');
+          for(let i=0; i<imagesFiled.length; i++){
+            if(i > 3 && i < 6){ 
+              let imageFiled = imagesFiled[i];
+              let imageAlt = imageFiled.getAttribute('alt');
+              let getNewImage = await createImageAi(null, prodTypePromp, imageAlt);
+              imageFiled.value = getNewImage;
+            }
+          };
+        }
+
+        // let imageBannerSections = document.querySelectorAll(
+        //   '[data-section-handle="image-banner"]'
+        // );
+        // if (imageBannerSections?.length) {
+        //   imageBannerSections?.forEach((imageBannerSection) => {
+        //     let imageBannerSectionId =
+        //       imageBannerSection?.getAttribute("data-section-id");
+        //     let imageBannerContent = imageBannerSection?.closest(".py__closest");
+        //     let imageBannerBlocks = imageBannerContent?.querySelectorAll(
+        //       ".py__settings-block-item"
+        //     );
+
+        //     if (
+        //       imageBanner[allThemesID[currentThemeKey]]?.length &&
+        //       imageBanner[allThemesID[currentThemeKey]][remixCount][
+        //         imageBannerSectionId
+        //       ]
+        //     ) {
+        //       let fileds = imageBannerSection.querySelectorAll("[name]");
+        //       if (fileds?.length) {
+        //         for (let i = 0; i < fileds.length; i++) {
+        //           let filed = fileds[i];
+        //           let filedName = filed.getAttribute("name");
+        //           if (
+        //             typeof imageBanner[allThemesID[currentThemeKey]][remixCount][
+        //               imageBannerSectionId
+        //             ].settings[filedName] !== "undefined"
+        //           )
+        //             filed.value =
+        //               imageBanner[allThemesID[currentThemeKey]][remixCount][
+        //                 imageBannerSectionId
+        //               ].settings[filedName];
+        //         }
+        //       }
+        //       if (imageBannerBlocks?.length) {
+        //         for (let i = 0; i < imageBannerBlocks.length; i++) {
+        //           let block = imageBannerBlocks[i];
+        //           let blockId = block.getAttribute("data-block-id");
+        //           let findAllFileds = block.querySelectorAll("[name]");
+        //           if (findAllFileds?.length) {
+        //             for (let j = 0; j < findAllFileds.length; j++) {
+        //               let filed = findAllFileds[j];
+        //               let filedName = filed
+        //                 .getAttribute("name")
+        //                 .replace("block_", "");
+        //               if (
+        //                 imageBanner[allThemesID[currentThemeKey]][remixCount][
+        //                   imageBannerSectionId
+        //                 ]?.blocks &&
+        //                 imageBanner[allThemesID[currentThemeKey]][remixCount][
+        //                   imageBannerSectionId
+        //                 ]?.blocks[blockId] &&
+        //                 typeof imageBanner[allThemesID[currentThemeKey]][
+        //                   remixCount
+        //                 ][imageBannerSectionId]?.blocks[blockId].settings[
+        //                   filedName
+        //                 ] !== "undefined"
+        //               )
+        //                 filed.value =
+        //                   imageBanner[allThemesID[currentThemeKey]][remixCount][
+        //                     imageBannerSectionId
+        //                   ]?.blocks[blockId].settings[filedName];
+        //             }
+        //           }
+        //         }
+        //       }
+        //     }
+        //   });
+        // }
+
+        remixCount++;
+
+        await saveSettingsValues();
+        await viewIframe(true);
+      } catch(err){
+        await saveSettingsValues();
+        await viewIframe(true);
       }
-
-      // let imageBannerSections = document.querySelectorAll(
-      //   '[data-section-handle="image-banner"]'
-      // );
-      // if (imageBannerSections?.length) {
-      //   imageBannerSections?.forEach((imageBannerSection) => {
-      //     let imageBannerSectionId =
-      //       imageBannerSection?.getAttribute("data-section-id");
-      //     let imageBannerContent = imageBannerSection?.closest(".py__closest");
-      //     let imageBannerBlocks = imageBannerContent?.querySelectorAll(
-      //       ".py__settings-block-item"
-      //     );
-
-      //     if (
-      //       imageBanner[allThemesID[currentThemeKey]]?.length &&
-      //       imageBanner[allThemesID[currentThemeKey]][remixCount][
-      //         imageBannerSectionId
-      //       ]
-      //     ) {
-      //       let fileds = imageBannerSection.querySelectorAll("[name]");
-      //       if (fileds?.length) {
-      //         for (let i = 0; i < fileds.length; i++) {
-      //           let filed = fileds[i];
-      //           let filedName = filed.getAttribute("name");
-      //           if (
-      //             typeof imageBanner[allThemesID[currentThemeKey]][remixCount][
-      //               imageBannerSectionId
-      //             ].settings[filedName] !== "undefined"
-      //           )
-      //             filed.value =
-      //               imageBanner[allThemesID[currentThemeKey]][remixCount][
-      //                 imageBannerSectionId
-      //               ].settings[filedName];
-      //         }
-      //       }
-      //       if (imageBannerBlocks?.length) {
-      //         for (let i = 0; i < imageBannerBlocks.length; i++) {
-      //           let block = imageBannerBlocks[i];
-      //           let blockId = block.getAttribute("data-block-id");
-      //           let findAllFileds = block.querySelectorAll("[name]");
-      //           if (findAllFileds?.length) {
-      //             for (let j = 0; j < findAllFileds.length; j++) {
-      //               let filed = findAllFileds[j];
-      //               let filedName = filed
-      //                 .getAttribute("name")
-      //                 .replace("block_", "");
-      //               if (
-      //                 imageBanner[allThemesID[currentThemeKey]][remixCount][
-      //                   imageBannerSectionId
-      //                 ]?.blocks &&
-      //                 imageBanner[allThemesID[currentThemeKey]][remixCount][
-      //                   imageBannerSectionId
-      //                 ]?.blocks[blockId] &&
-      //                 typeof imageBanner[allThemesID[currentThemeKey]][
-      //                   remixCount
-      //                 ][imageBannerSectionId]?.blocks[blockId].settings[
-      //                   filedName
-      //                 ] !== "undefined"
-      //               )
-      //                 filed.value =
-      //                   imageBanner[allThemesID[currentThemeKey]][remixCount][
-      //                     imageBannerSectionId
-      //                   ]?.blocks[blockId].settings[filedName];
-      //             }
-      //           }
-      //         }
-      //       }
-      //     }
-      //   });
-      // }
-
-      remixCount++;
-
-      await saveSettingsValues();
-      await viewIframe(true);
 
     }
   };
