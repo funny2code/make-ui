@@ -2899,83 +2899,116 @@
     if(!event) return;
     loading?.classList.add("py__animate");
     let aiPopup = document.querySelector('.py__remix-popup');
-    let busName = document.querySelector('[name="bussines_name"]')?.value;
-    let prodType = document.querySelector('[name="type_product"]')?.value;
-    let colorDesc = document.querySelector('[name="color_desc"]')?.value;
-    if(!busName.trim()) return loading?.classList.remove("py__animate");
 
-    let useAiColor = document.querySelector('[name="use_ai_color"]:checked')?.value;
-    let useAiImage = document.querySelector('[name="use_ai_image"]:checked')?.value;
-    let useAiLogo = document.querySelector('[name="use_ai_logo"]:checked')?.value;
-    
-    if(useAiColor === "yes") isAiColor = true;
-    if(useAiImage === "yes") isAiImage = true;
-    if(useAiLogo === "yes") isAiLogo = true;
+    try {
+      let busName = document.querySelector('[name="bussines_name"]')?.value;
+      let prodType = document.querySelector('[name="type_product"]')?.value;
+      let colorDesc = document.querySelector('[name="color_desc"]')?.value;
+      if(!busName.trim()) return loading?.classList.remove("py__animate");
 
-    if(busName?.trim() !== "") busNamePromp = busName;
-    if(prodType?.trim() !== "") prodTypePromp = prodType;
-    if(colorDesc?.trim() !== "") colorDescPromp = colorDesc;
+      let useAiColor = document.querySelector('[name="use_ai_color"]:checked')?.value;
+      let useAiImage = document.querySelector('[name="use_ai_image"]:checked')?.value;
+      let useAiLogo = document.querySelector('[name="use_ai_logo"]:checked')?.value;
+      
+      if(useAiColor === "yes") isAiColor = true;
+      if(useAiImage === "yes") isAiImage = true;
+      if(useAiLogo === "yes") isAiLogo = true;
 
-    // AI GET NEW TEXTS FOR THEME
-    let allTextFileds = document.querySelectorAll('.py__ai-text');
-    for(let i=0; i<allTextFileds?.length; i++){
-      let textFiled = allTextFileds[i];
-      if(textFiled?.value?.trim() !== ""){
-        let textPropmt = `make a similar sentence to this in terms of character count but make it about ${prodType} for a business called ${busName} ${textFiled.value}`;
-        let getNewText = await createTextAi(textPropmt);
-        textFiled.value = getNewText;
-      }
-    }
+      if(busName?.trim() !== "") busNamePromp = busName;
+      if(prodType?.trim() !== "") prodTypePromp = prodType;
+      if(colorDesc?.trim() !== "") colorDescPromp = colorDesc;
 
-    // AI GET NEW COLORS FOR THEME
-    if(isAiColor){
-      let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
-      let colorsFileds = document.querySelectorAll('.py__ai-color');
-      let colorPropmt = `using a json format show me 5 color ${colorDesc || "difference"} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
-      let getColorsParse = await createTextAi(colorPropmt);
-      let getColors = JSON.parse(getColorsParse);
-
-      for(let i=0; i<5; i++){
-        let bgColorFiled = bgColorsFileds[i]; 
-        let colorFiled = colorsFileds[i];
-        bgColorFiled.value = getColors.backgrounds[i].backgroundHex || getColors.backgrounds[i].background;
-        colorFiled.value = getColors.backgrounds[i].textHex || getColors.backgrounds[i].text;
-        let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
-        let wrapColor = colorFiled.closest('.py__label-for-color');
-        wrapBgColor.style.backgroundColor = getColors.backgrounds[i].backgroundHex || getColors.backgrounds[i].background;
-        wrapColor.style.backgroundColor = getColors.backgrounds[i].textHex || getColors.backgrounds[i].text;
-      }
-    }
-
-    // AI CREATE NEW LOGO FROM BUSSINES NAME
-    if(isAiLogo){
-      let logoFiled = document.querySelector('.py__ai-logo');
-      if(logoFiled){
-        let logoPropmt = `make a logo mark for a business that sells ${prodType} called ${busName} in the style of rob janoff`;
-        let getNewlogo = await createImageAi(null, logoPropmt);
-        logoFiled.value = getNewlogo;
-      }
-    }
-    
-    // AI CREATE NEW IMAGES FOR THEME 
-    if(isAiImage){
-      let imagesFiled = document.querySelectorAll('.py__ai-image');
-      for(let i=0; i<imagesFiled.length; i++){
-        if(i > 3 && i < 6){ 
-          let imageFiled = imagesFiled[i];
-          console.log(imageFiled.value, "CHECK IMAGE");
-          let imageAlt = imageFiled.getAttribute('alt');
-          let getNewImage = await createImageAi(null, prodType, imageAlt);
-          imageFiled.value = getNewImage;
-          console.log(imageFiled.value, "CHECK NEW IMAGE");
+      // AI GET NEW TEXTS FOR THEME
+      let allTextFileds = document.querySelectorAll('.py__ai-text');
+      let countText = allTextFileds.length / 4;
+      let textIndex1 = 0;
+      let textIndex2 = 0;
+      console.log(countText);
+      for(let j=1; j<=countText; j++){
+        let textLenght = j * 4;  
+        let allText = "";
+        console.log(textIndex1, textIndex2, j, textLenght);
+        for(textIndex1; textIndex1<textLenght; textIndex1++){
+          let textFiled = allTextFileds[textIndex1];
+          if(textFiled?.value?.trim() !== ""){
+            allText += textFiled.value + " | "; 
+          }
         }
-      };
-    }
+        if(allText.trim() !== ""){
+          let textPropmt = `create a json object called items and each item should have number id and a value |. rewrite each value to sound more like a sales pitch "${allText.replaceAll('<p>', "").replaceAll('</p>', "")}"`;
+          let getNewText = await createTextAi(textPropmt);
+          console.log(getNewText, "CHECK");
+        
+          let parseText = JSON.parse(getNewText);
 
-    await saveSettingsValues();
-    await viewIframe(true);
-    aiPopup?.classList.remove('active');
-    return loading?.classList.remove("py__animate");
+          let aiTextI = 0;
+          for(textIndex2; textIndex2<textLenght; textIndex2++){
+            console.log(typeof parseText.items, parseText.items[aiTextI]);
+            let textValue = (parseText.items[aiTextI]) ? parseText.items[aiTextI].value : parseText.items.value;
+            let textFiled = allTextFileds[textIndex2];
+            if(textFiled?.value?.trim() !== "" && textValue !== undefined){
+              textFiled.value = textValue;
+            }
+            aiTextI++;
+          }
+        }
+      }
+
+      // AI GET NEW COLORS FOR THEME
+      if(isAiColor){
+        let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
+        let colorsFileds = document.querySelectorAll('.py__ai-color');
+        let colorPropmt = `using a json format show me 5 color ${colorDesc || "difference"} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
+        let getColorsParse = await createTextAi(colorPropmt);
+        let getColors = JSON.parse(getColorsParse);
+
+        for(let i=0; i<5; i++){
+          let bgColorFiled = bgColorsFileds[i]; 
+          let colorFiled = colorsFileds[i];
+          bgColorFiled.value = getColors.backgrounds[i].backgroundHex || getColors.backgrounds[i].background;
+          colorFiled.value = getColors.backgrounds[i].textHex || getColors.backgrounds[i].text;
+          let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
+          let wrapColor = colorFiled.closest('.py__label-for-color');
+          wrapBgColor.style.backgroundColor = getColors.backgrounds[i].backgroundHex || getColors.backgrounds[i].background;
+          wrapColor.style.backgroundColor = getColors.backgrounds[i].textHex || getColors.backgrounds[i].text;
+        }
+      }
+
+      // AI CREATE NEW LOGO FROM BUSSINES NAME
+      if(isAiLogo){
+        let logoFiled = document.querySelector('.py__ai-logo');
+        if(logoFiled){
+          let logoPropmt = `make a logo mark for a business that sells ${prodType} called ${busName} in the style of rob janoff`;
+          let getNewlogo = await createImageAi(null, logoPropmt);
+          logoFiled.value = getNewlogo;
+        }
+      }
+      
+      // AI CREATE NEW IMAGES FOR THEME 
+      if(isAiImage){
+        let imagesFiled = document.querySelectorAll('.py__ai-image');
+        for(let i=0; i<imagesFiled.length; i++){
+          if(i > 3 && i < 6){ 
+            let imageFiled = imagesFiled[i];
+            console.log(imageFiled.value, "CHECK IMAGE");
+            let imageAlt = imageFiled.getAttribute('alt');
+            let getNewImage = await createImageAi(null, prodType, imageAlt);
+            imageFiled.value = getNewImage;
+            console.log(imageFiled.value, "CHECK NEW IMAGE");
+          }
+        };
+      }
+
+      await saveSettingsValues();
+      await viewIframe(true);
+      aiPopup?.classList.remove('active');
+      return loading?.classList.remove("py__animate");
+    } catch(err){
+      await saveSettingsValues();
+      await viewIframe(true);
+      aiPopup?.classList.remove('active');
+      return loading?.classList.remove("py__animate");
+    }
   };
 
   const randomFun = async (event) => {
