@@ -3003,7 +3003,7 @@
       for(let i=0; i<allTextFileds?.length; i++){
         let textFiled = allTextFileds[i];
         if(textFiled?.value?.trim() !== ""){
-          let textPropmt = `make a similar sentence to this in terms of character count but make it about ${prodTypePromp} for a business called ${busNamePromp} ${textFiled.value}`;
+          let textPropmt = `make a similar sentence to this in terms of character count ${textFiled.value}`;
           let getNewText = await createTextAi(textPropmt);
           textFiled.value = getNewText;
         }
@@ -3029,7 +3029,7 @@
           }
         };
       }
-      
+
       // let imageBannerSections = document.querySelectorAll(
       //   '[data-section-handle="image-banner"]'
       // );
