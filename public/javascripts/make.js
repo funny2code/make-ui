@@ -2980,8 +2980,6 @@
 
   const randomFun = async (event) => {
     if (!event) return;
-    event.target.setAttribute("aria-disabled", true);
-    event.target.querySelector('.py__button-label').textContent = "Please wait ...";
 
     event.preventDefault();
     loading?.classList.add("py__animate");
@@ -3003,14 +3001,36 @@
 
       // AI GET NEW TEXTS FOR THEME
       let allTextFileds = document.querySelectorAll('.py__ai-text');
-      for(let i=0; i<allTextFileds?.length; i++){
-        let textFiled = allTextFileds[i];
-        if(textFiled?.value?.trim() !== ""){
-          let textPropmt = `make a similar sentence to this in terms of character count ${textFiled.value}`;
+      let countText = allTextFileds.length / 2;
+      let textIndex1 = 0;
+      let textIndex2 = 0;
+      console.log(countText);
+      for(let j=1; j<=countText; j++){
+        let textLenght = j * 2;  
+        let allText = "";
+        console.log(textIndex1, textIndex2, j, textLenght);
+        for(textIndex1; textIndex1<textLenght; textIndex1++){
+          let textFiled = allTextFileds[textIndex1];
+          if(textFiled?.value?.trim() !== ""){
+            allText += textFiled.value + " | "; 
+          }
+        }
+        if(allText.trim() !== ""){
+          let textPropmt = `create a json object called items and each item should have number id and a value |. rewrite each value to sound more like a sales pitch "${allText.replaceAll('<p>', "").replaceAll('</p>', "")}"`;
           let getNewText = await createTextAi(textPropmt);
-          textFiled.value = getNewText;
+          console.log(getNewText, "CHECK");
+          let parseText = JSON.parse(getNewText);
+
+          for(textIndex2; textIndex2<textLenght?.length; textIndex2++){
+            let textValue = parseText.items[textIndex2];
+            let textFiled = allTextFileds[textIndex2];
+            if(textFiled?.value?.trim() !== ""){
+              textFiled.value = textValue;
+            }
+          }
         }
       }
+      
 
       if(isAiLogo){
         let logoFiled = document.querySelector('.py__ai-logo');
@@ -3107,10 +3127,6 @@
 
       await saveSettingsValues();
       await viewIframe(true);
-      setTimeout(()=>{
-        event.target.setAttribute("aria-disabled", false);
-        event.target.querySelector('.py__button-label').textContent = "Remix Style";
-      }, 30000);
 
     }
   };

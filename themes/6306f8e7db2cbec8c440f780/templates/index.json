@@ -288,7 +288,7 @@
           "settings": {
             "image": "/6306f8e7db2cbec8c440f780/multicolumn-0.jpg",
             "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+            "text": "Pair text with an image to focus on your chosen product"
           }
         },
         "165180107452de171a-1": {
@@ -296,7 +296,7 @@
           "settings": {
             "image": "/6306f8e7db2cbec8c440f780/multicolumn-1.jpg",
             "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+            "text": "Pair text with an image to focus on your chosen product"
           }
         },
         "72f28d44-c0c8-4874-b2ba-5d9ea525992a": {
@@ -304,7 +304,7 @@
           "settings": {
             "image": "/6306f8e7db2cbec8c440f780/multicolumn-2.jpg",
             "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+            "text": "Pair text with an image to focus on your chosen product"
           }
         }
       },
@@ -382,7 +382,7 @@
         "1652851716950d2423-1": {
           "type": "text",
           "settings": {
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text": "Pair text with an image to focus on your chosen product",
             "fs": "fs-s"
           }
         },
