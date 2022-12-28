@@ -2980,6 +2980,9 @@
 
   const randomFun = async (event) => {
     if (!event) return;
+    event.target.setAttribute("aria-disabled", true);
+    event.target.querySelector('.py__button-label').textContent = "Please wait ...";
+
     event.preventDefault();
     loading?.classList.add("py__animate");
 
@@ -3104,6 +3107,11 @@
 
       await saveSettingsValues();
       await viewIframe(true);
+      setTimeout(()=>{
+        event.target.setAttribute("aria-disabled", false);
+        event.target.querySelector('.py__button-label').textContent = "Remix Style";
+      }, 30000);
+
     }
   };
 
