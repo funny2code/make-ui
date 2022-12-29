@@ -26,6 +26,7 @@ const signupRouter = require("./routes/signup");
 const addThemeRouter = require("./routes/addtheme");
 const figmaRouter = require("./routes/figma");
 const openAiRouter = require("./routes/openAi");
+const timeout = require('connect-timeout');
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.use(
 app.use(cors({ origin: "*" }));
 
 // view engine setup
+app.use(timeout('60s'));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(logger("dev"));
