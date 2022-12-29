@@ -2930,7 +2930,7 @@
           }
         }
         if(allText.trim() !== ""){
-          let textPropmt = `create a json object called items and each item should have number id and a value |. rewrite each value to sound more like a sales pitch "${allText.replaceAll('<p>', "").replaceAll('</p>', "")}"`;
+          let textPropmt = `create a json object called items and each item should have number id and a value |. rewrite each value to sound more like a sales pitch and about ${prodType} "${allText.replaceAll('<p>', "").replaceAll('</p>', "")}"`;
           let getNewText = await createTextAi(textPropmt);
           let parseText = JSON.parse(getNewText);
           let aiTextI = 0;
@@ -3001,6 +3001,7 @@
       aiPopup?.classList.remove('active');
       return loading?.classList.remove("py__animate");
     } catch(err){
+      console.log(err, "CHECK DAV");
       await saveSettingsValues();
       await viewIframe(true);
       aiPopup?.classList.remove('active');
@@ -3045,7 +3046,7 @@
             }
           }
           if(allText.trim() !== ""){
-            let textPropmt = `create a json object called items and each item should have number id and a value |. rewrite each value to sound more like a sales pitch "${allText.replaceAll('<p>', "").replaceAll('</p>', "")}"`;
+            let textPropmt = `create a json object called items and each item should have number id and a value |. rewrite each value to sound more like a sales pitch and about ${prodType} "${allText.replaceAll('<p>', "").replaceAll('</p>', "")}"`;
             let getNewText = await createTextAi(textPropmt);
             let parseText = JSON.parse(getNewText);
 
