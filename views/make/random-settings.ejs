@@ -1,3 +1,14 @@
+<% 
+  let aiChangeAllTextJson = {
+    "heading": true,
+    "title": true,
+    "text": true,
+    "description": true,
+    "marquee text": true,
+    "section title": true
+  }; 
+%>
+
 <% if(sectionItem?.settings){ %>
     <div class="py__random-section-content py__settings-section-item" data-section-handle="<%=sectionItem.type%>" <% if(orderItem){ %>data-section-id="<%=orderItem%>"<% } %> data-template-name="<%=sectionSchemaItem[0].template_name%>">
         <% sectionSchemaItem[0]?.settings?.forEach((item,index)=>{ %>
@@ -10,10 +21,10 @@
                         <% }) %>
                     </select>
                 </div>
-            <% } else if((item.type === "text" && item?.id?.includes('title') && !item?.id?.includes('font') || item?.id?.includes('text') && !item?.id?.includes('font') || item?.id?.includes('heading')  && !item?.id?.includes('font')) || (item.type === "richtext" && item?.id?.includes('title') && !item?.id?.includes('font') || item?.id?.includes('text') && !item?.id?.includes('font') || item?.id?.includes('heading')  && !item?.id?.includes('font')) || (item.type === "textarea" && item?.id?.includes('title') && !item?.id?.includes('font') || item?.id?.includes('text') && !item?.id?.includes('font') || item?.id?.includes('heading')  && !item?.id?.includes('font'))){ %>
-                <input type="<%=item.type%>" name="<%=item.id%>" class="py__ai-text" value="<%=sectionItem?.settings[item.id]%>"/>
+            <% } else if((item.type === "text" || item.type === "textarea" || item.type === "richtext") && aiChangeAllTextJson[item?.label?.trim()?.toLowerCase()]){ %>
+                <input type="hidden" name="<%=item.id%>" class="py__ai-text" value="<%=sectionItem?.settings[item.id]%>"/>
             <% } else if(item.id && item.type === "image_picker"){ %>
-                <input type="text" class="<%= (item.id === "logo") ? "py__ai-logo" : "py__ai-image" %>" name="<%=item.id%>" value="<%=sectionItem?.settings[item.id]%>">
+                <input type="hidden" class="<%= (item.id === "logo") ? "py__ai-logo" : "py__ai-image" %>" name="<%=item.id%>" value="<%=sectionItem?.settings[item.id]%>">
             <% } else if(item.id){ %>
                 <input type="hidden" name="<%=item.id%>" value="<%=sectionItem?.settings[item.id]%>"/>
             <% } %>
@@ -36,10 +47,10 @@
                                 <% }) %>
                             </select>
                         </div>
-                    <% } else if((item.type === "text" && item?.id?.includes('title') && !item?.id?.includes('font') || item?.id?.includes('text') && !item?.id?.includes('font') || item?.id?.includes('heading')  && !item?.id?.includes('font')) || (item.type === "richtext" && item?.id?.includes('title') && !item?.id?.includes('font') || item?.id?.includes('text') && !item?.id?.includes('font') || item?.id?.includes('heading')  && !item?.id?.includes('font')) || (item.type === "textarea" && item?.id?.includes('title') && !item?.id?.includes('font') || item?.id?.includes('text') && !item?.id?.includes('font') || item?.id?.includes('heading')  && !item?.id?.includes('font'))){ %>
-                        <input type="<%=item.type%>" name="<%=item.id%>" class="py__ai-text" value="<%=blockItem?.settings[item.id]%>"/>
+                    <% } else if((item.type === "text" || item.type === "textarea" || item.type === "richtext") && aiChangeAllTextJson[item?.label?.trim()?.toLowerCase()]){ %>
+                        <input type="hidden" name="<%=item.id%>" class="py__ai-text" value="<%=blockItem?.settings[item.id]%>"/>
                     <% } else if(item.id && item.type === "image_picker"){ %>
-                        <input type="text" class="<%= (item.id === "logo") ? "py__ai-logo" : "py__ai-image" %>" name="<%=item.id%>" value="<%=blockItem?.settings[item.id]%>">
+                        <input type="hidden" class="<%= (item.id === "logo") ? "py__ai-logo" : "py__ai-image" %>" name="<%=item.id%>" value="<%=blockItem?.settings[item.id]%>">
                     <% } else if(item.id){ %>
                         <input type="hidden" name="block_<%=item.id%>" value="<%=blockItem?.settings[item.id]%>"/>
                     <% } %>

@@ -1888,8 +1888,7 @@
 
   const saveDesktopForFigma = async (pagename) => {
     let iframe = document.querySelector(".py__view-iframe");
-    let iframeDocument =
-      iframe.contentDocument || iframe.contentWindow.document;
+    let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
     if (!iframeDocument) return;
     let data = await mapDOM(
       iframeDocument.getElementsByTagName("body")[0],
@@ -2725,7 +2724,6 @@
     let getTextColors = null;
 
     if(isAiColor){
-      console.log("AI COLORS");
       let colorPropmt = `using a json format show me 5 color ${colorDescPromp} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
       let getAiColorsParse = await createTextAi(colorPropmt);
       let getAiColors = JSON.parse(getAiColorsParse);
@@ -2738,9 +2736,8 @@
           getTextColors.push(aiColorItem.textHex || aiColorItem.text);
         }
       }
-      console.log(getBgColors, getTextColors);
+      getBgColors.reverse();
     } else {
-      console.log("DEFAULT COLORS");
       getBgColors = generateBackgroundColors();
       getTextColors = generateTextColors(getBgColors[2]);
     }
@@ -2923,11 +2920,9 @@
       let countText = allTextFileds.length / 4;
       let textIndex1 = 0;
       let textIndex2 = 0;
-      console.log(countText);
       for(let j=1; j<=countText; j++){
         let textLenght = j * 4;  
         let allText = "";
-        console.log(textIndex1, textIndex2, j, textLenght);
         for(textIndex1; textIndex1<textLenght; textIndex1++){
           let textFiled = allTextFileds[textIndex1];
           if(textFiled?.value?.trim() !== ""){
@@ -2937,13 +2932,9 @@
         if(allText.trim() !== ""){
           let textPropmt = `create a json object called items and each item should have number id and a value |. rewrite each value to sound more like a sales pitch "${allText.replaceAll('<p>', "").replaceAll('</p>', "")}"`;
           let getNewText = await createTextAi(textPropmt);
-          console.log(getNewText, "CHECK");
-        
           let parseText = JSON.parse(getNewText);
-
           let aiTextI = 0;
           for(textIndex2; textIndex2<textLenght; textIndex2++){
-            console.log(typeof parseText.items, parseText.items[aiTextI]);
             let textValue = (parseText.items[aiTextI]) ? parseText.items[aiTextI].value : parseText.items.value;
             let textFiled = allTextFileds[textIndex2];
             if(textFiled?.value?.trim() !== "" && textValue !== undefined){
@@ -2961,16 +2952,26 @@
         let colorPropmt = `using a json format show me 5 color ${colorDesc || "difference"} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
         let getColorsParse = await createTextAi(colorPropmt);
         let getColors = JSON.parse(getColorsParse);
+        let getBgColors = [];
+        let getTextColors = [];
+        if(getColors?.backgrounds){
+          for(let i=0; i<getColors.backgrounds.length; i++){
+            let aiColorItem = getColors.backgrounds[i];
+            getBgColors.push(aiColorItem.backgroundHex || aiColorItem.background);
+            getTextColors.push(aiColorItem.textHex || aiColorItem.text);
+          }
+        }
+        getBgColors.reverse();
 
         for(let i=0; i<5; i++){
           let bgColorFiled = bgColorsFileds[i]; 
           let colorFiled = colorsFileds[i];
-          bgColorFiled.value = getColors.backgrounds[i].backgroundHex || getColors.backgrounds[i].background;
-          colorFiled.value = getColors.backgrounds[i].textHex || getColors.backgrounds[i].text;
+          bgColorFiled.value = getBgColors[i];
+          colorFiled.value = getTextColors[i];
           let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
           let wrapColor = colorFiled.closest('.py__label-for-color');
-          wrapBgColor.style.backgroundColor = getColors.backgrounds[i].backgroundHex || getColors.backgrounds[i].background;
-          wrapColor.style.backgroundColor = getColors.backgrounds[i].textHex || getColors.backgrounds[i].text;
+          wrapBgColor.style.backgroundColor = getBgColors[i];
+          wrapColor.style.backgroundColor = getTextColors[i];
         }
       }
 
@@ -2988,14 +2989,10 @@
       if(isAiImage){
         let imagesFiled = document.querySelectorAll('.py__ai-image');
         for(let i=0; i<imagesFiled.length; i++){
-          if(i > 3 && i < 6){ 
-            let imageFiled = imagesFiled[i];
-            console.log(imageFiled.value, "CHECK IMAGE");
-            let imageAlt = imageFiled.getAttribute('alt');
-            let getNewImage = await createImageAi(null, prodType, imageAlt);
-            imageFiled.value = getNewImage;
-            console.log(imageFiled.value, "CHECK NEW IMAGE");
-          }
+          let imageFiled = imagesFiled[i];
+          let imageAlt = imageFiled.getAttribute('alt');
+          let getNewImage = await createImageAi(null, prodType, imageAlt);
+          imageFiled.value = getNewImage;
         };
       }
 
@@ -3037,7 +3034,6 @@
         let countText = allTextFileds.length / 4;
         let textIndex1 = 0;
         let textIndex2 = 0;
-        console.log(countText);
         for(let j=1; j<=countText; j++){
           let textLenght = j * 4;  
           let allText = "";
@@ -3051,8 +3047,6 @@
           if(allText.trim() !== ""){
             let textPropmt = `create a json object called items and each item should have number id and a value |. rewrite each value to sound more like a sales pitch "${allText.replaceAll('<p>', "").replaceAll('</p>', "")}"`;
             let getNewText = await createTextAi(textPropmt);
-            console.log(getNewText, "CHECK");
-          
             let parseText = JSON.parse(getNewText);
 
             let aiTextI = 0;
