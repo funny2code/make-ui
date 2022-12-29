@@ -66,15 +66,13 @@ router.post("/", async (req, res, next) => {
 
             if(!image) return res.status(response.status).json({result: response.data.choices[0].text});
             
-            setTimeout(async ()=>{
-                const imageResponse = await openai.createImage({
-                    prompt: image,
-                    n: 1,
-                    size: "1024x1024",
-                });
+            const imageResponse = await openai.createImage({
+                prompt: image,
+                n: 1,
+                size: "1024x1024",
+            });
 
-                return res.status(response.status).json({result: response.data.choices[0].text, image: imageResponse.data.data[0].url});
-            }, 45000);
+            return res.status(response.status).json({result: response.data.choices[0].text, image: imageResponse.data.data[0].url});
 
         }
 
