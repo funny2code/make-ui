@@ -84,10 +84,10 @@ router.post("/", async (req, res, next) => {
                 return res.status(500).json({result: "INTERNAL SERVER ERROR"});
             });
 
-            worker.on("exit", exitCode => {
-                return res.status(500).json({result: "EXIT"});
-            })
-            
+            // worker.on("exit", exitCode => {
+            //     return res.status(500).json({result: "EXIT"});
+            // })
+            res.status(200).json({result: "WORKS"});
 
         }
 
