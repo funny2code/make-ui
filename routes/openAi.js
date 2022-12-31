@@ -1,17 +1,19 @@
 const express = require('express');
+const {Worker, workerData} = require('node:worker_threads');
 const { Configuration, OpenAIApi } = require('openai');
 const router = express.Router();
 const axios = require('axios');
 const cheerio = require('cheerio');
+const path = require('path');
 
 
 const validURL = async (str) => {
-    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-      '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    var pattern = new RegExp('^(https?:\\/\\/)?'+ 
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ 
+      '((\\d{1,3}\\.){3}\\d{1,3}))'+ 
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+
+      '(\\?[;&a-z\\d%_.~+=-]*)?'+ 
+      '(\\#[-a-z\\d_]*)?$','i');
     return !!pattern.test(str);
 };
 
@@ -28,7 +30,7 @@ router.get("/", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
 
 
-    const {message, image} = req.body;
+    const {message, image, openaiModel} = req.body;
     const configuration = new Configuration({
         apiKey: process.env.OPENAI_API_KEY,
     });
@@ -43,7 +45,6 @@ router.post("/", async (req, res, next) => {
                 for(let i=0; i<getLinks.length; i++){
                     if(!getLinks[i]?.attribs?.href?.includes('data:text/css;base64') && getLinks[i]?.attribs?.href?.includes('.css')){
                         let link = getLinks[i]?.attribs?.href;
-                        console.log(link);
                         let newLink = (link?.includes("http:") || link?.includes("https:")) 
                         ? link 
                         : `https:${link}`;
@@ -58,27 +59,41 @@ router.post("/", async (req, res, next) => {
         } else {
             const openai = new OpenAIApi(configuration);
             const response = await openai.createCompletion({
-                model: "text-davinci-003",
+                model: openaiModel || "text-davinci-003",
                 prompt: message,
-                temperature: 0.1,
-                max_tokens: 4000,
+                temperature: 0,
+                max_tokens: 2048,
+                top_p: 1.0,
+                frequency_penalty: 0.0,
+                presence_penalty: 0.0, 
             });
 
             if(!image) return res.status(response.status).json({result: response.data.choices[0].text});
             
-            const imageResponse = await openai.createImage({
-                prompt: image,
-                n: 1,
-                size: "1024x1024",
+            //Create new worker
+            const worker = new Worker(path.join(__dirname, "./worker.js"), {workerData: {image: image}});
+
+            //Listen for a message from worker
+            worker.once("message", result => {
+                console.log(`check ${result}`);
+                return res.status(200).json({result: response.data.choices[0].text, image: result});
             });
 
-            return res.status(response.status).json({result: response.data.choices[0].text, image: imageResponse.data.data[0].url});
+            worker.on("error", error => {
+                console.log(error, "ERROR");
+                return res.status(500).json({result: "INTERNAL SERVER ERROR"});
+            });
+
+            worker.on("exit", exitCode => {
+                return res.status(500).json({result: "EXIT"});
+            })
+            
 
         }
 
     } catch (err) {
-        console.log(err, "CHECK");
-        return next(err);
+        console.log(err, "ERR");
+        return res.status(err.response.status || 500).json({result: err.response.statusText || "SERVER ERROR"});
     }
 
 });

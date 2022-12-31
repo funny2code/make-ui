@@ -1365,6 +1365,7 @@
   let saveButton = null;
   let downloadButton = null;
   let loading = null;
+  let smallLoading = null;
   let themeName = "ThemeMake";
   let textColors = {
     "dark": null,
@@ -2894,8 +2895,10 @@
 
   const bussinesName = async (event) => {
     if(!event) return;
-    loading?.classList.add("py__animate");
     let aiPopup = document.querySelector('.py__remix-popup');
+    let alertCount = smallLoading.querySelector('.count');
+    let alertMessage = smallLoading.querySelector('.message');
+    aiPopup?.classList.remove('active');
 
     try {
       let busName = document.querySelector('[name="bussines_name"]')?.value;
@@ -2917,9 +2920,12 @@
 
       // AI GET NEW TEXTS FOR THEME
       let allTextFileds = document.querySelectorAll('.py__ai-text');
+      alertMessage.textContent = `Generating New Texts ${allTextFileds.length}`;
+      smallLoading.classList.add('active');
       let countText = allTextFileds.length / 4;
       let textIndex1 = 0;
       let textIndex2 = 0;
+      let alertCountIndex = 1;
       for(let j=1; j<=countText; j++){
         let textLenght = j * 4;  
         let allText = "";
@@ -2940,7 +2946,11 @@
             if(textFiled?.value?.trim() !== "" && textValue !== undefined){
               textFiled.value = textValue;
             }
+            alertCount.textContent = alertCountIndex;
+            alertCountIndex++;
             aiTextI++;
+            await saveSettingsValues();
+            await viewIframe(true);
           }
         }
       }
@@ -2949,6 +2959,7 @@
       if(isAiColor){
         let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
         let colorsFileds = document.querySelectorAll('.py__ai-color');
+        alertMessage.textContent = `Generating New Colors ${bgColorsFileds.length + colorsFileds.length}`;
         let colorPropmt = `using a json format show me 5 color ${colorDesc || "difference"} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
         let getColorsParse = await createTextAi(colorPropmt);
         let getColors = JSON.parse(getColorsParse);
@@ -2972,40 +2983,47 @@
           let wrapColor = colorFiled.closest('.py__label-for-color');
           wrapBgColor.style.backgroundColor = getBgColors[i];
           wrapColor.style.backgroundColor = getTextColors[i];
+          alertCount.textContent = (i + 1) * 2;
         }
+        await saveSettingsValues();
+        await viewIframe(true);
       }
 
       // AI CREATE NEW LOGO FROM BUSSINES NAME
       if(isAiLogo){
+        alertMessage.textContent = `Generating New Logo`;
+        alertCount.style.display = "none";
         let logoFiled = document.querySelector('.py__ai-logo');
         if(logoFiled){
           let logoPropmt = `make a logo mark for a business that sells ${prodType} called ${busName} in the style of rob janoff`;
           let getNewlogo = await createImageAi(null, logoPropmt);
           logoFiled.value = getNewlogo;
+          await saveSettingsValues();
+          await viewIframe(true);
         }
       }
       
       // AI CREATE NEW IMAGES FOR THEME 
       if(isAiImage){
         let imagesFiled = document.querySelectorAll('.py__ai-image');
+        alertMessage.textContent = `Generating New Images ${imagesFiled.length}`;
+        alertCount.style.display = "flex";
         for(let i=0; i<imagesFiled.length; i++){
           let imageFiled = imagesFiled[i];
           let imageAlt = imageFiled.getAttribute('alt');
           let getNewImage = await createImageAi(null, prodType, imageAlt);
           imageFiled.value = getNewImage;
+          alertCount.textContent = i;
+          await saveSettingsValues();
+          await viewIframe(true);
         };
       }
 
-      await saveSettingsValues();
-      await viewIframe(true);
-      aiPopup?.classList.remove('active');
-      return loading?.classList.remove("py__animate");
+      return smallLoading?.classList.remove("active");
     } catch(err){
-      console.log(err, "CHECK DAV");
       await saveSettingsValues();
       await viewIframe(true);
-      aiPopup?.classList.remove('active');
-      return loading?.classList.remove("py__animate");
+      return smallLoading.querySelector('.message').textContent = err.result;
     }
   };
 
@@ -3236,12 +3254,14 @@
     let url = form.getAttribute('action');
     let message = form.querySelector('[name="openai-req"]');
     let imageMessage = form.querySelector('[name="image"]');
+    let model = form.querySelector('[name="model"]');
     let openAiIframe = document.querySelector('.py__openai-res');
     let openAiCode = document.querySelector('.code-block');
     let openAiCodePre = openAiCode?.querySelector('pre');
-    if(!message || !url) return loading?.classList.remove('active');
+    if(!message || !url || !model) return loading?.classList.remove('active');
     let messageValue = message.value;
     let imageMessageVal = imageMessage.value; 
+    let modelType = model.value;
 
     let req = await fetch(url, {
       method: "POST",
@@ -3251,7 +3271,8 @@
       },
       body: JSON.stringify({
         message: messageValue,
-        image: imageMessageVal
+        image: imageMessageVal,
+        openaiModel: modelType,
       }),
     });
 
@@ -3544,6 +3565,7 @@
     await saveSettingsValues();
 
     loading = document.querySelector(".py__loading-wrap");
+    smallLoading = document.querySelector(".py__loading-small");
     saveButton = document.querySelector(".py__save-button");
     downloadButton = document.querySelector(".py__download-button");
     themeName =

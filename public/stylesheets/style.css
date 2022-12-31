@@ -1584,3 +1584,49 @@ tr:nth-child(even) {
   color: #FFFFFF;
   border-color: #003584;
 }
+
+/* SMALL LOADING STYLES */
+.py__loading-small {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 340px;
+  background-color: #333333;
+  border-radius: 5px;
+  border: 1px solid #333333;
+  color: #FFFFFF;
+  padding: 6px 12px;
+  z-index: 999;
+}
+.py__loading-small.active {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+.py__loading-small .count {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #686868;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #E5E7EB;
+}
+.py__loading-small .message {
+  font-size: 15px;
+}
+.py__loading-small .icon {
+  padding-left: 5px;
+  border-left: 1px solid #686868;
+}
+.py__loading-small .icon svg {
+  width: 40px;
+  height: 40px;
+}

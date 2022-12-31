@@ -29,6 +29,14 @@ console.log(result); // Output: 5</pre>
         <form action="/openai" method="post" class="py__openai-form">
             <textarea placeholder="Enter your message here..." name="openai-req"></textarea>
             <input type="text" placeholder="Image message..." name="image"/>
+            <select name="model">
+                <option value="text-davinci-003" selected>text-davinci-003</option>
+                <option value="text-curie-001">text-curie-001</option>
+                <option value="text-babbage-001">text-babbage-001</option>
+                <option value="text-ada-001">text-ada-001</option>
+                <option value="code-davinci-002">code-davinci-002</option>
+                <option value="code-cushman-001">code-cushman-001</option>
+            </select>
             <input type="submit" class="btn" value="Submit">
         </form>
     </div>
