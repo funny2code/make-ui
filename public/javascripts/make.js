@@ -1381,13 +1381,14 @@
     "middle_light": null,
     "light": null
   };
-  let isAiLogo = false;
-  let isAiColor = false;
-  let isAiImage = false;
 
-  let busNamePromp = false;
-  let prodTypePromp = false;
-  let colorDescPromp = false;
+  let isAiLogo = localStorage.getItem('isAiLogo');
+  let isAiColor = localStorage.getItem('isAiColor');
+  let isAiImage = localStorage.getItem('isAiImage');
+
+  let busNamePromp = localStorage.getItem('busName');
+  let prodTypePromp = localStorage.getItem('prodType');
+  let colorDescPromp = localStorage.getItem('colorDesc');
 
   const clearTheme = () => {
     theme = {
@@ -2372,7 +2373,7 @@
     if (showLoading) loading?.classList.remove("py__animate");
   };
 
-  // Ifeame Previews Function (Mobile, Desktop, Tablet)
+  // Iframe Previews Function (Mobile, Desktop, Tablet)
   const toggleIframePreview = (event) => {
     if (!event) return;
     let el = event.target;
@@ -2654,45 +2655,45 @@
     "636ee0f492c75efd85c472a3"
   ];
   
-  const HSLToRGB = (h, s, l) => {
-    s /= 100;
-    l /= 100;
-    const k = (n) => (n + h / 30) % 12;
-    const a = s * Math.min(l, 1 - l);
-    const f = (n) =>
-      l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
-    return [
-      Math.floor(255 * f(0)),
-      Math.floor(255 * f(8)),
-      Math.floor(255 * f(4)),
-    ];
-  };
+    const HSLToRGB = (h, s, l) => {
+      s /= 100;
+      l /= 100;
+      const k = (n) => (n + h / 30) % 12;
+      const a = s * Math.min(l, 1 - l);
+      const f = (n) =>
+        l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+      return [
+        Math.floor(255 * f(0)),
+        Math.floor(255 * f(8)),
+        Math.floor(255 * f(4)),
+      ];
+    };
 
-  const random = (max, min) =>
-    Math.floor(Math.random() * (max - min + 1)) + min;
+    const random = (max, min) =>
+      Math.floor(Math.random() * (max - min + 1)) + min;
 
-  const RGBToHSL = ([r, g, b]) => {
-    r /= 255;
-    g /= 255;
-    b /= 255;
-    const l = Math.max(r, g, b);
-    const s = l - Math.min(r, g, b);
-    const h = s
-      ? l === r
-        ? (g - b) / s
-        : l === g
-        ? 2 + (b - r) / s
-        : 4 + (r - g) / s
-      : 0;
-    return [
-      60 * h < 0 ? 60 * h + 360 : 60 * h,
-      100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0),
-      (100 * (2 * l - s)) / 2,
-    ];
-  };
+    const RGBToHSL = ([r, g, b]) => {
+      r /= 255;
+      g /= 255;
+      b /= 255;
+      const l = Math.max(r, g, b);
+      const s = l - Math.min(r, g, b);
+      const h = s
+        ? l === r
+          ? (g - b) / s
+          : l === g
+          ? 2 + (b - r) / s
+          : 4 + (r - g) / s
+        : 0;
+      return [
+        60 * h < 0 ? 60 * h + 360 : 60 * h,
+        100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0),
+        (100 * (2 * l - s)) / 2,
+      ];
+    };
 
-  const generateRandomColors = async () => {
-    let generateBackgroundColors = () => {
+    const generateRandomColors = async () => {
+      let generateBackgroundColors = () => {
       let h = random(360, 0);
       let s = random(100, 50);
       let l = 80;
@@ -2720,59 +2721,81 @@
       return colors;
     };
 
-    let inputFileds = document.querySelectorAll('[type="color"]');
+    let alertMessage = smallLoading.querySelector('.message');
+    let alertCount = smallLoading.querySelector('.count');
+    // let inputFileds = document.querySelectorAll('[type="color"]');
     let getBgColors = null;
     let getTextColors = null;
 
     if(isAiColor){
-      let colorPropmt = `using a json format show me 5 color ${colorDescPromp} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
-      let getAiColorsParse = await createTextAi(colorPropmt);
-      let getAiColors = JSON.parse(getAiColorsParse);
-      getBgColors = [];
-      getTextColors = [];
-      if(getAiColors?.backgrounds){
-        for(let i=0; i<getAiColors.backgrounds.length; i++){
-          let aiColorItem = getAiColors.backgrounds[i];
-          getBgColors.push(aiColorItem.backgroundHex || aiColorItem.background);
-          getTextColors.push(aiColorItem.textHex || aiColorItem.text);
+        let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
+        let colorsFileds = document.querySelectorAll('.py__ai-color');
+        alertMessage.textContent = `Generating New Colors ${bgColorsFileds.length + colorsFileds.length}`;
+        let colorPropmt = `using a json format show me 5 color ${colorDescPromp || "difference"} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
+        let getColorsParse = await createTextAi(colorPropmt);
+        let getColors = JSON.parse(getColorsParse);
+        let getBgColors = [];
+        let getTextColors = [];
+        if(getColors?.backgrounds){
+          for(let i=0; i<getColors.backgrounds.length; i++){
+            let aiColorItem = getColors.backgrounds[i];
+            getBgColors.push(aiColorItem.backgroundHex || aiColorItem.background);
+            getTextColors.push(aiColorItem.textHex || aiColorItem.text);
+          }
         }
-      }
-      getBgColors.reverse();
+        getBgColors.reverse();
+
+        for(let i=0; i<5; i++){
+          let bgColorFiled = bgColorsFileds[i]; 
+          let colorFiled = colorsFileds[i];
+          bgColorFiled.value = getBgColors[i];
+          colorFiled.value = getTextColors[i];
+          let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
+          let wrapColor = colorFiled.closest('.py__label-for-color');
+          wrapBgColor.style.backgroundColor = getBgColors[i];
+          wrapColor.style.backgroundColor = getTextColors[i];
+          alertCount.textContent = (i + 1) * 2;
+        }
+        await saveSettingsValues();
+        await viewIframe(true);
     } else {
       getBgColors = generateBackgroundColors();
       getTextColors = generateTextColors(getBgColors[2]);
     }
-    let index = 0;
 
-    for (let i = 0; i < inputFileds.length; i++) {
-      let filed = inputFileds[i];
-      let filedName = filed.getAttribute("name");
-      if (filedName.includes("_bg")) {
-        let bgColor = await rgbToHex(getBgColors[index]);
-        let textColor = await rgbToHex(getTextColors[index]);
-        bgColors[filedName.replace('py_bg_color_', '')] = bgColor;
-        let closestWrap = filed.closest(".component-is-color");
-        let isColorLabel = closestWrap.querySelector(".py__label-for-color");
-        isColorLabel.style.backgroundColor = bgColor;
-        filed.setAttribute("value", bgColor);
-        index++;
-        let filedNameText = filedName.replace("_bg", "");
-        let textInputFiled = document.querySelector(
-          `[name="${filedNameText}"]`
-        );
-        let filedTextName = textInputFiled.getAttribute("name");
-        if (textInputFiled) {
-          textColors[filedTextName.replace('py_color_', '')] = textColor;
-          let textClosestWrap = textInputFiled.closest(".component-is-color");
-          let textIsColorLabel = textClosestWrap?.querySelector(
-            ".py__label-for-color"
-          );
-          if (textIsColorLabel)
-            textIsColorLabel.style.backgroundColor = textColor;
-          textInputFiled.setAttribute("value", textColor);
-        }
-      }
-    }
+    console.log(getBgColors, getTextColors, "CHECK DAV");
+    // alertMessage.textContent = `Generating New Colors ${getBgColors.length + getTextColors.length}`;
+    // let index = 0;
+
+    // for (let i = 0; i < inputFileds.length; i++) {
+    //   let filed = inputFileds[i];
+    //   let filedName = filed.getAttribute("name");
+    //   if (filedName.includes("_bg")) {
+    //     let bgColor = await rgbToHex(getBgColors[index]);
+    //     let textColor = await rgbToHex(getTextColors[index]);
+    //     bgColors[filedName.replace('py_bg_color_', '')] = bgColor;
+    //     let closestWrap = filed.closest(".component-is-color");
+    //     let isColorLabel = closestWrap.querySelector(".py__label-for-color");
+    //     isColorLabel.style.backgroundColor = bgColor;
+    //     filed.setAttribute("value", bgColor);
+    //     index++;
+    //     let filedNameText = filedName.replace("_bg", "");
+    //     let textInputFiled = document.querySelector(
+    //       `[name="${filedNameText}"]`
+    //     );
+    //     let filedTextName = textInputFiled.getAttribute("name");
+    //     if (textInputFiled) {
+    //       textColors[filedTextName.replace('py_color_', '')] = textColor;
+    //       let textClosestWrap = textInputFiled.closest(".component-is-color");
+    //       let textIsColorLabel = textClosestWrap?.querySelector(
+    //         ".py__label-for-color"
+    //       );
+    //       if (textIsColorLabel)
+    //         textIsColorLabel.style.backgroundColor = textColor;
+    //       textInputFiled.setAttribute("value", textColor);
+    //     }
+    //   }
+    // }
   };
 
   const setColorToSettings = async () => {
@@ -2901,22 +2924,6 @@
     aiPopup?.classList.remove('active');
 
     try {
-      let busName = document.querySelector('[name="bussines_name"]')?.value;
-      let prodType = document.querySelector('[name="type_product"]')?.value;
-      let colorDesc = document.querySelector('[name="color_desc"]')?.value;
-      if(!busName.trim()) return loading?.classList.remove("py__animate");
-
-      let useAiColor = document.querySelector('[name="use_ai_color"]:checked')?.value;
-      let useAiImage = document.querySelector('[name="use_ai_image"]:checked')?.value;
-      let useAiLogo = document.querySelector('[name="use_ai_logo"]:checked')?.value;
-      
-      if(useAiColor === "yes") isAiColor = true;
-      if(useAiImage === "yes") isAiImage = true;
-      if(useAiLogo === "yes") isAiLogo = true;
-
-      if(busName?.trim() !== "") busNamePromp = busName;
-      if(prodType?.trim() !== "") prodTypePromp = prodType;
-      if(colorDesc?.trim() !== "") colorDescPromp = colorDesc;
 
       // AI GET NEW TEXTS FOR THEME
       let allTextFileds = document.querySelectorAll('.py__ai-text');
@@ -3031,32 +3038,36 @@
     if (!event) return;
 
     event.preventDefault();
-    loading?.classList.add("py__animate");
+    smallLoading?.classList.add("active");
 
     await generateRandomColors();
     await setColorToSettings();
-
-    fontsCount++;
-    if (fontsCount >= fonts.length) fontsCount = 0;
-    if (remixCount >= imageBanner[allThemesID[currentThemeKey]]?.length) {
-      remixCount = 0;
-      clearTheme();
-      currentThemeKey++;
-      if (currentThemeKey >= allThemesID?.length) currentThemeKey = 0;
-      let remixUrl =
-        "/remix/" + allThemesID[currentThemeKey] + location?.search;
-      await getSettingsLists(false, remixUrl);
-    } else {
+    console.log(localStorage.getItem("busName"));
+    // fontsCount++;
+    // if (fontsCount >= fonts.length) fontsCount = 0;
+    // if (remixCount >= imageBanner[allThemesID[currentThemeKey]]?.length) {
+    //   remixCount = 0;
+    //   clearTheme();
+    //   currentThemeKey++;
+    //   if (currentThemeKey >= allThemesID?.length) currentThemeKey = 0;
+    //   let remixUrl =
+    //     "/remix/" + allThemesID[currentThemeKey] + location?.search;
+    //   await getSettingsLists(false, remixUrl);
+    // } else {
       try {
+        
         // AI GET NEW TEXTS FOR THEME
+        let alertCount = smallLoading.querySelector('.count');
+        let alertMessage = smallLoading.querySelector('.message');
         let allTextFileds = document.querySelectorAll('.py__ai-text');
-        let countText = allTextFileds.length / 4;
+        alertMessage.textContent = `Generating New Texts ${allTextFileds.length}`;
+        let countText = allTextFileds.length / 3;
         let textIndex1 = 0;
         let textIndex2 = 0;
-        for(let j=1; j<=countText; j++){
-          let textLenght = j * 4;  
+        let alertCountIndex = 1;
+        for(let j=1; j<=parseInt(countText); j++){
+          let textLenght = j * 3;  
           let allText = "";
-          console.log(textIndex1, textIndex2, j, textLenght);
           for(textIndex1; textIndex1<textLenght; textIndex1++){
             let textFiled = allTextFileds[textIndex1];
             if(textFiled?.value?.trim() !== ""){
@@ -3064,44 +3075,55 @@
             }
           }
           if(allText.trim() !== ""){
-            let textPropmt = `create a json object called items and each item should have number id and a value |. rewrite each value to sound more like a sales pitch and about ${prodType} "${allText.replaceAll('<p>', "").replaceAll('</p>', "")}"`;
+            let textPropmt = `create a json object called items and each item should have number id and a value |. rewrite each value to sound more like a sales pitch and about ${prodTypePromp} "${allText.replaceAll('<p>', "").replaceAll('</p>', "")}"`;
             let getNewText = await createTextAi(textPropmt);
             let parseText = JSON.parse(getNewText);
-
             let aiTextI = 0;
             for(textIndex2; textIndex2<textLenght; textIndex2++){
-              console.log(typeof parseText.items, parseText.items[aiTextI]);
               let textValue = (parseText.items[aiTextI]) ? parseText.items[aiTextI].value : parseText.items.value;
               let textFiled = allTextFileds[textIndex2];
               if(textFiled?.value?.trim() !== "" && textValue !== undefined){
                 textFiled.value = textValue;
               }
+              alertCount.textContent = alertCountIndex;
+              alertCountIndex++;
               aiTextI++;
+              await saveSettingsValues();
+              await viewIframe(true);
             }
           }
         }
         
 
         if(isAiLogo){
+          alertMessage.textContent = `Generating New Logo`;
+          alertCount.style.display = "none";
           let logoFiled = document.querySelector('.py__ai-logo');
           if(logoFiled){
             let logoPropmt = `make a logo mark for a business that sells ${prodTypePromp} called ${busNamePromp} in the style of rob janoff`;
             let getNewlogo = await createImageAi(null, logoPropmt);
             logoFiled.value = getNewlogo;
+            await saveSettingsValues();
+            await viewIframe(true);
           }
         }
 
         if(isAiImage){
           let imagesFiled = document.querySelectorAll('.py__ai-image');
+          alertMessage.textContent = `Generating New Images ${imagesFiled.length}`;
+          alertCount.style.display = "flex";
           for(let i=0; i<imagesFiled.length; i++){
-            if(i > 3 && i < 6){ 
-              let imageFiled = imagesFiled[i];
-              let imageAlt = imageFiled.getAttribute('alt');
-              let getNewImage = await createImageAi(null, prodTypePromp, imageAlt);
-              imageFiled.value = getNewImage;
-            }
+            let imageFiled = imagesFiled[i];
+            let imageAlt = imageFiled.getAttribute('alt');
+            let getNewImage = await createImageAi(null, prodTypePromp, imageAlt);
+            imageFiled.value = getNewImage;
+            alertCount.textContent = i;
+            await saveSettingsValues();
+            await viewIframe(true);
           };
         }
+  
+        return smallLoading?.classList.remove("active");
 
         // let imageBannerSections = document.querySelectorAll(
         //   '[data-section-handle="image-banner"]'
@@ -3173,16 +3195,17 @@
         //   });
         // }
 
-        remixCount++;
+        // remixCount++;
 
-        await saveSettingsValues();
-        await viewIframe(true);
+        // await saveSettingsValues();
+        // await viewIframe(true);
       } catch(err){
+        console.log(err, "ERROR");
         await saveSettingsValues();
         await viewIframe(true);
       }
 
-    }
+    // }
   };
 
 
@@ -3288,6 +3311,51 @@
     // console.log(el, window.getComputedStyle(el), "HELLO");
 
   };
+
+  const nextStep = async (e) => {
+    
+    if(!e) return;
+    
+    let target = e.target;
+    let index = target.getAttribute('data-index');
+    let prevStepContent = document.querySelector('[data-id="' + (parseInt(index) - 1) + '"]');
+    let nextStepContent = document.querySelector('[data-id="' + index + '"]');
+
+    if(parseInt(index) === 2){
+      let busName = document.querySelector('[name="bussines_name"]')?.value;
+      let prodType = document.querySelector('[name="type_product"]')?.value;
+      let colorDesc = document.querySelector('[name="color_desc"]')?.value;
+
+      if(busName?.trim() === "" || prodType?.trim() === "" || colorDesc?.trim() === "") 
+      return alert("Please add empty input fileds!");
+
+      let useAiColor = document.querySelector('[name="use_ai_color"]:checked')?.value;
+      let useAiImage = document.querySelector('[name="use_ai_image"]:checked')?.value;
+      let useAiLogo = document.querySelector('[name="use_ai_logo"]:checked')?.value;
+
+      if(useAiColor === "yes") localStorage.setItem('isAiColor', true);
+      if(useAiImage === "yes") localStorage.setItem('isAiImage', true);
+      if(useAiLogo === "yes") localStorage.setItem('isAiLogo', true);
+
+      if(busName?.trim() !== "") localStorage.setItem('busName', busName);
+      if(prodType?.trim() !== "") localStorage.setItem('prodType', prodType);
+      if(colorDesc?.trim() !== "") localStorage.setItem('colorDesc', colorDesc);
+
+    };
+
+    prevStepContent.classList.remove('active');
+    nextStepContent.classList.add('active');
+
+  };
+
+  // const pickTheme = (e) => {
+  //   if(!e) return;
+  //   let activePick = document.querySelector('.py__button-pick.active');
+  //   if(activePick) activePick.classList.remove('active');
+  //   let pickTarget = e.target;
+  //   let remixUrl = pickTarget.getAttribute('data-url');
+  //   pickTarget.classList.add('active');
+  // };
   
   //---------------------------------------
   // COMPONENTS FUN
@@ -3548,6 +3616,10 @@
       return randomSectionFun(e);
     if (e && e.target.classList.contains("py__button-bussines"))
       return bussinesName(e);
+    if (e && e.target.classList.contains("py__step-next-btn"))
+      return nextStep(e);
+    if (e && e.target.classList.contains("py__button-pick"))
+      return pickTheme(e);
   });
 
   // Before Unload

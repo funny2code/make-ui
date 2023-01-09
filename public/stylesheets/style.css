@@ -188,11 +188,18 @@ img {
   margin-bottom: 0;
 }
 .py__themes {
-  display: flex;
-  flex-direction: row;
+  display: none;
+  flex-direction: column;
   flex-wrap: wrap;
-  gap: 32px;
-  padding: 20px 0;
+  padding: 20px 20px;
+  margin-top: 40px;
+  background: #eee;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.py__themes.active {
+  display: flex;
 }
 .py__theme {
   background: #FFFFFF;
@@ -201,7 +208,7 @@ img {
   border-radius: 6px;
   max-width: 100%;
   padding: 16px;
-  width: calc(33.333% - 32px);
+  width: 100%;
 }
 .py__theme-image_wrapper {
   background: #d2d2d2;
@@ -1464,19 +1471,17 @@ tr:nth-child(even) {
 }
 
 /* REMIX PAGE POPUP */
+.py__next-header {
+  text-align: center;
+}
 .py__remix-popup {
   display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   min-height: 100%;
-  overflow: auto;
   background: rgba(255, 255, 255, 0.86);
   justify-content: center;
   align-items: center;
   padding: 20px 0;
-  z-index: 999;
 }
 .py__remix-popup.active {
   display: flex;

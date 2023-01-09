@@ -7,7 +7,83 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   </head>
   <body>
-    <%- include('make/header', {id: false, show: false}) %>
+    <%# include('make/header', {id: false, show: false}) %>
+    <div class="py__next-header">
+      <h1 class="py__next-header__title">
+        <a href="/">
+          <img src="/images/logo.png" alt="<%=make.title%>" width="120"/>
+        </a>
+      </h1>
+      <h2 class="py__next-header__subtitle">Shopify Theme Generator</h2>
+      <div class="py__steps-wrap">
+        <span data-index="1" class="py__steps-item active">1. Business</span>
+        <span class="py__step-icon">></span>
+        <span data-index="2" class="py__steps-item">2. Design</span>
+        <span class="py__step-icon">></span>
+        <span data-index="3" class="py__steps-item">3. Pick a theme</span>
+      </div>
+    </div>
+    <div class="py__step-bussines py__remix-popup active" data-id="1">
+      <div class="py__remix-popup__content">
+          <h2 class="py__remix-popup__heading">Welcome To Make UI</h2>
+          <div class="py__remix-popup__content-wrap">
+              <div class="py__filed-wrap">
+                  <label>Your Bussines Name</label>
+                  <input type="text" class="py__filed" placeholder="Name" name="bussines_name"/>
+                  <div class="py__radio-wrap">
+                      <h6 class="py__radio-group__heading">Generate New Logo</h6>
+                      <ul class="radio-list">
+                          <li>
+                            <input type="radio" name="use_ai_logo" id="radio_screen_1" value="yes"/>
+                            <label for="radio_screen_1">YES</label>
+                          </li>
+                          <li>
+                            <input type="radio" name="use_ai_logo" id="radio_screen_2" value="no" checked/>
+                            <label for="radio_screen_2">NO</label>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="py__filed-wrap">
+                  <label>Your Product Type</label>
+                  <input type="text" class="py__filed" placeholder="Type" name="type_product"/>
+                  <div class="py__radio-wrap">
+                      <h6 class="py__radio-group__heading">Generate New Images</h6>
+                      <ul class="radio-list">
+                          <li>
+                            <input type="radio" name="use_ai_image" id="radio_screen_3" value="yes"/>
+                            <label for="radio_screen_3">YES</label>
+                          </li>
+                          <li>
+                            <input type="radio" name="use_ai_image" id="radio_screen_4" value="no" checked/>
+                            <label for="radio_screen_4">NO</label>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="py__filed-wrap">
+                  <label>Your Theme Colors Description</label>
+                  <input type="text" class="py__filed" placeholder="Description" name="color_desc"/>
+                  <div class="py__radio-wrap">
+                      <h6 class="py__radio-group__heading">Generate New Colors Ai</h6>
+                      <ul class="radio-list">
+                          <li>
+                            <input type="radio" name="use_ai_color" id="radio_screen_5" value="yes"/>
+                            <label for="radio_screen_5">YES</label>
+                          </li>
+                          <li>
+                            <input type="radio" name="use_ai_color" id="radio_screen_6" value="no" checked/>
+                            <label for="radio_screen_6">NO</label>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="py__button-wrap">
+                  <button class="py__button py__button-blue py__step-next-btn" type="button" data-index="2">Next Step</button>
+              </div>
+          </div>
+      </div>
+    </div>
     <% if(usersThemes?.length){ %>
       <div class="py__user-themes">
         <div class="py__user-themes-header">
@@ -24,22 +100,23 @@
       </div>
     <% } %>
     <% if(themes?.length){ %>
-      <% if(make.themes_name || make.themes_desc){ %>
-        <div class="py__themes-heading">
-          <% if(make.themes_name){ %>
-            <h2 class="py__themes-heading-name"><%= make.theme_name %></h2>
-          <% } %>
-          <% if(make.themes_desc){ %>
-            <p class="py__themes-heading-description"><%= make.theme_desc %></p>
-          <% } %>
-        </div>
-      <% } %>
-      <div class="py__themes">
+      <%# if(make.themes_name || make.themes_desc){ %>
+        <!-- <div class="py__themes-heading"> -->
+          <%# if(make.themes_name){ %>
+            <!-- <h2 class="py__themes-heading-name"><%# make.theme_name %></h2> -->
+          <%# } %>
+          <%# if(make.themes_desc){ %>
+            <!-- <p class="py__themes-heading-description"><%# make.theme_desc %></p> -->
+          <%# } %>
+        <!-- </div> -->
+      <%# } %>
+      <div class="py__themes" data-id="2">
         <% themes.forEach(theme => { %>
           <% if(theme?.settings_schema?.length){ %>
             <%- include('make/theme', {id: theme._id, settings: theme.settings_schema[0]}) %>
           <% } %>
         <% }) %>
+        <button class="py__button py__button-blue py__step-next-btn" data-index="3" type="button">Next Step</button>
       </div>
     <% } %>
     <% if(remixThemes?.length){ %>
