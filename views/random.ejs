@@ -13,13 +13,13 @@
             <div class="py__make-preview">
                 <div class="py__preview-random-content">
                     <div class="py__preview-iframe py__preview-random-iframe py__preview-iframe-desktop">
-                        <iframe src="/view/<%=id%>?page=<%=page_handle%>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
+                        <iframe src="/view/<%=id%>?page=<%=page_handle%>" style="visibility:hidden;" onload="this.style.visibility='visible';" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
                     </div>
                     <div class="py__preview-iframe py__preview-random-iframe py__preview-iframe-tablet">
-                        <iframe src="/view/<%=id%>?page=<%=page_handle%>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
+                        <iframe src="/view/<%=id%>?page=<%=page_handle%>" style="visibility:hidden;" onload="this.style.visibility='visible';" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
                     </div>
                     <div class="py__preview-iframe py__preview-random-iframe py__preview-iframe-mobile">
-                        <iframe src="/view/<%=id%>?page=<%=page_handle%>" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
+                        <iframe src="/view/<%=id%>?page=<%=page_handle%>" style="visibility:hidden;" onload="this.style.visibility='visible';" class="py__view-iframe" scrolling="auto" sandbox="allow-same-origin allow-forms allow-popups allow-scripts allow-modals"></iframe>
                     </div>
                 </div>
             </div>
@@ -143,17 +143,6 @@
                 <div></div>
                 <div></div>
                 <div></div>
-            </div>
-        </div>
-        <div class="py__loading-small">
-            <span class="count">1</span>
-            <div class="message">Error or Success</div>
-            <div class="icon">
-                <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
-                    <path fill="#fff" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
-                      <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform>
-                  </path>
-                </svg>
             </div>
         </div>
     </body>

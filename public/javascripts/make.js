@@ -2363,12 +2363,16 @@
     let html = parser.parseFromString(data, "text/html");
     for (let i = 0; i < iframes.length; i++) {
       let iframeItem = iframes[i];
-      let ifrm =
-        iframeItem.contentDocument || iframeItem.contentWindow.document;
-      html
-        ? (ifrm.querySelector("body").innerHTML =
-            html.querySelector("body").innerHTML)
-        : null;
+      // let ifrm =
+      //   iframeItem.contentDocument || iframeItem.contentWindow.document;
+      // html
+      //   ? (ifrm.querySelector("body").innerHTML =
+      //       html.querySelector("body").innerHTML)
+      //   : null;
+      // console.log(html.querySelector("body").innerHTML, "check html DAv Jan");
+      let sendHtml = { type: 'html', value: html.querySelector("body").innerHTML };
+
+      iframeItem.contentWindow.postMessage(sendHtml, '*')
     }
     if (showLoading) loading?.classList.remove("py__animate");
   };
@@ -3034,14 +3038,15 @@
     }
   };
 
-  const randomFun = async (event) => {
-    if (!event) return;
+  const randomFun = async (event=false, html=false) => {
+    if (event) event.preventDefault();
 
-    event.preventDefault();
     smallLoading?.classList.add("active");
+    let myHtml = html || document;
 
-    await generateRandomColors();
-    await setColorToSettings();
+    // await generateRandomColors();
+    
+    // await setColorToSettings();
     console.log(localStorage.getItem("busName"));
     // fontsCount++;
     // if (fontsCount >= fonts.length) fontsCount = 0;
@@ -3059,6 +3064,48 @@
         // AI GET NEW TEXTS FOR THEME
         let alertCount = smallLoading.querySelector('.count');
         let alertMessage = smallLoading.querySelector('.message');
+
+        let getBgColors = null;
+        let getTextColors = null;
+
+        if(isAiColor){
+            let bgColorsFileds = myHtml.querySelectorAll('.py__ai-bg-color');
+            let colorsFileds = myHtml.querySelectorAll('.py__ai-color');
+            alertMessage.textContent = `Generating New Colors ${bgColorsFileds.length + colorsFileds.length}`;
+            let colorPropmt = `using a json format show me 5 color ${colorDescPromp || "difference"} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
+            let getColorsParse = await createTextAi(colorPropmt);
+            let getColors = JSON.parse(getColorsParse);
+            getBgColors = [];
+            getTextColors = [];
+            if(getColors?.backgrounds){
+              for(let i=0; i<getColors.backgrounds.length; i++){
+                let aiColorItem = getColors.backgrounds[i];
+                getBgColors.push(aiColorItem.backgroundHex || aiColorItem.background);
+                getTextColors.push(aiColorItem.textHex || aiColorItem.text);
+              }
+            }
+            getBgColors.reverse();
+
+            for(let i=0; i<5; i++){
+              let bgColorFiled = bgColorsFileds[i]; 
+              let colorFiled = colorsFileds[i];
+              bgColorFiled.value = getBgColors[i];
+              colorFiled.value = getTextColors[i];
+              let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
+              let wrapColor = colorFiled.closest('.py__label-for-color');
+              wrapBgColor.style.backgroundColor = getBgColors[i];
+              wrapColor.style.backgroundColor = getTextColors[i];
+              alertCount.textContent = (i + 1) * 2;
+              console.log(bgColorFiled.value, "BACKGROUND COLOR");
+            }
+        };
+
+        document.querySelector('.py__remix-content').innerHTML = myHtml.querySelector('body').innerHTML;
+        await saveSettingsValues();
+        await setColorToSettings();
+        await viewIframe();
+
+
         let allTextFileds = document.querySelectorAll('.py__ai-text');
         alertMessage.textContent = `Generating New Texts ${allTextFileds.length}`;
         let countText = allTextFileds.length / 3;
@@ -3348,14 +3395,16 @@
 
   };
 
-  // const pickTheme = (e) => {
-  //   if(!e) return;
-  //   let activePick = document.querySelector('.py__button-pick.active');
-  //   if(activePick) activePick.classList.remove('active');
-  //   let pickTarget = e.target;
-  //   let remixUrl = pickTarget.getAttribute('data-url');
-  //   pickTarget.classList.add('active');
-  // };
+  const pickTheme = async (event) => {
+    if(!event) return;
+    let url = event.target.getAttribute('data-href');
+    if(!url) return;
+    let response = await fetch(url);
+    let data = await response.text();
+    let parser = new DOMParser();
+    let html = parser.parseFromString(data, "text/html");
+    await randomFun(false, html);
+  };
   
   //---------------------------------------
   // COMPONENTS FUN

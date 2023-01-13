@@ -52,6 +52,8 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+
+
 /* POST Theme Settings and Sections. */
 router.post("/:id", async (req, res, next) => {
   const { id } = req.params;
