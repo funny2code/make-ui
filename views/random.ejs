@@ -83,51 +83,81 @@
                     <% }) %>
                 <% } %>
 
+                <div class="py__random-settings-popup">
+                    <div class="py__random-settings-popup-content">
+                        <div class="py__random-settings-popup-header">
+                            <h2 class="py__random-settings-popup-heading">All Settings</h2>
+                            <button type="button" class="py__random-settings-popup-close-btn">Close</button>
+                        </div>
+                        <% let staticTopSections = [];
+                            staticTopSections.push(settings?.sections['announcement-bar']); 
+                            staticTopSections.push(settings?.sections['header']);
+                        %>
+                        <% staticTopSections?.forEach((staticSectionItem,index)=>{ %>
+                            <% let sectionSchemaItem = sectionsSchema.filter(sectionItem => sectionItem?.file_name === staticSectionItem?.type) %>
+                            <h2><%=sectionSchemaItem[0].name%></h2>
+                            <div class="py__random-section-item py__closest">
+                                <%- include('./make/random-settings', {
+                                    orderItem: false,
+                                    sectionItem: staticSectionItem,
+                                    sectionSchemaItem: sectionSchemaItem
+                                }) %>
+                            </div>
+                        <% }) %>
 
-                <% let staticTopSections = [];
-                    staticTopSections.push(settings?.sections['announcement-bar']); 
-                    staticTopSections.push(settings?.sections['header']);
-                %>
-                <% staticTopSections?.forEach((staticSectionItem,index)=>{ %>
-                    <% let sectionSchemaItem = sectionsSchema.filter(sectionItem => sectionItem?.file_name === staticSectionItem?.type) %>
-                    <h2><%=sectionSchemaItem[0].name%></h2>
-                    <div class="py__random-section-item py__closest">
-                        <%- include('./make/random-settings', {
-                            orderItem: false,
-                            sectionItem: staticSectionItem,
-                            sectionSchemaItem: sectionSchemaItem
-                        }) %>
-                    </div>
-                <% }) %>
+                        <% if(sections && sectionsSchema){ %>
+                            <% sections?.order?.forEach((orderItem,index)=>{ %>
+                                <% let sectionItem = sections?.sections[orderItem] %>
+                                <% let sectionSchemaItem = sectionsSchema?.filter(sectionSchemaItem => sectionSchemaItem.file_name === sectionItem.type) %>
+                                <% if(sectionItem?.settings || sectionItem?.block_order?.length){ %>
+                                <h2><%=sectionSchemaItem[0].name%></h2>
+                                <div class="py__random-section-item py__closest">
+                                    <%- include('./make/random-settings', {
+                                        orderItem: orderItem,
+                                        sectionItem: sectionItem,
+                                        sectionSchemaItem: sectionSchemaItem
+                                    }) %>
+                                </div>
+                                <% } %>
+                            <% }) %>
+                        <% } %>
 
-                <% if(sections && sectionsSchema){ %>
-                    <% sections?.order?.forEach((orderItem,index)=>{ %>
-                        <% let sectionItem = sections?.sections[orderItem] %>
-                        <% let sectionSchemaItem = sectionsSchema?.filter(sectionSchemaItem => sectionSchemaItem.file_name === sectionItem.type) %>
-                        <% if(sectionItem?.settings || sectionItem?.block_order?.length){ %>
-                        <h2><%=sectionSchemaItem[0].name%></h2>
+                        <% let sectionFooter = settings?.sections['footer'] %>
+                        <% let sectionSchemaFooter = sectionsSchema.filter(sectionItem => sectionItem?.file_name === sectionFooter?.type) %>
+                        <h2><%=sectionSchemaFooter[0].name%></h2>
                         <div class="py__random-section-item py__closest">
                             <%- include('./make/random-settings', {
-                                orderItem: orderItem,
-                                sectionItem: sectionItem,
-                                sectionSchemaItem: sectionSchemaItem
+                                orderItem: false,
+                                sectionItem: sectionFooter,
+                                sectionSchemaItem: sectionSchemaFooter
                             }) %>
                         </div>
-                        <% } %>
-                    <% }) %>
-                <% } %>
-
-                <% let sectionFooter = settings?.sections['footer'] %>
-                <% let sectionSchemaFooter = sectionsSchema.filter(sectionItem => sectionItem?.file_name === sectionFooter?.type) %>
-                <h2><%=sectionSchemaFooter[0].name%></h2>
-                <div class="py__random-section-item py__closest">
-                    <%- include('./make/random-settings', {
-                        orderItem: false,
-                        sectionItem: sectionFooter,
-                        sectionSchemaItem: sectionSchemaFooter
-                    }) %>
+                    </div>
                 </div>
             </form>
+        </div>
+        <div class="py__random-bottom-bar-wrap">
+            <div class="py__random-bottom-bar-items">
+                <div class="py__random-bottom-bar-item py__random-bottom-bar-left-item">
+                    <button type="button" class="py__button py__button-blue py__button-random">
+                        <span class="py__button-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="19" viewBox="0 0 22 19" fill="none">
+                            <path d="M15.8867 0.5L21.1367 5L15.8867 9.5L21.1367 14L15.8867 18.5V15.5H13.1467L10.3267 12.68L12.4467 10.56L14.3867 12.5H15.8867V9.5V6.5H14.3867L5.38672 15.5H0.886719V12.5H4.14672L13.1467 3.5H15.8867V0.5ZM0.886719 3.5H5.38672L8.20672 6.32L6.08672 8.44L4.14672 6.5H0.886719V3.5Z" fill="white"/>
+                            </svg>
+                        </span>
+                        <span class="py__button-label">Remix Style</span>
+                    </button>
+                    <div class="py__checkbox-wrapper">
+                        <input type="checkbox" name="other_themes" id="other_themes"/>
+                        <label for="other_themes">Show me other themes</label>
+                    </div>
+                </div>
+                <div class="py__random-bottom-bar-item">
+                    <a href="#" class="py__button py__button-blue py__show-settings">
+                        Show Settings
+                    </a>
+                </div>
+            </div>
         </div>
         <script src="https://js.stripe.com/v3/"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js" integrity="sha512-zInFF17qBFVvvvFpIfeBzo7Tj7+rQxLeTJDmbxjBz5/zIr89YVbTNelNhdTT+/DCrxoVzBeUPVFJsczKbB7sew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

@@ -14,11 +14,9 @@
     <script type="module">
         window.addEventListener('message', (event) => {
             const { type, value } = event.data;
-            console.log(event, type, value);
-  
-          if (type === 'html') {
-            document.body.innerHTML = value;
-          }
+            if (type === 'html') {
+                document.body.innerHTML = value;
+            }
         })
     </script>
     <% if(settings.enable_global_anim){ %>

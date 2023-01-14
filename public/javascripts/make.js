@@ -2655,8 +2655,7 @@
   let allThemesID = [
     "6306f8e7db2cbec8c440f780",
     "632a6f7db34039b04f77d3b1",
-    "62fe8c9ba58276071f183cb8",
-    "636ee0f492c75efd85c472a3"
+    "62fe8c9ba58276071f183cb8"
   ];
   
     const HSLToRGB = (h, s, l) => {
@@ -2766,8 +2765,6 @@
       getBgColors = generateBackgroundColors();
       getTextColors = generateTextColors(getBgColors[2]);
     }
-
-    console.log(getBgColors, getTextColors, "CHECK DAV");
     // alertMessage.textContent = `Generating New Colors ${getBgColors.length + getTextColors.length}`;
     // let index = 0;
 
@@ -3038,16 +3035,14 @@
     }
   };
 
-  const randomFun = async (event=false, html=false) => {
-    if (event) event.preventDefault();
+  const randomFun = async (event=false) => {
 
+    if (event) event.preventDefault();
     smallLoading?.classList.add("active");
-    let myHtml = html || document;
 
     // await generateRandomColors();
     
     // await setColorToSettings();
-    console.log(localStorage.getItem("busName"));
     // fontsCount++;
     // if (fontsCount >= fonts.length) fontsCount = 0;
     // if (remixCount >= imageBanner[allThemesID[currentThemeKey]]?.length) {
@@ -3066,44 +3061,43 @@
         let alertMessage = smallLoading.querySelector('.message');
 
         let getBgColors = null;
-        let getTextColors = null;
+        // let getTextColors = null;
 
         if(isAiColor){
-            let bgColorsFileds = myHtml.querySelectorAll('.py__ai-bg-color');
-            let colorsFileds = myHtml.querySelectorAll('.py__ai-color');
+            let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
+            let colorsFileds = document.querySelectorAll('.py__ai-color');
             alertMessage.textContent = `Generating New Colors ${bgColorsFileds.length + colorsFileds.length}`;
             let colorPropmt = `using a json format show me 5 color ${colorDescPromp || "difference"} palette as hex codes called backgrounds. for each background hex code assign a text color hex code that has a 7:1 WCAG contrast ratio against the backgrounds.`
             let getColorsParse = await createTextAi(colorPropmt);
             let getColors = JSON.parse(getColorsParse);
             getBgColors = [];
-            getTextColors = [];
+            // getTextColors = [];
             if(getColors?.backgrounds){
               for(let i=0; i<getColors.backgrounds.length; i++){
                 let aiColorItem = getColors.backgrounds[i];
                 getBgColors.push(aiColorItem.backgroundHex || aiColorItem.background);
-                getTextColors.push(aiColorItem.textHex || aiColorItem.text);
+                // getTextColors.push(aiColorItem.textHex || aiColorItem.text);
               }
             }
             getBgColors.reverse();
 
             for(let i=0; i<5; i++){
               let bgColorFiled = bgColorsFileds[i]; 
-              let colorFiled = colorsFileds[i];
+              // let colorFiled = colorsFileds[i];
               bgColorFiled.value = getBgColors[i];
-              colorFiled.value = getTextColors[i];
+              // colorFiled.value = getTextColors[i];
               let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
-              let wrapColor = colorFiled.closest('.py__label-for-color');
+              // let wrapColor = colorFiled.closest('.py__label-for-color');
               wrapBgColor.style.backgroundColor = getBgColors[i];
-              wrapColor.style.backgroundColor = getTextColors[i];
+              // wrapColor.style.backgroundColor = getTextColors[i];
               alertCount.textContent = (i + 1) * 2;
-              console.log(bgColorFiled.value, "BACKGROUND COLOR");
             }
         };
-
-        document.querySelector('.py__remix-content').innerHTML = myHtml.querySelector('body').innerHTML;
         await saveSettingsValues();
         await setColorToSettings();
         await viewIframe();
+        let remixSettingsEl = document.querySelector('.py__remix-content');
+        remixSettingsEl?.classList?.add('active');
 
 
         let allTextFileds = document.querySelectorAll('.py__ai-text');
@@ -3135,11 +3129,11 @@
               alertCount.textContent = alertCountIndex;
               alertCountIndex++;
               aiTextI++;
-              await saveSettingsValues();
-              await viewIframe(true);
             }
           }
         }
+        await saveSettingsValues();
+        await viewIframe(true);
         
 
         if(isAiLogo){
@@ -3395,15 +3389,32 @@
 
   };
 
-  const pickTheme = async (event) => {
+  let currentUrl = null;
+  let currentKey = null;
+  const pickTheme = async (event, randomBtn=false) => {
     if(!event) return;
-    let url = event.target.getAttribute('data-href');
-    if(!url) return;
+    let url = null;
+    let remixContent = document.querySelector('.py__remix-content');
+    if(!randomBtn){
+      url = event.target.getAttribute('data-href');
+      currentUrl = event.target.getAttribute('data-id');
+      document.querySelector('.py__themes').classList.remove('active');
+      document.querySelector('.py__next-header').style.display = "none";
+    } else {
+      if(currentKey === null) currentKey = allThemesID.indexOf(currentUrl);
+      currentKey = currentKey + 1;
+      url = (currentKey > (allThemesID.length - 1)) 
+      ? `/remix/${allThemesID[0]}?page=index`
+      : `/remix/${allThemesID[currentKey]}?page=index`;
+    }
+    if(!url || !remixContent) return;
     let response = await fetch(url);
     let data = await response.text();
     let parser = new DOMParser();
     let html = parser.parseFromString(data, "text/html");
-    await randomFun(false, html);
+    let randomSettingsEl = html.querySelector('body');
+    remixContent.innerHTML = randomSettingsEl.innerHTML;
+    await randomFun(false);
   };
   
   //---------------------------------------
@@ -3660,7 +3671,7 @@
     if (e && e.target.classList.contains("py__download-button"))
       return download(e);
     if (e && e.target.classList.contains("py__button-random"))
-      return randomFun(e);
+      return pickTheme(e, true);
     if (e && e.target.classList.contains("py__remix-section-styles-btn"))
       return randomSectionFun(e);
     if (e && e.target.classList.contains("py__button-bussines"))

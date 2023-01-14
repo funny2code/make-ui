@@ -1635,3 +1635,47 @@ tr:nth-child(even) {
   width: 40px;
   height: 40px;
 }
+.py__remix-content {
+  display: none;
+}
+.py__remix-content.active {
+  display: block;
+}
+.py__random-bottom-bar-wrap {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 14px 24px;
+  background: #FFFFFF;
+  border-top: 1px solid #000000;
+  z-index: 1;
+}
+.py__random-bottom-bar-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.py__random-bottom-bar-item {
+  flex: 1 0 0;
+}
+.py__random-bottom-bar-left-item {
+  display: flex;
+  align-items: center;
+}
+.py__random-settings-popup {
+  display: block;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  max-width: 785px;
+  transform: translateX(100%);
+  transition: all .2s ease;
+  background-color: #FFFFFF;
+  padding: 30px;
+}
+.py__random-settings-popup.active {
+  transform: translateX(0);
+}
