@@ -26,6 +26,7 @@ const signupRouter = require("./routes/signup");
 const addThemeRouter = require("./routes/addtheme");
 const figmaRouter = require("./routes/figma");
 const openAiRouter = require("./routes/openAi");
+const savePrompts = require("./routes/prompts");
 
 const app = express();
 
@@ -53,9 +54,9 @@ app.use("/", indexRouter);
 app.use("/themes", themesRouter);
 app.use("/remix", randomRouter);
 app.use("/remix-editor", randomEditor);
-app.use("/remix", async (req, res) => {
-  res.redirect("/remix/6306f8e7db2cbec8c440f780?page=index");
-});
+// app.use("/remix", async (req, res) => {
+//   res.redirect("/remix/6306f8e7db2cbec8c440f780?page=index");
+// });
 app.use("/remixview", randomViewRouter);
 app.use("/users", userThemesRouter);
 app.use("/view", viewRouter);
@@ -72,6 +73,7 @@ app.use("/download", downloadRouter);
 app.use("/add", addThemeRouter);
 app.use("/figma", figmaRouter);
 app.use("/openai", openAiRouter);
+app.use("/prompts", savePrompts);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

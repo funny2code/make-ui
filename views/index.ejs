@@ -22,6 +22,15 @@
         <span class="py__step-icon">></span>
         <span data-index="3" class="py__steps-item">3. Pick a theme</span>
       </div>
+      <% if(!user){ %>
+        <a href="/login" class="py__button py__button-white py__login-button">
+          Log In
+        </a>
+      <% } else { %>
+        <a href="/logout" class="py__button py__button-white py__logout-button">
+          Log Out
+        </a>
+      <% }  %>
     </div>
     <div class="py__step-bussines py__remix-popup active" data-id="1">
       <div class="py__remix-popup__content">
@@ -83,6 +92,39 @@
               </div>
           </div>
       </div>
+      <% if(user?.isAdmin){ %>
+        <div class="py__remix-prompt-fileds">
+          <form action="/prompts" method="post" class="py__remix-prompt-form">
+            <% if(prompts?._id){ %>
+              <input type="hidden" name="_id" value="<%=prompts._id%>">
+            <% } %> 
+            <div class="py__remix-prompt-fileds-item">
+              <label for="text_prompt">Text Prompt</label>
+              <textarea id="text_prompt" name="text_prompt"><%=prompts.text_prompt%></textarea>
+            </div>
+            <div class="py__remix-prompt-fileds-item">
+              <label for="logo_prompt">Logo Prompt</label>
+              <textarea id="logo_prompt" name="logo_prompt"><%=prompts.logo_prompt%></textarea>
+            </div>
+            <div class="py__remix-prompt-fileds-item">
+              <label for="image_prompt">Image Prompt</label>
+              <textarea id="image_prompt" name="image_prompt"><%=prompts.image_prompt%></textarea>
+            </div>
+            <div class="py__remix-prompt-fileds-item">
+              <label for="color_prompt">Color Prompt</label>
+              <textarea id="color_prompt" name="color_prompt"><%=prompts.color_prompt%></textarea>
+            </div>
+            <div class="py__remix-prompt-btn-wrap">
+              <button type="submit" class="py__button py__button-blue py__button-prompt-save">Save</button>
+            </div>
+          </form>
+        </div>
+      <% } else { %>
+          <input type="hidden" name="text_prompt" value="<%=prompts.text_prompt%>">
+          <input type="hidden" name="logo_prompt" value="<%=prompts.logo_prompt%>">
+          <input type="hidden" name="image_prompt" value="<%=prompts.image_prompt%>">
+          <input type="hidden" name="color_prompt" value="<%=prompts.color_prompt%>">
+      <% } %>
     </div>
     <% if(usersThemes?.length){ %>
       <div class="py__user-themes">
