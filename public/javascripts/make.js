@@ -1394,6 +1394,7 @@
   let logoPrompt = null;
   let imagePrompt = null;
   let colorPrompt = null;
+  let imageModel = "dalle";
 
   const clearTheme = () => {
     theme = {
@@ -2901,6 +2902,32 @@
     return parseRes.image;
   };
 
+  const createImageAiStabled = async (prompt) => {
+    let req = await fetch('https://stablediffusionapi.com/api/v3/text2img', {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "key": "2ryv9Kf1RulA46aG70jgGUH625bYhilWv8eIn0kDc1xYvXXcdT0Mb3wI8v0L",
+        "prompt": prompt,
+        "negative_prompt": "((out of frame)), ((extra fingers)), mutated hands, ((poorly drawn hands)), ((poorly drawn face)), (((mutation))), (((deformed))), (((tiling))), ((naked)), ((tile)), ((fleshpile)), ((ugly)), (((abstract))), blurry, ((bad anatomy)), ((bad proportions)), ((extra limbs)), cloned face, (((skinny))), glitchy, ((extra breasts)), ((double torso)), ((extra arms)), ((extra hands)), ((mangled fingers)), ((missing breasts)), (missing lips), ((ugly face)), ((fat)), ((extra legs)), anime",
+        "width": "512",
+        "height": "512",
+        "samples": "1",
+        "num_inference_steps": "20",
+        "seed": null,
+        "guidance_scale": 7.5,
+        "webhook": null,
+        "track_id": null
+      })
+    });
+    let res = await req.json();
+    console.log(res, "CHECK DAV JAN");
+    return res.output;
+  };
+
   const createTextAi = async (propmt) => {
     let req = await fetch('/openai', {
       method: "POST",
@@ -3033,185 +3060,6 @@
   //   }
   // };
 
-  let getNewlogo = null;
-  const randomFun = async (event=false, alertMessage, alertCount) => {
-
-    if (event) event.preventDefault();
-    smallLoading?.classList.add("active");
-
-    // await generateRandomColors();
-    
-    // await setColorToSettings();
-    // fontsCount++;
-    // if (fontsCount >= fonts.length) fontsCount = 0;
-    // if (remixCount >= imageBanner[allThemesID[currentThemeKey]]?.length) {
-    //   remixCount = 0;
-    //   clearTheme();
-    //   currentThemeKey++;
-    //   if (currentThemeKey >= allThemesID?.length) currentThemeKey = 0;
-    //   let remixUrl =
-    //     "/remix/" + allThemesID[currentThemeKey] + location?.search;
-    //   await getSettingsLists(false, remixUrl);
-    // } else {
-      try {
-        
-        // console.log("Save Started");
-        // let saveSetting = await saveSettingsValues();
-        // console.log(saveSetting, "Save finished");
-        // await setColorToSettings();
-        // console.log("View Iframe Started");
-        // await viewIframe(true);
-        // console.log("View Iframe DONE");
-        if(isAiLogo){
-          alertMessage.textContent = `Generating New Logo and Colors`;
-          alertCount.style.display = "none";
-          let logoFiled = document.querySelector('.py__ai-logo');
-          if(logoFiled){
-            logoFiled.value = getNewlogo;
-            await setColorToSettings();
-            await saveSettingsValues();
-            await viewIframe(true);
-          }
-        }
-
-        let allTextFileds = document.querySelectorAll('.py__ai-text');
-        alertMessage.textContent = `Generating New Texts ${allTextFileds.length}`;
-        let countText = allTextFileds.length / 3;
-        let textIndex1 = 0;
-        let textIndex2 = 0;
-        let alertCountIndex = 1;
-        alertCount.style.display = "flex";
-        alertCount.textContent = alertCountIndex;
-        for(let j=1; j<=parseInt(countText); j++){
-          let textLenght = j * 3;  
-          let allText = "";
-          for(textIndex1; textIndex1<textLenght; textIndex1++){
-            let textFiled = allTextFileds[textIndex1];
-            if(textFiled?.value?.trim() !== ""){
-              allText += textFiled.value + " | "; 
-            }
-          }
-          if(allText.trim() !== ""){
-            let newTextPrompt = textPrompt.replace("[prodTypePromp]", prodTypePromp).replace("${texts}", allText);
-            let getNewText = await createTextAi(newTextPrompt);
-            let parseText = JSON.parse(getNewText);
-            let aiTextI = 0;
-            for(textIndex2; textIndex2<textLenght; textIndex2++){
-              let textValue = (parseText.items[aiTextI]) ? parseText.items[aiTextI].value : parseText.items.value;
-              let textFiled = allTextFileds[textIndex2];
-              if(textFiled?.value?.trim() !== "" && textValue !== undefined){
-                textFiled.value = textValue;
-              }
-              alertCount.textContent = alertCountIndex;
-              alertCountIndex++;
-              aiTextI++;
-            }
-          }
-        }
-        await saveSettingsValues();
-        await viewIframe(true);
-        
-
-        if(isAiImage){
-          let imagesFiled = document.querySelectorAll('.py__ai-image');
-          alertMessage.textContent = `Generating New Images ${imagesFiled.length}`;
-          alertCount.style.display = "flex";
-          for(let i=0; i<imagesFiled.length; i++){
-            let imageFiled = imagesFiled[i];
-            // let imageAlt = imageFiled.getAttribute('alt');
-            let getNewImage = await createImageAi(imagePrompt.replace("[prodTypePromp]", prodTypePromp));
-            imageFiled.value = getNewImage;
-            alertCount.textContent = i;
-            await saveSettingsValues();
-            await viewIframe(true);
-          };
-        }
-  
-        return smallLoading?.classList.remove("active");
-
-        // let imageBannerSections = document.querySelectorAll(
-        //   '[data-section-handle="image-banner"]'
-        // );
-        // if (imageBannerSections?.length) {
-        //   imageBannerSections?.forEach((imageBannerSection) => {
-        //     let imageBannerSectionId =
-        //       imageBannerSection?.getAttribute("data-section-id");
-        //     let imageBannerContent = imageBannerSection?.closest(".py__closest");
-        //     let imageBannerBlocks = imageBannerContent?.querySelectorAll(
-        //       ".py__settings-block-item"
-        //     );
-
-        //     if (
-        //       imageBanner[allThemesID[currentThemeKey]]?.length &&
-        //       imageBanner[allThemesID[currentThemeKey]][remixCount][
-        //         imageBannerSectionId
-        //       ]
-        //     ) {
-        //       let fileds = imageBannerSection.querySelectorAll("[name]");
-        //       if (fileds?.length) {
-        //         for (let i = 0; i < fileds.length; i++) {
-        //           let filed = fileds[i];
-        //           let filedName = filed.getAttribute("name");
-        //           if (
-        //             typeof imageBanner[allThemesID[currentThemeKey]][remixCount][
-        //               imageBannerSectionId
-        //             ].settings[filedName] !== "undefined"
-        //           )
-        //             filed.value =
-        //               imageBanner[allThemesID[currentThemeKey]][remixCount][
-        //                 imageBannerSectionId
-        //               ].settings[filedName];
-        //         }
-        //       }
-        //       if (imageBannerBlocks?.length) {
-        //         for (let i = 0; i < imageBannerBlocks.length; i++) {
-        //           let block = imageBannerBlocks[i];
-        //           let blockId = block.getAttribute("data-block-id");
-        //           let findAllFileds = block.querySelectorAll("[name]");
-        //           if (findAllFileds?.length) {
-        //             for (let j = 0; j < findAllFileds.length; j++) {
-        //               let filed = findAllFileds[j];
-        //               let filedName = filed
-        //                 .getAttribute("name")
-        //                 .replace("block_", "");
-        //               if (
-        //                 imageBanner[allThemesID[currentThemeKey]][remixCount][
-        //                   imageBannerSectionId
-        //                 ]?.blocks &&
-        //                 imageBanner[allThemesID[currentThemeKey]][remixCount][
-        //                   imageBannerSectionId
-        //                 ]?.blocks[blockId] &&
-        //                 typeof imageBanner[allThemesID[currentThemeKey]][
-        //                   remixCount
-        //                 ][imageBannerSectionId]?.blocks[blockId].settings[
-        //                   filedName
-        //                 ] !== "undefined"
-        //               )
-        //                 filed.value =
-        //                   imageBanner[allThemesID[currentThemeKey]][remixCount][
-        //                     imageBannerSectionId
-        //                   ]?.blocks[blockId].settings[filedName];
-        //             }
-        //           }
-        //         }
-        //       }
-        //     }
-        //   });
-        // }
-
-        // remixCount++;
-
-        // await saveSettingsValues();
-        // await viewIframe(true);
-      } catch(err){
-        console.log(err, "ERROR");
-        await saveSettingsValues();
-        await viewIframe(true);
-      }
-
-    // }
-  };
-
 
   // Remix Section Styles Function
   const randomSectionFun = async (event) => {
@@ -3317,6 +3165,7 @@
   };
 
   let getcolors = null;
+  let getNewlogo = null;
   const nextStep = async (e) => {
     
     if(!e) return;
@@ -3335,11 +3184,10 @@
       let thislogoPrompt = document.querySelector('[name="logo_prompt"]')?.value;
       let thisimagePrompt = document.querySelector('[name="image_prompt"]')?.value;
       let thiscolorPrompt = document.querySelector('[name="color_prompt"]')?.value;
+      let thisImageModel = document.querySelector('[name="image_model"]')?.value;
 
       if(thisbusName?.trim() === "" || thisprodType?.trim() === "" || thiscolorDesc?.trim() === "") 
       return alert("Please add empty input fileds!");
-
-      console.log(thistextPrompt, thislogoPrompt, thisimagePrompt, thiscolorPrompt);
 
       let useAiColor = document.querySelector('[name="use_ai_color"]:checked')?.value;
       let useAiImage = document.querySelector('[name="use_ai_image"]:checked')?.value;
@@ -3357,6 +3205,7 @@
       logoPrompt = thislogoPrompt;
       imagePrompt = thisimagePrompt;
       colorPrompt = thiscolorPrompt;
+      imageModel = thisImageModel;
 
       prevStepContent.classList.remove('active');
       nextStepContent.classList.add('active');
@@ -3364,12 +3213,60 @@
       let newColorPropmt = colorPrompt?.replace("[colorDescPromp]", colorDescPromp);
       let getColorsParse = await createTextAi(newColorPropmt);
       getcolors = JSON.parse(getColorsParse);
+
       let logoPropmt = logoPrompt.replace("[prodTypePromp]", prodTypePromp).replace("[busNamePromp]", busNamePromp);
       getNewlogo = await createImageAi(logoPropmt);
 
-    };
+      let getBgColors = null;
+      let getTextColors = null;
+      // let alertCount = smallLoading.querySelector('.count');
+      // let alertMessage = smallLoading.querySelector('.message');
+      
+      if(isAiColor){
+        let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
+        let colorsFileds = document.querySelectorAll('.py__ai-color');
+        // alertMessage.textContent = `Generating New Logo and Colors`;
+        getBgColors = [];
+        getTextColors = [];
+        if(getcolors?.backgrounds){
+          for(let i=0; i<getcolors.backgrounds.length; i++){
+            let aiColorItem = getcolors.backgrounds[i];
+            getBgColors.push(aiColorItem.backgroundHex || aiColorItem.background);
+            getTextColors.push(aiColorItem.textHex || aiColorItem.text);
+          }
+        }
+        getBgColors.reverse();
+        
+        for(let i=0; i<5; i++){
+          let bgColorFiled = bgColorsFileds[i]; 
+          let colorFiled = colorsFileds[i];
+          let bgColorName = bgColorFiled.getAttribute('name');
+          let colorName = colorFiled.getAttribute('name');
+          bgColorFiled.value = getBgColors[i];
+          bgColorFiled.setAttribute("value", getBgColors[i]);
+          bgColors[bgColorName.replace('py_bg_color_', '')] = getBgColors[i];
+          colorFiled.value = getTextColors[i];
+          colorFiled.setAttribute("value", getTextColors[i]);
+          textColors[colorName.replace('py_color_', '')] = getTextColors[i];
+          let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
+          let wrapColor = colorFiled.closest('.py__label-for-color');
+          wrapBgColor.style.backgroundColor = getBgColors[i];
+          wrapColor.style.backgroundColor = getTextColors[i];
+          // alertCount.textContent = (i + 1) * 2;
+        }
+      };
 
-    
+      if(isAiLogo){
+        let logoFiled = document.querySelector('.py__ai-logo');
+        if(logoFiled && getNewlogo){
+          logoFiled.value = getNewlogo;
+          await setColorToSettings();
+          await saveSettingsValues();
+          await viewIframe();
+        }
+      };
+
+    };
 
   };
 
@@ -3400,43 +3297,6 @@
     let alertCount = smallLoading.querySelector('.count');
     let alertMessage = smallLoading.querySelector('.message');
     
-    let getBgColors = null;
-    let getTextColors = null;
-    
-    if(isAiColor){
-      let bgColorsFileds = randomSettingsEl.querySelectorAll('.py__ai-bg-color');
-      let colorsFileds = randomSettingsEl.querySelectorAll('.py__ai-color');
-      alertMessage.textContent = `Generating New Colors ${bgColorsFileds.length + colorsFileds.length}`;
-      getBgColors = [];
-      getTextColors = [];
-      if(getcolors?.backgrounds){
-        for(let i=0; i<getcolors.backgrounds.length; i++){
-          let aiColorItem = getcolors.backgrounds[i];
-          getBgColors.push(aiColorItem.backgroundHex || aiColorItem.background);
-          getTextColors.push(aiColorItem.textHex || aiColorItem.text);
-        }
-      }
-      getBgColors.reverse();
-      
-      for(let i=0; i<5; i++){
-        let bgColorFiled = bgColorsFileds[i]; 
-        let colorFiled = colorsFileds[i];
-        let bgColorName = bgColorFiled.getAttribute('name');
-        let colorName = colorFiled.getAttribute('name');
-        bgColorFiled.value = getBgColors[i];
-        bgColorFiled.setAttribute("value", getBgColors[i]);
-        bgColors[bgColorName.replace('py_bg_color_', '')] = getBgColors[i];
-        colorFiled.value = getTextColors[i];
-        colorFiled.setAttribute("value", getTextColors[i]);
-        textColors[colorName.replace('py_color_', '')] = getTextColors[i];
-        let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
-        let wrapColor = colorFiled.closest('.py__label-for-color');
-        wrapBgColor.style.backgroundColor = getBgColors[i];
-        wrapColor.style.backgroundColor = getTextColors[i];
-        alertCount.textContent = (i + 1) * 2;
-      }
-    };
-    
     remixContent.innerHTML = randomSettingsEl.innerHTML;
     document.querySelector('.py__themes').classList.remove('active');
     document.querySelector('.py__next-header').style.display = "none";
@@ -3444,6 +3304,178 @@
     loading?.classList.remove("py__animate");
     await randomFun(false, alertMessage, alertCount);
   };
+
+  const randomFun = async (event=false, alertMessage, alertCount) => {
+
+    if (event) event.preventDefault();
+    smallLoading?.classList.add("active");
+
+    // await generateRandomColors();
+    
+    // await setColorToSettings();
+    // fontsCount++;
+    // if (fontsCount >= fonts.length) fontsCount = 0;
+    // if (remixCount >= imageBanner[allThemesID[currentThemeKey]]?.length) {
+    //   remixCount = 0;
+    //   clearTheme();
+    //   currentThemeKey++;
+    //   if (currentThemeKey >= allThemesID?.length) currentThemeKey = 0;
+    //   let remixUrl =
+    //     "/remix/" + allThemesID[currentThemeKey] + location?.search;
+    //   await getSettingsLists(false, remixUrl);
+    // } else {
+      try {
+        
+        // console.log("Save Started");
+        // let saveSetting = await saveSettingsValues();
+        // console.log(saveSetting, "Save finished");
+        // await setColorToSettings();
+        // console.log("View Iframe Started");
+        // await viewIframe(true);
+        // console.log("View Iframe DONE");
+
+        
+
+        let allTextFileds = document.querySelectorAll('.py__ai-text');
+        alertMessage.textContent = `Generating New Texts ${allTextFileds.length}`;
+        let countText = allTextFileds.length / 3;
+        let textIndex1 = 0;
+        let textIndex2 = 0;
+        let alertCountIndex = 1;
+        alertCount.style.display = "flex";
+        alertCount.textContent = alertCountIndex;
+        for(let j=1; j<=parseInt(countText); j++){
+          let textLenght = j * 3;  
+          let allText = "";
+          for(textIndex1; textIndex1<textLenght; textIndex1++){
+            let textFiled = allTextFileds[textIndex1];
+            if(textFiled?.value?.trim() !== ""){
+              allText += textFiled.value + " | "; 
+            }
+          }
+          if(allText.trim() !== ""){
+            let newTextPrompt = textPrompt.replace("[prodTypePromp]", prodTypePromp).replace("${texts}", allText);
+            let getNewText = await createTextAi(newTextPrompt);
+            let parseText = JSON.parse(getNewText);
+            let aiTextI = 0;
+            for(textIndex2; textIndex2<textLenght; textIndex2++){
+              let textValue = (parseText.items[aiTextI]) ? parseText.items[aiTextI].value : parseText.items.value;
+              let textFiled = allTextFileds[textIndex2];
+              if(textFiled?.value?.trim() !== "" && textValue !== undefined){
+                textFiled.value = textValue;
+              }
+              alertCount.textContent = alertCountIndex;
+              alertCountIndex++;
+              aiTextI++;
+            }
+          }
+        }
+        await saveSettingsValues();
+        await viewIframe(true);
+        
+
+        if(isAiImage){
+          let imagesFiled = document.querySelectorAll('.py__ai-image');
+          alertMessage.textContent = `Generating New Images ${imagesFiled.length}`;
+          alertCount.style.display = "flex";
+          for(let i=0; i<imagesFiled.length; i++){
+            let imageFiled = imagesFiled[i];
+            // let imageAlt = imageFiled.getAttribute('alt');
+            let getNewImage = (imageModel === "dalle") 
+            ? await createImageAi(imagePrompt.replace("[prodTypePromp]", prodTypePromp))
+            : await createImageAiStabled(imagePrompt.replace("[prodTypePromp]", prodTypePromp));
+            imageFiled.value = getNewImage;
+            alertCount.textContent = i;
+            await saveSettingsValues();
+            await viewIframe(true);
+          };
+        }
+  
+        return smallLoading?.classList.remove("active");
+
+        // let imageBannerSections = document.querySelectorAll(
+        //   '[data-section-handle="image-banner"]'
+        // );
+        // if (imageBannerSections?.length) {
+        //   imageBannerSections?.forEach((imageBannerSection) => {
+        //     let imageBannerSectionId =
+        //       imageBannerSection?.getAttribute("data-section-id");
+        //     let imageBannerContent = imageBannerSection?.closest(".py__closest");
+        //     let imageBannerBlocks = imageBannerContent?.querySelectorAll(
+        //       ".py__settings-block-item"
+        //     );
+
+        //     if (
+        //       imageBanner[allThemesID[currentThemeKey]]?.length &&
+        //       imageBanner[allThemesID[currentThemeKey]][remixCount][
+        //         imageBannerSectionId
+        //       ]
+        //     ) {
+        //       let fileds = imageBannerSection.querySelectorAll("[name]");
+        //       if (fileds?.length) {
+        //         for (let i = 0; i < fileds.length; i++) {
+        //           let filed = fileds[i];
+        //           let filedName = filed.getAttribute("name");
+        //           if (
+        //             typeof imageBanner[allThemesID[currentThemeKey]][remixCount][
+        //               imageBannerSectionId
+        //             ].settings[filedName] !== "undefined"
+        //           )
+        //             filed.value =
+        //               imageBanner[allThemesID[currentThemeKey]][remixCount][
+        //                 imageBannerSectionId
+        //               ].settings[filedName];
+        //         }
+        //       }
+        //       if (imageBannerBlocks?.length) {
+        //         for (let i = 0; i < imageBannerBlocks.length; i++) {
+        //           let block = imageBannerBlocks[i];
+        //           let blockId = block.getAttribute("data-block-id");
+        //           let findAllFileds = block.querySelectorAll("[name]");
+        //           if (findAllFileds?.length) {
+        //             for (let j = 0; j < findAllFileds.length; j++) {
+        //               let filed = findAllFileds[j];
+        //               let filedName = filed
+        //                 .getAttribute("name")
+        //                 .replace("block_", "");
+        //               if (
+        //                 imageBanner[allThemesID[currentThemeKey]][remixCount][
+        //                   imageBannerSectionId
+        //                 ]?.blocks &&
+        //                 imageBanner[allThemesID[currentThemeKey]][remixCount][
+        //                   imageBannerSectionId
+        //                 ]?.blocks[blockId] &&
+        //                 typeof imageBanner[allThemesID[currentThemeKey]][
+        //                   remixCount
+        //                 ][imageBannerSectionId]?.blocks[blockId].settings[
+        //                   filedName
+        //                 ] !== "undefined"
+        //               )
+        //                 filed.value =
+        //                   imageBanner[allThemesID[currentThemeKey]][remixCount][
+        //                     imageBannerSectionId
+        //                   ]?.blocks[blockId].settings[filedName];
+        //             }
+        //           }
+        //         }
+        //       }
+        //     }
+        //   });
+        // }
+
+        // remixCount++;
+
+        // await saveSettingsValues();
+        // await viewIframe(true);
+      } catch(err){
+        console.log(err, "ERROR");
+        await saveSettingsValues();
+        await viewIframe(true);
+      }
+
+    // }
+  };
+
 
   const savePrompts = async (event) => {
     if (!event) return;
@@ -3457,7 +3489,6 @@
     let body = JSON.stringify(ObjectFormData);
     let savePropmtRequest = await fetch(url, { ...fetchConfig(), body });
     let savePromptData = await savePropmtRequest.json();
-    console.log(body, savePromptData, "check Dav");
     return loading?.classList.remove("py__animate");
   };
   
