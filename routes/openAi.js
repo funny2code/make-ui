@@ -5,7 +5,9 @@ const router = express.Router();
 const axios = require('axios');
 const cheerio = require('cheerio');
 const path = require('path');
+const OpenAIController = require("../controllers/OpenAIController");
 
+const openAIController = new OpenAIController();
 
 const validURL = async (str) => {
     var pattern = new RegExp('^(https?:\\/\\/)?'+ 
@@ -96,5 +98,7 @@ router.post("/", async (req, res, next) => {
     }
 
 });
+
+router.post("/create-website", (...arg) => openAIController.createWebsite(...arg));
 
 module.exports = router;
