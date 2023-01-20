@@ -132,9 +132,20 @@ class OpenAIService {
         presence_penalty: 0.0,
       });
 
-      return response;
+      return {
+        status: response.status,
+        data: {
+          result: response.data.choices[0].text,
+        },
+      };
     }
-    return null;
+
+    return {
+      status: 500,
+      data: {
+        result: "SERVER ERROR",
+      },
+    };
   }
 }
 

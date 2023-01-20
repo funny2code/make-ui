@@ -27,9 +27,9 @@ class OpenAIController {
       const response = await this.openaiService.createWebsite(req.body);
 
       const statusCode = response.status;
-      const result = response.data.choices[0].text;
+      const result = response.data;
 
-      return res.status(statusCode).json({ result });
+      return res.status(statusCode).json(result);
     } catch (err) {
       return res
         .status(err.response?.status || 500)
