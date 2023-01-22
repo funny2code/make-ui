@@ -50,7 +50,7 @@
                   <% var spaced_image = true %>
                 <% } %>
                 <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--<%= section.settings.image_width %>-width<% if(section.settings.image_width !== 'full' || spaced_image){ %> multicolumn-card-spacing<% } %>">
-                  <div class="media media--transparent media--<%= section.settings.image_ratio %>"
+                  <div id="<%="image1_" + orderItem%>" class="media media--transparent media--<%= section.settings.image_ratio %>"
                     <% if(section.settings.image_ratio === 'adapt' &&  block?.settings?.image){ %>
                       style="padding-bottom: <%= 1 / highest_ratio * 100 %>%;"
                     <% } %>
@@ -65,7 +65,7 @@
                       sizes="(min-width: 800px) <% if(section?.block_order?.length <= 2){ %>710px<% } else { %>550px<% } %>,
                         (min-width: 750px) <% if(section?.block_order?.length === 1){ %>710px<% } else { %>550px<% } %>,
                         calc(100vw - 30px)"
-                      alt="<%= block?.settings?.title %>"
+                      alt="multicolumn"
                       height="<%= block?.settings?.image?.height %>"
                       width="<%= block?.settings?.image?.width %>"
                       

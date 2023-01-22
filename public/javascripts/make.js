@@ -1366,6 +1366,8 @@
   let downloadButton = null;
   let loading = null;
   let smallLoading = null;
+  let alertCount = null;
+  let alertMessage = null;
   let themeName = "ThemeMake";
   let textColors = {
     "dark": null,
@@ -1385,6 +1387,7 @@
   let isAiLogo = null;
   let isAiColor = null;
   let isAiImage = null;
+  let aiApiKey = null; 
 
   let busNamePromp = null;
   let prodTypePromp = null;
@@ -2726,8 +2729,6 @@
       return colors;
     };
 
-    let alertMessage = smallLoading.querySelector('.message');
-    let alertCount = smallLoading.querySelector('.count');
     // let inputFileds = document.querySelectorAll('[type="color"]');
     let getBgColors = null;
     let getTextColors = null;
@@ -2888,45 +2889,46 @@
     }
   };
 
-  const createImageAi = async (prompt) => {
+  const createImageAi = async (model, prompt) => {
+    console.log(model, "MODEL");
     let req = await fetch('/openai', {
       method: "POST",
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({image: prompt}),
+      body: JSON.stringify({api_key: aiApiKey, model: model, image: prompt}),
     });
     let res = await req.text();
     let parseRes = JSON.parse(res);
     return parseRes.image;
   };
 
-  const createImageAiStabled = async (prompt) => {
-    let req = await fetch('https://stablediffusionapi.com/api/v3/text2img', {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "key": "2ryv9Kf1RulA46aG70jgGUH625bYhilWv8eIn0kDc1xYvXXcdT0Mb3wI8v0L",
-        "prompt": prompt,
-        "negative_prompt": "((out of frame)), ((extra fingers)), mutated hands, ((poorly drawn hands)), ((poorly drawn face)), (((mutation))), (((deformed))), (((tiling))), ((naked)), ((tile)), ((fleshpile)), ((ugly)), (((abstract))), blurry, ((bad anatomy)), ((bad proportions)), ((extra limbs)), cloned face, (((skinny))), glitchy, ((extra breasts)), ((double torso)), ((extra arms)), ((extra hands)), ((mangled fingers)), ((missing breasts)), (missing lips), ((ugly face)), ((fat)), ((extra legs)), anime",
-        "width": "512",
-        "height": "512",
-        "samples": "1",
-        "num_inference_steps": "20",
-        "seed": null,
-        "guidance_scale": 7.5,
-        "webhook": null,
-        "track_id": null
-      })
-    });
-    let res = await req.json();
-    console.log(res, "CHECK DAV JAN");
-    return res.output;
-  };
+  // const createImageAiStabled = async (prompt) => {
+  //   let req = await fetch('https://stablediffusionapi.com/api/v3/text2img', {
+  //     method: "POST",
+  //     headers: {
+  //       "Accept": "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       "key": "2ryv9Kf1RulA46aG70jgGUH625bYhilWv8eIn0kDc1xYvXXcdT0Mb3wI8v0L",
+  //       "prompt": prompt,
+  //       "negative_prompt": "((out of frame)), ((extra fingers)), mutated hands, ((poorly drawn hands)), ((poorly drawn face)), (((mutation))), (((deformed))), (((tiling))), ((naked)), ((tile)), ((fleshpile)), ((ugly)), (((abstract))), blurry, ((bad anatomy)), ((bad proportions)), ((extra limbs)), cloned face, (((skinny))), glitchy, ((extra breasts)), ((double torso)), ((extra arms)), ((extra hands)), ((mangled fingers)), ((missing breasts)), (missing lips), ((ugly face)), ((fat)), ((extra legs)), anime",
+  //       "width": "512",
+  //       "height": "512",
+  //       "samples": "1",
+  //       "num_inference_steps": "20",
+  //       "seed": null,
+  //       "guidance_scale": 7.5,
+  //       "webhook": null,
+  //       "track_id": null
+  //     })
+  //   });
+  //   let res = await req.json();
+  //   console.log(res, "CHECK DAV JAN");
+  //   return res.output;
+  // };
 
   const createTextAi = async (propmt) => {
     let req = await fetch('/openai', {
@@ -2935,7 +2937,7 @@
         "Accept": "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({message: propmt}),
+      body: JSON.stringify({message: propmt, api_key: aiApiKey}),
     });
     let res = await req.text();
     let parseRes = JSON.parse(res);
@@ -2945,8 +2947,6 @@
   // const bussinesName = async (event) => {
   //   if(!event) return;
   //   let aiPopup = document.querySelector('.py__remix-popup');
-  //   let alertCount = smallLoading.querySelector('.count');
-  //   let alertMessage = smallLoading.querySelector('.message');
   //   aiPopup?.classList.remove('active');
 
   //   try {
@@ -3179,19 +3179,21 @@
       let thisbusName = document.querySelector('[name="bussines_name"]')?.value;
       let thisprodType = document.querySelector('[name="type_product"]')?.value;
       let thiscolorDesc = document.querySelector('[name="color_desc"]')?.value;
+      let thisApiKey = document.querySelector('[name="api_key"]')?.value;
 
       let thistextPrompt = document.querySelector('[name="text_prompt"]')?.value;
       let thislogoPrompt = document.querySelector('[name="logo_prompt"]')?.value;
       let thisimagePrompt = document.querySelector('[name="image_prompt"]')?.value;
       let thiscolorPrompt = document.querySelector('[name="color_prompt"]')?.value;
-      let thisImageModel = document.querySelector('[name="image_model"]')?.value;
+      // let thisImageModel = document.querySelector('[name="image_model"]')?.value;
 
-      if(thisbusName?.trim() === "" || thisprodType?.trim() === "" || thiscolorDesc?.trim() === "") 
+      if(thisbusName?.trim() === "" || thisprodType?.trim() === "" || thiscolorDesc?.trim() === "" || thisApiKey?.trim() === "") 
       return alert("Please add empty input fileds!");
 
       let useAiColor = document.querySelector('[name="use_ai_color"]:checked')?.value;
       let useAiImage = document.querySelector('[name="use_ai_image"]:checked')?.value;
       let useAiLogo = document.querySelector('[name="use_ai_logo"]:checked')?.value;
+      let useAiModel = document.querySelector('[name="image_model"]:checked')?.value;
 
       isAiColor = (useAiColor === "yes") ? true : false;
       isAiImage = (useAiImage === "yes") ? true : false;
@@ -3200,27 +3202,28 @@
       busNamePromp = thisbusName;
       prodTypePromp = thisprodType;
       colorDescPromp = thiscolorDesc;
+      aiApiKey = thisApiKey;
 
       textPrompt = thistextPrompt;
       logoPrompt = thislogoPrompt;
       imagePrompt = thisimagePrompt;
       colorPrompt = thiscolorPrompt;
-      imageModel = thisImageModel;
+      imageModel = useAiModel;
 
       prevStepContent.classList.remove('active');
       nextStepContent.classList.add('active');
 
       let newColorPropmt = colorPrompt?.replace("[colorDescPromp]", colorDescPromp);
       let getColorsParse = await createTextAi(newColorPropmt);
+      if(getColorsParse === "Unauthorized") alertMessage.textContent = getColorsParse;
+      if(getColorsParse === "Unauthorized") return smallLoading.classList.add('active');
       getcolors = JSON.parse(getColorsParse);
 
       let logoPropmt = logoPrompt.replace("[prodTypePromp]", prodTypePromp).replace("[busNamePromp]", busNamePromp);
-      getNewlogo = await createImageAi(logoPropmt);
+      getNewlogo = await createImageAi("dalle", logoPropmt);
 
       let getBgColors = null;
       let getTextColors = null;
-      // let alertCount = smallLoading.querySelector('.count');
-      // let alertMessage = smallLoading.querySelector('.message');
       
       if(isAiColor){
         let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
@@ -3294,18 +3297,16 @@
     let html = parser.parseFromString(data, "text/html");
     let randomSettingsEl = html.querySelector('body');
     // AI GET NEW TEXTS FOR THEME
-    let alertCount = smallLoading.querySelector('.count');
-    let alertMessage = smallLoading.querySelector('.message');
     
     remixContent.innerHTML = randomSettingsEl.innerHTML;
     document.querySelector('.py__themes').classList.remove('active');
     document.querySelector('.py__next-header').style.display = "none";
     remixContent?.classList?.add('active');
     loading?.classList.remove("py__animate");
-    await randomFun(false, alertMessage, alertCount);
+    await randomFun(false);
   };
 
-  const randomFun = async (event=false, alertMessage, alertCount) => {
+  const randomFun = async (event=false) => {
 
     if (event) event.preventDefault();
     smallLoading?.classList.add("active");
@@ -3373,6 +3374,7 @@
         await saveSettingsValues();
         await viewIframe(true);
         
+        let iframes = document.querySelectorAll('.py__view-iframe');
 
         if(isAiImage){
           let imagesFiled = document.querySelectorAll('.py__ai-image');
@@ -3380,14 +3382,32 @@
           alertCount.style.display = "flex";
           for(let i=0; i<imagesFiled.length; i++){
             let imageFiled = imagesFiled[i];
-            // let imageAlt = imageFiled.getAttribute('alt');
-            let getNewImage = (imageModel === "dalle") 
-            ? await createImageAi(imagePrompt.replace("[prodTypePromp]", prodTypePromp))
-            : await createImageAiStabled(imagePrompt.replace("[prodTypePromp]", prodTypePromp));
+            let imageId = imageFiled.getAttribute("data-id");
+            let imageAlt = null;
+            for (let i = 0; i < iframes.length; i++) {
+              let iframeItem = iframes[i];
+              let iframeItemContent = iframeItem.contentDocument || iframeItem.contentWindow.document;
+              let imageWrapper = iframeItemContent.querySelector(`#${imageId}`);
+              if(imageWrapper) imageWrapper.insertAdjacentHTML('beforeend', '<div class="py__image-ai-loading"><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div></div>');
+              let imageItem = imageWrapper?.querySelector('img');
+              imageAlt = imageItem?.getAttribute('alt');
+            }
+            let newImagePrompt =  (imageAlt) 
+            ? imagePrompt.replace("[prodTypePromp]", prodTypePromp).replace("[altText]", imageAlt)
+            : imagePrompt.replace("[prodTypePromp]", prodTypePromp);
+            let getNewImage = await createImageAi(imageModel, newImagePrompt)
             imageFiled.value = getNewImage;
             alertCount.textContent = i;
-            await saveSettingsValues();
-            await viewIframe(true);
+            for (let i = 0; i < iframes.length; i++) {
+              let iframeItem = iframes[i];
+              let iframeItemContent = iframeItem.contentDocument || iframeItem.contentWindow.document;
+              let imageWrapper = iframeItemContent?.querySelector(`#${imageId}`);
+              if(imageWrapper) imageWrapper.querySelector('.py__image-ai-loading').remove();
+              let imageItem = imageWrapper?.querySelector('img');
+              imageItem?.setAttribute('src', getNewImage);
+            }
+            // await saveSettingsValues();
+            // await viewIframe(true);
           };
         }
   
@@ -3774,6 +3794,8 @@
 
     loading = document.querySelector(".py__loading-wrap");
     smallLoading = document.querySelector(".py__loading-small");
+    alertCount = smallLoading.querySelector('.count');
+    alertMessage = smallLoading.querySelector('.message');
     saveButton = document.querySelector(".py__save-button");
     downloadButton = document.querySelector(".py__download-button");
     themeName =

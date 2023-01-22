@@ -30,9 +30,10 @@ router.get("/", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
 
 
-    const {message, image, openaiModel} = req.body;
+    const {message, image, openaiModel, model, api_key} = req.body;
+    if(!api_key) return res.status(200).json({status: 304, message: "PLEASE USE YOUR AI API KEY"});
     const configuration = new Configuration({
-        apiKey: process.env.OPENAI_API_KEY,
+        apiKey: api_key,
     });
 
     try {
@@ -71,7 +72,7 @@ router.post("/", async (req, res, next) => {
             if(!image) return res.status(response.status).json({result: response.data.choices[0].text});
             
             //Create new worker
-            const worker = new Worker(path.join(__dirname, "./worker.js"), {workerData: {image: image}});
+            const worker = new Worker(path.join(__dirname, "./worker.js"), {workerData: {api_key: api_key, model: model, image: image}});
 
             //Listen for a message from worker
             worker.once("message", result => {

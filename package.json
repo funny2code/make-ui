@@ -26,6 +26,8 @@
     "openai": "^3.1.0",
     "pageres": "^6.3.1",
     "remotely": "^3.0.0",
+    "replicate-js": "github:nicholascelestin/replicate-js",
+    "request": "^2.88.2",
     "stripe": "^8.212.0"
   },
   "devDependencies": {

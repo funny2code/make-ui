@@ -1,0 +1,52 @@
+{
+  "sections": {
+    "main": {
+      "type": "blog",
+      "settings": {
+        "show_image": true,
+        "py_section_bg_color": "bg-c-light",
+        "py_section_color": "",
+        "page_width": "width-un",
+        "page_x_mg": "mg-x-n",
+        "page_y_mg": "mg-y-l",
+        "page_x_pd": "pd-x-un",
+        "page_y_pd": "pd-y-m",
+        "image_ratio": "adapt",
+        "item_space": 40,
+        "card_radius": 12,
+        "card_bg_color": "bg-c-average",
+        "info_align": "left"
+      },
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "show_date": true,
+            "show_author": false,
+            "card_color_title": "var(--py-color-light)",
+            "title_font_size": 28,
+            "title_font_weight": 500,
+            "title_m_font_size": 18
+          }
+        },
+        "link": {
+          "type": "link",
+          "settings": {
+            "view_btn_size": "medium",
+            "card_color_view_btn": "light",
+            "card_bg_color_view_btn": "middle-dark",
+            "card_color_view_btn_hover": "light",
+            "card_bg_color_view_btn_hover": "middle-dark"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "link"
+      ]
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
