@@ -3355,7 +3355,7 @@
             }
           }
           if(allText.trim() !== ""){
-            let newTextPrompt = textPrompt.replace("[prodTypePromp]", prodTypePromp).replace("${texts}", allText);
+            let newTextPrompt = textPrompt.replace("[prodTypePromp]", prodTypePromp).replace("[texts]", allText);
             let getNewText = await createTextAi(newTextPrompt);
             let parseText = JSON.parse(getNewText);
             let aiTextI = 0;
@@ -3394,7 +3394,7 @@
             }
             let newImagePrompt =  (imageAlt) 
             ? imagePrompt.replace("[prodTypePromp]", prodTypePromp).replace("[altText]", imageAlt)
-            : imagePrompt.replace("[prodTypePromp]", prodTypePromp);
+            : imagePrompt.replace("[prodTypePromp]", prodTypePromp).replace("[altText]", busNamePromp);
             let getNewImage = await createImageAi(imageModel, newImagePrompt)
             imageFiled.value = getNewImage;
             alertCount.textContent = i;
