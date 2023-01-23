@@ -122,7 +122,19 @@ class OpenAIService {
   }
 
   async createWebsite(request) {
-    const { message, openaiModel } = request;
+    const { message, openaiModel, api_key } = request;
+
+    if (!api_key) {
+      return {
+        status: 200,
+        data: { status: 304, message: "PLEASE USE YOUR AI API KEY" },
+      };
+    }
+
+    this.configuration = new Configuration({
+      apiKey: api_key,
+    });
+    this.openai = new OpenAIApi(this.configuration);
 
     if (this.openai) {
       const templatePrompt = `make me an array object for a figma artboard that represents \${prompt}. make sure each object in the array represents a design element, such as a "FRAME", "RECTANGLE", or "TEXT" component,  and each object has properties that describe the design element,  such as its type, size, position, and styling.  The objects can also have child elements,  which would be nested inside the parent element,  and these child elements can also have their own properties and child elements, creating a tree structure that represents the entire design. `;
