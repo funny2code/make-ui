@@ -20,15 +20,16 @@ class OpenAIService {
   configuration = null;
   openai = null;
 
-  constructor() {
-    this.configuration = new Configuration({
-      apiKey: process.env.OPENAI_API_KEY,
-    });
-    this.openai = new OpenAIApi(this.configuration);
-  }
+  constructor() {}
 
   async copyWebsite(request) {
-    const { message, image, openaiModel } = request;
+    const { message, image, openaiModel, model, api_key } = request;
+    if (!api_key) {
+      return {
+        status: 200,
+        data: { status: 304, message: "PLEASE USE YOUR AI API KEY" },
+      };
+    }
 
     const isValidUrl = await validURL(message);
 
@@ -62,7 +63,12 @@ class OpenAIService {
           result: $.html(),
         },
       };
-    } else if (this.openai) {
+    } else {
+      this.configuration = new Configuration({
+        apiKey: api_key,
+      });
+      this.openai = new OpenAIApi(this.configuration);
+
       const response = await this.openai.createCompletion({
         model: openaiModel || "text-davinci-003",
         prompt: message,
@@ -84,7 +90,7 @@ class OpenAIService {
 
       //Create new worker
       const worker = new Worker(path.join(__dirname, "./worker.js"), {
-        workerData: { image: image },
+        workerData: { api_key: api_key, model: model, image: image },
       });
 
       //Listen for a message from worker
