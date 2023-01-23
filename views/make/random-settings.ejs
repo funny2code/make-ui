@@ -7,6 +7,7 @@
     "marquee text": true,
     "section title": true
   }; 
+  let imageCount = 1
 %>
 
 <% if(sectionItem?.settings){ %>
@@ -24,7 +25,8 @@
             <% } else if((item.type === "text" || item.type === "textarea" || item.type === "richtext") && aiChangeAllTextJson[item?.label?.trim()?.toLowerCase()]){ %>
                 <input type="hidden" name="<%=item.id%>" class="py__ai-text" value="<%=sectionItem?.settings[item.id]%>"/>
             <% } else if(item.id && item.type === "image_picker"){ %>
-                <input type="hidden" class="<%= (item.id === "logo") ? "py__ai-logo" : "py__ai-image" %>" name="<%=item.id%>" value="<%=sectionItem?.settings[item.id]%>">
+                <input type="hidden" data-id="<%= "image" + imageCount + "_" + orderItem %>" class="<%= (item.id === "logo") ? "py__ai-logo" : "py__ai-image" %>" name="<%=item.id%>" value="<%=sectionItem?.settings[item.id]%>">
+                <% imageCount++ %>
             <% } else if(item.id){ %>
                 <input type="hidden" name="<%=item.id%>" value="<%=sectionItem?.settings[item.id]%>"/>
             <% } %>
@@ -35,6 +37,7 @@
     <% sectionItem?.block_order?.forEach((blockOrder,index)=>{ %>
         <% let blockItem = sectionItem?.blocks[blockOrder] %>
         <% let schemaBlockItem = sectionSchemaItem[0]?.blocks?.filter(block => block?.type === blockItem?.type) %>
+        <% let blockImageCount = 1 %>
         <% if(schemaBlockItem[0]?.settings){ %>
             <div class="py__random-block-wrap py__settings-block-item" data-block-type="<%=blockItem?.type%>" data-block-id="<%=blockOrder%>">
                 <% schemaBlockItem[0].settings.forEach((item,index)=>{ %>
@@ -50,7 +53,8 @@
                     <% } else if((item.type === "text" || item.type === "textarea" || item.type === "richtext") && aiChangeAllTextJson[item?.label?.trim()?.toLowerCase()]){ %>
                         <input type="hidden" name="<%=item.id%>" class="py__ai-text" value="<%=blockItem?.settings[item.id]%>"/>
                     <% } else if(item.id && item.type === "image_picker"){ %>
-                        <input type="hidden" class="<%= (item.id === "logo") ? "py__ai-logo" : "py__ai-image" %>" name="<%=item.id%>" value="<%=blockItem?.settings[item.id]%>">
+                        <input type="hidden" data-id="<%= "image" + blockImageCount + "_" + blockOrder %>" class="<%= (item.id === "logo") ? "py__ai-logo" : "py__ai-image" %>" name="<%=item.id%>" value="<%=blockItem?.settings[item.id]%>">
+                        <% blockImageCount++ %>
                     <% } else if(item.id){ %>
                         <input type="hidden" name="block_<%=item.id%>" value="<%=blockItem?.settings[item.id]%>"/>
                     <% } %>

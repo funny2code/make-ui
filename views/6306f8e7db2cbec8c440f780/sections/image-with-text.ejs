@@ -26,7 +26,7 @@
   <div class="<% if(section.settings.full_width){ %>image-with-text--full-width<% } else { %>page-width<% } %> page-width-<%=settings.section_style%>">
     <div class="image-with-text__grid img_style-<%=section.settings.img_style%>  <% if(section.settings.layout === 'text_first'){ %> image-with-text__grid--reverse<% } %> grid grid--gapless grid--1-col grid--2-col-tablet">
       <div class="grid__item img-wrap">
-        <div class="image-with-text__media <% if(section.settings.image){ %>media<% } else { %>image-with-text__media--placeholder placeholder<% } %>">
+        <div id="<%="image1_" + sectionid%>" class="image-with-text__media <% if(section.settings.image){ %>media<% } else { %>image-with-text__media--placeholder placeholder<% } %>">
           <% if(section.settings.image){ %>
             <img srcset="<% if(section.settings.image.width >= 165){ %><%= section.settings.image %> 165w,<% } %>
               <% if(section.settings.image.width >= 360){ %><%= section.settings.image %> 360w,<% } %>
@@ -36,8 +36,7 @@
               <% if(section.settings.image.width >= 1070){ %><%= section.settings.image %> 1070w<% } %>"
               src="<%= section.settings.image %>"
               sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
-              alt="<%= section.settings.image.alt %>"
-              
+              alt="image with text"
               width="<%= section.settings.image.width %>"
               height="<%= section.settings.image.height %>" 
             />

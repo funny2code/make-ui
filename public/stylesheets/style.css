@@ -1704,10 +1704,7 @@ tr:nth-child(even) {
 .py__remix-prompt-fileds-item {
   flex: 1 0 calc(50% - 20px);
 }
-.py__remix-prompt-fileds .py__radio-wrap {
-  padding: 0;
-}
-.py__remix-prompt-fileds .radio-list label {
+.py__radio-openai-api .radio-list label {
   width: auto;
   padding: 20px;
 }
