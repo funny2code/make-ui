@@ -5,6 +5,9 @@ const router = express.Router();
 const axios = require('axios');
 const cheerio = require('cheerio');
 const path = require('path');
+const OpenAIController = require("../controllers/OpenAIController");
+
+const openAIController = new OpenAIController();
 
 
 const validURL = async (str) => {
@@ -81,8 +84,7 @@ router.post("/", async (req, res, next) => {
             });
 
             worker.on("error", error => {
-                console.log(error, "WHAT IS ERROR");
-                
+                console.log(error, "ERROR");
                 return res.status(500).json({result: "INTERNAL SERVER ERROR"});
             });
 
@@ -98,5 +100,9 @@ router.post("/", async (req, res, next) => {
     }
 
 });
+
+router.post("/create-website", (...arg) =>
+  openAIController.createWebsite(...arg)
+);
 
 module.exports = router;
