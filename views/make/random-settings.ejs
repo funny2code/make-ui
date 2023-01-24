@@ -9,7 +9,6 @@
   }; 
   let imageCount = 1
 %>
-
 <% if(sectionItem?.settings){ %>
     <div class="py__random-section-content py__settings-section-item" data-section-handle="<%=sectionItem.type%>" <% if(orderItem){ %>data-section-id="<%=orderItem%>"<% } %> data-template-name="<%=sectionSchemaItem[0].template_name%>">
         <% sectionSchemaItem[0]?.settings?.forEach((item,index)=>{ %>
@@ -52,7 +51,7 @@
                         </div>
                     <% } else if((item.type === "text" || item.type === "textarea" || item.type === "richtext") && aiChangeAllTextJson[item?.label?.trim()?.toLowerCase()]){ %>
                         <input type="hidden" name="<%=item.id%>" class="py__ai-text" value="<%=blockItem?.settings[item.id]%>"/>
-                    <% } else if(item.id && item.type === "image_picker"){ %>
+                    <% } else if(item.id && item.type === "image_picker" && blockItem?.type !== "mega_menu"){ %>
                         <input type="hidden" data-id="<%= "image" + blockImageCount + "_" + blockOrder %>" class="<%= (item.id === "logo") ? "py__ai-logo" : "py__ai-image" %>" name="<%=item.id%>" value="<%=blockItem?.settings[item.id]%>">
                         <% blockImageCount++ %>
                     <% } else if(item.id){ %>
