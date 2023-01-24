@@ -82,6 +82,7 @@ router.post("/", async (req, res, next) => {
 
             worker.on("error", error => {
                 console.log(error, "WHAT IS ERROR");
+                
                 return res.status(500).json({result: "INTERNAL SERVER ERROR"});
             });
 
