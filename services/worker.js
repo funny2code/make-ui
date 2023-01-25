@@ -31,7 +31,6 @@ const request = require('request');
                 })
             }, (error, response, body) => {
                 let myResBody = JSON.parse(body);
-                console.log(myResBody, myResBody?.urls, myResBody?.urls?.get, "DAV STUGI");
                 setTimeout(()=>{
                     request.get({
                         headers: {

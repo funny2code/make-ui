@@ -36,7 +36,6 @@ class OpenAIService {
         resolve({
           status: 200,
           data: {
-            result: response.data.choices[0].text,
             image: result,
           },
         });
@@ -102,32 +101,33 @@ class OpenAIService {
         };
       }
 
-      const configuration = new Configuration({
-        apiKey: api_key,
-      });
-      const openai = new OpenAIApi(configuration);
+      if(message){
+        const configuration = new Configuration({
+          apiKey: api_key,
+        });
+        const openai = new OpenAIApi(configuration);
 
-      const response = await openai.createCompletion({
-        model: openaiModel || "text-davinci-003",
-        prompt: message,
-        temperature: 0.1,
-        max_tokens: 2048,
-        top_p: 1.0,
-        frequency_penalty: 0.0,
-        presence_penalty: 0.0,
-      });
+        const response = await openai.createCompletion({
+          model: openaiModel || "text-davinci-003",
+          prompt: message,
+          temperature: 0.1,
+          max_tokens: 2048,
+          top_p: 1.0,
+          frequency_penalty: 0.0,
+          presence_penalty: 0.0,
+        });
 
-      if (!image) {
         return {
           status: response.status,
           data: {
             result: response.data.choices[0].text,
           },
         };
+
       }
 
-      console.log('****** before createWorkerThread ', request, response.status, response.data.choices[0].text);
-      const workerResponse = await this.createWorkerThread(request, response);
+      // console.log('****** before createWorkerThread ', request, response?.status, response?.data?.choices[0]?.text);
+      const workerResponse = await this.createWorkerThread(request);
       return workerResponse;
     }
   }

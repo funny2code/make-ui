@@ -3291,6 +3291,8 @@
     remixContent?.classList?.add('active');
     loading?.classList.remove("py__animate");
     if(isAiLogo){
+      alertMessage.textContent = `Generating Logo`;
+      alertCount.style.display = "none";
       let logoPropmt = logoPrompt.replace("[prodTypePromp]", prodTypePromp).replace("[busNamePromp]", busNamePromp);
       let getNewlogo = await createImageAi("dalle", logoPropmt);
       let logoFiled = document.querySelector('.py__ai-logo');
