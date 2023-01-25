@@ -43,11 +43,10 @@ class OpenAIService {
       });
 
       worker.on("error", (error) => {
-        console.log(error, "check error worker");
         resolve({
-          status: 500,
+          status: error.status || 500,
           data: {
-            result: "INTERNAL SERVER ERROR",
+            result: error.message || "WORKER ERROR",
           },
         });
       });
@@ -98,7 +97,7 @@ class OpenAIService {
     } else {
       if (!api_key) {
         return {
-          status: 200,
+          status: 304,
           data: { status: 304, message: "PLEASE USE YOUR AI API KEY" },
         };
       }
@@ -138,7 +137,7 @@ class OpenAIService {
 
     if (!api_key) {
       return {
-        status: 200,
+        status: 304,
         data: { status: 304, message: "PLEASE USE YOUR AI API KEY" },
       };
     }

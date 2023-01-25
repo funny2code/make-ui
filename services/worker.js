@@ -48,6 +48,6 @@ const request = require('request');
             });
         }
     } catch(err){
-        console.log(err, "DAV");
+        console.log(err, "WORKER.JS ERROR");
     }
 })();

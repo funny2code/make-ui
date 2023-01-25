@@ -3339,14 +3339,14 @@
 
         let allTextFileds = document.querySelectorAll('.py__ai-text');
         alertMessage.textContent = `Generating New Texts ${allTextFileds.length}`;
-        let countText = allTextFileds.length / 3;
+        let countText = allTextFileds.length / 4;
         let textIndex1 = 0;
         let textIndex2 = 0;
         let alertCountIndex = 1;
         alertCount.style.display = "flex";
         alertCount.textContent = alertCountIndex;
         for(let j=1; j<=parseInt(countText); j++){
-          let textLenght = j * 3;  
+          let textLenght = j * 4;  
           let allText = "";
           for(textIndex1; textIndex1<textLenght; textIndex1++){
             let textFiled = allTextFileds[textIndex1];
