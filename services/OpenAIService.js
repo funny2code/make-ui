@@ -20,9 +20,10 @@ const validURL = async (str) => {
 class OpenAIService {
   constructor() {}
 
-  async createWorkerThread() {
+  async createWorkerThread(request, response) {
     return new Promise((resolve) => {
       const { image, model, api_key } = request;
+      console.log('***** createWorkerThread ', request);
 
       //Create new worker
       const worker = new Worker(path.join(__dirname, "./worker.js"), {
@@ -59,7 +60,7 @@ class OpenAIService {
   }
 
   async copyWebsite(request) {
-    const { message, image, openaiModel, model, api_key } = request;
+    const { message, image, openaiModel, api_key } = request;
     const isValidUrl = await validURL(message);
 
     if (isValidUrl) {
@@ -124,7 +125,7 @@ class OpenAIService {
         };
       }
 
-      const workerResponse = await createWorkerThread(request);
+      const workerResponse = await this.createWorkerThread(request, response);
       return workerResponse;
     }
   }
