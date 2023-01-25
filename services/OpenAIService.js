@@ -63,6 +63,8 @@ class OpenAIService {
     const { message, image, openaiModel, api_key } = request;
     const isValidUrl = await validURL(message);
 
+    console.log('****** copyWebsite called ', request);
+
     if (isValidUrl) {
       const { data } = await axios.get(message);
       const $ = cheerio.load(data);
@@ -125,6 +127,7 @@ class OpenAIService {
         };
       }
 
+      console.log('****** before createWorkerThread ', request, response.status, response.data.choices[0].text);
       const workerResponse = await this.createWorkerThread(request, response);
       return workerResponse;
     }
