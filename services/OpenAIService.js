@@ -20,6 +20,44 @@ const validURL = async (str) => {
 class OpenAIService {
   constructor() {}
 
+  async createWorkerThread() {
+    return new Promise((resolve) => {
+      const { image, model, api_key } = request;
+
+      //Create new worker
+      const worker = new Worker(path.join(__dirname, "./worker.js"), {
+        workerData: { api_key: api_key, model: model, image: image },
+      });
+
+      //Listen for a message from worker
+      worker.once("message", (result) => {
+        console.log(`check ${result}`);
+        resolve({
+          status: 200,
+          data: {
+            result: response.data.choices[0].text,
+            image: result,
+          },
+        });
+      });
+
+      worker.on("error", (error) => {
+        console.log(error, "check error worker");
+        resolve({
+          status: 500,
+          data: {
+            result: "INTERNAL SERVER ERROR",
+          },
+        });
+      });
+
+      worker.on("exit", (exitCode) => {
+        console.log("exit", exitCode);
+        resolve();
+      });
+    });
+  }
+
   async copyWebsite(request) {
     const { message, image, openaiModel, model, api_key } = request;
     const isValidUrl = await validURL(message);
@@ -86,36 +124,8 @@ class OpenAIService {
         };
       }
 
-      //Create new worker
-      const worker = new Worker(path.join(__dirname, "./worker.js"), {
-        workerData: { api_key: api_key, model: model, image: image },
-      });
-
-      //Listen for a message from worker
-      worker.once("message", (result) => {
-        console.log(`check ${result}`);
-        return {
-          status: 200,
-          data: {
-            result: response.data.choices[0].text,
-            image: result,
-          },
-        };
-      });
-
-      worker.on("error", (error) => {
-        console.log(error, "check error worker");
-        return {
-          status: 500,
-          data: {
-            result: "INTERNAL SERVER ERROR",
-          },
-        };
-      });
-
-      worker.on("exit", (exitCode) => {
-        console.log("exit", exitCode);
-      });
+      const workerResponse = await createWorkerThread(request);
+      return workerResponse;
     }
   }
 
