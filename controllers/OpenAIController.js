@@ -16,6 +16,7 @@ class OpenAIController {
 
       return res.status(statusCode).json(result);
     } catch (err) {
+      console.log(err);
       return res
         .status(err.response?.status || 500)
         .json({ result: err.response?.statusText || "SERVER ERROR" });
