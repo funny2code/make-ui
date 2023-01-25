@@ -3165,7 +3165,7 @@
   };
 
   let getcolors = null;
-  let getNewlogo = null;
+  // let getNewlogo = null;
   const nextStep = async (e) => {
     
     if(!e) return;
@@ -3219,9 +3219,6 @@
       if(getColorsParse === "Unauthorized") return smallLoading.classList.add('active');
       getcolors = JSON.parse(getColorsParse);
 
-      let logoPropmt = logoPrompt.replace("[prodTypePromp]", prodTypePromp).replace("[busNamePromp]", busNamePromp);
-      getNewlogo = await createImageAi("dalle", logoPropmt);
-
       let getBgColors = null;
       let getTextColors = null;
       
@@ -3259,16 +3256,6 @@
         }
       };
 
-      if(isAiLogo){
-        let logoFiled = document.querySelector('.py__ai-logo');
-        if(logoFiled && getNewlogo){
-          logoFiled.value = getNewlogo;
-          await setColorToSettings();
-          await saveSettingsValues();
-          await viewIframe();
-        }
-      };
-
     };
 
   };
@@ -3303,7 +3290,18 @@
     document.querySelector('.py__next-header').style.display = "none";
     remixContent?.classList?.add('active');
     loading?.classList.remove("py__animate");
-    await randomFun(false);
+    if(isAiLogo){
+      let logoPropmt = logoPrompt.replace("[prodTypePromp]", prodTypePromp).replace("[busNamePromp]", busNamePromp);
+      let getNewlogo = await createImageAi("dalle", logoPropmt);
+      let logoFiled = document.querySelector('.py__ai-logo');
+      if(logoFiled && getNewlogo){
+        logoFiled.value = getNewlogo;
+        await setColorToSettings();
+        await saveSettingsValues();
+        await viewIframe();
+      }
+    };
+    randomFun(false);
   };
 
   const randomFun = async (event=false) => {
