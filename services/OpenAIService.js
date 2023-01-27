@@ -148,7 +148,7 @@ class OpenAIService {
     const openai = new OpenAIApi(configuration);
 
     if (openai) {
-      const templatePrompt = `make me an array object for a figma artboard that represents \${prompt}. make sure each object in the array represents a design element, such as a "FRAME", "RECTANGLE", or "TEXT" component,  and each object has properties that describe the design element,  such as its type, size, position, and styling.  The objects can also have child elements,  which would be nested inside the parent element,  and these child elements can also have their own properties and child elements, creating a tree structure that represents the entire design. `;
+      const templatePrompt = `make me an array object for a figma artboard that represents \${prompt}. make sure each object in the array represents a design element, such as a "FRAME", "RECTANGLE", or "TEXT" component,  and each object has properties that describe the design element,  such as its type, size, position, and styling.  The objects can also have child elements,  which would be nested inside the parent element,  and these child elements can also have their own properties and child elements, creating a tree structure that represents the entire design. be sure to use layoutMode for each element and also generate using ComponentProperty`;
       const prompt = templatePrompt.replace("${prompt}", message);
 
       const response = await openai.createCompletion({
