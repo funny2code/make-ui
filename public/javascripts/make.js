@@ -3384,7 +3384,7 @@
           alertMessage.textContent = `Generating Logo`;
           alertCount.style.display = "none";
           let logoPropmt = logoPrompt.replace("[prodTypePromp]", prodTypePromp).replace("[busNamePromp]", busNamePromp);
-          let getNewlogo = await createImageAi("dalle", logoPropmt);
+          let getNewlogo = await createImageAi(imageModel, logoPropmt);
           let logoFiled = document.querySelector('.py__ai-logo');
           if(logoFiled && getNewlogo){
             logoFiled.value = getNewlogo;
