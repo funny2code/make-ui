@@ -1,7 +1,7 @@
 const {parentPort, workerData} = require('node:worker_threads');
 const { Configuration, OpenAIApi } = require('openai');
 const configuration = new Configuration({
-    apiKey: workerData.api_key,
+    apiKey: workerData.dalle_api_key,
 });
 const openai = new OpenAIApi(configuration);
 const request = require('request');
@@ -19,7 +19,7 @@ const request = require('request');
         } else {
             request.post({
                 headers: {
-                    Authorization: 'Token ' + workerData.api_key,
+                    Authorization: 'Token ' + workerData.stable_api_key,
                     'Content-Type': 'application/json'
                 },
                 url: 'https://api.replicate.com/v1/predictions',
@@ -34,7 +34,7 @@ const request = require('request');
                 setTimeout(()=>{
                     request.get({
                         headers: {
-                            Authorization: 'Token ' + workerData.api_key,
+                            Authorization: 'Token ' + workerData.stable_api_key,
                             'Content-Type': 'application/json'
                         },
                         url: myResBody?.urls?.get

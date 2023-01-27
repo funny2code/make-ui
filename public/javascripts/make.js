@@ -1387,7 +1387,8 @@
   let isAiLogo = null;
   let isAiColor = null;
   let isAiImage = null;
-  let aiApiKey = null; 
+  let aiDalleApiKey = null; 
+  let aiStableApiKey = null; 
 
   let busNamePromp = null;
   let prodTypePromp = null;
@@ -2897,7 +2898,7 @@
         "Accept": "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({api_key: aiApiKey, model: model, image: prompt}),
+      body: JSON.stringify({dalle_api_key: aiDalleApiKey, stable_api_key: aiStableApiKey, model: model, image: prompt}),
     });
     let res = await req.text();
     let parseRes = JSON.parse(res);
@@ -2937,7 +2938,7 @@
         "Accept": "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({message: propmt, api_key: aiApiKey}),
+      body: JSON.stringify({dalle_api_key: aiDalleApiKey, message: propmt}),
     });
     let res = await req.text();
     let parseRes = JSON.parse(res);
@@ -3165,7 +3166,7 @@
   };
 
   let getcolors = null;
-  // let getNewlogo = null;
+  let getNewlogo = null;
   const nextStep = async (e) => {
     
     if(!e) return;
@@ -3179,7 +3180,8 @@
       let thisbusName = document.querySelector('[name="bussines_name"]')?.value;
       let thisprodType = document.querySelector('[name="type_product"]')?.value;
       let thiscolorDesc = document.querySelector('[name="color_desc"]')?.value;
-      let thisApiKey = document.querySelector('[name="api_key"]')?.value;
+      let thisDalleApiKey = document.querySelector('[name="dalle_api_key"]')?.value;
+      let thisStableApiKey = document.querySelector('[name="stable_api_key"]')?.value;
 
       let thistextPrompt = document.querySelector('[name="text_prompt"]')?.value;
       let thislogoPrompt = document.querySelector('[name="logo_prompt"]')?.value;
@@ -3187,7 +3189,7 @@
       let thiscolorPrompt = document.querySelector('[name="color_prompt"]')?.value;
       // let thisImageModel = document.querySelector('[name="image_model"]')?.value;
 
-      if(thisbusName?.trim() === "" || thisprodType?.trim() === "" || thiscolorDesc?.trim() === "" || thisApiKey?.trim() === "") 
+      if(thisbusName?.trim() === "" || thisprodType?.trim() === "" || thiscolorDesc?.trim() === "" || thisDalleApiKey?.trim() === "" || thisStableApiKey?.trim() === "") 
       return alert("Please add empty input fileds!");
 
       let useAiColor = document.querySelector('[name="use_ai_color"]:checked')?.value;
@@ -3202,7 +3204,8 @@
       busNamePromp = thisbusName;
       prodTypePromp = thisprodType;
       colorDescPromp = thiscolorDesc;
-      aiApiKey = thisApiKey;
+      aiDalleApiKey = thisDalleApiKey;
+      aiStableApiKey = thisStableApiKey;
 
       textPrompt = thistextPrompt;
       logoPrompt = thislogoPrompt;
@@ -3212,17 +3215,18 @@
 
       prevStepContent.classList.remove('active');
       nextStepContent.classList.add('active');
-
-      let newColorPropmt = colorPrompt?.replace("[colorDescPromp]", colorDescPromp);
-      let getColorsParse = await createTextAi(newColorPropmt);
-      if(getColorsParse === "Unauthorized") alertMessage.textContent = getColorsParse;
-      if(getColorsParse === "Unauthorized") return smallLoading.classList.add('active');
-      getcolors = JSON.parse(getColorsParse);
-
-      let getBgColors = null;
-      let getTextColors = null;
       
       if(isAiColor){
+        let newColorPropmt = colorPrompt?.replace("[colorDescPromp]", colorDescPromp);
+        let getColorsParse = await createTextAi(newColorPropmt);
+        if(getColorsParse === "Unauthorized") alertMessage.textContent = getColorsParse;
+        if(getColorsParse === "Unauthorized") return smallLoading.classList.add('active');
+        getcolors = JSON.parse(getColorsParse);
+
+        let getBgColors = null;
+        let getTextColors = null;
+
+
         let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
         let colorsFileds = document.querySelectorAll('.py__ai-color');
         // alertMessage.textContent = `Generating New Logo and Colors`;
@@ -3262,19 +3266,23 @@
 
   let currentUrl = null;
   let currentKey = null;
+  let currentLogo = null;
+  let firstTime = true;
   const pickTheme = async (event, randomBtn=false) => {
     if(!event) return;
     let url = null;
     let remixContent = document.querySelector('.py__remix-content');
-    if(!randomBtn){
-      url = event.target.getAttribute('data-href');
-      currentUrl = event.target.getAttribute('data-id');
-    } else {
+    if(randomBtn && document.getElementById('other_themes').checked){
       if(currentKey === null) currentKey = allThemesID.indexOf(currentUrl);
       currentKey = currentKey + 1;
       url = (currentKey > (allThemesID.length - 1)) 
       ? `/remix/${allThemesID[0]}?page=index`
       : `/remix/${allThemesID[currentKey]}?page=index`;
+    } else if (currentUrl === null) {
+      url = event.target.getAttribute('data-href');
+      currentUrl = event.target.getAttribute('data-id');
+    } else {
+      randomFun(false, true, true);
     }
     if(!url || !remixContent) return;
     loading?.classList.add("py__animate");
@@ -3290,23 +3298,16 @@
     document.querySelector('.py__next-header').style.display = "none";
     remixContent?.classList?.add('active');
     loading?.classList.remove("py__animate");
-    if(isAiLogo){
-      alertMessage.textContent = `Generating Logo`;
-      alertCount.style.display = "none";
-      let logoPropmt = logoPrompt.replace("[prodTypePromp]", prodTypePromp).replace("[busNamePromp]", busNamePromp);
-      let getNewlogo = await createImageAi("dalle", logoPropmt);
-      let logoFiled = document.querySelector('.py__ai-logo');
-      if(logoFiled && getNewlogo){
-        logoFiled.value = getNewlogo;
-        await setColorToSettings();
-        await saveSettingsValues();
-        await viewIframe();
-      }
-    };
-    randomFun(false);
+    if(firstTime){
+      firstTime = false;
+      randomFun(false);
+    } else {
+      randomFun(false, true, false);
+    }
+      
   };
 
-  const randomFun = async (event=false) => {
+  const randomFun = async (event=false, aiColors=false, aiLogo=true) => {
 
     if (event) event.preventDefault();
     smallLoading?.classList.add("active");
@@ -3334,7 +3335,73 @@
         // console.log("View Iframe Started");
         // await viewIframe(true);
         // console.log("View Iframe DONE");
+        if(isAiColor && aiColors){
+          let newColorPropmt = colorPrompt?.replace("[colorDescPromp]", colorDescPromp);
+          let getColorsParse = await createTextAi(newColorPropmt);
+          if(getColorsParse === "Unauthorized") alertMessage.textContent = getColorsParse;
+          if(getColorsParse === "Unauthorized") return smallLoading.classList.add('active');
+          getcolors = JSON.parse(getColorsParse);
+  
+          let getBgColors = null;
+          let getTextColors = null;
+  
+  
+          let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
+          let colorsFileds = document.querySelectorAll('.py__ai-color');
+          // alertMessage.textContent = `Generating New Logo and Colors`;
+          getBgColors = [];
+          getTextColors = [];
+          if(getcolors?.backgrounds){
+            for(let i=0; i<getcolors.backgrounds.length; i++){
+              let aiColorItem = getcolors.backgrounds[i];
+              getBgColors.push(aiColorItem.backgroundHex || aiColorItem.background);
+              getTextColors.push(aiColorItem.textHex || aiColorItem.text);
+            }
+          }
+          getBgColors.reverse();
+          
+          for(let i=0; i<5; i++){
+            let bgColorFiled = bgColorsFileds[i]; 
+            let colorFiled = colorsFileds[i];
+            let bgColorName = bgColorFiled.getAttribute('name');
+            let colorName = colorFiled.getAttribute('name');
+            bgColorFiled.value = getBgColors[i];
+            bgColorFiled.setAttribute("value", getBgColors[i]);
+            bgColors[bgColorName.replace('py_bg_color_', '')] = getBgColors[i];
+            colorFiled.value = getTextColors[i];
+            colorFiled.setAttribute("value", getTextColors[i]);
+            textColors[colorName.replace('py_color_', '')] = getTextColors[i];
+            let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
+            let wrapColor = colorFiled.closest('.py__label-for-color');
+            wrapBgColor.style.backgroundColor = getBgColors[i];
+            wrapColor.style.backgroundColor = getTextColors[i];
+            // alertCount.textContent = (i + 1) * 2;
+          }
+        };
 
+
+        if(isAiLogo && aiLogo){
+          alertMessage.textContent = `Generating Logo`;
+          alertCount.style.display = "none";
+          let logoPropmt = logoPrompt.replace("[prodTypePromp]", prodTypePromp).replace("[busNamePromp]", busNamePromp);
+          let getNewlogo = await createImageAi("dalle", logoPropmt);
+          let logoFiled = document.querySelector('.py__ai-logo');
+          if(logoFiled && getNewlogo){
+            logoFiled.value = getNewlogo;
+            currentLogo = getNewlogo;
+            await setColorToSettings();
+            await saveSettingsValues();
+            await viewIframe();
+          }
+        } else {
+          let logoFiled = document.querySelector('.py__ai-logo');
+          if(logoFiled && currentLogo !== null){
+            logoFiled.value = currentLogo;
+            await setColorToSettings();
+            await saveSettingsValues();
+            await viewIframe();
+          }
+        };
         
 
         let allTextFileds = document.querySelectorAll('.py__ai-text');
@@ -3380,6 +3447,7 @@
           let imagesFiled = document.querySelectorAll('.py__ai-image');
           alertMessage.textContent = `Generating New Images ${imagesFiled.length}`;
           alertCount.style.display = "flex";
+          alertCount.textContent = 0;
           for(let i=0; i<imagesFiled.length; i++){
             let imageFiled = imagesFiled[i];
             let imageId = imageFiled.getAttribute("data-id");

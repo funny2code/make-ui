@@ -20,14 +20,14 @@ const validURL = async (str) => {
 class OpenAIService {
   constructor() {}
 
-  async createWorkerThread(request, response) {
+  async createWorkerThread(request) {
     return new Promise((resolve) => {
-      const { image, model, api_key } = request;
+      const { image, model, dalle_api_key, stable_api_key } = request;
       console.log('***** createWorkerThread ', request);
 
       //Create new worker
       const worker = new Worker(path.join(__dirname, "./worker.js"), {
-        workerData: { api_key: api_key, model: model, image: image },
+        workerData: { dalle_api_key: dalle_api_key, stable_api_key: stable_api_key, model: model, image: image },
       });
 
       //Listen for a message from worker
@@ -58,7 +58,7 @@ class OpenAIService {
   }
 
   async copyWebsite(request) {
-    const { message, image, openaiModel, api_key } = request;
+    const { message, openaiModel, dalle_api_key } = request;
     const isValidUrl = await validURL(message);
 
     console.log('****** copyWebsite called ', request);
@@ -94,7 +94,7 @@ class OpenAIService {
         },
       };
     } else {
-      if (!api_key) {
+      if (!dalle_api_key) {
         return {
           status: 304,
           data: { status: 304, message: "PLEASE USE YOUR AI API KEY" },
@@ -103,7 +103,7 @@ class OpenAIService {
 
       if(message){
         const configuration = new Configuration({
-          apiKey: api_key,
+          apiKey: dalle_api_key,
         });
         const openai = new OpenAIApi(configuration);
 
@@ -133,9 +133,9 @@ class OpenAIService {
   }
 
   async createWebsite(request) {
-    const { message, openaiModel, api_key } = request;
+    const { message, openaiModel, dalle_api_key } = request;
 
-    if (!api_key) {
+    if (!dalle_api_key) {
       return {
         status: 304,
         data: { status: 304, message: "PLEASE USE YOUR AI API KEY" },
@@ -143,7 +143,7 @@ class OpenAIService {
     }
 
     const configuration = new Configuration({
-      apiKey: api_key,
+      apiKey: dalle_api_key,
     });
     const openai = new OpenAIApi(configuration);
 

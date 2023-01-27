@@ -88,21 +88,25 @@
                   </div>
               </div>
               <div class="py__filed-wrap">
-                <label>DALLE OR STABLE DIFFUSION API KEY</label>
-                <input type="text" class="py__filed" placeholder="API KEY" name="api_key"/>
-                <div class="py__radio-wrap py__radio-openai-api">
-                  <h6 class="py__radio-group__heading">Image Model</h6>
-                  <ul class="radio-list">
-                      <li>
-                        <input type="radio" name="image_model" id="image_model_dalle" value="dalle" <% if(prompts.image_model === "dalle"){ %>checked<% } %> />
-                        <label for="image_model_dalle">DALLE</label>
-                      </li>
-                      <li>
-                        <input type="radio" name="image_model" id="image_model_stable" value="stable diffusion" <% if(prompts.image_model === "stable diffusion"){ %>checked<% } %>/>
-                        <label for="image_model_stable">STABLE DIFFUSION</label>
-                      </li>
-                  </ul>
-                </div>
+                <label>DALLE API KEY</label>
+                <input type="text" class="py__filed" placeholder="API KEY" name="dalle_api_key"/>
+              </div>
+              <div class="py__filed-wrap">
+                <label>STABLE DIFFUSION API KEY</label>
+                <input type="text" class="py__filed" placeholder="API KEY" name="stable_api_key"/>
+              </div>
+              <div class="py__radio-wrap py__radio-openai-api">
+                <h6 class="py__radio-group__heading">Image Model</h6>
+                <ul class="radio-list">
+                    <li>
+                      <input type="radio" name="image_model" id="image_model_dalle" value="dalle" <% if(prompts.image_model === "dalle"){ %>checked<% } %> />
+                      <label for="image_model_dalle">DALLE</label>
+                    </li>
+                    <li>
+                      <input type="radio" name="image_model" id="image_model_stable" value="stable diffusion" <% if(prompts.image_model === "stable diffusion"){ %>checked<% } %>/>
+                      <label for="image_model_stable">STABLE DIFFUSION</label>
+                    </li>
+                </ul>
               </div>
               <div class="py__button-wrap">
                   <button class="py__button py__button-blue py__step-next-btn" type="button" data-index="2">Next Step</button>
