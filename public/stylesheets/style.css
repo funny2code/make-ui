@@ -1530,7 +1530,6 @@ tr:nth-child(even) {
 }
 .py__remix-popup__content-wrap {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
 }
