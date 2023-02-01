@@ -17,6 +17,10 @@ const schema = new db.Schema({
         type: String,
         required: true
     },
+    color_prompt_same_theme: {
+        type: String,
+        required: true
+    },
     image_model: {
         type: String,
         required: true

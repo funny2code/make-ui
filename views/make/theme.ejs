@@ -10,7 +10,7 @@
             <h3 class="py__theme-title"><%= settings?.theme_name %></h3>
         <% } %>
         <div class="py__theme-details">
-            <% if(user){ %>
+            <% if(user && type !== "pick"){ %>
                 <% if(user.isAdmin){ %>
                     <a href="/themes/<%=id%>?page=index" class="py__button py__button-blue">
                         Customize theme
@@ -20,9 +20,9 @@
                     Add this theme
                 </a>
             <% } else { %>
-                <button type="button" data-href="/remix/<%=id%>?page=index" data-id="<%=id%>" class="py__button py__button-blue py__button-pick">
-                    Pick Theme
-                </button>
+                <a class="py__button py__button-blue <% if(type === "pick"){ %>btn-pick<% } %>" <% if(type === "pick"){%>data-href="/remixapi/<%=id%>?page=index" data-id="<%=id%>"<% } else { %>href="/themes/<%=id%>?page=index"<%}%>>
+                    <%=buttonLabel%>
+                </a>
             <% } %>
         </div>
     </div>

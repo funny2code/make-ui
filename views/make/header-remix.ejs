@@ -1,0 +1,26 @@
+<div class="py__remix-steps-header">
+    <div class="py__wrapper">
+        <h1 class="py__title">
+        <a href="/">
+            <img src="/images/logo.png" alt="<%=make.title%>" width="120"/>
+        </a>
+        </h1>
+        <h2 class="py__subtitle">Shopify Theme Generator</h2>
+        <div class="py__steps-wrap">
+            <span data-index="1" class="py__steps-item active">1. Business</span>
+            <span class="py__step-icon">></span>
+            <span data-index="2" class="py__steps-item">2. Design</span>
+            <span class="py__step-icon">></span>
+            <span data-index="3" class="py__steps-item">3. Pick a theme</span>
+        </div>
+    </div>
+    <% if(user){ %>
+        <a href="/logout" class="py__button py__button-white">
+            Log Out
+        </a>
+    <% } else { %>
+        <a href="/login" class="py__button py__button-white py__login-button">
+            Log In
+        </a>
+    <% } %>
+  </div>
