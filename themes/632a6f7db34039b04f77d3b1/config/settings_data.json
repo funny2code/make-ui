@@ -179,7 +179,7 @@
         "type": "header",
         "settings": {
           "logo": "",
-          "logo_width": 120,
+          "logo_width": 80,
           "header_position": "fixed",
           "logo_position": "middle-center",
           "menu": "main-menu",

@@ -6,6 +6,7 @@
     "lint:ejs": "ejslint ./views/636ee0f492c75efd85c472a3/sections/image-banner.ejs"
   },
   "dependencies": {
+    "@fortaine/openai": "^5.3.1",
     "archiver": "^5.3.0",
     "axios": "^0.26.1",
     "bcrypt": "^5.0.1",

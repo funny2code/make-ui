@@ -3,7 +3,7 @@
 <div id="Banner-<%= sectionid %>" class="banner hero_banner bc-<%=settings.section_style%>-bt" <% if(section.settings.url){ %>data-href="<%= section.settings.url %>" style="cursor: pointer;"<% } %>>
   
       <% if(section.settings.image){ %>
-        <div class="media<% if(!section.settings.image){ %> placeholder<% } %><% if(section.settings.image_2){ %> small-hide<% } %> <% if(section.settings.image_desk_2){ %>image-banner__wrapper--double-image<% } %>" style="padding-bottom:<% if(section.settings.section_height === "auto" && !section.settings.image_desk_2){ %> <%= 1 / section.settings.image.aspect_ratio || 1 * 100 %>%; <% } else if(section.settings.section_height === "auto" && section.settings.image_desk_2){ %> <%= 1 / section.settings.image.aspect_ratio || 1 * 50 %>%; <% } else { %><%=section.settings.section_height%>;<% } %>">
+        <div id="<%="image1_" + sectionid%>" class="media<% if(!section.settings.image){ %> placeholder<% } %><% if(section.settings.image_2){ %> small-hide<% } %> <% if(section.settings.image_desk_2){ %>image-banner__wrapper--double-image<% } %>" style="padding-bottom:<% if(section.settings.section_height === "auto" && !section.settings.image_desk_2){ %> <%= 1 / section.settings.image.aspect_ratio || 1 * 100 %>%; <% } else if(section.settings.section_height === "auto" && section.settings.image_desk_2){ %> <%= 1 / section.settings.image.aspect_ratio || 1 * 50 %>%; <% } else { %><%=section.settings.section_height%>;<% } %>">
           <img  class="first-one" srcset="<% if(section.settings.image.width >= 375){ %><%= section.settings.image %> 375w,<% } %>
             <% if(section.settings.image.width >= 750){ %><%= section.settings.image %> 750w,<% } %>
             <% if(section.settings.image.width >= 1100){ %><%= section.settings.image %> 1100w,<% } %>
@@ -20,7 +20,7 @@
             <% if(section.settings.enable_anim){ %> data-aos="<%=section.settings.anim%>"<% } %>
           >
           <% if(section.settings.image_desk_2){ %>
-          <img class="small-hide second-one" srcset="<% if(section.settings.image_desk_2.width >= 375){ %><%= section.settings.image_desk_2 %> 375w,<% } %>
+          <img id="<%="image2_" + sectionid%>" class="small-hide second-one" srcset="<% if(section.settings.image_desk_2.width >= 375){ %><%= section.settings.image_desk_2 %> 375w,<% } %>
             <% if(section.settings.image_desk_2.width >= 750){ %><%= section.settings.image_desk_2 %> 750w,<% } %>
             <% if(section.settings.image_desk_2.width >= 1100){ %><%= section.settings.image_desk_2 %> 1100w,<% } %>
             <% if(section.settings.image_desk_2.width >= 1500){ %><%= section.settings.image_desk_2 %> 1500w,<% } %>
@@ -43,6 +43,7 @@
       <% } %>
       <% if(section.settings.image_2){ %>
         <%- include('../snippets/resimg', {
+          wrapperId: "image3_" + sectionid,
           image: section.settings.image_2, 
           classwrapper: 'large-up-hide medium-hide',
           classimg: false

@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main": {
+      "type": "list-collections",
+      "settings": {
+        "title": "",
+        "sort": "alphabetical",
+        "image_ratio": "adapt",
+        "color_scheme": "accent-2",
+        "border_color": "var(--py-color-average)",
+        "image_padding": false
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

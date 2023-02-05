@@ -1,0 +1,167 @@
+<link rel="stylesheet" href="/<%=srcId%>/component-filter-style-2.css">
+<style>
+.filter-group-display__list-item-color label::after {
+  border: 2px solid;
+}
+.py-c-light .filter-group-display__list-item:not(.filter-group-display__list-item-color) label:hover,
+.py-c-light .filter-group-display__list-item:not(.filter-group-display__list-item-color) input:checked + label {
+  background-color: var(--py-color-light);
+  color: var(--py-bg-color-dark);
+}
+.py-c-light .filter-group-display__list-item-color label:hover,
+.py-c-light .filter-group-display__list-item-color input:checked + label{  
+  color: var(--py-color-dark);
+}
+.py-c-light .filter-group-display__list-item-color label:hover,
+.py-c-light .filter-group-display__list-item-color input:checked + label{  
+  box-shadow: 0px 0px 4px 3px var(--py-color-light);
+}
+
+.py-c-dark .filter-group-display__list-item:not(.filter-group-display__list-item-color) label:hover,
+.py-c-dark .filter-group-display__list-item:not(.filter-group-display__list-item-color) input:checked + label{
+  background-color: var(--py-color-dark);
+  color: var(--py-bg-color-light);
+}
+.py-c-dark .filter-group-display__list-item-color label:hover,
+.py-c-dark .filter-group-display__list-item-color input:checked + label{  
+  color: var(--py-color-light);
+}
+.py-c-dark .filter-group-display__list-item-color label:hover,
+.py-c-dark .filter-group-display__list-item-color input:checked + label{  
+  box-shadow: 0px 0px 4px 3px var(--py-color-dark);
+}
+</style>
+<custom-filters class="coll-filters py-<%=section.settings.filter_bar_bg_color%>  py-<%=section.settings.filter_bar_color%>">
+    <div class="coll-filters__wrapper">
+        <div class="coll-filters__mode">
+            <button class="btn-unstyle" aria-label="Show two products per row">
+                <svg class="Icon Icon--wall-2" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 36 36">
+                    <path fill="currentColor" d="M21 36V21h15v15H21zm0-36h15v15H21V0zM0 21h15v15H0V21zM0 0h15v15H0V0z"></path>
+                </svg>
+            </button>
+            <button class="btn-unstyle" aria-label="Show Four products per row">
+                <svg class="Icon Icon--wall-4" aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 36 36">
+                    <path fill="currentColor" d="M28 36v-8h8v8h-8zm0-22h8v8h-8v-8zm0-14h8v8h-8V0zM14 28h8v8h-8v-8zm0-14h8v8h-8v-8zm0-14h8v8h-8V0zM0 28h8v8H0v-8zm0-14h8v8H0v-8zM0 0h8v8H0V0z"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="coll-filters__type">
+            <div class="coll-filters__type-sort">
+                <div class="select">
+                    <% var sort_by = collection.sort_by || collection.default_sort_by %>
+                    <select name="sort_by" class="select__select coll-filters__select-sort py-<%=section.settings.filter_bar_bg_color%>" id="SortBy" aria-describedby="a11y-refresh-page-message">
+                      <% collection?.sort_options?.forEach((option,index)=>{ %>
+                        <option value="<%= option.value %>"<% if(option.value === sort_by){ %> selected="selected"<% } %>><%= option.name %></option>
+                      <% }) %>
+                    </select>
+                    <%- include('./icon-caret') %>
+                </div>
+            </div>
+            <div class="coll-filters__type-filter">
+                <button class="btn-unstyle coll-filters__btn-open-drawer" aria-label="Show filters">
+                    Filter 
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="coll-filter-overlay" aria-hidden="true">&nbsp;</div> 
+    <div class="coll-filter-drawer py-<%=section.settings.filter_bg_color%> py-<%=section.settings.filter_color%>" aria-hidden="true">
+        <div class="coll-filter-drawer__header">
+            <% if(heading){ %>
+            <h2 class="coll-filter-drawer__heading py-<%=section.settings.filter_color%>"><%= heading %></h2>
+            <% } %>
+            <button class="btn-unstyle coll-filter-drawer__close" aria-label="Close filter drawer">
+                <svg class="Icon Icon--close " role="presentation" viewBox="0 0 16 14">
+                    <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+        <form class="filter-form coll-filter-drawer__form">
+
+            <% var sort_by = collection.sort_by || collection.default_sort_by %>
+            <select name="sort_by" class="select__select coll-filters__select-sort-hidden">
+                <% collection?.sort_options?.forEach((option,index)=>{ %>
+                <option value="<%= option.value %>"<% if(option.value === sort_by){ %> selected="selected"<% } %>><%= option.name %></option>
+                <% }) %>
+            </select>
+
+            <% collection?.filters?.forEach((filter,index)=>{ %>
+                <div class="coll-filter-drawer__item-header">
+                    <span class="coll-filter-drawer__item-heading"><%= filter.label %></span>
+                    <% var type = filter.label.toLowerCase()?.trim() %>
+                </div>
+
+                <div class="filter-group-display">
+                    <% if(filter.type){ %>
+                    <% } else if(block.type === 'list'){ %>
+                        <ul class="filter-group-display__list">
+                        <% filter?.values?.forEach((filter_value,index)=>{ %>
+                            <li class="filter-group-display__list-item filter-group-display__list-item-<%= type %>">
+                            <input type="checkbox"
+                                name="<%= filter_value.param_name %>"
+                                value="<%= filter_value.value %>"
+                                id="Filter-<%= filter.param_name %>-<%= index %>"
+                                <% if(filter_value.active){ %>checked<% } %>
+                                <% if(filter_value.count === 0 && filter_value.active === false){ %>disabled<% } %>
+                            >
+                            <label for="Filter-<%= filter.param_name %>-<%= index %>" <% if(type === 'color' || type === 'colors'){ %>style="background-color:<%= filter_value.label %>;"<% } %>>
+                            <% if(type === 'color' || type === 'colors'){ %>
+                                &nbsp;
+                            <% } else { %>
+                                <%= filter_value.label %>
+                            <% } %>
+                            </label>
+                            </li>
+                        <% }) %>
+                        </ul>
+                    <% } else if(block.type === 'price_range'){ %>
+                        <div class="filter-group-display__price-range">
+                        <div class="filter-group-display__price-range-item filter-group-display__price-range-from">
+                            <span><%= cart.currency.symbol %></span>
+
+                            <input name="<%= filter.min_value.param_name %>"
+                            id="Filter-<%= filter.min_value.param_name %>"
+                            <% if(filter.min_value.value){ %>
+                                value="<%= filter.min_value.value_without_currency.replace(',', '') %>"
+                            <% } %>
+                            type="number"
+                            placeholder="0"
+                            min="0"
+                            max="<%= filter.range_max_without_currency.replace(',', '') %>"
+                            >
+                        </div>
+                        <span class="filter-price__space">-</span>
+                        <div class="filter-group-display__price-range-item filter-group-display__price-range-to">
+                            <span><%= cart.currency.symbol %></span>
+
+                            <input name="<%= filter.max_value.param_name %>"
+                            id="Filter-<%= filter.max_value.param_name %>"
+                            <% if(filter.max_value.value){ %>
+                                value="<%= filter.max_value.value_without_currency.replace(',', '') %>"
+                            <% } %>
+                            type="number"
+                            placeholder="<%= filter.range_max_without_currency.replace(',', '') %>"
+                            min="0"
+                            max="<%= filter.range_max_without_currency.replace(',', '') %>"
+                            >
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+                </details>
+            <% }) %>
+
+        </form>
+        <% if(btnLabel){ %>
+        <div class="coll-filter-drawer__footer">
+            <button type="button" class="button button--full-width button--primary coll-filter-drawer__see-result">
+                <span><%=btnLabel%></span>
+            </button>
+        </div>
+        <% } %>
+    </div>
+
+</custom-filters>
+
+<script src="/<%=srcId%>/collection-filters-custom.js" defer="defer"></script>

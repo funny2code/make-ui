@@ -1,0 +1,229 @@
+<link rel="stylesheet" href="/<%=srcId%>/section-footer-style-1.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-newsletter-style-1.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-accordion-style-1.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-list-menu.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-list-payment.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-list-social.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-rte.css">
+<link rel="stylesheet" href="/<%=srcId%>/disclosure.css">
+
+<footer class="footer py-<%= section.settings.py_section_bg_color %> py-<%= section.settings.py_section_color %>">
+  <% if(section?.block_order?.length > 0 || section.settings.newsletter_enable || section.settings.show_social){ %>
+    <div class="footer__content-top page-width bc-<%=settings.section_style%>-bt">
+      <% if(section?.block_order?.length > 0){ %>
+        <%
+          if(section?.block_order?.length === 9){
+            var footer_grid_class = 'grid--3-col-tablet'
+          } else if(section?.block_order?.length > 6){
+            var footer_grid_class = 'grid--4col-desktop'
+          } else if(section?.block_order?.length > 4){
+            var footer_grid_class = 'grid--3-col-tablet'
+          }
+        %>
+        <div class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--3-col-tablet <%= footer_grid_class %>"> 
+
+          <% section?.block_order?.forEach((orderItem, index) => { %>
+            <% let block = section?.blocks[orderItem] %>
+            <% if(block.type === 'link_list' && block?.settings?.heading){ %>
+              <div class="accordion">
+                <details>
+                  <summary><h2 class="h4 accordion__title"><%= block?.settings?.heading %></h2><%- include('../snippets/icon-caret') %></summary>
+                  <% if(menu){ %>
+                    <ul class="footer-block__details-content list-unstyled">
+                      <% menu?.links?.forEach((link,index)=>{ %>
+                        <li>
+                          <a href="<%= link.url %>" class="link link--text list-menu__item list-menu__item--link<% if(link.active){ %> list-menu__item--active<% } %>">
+                            <%= link.title %>
+                          </a>
+                        </li>
+                      <% }) %>
+                    </ul>
+                  <% } %>
+                </details>
+              </div>
+            <% } %>
+
+            <div class="footer-block grid__item<% if(block.type === 'link_list' && block?.settings?.heading){ %> footer-block--menu<% } %> ">
+              <% if(block?.settings?.heading){ %>
+                <h2 class="footer-block__heading"><%- block?.settings?.heading -%></h2>
+              <% } %>
+
+              <% if(block.type === 'text'){ %>
+                  <div class="footer-block__details-content rte">
+                    <%- block?.settings?.subtext -%>
+                  </div>
+                <% } else if(block.type === 'link_list'){ %>
+                  <% if(block.settings.menu && block?.settings?.heading){ %>
+                    <% let menuFind = footerMenu.filter(item => item.handle === block.settings.menu); %>
+                    <% let menu = menuFind?.length ? menuFind[0] : null %>
+                    <ul class="footer-block__details-content list-unstyled">
+                      <% menu?.links?.forEach((link,index)=>{ %>
+                        <li>
+                          <a href="<%= link.url %>" class="link link--text list-menu__item list-menu__item--link<% if(link.active){ %> list-menu__item--active<% } %>">
+                            <%= link.title %>
+                          </a>
+                        </li>
+                      <% }) %>
+                    </ul>
+                  <% } %>
+                <% } %>
+            </div>
+          <% }) %>
+          
+          
+          <%- include('../snippets/footer-newslatter-style-1') %>
+          
+          
+        </div>
+      <% } %>
+    </div>
+  <% } %>
+
+  <div class="footer__content-bottom bc-<%=settings.section_style%>-bt">
+    <div class="footer__content-bottom-wrapper page-width">
+      <div class="footer__column footer__localization">
+        <% if(section.settings.enable_country_selector && localization?.available_countries?.length > 1){ %>
+          <noscript>
+            <form id="FooterCountryFormNoScript" class="localization-form">
+              <div class="localization-form__select">
+                <h2 class="visually-hidden" id="FooterCountryLabelNoScript"><%=localization?.country_label%></h2>
+                <select class="localization-selector link" name="country_code" aria-labelledby="FooterCountryLabelNoScript">
+                  <% localization?.available_countries?.forEach((country,index)=>{ %>
+                    <option value="<%= country.iso_code %>" <% if(country.iso_code === localization?.country.iso_code){ %> selected<% } %>>
+                      <%= country.name %> (<%= country.currency.iso_code %> <%= country.currency.symbol %>)
+                    </option>
+                  <% }) %>
+                </select>
+                <%- include('../snippets/icon-caret') %>
+              </div>
+              <button class="button button--tertiary"><%=localization?.update_country%></button>
+            </form>
+          </noscript>
+          <localization-form>
+            <form id="FooterCountryForm" class="localization-form">
+              <div class="no-js-hidden">
+                <h2 class="caption-large" id="FooterCountryLabel"><%=localization?.country_label%></h2>
+                <div class="disclosure">
+                  <button type="button" class="disclosure__button localization-form__select localization-selector link link--text caption-large" aria-expanded="false" aria-controls="FooterCountryList" aria-describedby="FooterCountryLabel">
+                    <%= localization?.country.name %> (<%= localization?.country.currency.iso_code %> <%= localization?.country.currency.symbol %>)
+                    <%- include('../snippets/icon-caret') %>
+                  </button>
+                  <ul id="FooterCountryList" role="list" class="disclosure__list list-unstyled" hidden>
+                    <% localization?.available_countries?.forEach((country,index)=>{ %>
+                      <li class="disclosure__item" tabindex="-1">
+                        <a class="link link--text disclosure__link caption-large<% if(country.iso_code === localization?.country.iso_code){ %> disclosure__link--active<% } %> focus-inset" href="#"<% if(country.iso_code === localization?.country.iso_code){ %> aria-current="true"<% } %> data-value="<%= country.iso_code %>">
+                          <%= country.name %> <span class="localization-form__currency">(<%= country.currency.iso_code %> <%= country.currency.symbol %>)</span>
+                        </a>
+                      </li>
+                    <% }) %>
+                  </ul>
+                </div>
+                <input type="hidden" name="country_code" value="<%= localization?.country.iso_code %>">
+              </div>
+            </form>
+          </localization-form>
+        <% } %>
+
+        <% if(section.settings.enable_language_selector && localization?.available_languages?.length > 1){ %>
+          <noscript>
+            <form id="FooterLanguageFormNoScript" class="localization-form">
+              <div class="localization-form__select">
+                <h2 class="visually-hidden" id="FooterLanguageLabelNoScript"><%=localization?.language_label%></h2>
+                <select class="localization-selector link" name="locale_code" aria-labelledby="FooterLanguageLabelNoScript">
+                  <% localization?.available_languages?.forEach((language,index)=>{ %>
+                    <option value="<%= language.iso_code %>" lang="<%= language.iso_code %>" <% if(language.iso_code === localization?.language.iso_code){ %> selected<% } %>>
+                      <%= language.endonym_name %>
+                    </option>
+                  <% }) %>
+                </select>
+                <%- include('../snippets/icon-caret') %>
+              </div>
+              <button class="button button--tertiary"><%=localization?.update_language%></button>
+            </form>
+          </noscript>
+
+          <localization-form>
+            <form id="FooterLanguageForm" class="localization-form">
+              <div class="no-js-hidden">
+                <h2 class="caption-large" id="FooterLanguageLabel"><%=localization?.language_label%></h2>
+                <div class="disclosure">
+                  <button type="button" class="disclosure__button localization-form__select localization-selector link link--text caption-large" aria-expanded="false" aria-controls="FooterLanguageList" aria-describedby="FooterLanguageLabel">
+                    <%= localization?.language.endonym_name %>
+                    <%- include('../snippets/icon-caret') %>
+                  </button>
+                  <ul id="FooterLanguageList" role="list" class="disclosure__list list-unstyled" hidden>
+                    <% localization?.available_languages?.forEach((language,index)=>{ %>
+                      <li class="disclosure__item" tabindex="-1">
+                        <a class="link link--text disclosure__link caption-large<% if(language.iso_code === localization?.language.iso_code){ %> disclosure__link--active<% } %> focus-inset" href="#" hreflang="<%= language.iso_code %>" lang="<%= language.iso_code %>"<% if(language.iso_code === localization?.language.iso_code){ %> aria-current="true"<% } %> data-value="<%= language.iso_code %>">
+                          <%= language.endonym_name %>
+                        </a>
+                      </li>
+                    <% }) %>
+                  </ul>
+                </div>
+                <input type="hidden" name="locale_code" value="<%= localization?.language.iso_code %>">
+              </div>
+            </form>
+          </localization-form>
+        <% } %>
+      </div>
+      <div class="footer__column footer__column--info">
+        
+        <div class="footer__copyright">
+          <small class="copyright__content">&copy; <%= new Date().getFullYear() %>, <%= shop.name %></small>
+        </div>
+        
+        <% if(section.settings.payment_enable){ %>
+          <div class="footer__payment">
+            <span class="visually-hidden"><%=sectionst.footer.payment%></span>
+            <ul class="list list-payment" role="list">
+              <% shop?.enabled_payment_types?.forEach((type,index)=>{ %>
+                <li class="list-payment__item">
+                  <%= type %>
+                </li>
+              <% }) %>
+            </ul>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  class LocalizationForm extends HTMLElement {
+    constructor() {
+      super();
+      this.elements = {
+        input: this.querySelector('input[name="locale_code"], input[name="country_code"]'),
+        button: this.querySelector('button'),
+        panel: this.querySelector('ul'),
+      };
+      this.elements.button.addEventListener('click', this.openSelector.bind(this));
+      this.elements.button.addEventListener('focusout', this.closeSelector.bind(this));
+      this.querySelectorAll('a').forEach(item => item.addEventListener('click', this.onItemClick.bind(this)));
+    }
+
+    onItemClick(event) {
+      event.preventDefault();
+      this.elements.input.value = event.currentTarget.dataset.value;
+      this.querySelector('form')?.submit();
+    }
+
+    openSelector() {
+      this.elements.button.focus();
+      this.elements.panel.toggleAttribute('hidden');
+      this.elements.button.setAttribute('aria-expanded', (this.elements.button.getAttribute('aria-expanded') === 'false').toString());
+    }
+
+    closeSelector(event) {
+      const shouldClose = event.relatedTarget && event.relatedTarget.nodeName === 'BUTTON';
+      if (event.relatedTarget === null || shouldClose) {
+        this.elements.button.setAttribute('aria-expanded', 'false');
+        this.elements.panel.setAttribute('hidden', true);
+      }
+    }
+  }
+
+  customElements.define('localization-form', LocalizationForm);
+</script>

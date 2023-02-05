@@ -1,0 +1,47 @@
+{
+  "sections": {
+    "main": {
+      "type": "search",
+      "settings": {
+        "card_style": "vertical",
+        "image_ratio": "adapt",
+        "image_gallery": "",
+        "card_bg_color": "bg-c-dark",
+        "card_radius": 10,
+        "item_space": 20,
+        "show_vendor": "",
+        "show_colors": "",
+        "show_variants_on_hover": "",
+        "show_view_product": "",
+        "show_quick_add": "",
+        "info_align": "left",
+        "card_color": "none",
+        "view_btn_size": "small",
+        "card_color_view_btn": "dark",
+        "card_bg_color_view_btn": "dark",
+        "card_color_view_btn_hover": "dark",
+        "card_bg_color_view_btn_hover": "dark",
+        "custom_font_style": "",
+        "title_fontsize": "",
+        "title_fontsize_m": "",
+        "title_fontweight": "",
+        "title_fontstretch": "",
+        "title_fontstyle": "normal",
+        "title_lineheight": "",
+        "title_letterspacing": "",
+        "info_fontsize": "",
+        "info_fontsize_m": "",
+        "info_fontweight": "",
+        "info_fontstretch": "",
+        "info_fontstyle": "normal",
+        "info_lineheight": "",
+        "info_letterspacing": "",
+        "article_show_date": "",
+        "article_show_author": ""
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

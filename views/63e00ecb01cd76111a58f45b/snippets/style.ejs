@@ -1,0 +1,123 @@
+<% if(style.size || style.content_color || style.weight || style.border || style.bg || style.pv || style.ph || style.align || style.padding || style.margin || style.width || style.height || style.b_width || style.c_css || style.show_override || style.content_bg_color || style.ov_bg_image || style.ov_opacity
+|| style.m_size || style.content_color_m || style.m_weight || style.m_border || style.m_bg || style.m_pv || style.m_ph || style.m_align || style.m_padding || style.m_margin || style.m_width || style.m_height || style.m_b_width || style.m_c_css){ %>
+<style type="text/css">
+<% if(style.size || style.content_color || style.weight || style.border || style.bg || style.pv || style.ph || style.align || style.padding || style.margin || style.width || style.height || style.b_width || style.c_css){ %>
+<%= sufix %>-<%= id %> {
+    <% if(style.size){ %>
+    font-size: <%= style.size %>;
+    <% } %>
+    <% if(style.content_color){ %>
+    color: <%= style.content_color %>;
+    <% } %>
+    <% if(style.weight){ %>
+    font-weight: <%= style.weight %>;
+    <% } %>
+    <% if(style.border){ %>
+    border-color: <%= style.border %>;
+    box-shadow: 0 0 0 0.1rem <%= style.border %>;
+    <% } %>
+    <% if(style.b_width){ %>
+    border-width: <%= style.b_width %>;
+    <% } %>
+    <% if(style.bg){ %>
+    background-color: <%= style.bg %>;
+    <% } %>
+    <% if(style.pv){ %>
+    align-items: <%= style.pv %>;
+    <% } %>
+    <% if(style.ph){ %>
+    justify-content: <%= style.ph %>;
+    <% } %>
+    <% if(style.align){ %>
+    text-align: <%= style.align %>;
+    <% } %>
+    <% if(style.padding){ %>
+    padding: <%= style.padding %>;
+    <% } %>
+    <% if(style.margin){ %>
+    margin: <%= style.margin %>;
+    <% } %>
+    <% if(style.width){ %>
+    width: <%= style.width %>;
+    <% } %>
+    <% if(style.height){ %>
+    height: <%= style.height %>;
+    <% } %>
+    <% if(style.c_css){ %> 
+    <%= style.c_css %>
+    <% } %>
+}
+<% } %>
+<% if(style.show_override){ %>
+<% if(style.content_bg_color || style.ov_bg_image || style.ov_opacity){ %>
+<%= sufix %>-<%= id %>::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    <% if(style.content_bg_color){ %>
+    background-color: <%= style.content_bg_color %>;
+    <% } %>
+    <% if(style.ov_bg_image){ %>
+    background-image: url("<%= style.ov_bg_image %>");
+    <% } %>
+    <% if(style.ov_opacity){ %>
+    opacity: <%= style.ov_opacity %>;
+    <% } %>
+}
+<% } %>
+<% } %>
+<% if(style.m_size || style.content_color_m || style.m_weight || style.m_border || style.m_bg || style.m_pv || style.m_ph || style.m_align || style.m_padding || style.m_margin || style.m_width || style.m_height || style.m_b_width || style.m_c_css){ %>
+@media only screen and (max-width: 749px){
+    <%= sufix %>-<%= id %> {
+        <% if(style.m_size){ %>
+        font-size: <%= style.m_size %>;
+        <% } %>
+        <% if(style.content_color_m){ %>
+        color: <%= style.content_color_m %>;
+        <% } %>
+        <% if(style.m_weight){ %>
+        font-weight: <%= style.m_weight %>;
+        <% } %>
+        <% if(style.m_border){ %>
+        border-color: <%= style.m_border %>;
+        box-shadow: unset;
+        <% } %>
+        <% if(style.m_b_width){ %>
+        border-width: <%= style.m_b_width %>;
+        border-style: solid;
+        <% } %>
+        <% if(style.m_bg){ %>
+        background-color: <%= style.m_bg %>;
+        <% } %>
+        <% if(style.m_pv){ %>
+        align-items: <%= style.m_pv %>;
+        <% } %>
+        <% if(style.m_ph){ %>
+        justify-content: <%= style.m_ph %>;
+        <% } %>
+        <% if(style.m_align){ %>
+        text-align: <%= style.m_align %>;
+        <% } %>
+        <% if(style.m_padding){ %>
+        padding: <%= style.m_padding %>;
+        <% } %>
+        <% if(style.m_margin){ %>
+        margin: <%= style.m_margin %>;
+        <% } %>
+        <% if(style.m_width){ %>
+        width: <%= style.m_width %>;
+        <% } %>
+        <% if(style.m_height){ %>
+        height: <%= style.m_height %>;
+        <% } %>
+        <% if(style.m_c_css){ %> 
+        <%= style.m_c_css %>
+        <% } %>
+    }
+}
+<% } %>
+</style>
+<% } %>

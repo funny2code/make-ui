@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="/<%=srcId%>/section-main-page.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-rte.css">
+<style>
+  @media(min-width:750px){
+  .py-horizontal{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .py-horizontal>.main-page-title,
+  .py-horizontal>.page-content{
+    width:48%;
+  }
+  }
+  .page-container{
+    background-color:<%=section.settings.page_bg_color%>
+  }
+</style>
+<div class="page-container">
+<div class=" page-width py-<%=section.settings.layout%> py-<%=section.settings.page_width%> py-pd-y-xl">
+  <% section?.block_order?.forEach((orderItem, index) => { %>
+    <% let block = section?.blocks[orderItem] %>
+    <% if(block.type === 'title'){ %>
+          <style>
+            .main-page-title{
+              font-size:<%=block?.settings?.title_font_size%>px;
+              color:<%=block?.settings?.page_color_title%>;
+              text-align:<%=block?.settings?.title_align%>;
+            }            
+          </style>
+          <h1 class="main-page-title page-title h0">
+            <%= page.title %>
+          </h1>
+        <% } else if(block.type === 'content'){ %>
+           <style>              
+              .page-content{
+                font-size:<%=block?.settings?.content_font_size%>px;
+                color:<%=block?.settings?.page_color_content%>;
+                text-align:<%=block?.settings?.content_align%>;
+              }
+          </style>
+          <div class="rte page-content">
+            <%- page.content -%>
+          </div>
+
+    <% } %>
+  <% }) %>
+ 
+</div>
+</div>

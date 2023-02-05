@@ -1,0 +1,154 @@
+<link rel="stylesheet" href="/<%=srcId%>/template-collection-style-1.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-loading-overlay.css">
+
+<link rel="preload" href="/<%=srcId%>/component-product-card-style-1.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/<%=srcId%>/component-price-style-1.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/<%=srcId%>/component-badge.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/<%=srcId%>/component-rte.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/<%=srcId%>/component-variants.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="/<%=srcId%>/component-slider.css" >
+
+<style>
+body.collection #shopify-section-header,body.collection  #shopify-section-header-2 {
+  z-index: inherit;
+}
+</style>
+
+<% var sort_by = collection.sort_by || collection.default_sort_by %>
+
+
+
+<div class="bc-collection-page-main filter-<%=section.settings.filter_style%> py-<%#section.settings.py_section_bg_color%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%> py-<%=section.settings.page_y_mg%>">
+  
+  <% if(section.settings.filter_style === 'style-1'){ %>
+    <%- include('../snippets/collection-filters-style-1', {
+      current_tags: false,
+      index: false
+    }) %>
+  <% } else if(section.settings.filter_style === 'style-2'){ %>
+    <%- include('../snippets/collection-filters-style-2', {
+      heading: section.settings.filter_heading, 
+      btnLabel: section.settings.filter_btn_label
+    }) %>
+  <% } else if(section.settings.filter_style === 'style-3'){ %>
+    <%- include('../snippets/collection-filters-style-3') %>
+  <% } %> 
+
+  <div id="CollectionProductGrid" class="bc-collection-page-products py-<%=section.settings.page_width%>">
+    <%# paginate collection.products by section.settings.products_per_page){ %>
+      <% if(collection.products.length === 0){ %>
+        <div class="collection collection--empty" id="main-collection-product-grid" data-id="<%= sectionid %>">
+          <div class="loading-overlay">
+            <div class="loading-overlay__spinner">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </div>
+
+          <p class="collection-product-count light">
+            <%=sectionst.collection_template.product_count %>
+          </p>
+
+          <div class="title-wrapper center">
+            <h2 class="title title--primary">
+              <%=sectionst.collection_template.empty%><br>
+              <%=sectionst.collection_template.use_fewer_filters_html %>
+            </h2>
+          </div>
+        </div>
+      <% } else { %>
+        <div class="collection ">
+          <div class="loading-overlay">
+            <div class="loading-overlay__spinner">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </div>
+
+          <p class="collection-product-count light">
+            <%=sectionst.collection_template.product_count %>
+          </p>
+
+          <ul id="main-collection-product-grid" data-id="<%= sectionid %>" class="grid grid--1-col grid--3-col-tablet grid--4-col-desktop product-list-<%=sectionid%>" style="margin-left:-<%=section.settings.item_space%>px;padding-top:<%=section.settings.item_space%>px">
+            <style>
+              .py-c-dark .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+                color: var(--py-color-dark);
+              }
+              .py-c-average .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+                color: var(--py-color-average);
+              }
+              .py-c-light .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+                color: var(--py-color-light);
+              }
+              .card-wrapper{
+                padding-bottom:15px;
+                height:100%;
+              } 
+              .product-list-<%=sectionid%> .py-center .price,
+              .product-list-<%=sectionid%> .py-center .card-color-wrapper,
+              .product-list-<%=sectionid%> .py-center ul.variant-options,
+              .product-list-<%=sectionid%> .py-center .card-button-wrapper{
+                justify-content: center;
+              }              
+              <% if(section.settings.custom_font_style){ %>
+
+                .product-list-<%=sectionid%> .card-wrapper .card-information__text{
+                  font-size: <%=section.settings.title_fontsize%>;
+                  font-weight: <%=section.settings.title_fontweight%>;
+                  font-stretch:<%=section.settings.title_fontstretch%>;
+                  font-style:<%=section.settings.title_fontstyle%>;
+                  line-height:<%=section.settings.title_lineheight%>;
+                  letter-spacing:<%=section.settings.title_letterspacing%>
+                }
+                @media(max-width:749px){
+                  .product-list-<%=sectionid%> .card-wrapper .card-information__text{
+                      font-size: <%=section.settings.title_fontsize_m%>
+                  }
+                }
+                .product-list-<%=sectionid%> .card-wrapper .price *{
+                  font-size: <%=section.settings.info_fontsize%>;
+                  font-weight: <%=section.settings.info_fontweight%>;
+                  font-stretch:<%=section.settings.info_fontstretch%>;
+                  font-style:<%=section.settings.info_fontstyle%>;
+                  line-height:<%=section.settings.info_lineheight%>;
+                  letter-spacing:<%=section.settings.info_letterspacing%>
+                }
+                @media(max-width:749px){
+                  .product-list-<%=sectionid%> .card-wrapper .price *{
+                      font-size: <%=section.settings.info_fontsize_m%>
+                  }
+                }              
+              <% } %>
+            </style>
+            <% collection.products?.forEach((product,index)=>{ %>
+              <li class="grid__item py-card-<%=section.settings.card_style%> py-<%=section.settings.card_color%>" style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
+                <%- include('../snippets/product-card', {
+                  product_card_product: product,
+                  media_size: section.settings.image_ratio,
+                  media_gallery:section.settings.image_gallery,
+                  inventory_quantity: false,
+                  tag_field:section.settings.tag_field,                                   
+                  show_vendor: section.settings.show_vendor,
+                  show_colors: section.settings.show_colors,
+                  show_view_product: section.settings.show_view_product,
+                  show_quick_add: section.settings.show_quick_add,
+                  show_variants_on_hover: section.settings.show_variants_on_hover,
+                  card_bg_color: section.settings.card_bg_color,
+                  card_radius: section.settings.card_radius,
+                  info_align: section.settings.info_align
+                }) %>
+              </li>
+            <% }) %>
+          </ul>
+
+          <%# if(paginate.pages > 1){ %>
+            <%# include('../snippets/pagination', paginate: paginate, anchor: '', class: ''){ %>
+          <%# } %>
+        </div>
+      <% } %>
+    <%# endpaginate){ %>
+  </div>
+
+</div>

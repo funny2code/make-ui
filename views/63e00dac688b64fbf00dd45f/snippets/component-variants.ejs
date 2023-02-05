@@ -1,0 +1,7 @@
+<div class="bc-product-grid-variants">
+    <% for variant in variants){ %>
+        <div class="bc-variant-item <% if(!variant.available){ %>bc-variant-item-sold-out<% } %>">
+            <a href="<%= variant.url %>" <%= variant.title | size %> ><% if(variant.title === "ONESIZE"){ %>OS<% } else { %><% var titleSize = variant.title | size){ %><% if(titleSize < 5){ %><%= variant.title %><% } else { %><% var titles = variant.title?.split(' '){ %><% for title in titles){ %><% var forTitle = title | size){ %><% if(forTitle < 4){ %><%= title %><% } else { %><%= title?.slice(0 %><% } %><% }) %><% } %><% } %></a>
+        </div>
+    <% }) %>
+</div>
