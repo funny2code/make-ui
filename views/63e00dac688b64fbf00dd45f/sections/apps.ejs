@@ -1,0 +1,6 @@
+<div class="<% if(section.settings.include_margins){ %>page-width<% } %>">
+  <% section?.block_order?.forEach((orderItem, index) => { %>
+    <% let block = section?.blocks[orderItem] %>
+    <%# render block %>
+  <% }) %>
+</div>

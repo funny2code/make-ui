@@ -1,0 +1,139 @@
+<%
+    var height     = self + '_height'
+    var width      = self + '_width'
+    var maxWidth   = self + '_max_width'
+    var padding    = self + '_padding'
+    var margin     = self + '_margin'
+    var size       = self + '_size'
+    var weight     = self + '_weight'
+    var lineHeight = self + '_line_height'
+    var bgColor    = self + '_bg_color'
+    var bgImage    = self + '_bg_image'
+    var bgStyle    = self + '_bg_style'
+    var color      = self + '_color'
+    var align      = self + '_align'
+    var horizontal = self + '_horizontal'
+    var vertical   = self + '_vertical'
+
+    var mHeight     = self + '_m_height'
+    var mWidth      = self + '_m_width'
+    var mMaxWidth   = self + '_m_max_width'
+    var mPadding    = self + '_m_padding'
+    var mMargin     = self + '_m_margin'
+    var mSize       = self + '_m_size'
+    var mWeight     = self + '_m_weight'
+    var mLineHeight = self + '_m_line_height'
+    var mBgColor    = self + '_m_bg_color'
+    var mBgImage    = self + '_m_bg_image'
+    var mBgStyle    = self + '_m_bg_style'
+    var mColor      = self + '_m_color'
+    var mAlign      = self + '_m_align'
+    var mHorizontal = self + '_m_horizontal'
+    var mVertical   = self + '_m_vertical'
+%>
+<% if(css[width] || css[height] || css[padding] || css[vertical] || css[horizontal] || css[lineHeight] || css[maxWidth] || css[align] || css[color] || css[weight] || css[size] || css[margin] || css[bgColor] || css[bgImage] || css[bgStyle] || css[mWidth] || css[mHeight] || css[mPadding] || css[mVertical] || css[mHorizontal] || css[mLineHeight] || css[mMaxWidth] || css[mAlign] || css[mColor] || css[mWeight] || css[mSize] || css[mMargin] || css[mBgColor] || css[mBgImage] || css[mBgStyle]){ %>
+<style type="text/css">
+    <% if(css[width] || css[height] || css[padding] || css[vertical] || css[horizontal] || css[lineHeight] || css[maxWidth] || css[align] || css[color] || css[weight] || css[size] || css[margin] || css[bgColor] || css[bgImage] || css[bgStyle]){ %>
+    <%= class %>-<%= id %> {
+        <% if(css[width]){ %>
+        width: <%=css[width]%>;
+        <% } %>
+        <% if(css[maxWidth]){ %>
+        max-width: <%=css[maxWidth]%>;
+        <% } %>
+        <% if(css[height]){ %>
+        height: <%=css[height]%>;
+        <% } %>
+        <% if(css[size]){ %>
+        font-size: <%=css[size]%>;
+        <% } %>
+        <% if(css[lineHeight]){ %>
+        line-height: <%=css[lineHeight]%>;
+        <% } %>
+        <% if(css[padding]){ %>
+        padding: <%=css[padding]%>;
+        <% } %>
+        <% if(css[margin]){ %>
+        margin: <%=css[margin]%>;
+        <% } %>
+        <% if(css[weight]){ %>
+        font-weight: <%=css[weight]%>;
+        <% } %>
+        <% if(css[align]){ %>
+        text-align: <%=css[align]%>;
+        <% } %>
+        <% if(css[color]){ %>
+        color: <%=css[color]%>;
+        <% } %>
+        <% if(css[bgColor]){ %>
+        background-color: <%=css[bgColor]%>;
+        <% } %>
+        <% if(css[bgImage]){ %>
+        background-image: url(<%=css[bgImage]%>);
+        <% } %>
+        <% if(css[bgStyle]){ %>
+        background-size: <%=css[bgStyle]%>;
+        <% } %>
+        <% if(css[horizontal]){ %>
+        justify-content: <%=css[horizontal]%>;
+        <% } %>
+        <% if(css[vertical]){ %>
+        align-items: <%=css[vertical]%>;
+        <% } %>
+    }
+    <% } %>
+
+    <% if(css[mWidth] || css[mHeight] || css[mPadding] || css[mVertical] || css[mHorizontal] || css[mLineHeight] || css[mMaxWidth] || css[mAlign] || css[mColor] || css[mWeight] || css[mSize] || css[mMargin] || css[mBgColor] || css[mBgImage] || css[mBgStyle]){ %>
+    @media only  screen && (max-width: 768px){
+        <%= class %>-<%= id %> {
+            <% if(css[mWidth]){ %>
+            width: <%=css[mWidth]%>;
+            <% } %>
+            <% if(css[mMaxWidth]){ %>
+            max-width: <%=css[mMaxWidth]%>;
+            <% } %>
+            <% if(css[mHeight]){ %>
+            height: <%=css[mHeight]%>;
+            <% } %>
+            <% if(css[mSize]){ %>
+            font-size: <%=css[mSize]%>;
+            <% } %>
+            <% if(css[mLineHeight]){ %>
+            line-height: <%=css[mLineHeight]%>;
+            <% } %>
+            <% if(css[mPadding]){ %>
+            padding: <%=css[mPadding]%>;
+            <% } %>
+            <% if(css[mMargin]){ %>
+            margin: <%=css[mMargin]%>;
+            <% } %>
+            <% if(css[mWeight]){ %>
+            font-weight: <%=css[mWeight]%>;
+            <% } %>
+            <% if(css[mAlign]){ %>
+            text-align: <%=css[mAlign]%>;
+            <% } %>
+            <% if(css[mColor]){ %>
+            color: <%=css[mColor]%>;
+            <% } %>
+            <% if(css[mBgColor]){ %>
+            background-color: <%=css[mBgColor]%>;
+            <% } %>
+            <% if(css[mBgImage]){ %>
+            background-image: url(<%=css[mBgImage]%>);
+            <% } %>
+            <% if(css[mBgStyle]){ %>
+            background-size: <%=css[mBgStyle]%>;
+            <% } %>
+            <% if(css[mHorizontal]){ %>
+            justify-content: <%=css[mHorizontal]%>;
+            <% } %>
+            <% if(css[mVertical]){ %>
+            align-items: <%=css[mVertical]%>;
+            <% } %>
+        }
+    }
+    <% } %>
+
+</style>
+<% } %>

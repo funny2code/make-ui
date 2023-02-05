@@ -1,0 +1,33 @@
+<% if(section?.block_order?.length > 0){ %>
+<% section?.block_order?.forEach((orderItem, index) => { %>
+  <% let block = section?.blocks[orderItem] %>
+<% if(block.type === 'collection'){ %>
+    <% if(block?.settings?.coll && block?.settings?.coll === collection.handle){ %>
+    <link rel="stylesheet" href="/<%=srcId%>/component-collection-email.css">
+    <div class="bc-collection-email-bunner" id="bc-<%= orderItem %>">
+        <div class="bc-collection-email-bunner__wrapper bc-collection-email-bunner__wrapper-<%= orderItem %>">
+        <%- include('../snippets/bcstyle', {css: block.settings, self: 'w', class: '.bc-collection-email-bunner__wrapper', id: orderItem}) %>
+          <div class="bc-collection-email-bunner__content bc-collection-email-bunner__content-<%= orderItem %>">
+          <%- include('../snippets/bcstyle', {css: block.settings, self: 'c', class: '.bc-collection-email-bunner__content', id: orderItem}) %>           
+            <% if(block?.settings?.form){ %>
+            <%= block?.settings?.form %>
+            <% } %>
+          </div>
+        </div>
+      <% if(block?.settings?.show_title){ %>
+      <h1 style="color:inherit" class="bc-collection-email__title bc-collection-email__title-<%= orderItem %>">
+        <%= collection.title %>
+      </h1>
+      <%- include('../snippets/bcstyle', {css: block.settings, self: 't', class: '.bc-collection-email__title', id: orderItem}) %>
+      <% } %>
+      <% if(block?.settings?.show_desc){ %>
+        <div class="bc-collection-email__description">
+          <%- collection.description -%>
+        </div>
+      <% } %>
+    </div>
+    <% } %>
+
+<% } %>
+<% }) %>
+<% } %>

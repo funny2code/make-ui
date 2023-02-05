@@ -1,0 +1,152 @@
+<link rel="stylesheet" href="/<%=srcId%>/component-slider.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-price-style-1.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-badge.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-product-card-style-1.css">
+<link rel="stylesheet" href="/<%=srcId%>/template-collection-style-1.css">
+
+<style type="text/css">
+  .collection .page-width-br {
+    max-width: 100%;
+    padding: 0;
+  }
+  .bc-br-bt .collection__header {
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 2px solid #000;     
+  }
+  .bc-br-bt .collection__header .title {
+    margin: 0;
+  }
+  .featured-collection-<%=section.id%> .title,
+  .featured-collection-<%=section.id%> .slider-button{
+    color:<%=section.settings.section_color_title%>;
+  }
+  .featured-collection-<%=section.id%>{
+    background-color:<%=section.settings.section_bg_color%>;    
+  }
+  .featured-collection-<%=section.id%> .py-c-dark .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+    color: var(--py-color-dark);
+      }
+  .featured-collection-<%=section.id%> .py-c-average .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+    color: var(--py-color-average);
+      }
+  .featured-collection-<%=section.id%> .py-c-light .card-wrapper *:not(.card-quick-add):not(.card-view-product){
+    color: var(--py-color-light);
+      }
+  .card-wrapper{
+    padding-bottom:15px;
+    height:100%;
+  } 
+  .product-list-<%=section.id%> .py-center .price,
+  .product-list-<%=section.id%> .py-center .card-color-wrapper,
+  .product-list-<%=section.id%> .py-center ul.variant-options,
+  .product-list-<%=section.id%> .py-center .card-button-wrapper{
+    justify-content: center;
+  }  
+  <% if(section.settings.custom_font_style){ %>
+
+  .product-list-<%=section.id%> .card-wrapper .card-information__text{
+    font-size: <%=section.settings.title_fontsize%>;
+    font-weight: <%=section.settings.title_fontweight%>;
+    font-stretch:<%=section.settings.title_fontstretch%>;
+    font-style:<%=section.settings.title_fontstyle%>;
+    line-height:<%=section.settings.title_lineheight%>;
+    letter-spacing:<%=section.settings.title_letterspacing%>
+  }
+  @media(max-width:749px){
+    .product-list-<%=section.id%> .card-wrapper .card-information__text{
+      font-size: <%=section.settings.title_fontsize_m%>
+    }
+  }
+  .product-list-<%=section.id%> .card-wrapper .price *{
+    font-size: <%=section.settings.info_fontsize%>;
+    font-weight: <%=section.settings.info_fontweight%>;
+    font-stretch:<%=section.settings.info_fontstretch%>;
+    font-style:<%=section.settings.info_fontstyle%>;
+    line-height:<%=section.settings.info_lineheight%>;
+    letter-spacing:<%=section.settings.info_letterspacing%>
+  }
+  @media(max-width:749px){
+    .product-list-<%=section.id%> .card-wrapper .price *{
+      font-size: <%=section.settings.info_fontsize_m%>
+    }
+  }              
+  <% } %>
+</style>
+
+<div class="collection featured-collection-<%=section.id%> bc-<%=settings.section_style%>-bt py-pd-y-m">
+  <div class="page-width page-width-<%=settings.section_style%>">
+    <div class="collection__header <% if(section.settings.show_view_all && section.settings.swipe_on_mobile){ %>title-wrapper-with-link<% } %><% if(!section.settings.title){ %> title-wrapper-with-link--no-heading<% } %><% if(collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> title-wrapper--self-padded-tablet-down<% } %>">
+      <h2 class="title<% if(!section.settings.title){ %> title--no-heading<% } %>"><%= section.settings.title %></h2>
+
+      <% if(section.settings.show_view_all && section.settings.swipe_on_mobile){ %>
+        <a href="<%= collection?.url %>" class="link underlined-link large-up-hide"><%=sectionst.featured_collection?.view_all%></a>
+      <% } %>
+    </div>
+
+    <%
+      var products_to_display = collection?.all_products_count
+
+      if(collection?.all_products_count > section.settings.products_to_show){
+        products_to_display = section.settings.products_to_show
+      }
+    %>
+
+    <slider-component class="slider-mobile-gutter">
+      <ul class="grid grid--1-col product-list-<%=section.id%> <% if(products_to_display === 4 || !collection){ %> grid--2-col-tablet grid--4-col-desktop<% } else { %> grid--3-col-tablet<% } %><% if(products_to_display > 5){ %> grid--one-third-max grid--4-col-desktop grid--quarter-max<% } %><% if(collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> slider slider--tablet grid--peek<% } %><% if(section.settings.show_view_all === false || collection?.products.length < section.settings.products_to_show){ %> negative-margin<% } %><% if(section.settings.show_view_all && collection?.products.length > section.settings.products_to_show){ %> negative-margin--small<% } %>" role="list">
+        <% if(collection?.products?.length){ %>
+          <% collection?.products?.forEach((product,index)=>{ %>
+            <% if(index < section.settings.products_to_show){ %>
+            <li class="grid__item py-card-<%=section.settings.card_style%> py-<%=section.settings.card_color%> <% if(collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %> slider__slide<% } %>"  style="padding-bottom:<%=section.settings.item_space%>px;padding-left:<%=section.settings.item_space%>px">
+              <%- include('../snippets/product-card', {
+                  product_card_product: product,
+                  inventory_quantity: false,
+                  media_size: section.settings.image_ratio,
+                  media_gallery:section.settings.image_gallery,
+                  tag_field:section.settings.tag_field,                                   
+                  show_vendor: section.settings.show_vendor,
+                  show_colors: section.settings.show_colors,
+                  show_view_product: section.settings.show_view_product,
+                  show_quick_add: section.settings.show_quick_add,
+                  show_variants_on_hover: section.settings.show_variants_on_hover,
+                  card_bg_color: section.settings.card_bg_color,
+                  card_radius: section.settings.card_radius,
+                  info_align: section.settings.info_align
+              }) %>
+            </li>
+            <% } %>
+          <% }) %>
+        <% } else { %>
+          <% for(let i=1; i<=4; i++){ %>
+            <li class="grid__item">
+              <%- include('../snippets/product-card-placeholder', {index: i}) %>
+            </li>
+          <% } %>
+        <% } %>
+      </ul>
+      <% if(collection?.all_products_count > 2 && section.settings.swipe_on_mobile && section.settings.products_to_show > 2){ %>
+        <div class="slider-buttons no-js-hidden<% if(collection?.all_products_count < 4){ %> medium-hide<% } %><% if(collection?.all_products_count < 3){ %> small-hide<% } %>">
+          <div class="slider-counter caption">
+            <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="visually-hidden"><%=accessibility.of%></span>
+            <span class="slider-counter--total"><%= products_to_display %></span>
+          </div>
+          <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="<%=accessibility.previous_slide%>"><%- include('../snippets/icon-caret') %></button>
+          <button type="button" class="slider-button slider-button--next" name="next" aria-label="<%=accessibility.next_slide%>"><%- include('../snippets/icon-caret') %></button>
+        </div>
+      <% } %>
+    </slider-component>
+
+    <% if(section.settings.show_view_all && collection?.all_products_count > section.settings.products_to_show){ %>
+      <div class="center<% if(section.settings.swipe_on_mobile){ %> small-hide medium-hide<% } %>">
+        <a href="<%= collection?.url %>"
+          class="button"
+          aria-label="<%=sectionst.featured_collection?.view_all_label %>"
+        >
+          <%=sectionst.featured_collection?.view_all%>
+        </a>
+      </div>
+    <% } %>
+  </div>
+</div>

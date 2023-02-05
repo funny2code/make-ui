@@ -1,0 +1,104 @@
+<style>
+  <% if(section.settings.button_radius){ %>
+  .cart__ctas button{
+    border-radius: <%=section.settings.button_radius%>px;  
+  }
+  <% } %>
+  <% if(section.settings.enable_dynamic_pay){ %>
+  #loopcheckoutdynamic{
+    margin-top: 15px;
+    background: #5b32f6;
+  }
+  #loopcheckoutdynamic:hover{
+    box-shadow: 0 0 10px black;
+  }
+  #loopcheckoutdynamic img{
+    width: 74px;
+  }
+  <% } %>
+</style>
+<div class="page-width<% if(!cart){ %> is-empty<% } %>" id="main-cart-footer" data-id="<%= sectionid %>">
+  <div><div class="title-wrapper-with-link" style="opacity:0"><h3 style="margin:0">Form</h3></div>
+    <div class="cart__footer">
+      <div class="cart__footer-container">
+        <% section?.block_order?.forEach((orderItem, index) => { %>
+          <% let block = section?.blocks[orderItem] %>
+          <% if(block.type === "buttons"){ %>
+              <div class="cart__ctas">
+                <noscript>
+                  <button type="submit" class="cart__update-button button button--secondary" form="cart">
+                    <%=sectionst.cart.update%>
+                  </button>
+                </noscript>
+
+                <button type="submit" class="cart__checkout-button button py-c-<%=block?.settings?.btn_color%> py-hv-c-<%=block?.settings?.btn_color_hover%> py-bg-c-<%=block?.settings?.btn_bg_color%> py-hv-bg-c-<%=block?.settings?.btn_bg_color_hover%> py-btn-<%=block?.settings?.btn_size%>" name="checkout"<% if(!cart){ %> disabled<% } %> form="cart">
+                  <%=sectionst.cart.checkout%>
+                </button>
+                <% if(section.settings.enable_dynamic_pay){ %>
+                <button id="loopcheckoutdynamic" class="button button--primary button--full-width py-btn-<%=block?.settings?.btn_size%>" ><img src="https://cdn.shopify.com/s/files/1/0584/1993/7441/files/image_11.png?v=1641840659"></button>
+                <% } %>
+               </div>
+
+              
+            <% } else if(block.type === 'subtotal'){ %>
+              <div class="js-contents">
+                <div class="totals">
+                  <h3 class="totals__subtotal"><%=sectionst.cart.subtotal%></h3>
+                  <p class="totals__subtotal-value"><%= cart.total_price_with_currency %></p>
+                </div>
+
+                <div>
+                  <% if(cart.cart_level_discount_applications.length > 0){ %>
+                    <ul class="discounts list-unstyled" role="list" aria-label="<%=customer.order.discount%>">
+                      <% cart?.cart_level_discount_applications?.forEach((discount,index)=>{ %>
+                        <li class="discounts__discount discounts__discount--end">
+                          <%- include('../snippets/icon-discount') %>
+                          <%= discount.title %>
+                          (-<%= discount.total_allocated_amount %>)
+                        </li>
+                      <% }) %>
+                    </ul>
+                  <% } %>
+                </div>
+
+                <small class="tax-note caption-large rte">
+                  <% if(cart.taxes_included && shop?.shipping_policy?.body){ %>
+                    <%=sectionst.cart.taxes_included_and_shipping_policy_html %>
+                  <% } else if(cart.taxes_included){ %>
+                    <%=sectionst.cart.taxes_included_but_shipping_at_checkout%>
+                  <% } else if(shop?.shipping_policy?.body){ %>
+                    <%=sectionst.cart.taxes_and_shipping_policy_at_checkout_html %>
+                  <% } else { %>
+                    <%=sectionst.cart.taxes_and_shipping_at_checkout%>
+                  <% } %>
+                </small>
+              </div>            
+          <% } %>
+        <% }) %>
+
+        <div id="cart-errors"></div>
+        <% if(section.settings.show_cart_note){ %>
+        <cart-note class="cart__note field">
+          <label for="Cart-note"><%=sectionst.cart.note%></label>
+          <textarea class="text-area text-area--resize-vertical field__input" name="note" id="Cart-note" placeholder="<%=sectionst.cart.note%>"><%= cart.note %></textarea>
+        </cart-note>
+      <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  class CartNote extends HTMLElement {
+    constructor() {
+      super();
+
+      this.addEventListener('change', debounce((event) => {
+        const body = JSON.stringify({ note: event.target.value });
+        fetch(`${routes.cart_update_url}`, {...fetchConfig(), ...{ body }});
+      }, 300))
+    }
+  }
+
+  customElements.define('cart-note', CartNote);
+</script>

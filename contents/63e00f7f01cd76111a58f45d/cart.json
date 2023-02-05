@@ -1,0 +1,129 @@
+{
+    "token": "b2a24fd1d720f4e06b9d15fcab114233",
+    "note": null,
+    "attributes": {},
+    "original_total_price": 16500,
+    "total_price": 16500,
+    "total_discount": 0,
+    "total_weight": 0,
+    "item_count": 2,
+    "items": [
+        {
+            "id": 39666885492824,
+            "properties": {
+                "_add_cart_form": "Normal_add_to_cart",
+                "_page_type": "product",
+                "_pickup_options": "Distillery: 0,Distribution Centre: 4,Union Station: 0",
+                "_pickup": "false"
+            },
+            "quantity": 1,
+            "variant_id": 39666885492824,
+            "key": "39666885492824:792de0971cbfcbde95e863ae7284d24e",
+            "title": "Protect Your Energy Movement™ Bra Top - White - XL",
+            "price": 8500,
+            "original_price": 8500,
+            "discounted_price": 8500,
+            "line_price": 8500,
+            "original_line_price": 8500,
+            "total_discount": 0,
+            "discounts": [],
+            "sku": "PYE01-2200MOVE-WH-XL",
+            "grams": 0,
+            "vendor": "Peace Collective",
+            "taxable": true,
+            "product_id": 6766930165848,
+            "product_has_only_default_variant": false,
+            "gift_card": false,
+            "final_price": 8500,
+            "final_line_price": 8500,
+            "url": "/products/protect-your-energy-movement-bra-top-white?variant=39666885492824",
+            "featured_image": {
+                "aspect_ratio": 0.673,
+                "alt": "Protect Your Energy Movement™ Bra Top - White",
+                "height": 2048,
+                "url": "https://cdn.shopify.com/s/files/1/0488/0597/products/White-Bra.png?v=1657250409",
+                "width": 1379
+            },
+            "image": "https://cdn.shopify.com/s/files/1/0488/0597/products/White-Bra.png?v=1657250409",
+            "handle": "protect-your-energy-movement-bra-top-white",
+            "requires_shipping": true,
+            "product_type": "Activewear",
+            "product_title": "Protect Your Energy Movement™ Bra Top - White",
+            "product_description": "Materials & Care• 84% micro modal, 16% spandex• Machine wash in warm water with similar colours and hang to dry  \nFeatures• Mid-weight fabric• Minimal logo printed below chest \nSize & Fit• Standard fit\n",
+            "variant_title": "XL",
+            "variant_options": [
+                "XL"
+            ],
+            "options_with_values": [
+                {
+                    "name": "Size",
+                    "value": "XL"
+                }
+            ],
+            "line_level_discount_allocations": [],
+            "line_level_total_discount": 0
+        },
+        {
+            "id": 39865256247384,
+            "properties": {
+                "_add_cart_form": "Normal_add_to_cart",
+                "pc_expected_date": "pc_demand",
+                "_page_type": "product",
+                "pc": "demand",
+                "pc_announcement": "Ships in 7-10 days",
+                "_pickup_options": "",
+                "_pickup": "false"
+            },
+            "quantity": 1,
+            "variant_id": 39865256247384,
+            "key": "39865256247384:0e49cd2e660f302e38312131a6ab63ef",
+            "title": "Toronto Raptors Vintage Washed Crewneck - Red - XS",
+            "price": 8000,
+            "original_price": 8000,
+            "discounted_price": 8000,
+            "line_price": 8000,
+            "original_line_price": 8000,
+            "total_discount": 0,
+            "discounts": [],
+            "sku": "RA80-3000-RD-XS",
+            "grams": 0,
+            "vendor": "PC On Demand",
+            "taxable": true,
+            "product_id": 7020783665240,
+            "product_has_only_default_variant": false,
+            "gift_card": false,
+            "final_price": 8000,
+            "final_line_price": 8000,
+            "url": "/products/toronto-raptors-vintage-washed-crewneck-red?variant=39865256247384",
+            "featured_image": {
+                "aspect_ratio": 0.673,
+                "alt": "Toronto Raptors Vintage Washed Crewneck - Red",
+                "height": 2048,
+                "url": "https://cdn.shopify.com/s/files/1/0488/0597/products/TR_RedCrewneck_FanVintage.jpg?v=1657248518",
+                "width": 1379
+            },
+            "image": "https://cdn.shopify.com/s/files/1/0488/0597/products/TR_RedCrewneck_FanVintage.jpg?v=1657248518",
+            "handle": "toronto-raptors-vintage-washed-crewneck-red",
+            "requires_shipping": true,
+            "product_type": "Crewnecks",
+            "product_title": "Toronto Raptors Vintage Washed Crewneck - Red",
+            "product_description": "**Materials & Care**• Constructed from 70% cotton, 30% polyester• Midweight, 280GSM• Machine wash cold with similar colours and tumble dry on a low setting or hang to dry\n**Features**• Ribbed at crew neck, waistband and wrists• Preshrunk for minimal shrinkage• Anti-pill fabric on the inside and brushed soft cotton on the outside\n",
+            "variant_title": "XS",
+            "variant_options": [
+                "XS"
+            ],
+            "options_with_values": [
+                {
+                    "name": "Size",
+                    "value": "XS"
+                }
+            ],
+            "line_level_discount_allocations": [],
+            "line_level_total_discount": 0
+        }
+    ],
+    "requires_shipping": true,
+    "currency": "CAD",
+    "items_subtotal_price": 16500,
+    "cart_level_discount_applications": []
+}

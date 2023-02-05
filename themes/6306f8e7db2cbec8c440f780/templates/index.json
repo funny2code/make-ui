@@ -26,7 +26,7 @@
         "m_margin": "",
         "m_width": "",
         "m_height": "",
-        "m_c_css": "flex-direction: column;\njustify-content: end;\npadding-bottom:30px;",
+        "m_c_css": "",
         "enable_anim": true,
         "anim": "zoom-out"
       },
@@ -60,7 +60,7 @@
           "settings": {
             "button_label_1": "SHOP NOW",
             "button_link_1": "shopify://collections/all",
-            "view_btn_size": "large",
+            "view_btn_size": "small",
             "content_color_view_btn": "dark",
             "content_bg_color_view_btn": "light",
             "content_color_view_btn_hover": "light",

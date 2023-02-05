@@ -77,7 +77,7 @@
                 <% } %>
                 <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--<%= section.settings.image_width %>-width<% if(section.settings.image_width !== 'full' || spaced_image){ %> multicolumn-card-spacing<% } %>">
                   
-                  <div class="media media--transparent media--<%= section.settings.image_ratio %>"
+                  <div id="<%="image1_" + orderItem%>" class="media media--transparent media--<%= section.settings.image_ratio %>"
                     <% if(section.settings.image_ratio === 'adapt' &&  block?.settings?.image){ %>
                       style="padding-bottom: <%= 1 / highest_ratio * 100 %>%;"
                     <% } %>

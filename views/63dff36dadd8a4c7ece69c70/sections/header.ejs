@@ -1,0 +1,1207 @@
+<link rel="stylesheet" href="/<%=srcId%>/component-list-menu.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-search-style-1.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-menu-drawer.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-cart-notification-<%=settings.cart_style%>.css">
+<link rel="stylesheet" href="/<%=srcId%>/component-header-style-1.css">
+
+<style>
+  .header-wrapper{
+    border-color:<%=section.settings.py_header_color_1_border%>;
+    z-index: 99;
+  }
+  .header-wrapper,.header__submenu,
+  .menu-drawer,.menu-drawer__submenu{
+    background: <%=section.settings.py_header_bg_color_1%>;
+  }
+  .bc-mega-menu-image__title,.bc-mega-menu__title{
+    color:<%=section.settings.py_header_color_1%>;
+  }
+  .menu-drawer__menu-item--active,
+  .menu-drawer__menu-item:focus,
+  .menu-drawer__close-button:focus,
+  .menu-drawer__menu-item:hover,
+  .menu-drawer__close-button:hover {
+    color:<%=section.settings.py_header_color_1_link_hov%>;
+    background-color: var(--color-foreground-4);
+  }
+  .header__heading *,
+  .top-left-nav-item,
+  .header__icon *,
+  .header-wrapper a,
+  .header-wrapper .list-menu__item,
+  .header-wrapper .link--text{
+    color:<%=section.settings.py_header_color_1_link%>;
+  }
+  .header__heading *:hover,
+  .top-left-nav-item:hover,
+  .header__icon>*:hover *,
+  .header-wrapper a:hover,
+  .header-wrapper .list-menu__item:hover{
+    color:<%=section.settings.py_header_color_1_link_hov%>;
+  }
+  .header--top-left .header__inline-menu .list-menu__item,
+  .header--top-left-with-nav .header__inline-menu .list-menu__item{
+    color:<%=section.settings.py_header_color_2_link%>;
+  }
+  .header--top-left .header__inline-menu .list-menu__item:hover,
+  .header--top-left-with-nav .header__inline-menu .list-menu__item:hover{
+    color:<%=section.settings.py_header_color_2_link_hov%>;
+  }
+  .header--top-left .header__submenu,
+  .header--top-left-with-nav .header__submenu{
+    background: <%=section.settings.py_header_bg_color_2%>;
+  }
+  .search-modal.modal__content{
+     background: <%=section.settings.py_search_bg_color%>;
+  }
+  .header__search .bc-search-result-wrapper *,
+  .header__search .field *,
+  .search-modal__close-button *{
+    color:<%=section.settings.py_search_color_title%>;
+  }
+  form.search .search__input.field__input{
+    border-radius: <%=section.settings.py_search_field_br_radius%>;
+    background-color: <%=section.settings.py_search_field_bg_color%>;    
+    border: <%=section.settings.py_search_field_br_width%> solid;
+    border-color: <%=section.settings.py_search_field_color_br%>;
+    padding-top:13px !important;
+    padding-bottom:13px !important;
+    
+  }
+  form.search .search__input.field__input,
+  form.search .field__label,
+  form.search .search__button svg{
+    color:<%=section.settings.py_search_field_color%>;
+    font-size:<%=section.settings.py_search_field_font_size%>;
+  }
+  form.search .field__input:focus~.field__label, 
+  form.search .field__input:not(:placeholder-shown)~.field__label, 
+  form.search .field__input:-webkit-autofill~.field__label{
+    display:none !important;
+  }
+  form.search .search__input.field__input:focus{
+    color:<%=section.settings.py_search_field_focus_color%>;
+    background-color: <%=section.settings.py_search_field_focus_bg_color%>;     
+  }
+  .bc-search__input-title{
+    color:<%=section.settings.py_search_color_title%>;
+    font-size:<%=section.settings.py_search_title_font_size%>;
+    padding:20px 0px;
+  }  
+  .search__button svg{
+    height: 1.8rem;
+    width: 1.8rem;
+  }
+  .search-modal.modal__content,.menu-drawer{
+    z-index:99;
+  }
+  
+  .header--top-left .header__inline-menu{
+    padding-top: 5px;
+  }
+  header.header:not(.header--top-left) .search-modal.modal__content{
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    position:fixed;
+  }
+  .search-full_screen .bc-search__input-title,
+  .search-full_screen .bc-cart__not-products{
+    text-align:center;
+  }
+  .search>.field{
+    max-width: 640px;
+    margin: auto;
+    padding-bottom:20px;
+  }  
+  .search-sidebar:not(.header--top-left) .search-modal.modal__content{
+    padding:0px;
+    background:rgba(0,0,0,0.6);
+  }
+  .search-sidebar:not(.header--top-left) .search-modal__content{
+    background: <%=section.settings.py_search_bg_color%>;
+    width: 100%;
+    max-width: 400px;    
+    margin-right: 0px;
+    margin-left: auto;
+    padding: 40px 20px;
+  }
+  .search-sidebar:not(.header--top-left) .search-modal__close-button{
+    top: 20px;
+    right: 0px;
+    position: fixed;
+  }
+  .bc-search-result-inner-wrapper{
+    padding-right:15px;
+  }
+  .search-sidebar:not(.header--top-left) .bc-search-result-wrapper .bc-cart__item,
+  .header--top-left .bc-search-result-wrapper .bc-cart__item{
+    flex-direction: row;
+    justify-content: space-between;
+    width:100%;
+  }
+  .search-sidebar:not(.header--top-left) .bc-search-result-wrapper .bc-cart__item .bc-cart__image-wrapper,
+  .header--top-left .bc-search-result-wrapper .bc-cart__item .bc-cart__image-wrapper{
+    width:42%;
+  }
+  .search-sidebar:not(.header--top-left) .bc-search-result-wrapper .bc-cart__item .bc-cart__info-wrapper,
+  .header--top-left .bc-search-result-wrapper .bc-cart__item .bc-cart__info-wrapper{
+    width:50%;
+  }
+  .bc-search-result-wrapper .bc-cart__item{
+    padding-bottom:<%=section.settings.item_space%>px;
+    padding-left:<%=section.settings.item_space / 2%>px;
+    padding-right:<%=section.settings.item_space / 2%>px;
+  }
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper{
+    background-color:<%=section.settings.card_bg_color%>;
+    border-radius:<%=section.settings.card_radius%>px;
+    padding-bottom:10px;
+    height:100%;
+  }
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper *:not(.card-view-product){
+    color: <%=section.settings.card_color%>;
+  }
+  
+  <% if(section.settings.image_ratio === "portrait"){ %>
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__image-img{
+    position:absolute;
+    left:0;
+    top:0;
+    height:100%;
+  } 
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__image-wrapper>a{
+    position:relative;
+    padding-bottom:125%;
+    overflow: hidden;
+    display:block;
+  }      
+  <% } %> 
+  <% if(section.settings.image_ratio === "square"){ %>
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__image-img{
+    position:absolute;
+    left:0;
+    top:0;
+    height:100%;
+  } 
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__image-wrapper>a{
+    position:relative;
+    padding-bottom:100%;
+    overflow: hidden;
+    display:block;
+  }      
+  <% } %> 
+  <% if(section.settings.info_align === "center"){ %>
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper *{
+    justify-content: center;
+    text-align:center;
+  }              
+  <% } %> 
+  <% if(section.settings.show_vendor){ %>
+  .bc-search-result-wrapper .bc-cart__item .bc-cart__vendor{
+    display:block !important;
+  }              
+  <% } %> 
+  <% if(section.settings.show_view_product){ %>
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .card-button-wrapper{
+    display:flex !important;
+  }              
+  <% } %> 
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__title{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  <% if(section.settings.custom_font_style){ %>
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__title{
+    font-size: <%=section.settings.title_fontsize%>;
+    font-weight: <%=section.settings.title_fontweight%>;
+    font-stretch:<%=section.settings.title_fontstretch%>;
+    font-style:<%=section.settings.title_fontstyle%>;
+    line-height:<%=section.settings.title_lineheight%>;
+    letter-spacing:<%=section.settings.title_letterspacing%>
+  }
+  @media(max-width:749px){
+    .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__title{
+      font-size: <%=section.settings.title_fontsize_m%>
+    }
+  }
+  .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__price-and-properties *{
+    font-size: <%=section.settings.info_fontsize%>;
+    font-weight: <%=section.settings.info_fontweight%>;
+    font-stretch:<%=section.settings.info_fontstretch%>;
+    font-style:<%=section.settings.info_fontstyle%>;
+    line-height:<%=section.settings.info_lineheight%>;
+    letter-spacing:<%=section.settings.info_letterspacing%>
+  }
+  @media(max-width:749px){
+    .bc-search-result-wrapper .bc-cart__item .card-wrapper .bc-cart__price-and-properties *{
+      font-size: <%=section.settings.info_fontsize_m%>
+    }
+  }              
+  <% } %>
+  .search-sidebar:not(.header--top-left) form.search .search__input.field__input{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  .header--top-left form.search>.field{
+    padding-bottom:5px;    
+  }
+  .header--top-left .search-modal__close-button{
+    position: absolute;
+    top: 15px;
+  }
+  .header--top-left .header__search{
+    position:relative;
+  }
+  .header--top-left .search-modal.modal__content{
+    max-width: 640px;
+    border-radius: 15px;
+    top: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    right: auto;
+    bottom: auto;
+    animation: none;
+  }
+  @media(min-width:800px){
+    .header--top-left-with-nav,.header--top-left{
+      padding:0px;      
+    } 
+    .header--top-left .header__heading{
+      padding-bottom:10px;
+    }
+    .header--top-left.py-pd-y-xl{      
+      padding-top:var(--py-pd-y-xl);
+    } 
+    .header--top-left.py-pd-y-l{      
+      padding-top:var(--py-pd-y-l);
+    } 
+    .header--top-left.py-pd-y-m{      
+      padding-top:var(--py-pd-y-m);
+    }
+    .header--top-left.py-pd-y-s{      
+      padding-top:var(--py-pd-y-s);
+    } 
+    .header--top-left.py-pd-y-xs{      
+      padding-top:var(--py-pd-y-xs);
+    } 
+    
+    .header--top-left.py-pd-x-xl .header__heading,
+    .header--top-left-with-nav.py-pd-x-xl .header__heading{
+      padding-left:var(--py-pd-x-xl);
+    }
+    .header--top-left.py-pd-x-l .header__heading,
+    .header--top-left-with-nav.py-pd-x-l .header__heading{
+      padding-left:var(--py-pd-x-l);
+    }
+    .header--top-left.py-pd-x-m .header__heading,
+    .header--top-left-with-nav.py-pd-x-m .header__heading{
+      padding-left:var(--py-pd-x-m);
+    }
+    .header--top-left.py-pd-x-s .header__heading,
+    .header--top-left-with-nav.py-pd-x-s .header__heading{
+      padding-left:var(--py-pd-x-s);
+    }
+    .header--top-left.py-pd-x-xs .header__heading,
+    .header--top-left-with-nav.py-pd-x-xs .header__heading{
+      padding-left:var(--py-pd-x-xs);
+    }
+    .header--top-left.py-pd-x-xl .header__icons,
+    .header--top-left-with-nav.py-pd-x-xl .header__icons{
+      padding-right:var(--py-pd-x-xl);
+    }
+    .header--top-left.py-pd-x-l .header__icons,
+    .header--top-left-with-nav.py-pd-x-l .header__icons{
+      padding-right:var(--py-pd-x-l);
+    }
+    .header--top-left.py-pd-x-m .header__icons,
+    .header--top-left-with-nav.py-pd-x-m .header__icons{
+      padding-right:var(--py-pd-x-m);
+    }
+    .header--top-left.py-pd-x-s .header__icons,
+    .header--top-left-with-nav.py-pd-x-s .header__icons{
+      padding-right:var(--py-pd-x-s);
+    }
+    .header--top-left.py-pd-x-xs .header__icons,
+    .header--top-left-with-nav.py-pd-x-xs .header__icons{
+      padding-right:var(--py-pd-x-xs);
+    }
+    .header--top-left .header__inline-menu,
+    .header--top-left-with-nav .header__inline-menu{ 
+      background: <%=section.settings.py_header_bg_color_2%>;           
+    }
+    .header--top-left.py-pd-x-xl .header__inline-menu,
+    .header--top-left-with-nav.py-pd-x-xl .header__inline-menu{       
+      padding-left: var(--py-pd-x-xl);
+      padding-right: var(--py-pd-x-xl);      
+    }
+    .header--top-left.py-pd-x-l .header__inline-menu,
+    .header--top-left-with-nav.py-pd-x-l .header__inline-menu{       
+      padding-left: var(--py-pd-x-l);
+      padding-right: var(--py-pd-x-l);      
+    }
+    .header--top-left.py-pd-x-m .header__inline-menu,
+    .header--top-left-with-nav.py-pd-x-m .header__inline-menu{       
+      padding-left: var(--py-pd-x-m);
+      padding-right: var(--py-pd-x-m);      
+    }
+    .header--top-left.py-pd-x-s .header__inline-menu,
+    .header--top-left-with-nav.py-pd-x-s .header__inline-menu{       
+      padding-left: var(--py-pd-x-s);
+      padding-right: var(--py-pd-x-s);      
+    }
+    .header--top-left.py-pd-x-xs .header__inline-menu,
+    .header--top-left-with-nav.py-pd-x-xs .header__inline-menu{      
+      padding-left: var(--py-pd-x-xs);
+      padding-right: var(--py-pd-x-xs);      
+    }
+    .header--top-left .header__inline-menu{
+      margin-top:8px;
+    }
+    .top-left-nav-tabs{
+      display:flex;
+    }
+    .top-left-nav-item{     
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .top-left-nav-item {
+        padding: 20px;
+    }
+    .header--top-left-with-nav.py-pd-y-xl .top-left-nav-item{
+      padding:var(--py-pd-y-xl) 20px;      
+    }
+    .header--top-left-with-nav.py-pd-y-l .top-left-nav-item{
+      padding:var(--py-pd-y-l) 20px;      
+    }
+    .header--top-left-with-nav.py-pd-y-m .top-left-nav-item{
+      padding:var(--py-pd-y-m) 20px;      
+    }
+    .header--top-left-with-nav.py-pd-y-s .top-left-nav-item{
+      padding:var(--py-pd-y-s) 20px;      
+    }
+    .header--top-left-with-nav.py-pd-y-xs .top-left-nav-item{
+      padding:var(--py-pd-y-xs) 20px;      
+    }
+    .top-left-nav-item.active{
+      background:<%=section.settings.py_header_bg_color_2%>;
+      color:<%=section.settings.py_header_color_2_link%>;
+    }
+  }
+  @media (max-width:799px){
+    .header-top-left-nav-container,
+    .header-search-container{
+      display:none;
+    }
+  }
+  @media(min-width: 750px) {
+    .list-menu__item--link {
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
+    }
+  }
+  body.index .header-position-fixed{    
+  }
+  .shopify-section-header-sticky .header-position-fixed{
+    top:0;
+    position:fixed;
+    width:100%;
+  }
+  cart-notification .bc-cart__item .bc-cart__title{
+    font-size:<%=settings.item_title_font_size%>px;
+  }
+  cart-notification .bc-cart__item .bc-cart__variant-title{
+    font-size:<%=settings.item_title_font_size%>px;
+  }
+  cart-notification .bc-cart__item .bc-cart__price-wrapper{
+    font-size:<%=settings.item_price_font_size%>px;
+  }
+  cart-notification .bc-cart__item .bc-cart__properties-wrapper{
+    font-size:<%=settings.item_content_font_size%>px;
+  }  
+  cart-notification .bc-cart__buttons-wrapper .button{
+    border:none;
+  }  
+  cart-notification .bc-cart__item{
+    padding:10px;
+    background-color:<%=settings.item_bg_color%>;    
+    border-radius: <%=settings.item_radius%>px;     
+  }
+  cart-notification .bc-cart__item *{
+    color:<%=settings.item_color%>;
+  }
+  cart-notification .bc-cart__item .bc-cart__image-wrapper img{
+    border-radius: <%=settings.item_radius%>px;
+  } 
+  
+  <% if(settings.enable_dynamic_pay){ %>
+  #loopcheckoutdynamic{
+    margin-top: 15px;
+    background: #5b32f6;
+    min-height:36px;
+  }
+  #loopcheckoutdynamic:hover{
+    box-shadow: 0 0 10px black;
+  }
+  #loopcheckoutdynamic img{
+    width: 74px;
+  }
+  <% } %>
+</style>
+
+<script src="/<%=srcId%>/details-disclosure.js" defer="defer"></script>
+<script src="/<%=srcId%>/details-modal.js" defer="defer"></script>
+
+<svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+  <symbol id="icon-search" viewbox="0 0 18 19" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 0C8.22391 0 9.87721 0.684819 11.0962 1.90381C12.3152 3.12279 13 4.77609 13 6.5C13 8.11 12.41 9.59 11.44 10.73L11.71 11H12.5L17.5 16L16 17.5L11 12.5V11.71L10.73 11.44C9.59 12.41 8.11 13 6.5 13C4.77609 13 3.12279 12.3152 1.90381 11.0962C0.684819 9.87721 0 8.22391 0 6.5C0 4.77609 0.684819 3.12279 1.90381 1.90381C3.12279 0.684819 4.77609 0 6.5 0ZM6.5 2C4 2 2 4 2 6.5C2 9 4 11 6.5 11C9 11 11 9 11 6.5C11 4 9 2 6.5 2Z" fill="currentColor"/>
+  </symbol>
+  <symbol id="icon-close" class="icon icon-close" fill="none" viewBox="0 0 18 17">
+    <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+  </symbol>
+</svg>
+
+<sticky-header id="shopify-section-header" class="header-wrapper py-<%=section.settings.br%> header-position-<%=section.settings.header_position%> ">
+  <header class="header header--<%= section.settings.logo_position %> search-<%=section.settings.search_style%> page-width <% if(section.settings.menu){ %> header--has-menu<% } %> py-<%=section.settings.page_width%> py-<%=section.settings.page_y_pd%> py-<%=section.settings.page_x_pd%>">
+    <% if(section.settings.menu){ %>
+      <header-drawer>
+        <details class="menu-drawer-container">
+          <summary class="header__icon header__icon--menu header__icon--summary link link--text focus-inset" aria-label="<%=sectionst.header.menu%>">
+            <span>
+              <%- include('../snippets/icon-hamburger') %>
+              <%- include('../snippets/icon-close') %>
+            </span>
+          </summary>
+          <div id="menu-drawer" class="menu-drawer motion-reduce" tabindex="-1">
+            <div class="menu-drawer__inner-container">
+              <div class="menu-drawer__navigation-container">
+                 <nav class="menu-drawer__navigation">
+                  <ul class="menu-drawer__menu list-menu" role="list">
+                    <% menu.links?.forEach((link,index)=>{ %>
+                      <li>
+                        <% if(link.links){ %>
+                          <details>
+                            <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset<% if(link.child_active){ %> menu-drawer__menu-item--active<% } %>">
+                              <%= link.title %>
+                              <%- include('../snippets/icon-arrow') %>
+                              <%- include('../snippets/icon-caret') %>
+                            </summary>
+                            <div id="link-<%= link.title %>" class="menu-drawer__submenu motion-reduce " tabindex="-1">
+                              <div class="menu-drawer__inner-submenu">
+                                <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                                  <%- include('../snippets/icon-arrow') %>
+                                  <%= link.title %>
+                                </button>
+                                <% if(section.blocks.length > 0){ %>
+                                    <% var no_mega = true %>
+                                    <% section?.block_order?.forEach((orderItem, index) => { %>
+                                      <% let block = section?.blocks[orderItem] %>
+                                    <% 
+                                        var name = block?.settings?.name?.trim().toLowerCase()
+                                        var title = link.title?.trim().toLowerCase() 
+                                    %>
+                                    <% if(block.type === 'mega_menu' && name === title){ %>
+                                    <% var no_mega = false %>
+                                    <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                                      <li>
+                                        <details>
+                                            <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset mega_title">
+                                            <%= link.title %>
+                                            <%- include('../snippets/icon-arrow') %>
+                                            <%- include('../snippets/icon-caret') %>
+                                            </summary>
+                                            <div id="childlink-<%= link.title %>" class="menu-drawer__submenu motion-reduce">
+                                                <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                                                    <%- include('../snippets/icon-arrow') %>
+                                                    <%= link.title %>
+                                                </button>
+                                                <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                                                <% link?.links?.forEach((childlink,index)=>{ %>
+                                                    <li>
+                                                    <% if(!childlink?.links){ %>
+                                                        <a href="<%= childlink?.url %>" class="menu-drawer__menu-item link link--text list-menu__item focus-inset<% if(childlink?.current){ %> menu-drawer__menu-item--active<% } %>"<% if(childlink?.current){ %> aria-current="page"<% } %>>
+                                                        <%= childlink?.title %>
+                                                        </a>
+                                                    <% } else { %>
+                                                        <details>
+                                                        <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
+                                                            <%= childlink?.title %>
+                                                            <%- include('../snippets/icon-arrow') %>
+                                                            <%- include('../snippets/icon-caret') %>
+                                                        </summary>
+                                                        <div id="childlink-<%= childlink?.title %>" class="menu-drawer__submenu motion-reduce">
+                                                            <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                                                            <%- include('../snippets/icon-arrow') %>
+                                                            <%= childlink?.title %>
+                                                            </button>
+                                                            <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                                                            <% childlink?.links?.forEach((grandchildlink,inex)=>{ %>
+                                                                <li>
+                                                                <a href="<%= grandchildlink?.url %>" class="menu-drawer__menu-item link link--text list-menu__item focus-inset<% if(grandchildlink?.current){ %> menu-drawer__menu-item--active<% } %>"<% if(grandchildlink?.current){ %> aria-current="page"<% } %>>
+                                                                    <%= grandchildlink?.title %>
+                                                                </a>
+                                                                </li>
+                                                            <% }) %>
+                                                            </ul>
+                                                        </div>
+                                                        </details>
+                                                    <% } %>
+                                                    </li>
+                                                <% }) %>
+                                                </ul>
+                                            </div>
+                                        </details>
+                                      </li>
+                                    </ul>
+                                    <% } %>                                        
+                                    <% }) %>
+                                <% } %>  
+                                <% if(no_mega){ %>
+                                <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                                  <% link?.links?.forEach((childlink,index)=>{ %>
+                                  <li>
+                                    <% if(!childlink?.links){ %>
+                                    <a href="<%= childlink?.url %>" class="menu-drawer__menu-item link link--text list-menu__item focus-inset<% if(childlink?.current){ %> menu-drawer__menu-item--active<% } %>"<% if(childlink?.current){ %> aria-current="page"<% } %>>
+                                      <%= childlink?.title %>
+                                    </a>
+                                    <% } else { %>
+                                    <details>
+                                      <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
+                                        <%= childlink?.title %>
+                                        <%- include('../snippets/icon-arrow') %>
+                                        <%- include('../snippets/icon-caret') %>
+                                      </summary>
+                                      <div id="childlink-<%= childlink?.title %>" class="menu-drawer__submenu motion-reduce">
+                                        <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                                          <%- include('../snippets/icon-arrow') %>
+                                          <%= childlink?.title %>
+                                        </button>
+                                        <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                                          <% childlink?.links?.forEach((grandchildlink,index)=>{ %>
+                                          <li>
+                                            <a href="<%= grandchildlink?.url %>" class="menu-drawer__menu-item link link--text list-menu__item focus-inset<% if(grandchildlink?.current){ %> menu-drawer__menu-item--active<% } %>"<% if(grandchildlink?.current){ %> aria-current="page"<% } %>>
+                                              <%= grandchildlink?.title %>
+                                            </a>
+                                          </li>
+                                          <% }) %>
+                                        </ul>
+                                      </div>
+                                    </details>
+                                    <% } %>
+                                  </li>
+                                  <% }) %>
+                                </ul>
+                                <% } %>
+                                <% if(section.blocks.length > 0){ %>
+                                    <% section?.block_order?.forEach((orderItem, index) => { %>
+                                    <% let block = section?.blocks[orderItem] %>
+                                    <% 
+                                        var name = block?.settings?.name?.trim().toLowerCase()
+                                        var title = link.title?.trim().toLowerCase() 
+                                    %>
+                                    <% if(block.type === 'mega_menu' && name === title){ %>
+                                        <% for(let i=1; i<=4; i++){ %>
+                                        <% 
+                                            var menuHandle = 'menu_' + i 
+                                            var imageHandle = 'image_' + i
+                                            var titleHandel = 'title_' + i
+                                            var urlHandle = 'link_' + i
+                                            var menu = block.settings[menuHandle]
+                                            var image = block.settings[imageHandle]
+                                            var title = block.settings[titleHandel]
+                                            var url = block.settings[urlHandle] 
+                                        %>
+                                        <% if(menu){ %>
+                                            <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">                                                
+                                                <li>
+                                                    <details>
+                                                    <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset mega_title">
+                                                    <%= menu.title %>
+                                                    <%- include('../snippets/icon-arrow') %>
+                                                    <%- include('../snippets/icon-caret') %>
+                                                    </summary>
+                                                    <div id="childlink-<%= menu.title %>" class="menu-drawer__submenu motion-reduce">
+                                                        <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                                                            <%- include('../snippets/icon-arrow') %>
+                                                            <%= menu.title %>
+                                                        </button>
+                                                        <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                                                        <% menu?.links?.forEach((link,index)=>{ %>
+                                                            <li>
+                                                            <a href="<%= link.url %>" class="menu-drawer__menu-item link link--text list-menu__item focus-inset<% if(link.current){ %> menu-drawer__menu-item--active<% } %>"<% if(link.current){ %> aria-current="page"<% } %>>
+                                                                <%= link.title %>
+                                                            </a>
+                                                            </li>
+                                                        <% }) %>
+                                                        </ul>
+                                                    </div>
+                                                    </details>
+                                                </li>
+                                            </ul>
+                                        <% } %>
+                                        
+                                        <% } %>
+                                    <div class="bc-mega-menu-image-col <%=block?.settings?.img_col_position%>">
+                                        <% for(let i=1; i<=4; i++){ %>
+                                        <% 
+                                            var menuHandle = 'menu_' + i 
+                                            var imageHandle = 'image_' + i
+                                            var titleHandel = 'title_' + i
+                                            var urlHandle = 'link_' + i
+                                            var menu = block.settings[menuHandle]
+                                            var image = block.settings[imageHandle]
+                                            var title = block.settings[titleHandel]
+                                            var url = block.settings[urlHandle] 
+                                        %>
+                                        <% if(image){ %>
+                                            <div class="bc-mega-menu-image">
+                                            <% if(url){ %>
+                                                <a href="<%= url %>">
+                                            <% } %>
+                                                <%- include('../snippets/resimg', {image: image}) %>
+                                                <% if(title){ %>
+                                                <h3 class="bc-mega-menu-image__title"><%= title %><%- include('../snippets/icon-arrow') %></h3>
+                                                <% } %>
+                                            <% if(url){ %>
+                                                </a>
+                                            <% } %>
+                                            </div>
+                                        <% } %>
+                                        
+                                        <% } %>
+                                    </div>
+                                    <% } %>
+                                    <% }) %>
+                                <% } %>
+                              </div>
+                            </div>
+                          </details>
+                        <% } else { %>
+                          <a href="<%= link.url %>" class="menu-drawer__menu-item list-menu__item link link--text focus-inset<% if(link.current){ %> menu-drawer__menu-item--active<% } %>"<% if(link.current){ %> aria-current="page"<% } %>>
+                            <%= link.title %>
+                          </a>
+                        <% } %>
+                      </li>
+                    <% }) %>                    
+                  </ul>
+                 </nav>
+                <div class="menu-drawer__utility-links">
+                  <% if(shop?.customer_accounts_enabled){ %>
+                    <a href="<% if(customer){ %><%= routes?.account_url %><% } else { %><%= routes?.account_login_url %><% } %>" class="menu-drawer__account link link--text focus-inset h5">
+                      <%- include('../snippets/icon-account') %>
+                      <%= customer ? customer.account_fallback : customer.log_in %>
+                    </a>
+                  <% } %>
+                 <ul class="list list-social list-unstyled" role="list">
+                    <% if(settings.social_twitter_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_twitter_link %>" class="link link--text" aria-describedby="a11y-external-message">
+                          <%- include('../snippets/icon-twitter') %>
+                          <span class="visually-hidden"><%=general.social.links.twitter%></span>
+                        </a>
+                      </li>
+                    <% } %>
+                    <% if(settings.social_facebook_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_facebook_link %>" class="link link--text" aria-describedby="a11y-external-message">
+                          <%- include('../snippets/icon-facebook') %>
+                          <span class="visually-hidden"><%=general.social.links.facebook%></span>
+                        </a>
+                      </li>
+                    <% } %>
+                    <% if(settings.social_pinterest_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_pinterest_link %>" class="link link--text" aria-describedby="a11y-external-message">
+                          <%- include('../snippets/icon-pinterest') %>
+                          <span class="visually-hidden"><%=general.social.links.pinterest%></span>
+                        </a>
+                      </li>
+                    <% } %>
+                    <% if(settings.social_instagram_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_instagram_link %>" class="link link--text" aria-describedby="a11y-external-message">
+                          <%- include('../snippets/icon-instagram') %>
+                          <span class="visually-hidden"><%=general.social.links.instagram%></span>
+                        </a>
+                      </li>
+                    <% } %>
+                    <% if(settings.social_tumblr_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_tumblr_link %>" class="link link--text" aria-describedby="a11y-external-message">
+                          <%- include('../snippets/icon-tumblr') %>
+                          <span class="visually-hidden"><%=general.social.links.tumblr%></span>
+                        </a>
+                      </li>
+                    <% } %>
+                    <% if(settings.social_snapchat_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_snapchat_link %>" class="link link--text" aria-describedby="a11y-external-message">
+                          <%- include('../snippets/icon-snapchat') %>
+                          <span class="visually-hidden"><%=general.social.links.snapchat%></span>
+                        </a>
+                      </li>
+                    <% } %>
+                    <% if(settings.social_youtube_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_youtube_link %>" class="link link--text" aria-describedby="a11y-external-message">
+                          <%- include('../snippets/icon-youtube') %>
+                          <span class="visually-hidden"><%=general.social.links.youtube%></span>
+                        </a>
+                      </li>
+                    <% } %>
+                    <% if(settings.social_vimeo_link){ %>
+                      <li class="list-social__item">
+                        <a href="<%= settings.social_vimeo_link %>" class="link link--text" aria-describedby="a11y-external-message">
+                          <%- include('../snippets/icon-vimeo') %>
+                          <span class="visually-hidden"><%=general.social.links.vimeo%></span>
+                        </a>
+                      </li>
+                    <% } %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </header-drawer>
+    <% } %>    
+    <h1 class="header__heading" style="width:<%=section.settings.logo_width%>px">               
+         <a href="<%= routes?.root_url %>" class="header__heading-link link link--text focus-inset" style="width:100%">
+            <% if(section.settings.logo){ %>
+            <% var image_size = section.settings.logo_width + 'x' %>
+               <img srcset="<%= section.settings.logo %> 1x, <%= section.settings.logo %> 2x"
+                    src="<%= section.settings.logo %>"
+                    
+                    class="header__heading-logo"
+                    width="<%= section.settings.logo.width %>"
+                    height="<%= section.settings.logo.height %>"
+                    alt="<%= section.settings.logo.alt || shop?.name %>"
+                >
+             <% } else { %>
+             <span>Logo</span>
+              <% } %>
+          </a>                
+     </h1>
+              
+     <% if(section.settings.menu){ %>
+      <nav class="header__inline-menu">
+        <ul class="list-menu list-menu--inline active" role="list" >
+          <% menu?.links?.forEach((link,index)=>{ %>
+            <li>
+              <% if(link.links){ %>
+                <details-disclosure>
+                  <details>
+                    <summary data-href="<%= link.url %>" class="header__menu-item list-menu__item link focus-inset">
+                      <span <% if(link.child_active){ %> class="header__active-menu-item"<% } %>><%= link.title %></span>
+                      <%- include('../snippets/icon-caret') %>
+                    </summary>
+                    <div class="header__submenu list-menu--disclosure caption-large motion-reduce" tabindex="-1">
+                      <ul class="list-menu">
+                        <h3 class="bc-mega-menu__title"><%= link.title %></h3>
+                        <% link?.links?.forEach((childlink,index)=>{ %>
+                          <li>
+                            <% if(!childlink?.links){ %>
+                              <a href="<%= childlink?.url %>" class="header__menu-item list-menu__item link link--text focus-inset caption-large<% if(childlink?.current){ %> list-menu__item--active<% } %>"<% if(childlink?.current){ %> aria-current="page"<% } %>>
+                                <%= childlink?.title %>
+                              </a>
+                            <% } %>
+                          </li>
+                        <% }) %>
+                      </ul>
+                      <ul class="list-menu">
+                        <% link?.links?.forEach((childlink,index)=>{ %>
+                          <% if(childlink?.links){ %>
+                            <% childlink?.links?.forEach((grandchildlink,index)=>{ %>
+                              <li>
+                                <a href="<%= grandchildlink?.url %>" class="header__menu-item list-menu__item link link--text focus-inset caption-large<% if(grandchildlink?.current){ %> list-menu__item--active<% } %>"<% if(grandchildlink?.current){ %> aria-current="page"<% } %>>
+                                  <%= grandchildlink?.title %>
+                                </a>
+                              </li>
+                            <% }) %>
+                          <% } %>
+                        <% }) %>
+                      </ul>
+                      <% if(section.blocks.length > 0){ %>
+                        <% section?.block_order?.forEach((orderItem, index) => { %>
+                          <% let block = section?.blocks[orderItem] %>
+                          <% 
+                            var name = block?.settings?.name?.trim().toLowerCase()
+                            var title = link.title?.trim().toLowerCase() 
+                          %>
+                          <% if(block.type === 'mega_menu' && name === title){ %>
+                            <% for(let i=1; i<=4; i++){ %>
+                              <% 
+                                var menuHandle = 'menu_' + i 
+                                var imageHandle = 'image_' + i
+                                var titleHandel = 'title_' + i
+                                var urlHandle = 'link_' + i
+                                var menu = block.settings[menuHandle]
+                                var image = block.settings[imageHandle]
+                                var title = block.settings[titleHandel]
+                                var url = block.settings[urlHandle] 
+                              %>
+                              <% if(menu){ %>
+                                <ul class="list-menu">
+                                  <h3 class="bc-mega-menu__title"><%= menu.title %></h3>
+                                  <% menu?.links?.forEach((link,index)=>{ %>
+                                    <li>
+                                      <a href="<%= link.url %>" class="header__menu-item list-menu__item link link--text focus-inset caption-large<% if(link.current){ %> list-menu__item--active<% } %>"<% if(link.current){ %> aria-current="page"<% } %>>
+                                        <%= link.title %>
+                                      </a>
+                                    </li>
+                                  <% }) %>
+                                </ul>
+                              <% } %>
+                              
+                            <% } %>
+                          <div class="bc-mega-menu-image-col <%=block?.settings?.img_col_position%>">
+                            <% for(let i=1; i<=4; i++){ %>
+                              <% 
+                                var menuHandle = 'menu_' + i 
+                                var imageHandle = 'image_' + i
+                                var titleHandel = 'title_' + i
+                                var urlHandle = 'link_' + i
+                                var menu = block.settings[menuHandle]
+                                var image = block.settings[imageHandle]
+                                var title = block.settings[titleHandel]
+                                var url = block.settings[urlHandle] 
+                              %>
+                              <% if(image){ %>
+                                <div class="bc-mega-menu-image">
+                                  <% if(url){ %>
+                                    <a href="<%= url %>">
+                                  <% } %>
+                                    <%- include('../snippets/resimg', {image: image}) %>
+                                    <% if(title){ %>
+                                    <h3 class="bc-mega-menu-image__title"><%= title %><%- include('../snippets/icon-arrow') %></h3>
+                                    <% } %>
+                                  <% if(url){ %>
+                                    </a>
+                                  <% } %>
+                                </div>
+                              <% } %>
+                              
+                            <% } %>
+                          </div>
+                          <% } %>
+                        <% }) %>
+                      <% } %>
+                    </div>
+                  </details>
+                </details-disclosure>
+              <% } else { %>
+                <a href="<%= link.url %>" class="header__menu-item list-menu__item link link--text focus-inset"<% if(link.current){ %> aria-current="page"<% } %>>
+                  <span><%= link.title %></span>
+                </a>
+              <% } %>
+            </li>
+          <% }) %>
+        </ul>        
+      </nav>
+     <% } %>    
+    <% if(section.settings.logo_position === 'top-left'){ %>
+        <div class="header-search-container <%=" "%><% if(section.settings.search_style === 'search_page'){ %> hidden<% } %>">
+          <details-modal class="header__search">
+            <details>
+              <summary class="header__icon--search header__icon--summary link link--text focus-inset modal__toggle" aria-haspopup="dialog" aria-label="<%=general.search.search%>">
+                <form action="<%= routes?.search_url %>" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags = "<%=section.settings.search_hide_tags%>" <%}%>>
+                  <div class="field">
+                    <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value="<%= search.terms %>" placeholder="<%=general.search.search%>" autocomplete="off">
+                    <label class="field__label" for="Search-In-Modal"><%=section.settings.py_search_placeholder%></label>
+                    <input type="hidden" name="type" value="product">
+                    <input type="hidden" name="options[fields]" value="title,product_type,variants.title">
+                    <input type="hidden" name="options[prefix]" value="last">
+                    <button class="search__button field__button focus-inset" aria-label="<%=general.search.search%>">
+                      <svg class="icon icon-search" aria-hidden="true" focusable="false" role="presentation">
+                        <use href="#icon-search">
+                      </svg>
+                    </button>
+                  </div>                
+                </form>            
+              </summary>
+              <div class="search-modal modal__content" role="dialog" aria-modal="true" aria-label="<%=general.search.search%>">
+                <div class="search-modal__content" tabindex="-1">             
+
+                  <div class="bc-search-result-wrapper" data_btn_class="py-c-<%=section.settings.card_color_view_btn%> py-bg-c-<%=section.settings.card_bg_color_view_btn%> py-hv-c-<%=section.settings.card_color_view_btn_hover%> py-hv-bg-c-<%=section.settings.card_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">
+                    <div class="bc-cart__not-products">Sorry no results found</div>
+                    <div class="bc-search-result-inner-wrapper"></div>
+                    <% if(section.settings.search_menu){ %>
+                    <ul class="list-menu bc-search-menu">
+                      <h3 class="bc-search-menu__title"><%=  section.settings.search_menu.title %></h3>
+                      <% section?.settings?.search_menu?.links?.forEach((link,index)=>{ %>
+                      <li>
+                        <a href="<%= link.url %>" class="header__menu-item list-menu__item link link--text focus-inset caption-large<% if(link.current){ %> list-menu__item--active<% } %>"<% if(link.current){ %> aria-current="page"<% } %>>
+                          <%= link.title %>
+                        </a>
+                      </li>
+                      <% }) %>
+                    </ul>
+                    <% } %>
+                  </div>
+                  <button type="button" class="search-modal__close-button modal__close-button link link--text focus-inset" aria-label="<%=accessibility.close%>">
+                    <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
+                      <use href="#icon-close">
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </details>
+          </details-modal>
+        </div>
+    <% } %>
+    <div class="header__icons">
+      <% if(shop?.customer_accounts_enabled){ %>
+        <a href="<% if(customer){ %><%= routes?.account_url %><% } else { %><%= routes?.account_login_url %><% } %>" class="header__icon header__icon--account link link--text focus-inset">
+          <%- include('../snippets/icon-account') %>
+          <span class="visually-hidden">
+            <%= customer ? customer.account_fallback : customer.log_in %>
+          </span>
+        </a>
+      <% } %>
+      <% if(section.settings.search_style === 'search_page'){ %> 
+        <a href="/search?" class="header__icon header__icon--account link link--text focus-inset">
+          <svg class="modal__toggle-open icon icon-search" aria-hidden="true" focusable="false" role="presentation">
+                <use href="#icon-search">
+          </svg>
+        </a>
+      <% } else { %>
+      <details-modal class="header__search <% if(section.settings.logo_position === 'top-left'){ %>hidden<% } %>">
+        <details>
+          <summary class="header__icon header__icon--search header__icon--summary link link--text focus-inset modal__toggle" aria-haspopup="dialog" aria-label="<%=general.search.search%>">
+            <span>
+              <svg class="modal__toggle-open icon icon-search" aria-hidden="true" focusable="false" role="presentation">
+                <use href="#icon-search">
+              </svg>
+              <svg class="modal__toggle-close icon icon-close" aria-hidden="true" focusable="false" role="presentation">
+                <use href="#icon-close">
+              </svg>
+            </span>
+          </summary>
+          <div class="search-modal modal__content " role="dialog" aria-modal="true" aria-label="<%=general.search.search%>">
+            <div class="search-modal__content" tabindex="-1">
+              <form action="<%= routes?.search_url %>" method="get" role="search" class="search search-modal__form" <% if(section.settings.search_hide_tags){ %> data-hide-tags = "<%=section.settings.search_hide_tags%>" <%}%>>
+                <div class="bc-search__input-title"><%=section.settings.py_search_title%></div>
+                <div class="field">
+                  <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value="<%= search.terms %>" placeholder="<%=general.search.search%>" autocomplete="off">
+                  <label class="field__label" for="Search-In-Modal"><%=section.settings.py_search_placeholder%></label>
+                  <input type="hidden" name="type" value="product">
+                  <input type="hidden" name="options[fields]" value="title,product_type,variants.title">
+                  <input type="hidden" name="options[prefix]" value="last">
+                  <button class="search__button field__button focus-inset" aria-label="<%=general.search.search%>">
+                    <svg class="icon icon-search" aria-hidden="true" focusable="false" role="presentation">
+                      <use href="#icon-search">
+                    </svg>
+                  </button>
+                </div>                
+                <div class="bc-search-result-wrapper" data_btn_class="py-c-<%=section.settings.card_color_view_btn%> py-bg-c-<%=section.settings.card_bg_color_view_btn%> py-hv-c-<%=section.settings.card_color_view_btn_hover%> py-hv-bg-c-<%=section.settings.card_bg_color_view_btn_hover%> py-btn-<%=section.settings.view_btn_size%>">
+                  <div class="bc-cart__not-products">Sorry no results found</div>
+                  <div class="bc-search-result-inner-wrapper"></div>
+                  <% if(section.settings.search_menu){ %>
+                    <ul class="list-menu bc-search-menu">
+                      <h3 class="bc-search-menu__title"><%=  section.settings.search_menu.title %></h3>
+                      <% section?.settings?.search_menu?.links?.forEach((link,index)=>{ %>
+                        <li>
+                          <a href="<%= link.url %>" class="header__menu-item list-menu__item link link--text focus-inset caption-large <% if(link.current){ %> list-menu__item--active<% } %>"<% if(link.current){ %> aria-current="page"<% } %>>
+                            <%= link.title %>
+                          </a>
+                        </li>
+                      <% }) %>
+                    </ul>
+                  <% } %>
+                </div>
+              </form>
+              <button type="button" class="search-modal__close-button modal__close-button link link--text focus-inset" aria-label="<%=accessibility.close%>">
+                <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
+                  <use href="#icon-close">
+                </svg>
+              </button>
+            </div>
+          </div>
+        </details>
+      </details-modal>
+      <% } %>
+      <% if(shop?.enabled_currencies?.length > 1){ %>
+        <form class="currency-selector">
+        <div class="currency-selector__input-wrapper select-group font--accent">
+          <select name="currency" id="CurrencySelector" class="currency-selector__dropdown" aria-describedby="a11y-refresh-page-message" data-currency-selector>
+            <% shop?.enabled_currencies?.forEach((currency,index)=>{ %>
+            <% if(currency.iso_code !== 'EUR'){ %>
+            <option value="<%=currency.iso_code%>"<% if(currency === cart.currency){ %> selected="true"<% } %>><%=currency.iso_code%></option>
+            <% } %>
+            <% }) %>
+          </select>
+        </div>
+        </form>
+      <% } %>
+       
+       <a href="<%= routes?.cart_url %>" class="header__icon header__icon--cart link link--text focus-inset" id="cart-icon-bubble">
+        <%- include('../snippets/icon-cart') %>
+        <span class="visually-hidden"><%=templates.cart.cart%></span>
+          <div class="cart-count-bubble">
+            <span aria-hidden="true" id="cart-count"><%= cart.item_count %></span>
+            <span class="visually-hidden"><%=sectionst.header.cart_count %></span>
+          </div>
+        
+      </a>
+      <% if(settings.cart_style === 'style-3'){ %>
+         <%- include('../snippets/cart-notification-3', {
+          activeClass: component === 'cart' ? 'animate active' : '',
+          shipping_method: false,
+          cart_layout: settings.cart_layout,
+          enable_dynamic_pay: settings.enable_dynamic_pay
+         }) %>
+      <% } %>       
+
+    </div>
+  </header>
+</sticky-header>
+
+</div>        
+<div id="shopify-section-cart-template" class="shopify-section">
+  <% if(settings.cart_style === 'style-4'){ %>
+    <%- include('../snippets/cart-notification-4', {
+      activeClass: component === 'cart' ? 'animate active' : '',
+      shipping_method: false,
+      cart_layout: settings.cart_layout,
+      enable_dynamic_pay: settings.enable_dynamic_pay
+    }) %>      
+  <% } else if(settings.cart_style === 'style-3'){ %> 
+  <% } else if(settings.cart_style === 'style-2'){ %>
+    <%- include('../snippets/cart-notification-2', {
+        activeClass: component === 'cart' ? 'animate active' : '',
+        shipping_method: false,
+        cart_layout: settings.cart_layout,
+        enable_dynamic_pay: settings.enable_dynamic_pay
+    }) %>
+  <% } else { %>
+    <%- include('../snippets/cart-notification', {
+      activeClass: component === 'cart' ? 'animate active' : '',
+      shipping_method: false,
+      checkoutbtn_position: settings.checkoutbtn_position,
+      enable_dynamic_pay: settings.enable_dynamic_pay
+    }) %>
+  <% }%>
+</div>  
+</div>      
+<script>
+  class StickyHeader extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.announcementBar = document.getElementById('shopify-section-announcement-bar');
+      this.header = document.getElementById('shopify-section-header');
+      this.headerBounds = {};
+      this.currentScrollTop = 0;
+      this.collFilters = document.querySelector('.coll-filters');
+      this.proInfo = document.querySelector('.product__info-container--sticky');
+      this.filterDrawer = document.querySelector('.coll-filter-drawer');
+      this.filterDrawerForm = document.querySelector('.coll-filter-drawer__form');
+      this.deleyTop = this.collFilters && this.announcementBar ? this.announcementBar?.offsetHeight + this.header?.offsetHeight : this.header?.offsetHeight;
+      this.deleyTop = this.header?.offsetHeight;  
+      this.collFilters && this.collFilters !== null ? this.collFilters.style.top = this.deleyTop + 'px' : null;
+      if(document.querySelector('.header-position-fixed') !== null){
+         this.proInfo && this.proInfo !== null ? this.proInfo.style.top = this.deleyTop + 'px' : null;
+      }else{
+         this.proInfo && this.proInfo !== null ? this.proInfo.style.top = -10  + 'px' : null;
+      }
+      this.filterDrawer && this.filterDrawer !== null && this.announcementBar && this.announcementBar !== null ? this.filterDrawer.style.top = this.announcementBar.offsetHeight + 'px' : null;
+      this.filterDrawerForm && this.filterDrawerForm !== null && this.announcementBar && this.announcementBar !== 'null' ? this.filterDrawerForm.style.height = 'calc(100vh - ' + (169 + this.announcementBar.offsetHeight) + 'px)' : null; 
+
+      this.onScrollHandler = this.onScroll.bind(this);
+
+      window.addEventListener('scroll', this.onScrollHandler, false);
+
+      this.createObserver();
+    }
+
+    disconnectedCallback() {
+      window.removeEventListener('scroll', this.onScrollHandler);
+    }
+
+    createObserver() {
+      let observer = new IntersectionObserver((entries, observer) => {
+        this.headerBounds = entries[0].intersectionRect;
+        observer.disconnect();
+      });
+
+      observer?.observe(this.header);
+    }
+
+    onScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+        requestAnimationFrame(this.hide.bind(this));
+      } else if (scrollTop < this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
+        requestAnimationFrame(this.reveal.bind(this));
+      } else if (scrollTop <= this.headerBounds.top) {
+        requestAnimationFrame(this.reset.bind(this));
+      }
+
+      this.currentScrollTop = scrollTop;
+    }
+
+    hide() {
+      this.header.classList.add('shopify-section-header-hidden', 'shopify-section-header-sticky');
+      this.closeMenuDisclosure();
+      this.closeSearchModal();
+    }
+
+    reveal() {
+      this.header.classList.add('shopify-section-header-sticky', 'animate');
+      this.header.classList.remove('shopify-section-header-hidden');
+    }
+
+    reset() {
+      this.header.classList.remove('shopify-section-header-hidden', 'shopify-section-header-sticky', 'animate');
+    }
+
+    closeMenuDisclosure() {
+      this.disclosures = this.disclosures || this.header.querySelectorAll('details-disclosure');
+      this.disclosures.forEach(disclosure => disclosure.close());
+    }
+
+    closeSearchModal() {
+      this.searchModal = this.searchModal || this.header.querySelector('details-modal');
+      this.searchModal.close(false);
+    }
+  }
+
+  customElements.define('sticky-header', StickyHeader);
+
+</script>
+
+<script>    
+    var parentMenu = document.querySelectorAll('nav> ul.list-menu details-disclosure>details>summary');
+    var i;
+
+    for (i = 0; i < parentMenu.length; i++) {
+      if(parentMenu[i].getAttribute('data-href')!=null)
+      parentMenu[i].addEventListener("click", function() {
+        window.location.href = this.getAttribute('data-href');
+      });
+    }
+    document.querySelector('.cart-notification-overaly').addEventListener('click', (evt) =>{
+      document.querySelector('#cart-notification .modal__close-button').click();
+    });
+    document.querySelector('.search-sidebar .search-modal').addEventListener('click', (evt) =>{
+      if(evt.target.hasAttribute('aria-modal')){
+        document.querySelector('.search-sidebar .search-modal .search-modal__close-button').click();
+      }      
+    });
+    document.addEventListener('click', (evt) =>{
+      if(evt.target.getAttribute('id') === "PopupModal-preorder"){
+        document.querySelector('#ModalClose-preorder').click();
+      }
+      else if(evt.target.getAttribute('class') === "coll-filter-overlay"){
+        document.querySelector('.coll-filter-drawer__close').click();
+      }
+    });
+</script>

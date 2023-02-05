@@ -1350,9 +1350,9 @@
     ],
   };
 
-  let fontsCount = 0;
-
+  
   // GLOBAL VARIABLES
+  let fontIndex = 0;
   let focuseValue = "";
   let theme = {
     settings_data: {
@@ -1393,9 +1393,13 @@
     generateColorSecond: 0,
     generateImage: 0,
     generateText: 1,
+    savelogo: 0,
     colorPromptSame: null,
-    colors: null
+    colors: null,
+    oldLogoUrl: null
   };
+
+  const fontSizes = ["18px","28px","38px","48px","58px"];
 
   // let client.generateLogo = null;
   // let client.generateLogo = null;
@@ -2669,12 +2673,18 @@
     );
   };
 
-  let remixCount = 0;
-  let currentThemeKey = 0;
   let allThemesID = [
     "6306f8e7db2cbec8c440f780",
+    "62fe8c9ba58276071f183cb8",
     "632a6f7db34039b04f77d3b1",
-    "62fe8c9ba58276071f183cb8"
+    "63dff36dadd8a4c7ece69c70",
+    "63e00dac688b64fbf00dd45f",
+    "63e00e1c688b64fbf00dd460",
+    "63e00ecb01cd76111a58f45b",
+    "63e00f3a01cd76111a58f45c",
+    "63e00f7f01cd76111a58f45d",
+    "63e00fc401cd76111a58f45e",
+    "63e0101901cd76111a58f45f"
   ];
   
     const HSLToRGB = (h, s, l) => {
@@ -2831,6 +2841,18 @@
       active: true,
       color: null
     };
+    let isAlign = {
+      active: true,
+      align: null
+    };
+    let isSize = {
+      active: true,
+      size: null
+    };
+    let isTextSize = {
+      active: true,
+      size: null
+    };
 
     if (!inputFileds.length) return loading?.classList.remove("py__animate");
 
@@ -2841,13 +2863,13 @@
       if (filedType === "select") {
         let options = filed.getElementsByTagName("option");
         let sectionContainer = filed.closest(".py__closest");
-        let fontObj = fonts[fontsCount];
         if (filedName?.includes("font")) {
+          let fontObj = fonts[fontIndex];
           let selectedOption = filedName?.includes("body")
             ? filed.querySelector(`option[value="${fontObj.body}"`)?.index
             : filed.querySelector(`option[value="${fontObj.heading}"`)?.index;
           filed.selectedIndex = selectedOption;
-        } else if (filedName?.includes("_bg")) {
+        } else if(filedName?.includes("_bg")) {
           let getBgColorHexCode = null;
           if(isSection.active && filedName.includes('section') && !filedName.includes('btn') || isSection.active && filedName.includes('page') && !filedName.includes('btn')){ 
             let optionIndex = Math.floor(Math.random() * options.length);
@@ -2888,19 +2910,48 @@
           } 
           let textFiledName = filedName?.replace("_bg", "");
           let textColorInput = sectionContainer.querySelectorAll(`[name*="${textFiledName}"]`);
-          if(textColorInput?.length) {
+          if(textColorInput?.length && textFiledName !== "content_color") {
             for (let i = 0; i < textColorInput?.length; i++) {
               let textItemColor = textColorInput[i];
               textItemColor.selectedIndex = [...textItemColor.options].findIndex((option) =>  option?.textContent?.toLowerCase()?.replaceAll(' ', '_') === (getBgColorHexCode ? getContrastName(getBgColorHexCode) : 'dark' ));
-              // textItemColor.selectedIndex = [...textItemColor.options].findIndex((option) =>  option?.value === filed.value);
             }
           }
-        } else if(!filedName?.includes("color")) {
+        } else if(filedName.includes('align')){
+          if(isAlign.active){
+            let optionIndex = Math.floor(Math.random() * options.length);
+            filed.selectedIndex = optionIndex;
+            isAlign.active = false;
+            isAlign.align = options[optionIndex]?.textContent?.toLowerCase()?.replace(" ", "_");
+          } else {
+            filed.selectedIndex = [...options].findIndex((option) =>  option?.textContent?.toLowerCase()?.replaceAll(' ', '_') === isAlign.align);
+          }
+        } else if(filedName.includes('size')){
+          if(isSize.active){
+            let optionIndex = Math.floor(Math.random() * options.length);
+            filed.selectedIndex = optionIndex;
+            isSize.active = false;
+            isSize.size = options[optionIndex]?.textContent?.toLowerCase()?.replace(" ", "_");
+          } else {
+            filed.selectedIndex = [...options].findIndex((option) =>  option?.textContent?.toLowerCase()?.replaceAll(' ', '_') === isSize.size);
+          }
+        } else if(!filedName?.includes("color")){
           let optionIndex = Math.floor(Math.random() * options.length);
           filed.selectedIndex = optionIndex;
         }
+      } else if(filedType === "text" && filedName?.includes('size') && !filedName?.includes('field')){
+        if(isTextSize.active){
+          let optionIndex = Math.floor(Math.random() * fontSizes.length);
+          filed.value = fontSizes[optionIndex];
+          isTextSize.active = false;
+          isTextSize.size = fontSizes[optionIndex];
+        } else {
+          filed.value = isTextSize.size;
+        }
       }
     }
+
+    return true;
+
   };
 
   const createImageAi = async (model, prompt) => {
@@ -3042,7 +3093,7 @@
   //       alertCount.style.display = "none";
   //       let logoFiled = document.querySelector('.py__ai-logo');
   //       if(logoFiled){
-  //         let logoPropmt = `make a logo mark for a business that sells ${prodType} called ${busName} in the style of rob janoff`;
+  //         let logoPropmt = `make a logo  mark for a business that sells ${prodType} called ${busName} in the style of rob janoff`;
   //         let getNewlogo = await createImageAi(logoPropmt.replace("[prodTypePromp]", prodTypePromp));
   //         logoFiled.value = getNewlogo;
   //         await saveSettingsValues();
@@ -3171,10 +3222,6 @@
     iframeContent.querySelector("body").innerHTML = parseRes.result + '<img src="' + parseRes.image +  '"/>';
     openAiCodePre.textContent = parseRes.result;
     loading?.classList.remove('active');
-    // let newOpenAiIframe = document.querySelector('.py__openai-res');
-    // let newIframeContent = newOpenAiIframe.contentDocument || newOpenAiIframe.contentWindow.document;
-    // let el = newIframeContent.querySelector(".bc-product-grid-variants");
-    // console.log(el, window.getComputedStyle(el), "HELLO");
 
   };
 
@@ -3199,14 +3246,10 @@
     let thisimagePrompt = document.querySelector('[name="image_prompt"]')?.value;
     let thiscolorPrompt = document.querySelector('[name="color_prompt"]')?.value;
     let thiscolorPromptSame = document.querySelector('[name="color_prompt_same_theme"]')?.value;
-    // let thisImageModel = document.querySelector('[name="image_model"]')?.value;
 
     if(thisbusName?.trim() === "" || thisprodType?.trim() === "" || thiscolorDesc?.trim() === "" || thisDalleApiKey?.trim() === "" || thisStableApiKey?.trim() === "") 
     return alert("Please add empty input fileds!");
 
-    // let useAiColor = document.querySelector('[name="use_ai_color"]:checked')?.value;
-    // let useAiImage = document.querySelector('[name="use_ai_image"]:checked')?.value;
-    // let useAiLogo = document.querySelector('[name="use_ai_logo"]:checked')?.value;
     let useAiModel = document.querySelector('[name="image_model"]:checked')?.value;
 
     client.generateColor = parseInt(document.querySelector('[name="use_ai_color"]:checked').value);
@@ -3229,50 +3272,6 @@
 
     stepOne.classList.remove('active');
     stepTwo.classList.add('active');
-    
-    // if(client.generateLogo){
-    //   let newColorPropmt = colorPrompt?.replace("[colorDescPromp]", colorDescPromp);
-    //   let getColorsParse = await createTextAi(newColorPropmt);
-    //   if(getColorsParse === "Unauthorized") alertMessage.textContent = getColorsParse;
-    //   if(getColorsParse === "Unauthorized") return smallLoading.classList.add('active');
-    //   getcolors = JSON.parse(getColorsParse);
-
-    //   let getBgColors = null;
-    //   let getTextColors = null;
-
-
-    //   let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
-    //   let colorsFileds = document.querySelectorAll('.py__ai-color');
-    //   // alertMessage.textContent = `Generating New Logo and Colors`;
-    //   getBgColors = [];
-    //   getTextColors = [];
-    //   if(getcolors?.backgrounds){
-    //     for(let i=0; i<getcolors.backgrounds.length; i++){
-    //       let aiColorItem = getcolors.backgrounds[i];
-    //       getBgColors.push(aiColorItem.backgroundHex || aiColorItem.background);
-    //       getTextColors.push(aiColorItem.textHex || aiColorItem.text);
-    //     }
-    //   }
-    //   getBgColors.reverse();
-      
-    //   for(let i=0; i<5; i++){
-    //     let bgColorFiled = bgColorsFileds[i]; 
-    //     let colorFiled = colorsFileds[i];
-    //     let bgColorName = bgColorFiled.getAttribute('name');
-    //     let colorName = colorFiled.getAttribute('name');
-    //     bgColorFiled.value = getBgColors[i];
-    //     bgColorFiled.setAttribute("value", getBgColors[i]);
-    //     bgColors[bgColorName.replace('py_bg_color_', '')] = getBgColors[i];
-    //     colorFiled.value = getTextColors[i];
-    //     colorFiled.setAttribute("value", getTextColors[i]);
-    //     textColors[colorName.replace('py_color_', '')] = getTextColors[i];
-    //     let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
-    //     let wrapColor = colorFiled.closest('.py__label-for-color');
-    //     wrapBgColor.style.backgroundColor = getBgColors[i];
-    //     wrapColor.style.backgroundColor = getTextColors[i];
-    //     // alertCount.textContent = (i + 1) * 2;
-    //   }
-    // };
 
   };
 
@@ -3286,20 +3285,32 @@
     let target = event.target;
     
     if(target.classList.contains('py__button-random') && document.getElementById('other_themes').checked){
+      let remixButton = document.querySelector('.py__button-random');
+      if(remixButton) remixButton.setAttribute('aria-disabled', true);
       if(currentKey === null) currentKey = allThemesID.indexOf(currentUrl);
       currentKey = currentKey + 1;
-      let url = (currentKey > (allThemesID.length - 1)) 
-      ? `/remix/${allThemesID[0]}?page=index`
-      : `/remix/${allThemesID[currentKey]}?page=index`;
-      if(!url || !remixContent) return;
+      if(currentKey > (allThemesID.length - 1)) currentKey = 0;
+      let url = `/remixapi/${allThemesID[currentKey]}?page=index`;
+      console.log(url, currentKey,  currentUrl, "check Dav");
+      if(!url) return;
       let response = await fetch(url);
       let data = await response.text();
       let parser = new DOMParser();
       let html = parser.parseFromString(data, "text/html");
-      let randomSettingsEl = html.querySelector('body');
-      let remixContent = document.querySelector('.py__remix-content');
-      remixContent.innerHTML = randomSettingsEl.innerHTML;
-      randomFun();
+      let newIframesContent = html.querySelector('.py__make');
+      let newSettingContent = html.querySelector('.py__make-random-settings');
+      let oldIframesContent = document.querySelector('.py__make');
+      let oldSettingContent = document.querySelector('.py__make-random-settings');
+      oldIframesContent.innerHTML = newIframesContent.innerHTML;
+      oldSettingContent.innerHTML = newSettingContent.innerHTML;
+      client.generateImage = 1;
+      client.generateLogo = 0;
+      client.generateText = 0;
+      client.generateColor = 0;
+      client.savelogo = 1,
+      client.generateColorSecond = 1;
+      let rundomListener = await randomFun();
+      if(rundomListener && remixButton) remixButton.setAttribute('aria-disabled', false);
     } else if (target.classList.contains('btn-pick')) {
       loading?.classList.add("py__animate");
       let url = target.getAttribute('data-href');
@@ -3314,50 +3325,45 @@
       let stepTwo = document.querySelector('.py__remix-step-two');
       let remixContent = document.querySelector('.py__remix-content');
       remixContent.innerHTML = randomSettingsEl.innerHTML;
+      let remixButton = document.querySelector('.py__button-random');
+      if(remixButton) remixButton.setAttribute('aria-disabled', true);
       stepsHeader.remove();
       stepOne.remove();
       stepTwo.remove();
       remixContent?.classList?.add('active');
       loading?.classList.remove("py__animate");
-      randomFun();
+      let rundomListener = await randomFun();
+      if(rundomListener && remixButton) remixButton.setAttribute('aria-disabled', false);
     } else {
+      let remixButton = document.querySelector('.py__button-random');
+      if(remixButton) remixButton.setAttribute('aria-disabled', true);
+
       client.generateImage = 0;
       client.generateLogo = 0;
       client.generateText = 0;
       client.generateColor = 0;
       client.generateColorSecond = 1;
-      randomFun();
+      
+      let rundomListener = await randomFun();
+      if(rundomListener && remixButton) remixButton.setAttribute('aria-disabled', false);
     }
       
   };
 
+
   const randomFun = async () => {
 
-    smallLoading?.classList.add("active");
+      smallLoading?.classList.add("active");
 
-    // await generateRandomColors();
-    
-    // await setColorToSettings();
-    // fontsCount++;
-    // if (fontsCount >= fonts.length) fontsCount = 0;
-    // if (remixCount >= imageBanner[allThemesID[currentThemeKey]]?.length) {
-    //   remixCount = 0;
-    //   clearTheme();
-    //   currentThemeKey++;
-    //   if (currentThemeKey >= allThemesID?.length) currentThemeKey = 0;
-    //   let remixUrl =
-    //     "/remix/" + allThemesID[currentThemeKey] + location?.search;
-    //   await getSettingsLists(false, remixUrl);
-    // } else {
       try {
-        
-        // console.log("Save Started");
-        // let saveSetting = await saveSettingsValues();
-        // console.log(saveSetting, "Save finished");
-        // await setColorToSettings();
-        // console.log("View Iframe Started");
-        // await viewIframe(true);
-        // console.log("View Iframe DONE");
+
+        if(client.savelogo){
+          let logoFiled = document.querySelector('.py__ai-logo');
+          if(logoFiled && client.oldLogoUrl){
+            logoFiled.value = client.oldLogoUrl;
+          }
+        }
+
         if(client.generateColor || client.generateColorSecond){
           alertMessage.textContent = `Generating Colors`;
           alertCount.style.display = "none";
@@ -3369,16 +3375,11 @@
           if(getColorsParse === "Unauthorized") return smallLoading.classList.add('active');
           let getcolors = JSON.parse(getColorsParse);
           client.colors = getcolors;
-  
-          let getBgColors = null;
-          let getTextColors = null;
-  
-  
+          
           let bgColorsFileds = document.querySelectorAll('.py__ai-bg-color');
           let colorsFileds = document.querySelectorAll('.py__ai-color');
-          // alertMessage.textContent = `Generating New Logo and Colors`;
-          getBgColors = [];
-          getTextColors = [];
+          let getBgColors = [];
+          let getTextColors = [];
           if(getcolors?.length || getcolors?.backgrounds){
             for(let i=0; i<(getcolors?.backgrounds?.length || getcolors?.length); i++){
               let aiColorItem = getcolors.backgrounds[i]  || getcolors[i];
@@ -3390,23 +3391,27 @@
           
           for(let i=0; i<5; i++){
             let bgColorFiled = bgColorsFileds[i]; 
-            let colorFiled = colorsFileds[i];
             let bgColorName = bgColorFiled.getAttribute('name');
-            let colorName = colorFiled.getAttribute('name');
             bgColorFiled.value = getBgColors[i];
             bgColorFiled.setAttribute("value", getBgColors[i]);
             bgColors[bgColorName.replace('py_bg_color_', '')] = getBgColors[i];
-            colorFiled.value = getTextColors[i];
-            colorFiled.setAttribute("value", getTextColors[i]);
-            textColors[colorName.replace('py_color_', '')] = getTextColors[i];
             let wrapBgColor = bgColorFiled.closest('.py__label-for-color');
-            let wrapColor = colorFiled.closest('.py__label-for-color');
             wrapBgColor.style.backgroundColor = getBgColors[i];
-            wrapColor.style.backgroundColor = getTextColors[i];
+            if(i > 0 && i < 4){
+              let colorFiled = colorsFileds[i];
+              let colorName = colorFiled.getAttribute('name');
+              colorFiled.value = getTextColors[i];
+              colorFiled.setAttribute("value", getTextColors[i]);
+              textColors[colorName.replace('py_color_', '')] = getTextColors[i];
+              let wrapColor = colorFiled.closest('.py__label-for-color');
+              wrapColor.style.backgroundColor = getTextColors[i];
+            }
           }
           await setColorToSettings();
           await saveSettingsValues();
           await viewIframe();
+          fontIndex++;
+          if(fontIndex >= fonts.length) fontIndex = 0;
         };
 
 
@@ -3418,7 +3423,7 @@
           let logoFiled = document.querySelector('.py__ai-logo');
           if(logoFiled && getNewlogo){
             logoFiled.value = getNewlogo;
-            currentLogo = getNewlogo;
+            client.oldLogoUrl = getNewlogo;
             await saveSettingsValues();
             await viewIframe();
           }
@@ -3479,8 +3484,8 @@
               let iframeItem = iframes[i];
               let iframeItemContent = iframeItem.contentDocument || iframeItem.contentWindow.document;
               let imageWrapper = iframeItemContent.querySelector(`#${imageId}`);
-              if(imageWrapper) imageWrapper.insertAdjacentHTML('beforeend', '<div class="py__image-ai-loading"><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div></div>');
-              let imageItem = imageWrapper?.querySelector('img');
+              if(imageWrapper) imageWrapper?.insertAdjacentHTML('beforeend', '<div class="py__image-ai-loading"><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div></div>');
+              let imageItem = imageWrapper?.querySelector('img') || imageWrapper;
               imageAlt = imageItem?.getAttribute('alt');
             }
             let newImagePrompt =  (imageAlt) 
@@ -3493,89 +3498,16 @@
               let iframeItem = iframes[i];
               let iframeItemContent = iframeItem.contentDocument || iframeItem.contentWindow.document;
               let imageWrapper = iframeItemContent?.querySelector(`#${imageId}`);
-              if(imageWrapper) imageWrapper.querySelector('.py__image-ai-loading').remove();
-              let imageItem = imageWrapper?.querySelector('img');
+              if(imageWrapper) imageWrapper?.querySelector('.py__image-ai-loading')?.remove();
+              let imageItem = imageWrapper?.querySelector('img') || imageWrapper;
               imageItem?.setAttribute('src', getNewImage);
             }
           };
         }
-  
-        return smallLoading?.classList.remove("active");
 
-        // let imageBannerSections = document.querySelectorAll(
-        //   '[data-section-handle="image-banner"]'
-        // );
-        // if (imageBannerSections?.length) {
-        //   imageBannerSections?.forEach((imageBannerSection) => {
-        //     let imageBannerSectionId =
-        //       imageBannerSection?.getAttribute("data-section-id");
-        //     let imageBannerContent = imageBannerSection?.closest(".py__closest");
-        //     let imageBannerBlocks = imageBannerContent?.querySelectorAll(
-        //       ".py__settings-block-item"
-        //     );
-
-        //     if (
-        //       imageBanner[allThemesID[currentThemeKey]]?.length &&
-        //       imageBanner[allThemesID[currentThemeKey]][remixCount][
-        //         imageBannerSectionId
-        //       ]
-        //     ) {
-        //       let fileds = imageBannerSection.querySelectorAll("[name]");
-        //       if (fileds?.length) {
-        //         for (let i = 0; i < fileds.length; i++) {
-        //           let filed = fileds[i];
-        //           let filedName = filed.getAttribute("name");
-        //           if (
-        //             typeof imageBanner[allThemesID[currentThemeKey]][remixCount][
-        //               imageBannerSectionId
-        //             ].settings[filedName] !== "undefined"
-        //           )
-        //             filed.value =
-        //               imageBanner[allThemesID[currentThemeKey]][remixCount][
-        //                 imageBannerSectionId
-        //               ].settings[filedName];
-        //         }
-        //       }
-        //       if (imageBannerBlocks?.length) {
-        //         for (let i = 0; i < imageBannerBlocks.length; i++) {
-        //           let block = imageBannerBlocks[i];
-        //           let blockId = block.getAttribute("data-block-id");
-        //           let findAllFileds = block.querySelectorAll("[name]");
-        //           if (findAllFileds?.length) {
-        //             for (let j = 0; j < findAllFileds.length; j++) {
-        //               let filed = findAllFileds[j];
-        //               let filedName = filed
-        //                 .getAttribute("name")
-        //                 .replace("block_", "");
-        //               if (
-        //                 imageBanner[allThemesID[currentThemeKey]][remixCount][
-        //                   imageBannerSectionId
-        //                 ]?.blocks &&
-        //                 imageBanner[allThemesID[currentThemeKey]][remixCount][
-        //                   imageBannerSectionId
-        //                 ]?.blocks[blockId] &&
-        //                 typeof imageBanner[allThemesID[currentThemeKey]][
-        //                   remixCount
-        //                 ][imageBannerSectionId]?.blocks[blockId].settings[
-        //                   filedName
-        //                 ] !== "undefined"
-        //               )
-        //                 filed.value =
-        //                   imageBanner[allThemesID[currentThemeKey]][remixCount][
-        //                     imageBannerSectionId
-        //                   ]?.blocks[blockId].settings[filedName];
-        //             }
-        //           }
-        //         }
-        //       }
-        //     }
-        //   });
-        // }
-
-        // remixCount++;
-
-        // await saveSettingsValues();
-        // await viewIframe(true);
+        smallLoading?.classList.remove("active");
+        return true;
+      
       } catch(err){
         console.log(err, "ERROR");
         await saveSettingsValues();

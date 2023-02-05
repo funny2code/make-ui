@@ -1,0 +1,330 @@
+<link rel="stylesheet" href="/<%=srcId%>/section-main-page.css" >
+<link rel="stylesheet" href="/<%=srcId%>/component-rte.css" >
+<link rel="stylesheet" href="/<%=srcId%>/customer.css">
+
+<style>  
+  .page-container{
+    background-color:<%=section.settings.page_bg_color%>;
+    padding:5px;
+    text-align:<%=section.settings.page_align%>;
+  }
+  .page-container .customer *:not(.add_address_btn,.delete_address_btn,.edit_address_btn){
+    color:<%=section.settings.page_color%>;
+  }
+  .page-container .customer .edit_panel{
+    position: fixed;
+    width: 100%;
+    max-width: 420px;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    background-color:<%=section.settings.panel_bg_color%>;
+    padding: var(--py-pd-x-m);
+    height: 100vh;
+    overflow: auto;
+  }
+  .page-container .customer .edit_panel_overlay{    
+    position: fixed;
+    width: 100%; 
+    height: 100vh;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    background: #00000082;
+  }
+  .page-container .customer .edit_panel *:not(.submit_address){
+    color:<%=section.settings.panel_color%>;
+  }
+  .page-container .customer .edit_panel h2{
+    text-align:left;
+  }
+  .customer .edit_panel .cancel_submit{
+    position: absolute;
+    top: 19px;
+    padding: 3px;
+    width: initial;
+    min-width: initial;
+    right: 20px;
+  }
+  .customer .edit_panel .cancel_submit svg{
+    width: 17px;
+    height: 17px;
+  }
+  .page-container .customer .field input,
+  .page-container .customert.addresses select{
+    border:<%=section.settings.field_border_width%>px solid <%=section.settings.field_color_br%>;
+    border-radius:<%=section.settings.field_border_radius%>px;
+    background-color:<%=section.settings.field_bg_color%>;
+    color:<%=section.settings.field_color%>;
+    padding: 12px 15px;
+    width:100%;
+  }
+  .page-container .customer .submit_address{    
+    width:100%;
+  }
+  
+</style>
+<div class="page-container">
+<%# paginate customert.addresses by 5){ %>
+  <div class="customer addresses" data-customer-addresses>
+    <svg style="display: none">
+      <symbol id="icon-caret" viewBox="0 0 10 6">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+      </symbol>
+    </svg>
+    <h1><%=customert.addresses.title%></h1>
+    <a href="<%= routes?.account_url %>">
+      <%=customert.account.return%>
+    </a>
+  
+    <div data-address>
+      <button
+        class="add_address_btn button py-c-<%=section.settings.page_color_add_btn%> py-hv-c-<%=section.settings.page_color_add_btn_hover%> py-bg-c-<%=section.settings.page_bg_color_add_btn%> py-hv-bg-c-<%=section.settings.page_bg_color_add_btn_hover%> py-btn-<%=section.settings.add_btn_size%>"      
+        type="button"
+        aria-expanded="false"
+        aria-controls="AddAddress"
+      >
+        <%=customert.addresses.add_new%>
+      </button>
+      <div id="AddAddress" class="edit_panel">
+        <h2 id="AddressNewHeading"><%=customert.addresses.add_new%></h2>
+        <form aria-labelledBy="AddressNewHeading">
+          <div class="field"> 
+            <label for="AddressFirstNameNew"><%=customert.addresses.first_name%></label>
+            <input type="text" id="AddressFirstNameNew" name="address[first_name]" value="<%= form?.first_name %>" autocomplete="given-name" placeholder="<%=customert.addresses.first_name%>">            
+          </div>
+          <div class="field">          
+            <label for="AddressLastNameNew"><%=customert.addresses.last_name%></label>
+            <input type="text" id="AddressLastNameNew" name="address[last_name]" value="<%= form?.last_name %>" autocomplete="family-name" placeholder="<%=customert.addresses.last_name%>">
+        </div>
+          <div class="field">          
+            <label for="AddressCompanyNew"><%=customert.addresses.company%></label>
+            <input type="text" id="AddressCompanyNew" name="address[company]" value="<%= form?.company %>" autocomplete="organization" placeholder="<%=customert.addresses.company%>">            
+          </div>
+          <div class="field">          
+            <label for="AddressAddress1New"><%=customert.addresses.address1%></label>
+            <input type="text" id="AddressAddress1New" name="address[address1]" value="<%= form?.address1 %>" autocomplete="address-line1" placeholder="<%=customert.addresses.address1%>">            
+          </div>
+          <div class="field">          
+            <label for="AddressAddress2New"><%=customert.addresses.address2%></label>
+            <input type="text" id="AddressAddress2New" name="address[address2]" value="<%= form?.address2 %>" autocomplete="address-line2" placeholder="<%=customert.addresses.address2%>">            
+          </div>
+          <div class="field">          
+            <label for="AddressCityNew"><%=customert.addresses.city%></label>
+            <input type="text" id="AddressCityNew" name="address[city]" value="<%= form?.city %>" autocomplete="address-level2" placeholder="<%=customert.addresses.city%>">            
+          </div>
+          <div>
+            <label for="AddressCountryNew"><%=customert.addresses.country%></label>
+            <div class="select">
+              <select
+                id="AddressCountryNew"
+                name="address[country]"
+                data-default="<%= form?.country %>"
+                autocomplete="country"
+              >
+                <%= all_country_option_tags %>
+              </select>
+            </div>
+          </div>
+          <div id="AddressProvinceContainerNew" style="display: none">
+            <label for="AddressProvinceNew"><%=customert.addresses.province%></label>
+            <div class="select">
+              <select
+                id="AddressProvinceNew"
+                name="address[province]"
+                data-default="<%= form?.province %>"
+                autocomplete="address-level1"
+              >
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="AddressZipNew"><%=customert.addresses.zip%></label>
+            <input type="text" id="AddressZipNew" name="address[zip]" value="<%= form?.zip %>" autocapitalize="characters" autocomplete="postal-code" placeholder="<%=customert.addresses.zip%>">            
+          </div>
+          <div class="field">
+            <label for="AddressPhoneNew"><%=customert.addresses.phone%></label>
+            <input type="tel" id="AddressPhoneNew" name="address[phone]" value="<%= form?.phone %>" autocomplete="tel" placeholder="<%=customert.addresses.phone%>">            
+          </div>
+          <div>
+            <%= form?.set_as_default_checkbox %>
+            <label for="address_default_address_new"><%=customert.addresses.set_default%></label>
+          </div>
+          <div>
+            <button class="submit_address button py-c-<%=section.settings.panel_color_submit_btn%> py-hv-c-<%=section.settings.panel_color_submit_btn_hover%> py-bg-c-<%=section.settings.panel_bg_color_submit_btn%> py-hv-bg-c-<%=section.settings.panel_bg_color_submit_btn_hover%> py-btn-<%=section.settings.submit_btn_size%>"><%=customert.addresses.add%></button>
+            <button class="cancel_submit" type="reset">
+              <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
+                <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"></path>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div id="" class="edit_panel_overlay"></div>
+    </div>
+
+    <ul role="list">
+      <% customer?.addresses?.forEach((address,index)=>{ %>
+        <li data-address>
+          <% if(address === customert.default_address){ %>
+            <h2><%=customert.addresses.default%></h2>
+          <% } %>
+          <%# address | format_address %>
+          <button
+            class="edit_address_btn button py-c-<%=section.settings.page_color_edit_btn%> py-hv-c-<%=section.settings.page_color_edit_btn_hover%> py-bg-c-<%=section.settings.page_bg_color_edit_btn%> py-hv-bg-c-<%=section.settings.page_bg_color_edit_btn_hover%> py-btn-<%=section.settings.edit_btn_size%>"
+            type="button"
+            id="EditFormButton_<%= address.id %>"
+            aria-label="<%=customert.addresses.edit_address%> <%= index %>"
+            aria-controls="EditAddress_<%= address.id %>"
+            aria-expanded="false"
+            data-address-id="<%= address.id %>"
+          >
+            <%=customert.addresses.edit%>
+          </button>
+          <button
+            class="delete_address_btn button py-c-<%=section.settings.page_color_edit_btn%> py-hv-c-<%=section.settings.page_color_edit_btn_hover%> py-bg-c-<%=section.settings.page_bg_color_edit_btn%> py-hv-bg-c-<%=section.settings.page_bg_color_edit_btn_hover%> py-btn-<%=section.settings.edit_btn_size%>"
+            type="button"
+            aria-label="<%=customert.addresses.delete%> <%= index %>"
+            data-target="<%= address.url %>"
+            data-confirm-message="<%=customert.addresses.delete_confirm%>"
+          >
+            <%=customert.addresses.delete%>
+          </button>
+          <div id="EditAddress_<%= address.id %>" class="edit_panel">
+            <h2><%=customert.addresses.edit_address%></h2>            
+            <form>
+              <div class="field">               
+                <label for="AddressFirstName_<%= form?.id %>"><%=customert.addresses.first_name%></label>
+                <input type="text" id="AddressFirstName_<%= form?.id %>" name="address[first_name]" value="<%= form?.first_name %>" autocomplete="given-name" placeholder="<%=customert.addresses.first_name%>">                
+              </div>
+              <div class="field">                
+                <label for="AddressLastName_<%= form?.id %>"><%=customert.addresses.last_name%></label>
+                <input type="text" id="AddressLastName_<%= form?.id %>" name="address[last_name]" value="<%= form?.last_name %>" autocomplete="family-name" placeholder="<%=customert.addresses.last_name%>">                
+              </div>
+              <div class="field">
+                <label for="AddressCompany_<%= form?.id %>"><%=customert.addresses.company%></label> 
+                <input type="text" id="AddressCompany_<%= form?.id %>" name="address[company]" value="<%= form?.company %>" autocomplete="organization" placeholder="<%=customert.addresses.company%>">                               
+              </div>
+              <div class="field">
+                <label for="AddressAddress1_<%= form?.id %>"><%=customert.addresses.address1%></label>   
+                <input type="text" id="AddressAddress1_<%= form?.id %>" name="address[address1]" value="<%= form?.address1 %>" autocomplete="address-line1" placeholder="<%=customert.addresses.address1%>">                            
+              </div>
+              <div class="field">
+                <label for="AddressAddress2_<%= form?.id %>"><%=customert.addresses.address2%></label>   
+                <input type="text" id="AddressAddress2_<%= form?.id %>" name="address[address2]" value="<%= form?.address2 %>" autocomplete="address-line2" placeholder="<%=customert.addresses.address2%>">                             
+              </div>
+              <div class="field">
+                <label for="AddressCity_<%= form?.id %>"><%=customert.addresses.city%></label> 
+                <input type="text" id="AddressCity_<%= form?.id %>" name="address[city]" value="<%= form?.city %>" autocomplete="address-level2" placeholder="<%=customert.addresses.city%>">                               
+              </div>
+              <div>
+                <label for="AddressCountry_<%= form?.id %>">
+                  <%=customert.addresses.country%>
+                </label>
+                <div class="select">
+                  <select
+                    id="AddressCountry_<%= form?.id %>"
+                    name="address[country]"
+                    data-address-country-select
+                    data-default="<%= form?.country %>"
+                    data-form-id="<%= form?.id %>"
+                    autocomplete="country"
+                  >
+                    <%= all_country_option_tags %>
+                  </select>
+                </div>
+              </div>
+              <div id="AddressProvinceContainer_<%= form?.id %>" style="display:none;">
+                <label for="AddressProvince_<%= form?.id %>">
+                  <%=customert.addresses.province%>
+                </label>
+                <div class="select">
+                  <select
+                    id="AddressProvince_<%= form?.id %>"
+                    name="address[province]"
+                    data-default="<%= form?.province %>"
+                    autocomplete="address-level1"
+                  >
+                  </select>                  
+                </div>
+              </div>
+              <div class="field">                
+                <label for="AddressZip_<%= form?.id %>"><%=customert.addresses.zip%></label>
+                <input type="text" id="AddressZip_<%= form?.id %>" name="address[zip]" value="<%= form?.zip %>" autocapitalize="characters" autocomplete="postal-code" placeholder="<%=customert.addresses.zip%>">                
+              </div>
+              <div class="field">                
+                <label for="AddressPhone_<%= form?.id %>"><%=customert.addresses.phone%></label>
+                <input type="tel" id="AddressPhone_<%= form?.id %>"  name="address[phone]" value="<%= form?.phone %>" autocomplete="tel" placeholder="<%=customert.addresses.phone%>">                
+              </div>
+              <div>
+                <%= form?.set_as_default_checkbox %>
+                <label for="address_default_address_<%= form?.id %>">
+                  <%=customert.addresses.set_default%>
+                </label>
+              </div>
+              <div>
+                <button class="submit_address button py-c-<%=section.settings.panel_color_submit_btn%> py-hv-c-<%=section.settings.panel_color_submit_btn_hover%> py-bg-c-<%=section.settings.panel_bg_color_submit_btn%> py-hv-bg-c-<%=section.settings.panel_bg_color_submit_btn_hover%> py-btn-<%=section.settings.submit_btn_size%>"><%=customert.addresses.update%></button>
+                <button class="cancel_submit" type="reset">
+                  <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
+                    <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"></path>
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div id="" class="edit_panel_overlay"></div>
+        </li>
+      <% }) %>
+    </ul>
+  
+    <% if(paginate?.pages > 1){ %>
+      <% if(paginate?.parts?.length > 0){ %>
+          <nav class="pagination" role="navigation" aria-label="<%=general.pagination.label%>">
+            <ul role="list">
+            <% if(paginate?.previous){ %>
+              <li>
+                <a href="<%= paginate?.previous?.url %>" aria-label="<%=general.pagination.previous%>">
+                  <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                  </svg>
+                </a>
+              </li>
+            <% } %>
+
+            <% paginate?.parts?.forEach((part,index)=>{ %>
+              <li>
+                <% if(part.is_link){ %>
+                  <a href="<%= part.url %>" aria-label="<%=general.pagination.page %>"><%= part.title %></a>
+                <% } else { %>
+                  <% if(part.title === paginate?.current_page){ %>
+                    <span aria-current="page" aria-label="<%=general.pagination.page %>"><%= part.title %></span>
+                  <% } else { %>
+                    <span><%= part.title %></span>
+                  <% } %>
+                <% } %>
+              </li>
+            <% }) %>
+
+            <% if(paginate?.next){ %>
+              <li>
+                <a href="<%= paginate?.next.url %>" aria-label="<%=general.pagination.next%>" >
+                  <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                  </svg>
+                </a>
+              </li>
+            <% } %>
+            </ul>
+          </nav>
+      <% } %>
+    <% } %>
+  </div>
+<%# endpaginate){ %>
+</div>
+  <script>
+    document.querySelectorAll('.edit_panel_overlay').forEach(element => {
+      element.addEventListener('click', function(event){
+        this.previousElementSibling.querySelector('.cancel_submit').click();
+      });
+    });
+  </script>  
