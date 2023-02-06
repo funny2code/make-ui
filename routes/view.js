@@ -23,17 +23,17 @@ router.get('/:id', async (req, res, next) => {
     const theme = await modelThemes.findById(id).exec();
     if (!theme) return next();
     
-    const makeMenu = require(`../contents/${id}/menu`);
-    const makeFooterMenu = require(`../contents/${id}/footermenu`);
-    const page = require(`../contents/${id}/page`);
-    const collection = require(`../contents/${id}/collection`);
-    const collections = require(`../contents/${id}/collections`);
-    const product = require(`../contents/${id}/product`);
-    const cart = require(`../contents/${id}/cart`);
-    const blog = require(`../contents/${id}/blogs`);
-    const article = require(`../contents/${id}/article`);
-    const customer = require(`../contents/${id}/customer`);
-    const gift = require(`../contents/${id}/gift`);
+    const makeMenu = require(`../contents/menu`);
+    const makeFooterMenu = require(`../contents/footermenu`);
+    const page = require(`../contents/page`);
+    const collection = require(`../contents/collection`);
+    const collections = require(`../contents/collections`);
+    const product = require(`../contents/product`);
+    const cart = require(`../contents/cart`);
+    const blog = require(`../contents/blogs`);
+    const article = require(`../contents/article`);
+    const customer = require(`../contents/customer`);
+    const gift = require(`../contents/gift`);
     const themeGeneralTexts = require(`../themes/${id}/locales/en.default.json`);
 
     let sections = null;
@@ -117,17 +117,17 @@ router.post('/:id', async (req, res, next) => {
     const theme = await modelThemes.findById(id).exec();
     if (!theme) return next();
     
-    const makeMenu = require(`../contents/${id}/menu`);
-    const page = require(`../contents/${id}/page`);
-    const makeFooterMenu = require(`../contents/${id}/footermenu`);
-    const collection = require(`../contents/${id}/collection`);
-    const collections = require(`../contents/${id}/collections`);
-    const product = require(`../contents/${id}/product`);
-    const cart = require(`../contents/${id}/cart`);
-    const blog = require(`../contents/${id}/blogs`);
-    const article = require(`../contents/${id}/article`);
-    const customer = require(`../contents/${id}/customer`);
-    const gift = require(`../contents/${id}/gift`);
+    const makeMenu = require(`../contents/menu`);
+    const page = require(`../contents/page`);
+    const makeFooterMenu = require(`../contents/footermenu`);
+    const collection = require(`../contents/collection`);
+    const collections = require(`../contents/collections`);
+    const product = require(`../contents/product`);
+    const cart = require(`../contents/cart`);
+    const blog = require(`../contents/blogs`);
+    const article = require(`../contents/article`);
+    const customer = require(`../contents/customer`);
+    const gift = require(`../contents/gift`);
     const themeGeneralTexts = require(`../themes/${id}/locales/en.default.json`);
 
     let sections = null;

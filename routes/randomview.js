@@ -22,16 +22,16 @@ router.get('/', async (req, res, next) => {
     if (!themes?.length) return next();
     const theme = themes[0];
 
-    const makeMenu = require(`../contents/${theme?._id}/menu`);
-    const makeFooterMenu = require(`../contents/${theme?._id}/footermenu`);
-    const collection = require(`../contents/${theme?._id}/collection`);
-    const collections = require(`../contents/${theme?._id}/collections`);
-    const product = require(`../contents/${theme?._id}/product`);
-    const cart = require(`../contents/${theme?._id}/cart`);
-    const blog = require(`../contents/${theme?._id}/blogs`);
-    const article = require(`../contents/${theme?._id}/article`);
-    const customer = require(`../contents/${theme?._id}/customer`);
-    const gift = require(`../contents/${theme?._id}/gift`);
+    const makeMenu = require(`../contents/menu`);
+    const makeFooterMenu = require(`../contents/footermenu`);
+    const collection = require(`../contents/collection`);
+    const collections = require(`../contents/collections`);
+    const product = require(`../contents/product`);
+    const cart = require(`../contents/cart`);
+    const blog = require(`../contents/blogs`);
+    const article = require(`../contents/article`);
+    const customer = require(`../contents/customer`);
+    const gift = require(`../contents/gift`);
     const themeGeneralTexts = require(`../themes/${theme?._id}/locales/en.default.json`);
 
     const settings = {};
