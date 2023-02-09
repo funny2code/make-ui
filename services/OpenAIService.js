@@ -103,7 +103,7 @@ class OpenAIService {
 
       if(message){
         const configuration = new Configuration({
-          apiKey: dalle_api_key,
+          apiKey: dalle_api_key || process.env.OPENAI_API_KEY,
         });
         const openai = new OpenAIApi(configuration);
 
