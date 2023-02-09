@@ -94,12 +94,12 @@ class OpenAIService {
         },
       };
     } else {
-      if (!dalle_api_key) {
-        return {
-          status: 304,
-          data: { status: 304, message: "PLEASE USE YOUR AI API KEY" },
-        };
-      }
+      // if (!dalle_api_key) {
+      //   return {
+      //     status: 304,
+      //     data: { status: 304, message: "PLEASE USE YOUR AI API KEY" },
+      //   };
+      // }
 
       if(message){
         const configuration = new Configuration({
